@@ -1,0 +1,31 @@
+# Operating systems and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Obsidian per-user state (keep shared vault settings)
+docs/.obsidian/workspace.json
+docs/.obsidian/workspace-mobile.json
+docs/.obsidian/cache/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# JavaScript / TypeScript
+node_modules/
+dist/
+build/
+coverage/
+.turbo/
+.next/
+
+# Logs and temporary files
+*.log
+tmp/
+.cache/
+
