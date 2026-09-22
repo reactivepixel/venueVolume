@@ -1,0 +1,304 @@
+{
+  "generatedAt": "2026-09-22T00:46:00.724Z",
+  "desktop": {
+    "width": 1440,
+    "height": 1040
+  },
+  "mobile": {
+    "width": 390,
+    "height": 844
+  },
+  "screens": [
+    {
+      "id": "sign-in",
+      "title": "Sign in",
+      "section": "Workspace",
+      "feature": "F01",
+      "purpose": "Identify the operator and recover access.",
+      "number": "01"
+    },
+    {
+      "id": "workspace",
+      "title": "Create workspace",
+      "section": "Workspace",
+      "feature": "F01",
+      "purpose": "Establish the company workspace and first team.",
+      "number": "02"
+    },
+    {
+      "id": "shows",
+      "title": "All shows",
+      "section": "Workspace",
+      "feature": "F02",
+      "purpose": "Find, duplicate, archive, or create a show.",
+      "number": "03"
+    },
+    {
+      "id": "new-show",
+      "title": "Create show",
+      "section": "Workspace",
+      "feature": "F02",
+      "purpose": "Name the production and set its starting configuration.",
+      "number": "04"
+    },
+    {
+      "id": "overview",
+      "title": "Show overview",
+      "section": "Show",
+      "feature": "F02",
+      "purpose": "Understand readiness and continue the next production task.",
+      "number": "05"
+    },
+    {
+      "id": "templates",
+      "title": "Configuration templates",
+      "section": "Show",
+      "feature": "F03",
+      "purpose": "Manage reusable rig configurations inside this show.",
+      "number": "06"
+    },
+    {
+      "id": "template-detail",
+      "title": "Template details",
+      "section": "Show",
+      "feature": "F03",
+      "purpose": "Inspect a version, its drawing, inventory, and dependent venues.",
+      "number": "07"
+    },
+    {
+      "id": "template-editor",
+      "title": "Template drawing",
+      "section": "Show",
+      "feature": "F04",
+      "purpose": "Arrange equipment over a saved technical drawing.",
+      "number": "08"
+    },
+    {
+      "id": "inventory",
+      "title": "Equipment inventory",
+      "section": "Show",
+      "feature": "F05",
+      "purpose": "Track lighting and non-lighting production equipment.",
+      "number": "09"
+    },
+    {
+      "id": "equipment",
+      "title": "Equipment details",
+      "section": "Show",
+      "feature": "F05",
+      "purpose": "Edit quantity, capability, ownership, and equipment metadata.",
+      "number": "10"
+    },
+    {
+      "id": "library",
+      "title": "Fixture library",
+      "section": "Show",
+      "feature": "F06",
+      "purpose": "Find fixture profiles and modes before patching.",
+      "number": "11"
+    },
+    {
+      "id": "fixture",
+      "title": "Fixture profile",
+      "section": "Show",
+      "feature": "F06",
+      "purpose": "Inspect channel capabilities, ranges, defaults, and compatibility.",
+      "number": "12"
+    },
+    {
+      "id": "venues",
+      "title": "Venues",
+      "section": "Venue",
+      "feature": "F07",
+      "purpose": "Compare venue-specific configurations and readiness.",
+      "number": "13"
+    },
+    {
+      "id": "new-venue",
+      "title": "Create venue",
+      "section": "Venue",
+      "feature": "F07",
+      "purpose": "Seed a venue from a specific template revision.",
+      "number": "14"
+    },
+    {
+      "id": "venue-detail",
+      "title": "Venue overview",
+      "section": "Venue",
+      "feature": "F07",
+      "purpose": "Review the local configuration and prepare for load-in.",
+      "number": "15"
+    },
+    {
+      "id": "venue-layout",
+      "title": "Venue drawing",
+      "section": "Venue",
+      "feature": "F04",
+      "purpose": "Adapt the inherited rig to the venue footprint.",
+      "number": "16"
+    },
+    {
+      "id": "patch",
+      "title": "DMX patch",
+      "section": "Venue",
+      "feature": "F08",
+      "purpose": "Map logical fixtures to addresses with conflict detection.",
+      "number": "17"
+    },
+    {
+      "id": "overrides",
+      "title": "Compare overrides",
+      "section": "Venue",
+      "feature": "F09",
+      "purpose": "Inspect and reset differences without losing show defaults.",
+      "number": "18"
+    },
+    {
+      "id": "presets",
+      "title": "Preset library",
+      "section": "Program",
+      "feature": "F10",
+      "purpose": "Reuse parameter looks across repeated fixture groups.",
+      "number": "19"
+    },
+    {
+      "id": "preset-editor",
+      "title": "Preset editor",
+      "section": "Program",
+      "feature": "F10",
+      "purpose": "Program parameters and inspect venue-resolved values.",
+      "number": "20"
+    },
+    {
+      "id": "cues",
+      "title": "Cue library",
+      "section": "Program",
+      "feature": "F11",
+      "purpose": "Manage named show states independently from running order.",
+      "number": "21"
+    },
+    {
+      "id": "cue-editor",
+      "title": "Cue editor",
+      "section": "Program",
+      "feature": "F11",
+      "purpose": "Assign presets to fixture roles and define transitions.",
+      "number": "22"
+    },
+    {
+      "id": "scripts",
+      "title": "Scripts",
+      "section": "Program",
+      "feature": "F12",
+      "purpose": "Choose an expected cue sequence and revision.",
+      "number": "23"
+    },
+    {
+      "id": "script-editor",
+      "title": "Script editor",
+      "section": "Program",
+      "feature": "F12",
+      "purpose": "Order cue references, repeats, notes, and advance policies.",
+      "number": "24"
+    },
+    {
+      "id": "rehearsal",
+      "title": "Rehearsal",
+      "section": "Operate",
+      "feature": "F13",
+      "purpose": "Step through the venue-resolved script with simulated output.",
+      "number": "25"
+    },
+    {
+      "id": "live",
+      "title": "Live console",
+      "section": "Operate",
+      "feature": "F13",
+      "purpose": "Operate the touch desk: select fixtures, adjust live values, call/restart cues, follow MIDI, and detach a synchronized console.",
+      "number": "26"
+    },
+    {
+      "id": "outputs",
+      "title": "Output connections",
+      "section": "Operate",
+      "feature": "F14",
+      "purpose": "Pair a bridge and route logical universes to network outputs.",
+      "number": "27"
+    },
+    {
+      "id": "universe",
+      "title": "Universe monitor",
+      "section": "Operate",
+      "feature": "F14",
+      "purpose": "Inspect individual slot values and output freshness.",
+      "number": "28"
+    },
+    {
+      "id": "preflight",
+      "title": "Preflight",
+      "section": "Operate",
+      "feature": "F13",
+      "purpose": "Resolve blocking readiness issues before arming.",
+      "number": "29"
+    },
+    {
+      "id": "recovery",
+      "title": "Connection recovery",
+      "section": "Operate",
+      "feature": "F14",
+      "purpose": "Reconcile stale state and explicitly resume after a disconnect.",
+      "number": "30"
+    },
+    {
+      "id": "assets",
+      "title": "Files & drawings",
+      "section": "Manage",
+      "feature": "F04",
+      "purpose": "Manage original CAD assets, previews, and revisions.",
+      "number": "31"
+    },
+    {
+      "id": "activity",
+      "title": "Activity & versions",
+      "section": "Manage",
+      "feature": "F15",
+      "purpose": "Audit edits and restore a reviewed historical revision.",
+      "number": "32"
+    },
+    {
+      "id": "team",
+      "title": "Team & access",
+      "section": "Manage",
+      "feature": "F01",
+      "purpose": "Invite collaborators with explicit workspace/show permissions.",
+      "number": "33"
+    },
+    {
+      "id": "settings",
+      "title": "Show settings",
+      "section": "Manage",
+      "feature": "F02",
+      "purpose": "Configure identity, defaults, export, and archive behavior.",
+      "number": "34"
+    },
+    {
+      "id": "billing",
+      "title": "Plan & billing",
+      "section": "Manage",
+      "feature": "F01",
+      "purpose": "Inspect subscription boundaries without interrupting an active run.",
+      "number": "35"
+    }
+  ],
+  "desktopCount": 70,
+  "stateCount": 4,
+  "dialogCount": 9,
+  "mobileCount": 8,
+  "extraLiveViews": [
+    "high-fidelity/live-popout.png",
+    "high-fidelity/live-cue-inspector.png",
+    "dialogs/live-midi-mapping.png",
+    "mobile/live-touch-tablet.png"
+  ],
+  "errors": []
+}

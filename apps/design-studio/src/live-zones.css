@@ -1,0 +1,355 @@
+/* Functional colors are local console wayfinding, not workflow or output state. */
+.lighting-desk [data-desk-zone="playback"],
+.desk-zone-readout[data-zone="playback"] {
+  --zone-accent: #79b8ff;
+  --zone-surface: #182b45;
+  --zone-header: #24466e;
+}
+.lighting-desk [data-desk-zone="stage"],
+.desk-zone-readout[data-zone="stage"] {
+  --zone-accent: #60d8ef;
+  --zone-surface: #122e39;
+  --zone-header: #185366;
+}
+.lighting-desk [data-desk-zone="programmer"],
+.desk-zone-readout[data-zone="programmer"] {
+  --zone-accent: #ffd180;
+  --zone-surface: #352b1d;
+  --zone-header: #624820;
+}
+.lighting-desk [data-desk-zone="groups"],
+.desk-zone-readout[data-zone="groups"] {
+  --zone-accent: #c4e77e;
+  --zone-surface: #29371f;
+  --zone-header: #40562c;
+}
+.lighting-desk [data-desk-zone="timeline"],
+.desk-zone-readout[data-zone="timeline"] {
+  --zone-accent: #aeb4ff;
+  --zone-surface: #242740;
+  --zone-header: #3b4069;
+}
+.lighting-desk [data-desk-zone="midi"],
+.desk-zone-readout[data-zone="midi"] {
+  --zone-accent: #d5a4ff;
+  --zone-surface: #342341;
+  --zone-header: #57356b;
+}
+.lighting-desk [data-desk-zone="transport"],
+.desk-zone-readout[data-zone="transport"] {
+  --zone-accent: #74e0c1;
+  --zone-surface: #183d37;
+  --zone-header: #24594d;
+}
+.desk-eyebrow {
+  flex-wrap: wrap;
+}
+.desk-zone-readout {
+  color: var(--zone-accent, #b7c6d0);
+  border-left: 1px solid currentColor;
+  padding-left: 12px;
+  margin-left: 5px;
+  letter-spacing: 0.4px;
+  font-size: 10px;
+}
+.app:not(.wireframe) .lighting-desk [data-desk-zone] {
+  background: var(--zone-surface);
+  border: 1px solid color-mix(in srgb, var(--zone-accent) 55%, var(--zone-surface));
+  border-top: 4px solid var(--zone-accent);
+  box-shadow: none;
+}
+.app:not(.wireframe) .lighting-desk [data-zone-active="true"] {
+  border-color: var(--zone-accent);
+  outline: 2px solid var(--zone-accent);
+  outline-offset: 2px;
+  box-shadow: inset 0 0 0 1px var(--zone-accent);
+}
+.app:not(.wireframe) .lighting-desk [data-desk-zone] > .desk-panel-title,
+.app:not(.wireframe) .lighting-desk .desk-inspector-tabs {
+  background: var(--zone-header);
+  border-bottom-color: color-mix(in srgb, var(--zone-accent) 45%, transparent);
+}
+.app:not(.wireframe) .lighting-desk .desk-panel-title h2 {
+  color: #f6f8ff;
+}
+.app:not(.wireframe) .lighting-desk .desk-panel-title > span {
+  color: #d0dfec;
+}
+.app:not(.wireframe) .lighting-desk [data-desk-zone] :is(button, input, select):focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+.app:not(.wireframe) .lighting-desk [data-desk-zone] input[type="range"] {
+  accent-color: var(--zone-accent);
+}
+.app:not(.wireframe) .lighting-desk .playback-summary {
+  background: #1c3858;
+  border-bottom-color: #4d749b;
+}
+.app:not(.wireframe) .lighting-desk .song-title {
+  background: #223b58;
+  color: #c9ddf4;
+}
+.app:not(.wireframe) .lighting-desk .desk-cue-row {
+  border-bottom-color: #354d69;
+}
+.app:not(.wireframe) .lighting-desk .desk-cue-row.inspected {
+  box-shadow: inset 0 0 0 2px #b5d7ff;
+}
+.app:not(.wireframe) .lighting-desk .rig-surface {
+  background: var(--zone-surface);
+  color: #afd2df;
+}
+.app:not(.wireframe) .lighting-desk .rig-group-buttons button {
+  background: #204654;
+  border-color: #508a9a;
+  color: #d0f0f7;
+}
+.app:not(.wireframe) .lighting-desk .rig-group-buttons button[aria-pressed="true"] {
+  background: #397382;
+  border-color: #8fe8f7;
+  color: #fff;
+}
+.app:not(.wireframe) .lighting-desk .rig-fixture.selected {
+  outline-color: #8be8fa;
+  background: #275669;
+}
+.app:not(.wireframe) .lighting-desk .submasters {
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 0;
+}
+.app:not(.wireframe) .lighting-desk .submasters[data-zone-active="true"] {
+  outline-offset: -3px;
+}
+.app:not(.wireframe) .lighting-desk .submaster-heading h3,
+.app:not(.wireframe) .lighting-desk .submaster-grid b {
+  color: var(--zone-accent);
+}
+.app:not(.wireframe) .lighting-desk .submaster-heading > span,
+.app:not(.wireframe) .lighting-desk .submaster-grid label > span {
+  color: #d0dfbb;
+}
+.app:not(.wireframe) .lighting-desk .submaster-grid button {
+  background: #3b4d2c;
+  border-color: #77934f;
+  color: #e0efc7;
+}
+.app:not(.wireframe) .lighting-desk .desk-inspector-tabs > button {
+  color: #f1d9ae;
+}
+.app:not(.wireframe) .lighting-desk .desk-inspector-tabs > button[aria-pressed="true"] {
+  background: #805d29;
+  color: #fff3da;
+  box-shadow: inset 0 -3px var(--zone-accent);
+}
+.app:not(.wireframe) .lighting-desk .desk-inspector-tabs button > span {
+  background: #49371d;
+  color: #ffe2a7;
+}
+.app:not(.wireframe) .lighting-desk .desk-inspector :is(.selection-heading, .cue-detail-title > span, .cue-details h4) {
+  color: #f2ca89;
+}
+.app:not(.wireframe) .lighting-desk .desk-inspector :is(p, .selection-note) {
+  color: #cfc3af;
+}
+.app:not(.wireframe) .lighting-desk .desk-inspector :is(.nudge-row button, select, .release-selection, .assignment-target) {
+  background: #4b3c26;
+  border-color: #927547;
+  color: #ffebc7;
+}
+.app:not(.wireframe) .lighting-desk .script-timeline > button > span,
+.app:not(.wireframe) .lighting-desk .script-timeline > button > small {
+  color: #bac0e5;
+}
+.app:not(.wireframe) .lighting-desk .script-timeline > button > strong {
+  color: #e4e6ff;
+}
+.app:not(.wireframe) .lighting-desk .midi-strip {
+  border-radius: 7px;
+  margin: 10px 0;
+  padding-left: 13px;
+  padding-right: 13px;
+  color: #e0baff;
+}
+.app:not(.wireframe) .lighting-desk .midi-strip :is(small, .midi-help, .midi-toggle) {
+  color: #d0bcdf;
+}
+.app:not(.wireframe) .lighting-desk .midi-strip button {
+  background: #513461;
+  border-color: #9970b3;
+  color: #f1dcff;
+}
+.app:not(.wireframe) .lighting-desk .desk-transport > button:not(.desk-go):not(.blackout-button):not(.latched):not(.transport-primary),
+.app:not(.wireframe) .lighting-desk .desk-arm button {
+  background: #285248;
+  border-color: #588e7e;
+  color: #d6f4e8;
+}
+/* Hue is supplementary: wireframes retain the active-section outline and label. */
+.wireframe .lighting-desk [data-zone-active="true"] {
+  outline: 2px solid #444;
+  outline-offset: -2px;
+}
+
+/* One playback surface: ordered script cards and transport share the bottom dock. */
+.lighting-desk .desk-workspace {
+  grid-template-columns: minmax(320px, 1fr) 330px;
+}
+.lighting-desk .playback-dock {
+  margin-top: 10px;
+  flex-shrink: 0;
+}
+.lighting-desk .playback-dock .desk-panel-title {
+  padding: 9px 14px;
+}
+.lighting-desk .playback-dock .playback-summary {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 4px 14px;
+  flex-wrap: wrap;
+}
+.lighting-desk .playback-dock .playback-summary > div {
+  margin: 6px 0;
+}
+.lighting-desk .playback-state {
+  margin-left: auto;
+  color: #c7d9eb;
+  font-size: 10px;
+}
+.script-cue-timeline {
+  display: block;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 240px;
+  padding: 6px 12px 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #79b8ff #182b45;
+}
+.script-cue-timeline .song-block {
+  display: block;
+  margin-bottom: 8px;
+}
+.script-cue-timeline .song-title {
+  padding: 0 6px;
+  border-radius: 4px 4px 0 0;
+  font-size: 10px;
+}
+.lighting-desk .script-cue-timeline .desk-cue-row {
+  display: grid;
+  grid-template-columns: 40px 18px 38px minmax(0, 1fr) 48px;
+  gap: 10px;
+  min-height: 48px;
+  padding: 5px 9px;
+  margin-top: 4px;
+  border: 1px solid #48678a;
+  border-top: 2px solid #79b8ff;
+  border-radius: 0 0 4px 4px;
+}
+.script-cue-timeline .cue-row-name {
+  grid-column: auto;
+  grid-row: auto;
+}
+.live-slot-number { display: grid; place-items: center; height: 34px; border: 1px solid #6f98be; border-radius: 4px; background: #294866; color: #e6f2ff; font: 600 15px ui-monospace, monospace; }
+.desk-cue-row.active .live-slot-number { background: #376b61; border-color: #85e2ce; }
+.lighting-desk .playback-dock .edit-script-button { min-height: 36px; font-size: 10px; padding: 6px 10px; }
+.playback-dock .desk-panel-title > span { margin-left: auto; }
+.script-cue-timeline .cue-row-name strong { font-size: 11px; }
+.script-cue-timeline .cue-row-name small { font-size: 9px; }
+.lighting-desk .playback-dock .desk-transport {
+  position: static;
+  max-width: none;
+  border-radius: 0;
+  margin: 0;
+  gap: 9px;
+  padding: 10px 12px;
+}
+.lighting-desk .playback-dock .grand-master {
+  max-width: 180px;
+  min-width: 100px;
+}
+.lighting-desk .playback-dock .desk-transport > .transport-primary {
+  min-height: 64px;
+  min-width: 100px;
+  flex: 1;
+  max-width: 190px;
+  font-size: 20px;
+  font-weight: 650;
+}
+.app:not(.wireframe) .lighting-desk .playback-dock .desk-transport > .transport-primary {
+  background: #285248;
+  border-color: #588e7e;
+  color: #d6f4e8;
+}
+.app:not(.wireframe) .lighting-desk .playback-dock .desk-transport > .desk-next {
+  background: #78d5c2;
+  color: #143d33;
+  border-color: #a1f0df;
+}
+.app:not(.wireframe) .lighting-desk .playback-dock .desk-transport > .desk-hold.is-held {
+  background: #735c2b;
+  border-color: #ffd180;
+  color: #fff1ca;
+}
+.lighting-desk .transport-secondary {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+.lighting-desk .transport-secondary > button {
+  min-height: 44px;
+  font-size: 10px;
+  padding: 8px;
+}
+.app:not(.wireframe) .lighting-desk .transport-secondary .blackout-button:not(.latched),
+.app:not(.wireframe) .lighting-desk .transport-secondary .house-button {
+  background: transparent;
+  border-color: #699084;
+  color: #cfdfd9;
+}
+.lighting-desk .playback-dock .desk-transport[data-zone-active="true"] {
+  outline-offset: -3px;
+}
+.lighting-desk .midi-strip { margin-bottom: 0; }
+@media (min-width: 1251px) {
+  .detached-desk .desk-workspace { min-height: 260px; }
+  .detached-desk .stage-panel > .rig-surface { overflow-y: auto; }
+  .detached-desk .stage-panel .rig-caption { padding: 5px 12px; }
+  .detached-desk .playback-dock .desk-panel-title { padding: 6px 14px; }
+  .detached-desk .playback-dock .playback-summary > div { margin: 3px 0; }
+  .detached-desk .script-cue-timeline { padding: 6px 12px 8px; }
+  .detached-desk .script-cue-timeline { max-height: 170px; }
+  .detached-desk .script-cue-timeline .desk-cue-row { min-height: 48px; }
+}
+@media (max-width: 1250px) {
+  .lighting-desk .desk-inspector { grid-column: auto; }
+  .lighting-desk .desk-inspector .selection-inspector,
+  .lighting-desk .desk-inspector .selection-inspector fieldset { display: block; }
+  .console-popout .lighting-desk { padding-bottom: 0; }
+  .lighting-desk .playback-dock .desk-transport { flex-wrap: wrap; }
+  .lighting-desk .transport-secondary { margin-left: 0; }
+}
+@media (min-width: 1251px) and (max-height: 1100px) {
+  /* Preserve the full rig alongside the taller vertical playback list. */
+  .detached-desk .stage-panel .rig-toolbar,
+  .detached-desk .stage-panel .rig-caption { display: none; }
+  .detached-desk .stage-panel > .desk-panel-title { padding: 11px 16px; }
+  .detached-desk .submasters { padding: 8px 12px; }
+  .detached-desk .submaster-heading { margin-bottom: 4px; }
+  .detached-desk .submaster-grid input { margin: 3px 0 !important; }
+}
+@media (max-width: 800px) {
+  .lighting-desk .desk-workspace { grid-template-columns: 1fr; }
+  .lighting-desk .playback-dock .desk-panel-title { flex-wrap: wrap; }
+  .lighting-desk .playback-dock .playback-summary { gap: 0 14px; }
+  .lighting-desk .playback-state { margin: 4px 0; }
+  .lighting-desk .playback-dock .desk-transport > .transport-primary {
+    min-width: 80px;
+    font-size: 17px;
+    max-width: none;
+  }
+  .lighting-desk .playback-dock .desk-clear { min-width: 80px; }
+  .lighting-desk .playback-dock .grand-master { max-width: none; }
+  .lighting-desk .transport-secondary { width: 100%; justify-content: flex-end; }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@venue-volume/design-studio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "node --test tests/model.test.mjs tests/live-model.test.mjs",
+    "test:browser": "node tests/browser.mjs",
+    "test:live": "node tests/live-browser.mjs",
+    "test:slots": "node tests/script-slots-browser.mjs",
+    "export:screens": "node tests/export.mjs"
+  },
+  "dependencies": {
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "lucide-react": "0.468.0"
+  },
+  "devDependencies": {
+    "vite": "6.4.1",
+    "@playwright/test": "1.58.2"
+  }
+}

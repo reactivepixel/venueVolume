@@ -1,0 +1,154 @@
+---
+import { Image } from "astro:assets";
+import heroVan from "../assets/hero-van-v1.png";
+import "../styles.css";
+
+const title = "Venue Lighting Design Software for Touring Bands | Venue Volume";
+const description =
+  "Pre-program the venue before you arrive. Customize venue lighting designs on the road with Venue Volume and request private alpha access.";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta name="application-name" content="Venue Volume" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0b0c0c" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Venue Volume" />
+    <meta property="og:title" content="Venue Lighting Design Software for Touring Bands" />
+    <meta
+      property="og:description"
+      content="Pre-program the venue before you arrive. Customize its lighting design while you’re still on the road."
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Venue Lighting Design Software for Touring Bands" />
+    <meta
+      name="twitter:description"
+      content="Pre-program the venue before you arrive with Venue Volume."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500;600&amp;display=swap"
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <a class="brand" href="#top" aria-label="Venue Volume home">
+          <span class="mark" aria-hidden="true">V</span>
+          <span>Venue Volume</span>
+        </a>
+        <span class="edition">PRIVATE ALPHA / 01</span>
+      </header>
+
+      <main id="top">
+        <section class="hero-copy">
+          <p class="kicker">Advance the impossible</p>
+          <h1>Pre-program<br /><em>the venue.</em></h1>
+          <p class="promise">Customize each venue’s lighting design on the way there.</p>
+
+          <form class="alpha-form" novalidate>
+            <label for="alpha-contact">Email or phone</label>
+            <div class="form-row">
+              <input
+                id="alpha-contact"
+                name="contact"
+                type="text"
+                autocomplete="email"
+                placeholder="you@somewhere.com"
+                aria-describedby="contact-error contact-note"
+              />
+              <button type="submit">Request early access <span aria-hidden="true">↗</span></button>
+            </div>
+            <p class="error" id="contact-error" aria-live="polite"></p>
+            <p class="fine-print" id="contact-note">Private alpha. No noise.</p>
+          </form>
+
+          <div class="success" role="status" tabindex="-1" hidden>
+            <span>Access requested.</span>
+            <button type="button" data-reset-form>Again</button>
+          </div>
+        </section>
+
+        <figure class="room">
+          <Image
+            class="road-photo"
+            src={heroVan}
+            alt="Band traveling to a venue while the front passenger works in a spatial-computing headset"
+            widths={[640, 960, 1280, 1672]}
+            sizes="(max-width: 800px) 100vw, 49vw"
+            format="webp"
+            quality={82}
+            loading="eager"
+            fetchpriority="high"
+          />
+          <figcaption class="room-meta">
+            <span>ROOM / UNKNOWN</span>
+            <span>SHOW / READY</span>
+          </figcaption>
+        </figure>
+      </main>
+
+      <footer>
+        <span>One show.</span>
+        <span>Every room.</span>
+        <span>Venue Volume © 2026</span>
+      </footer>
+    </div>
+
+    <script>
+      import { classifyContact, makeAlphaLead } from "../signup.js";
+
+      const form = document.querySelector(".alpha-form");
+      const input = document.querySelector("#alpha-contact");
+      const error = document.querySelector("#contact-error");
+      const success = document.querySelector(".success");
+      const reset = document.querySelector("[data-reset-form]");
+
+      if (
+        form instanceof HTMLFormElement &&
+        input instanceof HTMLInputElement &&
+        error instanceof HTMLElement &&
+        success instanceof HTMLElement &&
+        reset instanceof HTMLButtonElement
+      ) {
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          if (!classifyContact(input.value)) {
+            error.textContent = "Enter an email or phone number.";
+            input.setAttribute("aria-invalid", "true");
+            input.focus();
+            return;
+          }
+
+          console.log("[Venue Volume] Mock alpha signup", makeAlphaLead(input.value));
+          error.textContent = "";
+          input.removeAttribute("aria-invalid");
+          form.hidden = true;
+          success.hidden = false;
+          success.focus();
+        });
+
+        input.addEventListener("input", () => {
+          error.textContent = "";
+          input.removeAttribute("aria-invalid");
+        });
+
+        reset.addEventListener("click", () => {
+          input.value = "";
+          success.hidden = true;
+          form.hidden = false;
+          input.focus();
+        });
+      }
+    </script>
+  </body>
+</html>
