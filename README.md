@@ -23,6 +23,8 @@ This repository is the top-level workspace for the company's software services, 
 
 Open [`docs/`](docs/) as an Obsidian vault, then begin at [`Home`](docs/Home.md). The documentation remains ordinary Markdown and can be read without Obsidian.
 
+Agents working concurrently should follow [AGENTS.md](AGENTS.md) for worktree, port, and `dev` integration rules.
+
 ## Product design study
 
 The [React design studio](apps/design-studio/README.md) contains 35 screens with wireframe and high-fidelity modes, simulated interactions, and responsive layouts. Run `npm ci` and `npm run dev` in `apps/design-studio`.
