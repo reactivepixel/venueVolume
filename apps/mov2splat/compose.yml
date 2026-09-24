@@ -1,0 +1,14 @@
+services:
+  mov2splat:
+    image: mov2splat:4090
+    build:
+      context: .
+      dockerfile: Dockerfile
+    gpus: all
+    network_mode: none
+    user: "${MOV_UID:?set MOV_UID}:${MOV_GID:?set MOV_GID}"
+    environment:
+      HOME: /tmp
+    volumes:
+      - "${MOV_DIR:?set MOV_DIR}:${MOV_DIR}"
+    command: ["${MOV:?set MOV}"]

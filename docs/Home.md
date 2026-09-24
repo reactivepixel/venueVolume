@@ -2,7 +2,7 @@
 type: map
 status: active
 owner: company
-updated: 2026-09-19
+updated: 2026-09-23
 ---
 
 # Venue Volume
@@ -25,6 +25,7 @@ Venue Volume is building software that makes professional DMX lighting control a
 - [[03 Engineering/System Context|System context]]
 - [[04 Research/R&D Backlog|R&D backlog]]
 - [[05 Operations/Ways of Working|Ways of working]]
+- [[05 Operations/mov2splat|mov2splat operations]]
 - [[06 Decisions/Decision Index|Decision index]]
 - [[Glossary]]
 

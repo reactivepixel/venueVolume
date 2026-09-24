@@ -1,0 +1,28 @@
+# Base: Ubuntu 24.04; NVIDIA CUDA toolkit 12.8.0 (devel image)
+# COLMAP: 4.0.4, built from the matching Git tag with CUDA arch 89
+# Python: Ubuntu 24.04 Python 3.12
+# PyTorch CUDA wheels: https://download.pytorch.org/whl/cu128
+torch==2.7.1+cu128
+torchvision==0.22.1+cu128
+gsplat==1.5.3
+numpy==1.26.4
+scipy==1.15.3
+scikit-learn==1.6.1
+imageio==2.37.0
+imageio-ffmpeg==0.6.0
+tqdm==4.67.1
+torchmetrics[image]==1.7.3
+opencv-python-headless==4.11.0.86
+tyro==0.9.23
+Pillow==11.2.1
+tensorboard==2.19.0
+tensorly==0.9.0
+PyYAML==6.0.2
+matplotlib==3.10.3
+splines==0.3.3
+viser==0.2.23
+lpips==0.1.4
+pycolmap @ git+https://github.com/rmbrualla/pycolmap@cc7ea4b7301720ac29287dbe450952511b32125e
+nerfview @ git+https://github.com/nerfstudio-project/nerfview@4538024fe0d15fd1a0e4d760f3695fc44ca72787
+# fused-ssim: 328dc9836f513d00c4b5bc38fe30478b4435cbb5;
+# installed separately after removing its hardcoded sm_75/sm_80 fallback flags.
