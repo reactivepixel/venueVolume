@@ -1,0 +1,42 @@
+name: VenueVolume
+options:
+  bundleIdPrefix: com.venuevolume
+  deploymentTarget:
+    visionOS: "2.0"
+packages:
+  VenueVolumeCore:
+    path: Core
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    CODE_SIGN_STYLE: Automatic
+targets:
+  VenueVolume:
+    type: application
+    platform: visionOS
+    sources: [VenueVolume]
+    dependencies:
+      - package: VenueVolumeCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.venuevolume.VenueVolume
+        PRODUCT_NAME: Venue Volume
+        INFOPLIST_FILE: VenueVolume/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        TARGETED_DEVICE_FAMILY: "7"
+schemes:
+  VenueVolume:
+    build:
+      targets:
+        VenueVolume: all
+    run:
+      config: Debug
+  VenueVolume Demo:
+    build:
+      targets:
+        VenueVolume: all
+    run:
+      config: Debug
+      commandLineArguments:
+        "--demo": true
