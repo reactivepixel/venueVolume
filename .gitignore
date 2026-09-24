@@ -1,5 +1,6 @@
 # Operating systems and editors
 .DS_Store
+._*
 Thumbs.db
 .idea/
 .vscode/
@@ -24,9 +25,38 @@ build/
 coverage/
 .turbo/
 .next/
+.astro/
+*.tsbuildinfo
+
+# Browser test output (shared design screenshots remain tracked)
+playwright-report/
+test-results/
+blob-report/
+
+# Python scripts and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Swift / Xcode local build and user state (keep shared projects and schemes)
+.build/
+.swiftpm/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+
+# mov2splat intermediate frames, caches, and training output
+# Keep PLY fixtures and deliberately checked-in capture assets trackable.
+*.gsplat/
 
 # Logs and temporary files
 *.log
 tmp/
 .cache/
-
