@@ -20,30 +20,6 @@ struct DebugPanel: View {
                 Text("\(model.totalChannels) channels").font(.callout.monospacedDigit()).foregroundStyle(.secondary)
             }
             Text(model.trackingStatus).font(.caption).foregroundStyle(.secondary)
-            Button {
-                model.isPlacing.toggle()
-                model.expandedID = nil
-            } label: {
-                Label(model.isPlacing ? "Cancel placement" : "Place fixture", systemImage: model.isPlacing ? "xmark" : "plus")
-                    .frame(maxWidth: .infinity)
-            }.disabled(!model.canPlace && !model.isPlacing)
-            if model.isPlacing {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Look at the grid and pinch.").font(.callout)
-                    HStack {
-                        Text("Distance").font(.caption)
-                        Slider(value: $model.placementDistance, in: 0.75...4, step: 0.25)
-                            .accessibilityLabel("Placement distance in meters")
-                        Text(String(format: "%.2f m", model.placementDistance)).font(.caption.monospacedDigit()).frame(width: 60)
-                    }
-                }
-            }
-            if let selectedID = model.selectedID, let fixture = model.fixture(selectedID) {
-                Button {
-                    model.expandedID = selectedID
-                    model.isPlacing = false
-                } label: { Label("Configure \(fixture.name)", systemImage: "slider.horizontal.3").lineLimit(1) }
-            }
             if let message = model.message {
                 Text(message).font(.caption).foregroundStyle(.orange)
             }

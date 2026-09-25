@@ -16,13 +16,13 @@ struct LaunchView: View {
                 Image(systemName: "cube.transparent").font(.system(size: 76, weight: .ultraLight)).foregroundStyle(.cyan)
                     .accessibilityHidden(true)
             }
-            Text("Place virtual DMX fixtures in the room, shape their channels, and sync a complete mock configuration.")
+            Text("Place fixtures in your room, apply saved presets, and sync the complete configuration.")
                 .foregroundStyle(.secondary)
             Divider()
             VStack(alignment: .leading, spacing: 16) {
-                Label("Place fixture → look at the grid → pinch", systemImage: "scope")
-                Label("Select a cube to highlight its fixture", systemImage: "cube")
-                Label("Double-select its name to open DMX controls", systemImage: "slider.horizontal.3")
+                Label("Raise your left palm to reveal the toolbox", systemImage: "hand.raised")
+                Label("Drag a preset onto a cube to set its DMX values", systemImage: "cube")
+                Label("Select an object for Info and Delete", systemImage: "info.circle")
             }
             HStack {
                 Text("\(model.fixtures.count) fixtures · \(model.totalChannels) channels").monospacedDigit()

@@ -15,15 +15,16 @@ struct VenueSpaceView: View {
         } update: { _, attachments in
             scene.update(model: model, attachments: attachments)
         } attachments: {
-            Attachment(id: "debug") { DebugPanel().environment(model) }
+            Attachment(id: "toolbox") { ToolboxView().environment(model) }
+            if model.canSimulatePalm || model.needsManualToolbox {
+                Attachment(id: "palm-preview") { SimulatorPalmControl().environment(model) }
+            }
             ForEach(model.fixtures) { fixture in
                 Attachment(id: "label-\(fixture.id)") {
                     FixtureLabel(fixture: fixture).environment(model)
                 }
-                if model.expandedID == fixture.id {
-                    Attachment(id: "panel-\(fixture.id)") {
-                        FixturePanel(fixture: fixture).environment(model).id(fixture.id)
-                    }
+                Attachment(id: "drop-\(fixture.id)") {
+                    FixtureDropTarget(fixture: fixture).environment(model)
                 }
             }
         }
@@ -36,6 +37,14 @@ struct VenueSpaceView: View {
             }
         })
         .task { await scene.runTracking(model: model) }
+        .task {
+            if model.isDemoMode && ProcessInfo.processInfo.arguments.contains("--show-preset-editor") {
+                // Wait for the immersive transition before opening its companion window.
+                try? await Task.sleep(for: .seconds(1))
+                guard !Task.isCancelled else { return }
+                openWindow(id: "presets")
+            }
+        }
         .onAppear {
             model.isImmersed = true
             dismissWindow(id: "launch")
@@ -45,6 +54,8 @@ struct VenueSpaceView: View {
             model.isPlacing = false
             model.canPlace = false
             model.expandedID = nil
+            model.toolboxVisible = false
+            model.endPresetDrag()
             scene.clearAttachments()
             openWindow(id: "launch")
         }

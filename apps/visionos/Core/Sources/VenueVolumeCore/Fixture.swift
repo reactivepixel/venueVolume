@@ -15,16 +15,18 @@ public struct Position3D: Codable, Equatable, Sendable {
 /// A generic, unverified DMX fixture. Addresses are one-based logical addresses.
 public struct Fixture: Identifiable, Codable, Equatable, Sendable {
     public let id: UUID
+    public var presetID: UUID?
     public var name: String
     public var universe: Int
     public var startAddress: Int
     public var channels: [Int]
     public var position: Position3D
 
-    public init(id: UUID = UUID(), name: String, universe: Int = 1,
+    public init(id: UUID = UUID(), presetID: UUID? = nil, name: String, universe: Int = 1,
                 startAddress: Int = 1, channels: [Int] = Array(repeating: 0, count: 8),
                 position: Position3D = .init(x: 0, y: 1.4, z: -2)) {
         self.id = id
+        self.presetID = presetID
         self.name = name
         self.universe = universe
         self.startAddress = startAddress

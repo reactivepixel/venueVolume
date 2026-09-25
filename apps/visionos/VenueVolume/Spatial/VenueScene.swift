@@ -12,7 +12,12 @@ final class VenueScene {
     private let placementSurface: ModelEntity
     private var cubes: [UUID: ModelEntity] = [:]
     private var labels: [UUID: Entity] = [:]
-    private var panels: [UUID: Entity] = [:]
+    private var drops: [UUID: Entity] = [:]
+    private var toolbox: Entity?
+    private var palmGate = PalmRevealGate()
+    private var latestLeftHand: HandAnchor?
+    private var lastHandUpdate: Double = 0
+    private var palmPosition = SIMD3<Float>(-0.5, 1.3, -1.2)
     private var deviceTransform = matrix_identity_float4x4
 
     init() {
@@ -42,16 +47,23 @@ final class VenueScene {
     func update(model: VenueModel, attachments: RealityViewAttachments) {
         placementRig.isEnabled = model.isPlacing && model.canPlace
         updatePlacement(distance: model.placementDistance)
-        if let debug = attachments.entity(for: "debug"), debug.parent == nil {
-            debug.position = [0.52, -0.16, -1.15]
-            headAnchor.addChild(debug)
+        if let pane = attachments.entity(for: "toolbox"), pane.parent == nil {
+            root.addChild(pane)
+            pane.position = [-0.68, 1.35, -1.45]
+            pane.components.set(BillboardComponent())
+            toolbox = pane
+        }
+        toolbox?.isEnabled = model.toolboxVisible
+        if let preview = attachments.entity(for: "palm-preview"), preview.parent == nil {
+            preview.position = [0.57, -0.30, -1.3]
+            headAnchor.addChild(preview)
         }
 
         let ids = Set(model.fixtures.map(\.id))
         for id in Array(cubes.keys) where !ids.contains(id) {
             cubes.removeValue(forKey: id)?.removeFromParent()
             labels.removeValue(forKey: id)?.removeFromParent()
-            panels.removeValue(forKey: id)?.removeFromParent()
+            drops.removeValue(forKey: id)?.removeFromParent()
         }
         for fixture in model.fixtures {
             let cube: ModelEntity
@@ -71,71 +83,151 @@ final class VenueScene {
             cube.components.set(InputTargetComponent(allowedInputTypes: model.isPlacing ? [] : [.indirect, .direct]))
             if let label = attachments.entity(for: "label-\(fixture.id)") {
                 if label.parent == nil { root.addChild(label) }
-                label.position = position + [0, 0.24, 0]
+                // Pin the lower edge above the cube so Info expands upward.
+                let height = label.visualBounds(relativeTo: label).extents.y
+                label.position = position + [0, 0.18 + height / 2, 0.04]
                 label.components.set(BillboardComponent())
                 labels[fixture.id] = label
             }
-            if model.expandedID == fixture.id, let panel = attachments.entity(for: "panel-\(fixture.id)") {
-                if panel.parent == nil { root.addChild(panel) }
-                panel.position = position + [-0.48, -0.08, 0.1]
-                panel.components.set(BillboardComponent())
-                panels[fixture.id] = panel
-            } else {
-                panels.removeValue(forKey: fixture.id)?.removeFromParent()
+            if let drop = attachments.entity(for: "drop-\(fixture.id)") {
+                if drop.parent == nil { root.addChild(drop) }
+                drop.position = position + [0, 0, 0.135]
+                drop.components.set(BillboardComponent())
+                drop.isEnabled = !model.isPlacing
+                drops[fixture.id] = drop
             }
         }
     }
 
     func runTracking(model: VenueModel) async {
+        defer {
+            model.canPlace = false
+            model.toolboxVisible = false
+            palmGate = PalmRevealGate()
+        }
         #if targetEnvironment(simulator)
         model.trackingStatus = "Simulator · fixed placement grid"
+        model.handTrackingStatus = "Simulator palm preview · hand tracking requires Vision Pro"
         model.canPlace = true
-        // ARKit device tracking is unavailable in Simulator. Keep a world-space test grid.
         while !Task.isCancelled {
             updatePlacement(distance: model.placementDistance)
+            setToolboxVisible(model.simulatedPalm || model.draggingPresetID != nil, model: model)
             try? await Task.sleep(for: .milliseconds(33))
         }
-        model.canPlace = false
         #else
         guard WorldTrackingProvider.isSupported else {
-            model.trackingStatus = "World tracking is unavailable on this device."
+            model.trackingStatus = "World tracking is unavailable."
             return
         }
-        // A stopped ARKit provider cannot be restarted; each entrance gets a fresh pair.
         let session = ARKitSession()
-        let worldTracking = WorldTrackingProvider()
-        defer {
-            session.stop()
-            model.canPlace = false
+        let world = WorldTrackingProvider()
+        let hands = HandTrackingProvider()
+        defer { session.stop(); latestLeftHand = nil }
+        var handAccess = false
+        if HandTrackingProvider.isSupported {
+            let status = await session.requestAuthorization(for: [.handTracking])
+            handAccess = status[.handTracking] == .allowed
         }
+        model.needsManualToolbox = !handAccess
+        model.handTrackingStatus = handAccess ? "Raise your left palm toward you" : "Hand tracking unavailable · use Show toolbox"
         do {
-            try await session.run([worldTracking])
+            if handAccess { try await session.run([world, hands]) }
+            else { try await session.run([world]) }
+            // Cache the update stream instead of consuming latestAnchors every frame;
+            // missing a provider tick must not restart the reveal debounce.
+            let handTask: Task<Void, Never>? = handAccess ? Task { @MainActor in
+                for await update in hands.anchorUpdates {
+                    guard !Task.isCancelled else { return }
+                    if update.anchor.chirality == .left {
+                        self.latestLeftHand = update.event == .removed ? nil : update.anchor
+                        self.lastHandUpdate = CACurrentMediaTime()
+                    }
+                }
+            } : nil
+            defer { handTask?.cancel() }
             while !Task.isCancelled {
-                if worldTracking.state == .running,
-                   let anchor = worldTracking.queryDeviceAnchor(atTimestamp: CACurrentMediaTime()), anchor.isTracked {
-                    deviceTransform = anchor.originFromAnchorTransform
+                let now = CACurrentMediaTime()
+                var eligible = false
+                if world.state == .running,
+                   let device = world.queryDeviceAnchor(atTimestamp: now), device.isTracked {
+                    deviceTransform = device.originFromAnchorTransform
                     updatePlacement(distance: model.placementDistance)
                     model.canPlace = true
                     model.trackingStatus = "World tracking active"
+                    if handAccess, hands.state == .running, now - lastHandUpdate < 0.25, let hand = latestLeftHand {
+                        eligible = palmFacesViewer(hand)
+                    }
                 } else {
                     model.canPlace = false
                     model.trackingStatus = "Tracking paused · look around to recover"
                 }
+                if handAccess && hands.state == .stopped {
+                    model.needsManualToolbox = true
+                    model.handTrackingStatus = "Hand tracking stopped · use Show toolbox or re-enter to retry"
+                }
+                let revealed = palmGate.update(eligible: eligible, now: now)
+                let visible = model.needsManualToolbox ? model.simulatedPalm : revealed
+                setToolboxVisible(visible || model.draggingPresetID != nil, model: model)
                 try await Task.sleep(for: .milliseconds(33))
             }
         } catch is CancellationError {
-            // Immersive space dismissed.
         } catch {
             model.trackingStatus = "Tracking unavailable: \(error.localizedDescription)"
+            model.needsManualToolbox = true
+            model.handTrackingStatus = "Use Show toolbox or re-enter the venue to retry tracking."
+            // Keep the explicit fallback responsive even after authorization/session failure.
+            while !Task.isCancelled {
+                setToolboxVisible(model.simulatedPalm, model: model)
+                try? await Task.sleep(for: .milliseconds(33))
+            }
         }
         #endif
     }
 
+    private func palmFacesViewer(_ hand: HandAnchor) -> Bool {
+        guard hand.chirality == .left, hand.isTracked, let skeleton = hand.handSkeleton else { return false }
+        let names: [HandSkeleton.JointName] = [.wrist, .indexFingerKnuckle, .littleFingerKnuckle]
+        let joints = names.map { skeleton.joint($0) }
+        guard joints.allSatisfy(\.isTracked) else { return false }
+        let points = joints.map { joint -> SIMD3<Float> in
+            let t = hand.originFromAnchorTransform * joint.anchorFromJointTransform
+            return SIMD3(t.columns.3.x, t.columns.3.y, t.columns.3.z)
+        }
+        let wrist = points[0], index = points[1], little = points[2]
+        let normal = simd_cross(index - wrist, little - wrist)
+        guard simd_length(normal) > 0.0001 else { return false }
+        let center = (wrist + index + little) / 3
+        let head = SIMD3(deviceTransform.columns.3.x, deviceTransform.columns.3.y, deviceTransform.columns.3.z)
+        let towardPalm = center - head
+        let distance = simd_length(towardPalm)
+        guard distance > 0.15, distance < 1.0 else { return false }
+        let forward = -SIMD3(deviceTransform.columns.2.x, deviceTransform.columns.2.y, deviceTransform.columns.2.z)
+        let visible = simd_dot(simd_normalize(towardPalm), forward) > 0.72
+        let facing = simd_dot(simd_normalize(normal), -simd_normalize(towardPalm)) > 0.55
+        // Use head orientation as a viewing-area approximation; no eye gaze is read.
+        if visible && facing {
+            palmPosition = head + simd_normalize(towardPalm) * max(distance, 0.95) + [0, 0.18, 0]
+        }
+        return visible && facing
+    }
+
+    private func setToolboxVisible(_ visible: Bool, model: VenueModel) {
+        #if !targetEnvironment(simulator)
+        if visible && !model.toolboxVisible {
+            toolbox?.position = palmPosition
+        }
+        #endif
+        if model.toolboxVisible != visible { model.toolboxVisible = visible }
+        toolbox?.isEnabled = visible
+    }
+
     func clearAttachments() {
         for entity in labels.values { entity.removeFromParent() }
-        for entity in panels.values { entity.removeFromParent() }
+        for entity in drops.values { entity.removeFromParent() }
         labels.removeAll()
-        panels.removeAll()
+        drops.removeAll()
+        toolbox?.removeFromParent()
+        toolbox = nil
         headAnchor.children.removeAll()
     }
 
