@@ -7,7 +7,7 @@ usage() {
 die() { printf 'ERROR: %s\n' "$*" >&2; exit 1; }
 positive_int() { [[ "$1" =~ ^[0-9]+$ ]] && (( 10#$1 > 0 )); }
 
-FORCE=0 RESUME=0 EXHAUSTIVE=0 TARGET_FRAMES=220 SCALE=1600 STEPS=30000 BLUR_THRESHOLD=0
+FORCE=0 RESUME=0 EXHAUSTIVE=0 TARGET_FRAMES=800 SCALE=1600 STEPS=30000 BLUR_THRESHOLD=0
 while (($#)); do
   case "$1" in
     --force) FORCE=1; shift ;;
@@ -32,8 +32,14 @@ positive_int "$TARGET_FRAMES" || die '--frames must be a positive integer'
 positive_int "$SCALE" || die '--scale must be a positive integer'
 positive_int "$STEPS" || die '--steps must be a positive integer'
 (( SCALE >= 256 )) || die '--scale must be at least 256 px'
-(( TARGET_FRAMES < 150 )) && TARGET_FRAMES=150
-(( TARGET_FRAMES > 300 )) && TARGET_FRAMES=300
+TARGET_FRAMES=$((10#$TARGET_FRAMES))
+(( TARGET_FRAMES >= 150 )) || die '--frames must be at least 150'
+if (( TARGET_FRAMES > 2000 )); then
+  echo "WARNING: processing $TARGET_FRAMES frames; reconstruction may be expensive" >&2
+fi
+if (( EXHAUSTIVE && TARGET_FRAMES > 1000 )); then
+  echo 'WARNING: exhaustive matching compares all image pairs; prefer sequential for long clips' >&2
+fi
 [[ "$BLUR_THRESHOLD" =~ ^([0-9]+([.][0-9]*)?|[.][0-9]+)$ ]] || die '--blur-threshold must be nonnegative'
 
 OUT=${MOV%.*}.ply
@@ -49,7 +55,10 @@ command -v flock >/dev/null || die 'flock is required'
 exec 9>"$WORK/.lock"
 flock -n 9 || die "Another job is using $WORK"
 exec 3>&1
-exec > >(awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0; fflush() }' | tee -a "$LOG" >&3) 2>&1
+exec > >(python -u -c 'import datetime, sys
+for line in sys.stdin:
+    print("[" + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "]", line, end="", flush=True)' | tee -a "$LOG" >&3) 2>&1
+LOGGER_PID=$!
 
 # Cache and temporary writes stay beside the clip, even when HOME=/tmp is passed
 # by the host wrapper. The preloaded Torch model weights remain in the image.
@@ -80,12 +89,25 @@ on_exit() {
   trap - EXIT
   if (( code != 0 )); then echo "pipeline failed at $STAGE (exit $code)"; fi
   status "$code" || true
+  exec 1>&3 2>&3
+  wait "$LOGGER_PID" || true
 }
 trap 'on_exit $?' EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
 status null
 echo "input: $MOV"
+
+STATE_TOOL=$(dirname -- "${BASH_SOURCE[0]}")/state.py
+stage_state() {
+  local action=$1 stage=$2
+  local options=()
+  if [[ "$stage" == sfm ]]; then
+    if (( EXHAUSTIVE )); then options+=(--matcher exhaustive); else options+=(--matcher sequential); fi
+  fi
+  python "$STATE_TOOL" "$action" "$WORK/$stage.json" --input "$MOV" \
+    --frames "$TARGET_FRAMES" --scale "$SCALE" --blur "$BLUR_THRESHOLD" "${options[@]}"
+}
 
 frame_count() { find "$FRAMES" -maxdepth 1 -type f -name 'frame_*.jpg' | wc -l; }
 model_counts() {
@@ -135,6 +157,7 @@ PY
 extract() {
   set_stage extract
   EXTRACTED=1
+  rm -f "$WORK/extract.json" "$WORK/sfm.json"
   local probe fps rotation_filter vf
   readarray -t probe < <(python - "$MOV" "$TARGET_FRAMES" <<'PY'
 import json, math, subprocess, sys
@@ -197,7 +220,8 @@ PY
   fi
   FRAME_COUNT=$(frame_count)
   (( FRAME_COUNT >= 120 )) || die "Only $FRAME_COUNT frames extracted; need at least 120"
-  echo "extract complete: $FRAME_COUNT frames"
+  stage_state save extract
+  echo "extract complete: $FRAME_COUNT frames (requested $TARGET_FRAMES)"
   status null
 }
 
@@ -220,6 +244,7 @@ run_colmap_model() {
 sfm() {
   set_stage colmap
   SFM_RAN=1
+  rm -f "$WORK/sfm.json"
   if run_colmap_model OPENCV && check_model; then
     echo 'COLMAP OPENCV reconstruction accepted'
   else
@@ -228,6 +253,7 @@ sfm() {
       die "COLMAP failed: registered $REGISTERED/$FRAME_COUNT; need at least 85% and nonempty sparse points"
     fi
   fi
+  stage_state save sfm
   status null
 }
 
@@ -252,12 +278,13 @@ set_stage init
 if (( RESUME )) && [[ -d "$FRAMES" ]]; then
   FRAME_COUNT=$(frame_count)
 fi
-if (( RESUME )) && (( FRAME_COUNT >= 120 )); then
+if (( RESUME )) && (( FRAME_COUNT >= 120 )) && stage_state matches extract; then
   echo "extract: reusing $FRAME_COUNT frames"
 else
+  if (( RESUME )); then echo 'extract: settings, source, or frames changed (or no completion record); rebuilding'; fi
   extract
 fi
-if (( RESUME && ! EXTRACTED )) && check_model; then
+if (( RESUME && ! EXTRACTED )) && stage_state matches sfm && check_model; then
   echo 'colmap: valid sparse/0 found; skipping SfM'
 else
   sfm
