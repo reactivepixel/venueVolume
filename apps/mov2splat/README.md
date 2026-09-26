@@ -53,6 +53,7 @@ Expect SfM to take several minutes and training roughly 10–30 minutes for abou
 
 ## Failures
 
+- **Image build reports missing `/usr/bin/iconvert`:** Ubuntu's OpenImageIO CMake package requires `openimageio-tools` alongside `libopenimageio-dev`, even for headless COLMAP. The Dockerfile installs both. After updating it, rebuild with `docker build -t mov2splat:4090 apps/mov2splat` from the workspace root, then rerun `host.sh`. Docker reuses completed build layers; no cache purge is needed.
 - **Few registered frames:** Read the `registered/total` line in `pipeline.log`. Add stable texture, slower motion, more overlap, and less blur; try `--exhaustive` for short captures. COLMAP retries with SIMPLE_PINHOLE if OPENCV fails.
 - **HEVC-only source:** The image's FFmpeg decodes HEVC, but an unreadable or corrupt file will fail at ffprobe/ffmpeg. For repeatable capture, use iPhone Most Compatible/H.264.
 - **Portrait sideways:** The script reads both rotate tags and display-matrix rotation, disables FFmpeg autorotation, and applies transpose before JPEG extraction. Check extracted JPEGs in `clip.gsplat/images` if metadata is malformed.
