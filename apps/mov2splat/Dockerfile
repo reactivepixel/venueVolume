@@ -59,6 +59,6 @@ RUN git clone --depth 1 --branch v1.5.3 \
     && python -c 'import torch, gsplat; print(torch.__version__, gsplat.__version__)' \
     && python /opt/gsplat-source/examples/simple_trainer.py default --help >/dev/null
 
-COPY scripts/run.sh /opt/mov2splat/run.sh
+COPY scripts/run.sh scripts/state.py /opt/mov2splat/
 RUN chmod 755 /opt/mov2splat/run.sh
 ENTRYPOINT ["/opt/mov2splat/run.sh"]

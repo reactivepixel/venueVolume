@@ -26,8 +26,12 @@ command -v docker >/dev/null || { echo 'Docker is not installed' >&2; exit 1; }
 docker info >/dev/null || { echo 'Cannot reach the Docker daemon; check service and permissions' >&2; exit 1; }
 
 IMAGE=mov2splat:4090
-if ! docker image inspect "$IMAGE" >/dev/null 2>&1; then
-  docker build -t "$IMAGE" -f "$APP_DIR/Dockerfile" "$APP_DIR"
+# Hash every COPY input plus the Dockerfile; unchanged images can run offline.
+SOURCE_HASH=$(cd "$APP_DIR" && sha256sum .dockerignore Dockerfile pins.txt scripts/run.sh scripts/state.py | sha256sum | cut -d ' ' -f 1)
+IMAGE_HASH=$(docker image inspect --format '{{index .Config.Labels "org.venuevolume.mov2splat.source"}}' "$IMAGE" 2>/dev/null || true)
+if [[ "$IMAGE_HASH" != "$SOURCE_HASH" ]]; then
+  echo 'Building mov2splat image: missing image or changed build inputs' >&2
+  docker build --label "org.venuevolume.mov2splat.source=$SOURCE_HASH" -t "$IMAGE" -f "$APP_DIR/Dockerfile" "$APP_DIR"
 fi
 MOV_DIR=$(dirname -- "$MOV")
 docker run --rm --gpus all --network none \
