@@ -155,6 +155,7 @@ PY
 }
 
 extract() {
+  FRAME_COUNT=0 REGISTERED=0
   set_stage extract
   EXTRACTED=1
   rm -f "$WORK/extract.json" "$WORK/sfm.json"
@@ -240,6 +241,40 @@ run_colmap_model() {
     colmap sequential_matcher --database_path "$DB" --FeatureMatching.use_gpu 1 || return 1
   fi
   colmap mapper --database_path "$DB" --image_path "$FRAMES" --output_path "$SPARSE" || return 1
+  # COLMAP numbers disconnected components in discovery order, not by size.
+  python - "$SPARSE" "$FRAME_COUNT" <<'SELECT_MODEL'
+import pathlib, struct, sys, tempfile
+root = pathlib.Path(sys.argv[1])
+total = int(sys.argv[2])
+candidates = []
+for model in sorted(root.iterdir()):
+    if not model.is_dir() or not model.name.isdigit():
+        continue
+    try:
+        counts = []
+        for name in ('cameras.bin', 'images.bin', 'points3D.bin'):
+            with (model / name).open('rb') as stream:
+                counts.append(struct.unpack('<Q', stream.read(8))[0])
+        cameras, images, points = counts
+        if cameras > 0 and 0 < images <= total and points > 0:
+            candidates.append((images, points, model.name))
+    except (OSError, struct.error):
+        continue
+if not candidates:
+    raise SystemExit('COLMAP produced no nonempty reconstruction')
+images, points, name = max(candidates)
+print(f'COLMAP selected component {name}: {images}/{total} images, {points} points')
+if name != '0':
+    # Preserve every component while putting the largest at the trainer's path.
+    best, target = root / name, root / '0'
+    with tempfile.TemporaryDirectory(prefix='.selection-', dir=root) as temp:
+        previous = pathlib.Path(temp) / 'previous'
+        if target.exists():
+            target.rename(previous)
+        best.rename(target)
+        if previous.exists():
+            previous.rename(best)
+SELECT_MODEL
 }
 sfm() {
   set_stage colmap

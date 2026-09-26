@@ -94,10 +94,11 @@ print('extraction invoked', flush=True)
 from pathlib import Path
 args=sys.argv[1:]
 if args[0]=='mapper':
- p=Path(args[args.index('--output_path')+1])/'0'
- p.mkdir()
- for name,count in [('cameras.bin',1),('images.bin',800),('points3D.bin',10)]:
-  (p/name).write_bytes(struct.pack('<Q',count))
+ for component,images in [('0',3),('1',800)]:
+  p=Path(args[args.index('--output_path')+1])/component
+  p.mkdir()
+  for name,count in [('cameras.bin',1),('images.bin',images),('points3D.bin',10)]:
+   (p/name).write_bytes(struct.pack('<Q',count))
 print('colmap invoked', args[0], flush=True)
 """)
         # Stop before the real trainer; other Python calls use the actual interpreter.
@@ -109,6 +110,7 @@ print('colmap invoked', args[0], flush=True)
         wrapper.chmod(0o755)
         first = self.run_pipeline()
         self.assertIn('pipeline failed at train', first.stdout)
+        self.assertIn('selected component 1: 800/800', first.stdout)
         resumed = self.run_pipeline('--resume')
         self.assertIn('valid sparse/0 found; skipping SfM', resumed.stdout)
         changed = self.run_pipeline('--resume', '--exhaustive')
