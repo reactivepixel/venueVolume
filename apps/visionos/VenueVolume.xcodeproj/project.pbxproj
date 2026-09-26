@@ -1,0 +1,399 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		17B9C89384D24C90C414BF8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A216CAA2CDE7F26E599DD5EF /* Assets.xcassets */; };
+		2783645E3DCA12EDFCFABF73 /* FixtureLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00372CBAA7C8480C7AC8437A /* FixtureLabel.swift */; };
+		2B78E9F222443AE2BBD9F507 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35673AE49B168A54E86ACC38 /* LaunchView.swift */; };
+		401DB4EDFCC193C6117F2594 /* DebugPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58C9AC408DE096B035A72DE /* DebugPanel.swift */; };
+		565250CAD4D6DA1BD98FB1BE /* VenueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BE4C4EB04D817E031E19E /* VenueModel.swift */; };
+		82005BDBC395435482A872C4 /* VenueScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE7A9FA3734E0BB7EE95721 /* VenueScene.swift */; };
+		9BB968DBAB077D17CF8A74FA /* VenueVolumeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 9F29BE575556521651280192 /* VenueVolumeCore */; };
+		A3AD2D01A086CDCF6D63E473 /* VenueVolumeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC612EAB7EDA7D85628811 /* VenueVolumeApp.swift */; };
+		C798C5ECB6528BF8CEEC25B7 /* VenueSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6480D9EF8B26C0AD2C6F7 /* VenueSpaceView.swift */; };
+		DF7F226A13D50185AD29409F /* FixturePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAD85CBEF3AD8C985E74BDC /* FixturePanel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		00372CBAA7C8480C7AC8437A /* FixtureLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureLabel.swift; sourceTree = "<group>"; };
+		013BE4C4EB04D817E031E19E /* VenueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueModel.swift; sourceTree = "<group>"; };
+		1BE7A9FA3734E0BB7EE95721 /* VenueScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueScene.swift; sourceTree = "<group>"; };
+		1FDC612EAB7EDA7D85628811 /* VenueVolumeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueVolumeApp.swift; sourceTree = "<group>"; };
+		31D6480D9EF8B26C0AD2C6F7 /* VenueSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueSpaceView.swift; sourceTree = "<group>"; };
+		35673AE49B168A54E86ACC38 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		4C2ADB8E13E6149392D53533 /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = Core; sourceTree = SOURCE_ROOT; };
+		94E62033892512E7CB8DF4C0 /* VenueVolume.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = VenueVolume.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A216CAA2CDE7F26E599DD5EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CDAD85CBEF3AD8C985E74BDC /* FixturePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturePanel.swift; sourceTree = "<group>"; };
+		E260FA10C86461CAC4469D57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F58C9AC408DE096B035A72DE /* DebugPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPanel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		72EFFF1CC11D30F334E4AC65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BB968DBAB077D17CF8A74FA /* VenueVolumeCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		10729003391B865AB390F33C /* Spatial */ = {
+			isa = PBXGroup;
+			children = (
+				1BE7A9FA3734E0BB7EE95721 /* VenueScene.swift */,
+				31D6480D9EF8B26C0AD2C6F7 /* VenueSpaceView.swift */,
+			);
+			path = Spatial;
+			sourceTree = "<group>";
+		};
+		2BDE49E29E4A59B3630FA7BA = {
+			isa = PBXGroup;
+			children = (
+				6A21A90B13F7F7B44126DEB9 /* Packages */,
+				38E7AED84D6AFCFA49702AF7 /* VenueVolume */,
+				838EA5FC9B2F1ADFF07AF50E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		38E7AED84D6AFCFA49702AF7 /* VenueVolume */ = {
+			isa = PBXGroup;
+			children = (
+				A216CAA2CDE7F26E599DD5EF /* Assets.xcassets */,
+				E260FA10C86461CAC4469D57 /* Info.plist */,
+				1FDC612EAB7EDA7D85628811 /* VenueVolumeApp.swift */,
+				7236898DCCB5ACCBED23F40E /* Models */,
+				10729003391B865AB390F33C /* Spatial */,
+				DCB6E7E3210CB8F84B897279 /* Views */,
+			);
+			path = VenueVolume;
+			sourceTree = "<group>";
+		};
+		6A21A90B13F7F7B44126DEB9 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				4C2ADB8E13E6149392D53533 /* Core */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		7236898DCCB5ACCBED23F40E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				013BE4C4EB04D817E031E19E /* VenueModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		838EA5FC9B2F1ADFF07AF50E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				94E62033892512E7CB8DF4C0 /* VenueVolume.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DCB6E7E3210CB8F84B897279 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F58C9AC408DE096B035A72DE /* DebugPanel.swift */,
+				00372CBAA7C8480C7AC8437A /* FixtureLabel.swift */,
+				CDAD85CBEF3AD8C985E74BDC /* FixturePanel.swift */,
+				35673AE49B168A54E86ACC38 /* LaunchView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EF73FCEA2FA03E92FECD3D89 /* VenueVolume */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00F8ABDC41191897E054FF3C /* Build configuration list for PBXNativeTarget "VenueVolume" */;
+			buildPhases = (
+				CDC4EBCD635D68E090584D16 /* Sources */,
+				8CFDD81B6ED7AA3C9424BCD6 /* Resources */,
+				72EFFF1CC11D30F334E4AC65 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VenueVolume;
+			packageProductDependencies = (
+				9F29BE575556521651280192 /* VenueVolumeCore */,
+			);
+			productName = VenueVolume;
+			productReference = 94E62033892512E7CB8DF4C0 /* VenueVolume.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		239F677B255D6B4F85CC07ED /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					EF73FCEA2FA03E92FECD3D89 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 490B968BE6F5FE4B1ABDAE16 /* Build configuration list for PBXProject "VenueVolume" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 2BDE49E29E4A59B3630FA7BA;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				57FB9C38BD720B5872D8C8B8 /* XCLocalSwiftPackageReference "Core" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 838EA5FC9B2F1ADFF07AF50E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF73FCEA2FA03E92FECD3D89 /* VenueVolume */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8CFDD81B6ED7AA3C9424BCD6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17B9C89384D24C90C414BF8B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CDC4EBCD635D68E090584D16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				401DB4EDFCC193C6117F2594 /* DebugPanel.swift in Sources */,
+				2783645E3DCA12EDFCFABF73 /* FixtureLabel.swift in Sources */,
+				DF7F226A13D50185AD29409F /* FixturePanel.swift in Sources */,
+				2B78E9F222443AE2BBD9F507 /* LaunchView.swift in Sources */,
+				565250CAD4D6DA1BD98FB1BE /* VenueModel.swift in Sources */,
+				82005BDBC395435482A872C4 /* VenueScene.swift in Sources */,
+				C798C5ECB6528BF8CEEC25B7 /* VenueSpaceView.swift in Sources */,
+				A3AD2D01A086CDCF6D63E473 /* VenueVolumeApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8FFD2EA98D07C8F29E10F981 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		AD0E8F272780605B0F687957 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		CF562DB7D2AEC24F65444703 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = VenueVolume/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.venuevolume.VenueVolume;
+				PRODUCT_NAME = "Venue Volume";
+				SDKROOT = xros;
+				TARGETED_DEVICE_FAMILY = 7;
+			};
+			name = Release;
+		};
+		FC37C72BD4BA9878DBB9A349 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = VenueVolume/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.venuevolume.VenueVolume;
+				PRODUCT_NAME = "Venue Volume";
+				SDKROOT = xros;
+				TARGETED_DEVICE_FAMILY = 7;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00F8ABDC41191897E054FF3C /* Build configuration list for PBXNativeTarget "VenueVolume" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC37C72BD4BA9878DBB9A349 /* Debug */,
+				CF562DB7D2AEC24F65444703 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		490B968BE6F5FE4B1ABDAE16 /* Build configuration list for PBXProject "VenueVolume" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FFD2EA98D07C8F29E10F981 /* Debug */,
+				AD0E8F272780605B0F687957 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		57FB9C38BD720B5872D8C8B8 /* XCLocalSwiftPackageReference "Core" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Core;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9F29BE575556521651280192 /* VenueVolumeCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = VenueVolumeCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 239F677B255D6B4F85CC07ED /* Project object */;
+}
