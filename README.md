@@ -58,6 +58,15 @@ From the workspace root, process or resume one clip:
 
 The result is `/absolute/path/to/clip.ply`. Frames, COLMAP data, trainer output, `pipeline.log`, and `status.json` are saved in `/absolute/path/to/clip.gsplat/`. Use `--resume` after an interrupted run to reuse valid SfM data, or `--force` to replace an existing `.ply`. Run one GPU job at a time. See the [operational runbook](docs/05%20Operations/mov2splat.md) for setup, capture guidance, commands, and failures.
 
+## Blender room prototype
+
+[room2blender](apps/room2blender/README.md) includes an editable classroom blockout
+modeled from selected frames of `IMG_3153.MOV`. Open
+[classroom.blend](apps/room2blender/output/classroom.blend) to inspect the full room,
+cutaway, and floor plan, move a sample fixture, and test geometry occlusion.
+Dimensions are explicitly unmeasured estimates. Reference images, a parameter file,
+rebuild scripts, renders, and validation results accompany the model.
+
 ## Gaussian splat viewers
 
 Three demo applications load Gaussian `.ply` environments and start the viewer

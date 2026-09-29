@@ -1,0 +1,94 @@
+{
+  "passed": true,
+  "blender_version": "4.5.14 LTS",
+  "mesh_triangles_before_unapplied_modifiers": 12192,
+  "dimension_accuracy": "unmeasured; not validated against a survey",
+  "checks": [
+    {
+      "check": "meters",
+      "passed": true,
+      "detail": "Blender units are meters; physical scale is still estimated"
+    },
+    {
+      "check": "review scenes",
+      "passed": true,
+      "detail": [
+        "01 | ROOM - walk and place assets",
+        "02 | CUTAWAY - layout overview",
+        "03 | PLAN - estimated dimensions"
+      ]
+    },
+    {
+      "check": "portable references",
+      "passed": true,
+      "detail": "16 images packed"
+    },
+    {
+      "check": "camera orientation",
+      "passed": true,
+      "detail": "Start camera faces the teaching wall (+Y); window wall is on the right (+X)"
+    },
+    {
+      "check": "walk start over clear floor",
+      "passed": true,
+      "detail": "floor"
+    },
+    {
+      "check": "table accepts downward placement ray",
+      "passed": true,
+      "detail": {
+        "hit": "table-r2-c2-top",
+        "surface_height_m": 0.7400000691413879
+      }
+    },
+    {
+      "check": "fixture rests on instructor desk",
+      "passed": true,
+      "detail": {
+        "fixture_base_m": 0.7400000095367432,
+        "desk_surface_m": 0.74
+      }
+    },
+    {
+      "check": "wall projection occludes probe",
+      "passed": true,
+      "detail": "west-wall-projection"
+    },
+    {
+      "check": "room wall blocks outward ray",
+      "passed": true,
+      "detail": "window-back-pier"
+    },
+    {
+      "check": "closed collision proxies",
+      "passed": true,
+      "detail": {
+        "count": 96,
+        "nonmanifold": []
+      }
+    },
+    {
+      "check": "proxies excluded from normal rendering",
+      "passed": true,
+      "detail": 96
+    },
+    {
+      "check": "finite transforms",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "saved asset positions survive reopening",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "rendered depth occlusion",
+      "passed": true,
+      "detail": {
+        "occlusion.png": 0,
+        "occlusion-reveal.png": 52127
+      }
+    }
+  ]
+}
