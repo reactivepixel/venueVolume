@@ -5,6 +5,6 @@ HERE=Path(__file__).resolve().parent
 module_path=(HERE/'../../../_shared/procedural_fixture.py').resolve()
 s=importlib.util.spec_from_file_location("venue_fixture_builder",module_path)
 m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
-SPEC={'id': 'adj/focus-spot-4z', 'width_m': 0.2786, 'height_m': 0.4574, 'depth_m': 0.1815, 'shape': 'moving_head'}
+SPEC={'id': 'adj/focus-spot-4z', 'width_m': 0.2786, 'height_m': 0.4574, 'depth_m': 0.1815, 'shape': 'focus_spot_4z'}
 m.build(SPEC,HERE.parent)
 sys.stdout.flush(); sys.stderr.flush(); os._exit(0)

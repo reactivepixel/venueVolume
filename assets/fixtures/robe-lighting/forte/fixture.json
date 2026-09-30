@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "robe-lighting/forte",
-  "revision": 1,
+  "revision": 2,
   "updated_at": "2026-09-30",
   "status": "ready_for_visualization",
   "identity": {
@@ -104,7 +104,7 @@
       "min": [
         -0.24175000190734863,
         0.0,
-        -0.3122499883174896
+        -0.3122510015964508
       ],
       "max": [
         0.24175000190734863,
@@ -138,50 +138,51 @@
       }
     ],
     "assumptions": [
-      "Procedural visualization proxy, not manufacturer CAD.",
-      "Manufacturer specifies H x W x D for the horizontal-head pose; upright sweep height is retained separately.",
-      "Moving components are separated but no runtime articulation joints are authored."
+      "Fixture-specific procedural approximation informed by the stored official product image; not manufacturer CAD.",
+      "Vented rounded base, display, angled heavy yoke, long optical barrel, metal bezel and cooling detail.",
+      "Small fasteners, exact surface curvature, labels, internal mechanics, connector geometry and photometry remain simplified.",
+      "Moving components remain separately addressable, but runtime articulation joints are not authored."
     ],
     "artifacts": [
       {
         "role": "authoring",
         "file": "models/fixture.blend",
-        "sha256": "332c3035340178a7f24ae7532a8d2d71bea2211134da4439a78486893eb09f56"
+        "sha256": "c582c6628b8e9a70871e010e8660122a0bf6b4e7ac38601f309ab1e4d1ca0955"
       },
       {
         "role": "runtime",
         "file": "models/fixture.usdz",
-        "sha256": "0501574937e925f6d91d1a5d422d12eed0602cd242aa8beff1ebe26fbb14abaa"
+        "sha256": "8967cdbe7cd0a5b2f6164408a41c8f0930c3d30ee54e493876dbe15bcbcc1e1e"
       },
       {
         "role": "generator",
         "file": "models/build_fixture.py",
-        "sha256": "0f9c0b928b429d58969dfcc0e082197dc024ee4a43699ba91fa702f0c1deff47"
+        "sha256": "b6291bb6c5ff41b143ca26432d50820f7a03be9e3427b1c5702f337e5116df88"
       },
       {
         "role": "preview",
         "file": "previews/front.png",
-        "sha256": "fa606b245f74cc058e66a6e4355c9cbb614929e1e42e032d7382712c304a0fb8"
+        "sha256": "9c2837b457308ce3a1795ac5e91d73c2666d127fb9f1ac4d1fd69a282449d83c"
       },
       {
         "role": "preview",
         "file": "previews/rear.png",
-        "sha256": "c5cf9f2d7329ba44bb2bcbcd694b62f7f20f3c49451139d4d645a70878805629"
+        "sha256": "55fd50a2d8664ac8f818592b87daf8bd92250b3563888b49258705569556cdb3"
       },
       {
         "role": "preview",
         "file": "previews/side.png",
-        "sha256": "4fc6611bc8f6410b81b2cf03ae7a711de3e5ea33d3438a7f40ce1d68a93c7ab9"
+        "sha256": "170c752eedb78d2b08d5ac7205389573981a8565261d6f9ec677225646dd1bdb"
       },
       {
         "role": "preview",
         "file": "previews/three-quarter.png",
-        "sha256": "02e84c179c23b9d47846741011c8d1c9a8f79a50976b8fc636133d52c960d7c2"
+        "sha256": "0c47780e1f53fd153694420e63c38616872b56a475351ed459b10b45dbd34d0c"
       },
       {
         "role": "validation",
         "file": "validation/usdz.json",
-        "sha256": "e1f3060afa87975d74cee2395b14194286e57f1494e7d85c8c2e5612f107cbc5"
+        "sha256": "029f46b421cd2794c17ee6605f375dca4c267009ae2374da77f432f2f753547c"
       }
     ]
   },
@@ -194,6 +195,7 @@
   },
   "unresolved": [],
   "revision_notes": [
-    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2 replaces the generic proxy with fixture-specific silhouette, optics, housing and mounting details while preserving sourced outer dimensions."
   ]
 }

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "claypaky/sharpy",
-  "revision": 1,
+  "revision": 2,
   "updated_at": "2026-09-30",
   "status": "researched",
   "identity": {
@@ -123,7 +123,7 @@
       "min": [
         -0.20250000059604645,
         0.0,
-        -0.16500000655651093
+        -0.1650010049343109
       ],
       "max": [
         0.20250000059604645,
@@ -157,50 +157,51 @@
       }
     ],
     "assumptions": [
-      "Procedural visualization proxy, not manufacturer CAD.",
-      "Base footprint and height are documented; base width/depth orientation follows the manufacturer drawing.",
-      "Moving components are separated but no runtime articulation joints are authored."
+      "Fixture-specific procedural approximation informed by the stored official product image; not manufacturer CAD.",
+      "Tapered compact moving-head silhouette, console base, heavy yoke, cylindrical optical body and deep lens bezel.",
+      "Small fasteners, exact surface curvature, labels, internal mechanics, connector geometry and photometry remain simplified.",
+      "Moving components remain separately addressable, but runtime articulation joints are not authored."
     ],
     "artifacts": [
       {
         "role": "authoring",
         "file": "models/fixture.blend",
-        "sha256": "2fcd8fa247d23bd4fc5060b1167a56f73c47cd33447f350ddcaaa2ec27599067"
+        "sha256": "6c9f6728bc69480af9fec0bc87f21d320d5493674b9ebc17d4b3ba3b237812a2"
       },
       {
         "role": "runtime",
         "file": "models/fixture.usdz",
-        "sha256": "08b61d92e1eedf5af31456b50faca99a91d1fc05b6a5cfd81c2ad7c8b77e3a8d"
+        "sha256": "01c20765660ae2109c72b04c6fd6b551ecd32ead67d430c0c73501a9bee68c1e"
       },
       {
         "role": "generator",
         "file": "models/build_fixture.py",
-        "sha256": "a31a68292db08d531c53c9f83a2221994a994f16939ba914e2a9de2c31e01168"
+        "sha256": "426f12f7d587619f52a8ca2aa3d9a03f780c847353aa5c41cacf97c5b7a2c99a"
       },
       {
         "role": "preview",
         "file": "previews/front.png",
-        "sha256": "e2ef4f48ec99e8c18d7c946a715bad301a85d4ac88213781588440b0a130d00b"
+        "sha256": "aca92415fab07b0918188d9a651c6bf88d127b435d2407fde42511ceb42114c8"
       },
       {
         "role": "preview",
         "file": "previews/rear.png",
-        "sha256": "056cf88dd94d06b011cc1840e6c7060c22bb189b42dc19320525aa4bcce4ead2"
+        "sha256": "a4dfa3e40c4b655c3501fe9e2bd23556c9d0d49767f96dfa56df90f1d8b89d07"
       },
       {
         "role": "preview",
         "file": "previews/side.png",
-        "sha256": "09c1ad4044c3371e9d68cbc70ef718b4e99af352add7ad88a041a347edde5c04"
+        "sha256": "2473c3b2556cf83faffe7e7e2b014e0161310e655511c9526648b98695a3f7bb"
       },
       {
         "role": "preview",
         "file": "previews/three-quarter.png",
-        "sha256": "19c09546363c67e57b00a970964624c4c5f9ca3d31f1053a2a8a6e7a2188377d"
+        "sha256": "83d7c10007679cb15fa1e3f3097e23f1193fffb1495d6c6f769eabdc63c71dc8"
       },
       {
         "role": "validation",
         "file": "validation/usdz.json",
-        "sha256": "3414676410b15814286e44a79a848f1c3f92f462f444ed4f7b110af028d850d6"
+        "sha256": "f496b5b260da6d568084b202ac812255408b3cd74f64a99950c4ad6a28e323d7"
       }
     ]
   },
@@ -215,6 +216,7 @@
     "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
   ],
   "revision_notes": [
-    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2 replaces the generic proxy with fixture-specific silhouette, optics, housing and mounting details while preserving sourced outer dimensions."
   ]
 }

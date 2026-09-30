@@ -5,7 +5,7 @@
 - Official source: [https://www.adj.com/products/focus-spot-4z](https://www.adj.com/products/focus-spot-4z) (accessed 2026-09-30)
 - Reference envelope: 0.2786 m W × 0.4574 m H × 0.1815 m D
 - Control: DMX512, RDM; exact personalities are retained as footprints only when the source supplied them. Channel functions are not invented.
-- Model: editable Blender procedural approximation, meter-scale USDZ, Y-up and -Z forward. Parts are separated; appearance and articulation are intentionally approximate.
+- Model: fixture-specific editable Blender approximation, meter-scale USDZ, Y-up and -Z forward. Rounded base/control panel, U-yoke, capsule head, tilt hubs, optical barrel, bezel and cooling vents.
 - Validation: OpenUSD structure, scale envelope, declared prims, and ARKit profile checked. RealityKit rendering and hardware remain untested.
 
 ## Local assets
@@ -14,6 +14,11 @@
 - [Blender model](../../../../assets/fixtures/adj/focus-spot-4z/models/fixture.blend)
 - [USDZ model](../../../../assets/fixtures/adj/focus-spot-4z/models/fixture.usdz)
 - [USDZ validation](../../../../assets/fixtures/adj/focus-spot-4z/validation/usdz.json)
+
+## Fidelity revision
+
+- Revision 2 replaces the generic proxy with fixture-specific geometry derived from the stored official product image.
+- Exact labels, small fasteners, connector geometry, internal mechanisms and photometry remain simplified.
 
 ## Assumptions and follow-up
 
