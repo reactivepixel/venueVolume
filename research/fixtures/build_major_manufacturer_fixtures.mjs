@@ -23,6 +23,16 @@ const expectedHeader = [
   "data",
   "images",
 ];
+const assetHeader = [
+  "asset_state",
+  "asset_root",
+  "fixture_record",
+  "fixture_note",
+  "blend_asset",
+  "usdz_asset",
+  "validation_report",
+];
+const outputHeader = [...expectedHeader, ...assetHeader];
 
 const typeNames = new Map([
   ["moving_head", "Moving head"],
@@ -51,6 +61,28 @@ function assertHttps(url, label) {
   if (!String(url).startsWith("https://")) {
     throw new Error(`${label} is not an HTTPS URL: ${url}`);
   }
+}
+
+const existingAssets = new Map();
+try {
+  const existingText = await fs.readFile(outputPath, "utf8");
+  const existingBook = await Workbook.fromCSV(existingText, { sheetName: "Fixtures" });
+  const values = existingBook.worksheets.getItem("Fixtures").getUsedRange(true).values;
+  const header = values[0].map(String);
+  const indexes = Object.fromEntries(header.map((column, index) => [column, index]));
+  if (assetHeader.every((column) => column in indexes)) {
+    for (const row of values.slice(1)) {
+      const key = ["manufacturer", "name", "model_number"]
+        .map((column) => String(row[indexes[column]] ?? "").trim().toLowerCase())
+        .join("::");
+      existingAssets.set(
+        key,
+        Object.fromEntries(assetHeader.map((column) => [column, String(row[indexes[column]] ?? "").trim()])),
+      );
+    }
+  }
+} catch (error) {
+  if (error?.code !== "ENOENT") throw error;
 }
 
 const records = [];
@@ -93,6 +125,10 @@ for (const relativePath of inputPaths) {
     }
     record.data = JSON.stringify(data);
     record.images = JSON.stringify([...new Set(images)]);
+    const assetKey = [record.manufacturer, record.name, record.model_number]
+      .map((value) => value.toLowerCase())
+      .join("::");
+    Object.assign(record, existingAssets.get(assetKey) ?? Object.fromEntries(assetHeader.map((column) => [column, ""])));
     records.push(record);
   }
 }
@@ -134,40 +170,41 @@ if (lifecycleRows < 10) {
 }
 
 const matrix = [
-  expectedHeader,
-  ...records.map((record) => expectedHeader.map((column) => record[column])),
+  outputHeader,
+  ...records.map((record) => outputHeader.map((column) => record[column])),
 ];
 
 const workbook = Workbook.create();
 const sheet = workbook.worksheets.add("Fixtures");
-sheet.getRangeByIndexes(0, 0, matrix.length, expectedHeader.length).values = matrix;
+sheet.getRangeByIndexes(0, 0, matrix.length, outputHeader.length).values = matrix;
 sheet.showGridLines = false;
 sheet.freezePanes.freezeRows(1);
-sheet.getRange("A1:H1").format = {
+sheet.getRange("A1:O1").format = {
   fill: "#1F4E78",
   font: { name: "Arial", size: 10, bold: true, color: "#FFFFFF" },
   verticalAlignment: "center",
   horizontalAlignment: "center",
 };
-sheet.getRange(`A2:H${matrix.length}`).format = {
+sheet.getRange(`A2:O${matrix.length}`).format = {
   font: { name: "Arial", size: 10, color: "#1F1F1F" },
   verticalAlignment: "center",
 };
-sheet.getRange(`A1:H${matrix.length}`).format.autofitColumns();
+sheet.getRange(`A1:O${matrix.length}`).format.autofitColumns();
 sheet.getRange("A:A").format.columnWidth = 24;
 sheet.getRange("B:B").format.columnWidth = 24;
 sheet.getRange("C:C").format.columnWidth = 28;
 sheet.getRange("D:E").format.columnWidth = 18;
 sheet.getRange("F:F").format.columnWidth = 52;
 sheet.getRange("G:H").format.columnWidth = 70;
+sheet.getRange("I:O").format.columnWidth = 34;
 workbook.recalculate();
 
 const inspected = await workbook.inspect({
   kind: "table",
-  range: `Fixtures!A1:H${matrix.length}`,
+  range: `Fixtures!A1:O${matrix.length}`,
   include: "values,formulas",
   tableMaxRows: 8,
-  tableMaxCols: 8,
+  tableMaxCols: 15,
   maxChars: 6000,
 });
 const errorScan = await workbook.inspect({
@@ -179,10 +216,11 @@ const errorScan = await workbook.inspect({
 
 const preview = await workbook.render({
   sheetName: "Fixtures",
-  range: `A1:H${matrix.length}`,
+  range: `A1:O${matrix.length}`,
   scale: 0.65,
   format: "png",
 });
+await fs.mkdir(path.dirname(previewPath), { recursive: true });
 await fs.writeFile(previewPath, new Uint8Array(await preview.arrayBuffer()));
 
 const csvText = `${matrix.map((row) => row.map(csvCell).join(",")).join("\n")}\n`;

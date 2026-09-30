@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "id": "etc/colorsource-fresnel-v",
+  "revision": 1,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ETC",
+    "model": "ColorSource Fresnel V",
+    "variant": "ColorSource Fresnel V",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/ColorSource-Fresnel-V/Documentation.aspx",
+      "title": "ETC ColorSource Fresnel V official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/ColorSource-Fresnel-V/Features.aspx",
+      "title": "ETC ColorSource Fresnel V official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://www.etcconnect.com/workarea/DownloadAsset.aspx?id=10737519250",
+      "title": "ETC ColorSource Fresnel V official source 3",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Entertainment_Fixtures/ColorSource_V/FresnelVMax.547x400.png",
+      "title": "ETC ColorSource Fresnel V official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.png",
+      "sha256": "457f5644f2120789d4e86219c3883e57e484425d09f8078ddfbefcf2a5be7e9a"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.321,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "height": {
+      "value": 0.339,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "depth": {
+      "value": 0.311,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.16050000488758087,
+        0.0,
+        -0.15549999475479126
+      ],
+      "max": [
+        0.16050000488758087,
+        0.33899998664855957,
+        0.15549999475479126
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body"
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke"
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens"
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "name": "primary light output",
+        "prim_path": "/Fixture/Emitter"
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer specifies H x W x D.",
+      "Moving components are separated but no runtime articulation joints are authored."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "21c7069838c060d8e64d14261877e87bb2617dfdf49e6acc15bd8431c4355e78"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "9b8e3b3db8a9854ad6e7f004218ba7fc587997b95d6d7df64fe88770b344365d"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "0450496c1fd1ad001f765e86b3a735a654a44ec6365110d9bcb72a149aaa0f5e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "ca8dbea6200402dede15f834fa99f9a33cd5a9adcbe9a543c542fe296741cadc"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "c6162f4457a5c9be00f46c022cc8cbee7fdda8cffe0523f68df692703aeca2c0"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "1beb79b6f5581fa382f248c1c4e4906cfc4a9ad13b19ce793ae1d709f6091af4"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "79b79abb67821ed586bdb53141226128d0820d8f1f43703b8b5724aff09543e1"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "930ec7cff514b9b40855b31ce60fc68875597336d18a31d0c0c8ad0f0f14e777"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+  ]
+}

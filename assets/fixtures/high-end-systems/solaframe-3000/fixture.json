@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "id": "high-end-systems/solaframe-3000",
+  "revision": 1,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "High End Systems",
+    "model": "SolaFrame 3000",
+    "variant": "SolaFrame 3000",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaFrame/3000/Features.aspx",
+      "title": "High End Systems SolaFrame 3000 official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.highend.com/documentation/SolaFrame%203000/SolaFrame3000-protocol.pdf",
+      "title": "High End Systems SolaFrame 3000 official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://www.etcconnect.com/support/Lighting_Fixtures/LED/FAQ/Fixture_Weights_and_Dimensions",
+      "title": "High End Systems SolaFrame 3000 official source 3",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-4",
+      "url": "https://www.etcconnect.com/workarea/DownloadAsset.aspx?id=10737506946",
+      "title": "High End Systems SolaFrame 3000 official source 4",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/High_End_Systems_Images/Lighting_Fixtures/SolaFrame/SolaFrame3000_prod_right_wht.jpg",
+      "title": "High End Systems SolaFrame 3000 official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "3a95be64a075eb8298e7ad55745b603aed00da23e352e2357b5ac87e3c90ea59"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.491,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; H/W/depth assignment follows the official dimensional drawing."
+    },
+    "height": {
+      "value": 0.821,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; H/W/depth assignment follows the official dimensional drawing."
+    },
+    "depth": {
+      "value": 0.368,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; H/W/depth assignment follows the official dimensional drawing."
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": {
+          "dmx_protocol_document": true
+        },
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.24549999833106995,
+        0.0,
+        -0.18400000035762787
+      ],
+      "max": [
+        0.24549999833106995,
+        0.8209999799728394,
+        0.18400000035762787
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base"
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke"
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head"
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Head/Lens"
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "name": "primary light output",
+        "prim_path": "/Fixture/Head/Emitter"
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Overall dimensions are documented; H/W/depth assignment follows the official dimensional drawing.",
+      "Moving components are separated but no runtime articulation joints are authored."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "e9bf14cadeb4f7864e0be493e8e8963efbefbd0d097ee6160f24a7072b0aaa02"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "e0d9f8a956c0edbcdff8e34dc3582f48e9d78922ed2db0951633ef2952133b1f"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "f441df48112a2f9a7c417ad3a70d66d5cfde96f0415f2d7c3506a492d58ca66c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "e7430926cd91dabe514b8e7a2fa59426ca3c8560b7f838b19830bb5d228af5d3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "f2d64ad454101197f7f06697c3ea21858c466ba8efbef295785d27865b02a051"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "179a0205d71aeb0a235c540667315ccbc1c94ea4301356e3eb3f1a370d492a2b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "46f502cbb04739134509cfc61700ac09dd854d192231501b4f8ae11ec156e2d3"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "be8a229481834db2dfdd45efd48a24ecab0ed3dee46ccbe2e40437fdd1a1d188"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+  ]
+}

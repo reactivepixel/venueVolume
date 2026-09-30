@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "id": "adj/focus-spot-4z",
+  "revision": 1,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ADJ",
+    "model": "Focus Spot 4Z",
+    "variant": "FOC200",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.adj.com/products/focus-spot-4z",
+      "title": "ADJ Focus Spot 4Z official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://www.adj.com/cdn/shop/files/a74bd932582c95b0204ab23388d7dc7f7fe9e08b_FOC200__IMG__001__3dc23d06cee1.jpg?v=1776751364&width=800",
+      "title": "ADJ Focus Spot 4Z official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "3e4e2ad06f2bcf1163478c7c42a6f7700a11e653aa186dfd795cafb36f7b8c01"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.2786,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "height": {
+      "value": 0.4574,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "depth": {
+      "value": 0.1815,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": [
+          "7000 lumens; motorized zoom 11-22°"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "200 W LED engine",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "16-channel mode",
+      "footprint": 16,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "18-channel mode",
+      "footprint": 18,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "22-channel mode",
+      "footprint": 22,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.13930000364780426,
+        0.0,
+        -0.09075000137090683
+      ],
+      "max": [
+        0.13930000364780426,
+        0.45739999413490295,
+        0.09075000137090683
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base"
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke"
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head"
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Head/Lens"
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "name": "primary light output",
+        "prim_path": "/Fixture/Head/Emitter"
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L.",
+      "Moving components are separated but no runtime articulation joints are authored."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "0f9430e84b1f5f329fa111fd23a21524f9cb6c855230345001c69f78cf314a59"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "6e53c4f2c59b7aff292ab9b51c0367d0392add7278e5fa6233278ea469e92489"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "9f90e25f0514f65c88ad7f2accd0b95e04933b6c00c6f65e343dce69de801381"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "6d2f977da9a113763b9c1603a95a899fd45101d02ff64f3feeab39a64b93ac8a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "f173c91b4ce9b7c565c454a589c3b23b69764a41028cfcd50c3fe018a0382c4a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "3e217d548c47d6fbca5b90cf70f39a6a241c81c8152112a61ec02ad7c6384346"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "8c5fe5ec6a677c80ff1d47bea8e30a0a0ea5f4eaba59ca84f1d163f3f92ff097"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "ec25aadfb80115aecda98af088dd9289fe5aab56ab93b6a2d7c54c0c064a05fa"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+  ]
+}

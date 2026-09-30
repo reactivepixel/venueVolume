@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "id": "etc/desire-d60",
+  "revision": 1,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "ETC",
+    "model": "Desire D60",
+    "variant": "D60",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.etcconnect.com/workarea/DownloadAsset.aspx?id=10737512649",
+      "title": "ETC Desire D60 official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.etcconnect.com/Products/Lighting-Fixtures/",
+      "title": "ETC Desire D60 official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.309,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Maximum overall dimensions are documented; H/W/depth assignment follows the assembled fixture drawing."
+    },
+    "height": {
+      "value": 0.361,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Maximum overall dimensions are documented; H/W/depth assignment follows the assembled fixture drawing."
+    },
+    "depth": {
+      "value": 0.29,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Maximum overall dimensions are documented; H/W/depth assignment follows the assembled fixture drawing."
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.15449999272823334,
+        0.0,
+        -0.14499999582767487
+      ],
+      "max": [
+        0.15449999272823334,
+        0.3610000014305115,
+        0.14499999582767487
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body"
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke"
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens"
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "name": "primary light output",
+        "prim_path": "/Fixture/Emitter"
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Maximum overall dimensions are documented; H/W/depth assignment follows the assembled fixture drawing.",
+      "Moving components are separated but no runtime articulation joints are authored."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "ceae8b5eea834d68285126c7a025988ab9ceaaa035e8f91f9dc36f9641c68ef9"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "1c6b01744821bb7db3f66a7d2640a156699d205888176441673342b25f23f335"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "6ab6a2a83882bbc3f2729f585d96d0d4b0e51ee99b24d0400352a44f9b143208"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "731768b9442d1a19e9a660660b733935b67abb319922b55e080d3bd050b37d99"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "d38e3170cd89491e5f4d55ae14aa2c4a4463956e195b3ce62a63d7f29c992f1b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "c2c203271d9388b39637619a7709c2f963db35fcece73112d79687aae4fcc033"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "790406e2a81801c053ad74537c092e52201be3535e89a68685801f68bd44c0e4"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "8750a532e5af8579fa0a59bd4504802410c4a08e56cd43af9399d5f97c9e9701"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion.",
+    "No official product image URL was present in the research CSV."
+  ],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+  ]
+}

@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "id": "elation-professional/kl-fresnel-8",
+  "revision": 1,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Elation Professional",
+    "model": "KL Fresnel 8",
+    "variant": "KLF023",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.elationlighting.com/products/kl-fresnel-8",
+      "title": "Elation Professional KL Fresnel 8 official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://www.elationlighting.com/cdn/shop/files/9182ac94ce3e7191a943e08811665c65e4c51157_KLF023__IMG__001__42d4bf9b406c.jpg?v=1776815436&width=850",
+      "title": "Elation Professional KL Fresnel 8 official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "b849efa264f0249c23328515efc8e35cb7a16eebb692cbdc60e93c167e8fe3bd"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.3275,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "height": {
+      "value": 0.456,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "depth": {
+      "value": 0.6084,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": [
+          "350 W warm-white LED; 11-57° zoom; IP20"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "430 W max; 100-240 V AC, 50/60 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "2-channel mode",
+      "footprint": 2,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "3-channel mode",
+      "footprint": 3,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "6-channel mode",
+      "footprint": 6,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "7-channel mode",
+      "footprint": 7,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.16374999284744263,
+        0.0,
+        -0.3041999936103821
+      ],
+      "max": [
+        0.16374999284744263,
+        0.4560000002384186,
+        0.3041999936103821
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body"
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke"
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens"
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "name": "primary light output",
+        "prim_path": "/Fixture/Emitter"
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer lists length, width and height individually; runtime X/Y/Z uses width/height/length.",
+      "Moving components are separated but no runtime articulation joints are authored."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "db04c31e864bcb3ba3e2a59b8fbaaf1acf83f255c9cbf717ee29cef7b84f0493"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "53c034be9d2c6f4339defbf936e2e629de61fd7b885be07818fc1e63cecef96a"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "d5bbafb6e37a754cdad775d1d78c9c42f611e011f669fad3946ac7e27d2d1a16"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "370a0d03f8aae98086076868d32ac2a6c42bc78ee2502839417db17f3ac0c31e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "11ee48dd4d44d93b8c4375bbe26783a7a83a8387e4af9014c3c656196198eea2"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "96aeb481b2afb58c127121d6352f1b504ccf52d578e0b14d7e58d7dde2571c69"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "4c34f96f189c3c6111ca04e061269c839bfe1b3c85f7b7687937ce120f458869"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "d26bee84d4e388093c02fc97c546001cb8505bef5d7ad770b9d9c7f3699a7371"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+  ]
+}

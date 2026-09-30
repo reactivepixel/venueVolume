@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "id": "etc/fos-4-fresnel",
+  "revision": 1,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "ETC",
+    "model": "fos/4 Fresnel",
+    "variant": "fos/4 Fresnel",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/fos/4-Fresnel/Documentation.aspx",
+      "title": "ETC fos/4 Fresnel official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.etcconnect.com/Products/Lighting-Fixtures/",
+      "title": "ETC fos/4 Fresnel official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.313,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Zoom range envelope is documented; the extended depth is used for a conservative outer bound."
+    },
+    "height": {
+      "value": 0.435,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Zoom range envelope is documented; the extended depth is used for a conservative outer bound."
+    },
+    "depth": {
+      "value": 0.505,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Zoom range envelope is documented; the extended depth is used for a conservative outer bound."
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "wireless DMX/RDM (Multiverse)"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.15649999678134918,
+        0.0,
+        -0.2524999976158142
+      ],
+      "max": [
+        0.15649999678134918,
+        0.4350000023841858,
+        0.2524999976158142
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body"
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke"
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens"
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "name": "primary light output",
+        "prim_path": "/Fixture/Emitter"
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Zoom range envelope is documented; the extended depth is used for a conservative outer bound.",
+      "Moving components are separated but no runtime articulation joints are authored."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "2776332131697585d8548dbe91d3a22516d155abfbcb005e8c7410711c7f63c2"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "66fb0c1d125dc703c45b6985ed77fa2771df628f900f42712e6521e803fc723a"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "a13d619300df8119ef811d1d76c71cd19da1a76a73c85dddbc6a79c884c4b597"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "96ec718c9bc2641f7cce0b95983ac14dbebde1f2bb00eea94d953a04fe40f96e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "50006cf4415a7e09e616f8afbc3e27cf1a5353c422e52399aa04d0477f38776b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "2c87d657483ce483b13cd64fd7576e93139e61975344aa35e1b0af4502d3718a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "f3136ea42b2ef0f52cdfceb99cfa4ca8ce4c8213f5013b1585d280f6752f7ca7"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "ca2d06b6d8c0aee4d47e81650aaec942b457761e34f465cbde01f628144c25cd"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion.",
+    "No official product image URL was present in the research CSV."
+  ],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+  ]
+}

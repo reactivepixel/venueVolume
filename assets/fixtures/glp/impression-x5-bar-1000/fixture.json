@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "id": "glp/impression-x5-bar-1000",
+  "revision": 1,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "GLP",
+    "model": "impression X5 Bar 1000",
+    "variant": "7888",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://glp.de/en/products/entertainment-lighting/moving-lights/impression-x5-bar-1000-en",
+      "title": "GLP impression X5 Bar 1000 official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://glp.de/templates/yootheme/cache/96/impression-X5-Bar-1000_Header12-96c4ac35.png",
+      "title": "GLP impression X5 Bar 1000 official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.png",
+      "sha256": "c67ff79ed1887c021b4915ca57ddb5c00777b952c6b1f03c4b8388b7058abc28"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 1.0,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "height": {
+      "value": 0.296,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "depth": {
+      "value": 0.11,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "750 W max at 230 V; 100-240 VAC",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "20.2 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "Art-Net",
+          "sACN"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.5,
+        0.0,
+        -0.05500100180506706
+      ],
+      "max": [
+        0.5,
+        0.29600000381469727,
+        0.054999999701976776
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body"
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens"
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "name": "primary light output",
+        "prim_path": "/Fixture/Emitter"
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer specifies H x W x D.",
+      "Moving components are separated but no runtime articulation joints are authored."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "1c5dc8aca7ed6cb2376c95ec07fc8dd2738b293cdee4f42ac6d0b33368186000"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "22e9457f652c4efd4cd149939ce01b41e40c42d898dd93fc90dc36c39d21d9d2"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "6e81e6d94ea47e6c71d597086782954adbb1f79e412a30ba4a8b66e7d2693cf9"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "2ae2ce74b8ce3b459c384a5cf2483a7af1577fb10fa6598f212a190e81e8a0fc"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "7e2faccbbc79dd8c0e9408c3514002efa06704d09f325454a31151994f018f24"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "9ff6ceeddca8966c8d5d91dffc6d15d7e7dd5e8f0f6d55c117d6b722afc6d1ba"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "94f5c2df3b259845dc6f4fb9726dcb284be1b78762bcf751087f5e44e64e6ba1"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "ad5bc22627cbf921fa614709db4b591840ad917b33734c0daa427bae98a6b3d1"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+  ]
+}

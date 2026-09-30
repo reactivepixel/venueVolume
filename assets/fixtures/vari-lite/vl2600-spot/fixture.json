@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "id": "vari-lite/vl2600-spot",
+  "revision": 1,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Vari-Lite",
+    "model": "VL2600 SPOT",
+    "variant": "VL2600 SPOT",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.vari-lite.com/global/products/vl2600-spot",
+      "title": "Vari-Lite VL2600 SPOT official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.vari-lite.com/b-dam/vari-lite/products/vl2600-wash/guides-and-manuals/vl2600-series_user-manual.pdf",
+      "title": "Vari-Lite VL2600 SPOT official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://www.vari-lite.com/b-dam/vari-lite/products/vl2600-spot/vl2600-spot-thumbnail.jpg",
+      "title": "Vari-Lite VL2600 SPOT official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "f348332f929dcf456b24e66b8c424938af945e664bbea997b1a763e7ef790875"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.464,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; width/depth/height assignment follows the official product drawing."
+    },
+    "height": {
+      "value": 0.715,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; width/depth/height assignment follows the official product drawing."
+    },
+    "depth": {
+      "value": 0.3,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; width/depth/height assignment follows the official product drawing."
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {
+      "zoom": {
+        "value": "7–<48°",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      },
+      "output": {
+        "value": "19,000 lm",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "approx. 820 W; 550 W LED engine",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "32 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.23199999332427979,
+        0.0,
+        -0.15000000596046448
+      ],
+      "max": [
+        0.23199999332427979,
+        0.7149999737739563,
+        0.15000000596046448
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base"
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke"
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head"
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Head/Lens"
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "name": "primary light output",
+        "prim_path": "/Fixture/Head/Emitter"
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Overall dimensions are documented; width/depth/height assignment follows the official product drawing.",
+      "Moving components are separated but no runtime articulation joints are authored."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "4df3a2da4f82ffa7fcf291ffb1944d2689d8abc53747040fd3313e003ee28b90"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "7376e39d7372efc9c55c74d61f806d87729288f429ea16ab631c7bc4c31bcdcc"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "c8e07da99c3dd123e80a81a10d72de2c007920a50486664bd7d32fba104f704a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "5027bfdc35f286db2ebd1d558eb8885ff156cc9e41513e27aef845cd485420b0"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "2a455b3e4e8f20d4d63c9065b0de2769ba61ec636691706f86389b72717bb26f"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "8ca94b7c9d688d11f1684eeabe88eccb4497a0935115f03fa20339fff1f96a34"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "1986e8ee765e6e0684daf39acd1568212428f74a08a4736c84851bc9376ce6ad"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "6be13ea68d482fbcec61bec15f940227d5eb15002b39de20938677004c4fc4c8"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+  ]
+}
