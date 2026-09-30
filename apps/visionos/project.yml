@@ -14,7 +14,12 @@ targets:
   VenueVolume:
     type: application
     platform: visionOS
-    sources: [VenueVolume]
+    sources:
+      - path: VenueVolume
+        excludes: [Environments]
+      - path: VenueVolume/Environments
+        type: folder
+        buildPhase: resources
     dependencies:
       - package: VenueVolumeCore
     settings:

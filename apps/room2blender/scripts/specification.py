@@ -28,8 +28,8 @@ def validate(spec, source_hash):
         raise ValueError('Specification needs review.status=reviewed, reviewer and basis; draft geometry cannot render')
     if spec.get('units') != 'meters' or not spec.get('scale_status') or not spec.get('assumptions'):
         raise ValueError('Specify units=meters, scale_status and a nonempty assumptions list')
-    if not isinstance(spec.get('id'), str) or not spec['id']:
-        raise ValueError('Specification needs a nonempty id')
+    if not isinstance(spec.get('id'), str) or not re.fullmatch(r'[A-Za-z0-9_-]{1,80}', spec['id']):
+        raise ValueError('Specification needs a safe 1–80 character id (letters, digits, underscore, hyphen)')
     room = spec.get('room', {})
     for field in ('width', 'depth', 'height', 'wall_thickness'):
         number(room.get(field), 'room.'+field, True)
@@ -79,8 +79,8 @@ def validate(spec, source_hash):
     sides = set()
     for obj in objects:
         ident = obj.get('id', '')
-        if not re.fullmatch(r'[A-Za-z][A-Za-z0-9_-]{0,79}', ident) or ident in ids or ident.startswith('COL_'):
-            raise ValueError('Each object needs a unique safe id, excluding the COL_ prefix')
+        if not re.fullmatch(r'[A-Za-z][A-Za-z0-9_-]{0,79}', ident) or ident in ids or ident.startswith(('COL_', 'TEST')):
+            raise ValueError('Each object needs a unique safe id, excluding the COL_ and TEST prefixes')
         ids.add(ident)
         vector(obj.get('position'), ident+'.position')
         vector(obj.get('size'), ident+'.size', True)
@@ -90,6 +90,8 @@ def validate(spec, source_hash):
         if side is not None and side not in SIDES:
             raise ValueError(ident+': invalid cutaway_wall')
         sides.add(side)
+        if obj.get('placement_surface') and not obj.get('collision'):
+            raise ValueError(ident+': placement surfaces require collision=true')
         if not obj.get('evidence'):
             raise ValueError(ident+': document evidence or assumption')
     if 'floor' not in ids or not all(side in sides for side in SIDES):

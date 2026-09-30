@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public struct SyncPayload: Codable, Equatable, Sendable {
     public let schemaVersion: Int
@@ -8,9 +11,15 @@ public struct SyncPayload: Codable, Equatable, Sendable {
     public let totalFixtures: Int
     public let totalChannels: Int
     public let fixtures: [Fixture]
+    public let environmentID: String?
+    public let environmentVersion: String?
+    public let coordinateSpace: String
 
-    public init(fixtures: [Fixture], revision: Int) {
-        schemaVersion = 1
+    public init(fixtures: [Fixture], revision: Int, environment: EnvironmentManifest? = nil) {
+        schemaVersion = 2
+        environmentID = environment?.id
+        environmentVersion = environment?.version
+        coordinateSpace = "environment-local-meters-y-up"
         requestID = UUID()
         createdAt = Date()
         self.revision = revision

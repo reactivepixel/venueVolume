@@ -19,6 +19,8 @@ struct DebugPanel: View {
                 Spacer()
                 Text("\(model.totalChannels) channels").font(.callout.monospacedDigit()).foregroundStyle(.secondary)
             }
+            Text(model.environmentStatus).font(.headline)
+            Text(model.persistenceStatus).font(.caption).foregroundStyle(.secondary)
             Text(model.trackingStatus).font(.caption).foregroundStyle(.secondary)
             Button {
                 model.isPlacing.toggle()
@@ -28,15 +30,7 @@ struct DebugPanel: View {
                     .frame(maxWidth: .infinity)
             }.disabled(!model.canPlace && !model.isPlacing)
             if model.isPlacing {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Look at the grid and pinch.").font(.callout)
-                    HStack {
-                        Text("Distance").font(.caption)
-                        Slider(value: $model.placementDistance, in: 0.75...4, step: 0.25)
-                            .accessibilityLabel("Placement distance in meters")
-                        Text(String(format: "%.2f m", model.placementDistance)).font(.caption.monospacedDigit()).frame(width: 60)
-                    }
-                }
+                Text("Look at a clear floor or tabletop and pinch. The fixture needs 24 cm of space.").font(.callout)
             }
             if let selectedID = model.selectedID, let fixture = model.fixture(selectedID) {
                 Button {

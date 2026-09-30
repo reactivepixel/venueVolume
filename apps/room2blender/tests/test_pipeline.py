@@ -25,6 +25,13 @@ class Contracts(unittest.TestCase):
         self.spec = json.loads((APP/'examples/box-room.template.json').read_text())
         self.spec.update(source_sha256='a'*64, review={'status':'reviewed','reviewer':'test','basis':'Synthetic fixture'})
 
+    def test_bundled_classroom_matches_export(self):
+        bundled = APP.parent/'visionos/VenueVolume/Environments/Classroom'
+        for name in ('environment.json', 'environment.usdz'):
+            self.assertEqual(digest(APP/'output'/name), digest(bundled/name))
+        manifest = json.loads((bundled/'environment.json').read_text())
+        self.assertEqual(manifest['asset']['sha256'], digest(bundled/'environment.usdz'))
+
     def test_review_and_source_are_required(self):
         validate(self.spec, 'a'*64)
         for field, value in [('source_sha256','b'*64), ('review',{'status':'draft'})]:
@@ -34,13 +41,15 @@ class Contracts(unittest.TestCase):
                 validate(spec, 'a'*64)
 
     def test_rejects_invalid_geometry(self):
-        for mutation in ('nan','duplicate','negative','missing_wall','bad_floor'):
+        for mutation in ('nan','duplicate','negative','missing_wall','bad_floor','placement_without_collision','reserved_id'):
             spec = copy.deepcopy(self.spec)
             if mutation == 'nan': spec['objects'][0]['position'][0] = float('nan')
             if mutation == 'duplicate': spec['objects'][1]['id'] = 'floor'
             if mutation == 'negative': spec['objects'][0]['size'][2] = -1
             if mutation == 'missing_wall': spec['objects'] = [o for o in spec['objects'] if o['id'] != 'left']
             if mutation == 'bad_floor': spec['objects'][0]['position'][2] = 1
+            if mutation == 'placement_without_collision': spec['objects'][-1]['collision'] = False
+            if mutation == 'reserved_id': spec['objects'][-1]['id'] = 'TEST_example'
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                 validate(spec, 'a'*64)
 
@@ -102,6 +111,14 @@ class EndToEnd(unittest.TestCase):
             first_report = json.loads((run/'output/validation.json').read_text())
             self.assertTrue(first_report['passed'])
             self.assertEqual(len(list((run/'output').glob('cutaway-*.png'))), 4)
+            environment = json.loads((run/'output/environment.json').read_text())
+            self.assertTrue(json.loads((run/'output/environment-validation.json').read_text())['passed'])
+            self.assertEqual(environment['asset']['sha256'], digest(run/'output/environment.usdz'))
+            self.assertEqual(environment['upAxis'], 'Y')
+            self.assertEqual(environment['spawn']['position'], [2.5,0,-1])
+            plinth = next(s for s in environment['surfaces'] if s['id'] == 'plinth')
+            self.assertEqual(plinth['center'], [2.5,0.75,-4.3])
+            self.assertGreater(environment['geometry']['triangles'], 0)
             timestamp = (run/'output/room.blend').stat().st_mtime_ns
             state = call(command)
             self.assertTrue(state['cached'])
@@ -112,6 +129,7 @@ class EndToEnd(unittest.TestCase):
             self.assertNotEqual(second, run)
             self.assertEqual(json.loads((second/'output/validation.json').read_text())['geometry_sha256'], first_report['geometry_sha256'])
             self.assertTrue((run/'output/room.blend').exists())
+            self.assertEqual(json.loads((second/'output/environment.json').read_text())['version'], environment['version'])
             # Independent extraction + build reproduces reference bytes and geometry.
             other = root/'independent project'
             result = subprocess.run(cli+['run',str(movie),'--out',str(other),'--count','4','--spec',str(spec_path),'--width','320','--samples','1'], capture_output=True, text=True)
@@ -119,6 +137,10 @@ class EndToEnd(unittest.TestCase):
             other_state = json.loads((other/'status.json').read_text())
             other_run = other/other_state['run']
             self.assertEqual(json.loads((other_run/'output/validation.json').read_text())['geometry_sha256'], first_report['geometry_sha256'])
+            independent = json.loads((other_run/'output/environment.json').read_text())
+            self.assertEqual(independent['version'], environment['version'])
+            self.assertEqual(independent['colliders'], environment['colliders'])
+            self.assertEqual(independent['surfaces'], environment['surfaces'])
             for frame in (run/'references').glob('*.jpg'):
                 self.assertEqual(digest(frame), digest(other_run/'references'/frame.name))
             # Do not overwrite manual Blender edits while trying to reuse a cache.

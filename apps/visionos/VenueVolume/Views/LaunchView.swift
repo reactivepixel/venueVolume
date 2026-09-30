@@ -16,11 +16,11 @@ struct LaunchView: View {
                 Image(systemName: "cube.transparent").font(.system(size: 76, weight: .ultraLight)).foregroundStyle(.cyan)
                     .accessibilityHidden(true)
             }
-            Text("Place virtual DMX fixtures in the room, shape their channels, and sync a complete mock configuration.")
+            Text("Enter the classroom, place virtual DMX fixtures on its floor and tables, and restore your arrangement next time.")
                 .foregroundStyle(.secondary)
             Divider()
             VStack(alignment: .leading, spacing: 16) {
-                Label("Place fixture → look at the grid → pinch", systemImage: "scope")
+                Label("Place fixture → look at a floor or table → pinch", systemImage: "scope")
                 Label("Select a cube to highlight its fixture", systemImage: "cube")
                 Label("Double-select its name to open DMX controls", systemImage: "slider.horizontal.3")
             }
@@ -42,7 +42,7 @@ struct LaunchView: View {
             }
             .buttonStyle(.borderedProminent)
             .disabled(model.isTransitioning)
-            Text("Session-only prototype · Generic 8-bit channels · No physical lighting output")
+            Text("Classroom dimensions are estimated · Placements saved locally · No physical DMX output")
                 .font(.caption).foregroundStyle(.secondary)
         }
         .padding(36)

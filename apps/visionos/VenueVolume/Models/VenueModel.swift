@@ -10,9 +10,13 @@ final class VenueModel {
     var isImmersed = false
     var isTransitioning = false
     var isPlacing = false
-    var placementDistance: Float = 2
     var trackingStatus = "Starting spatial tracking…"
     var canPlace = false
+    private(set) var environment: EnvironmentManifest?
+    var environmentStatus = "Loading classroom…"
+    private(set) var persistenceStatus = "Placements save on this device"
+    private var persistenceBlocked = false
+    private let placements = PlacementStore(directory: FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("VenueVolume/Placements"))
     var message: String?
     private(set) var revision = 0
     private(set) var syncedRevision: Int?
@@ -32,27 +36,50 @@ final class VenueModel {
         #else
         isDemoMode = false
         #endif
-        guard isDemoMode else { return }
+    }
 
-        let frontWash = Fixture(
-            name: "Front Wash",
-            universe: 1,
-            startAddress: 1,
-            channels: [255, 212, 180, 255, 36, 0, 118, 0, 64, 32, 0, 0, 0, 0, 0, 0],
-            position: .init(x: -0.28, y: 1.43, z: -1.65)
-        )
-        let stageLeft = Fixture(
-            name: "Stage Left Beam",
-            universe: 1,
-            startAddress: 17,
-            channels: [196, 24, 232, 0, 145, 12, 90, 255],
-            position: .init(x: 0.48, y: 1.58, z: -2.05)
-        )
-        fixtures = [frontWash, stageLeft]
-        selectedID = frontWash.id
-        expandedID = frontWash.id
-        revision = 1
-        nextFixtureNumber = 3
+    func activate(environment: EnvironmentManifest) {
+        self.environment = environment
+        environmentStatus = environment.title
+        isPlacing = false
+        selectedID = nil
+        expandedID = nil
+        syncedRevision = nil
+        fixtures = []
+        revision = 0
+        persistenceBlocked = false
+        if isDemoMode {
+            if let desk = environment.surfaces.first(where: { $0.id == "instructor-desk-top" }) {
+                fixtures = [Fixture(name: "Desk test fixture", position: .init(x: desk.center[0], y: desk.center[1]+0.12, z: desk.center[2]), surfaceID: desk.id)]
+            }
+            persistenceStatus = "Demo placements are temporary"
+        } else {
+            do {
+                if let saved = try placements.load(environment: environment) {
+                    fixtures = saved.fixtures
+                    revision = saved.revision
+                    persistenceStatus = "Restored \(fixtures.count) room placements"
+                } else {
+                    persistenceStatus = "New room version · no saved placements"
+                }
+            } catch {
+                // Preserve an unreadable save; never replace it with an empty scene.
+                persistenceBlocked = true
+                message = "Placements could not be restored: \(error.localizedDescription)"
+                persistenceStatus = "Save disabled to preserve the existing file"
+            }
+        }
+        nextFixtureNumber = fixtures.count+1
+    }
+
+    private func persist() {
+        guard !isDemoMode, !persistenceBlocked, let environment else { return }
+        do {
+            try placements.save(RoomPlacements(environment: environment, fixtures: fixtures, revision: revision), environment: environment)
+            persistenceStatus = "Saved \(fixtures.count) placements on this device"
+        } catch {
+            persistenceStatus = "Save failed: \(error.localizedDescription)"
+        }
     }
 
     var totalChannels: Int { fixtures.reduce(0) { $0 + $1.channels.count } }
@@ -66,20 +93,27 @@ final class VenueModel {
 
     func fixture(_ id: UUID) -> Fixture? { fixtures.first { $0.id == id } }
 
-    func place(at position: SIMD3<Float>) {
+    func place(at position: SIMD3<Float>, surfaceID: String) {
         guard canPlace, isPlacing else { return }
+        guard let surface = environment?.surfaces.first(where: { $0.id == surfaceID }),
+              let center = surface.fixturePosition(hit: .init(x: position.x, y: position.y, z: position.z)) else {
+            message = "Choose the top of a floor or table with space for the fixture."
+            return
+        }
         guard let patch = Fixture.nextAvailablePatch(in: fixtures, footprint: 8) else {
             message = "No free DMX patch is available."
             return
         }
         let fixture = Fixture(name: String(format: "Fixture %02d", nextFixtureNumber),
                               universe: patch.universe, startAddress: patch.address,
-                              position: .init(x: position.x, y: position.y, z: position.z))
+                              position: center, surfaceID: surfaceID)
+        message = nil
         fixtures.append(fixture)
         nextFixtureNumber += 1
         selectedID = fixture.id
         isPlacing = false
         revision += 1
+        persist()
     }
 
     func select(_ id: UUID, expand: Bool = false) {
@@ -100,6 +134,7 @@ final class VenueModel {
         if fixtures[index] != candidate {
             fixtures[index] = candidate
             revision += 1
+            persist()
         }
         return nil
     }
@@ -111,6 +146,7 @@ final class VenueModel {
         guard fixtures[fixtureIndex].channels[index] != clamped else { return }
         fixtures[fixtureIndex].channels[index] = clamped
         revision += 1
+        persist()
     }
 
     func remove(_ id: UUID) {
@@ -119,6 +155,7 @@ final class VenueModel {
         if selectedID == id { selectedID = nil }
         if expandedID == id { expandedID = nil }
         revision += 1
+        persist()
     }
 
     func sync() async {
@@ -127,12 +164,14 @@ final class VenueModel {
         syncFailed = false
         defer { isSyncing = false }
         // Capture before suspension: edits made during the request stay marked as unsynced.
-        let payload = SyncPayload(fixtures: fixtures, revision: revision)
+        let payload = SyncPayload(fixtures: fixtures, revision: revision, environment: environment)
         do {
             lastRequestJSON = String(decoding: try payload.jsonData(), as: UTF8.self)
             syncStatus = "Sending \(payload.totalFixtures) fixtures…"
             let receipt = try await client.send(payload, simulateFailure: simulateSyncFailure)
-            syncedRevision = receipt.revision
+            if environment?.id == payload.environmentID && environment?.version == payload.environmentVersion {
+                syncedRevision = receipt.revision
+            }
             syncStatus = "HTTP 200 · \(receipt.acceptedFixtures) fixtures · \(receipt.acceptedChannels) channels"
         } catch {
             syncFailed = true
