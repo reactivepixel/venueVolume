@@ -43,38 +43,31 @@ Browse the [static screen gallery](assets/design/venue-volume/index.html) for ex
 
 The [Astro marketing app](apps/marketing/README.md) is a statically rendered, one-page private-alpha signup using the selected Void visual direction. Its email/phone submission is intentionally mocked in the browser console until the lead-storage integration is selected.
 
-## mov2splat
+## Venue environment pipeline
 
-[mov2splat](apps/mov2splat/README.md) converts one iPhone Camera `.mov` into a standard 3D Gaussian Splatting `.ply` on the same machine. It runs headlessly in a Docker image using the host NVIDIA GPU. The first run builds the image; later processing runs without container networking.
-
-On Omarchy, keep the existing NVIDIA driver and set up Docker GPU access:
-
-```bash
-sudo pacman -S --needed docker nvidia-container-toolkit
-sudo systemctl enable --now docker
-sudo nvidia-ctk runtime configure --runtime=docker
-sudo systemctl restart docker
-docker run --rm --gpus all nvidia/cuda:12.8.0-base-ubuntu24.04 nvidia-smi
-```
-
-From the workspace root, process or resume one clip:
+[room2blender](apps/room2blender/README.md) is the current venue workflow: movie references
+→ reviewed room specification → editable Blender scene, four isometric cutaways, and a
+USDZ/environment manifest for [the Swift visionOS app](apps/visionos/README.md).
+Dimensions remain explicit estimates until measured. It uses local FFmpeg, Python and
+Blender; Docker, COLMAP and Gaussian training are not required.
 
 ```bash
-./apps/mov2splat/scripts/host.sh /absolute/path/to/clip.mov
-./apps/mov2splat/scripts/host.sh --resume /absolute/path/to/clip.mov
+./apps/room2blender/room2blender run /absolute/path/to/room.mov --out /absolute/path/to/room-review
 ```
 
-The result is `/absolute/path/to/clip.ply`. Frames, COLMAP data, trainer output, `pipeline.log`, and `status.json` are saved in `/absolute/path/to/clip.gsplat/`. Use `--resume` after an interrupted run to reuse valid SfM data, or `--force` to replace an existing `.ply`. Run one GPU job at a time. See the [operational runbook](docs/05%20Operations/mov2splat.md) for setup, capture guidance, commands, and failures.
+A new capture stops for geometry/specification review before building. See the app guide
+for the review step, dependencies, and the existing classroom example.
 
-## Blender room prototype
+## Optional mov2splat experiment
 
-[room2blender](apps/room2blender/README.md) includes an editable classroom blockout
-modeled from selected frames of `IMG_3153.MOV`. Open
-[classroom.blend](apps/room2blender/output/classroom.blend) to inspect the full room,
-cutaway, and floor plan, move a sample fixture, and test geometry occlusion.
-The CLI accepts a movie, extracts references, and builds a reviewed room specification
-into six Blender scenes, including four isometric cutaways. Dimensions remain explicit
-estimates until measured. See the app guide for the review boundary and reproducible pipeline.
+[mov2splat](apps/mov2splat/README.md) remains available for video → Gaussian `.ply`
+experiments. It is independent of the current Blender/USDZ venue workflow. Its single
+supported launcher is `apps/mov2splat/scripts/host.sh`; it builds the NVIDIA Docker image
+on demand. The unused Compose launcher has been removed.
+
+See the [operational runbook](docs/05%20Operations/mov2splat.md) for its 800-frame default,
+resume behavior, setup and failures, and the [cleanup review](docs/05%20Operations/mov2splat-review.md)
+for retained dependencies and removed resources.
 
 ## Gaussian splat viewers
 

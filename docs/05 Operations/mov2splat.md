@@ -1,11 +1,15 @@
 ---
 type: operations
-status: active
+status: experimental
 owner: engineering
-updated: 2026-09-23
+updated: 2026-09-30
 ---
 
 # mov2splat operations
+
+This is an optional Gaussian reconstruction experiment. For the current venue pipeline,
+use [room2blender](../../apps/room2blender/README.md): reviewed geometry → Blender/USDZ.
+The Gaussian trainer is not part of that pipeline. [Cleanup review](mov2splat-review.md).
 
 `apps/mov2splat` is a local, headless Docker pipeline for converting one iPhone Camera `.mov`, `.mp4`, or `.m4v` to a 3D Gaussian Splatting `.ply`. It uses CUDA 12.8, COLMAP 4.0.4, and gsplat 1.5.3 on an NVIDIA RTX 4090. The video and output stay in the same directory. The container has no network access while processing.
 
@@ -41,7 +45,7 @@ From the workspace root:
 ./apps/mov2splat/scripts/host.sh /absolute/path/to/clip.mov
 ```
 
-The wrapper resolves relative paths too. It builds `mov2splat:4090` only when the image is absent, mounts the video's parent directory, and runs with the caller's UID/GID. Run one GPU job at a time.
+The wrapper resolves relative paths too. It builds `mov2splat:4090` when the image is absent or its build-input fingerprint changes, mounts the video's parent directory, and runs with the caller's UID/GID. Run one GPU job at a time.
 
 Expected output:
 
@@ -61,16 +65,16 @@ Expected output:
 
 ## Rerun and recovery
 
-An existing `clip.ply` is protected. Use `--force` to replace it. Use `--resume` to reuse extracted frames, skip SfM when `sparse/0` passes model validation and at least 85% of frames are registered, and reuse a completed trainer PLY. If training is incomplete, it starts again from the beginning.
+An existing `clip.ply` is protected. Use `--force` to replace it. Use `--resume` to reuse extracted frames only when the source, extraction settings and frame metadata match the completion record. SfM additionally requires matching mode/model metadata, a valid `sparse/0` and at least 85% registered frames. A completed trainer PLY is reusable only when SfM was reused. If training is incomplete, it starts again from the beginning.
 
 ```bash
 ./apps/mov2splat/scripts/host.sh --resume /absolute/path/to/clip.mov
 ./apps/mov2splat/scripts/host.sh --force --resume /absolute/path/to/clip.mov
-./apps/mov2splat/scripts/host.sh --force --frames 250 --scale 1600 --steps 30000 /absolute/path/to/clip.mov
+./apps/mov2splat/scripts/host.sh --force --frames 800 --scale 1600 --steps 30000 /absolute/path/to/clip.mov
 ./apps/mov2splat/scripts/host.sh --force --exhaustive /absolute/path/to/clip.mov
 ```
 
-The default is 220 frames, clamped to 150–300, at a maximum 1600 px long edge. `--exhaustive` substitutes all-pairs matching for sequential matching. Optional `--blur-threshold V` rejects blurry frames while retaining at least 120. If training hits CUDA OOM above 1280 px, the pipeline retries once at 1280 px, rebuilding frames and COLMAP so intrinsics stay aligned.
+The default is 800 frames, with a minimum of 150 and no upper clamp, at a maximum 1600 px long edge. `--exhaustive` substitutes all-pairs matching for sequential matching. Optional `--blur-threshold V` rejects blurry frames while retaining at least 120. If training hits CUDA OOM above 1280 px, the pipeline retries once at 1280 px, rebuilding frames and COLMAP so intrinsics stay aligned.
 
 ## Failure checks
 

@@ -25,7 +25,8 @@ Venue Volume is building software that makes professional DMX lighting control a
 - [[03 Engineering/System Context|System context]]
 - [[04 Research/R&D Backlog|R&D backlog]]
 - [[05 Operations/Ways of Working|Ways of working]]
-- [[05 Operations/mov2splat|mov2splat operations]]
+- [[05 Operations/mov2splat|Optional mov2splat experiment]]
+- [Current venue pipeline: room2blender](../apps/room2blender/README.md)
 - [[06 Decisions/Decision Index|Decision index]]
 - [[08 Fixture Library/Fixture Library|Fixture library, manufacturer research and scaled models]]
 - [[Glossary]]
