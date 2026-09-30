@@ -9,6 +9,28 @@
   "hdr_tone_mapped": true,
   "selection": "Best Laplacian sharpness of 3 local candidates, preferring clean decodes; manually review every selection.",
   "timestamp_note": "Requested seek positions, not calibrated exposure timestamps; damaged sections may skip frames.",
+  "sampling": {
+    "target_seconds": [
+      6.0,
+      22.0,
+      57.0,
+      70.0,
+      100.0,
+      128.0,
+      152.0,
+      177.0,
+      199.0,
+      225.0,
+      256.0,
+      280.0,
+      303.0,
+      326.0,
+      355.0,
+      371.0
+    ],
+    "candidate_offset_seconds": 0.6,
+    "filter": "scale=w='min(1600,iw)':h=-2,zscale=t=linear:npl=100,format=gbrpf32le,tonemap=tonemap=hable:desat=0,zscale=p=bt709:t=bt709:m=bt709:r=full,format=yuvj420p"
+  },
   "references": [
     {
       "file": "reference_01_0006.0s.jpg",

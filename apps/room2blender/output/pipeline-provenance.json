@@ -1,0 +1,177 @@
+{
+  "pipeline_version": "1.0.0",
+  "source_sha256": "d037bc161000400bd6257d500be959c729edd4663f9035de4b45d10a974f8fd6",
+  "capture": "045d5240c7a982b446c23baf1ae0e8d332926aabc6399352dc3e78aef87222c7",
+  "specification": {
+    "id": "img3153-classroom-v1",
+    "title": "Classroom / IMG_3153 reference blockout",
+    "units": "meters",
+    "coordinates": "Layout distances: X from left wall toward windows; Y from front teaching wall toward rear; Z above floor. Generator converts to Blender (X, depth-Y, Z), with output origin at rear-left. Not survey coordinates.",
+    "scale_status": "UNMEASURED: all dimensions are modeling assumptions, not recovered measurements",
+    "room": {
+      "width": 7.2,
+      "depth": 7.8,
+      "height": 2.75,
+      "wall_thickness": 0.16
+    },
+    "shell_evidence": {
+      "front": [
+        "reference_06_0128.0s.jpg",
+        "reference_10_0225.0s.jpg"
+      ],
+      "window_wall": [
+        "reference_01_0006.0s.jpg",
+        "reference_11_0256.0s.jpg",
+        "reference_12_0280.0s.jpg"
+      ],
+      "back": [
+        "reference_02_0022.0s.jpg",
+        "reference_03_0057.0s.jpg"
+      ],
+      "entrance": [
+        "reference_14_0326.0s.jpg",
+        "reference_16_0371.0s.jpg"
+      ],
+      "ceiling": [
+        "reference_08_0177.0s.jpg",
+        "reference_10_0225.0s.jpg"
+      ]
+    },
+    "windows": [
+      {
+        "id": "window-front",
+        "y_start": 0.35,
+        "width": 2.1,
+        "sill": 1.55,
+        "height": 1.03,
+        "panes": 2
+      },
+      {
+        "id": "window-back",
+        "y_start": 4.65,
+        "width": 2.85,
+        "sill": 1.55,
+        "height": 1.03,
+        "panes": 3
+      }
+    ],
+    "front_door": {
+      "x": 0.65,
+      "width": 1.25,
+      "height": 2.1
+    },
+    "entrance": {
+      "y_start": 0.18,
+      "width": 2.4,
+      "height": 2.58,
+      "sidelight_width": 0.72,
+      "door_height": 2.08
+    },
+    "west_pier": {
+      "x_depth": 0.6,
+      "y_start": 4.1,
+      "y_length": 1.15
+    },
+    "rear_side_door": {
+      "y_start": 6.25,
+      "width": 0.92,
+      "height": 2.1
+    },
+    "tables": {
+      "width": 1.7,
+      "depth": 0.58,
+      "height": 0.74,
+      "x_centers": [
+        1.5,
+        4.04,
+        5.76
+      ],
+      "y_centers": [
+        2.65,
+        4.12,
+        5.59
+      ]
+    },
+    "whiteboard": {
+      "x_start": 2.55,
+      "width": 3.6,
+      "bottom": 0.92,
+      "height": 1.22
+    },
+    "instructor_desk": {
+      "center": [
+        5.65,
+        1.25,
+        0.74
+      ],
+      "width": 1.65,
+      "depth": 0.72
+    },
+    "spawn": {
+      "eye": [
+        2.66,
+        6.7,
+        1.65
+      ],
+      "look_at": [
+        3.5,
+        0.2,
+        1.45
+      ]
+    },
+    "assumptions": [
+      "The room envelope is estimated as 7.2 x 7.8 x 2.75 m using common furniture proportions; none of those dimensions is measured.",
+      "Two separated high window banks, front whiteboard, west glazed entrance, front solid door, rear-side door and west wall projection are visible; exact positions and widths are estimated.",
+      "Nine two-seat training tables in three rows approximate the visible arrangement; count, spacing and individual chair positions require confirmation.",
+      "The rectangular envelope and west wall projection simplify partially observed recesses. The rear-side door is a closed placeholder, not a modeled adjoining room.",
+      "Ceiling tile spacing, light and vent positions are illustrative. No ceiling equipment specification or concealed structure is inferred.",
+      "Blinds and entrance glazing use opaque blockout materials. Exterior and hallway geometry are not reconstructed.",
+      "Desk fixture and cyan occlusion probe are synthetic test assets, not observed equipment. Lighting and material colors are illustrative, not calibrated."
+    ],
+    "schema_version": 1,
+    "recipe": "classroom-v1",
+    "source_sha256": "d037bc161000400bd6257d500be959c729edd4663f9035de4b45d10a974f8fd6",
+    "review": {
+      "status": "reviewed",
+      "reviewer": "Codex reference-model review",
+      "basis": "Manual interpretation of IMG_3153 frames; layout is approved as an approximate test model, not measured geometry."
+    },
+    "reference_times": [
+      6,
+      22,
+      57,
+      70,
+      100,
+      128,
+      152,
+      177,
+      199,
+      225,
+      256,
+      280,
+      303,
+      326,
+      355,
+      371
+    ]
+  },
+  "settings": {
+    "width": 1440,
+    "samples": 32,
+    "device": "cpu",
+    "seed": 0
+  },
+  "blender_version": "Blender 4.5.14 LTS\n\tbuild date: 2026-09-15\n\tbuild time: 01:31:19\n\tbuild commit date: 2026-09-14\n\tbuild commit time: 14:54\n\tbuild hash: 62c1db4208e8\n\tbuild branch: blender-v4.5-release\n\tbuild platform: Linux\n\tbuild type: Release\n\tbuild c flags:  -Wall -Werror=implicit-function-declaration -Wstrict-prototypes -Werror=return-type -Werror=vla -Wmissing-prototypes -Wno-char-subscripts -Wno-unknown-pragmas -Wpointer-arith -Wunused-parameter -Wwrite-strings -Wlogical-op -Wundef -Winit-self -Wmissing-include-dirs -Wno-div-by-zero -Wtype-limits -Wformat-signedness -Wrestrict -Wno-stringop-overread -Wno-stringop-overflow -Wnonnull -Wabsolute-value -Wuninitialized -Wredundant-decls -Wshadow -Wimplicit-fallthrough=5 -Wno-error=unused-but-set-variable  -march=x86-64-v2 -std=gnu11 -pipe -fPIC -funsigned-char -fno-strict-aliasing -ffp-contract=off  \n\tbuild c++ flags:  -Wuninitialized -Wredundant-decls -Wall -Wno-invalid-offsetof -Wno-sign-compare -Wlogical-op -Winit-self -Wmissing-include-dirs -Wno-div-by-zero -Wtype-limits -Werror=return-type -Wno-char-subscripts -Wno-unknown-pragmas -Wpointer-arith -Wunused-parameter -Wwrite-strings -Wundef -Wcomma-subscript -Wformat-signedness -Wrestrict -Wno-suggest-override -Wuninitialized -Wno-stringop-overread -Wno-stringop-overflow -Wimplicit-fallthrough=5 -Wundef -Wmissing-declarations  -march=x86-64-v2 -pipe -fPIC -funsigned-char -fno-strict-aliasing -ffp-contract=off  \n\tbuild link flags:  -Wl,--version-script='/home/blender/git/blender-v450/blender.git/source/creator/symbols_unix.map'\n\tbuild system: CMake",
+  "blender_binary_sha256": "050c02562f81fe80ba616a80198fa02d381e60f8b61b8d39add881f4bca0d7d8",
+  "scripts": {
+    "build_boxes.py": "4d53f0e476ddfe70ff0a8da92e2135e6fc88f4d4e471bf7606164703cd4ae3b8",
+    "build_room.py": "4946a1718cfa7d7250edfe42da7b445fe2fbde48a27843822b7022bba5cac541",
+    "extract_references.py": "8fbc1478d6730fc86ac5e0db7fb8fdd57dcc04c8ff2be772aa013c834423fba5",
+    "pipeline.py": "f06ae03a07344b5e88f4942938182b604190affefa1d9b739e08c4be6ba2179a",
+    "render_review.py": "e10ae27599e0426991c096dd66204b27887aad6a54132ad41ca9f20dbdcd8dc7",
+    "review_views.py": "7a8e7f6507997a114e9f7d6e169a0fcb27f5a34ea643e3d63170b1414d36d01e",
+    "specification.py": "b53c6f2c740b98f8cb490f87f4ca9465e842367325d4a61c2fff789a51f5d1b9",
+    "validate_room.py": "416bd9fca424e5335e0b1cfcfae977e115e3b8d9c06bdd60db1826a045f8b28e"
+  },
+  "lock_sha256": "ba5da2e63e5dea3b0885a00a2b36b4a326835896ed8daa53497d4c2179eb5d37"
+}
