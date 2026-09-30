@@ -1,0 +1,200 @@
+[
+  {
+    "expansion_batch": 1,
+    "name": "Jolt Bar FX2",
+    "model_number": "JOL286",
+    "manufacturer": "ADJ",
+    "type": "batten",
+    "subtype": "RGB and white LED strobe/blinder bar",
+    "url": "https://www.adj.com/products/jolt-bar-fx2",
+    "data": {
+      "protocols": ["DMX", "RDM", "Aria X2"],
+      "source_urls": ["https://www.adj.com/products/jolt-bar-fx2"],
+      "power": "214 W at 120 V; 208 W at 230 V; 100–240 V AC, 50/60 Hz",
+      "weight": "13 lb (5.9 kg)",
+      "dmx_channels": [6, 9, 13, 16, 18, 20, 32, 34, 38, 43, 45, 64, 78, 80, 112, 127, 129],
+      "dimensions": {"width_m": 1.0, "height_m": 0.101, "depth_m": 0.1035, "source_order": "Length x width x height: 1000 x 103.5 x 101 mm"}
+    },
+    "images": ["https://www.adj.com/cdn/shop/files/e1af7217437ab7f23dec17a84b9dae00a6dcec47_JOL286__IMG__004__067a4c0bb043.jpg?v=1776713904&width=800"],
+    "dimensions": {"width_m": 1.0, "height_m": 0.101, "depth_m": 0.1035, "axis_status": "documented", "axis_note": "Manufacturer states 1000 x 103.5 x 101 mm as length x width x height; longitudinal bar axis is width in this record.", "reference_pose": "Assembled bar, optical face forward, long axis horizontal, supplied yoke brackets at their nominal straight-down orientation; manufacturer dimensional drawing."},
+    "modeling": {"family": "batten", "lens_count": 560, "body_style": "linear rectangular bar with central white LED strip, RGB LED fields, and end brackets", "notes": "LED quantity sourced as 448 RGB plus 112 cool-white emitters; bracket/body detail should follow official product imagery and CAD."},
+    "evidence": [
+      {"url": "https://www.adj.com/products/jolt-bar-fx2", "title": "Jolt Bar FX2 product page", "locator": "Specifications, Dimensions / Weight; Control; Electrical; image gallery", "accessed_at": "2026-09-30"},
+      {"url": "https://www.adj.com/products/jolt-bar-fx2", "title": "Jolt Bar FX2 product page", "locator": "Downloads: dimensional drawing, user manual, DMX traits, CAD; page identifies exact SKU JOL286", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "expansion_batch": 1,
+    "name": "Encore LP12Z IP",
+    "model_number": "ENC395",
+    "manufacturer": "ADJ",
+    "type": "par",
+    "subtype": "IP65 RGBL motorized-zoom wash",
+    "url": "https://www.adj.com/products/encore-lp12z-ip",
+    "data": {
+      "protocols": ["DMX", "RDM", "Aria X2"],
+      "source_urls": ["https://www.adj.com/products/encore-lp12z-ip"],
+      "power": "227 W maximum; 100–240 V AC, 47/63 Hz",
+      "weight": "16.6 lb (7.5 kg)",
+      "dmx_channels": [6, 9, 10, 12, 15, 18],
+      "dimensions": {"width_m": 0.316, "height_m": 0.346, "depth_m": 0.371, "source_order": "Listed body dimensions: 371 x 316 x 346 mm (L x W x H)"}
+    },
+    "images": ["https://www.adj.com/cdn/shop/files/265349badd4c3136ad3a8df6fb6ab848cffbaaea_ENC395__IMG__002__851305f4fc1f.jpg?v=1775714586&width=800"],
+    "dimensions": {"width_m": 0.316, "height_m": 0.346, "depth_m": 0.371, "axis_status": "estimated", "axis_note": "ADJ's page conflicts: overview says 222 x 316 x 367 mm while the detailed dimensions list says 371 x 316 x 346 mm. This row retains the detailed list; verify against official CAD before scaling.", "reference_pose": "Complete fixture with scissor yoke, lens axis horizontal and yoke upright; assembled pose corresponding to product-page dimensional drawing."},
+    "modeling": {"family": "par", "lens_count": 12, "body_style": "compact circular-front LED PAR with projecting lens, finned housing, and double-arm scissor yoke", "notes": "Twelve RGBL LED modules documented. No inferred individual lens counts beyond those modules."},
+    "evidence": [
+      {"url": "https://www.adj.com/products/encore-lp12z-ip", "title": "Encore LP12Z IP product page", "locator": "Overview dimensions 222 x 316 x 367 mm conflict with detailed list 371 x 316 x 346 mm; the record retains detailed list pending CAD check", "accessed_at": "2026-09-30"},
+      {"url": "https://www.adj.com/products/encore-lp12z-ip", "title": "Encore LP12Z IP product page", "locator": "Source, control, electrical, and downloads: CAD, dimensional drawing, DMX traits, manual", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "expansion_batch": 1,
+    "name": "JOLT 300",
+    "model_number": "JOL300",
+    "manufacturer": "ADJ",
+    "type": "strobe",
+    "subtype": "RGB and cool-white LED strobe/blinder",
+    "url": "https://www.adj.com/products/jolt-300",
+    "data": {
+      "protocols": ["DMX"],
+      "source_urls": ["https://www.adj.com/products/jolt-300"],
+      "power": "226 W maximum; 100–240 V AC, 50/60 Hz",
+      "weight": "10.5 lb (4.75 kg)",
+      "dmx_channels": [4, 8, 10, 12, 15, 18],
+      "dimensions": {"width_m": 0.389, "height_m": 0.213, "depth_m": 0.143, "source_order": "Length x width x height: 389 x 143 x 213 mm"}
+    },
+    "images": ["https://www.adj.com/cdn/shop/files/24123b2ef30540e21651ee792a1dda543061fbbb_JOL300__IMG__001__fc31c3261e23.jpg?v=1776712495&width=800"],
+    "dimensions": {"width_m": 0.389, "height_m": 0.213, "depth_m": 0.143, "axis_status": "documented", "axis_note": "Manufacturer states length x width x height as 389 x 143 x 213 mm; long axis represented as width.", "reference_pose": "Assembled single-yoke fixture, emitting face forward and yoke centered below body, per product dimensional drawing."},
+    "modeling": {"family": "strobe", "lens_count": 288, "body_style": "short rectangular strobe panel with central white LED row, flanking RGB LED rows, and single yoke", "notes": "Official page gives 144 white and 144 RGB SMD LEDs; emitter group count does not define lens geometry."},
+    "evidence": [
+      {"url": "https://www.adj.com/products/jolt-300", "title": "JOLT 300 product page", "locator": "Specifications: Dimensions / Weight, Control, Electrical; page identifies SKU JOL300", "accessed_at": "2026-09-30"},
+      {"url": "https://www.adj.com/products/jolt-300", "title": "JOLT 300 product page", "locator": "Downloads: dimensional drawing, user manual and DMX traits", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "expansion_batch": 1,
+    "name": "COLORdash PAR H7X",
+    "model_number": "COLORDASHPARH7X",
+    "manufacturer": "CHAUVET Professional",
+    "type": "par",
+    "subtype": "RGBWAUV compact LED wash",
+    "url": "https://chauvetprofessional.com/product/colordash-par-h7x/",
+    "data": {
+      "protocols": ["DMX", "RDM"],
+      "source_urls": ["https://chauvetprofessional.com/product/colordash-par-h7x/"],
+      "power": "70 W at 120 V, 67 W at 208 V and 230 V; 100–240 V AC, 50/60 Hz",
+      "weight": "6 lb (2.7 kg)",
+      "dmx_channels": [6, 8, 9, 13, 14],
+      "dimensions": {"width_m": 0.258, "height_m": 0.240, "depth_m": 0.116, "source_order": "258 x 240 x 116 mm; manufacturer page does not state axis order"}
+    },
+    "images": ["https://www.bhphotovideo.com/images/fb/chauvet_professional_colordashparh7x_colordash_par_hex_7x_with_1742177.jpg"],
+    "image_reuse_status": "unknown; distributor product image used because manufacturer page did not expose a direct image asset",
+    "dimensions": {"width_m": 0.258, "height_m": 0.240, "depth_m": 0.116, "axis_status": "estimated", "axis_note": "The manufacturer documents the three extents (258 x 240 x 116 mm) but not their axis order in page text; assigned front width x assembled vertical height x front-to-back depth from product views; confirm against linked 2D CAD before modeling.", "reference_pose": "PAR face forward with double-bracket yoke vertical; manufacturer gives overall extents but web spec does not label axis order."},
+    "modeling": {"family": "par", "lens_count": 7, "body_style": "round-front compact PAR can with 7-cell hex-color engine and double yoke", "notes": "Seven RGBAW+UV LED modules documented."},
+    "evidence": [
+      {"url": "https://chauvetprofessional.com/product/colordash-par-h7x/", "title": "COLORdash PAR H7X product page", "locator": "Specifications > Construction/Physical: 10.16 x 9.45 x 4.57 in (258 x 240 x 116 mm), weight 6 lb; dimensions axis order not labeled", "accessed_at": "2026-09-30"},
+      {"url": "https://chauvetprofessional.com/product/colordash-par-h7x/", "title": "COLORdash PAR H7X product page", "locator": "Specifications > Control and Electrical; download list provides user manual, 2D/3D CAD, DMX chart", "accessed_at": "2026-09-30"},
+      {"url": "https://www.bhphotovideo.com/images/fb/chauvet_professional_colordashparh7x_colordash_par_hex_7x_with_1742177.jpg", "title": "B&H Photo product image", "locator": "Distributor image; reuse status unknown", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "expansion_batch": 2,
+    "name": "COLORdash PAR H12X IP",
+    "model_number": "COLORDASHPARH12XIP",
+    "manufacturer": "CHAUVET Professional",
+    "type": "par",
+    "subtype": "IP65 RGBWAUV LED wash",
+    "url": "https://chauvetprofessional.com/product/colordash-par-h12x-ip/",
+    "data": {
+      "protocols": ["DMX", "RDM"],
+      "source_urls": ["https://chauvetprofessional.com/product/colordash-par-h12x-ip/"],
+      "power": "126 W at 120 V; 123 W at 208 V and 230 V; 100–240 V AC, 50/60 Hz",
+      "weight": "11.8 lb (5.4 kg)",
+      "dmx_channels": [6, 8, 9, 13, 14],
+      "dimensions": {"width_m": 0.3054, "height_m": 0.2479, "depth_m": 0.232, "source_order": "9.1 x 12 x 9.8 in (232 x 305.4 x 247.9 mm); axis order inferred from front width, vertical overall height, and depth"}
+    },
+    "images": ["https://moogaudio.com/cdn/shop/files/ChauvetProfessionalCOLORdashPARH12XIPLEDWash_1_800x.jpg?v=1774026071"],
+    "image_reuse_status": "unknown; distributor product image used because manufacturer page did not expose a direct image asset",
+    "dimensions": {"width_m": 0.3054, "height_m": 0.2479, "depth_m": 0.232, "axis_status": "estimated", "axis_note": "Manufacturer documents extents in 9.1 x 12 x 9.8 in order but the page does not label axes; mapping them to front width, vertical assembled height, and body depth is an estimate pending CAD confirmation.", "reference_pose": "PAR face forward, double yoke upright; assembled fixture envelope from product-page dimensions."},
+    "modeling": {"family": "par", "lens_count": 12, "body_style": "round-front sealed die-cast PAR housing with double-bracket yoke", "notes": "Twelve hex-color modules documented; body orientation should be checked against official CAD."},
+    "evidence": [
+      {"url": "https://chauvetprofessional.com/product/colordash-par-h12x-ip/", "title": "COLORdash PAR H12X IP product page", "locator": "Specifications > Construction/Physical: 9.1 x 12 x 9.8 in (232 x 305.4 x 247.9 mm), weight 11.8 lb", "accessed_at": "2026-09-30"},
+      {"url": "https://chauvetprofessional.com/product/colordash-par-h12x-ip/", "title": "COLORdash PAR H12X IP product page", "locator": "Specifications > Control, Construction/Physical; downloads list 2D CAD, user manual and DMX chart", "accessed_at": "2026-09-30"},
+      {"url": "https://moogaudio.com/cdn/shop/files/ChauvetProfessionalCOLORdashPARH12XIPLEDWash_1_800x.jpg?v=1774026071", "title": "Moog Audio product image", "locator": "Distributor image; reuse status unknown", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "expansion_batch": 2,
+    "name": "COLORdash Par-Quad 18",
+    "model_number": "COLORDASHPARQUAD18",
+    "manufacturer": "CHAUVET Professional",
+    "type": "par",
+    "subtype": "legacy RGBA LED wash",
+    "url": "https://chauvetprofessional.com/product/colordash-par-quad-18/",
+    "data": {
+      "protocols": ["DMX"],
+      "source_urls": ["https://chauvetprofessional.com/product/colordash-par-quad-18/", "https://www.chauvetprofessional.com/wp-content/uploads/2018/01/COLORdash_Par-Quad_18_UM_Rev6.pdf"],
+      "power": "118 W at 120 V, 116 W at 208 V, 115 W at 230 V",
+      "weight": "10.2 lb (4.6 kg)",
+      "dmx_channels": [4, 6, 10],
+      "dimensions": {"width_m": 0.323, "height_m": 0.298, "depth_m": 0.106, "source_order": "12.7 x 11.7 x 4.1 in (323 x 298 x 106 mm); dimensions axes not explicitly named"}
+    },
+    "images": ["https://www.fullcompass.com/common/products/lgr/471924.jpg"],
+    "image_reuse_status": "unknown; distributor product image used because manufacturer page did not expose a direct image asset",
+    "dimensions": {"width_m": 0.323, "height_m": 0.298, "depth_m": 0.106, "axis_status": "estimated", "axis_note": "Manufacturer lists 323 x 298 x 106 mm but does not label axes in online specs; assignment uses front width, assembled height, and fixture depth from official manual's orthographic product views.", "reference_pose": "Round PAR face forward with split yoke extending down; dimensions describe unit with mounting bracket installed."},
+    "modeling": {"family": "par", "lens_count": 18, "body_style": "round metal PAR with 18-cell front array and split yoke", "notes": "Legacy product, marked as such on manufacturer page. Product manual Rev. 6 diagrams show front, side, and rear views."},
+    "evidence": [
+      {"url": "https://chauvetprofessional.com/product/colordash-par-quad-18/", "title": "COLORdash Par-Quad 18 product page", "locator": "Legacy page; Specifications > Construction/Physical: 12.7 x 11.7 x 4.1 in (323 x 298 x 106 mm), weight 10.2 lb", "accessed_at": "2026-09-30"},
+      {"url": "https://www.chauvetprofessional.com/wp-content/uploads/2018/01/COLORdash_Par-Quad_18_UM_Rev6.pdf", "title": "COLORdash Par-Quad 18 User Manual Rev. 6", "locator": "Product Overview, printed p. 3, front/side/rear technical illustrations; Technical Information table, printed p. 14", "accessed_at": "2026-09-30"},
+      {"url": "https://www.fullcompass.com/common/products/lgr/471924.jpg", "title": "Full Compass product image", "locator": "Distributor image; reuse status unknown", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "expansion_batch": 2,
+    "name": "SIXBAR 500",
+    "model_number": "SIX074",
+    "manufacturer": "Elation Professional",
+    "type": "batten",
+    "subtype": "legacy six-pixel RGBAW+UV wash bar",
+    "url": "https://www.elationlighting.com/products/sixbar-500",
+    "data": {
+      "protocols": ["DMX", "RDM", "Art-Net", "KlingNet"],
+      "source_urls": ["https://www.elationlighting.com/products/sixbar-500"],
+      "power": "93 W maximum; 110–240 V AC, 50/60 Hz",
+      "weight": "9.0 lb (4.1 kg)",
+      "dmx_channels": [6, 7, 11, 13, 18, 36, 39, 43],
+      "dimensions": {"width_m": 0.45, "height_m": 0.155, "depth_m": 0.2064, "source_order": "Length x width x vertical height: 450 x 206.4 x 155 mm; width includes glare shield"}
+    },
+    "images": ["https://www.elationlighting.com/cdn/shop/files/d48723d2ee9c88af30a9f643cdbfa40fac578a7b_SIX074__IMG__002__d682ef9e3d1d.jpg?v=1773210028&width=1800"],
+    "dimensions": {"width_m": 0.45, "height_m": 0.155, "depth_m": 0.2064, "axis_status": "documented", "axis_note": "Manufacturer defines length, width with included glare shield, and vertical height. Long LED bar axis mapped to width.", "reference_pose": "Assembled batten, face forward, long axis horizontal; included glare shield installed, per dimensional drawing."},
+    "modeling": {"family": "batten", "lens_count": 6, "body_style": "compact linear die-cast bar with six independent LED cells, dual integrated rigging brackets and glare shield", "notes": "Legacy product; stated overall width includes the supplied glare shield."},
+    "evidence": [
+      {"url": "https://www.elationlighting.com/products/sixbar-500", "title": "SIXBAR 500 product page", "locator": "SIZE / WEIGHT: length 17.7 in (450 mm), width 8.1 in (206.4 mm) with glare shield, vertical height 6.1 in (155 mm), weight 9 lb", "accessed_at": "2026-09-30"},
+      {"url": "https://www.elationlighting.com/products/sixbar-500", "title": "SIXBAR 500 product page", "locator": "Control / Connections, electrical; downloads include dimensional drawing, CAD, manual and DMX traits", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "expansion_batch": 2,
+    "name": "VBAR 270",
+    "model_number": "VBAR 270",
+    "manufacturer": "Elation Professional",
+    "type": "batten",
+    "subtype": "legacy compact RGB wash bar",
+    "url": "https://www.elationlighting.com/products/vbar-270",
+    "data": {
+      "protocols": ["DMX-512"],
+      "source_urls": ["https://www.elationlighting.com/products/vbar-270"],
+      "power": "30 W; 100–240 V AC, 50/60 Hz",
+      "weight": "8 lb (3.3 kg; manufacturer gives both values)",
+      "dmx_channels": [5, 8, 11, 14, 20, 23],
+      "dimensions": {"width_m": 0.25, "height_m": 0.212, "depth_m": 0.093, "source_order": "Length x width x height: 250 x 93 x 212 mm"}
+    },
+    "images": ["https://www.elationlighting.com/cdn/shop/files/ce8c991f5538b2029d5b0af1fd01d1cc6e288ebc_VBAR_270__IMG__001__bc8a52e62396.jpg?v=1776815895&width=500"],
+    "dimensions": {"width_m": 0.25, "height_m": 0.212, "depth_m": 0.093, "axis_status": "documented", "axis_note": "Manufacturer lists length x width x height as 250 x 93 x 212 mm; longest dimension is the bar's lateral span.", "reference_pose": "Unit with mounting bracket assembled, front LED panel aimed forward and bar axis horizontal."},
+    "modeling": {"family": "batten", "lens_count": 270, "body_style": "legacy short linear RGB bar with dense 5 mm LED array and mounting bracket", "notes": "270 LEDs (90 each red, green, blue) documented. Manufacturer calls product discontinued."},
+    "evidence": [
+      {"url": "https://www.elationlighting.com/products/vbar-270", "title": "VBAR 270 product page", "locator": "Discontinued marker; DIMENSIONS & WEIGHT: 10 x 3.75 x 8.5 in (250 x 93 x 212 mm), 8 lb / 3.3 kg", "accessed_at": "2026-09-30"},
+      {"url": "https://www.elationlighting.com/products/vbar-270", "title": "VBAR 270 product page", "locator": "Control Specifications and Power Supply: six DMX channel modes and 30 W", "accessed_at": "2026-09-30"}
+    ]
+  }
+]
