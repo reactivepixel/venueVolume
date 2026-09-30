@@ -25,6 +25,14 @@ Open [`docs/`](docs/) as an Obsidian vault, then begin at [`Home`](docs/Home.md)
 
 Agents working concurrently should follow [AGENTS.md](AGENTS.md) for worktree, port, and `dev` integration rules.
 
+## Fixture library
+
+The [fixture library](docs/08%20Fixture%20Library/Fixture%20Library.md) holds manufacturer
+research, source-backed dimensions and DMX features, and reusable Blender/USDZ models.
+Use the [Create Venue Fixture skill](docs/08%20Fixture%20Library/skill/create-venue-fixture/SKILL.md)
+with a manufacturer and model number to add or update an entry. The skill and its supporting
+validation tools are preserved in the library documentation.
+
 ## Product design study
 
 The [React design studio](apps/design-studio/README.md) contains 35 screens with wireframe and high-fidelity modes, simulated interactions, and responsive layouts. Run `npm ci` and `npm run dev` in `apps/design-studio`.

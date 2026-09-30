@@ -47,3 +47,9 @@ Apply tenant isolation, revision conflicts, invalid input, empty/loading/error, 
 - [[../../03 Engineering/Service and Runtime Boundaries|Service and Runtime Boundaries]]
 - [[../Design/Screen Inventory|Screen Inventory]]
 
+## Fixture research and model library
+
+The [[../../08 Fixture Library/Fixture Library|fixture library]] provides manufacturer research,
+versioned technical records and scaled Blender/USDZ assets. Its creation skill records
+provenance and keeps research, visualization readiness and physical DMX verification separate.
+The library does not yet implement the runtime profile compiler described above.

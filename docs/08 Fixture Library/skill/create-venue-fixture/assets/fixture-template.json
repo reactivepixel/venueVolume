@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "id": null,
+  "revision": 1,
+  "updated_at": null,
+  "status": "draft",
+  "identity": {"manufacturer": null, "model": null, "variant": null, "aliases": []},
+  "sources": [],
+  "dimensions": {
+    "width": {"value": null, "unit": "m", "status": "unknown", "source_ids": []},
+    "height": {"value": null, "unit": "m", "status": "unknown", "source_ids": []},
+    "depth": {"value": null, "unit": "m", "status": "unknown", "source_ids": []},
+    "reference_pose": null
+  },
+  "features": {"optical": {}, "electrical": {}, "mechanical": {}, "control": {}},
+  "dmx_modes": [],
+  "model": {
+    "status": "not_built",
+    "representation": null,
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": null,
+    "reference_pose": null,
+    "dimension_tolerance_m": null,
+    "bounds_m": null,
+    "parts": [],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [],
+    "artifacts": []
+  },
+  "verification": {"realitykit": "not_tested", "hardware": "not_tested", "notes": []},
+  "unresolved": [],
+  "revision_notes": []
+}
