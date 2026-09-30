@@ -28,14 +28,14 @@ struct VenueSpaceView: View {
             }
         }
         .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded { value in
-            if value.entity.name == "placement-surface" {
-                let position = value.convert(value.location3D, from: .local, to: scene.root)
-                model.place(at: position)
-            } else if let id = UUID(uuidString: value.entity.name) {
-                model.select(id)
-            }
+            let position = value.convert(value.location3D, from: .local, to: scene.root)
+            scene.handleTap(entity: value.entity, position: position, model: model)
         })
-        .task { await scene.runTracking(model: model) }
+        .task {
+            if await scene.load(model: model) {
+                await scene.runTracking(model: model)
+            }
+        }
         .onAppear {
             model.isImmersed = true
             dismissWindow(id: "launch")

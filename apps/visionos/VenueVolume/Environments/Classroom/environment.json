@@ -1,0 +1,2330 @@
+{
+  "asset": {
+    "bytes": 1317759,
+    "file": "environment.usdz",
+    "sha256": "d2fe021e211a4fb5f7d98fdb774ad452d60d95484e2e3b7a27e9cdfaba4f4e26"
+  },
+  "bounds": {
+    "max": [
+      7.2,
+      2.75,
+      0
+    ],
+    "min": [
+      0,
+      0,
+      -7.8
+    ]
+  },
+  "colliders": [
+    {
+      "center": [
+        6.86,
+        0.46,
+        -6.44
+      ],
+      "id": "COL_AV-cabinet",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.58,
+        2.0,
+        0.92
+      ],
+      "sourceID": "AV-cabinet"
+    },
+    {
+      "center": [
+        3.6,
+        2.8,
+        -3.9
+      ],
+      "id": "COL_ceiling-slab",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        7.2,
+        7.8,
+        0.1
+      ],
+      "sourceID": "ceiling-slab"
+    },
+    {
+      "center": [
+        1.275,
+        1.05,
+        -7.8
+      ],
+      "id": "COL_door-front-closed",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.21,
+        0.055,
+        2.1
+      ],
+      "sourceID": "door-front-closed"
+    },
+    {
+      "center": [
+        -0.08,
+        2.665,
+        -6.42
+      ],
+      "id": "COL_entrance-header",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.16,
+        2.4,
+        0.17
+      ],
+      "sourceID": "entrance-header"
+    },
+    {
+      "center": [
+        0.0,
+        1.04,
+        -7.2
+      ],
+      "id": "COL_entrance-leaf-0",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.06,
+        0.815,
+        2.08
+      ],
+      "sourceID": "entrance-leaf-0"
+    },
+    {
+      "center": [
+        0.0,
+        1.04,
+        -6.36
+      ],
+      "id": "COL_entrance-leaf-1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.06,
+        0.815,
+        2.08
+      ],
+      "sourceID": "entrance-leaf-1"
+    },
+    {
+      "center": [
+        0.0,
+        1.28,
+        -5.58
+      ],
+      "id": "COL_entrance-sidelight",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.04,
+        0.72,
+        1.6
+      ],
+      "sourceID": "entrance-sidelight"
+    },
+    {
+      "center": [
+        0.0,
+        0.24,
+        -5.58
+      ],
+      "id": "COL_entrance-sidelight-sill",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.075,
+        0.72,
+        0.48
+      ],
+      "sourceID": "entrance-sidelight-sill"
+    },
+    {
+      "center": [
+        0.0,
+        2.33,
+        -6.42
+      ],
+      "id": "COL_entrance-transom",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.045,
+        2.4,
+        0.5
+      ],
+      "sourceID": "entrance-transom"
+    },
+    {
+      "center": [
+        3.6,
+        -0.09,
+        -3.9
+      ],
+      "id": "COL_floor",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        7.52,
+        8.12,
+        0.18
+      ],
+      "sourceID": "floor"
+    },
+    {
+      "center": [
+        5.65,
+        0.74,
+        -6.9
+      ],
+      "id": "COL_instructor-chair-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "instructor-chair-back"
+    },
+    {
+      "center": [
+        5.65,
+        0.46,
+        -7.1
+      ],
+      "id": "COL_instructor-chair-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "instructor-chair-seat"
+    },
+    {
+      "center": [
+        4.98,
+        0.37,
+        -6.55
+      ],
+      "id": "COL_instructor-desk-leg--0.67",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.045,
+        0.6,
+        0.74
+      ],
+      "sourceID": "instructor-desk-leg--0.67"
+    },
+    {
+      "center": [
+        6.32,
+        0.37,
+        -6.55
+      ],
+      "id": "COL_instructor-desk-leg-0.67",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.045,
+        0.6,
+        0.74
+      ],
+      "sourceID": "instructor-desk-leg-0.67"
+    },
+    {
+      "center": [
+        5.65,
+        0.715,
+        -6.55
+      ],
+      "id": "COL_instructor-desk-top",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.65,
+        0.72,
+        0.05
+      ],
+      "sourceID": "instructor-desk-top"
+    },
+    {
+      "center": [
+        2.17,
+        1.15,
+        -7.49
+      ],
+      "id": "COL_speaker-left",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.3,
+        0.26,
+        0.47
+      ],
+      "sourceID": "speaker-left"
+    },
+    {
+      "center": [
+        6.58,
+        1.15,
+        -7.48
+      ],
+      "id": "COL_speaker-right",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.3,
+        0.26,
+        0.47
+      ],
+      "sourceID": "speaker-right"
+    },
+    {
+      "center": [
+        1.06,
+        0.74,
+        -4.34
+      ],
+      "id": "COL_table-r1-c1-chair--1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r1-c1-chair--1-back"
+    },
+    {
+      "center": [
+        1.06,
+        0.46,
+        -4.54
+      ],
+      "id": "COL_table-r1-c1-chair--1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r1-c1-chair--1-seat"
+    },
+    {
+      "center": [
+        1.94,
+        0.74,
+        -4.34
+      ],
+      "id": "COL_table-r1-c1-chair-1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r1-c1-chair-1-back"
+    },
+    {
+      "center": [
+        1.94,
+        0.46,
+        -4.54
+      ],
+      "id": "COL_table-r1-c1-chair-1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r1-c1-chair-1-seat"
+    },
+    {
+      "center": [
+        0.79,
+        0.365,
+        -5.15
+      ],
+      "id": "COL_table-r1-c1-leg--1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r1-c1-leg--1"
+    },
+    {
+      "center": [
+        2.21,
+        0.365,
+        -5.15
+      ],
+      "id": "COL_table-r1-c1-leg-1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r1-c1-leg-1"
+    },
+    {
+      "center": [
+        1.5,
+        0.718,
+        -5.15
+      ],
+      "id": "COL_table-r1-c1-top",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.7,
+        0.58,
+        0.044
+      ],
+      "sourceID": "table-r1-c1-top"
+    },
+    {
+      "center": [
+        3.6,
+        0.74,
+        -4.34
+      ],
+      "id": "COL_table-r1-c2-chair--1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r1-c2-chair--1-back"
+    },
+    {
+      "center": [
+        3.6,
+        0.46,
+        -4.54
+      ],
+      "id": "COL_table-r1-c2-chair--1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r1-c2-chair--1-seat"
+    },
+    {
+      "center": [
+        4.48,
+        0.74,
+        -4.34
+      ],
+      "id": "COL_table-r1-c2-chair-1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r1-c2-chair-1-back"
+    },
+    {
+      "center": [
+        4.48,
+        0.46,
+        -4.54
+      ],
+      "id": "COL_table-r1-c2-chair-1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r1-c2-chair-1-seat"
+    },
+    {
+      "center": [
+        3.33,
+        0.365,
+        -5.15
+      ],
+      "id": "COL_table-r1-c2-leg--1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r1-c2-leg--1"
+    },
+    {
+      "center": [
+        4.75,
+        0.365,
+        -5.15
+      ],
+      "id": "COL_table-r1-c2-leg-1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r1-c2-leg-1"
+    },
+    {
+      "center": [
+        4.04,
+        0.718,
+        -5.15
+      ],
+      "id": "COL_table-r1-c2-top",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.7,
+        0.58,
+        0.044
+      ],
+      "sourceID": "table-r1-c2-top"
+    },
+    {
+      "center": [
+        5.32,
+        0.74,
+        -4.34
+      ],
+      "id": "COL_table-r1-c3-chair--1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r1-c3-chair--1-back"
+    },
+    {
+      "center": [
+        5.32,
+        0.46,
+        -4.54
+      ],
+      "id": "COL_table-r1-c3-chair--1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r1-c3-chair--1-seat"
+    },
+    {
+      "center": [
+        6.2,
+        0.74,
+        -4.34
+      ],
+      "id": "COL_table-r1-c3-chair-1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r1-c3-chair-1-back"
+    },
+    {
+      "center": [
+        6.2,
+        0.46,
+        -4.54
+      ],
+      "id": "COL_table-r1-c3-chair-1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r1-c3-chair-1-seat"
+    },
+    {
+      "center": [
+        5.05,
+        0.365,
+        -5.15
+      ],
+      "id": "COL_table-r1-c3-leg--1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r1-c3-leg--1"
+    },
+    {
+      "center": [
+        6.47,
+        0.365,
+        -5.15
+      ],
+      "id": "COL_table-r1-c3-leg-1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r1-c3-leg-1"
+    },
+    {
+      "center": [
+        5.76,
+        0.718,
+        -5.15
+      ],
+      "id": "COL_table-r1-c3-top",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.7,
+        0.58,
+        0.044
+      ],
+      "sourceID": "table-r1-c3-top"
+    },
+    {
+      "center": [
+        1.06,
+        0.74,
+        -2.87
+      ],
+      "id": "COL_table-r2-c1-chair--1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r2-c1-chair--1-back"
+    },
+    {
+      "center": [
+        1.06,
+        0.46,
+        -3.07
+      ],
+      "id": "COL_table-r2-c1-chair--1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r2-c1-chair--1-seat"
+    },
+    {
+      "center": [
+        1.94,
+        0.74,
+        -2.87
+      ],
+      "id": "COL_table-r2-c1-chair-1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r2-c1-chair-1-back"
+    },
+    {
+      "center": [
+        1.94,
+        0.46,
+        -3.07
+      ],
+      "id": "COL_table-r2-c1-chair-1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r2-c1-chair-1-seat"
+    },
+    {
+      "center": [
+        0.79,
+        0.365,
+        -3.68
+      ],
+      "id": "COL_table-r2-c1-leg--1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r2-c1-leg--1"
+    },
+    {
+      "center": [
+        2.21,
+        0.365,
+        -3.68
+      ],
+      "id": "COL_table-r2-c1-leg-1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r2-c1-leg-1"
+    },
+    {
+      "center": [
+        1.5,
+        0.718,
+        -3.68
+      ],
+      "id": "COL_table-r2-c1-top",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.7,
+        0.58,
+        0.044
+      ],
+      "sourceID": "table-r2-c1-top"
+    },
+    {
+      "center": [
+        3.6,
+        0.74,
+        -2.87
+      ],
+      "id": "COL_table-r2-c2-chair--1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r2-c2-chair--1-back"
+    },
+    {
+      "center": [
+        3.6,
+        0.46,
+        -3.07
+      ],
+      "id": "COL_table-r2-c2-chair--1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r2-c2-chair--1-seat"
+    },
+    {
+      "center": [
+        4.48,
+        0.74,
+        -2.87
+      ],
+      "id": "COL_table-r2-c2-chair-1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r2-c2-chair-1-back"
+    },
+    {
+      "center": [
+        4.48,
+        0.46,
+        -3.07
+      ],
+      "id": "COL_table-r2-c2-chair-1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r2-c2-chair-1-seat"
+    },
+    {
+      "center": [
+        3.33,
+        0.365,
+        -3.68
+      ],
+      "id": "COL_table-r2-c2-leg--1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r2-c2-leg--1"
+    },
+    {
+      "center": [
+        4.75,
+        0.365,
+        -3.68
+      ],
+      "id": "COL_table-r2-c2-leg-1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r2-c2-leg-1"
+    },
+    {
+      "center": [
+        4.04,
+        0.718,
+        -3.68
+      ],
+      "id": "COL_table-r2-c2-top",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.7,
+        0.58,
+        0.044
+      ],
+      "sourceID": "table-r2-c2-top"
+    },
+    {
+      "center": [
+        5.32,
+        0.74,
+        -2.87
+      ],
+      "id": "COL_table-r2-c3-chair--1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r2-c3-chair--1-back"
+    },
+    {
+      "center": [
+        5.32,
+        0.46,
+        -3.07
+      ],
+      "id": "COL_table-r2-c3-chair--1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r2-c3-chair--1-seat"
+    },
+    {
+      "center": [
+        6.2,
+        0.74,
+        -2.87
+      ],
+      "id": "COL_table-r2-c3-chair-1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r2-c3-chair-1-back"
+    },
+    {
+      "center": [
+        6.2,
+        0.46,
+        -3.07
+      ],
+      "id": "COL_table-r2-c3-chair-1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r2-c3-chair-1-seat"
+    },
+    {
+      "center": [
+        5.05,
+        0.365,
+        -3.68
+      ],
+      "id": "COL_table-r2-c3-leg--1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r2-c3-leg--1"
+    },
+    {
+      "center": [
+        6.47,
+        0.365,
+        -3.68
+      ],
+      "id": "COL_table-r2-c3-leg-1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r2-c3-leg-1"
+    },
+    {
+      "center": [
+        5.76,
+        0.718,
+        -3.68
+      ],
+      "id": "COL_table-r2-c3-top",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.7,
+        0.58,
+        0.044
+      ],
+      "sourceID": "table-r2-c3-top"
+    },
+    {
+      "center": [
+        1.06,
+        0.74,
+        -1.4
+      ],
+      "id": "COL_table-r3-c1-chair--1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r3-c1-chair--1-back"
+    },
+    {
+      "center": [
+        1.06,
+        0.46,
+        -1.6
+      ],
+      "id": "COL_table-r3-c1-chair--1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r3-c1-chair--1-seat"
+    },
+    {
+      "center": [
+        1.94,
+        0.74,
+        -1.4
+      ],
+      "id": "COL_table-r3-c1-chair-1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r3-c1-chair-1-back"
+    },
+    {
+      "center": [
+        1.94,
+        0.46,
+        -1.6
+      ],
+      "id": "COL_table-r3-c1-chair-1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r3-c1-chair-1-seat"
+    },
+    {
+      "center": [
+        0.79,
+        0.365,
+        -2.21
+      ],
+      "id": "COL_table-r3-c1-leg--1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r3-c1-leg--1"
+    },
+    {
+      "center": [
+        2.21,
+        0.365,
+        -2.21
+      ],
+      "id": "COL_table-r3-c1-leg-1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r3-c1-leg-1"
+    },
+    {
+      "center": [
+        1.5,
+        0.718,
+        -2.21
+      ],
+      "id": "COL_table-r3-c1-top",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.7,
+        0.58,
+        0.044
+      ],
+      "sourceID": "table-r3-c1-top"
+    },
+    {
+      "center": [
+        3.6,
+        0.74,
+        -1.4
+      ],
+      "id": "COL_table-r3-c2-chair--1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r3-c2-chair--1-back"
+    },
+    {
+      "center": [
+        3.6,
+        0.46,
+        -1.6
+      ],
+      "id": "COL_table-r3-c2-chair--1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r3-c2-chair--1-seat"
+    },
+    {
+      "center": [
+        4.48,
+        0.74,
+        -1.4
+      ],
+      "id": "COL_table-r3-c2-chair-1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r3-c2-chair-1-back"
+    },
+    {
+      "center": [
+        4.48,
+        0.46,
+        -1.6
+      ],
+      "id": "COL_table-r3-c2-chair-1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r3-c2-chair-1-seat"
+    },
+    {
+      "center": [
+        3.33,
+        0.365,
+        -2.21
+      ],
+      "id": "COL_table-r3-c2-leg--1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r3-c2-leg--1"
+    },
+    {
+      "center": [
+        4.75,
+        0.365,
+        -2.21
+      ],
+      "id": "COL_table-r3-c2-leg-1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r3-c2-leg-1"
+    },
+    {
+      "center": [
+        4.04,
+        0.718,
+        -2.21
+      ],
+      "id": "COL_table-r3-c2-top",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.7,
+        0.58,
+        0.044
+      ],
+      "sourceID": "table-r3-c2-top"
+    },
+    {
+      "center": [
+        5.32,
+        0.74,
+        -1.4
+      ],
+      "id": "COL_table-r3-c3-chair--1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r3-c3-chair--1-back"
+    },
+    {
+      "center": [
+        5.32,
+        0.46,
+        -1.6
+      ],
+      "id": "COL_table-r3-c3-chair--1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r3-c3-chair--1-seat"
+    },
+    {
+      "center": [
+        6.2,
+        0.74,
+        -1.4
+      ],
+      "id": "COL_table-r3-c3-chair-1-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.44,
+        0.07,
+        0.4
+      ],
+      "sourceID": "table-r3-c3-chair-1-back"
+    },
+    {
+      "center": [
+        6.2,
+        0.46,
+        -1.6
+      ],
+      "id": "COL_table-r3-c3-chair-1-seat",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.45,
+        0.43,
+        0.075
+      ],
+      "sourceID": "table-r3-c3-chair-1-seat"
+    },
+    {
+      "center": [
+        5.05,
+        0.365,
+        -2.21
+      ],
+      "id": "COL_table-r3-c3-leg--1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r3-c3-leg--1"
+    },
+    {
+      "center": [
+        6.47,
+        0.365,
+        -2.21
+      ],
+      "id": "COL_table-r3-c3-leg-1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.055,
+        0.12,
+        0.69
+      ],
+      "sourceID": "table-r3-c3-leg-1"
+    },
+    {
+      "center": [
+        5.76,
+        0.718,
+        -2.21
+      ],
+      "id": "COL_table-r3-c3-top",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.7,
+        0.58,
+        0.044
+      ],
+      "sourceID": "table-r3-c3-top"
+    },
+    {
+      "center": [
+        3.6,
+        1.375,
+        0.08
+      ],
+      "id": "COL_wall-back",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        7.2,
+        0.16,
+        2.75
+      ],
+      "sourceID": "wall-back"
+    },
+    {
+      "center": [
+        1.275,
+        2.425,
+        -7.88
+      ],
+      "id": "COL_wall-front-header",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.25,
+        0.16,
+        0.65
+      ],
+      "sourceID": "wall-front-header"
+    },
+    {
+      "center": [
+        0.325,
+        1.375,
+        -7.88
+      ],
+      "id": "COL_wall-front-left",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.65,
+        0.16,
+        2.75
+      ],
+      "sourceID": "wall-front-left"
+    },
+    {
+      "center": [
+        4.55,
+        1.375,
+        -7.88
+      ],
+      "id": "COL_wall-front-right",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        5.3,
+        0.16,
+        2.75
+      ],
+      "sourceID": "wall-front-right"
+    },
+    {
+      "center": [
+        -0.08,
+        1.375,
+        -7.71
+      ],
+      "id": "COL_wall-west-front-post",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.16,
+        0.18,
+        2.75
+      ],
+      "sourceID": "wall-west-front-post"
+    },
+    {
+      "center": [
+        -0.08,
+        1.375,
+        -2.61
+      ],
+      "id": "COL_wall-west-main",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.16,
+        5.22,
+        2.75
+      ],
+      "sourceID": "wall-west-main"
+    },
+    {
+      "center": [
+        0.3,
+        1.375,
+        -3.125
+      ],
+      "id": "COL_west-wall-projection",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.6,
+        1.15,
+        2.75
+      ],
+      "sourceID": "west-wall-projection"
+    },
+    {
+      "center": [
+        7.28,
+        2.665,
+        -1.725
+      ],
+      "id": "COL_window-back-above",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.16,
+        2.85,
+        0.17
+      ],
+      "sourceID": "window-back-above"
+    },
+    {
+      "center": [
+        7.28,
+        0.775,
+        -1.725
+      ],
+      "id": "COL_window-back-below",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.16,
+        2.85,
+        1.55
+      ],
+      "sourceID": "window-back-below"
+    },
+    {
+      "center": [
+        7.22,
+        2.065,
+        -1.725
+      ],
+      "id": "COL_window-back-blind",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.025,
+        2.85,
+        1.03
+      ],
+      "sourceID": "window-back-blind"
+    },
+    {
+      "center": [
+        7.28,
+        1.375,
+        -4.25
+      ],
+      "id": "COL_window-back-pier",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.16,
+        2.2,
+        2.75
+      ],
+      "sourceID": "window-back-pier"
+    },
+    {
+      "center": [
+        7.28,
+        2.665,
+        -6.4
+      ],
+      "id": "COL_window-front-above",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.16,
+        2.1,
+        0.17
+      ],
+      "sourceID": "window-front-above"
+    },
+    {
+      "center": [
+        7.28,
+        0.775,
+        -6.4
+      ],
+      "id": "COL_window-front-below",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.16,
+        2.1,
+        1.55
+      ],
+      "sourceID": "window-front-below"
+    },
+    {
+      "center": [
+        7.22,
+        2.065,
+        -6.4
+      ],
+      "id": "COL_window-front-blind",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.025,
+        2.1,
+        1.03
+      ],
+      "sourceID": "window-front-blind"
+    },
+    {
+      "center": [
+        7.28,
+        1.375,
+        -7.625
+      ],
+      "id": "COL_window-front-pier",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.16,
+        0.35,
+        2.75
+      ],
+      "sourceID": "window-front-pier"
+    },
+    {
+      "center": [
+        7.28,
+        1.375,
+        -0.15
+      ],
+      "id": "COL_window-wall-end",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.16,
+        0.3,
+        2.75
+      ],
+      "sourceID": "window-wall-end"
+    }
+  ],
+  "exporterVersion": "1.0.0",
+  "forwardAxis": "-Z",
+  "geometry": {
+    "materials": 13,
+    "meshes": 68,
+    "sourceObjects": 490,
+    "triangles": 18744
+  },
+  "id": "img3153-classroom-v1",
+  "materialNotes": [
+    "Carpet procedural weave replaced with constant gray PBR; source .blend retains weave"
+  ],
+  "scaleStatus": "UNMEASURED: all dimensions are modeling assumptions, not recovered measurements",
+  "schemaVersion": 1,
+  "sourceSHA256": "d037bc161000400bd6257d500be959c729edd4663f9035de4b45d10a974f8fd6",
+  "spawn": {
+    "position": [
+      2.66,
+      0.0,
+      -1.1
+    ],
+    "yaw": -0.128518
+  },
+  "surfaces": [
+    {
+      "allowedAssetCategories": [
+        "fixture"
+      ],
+      "center": [
+        3.6,
+        0.0,
+        -3.9
+      ],
+      "id": "floor",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "primPaths": [
+        "/Environment/Geometry/chunk_005"
+      ],
+      "role": "floor",
+      "size": [
+        7.2,
+        7.8
+      ]
+    },
+    {
+      "allowedAssetCategories": [
+        "fixture"
+      ],
+      "center": [
+        5.65,
+        0.74,
+        -6.55
+      ],
+      "id": "instructor-desk-top",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "primPaths": [
+        "/Environment/Geometry/chunk_022"
+      ],
+      "role": "tabletop",
+      "size": [
+        1.65,
+        0.72
+      ]
+    },
+    {
+      "allowedAssetCategories": [
+        "fixture"
+      ],
+      "center": [
+        1.5,
+        0.74,
+        -5.15
+      ],
+      "id": "table-r1-c1-top",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "primPaths": [
+        "/Environment/Geometry/chunk_056"
+      ],
+      "role": "tabletop",
+      "size": [
+        1.7,
+        0.58
+      ]
+    },
+    {
+      "allowedAssetCategories": [
+        "fixture"
+      ],
+      "center": [
+        4.04,
+        0.74,
+        -5.15
+      ],
+      "id": "table-r1-c2-top",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "primPaths": [
+        "/Environment/Geometry/chunk_058"
+      ],
+      "role": "tabletop",
+      "size": [
+        1.7,
+        0.58
+      ]
+    },
+    {
+      "allowedAssetCategories": [
+        "fixture"
+      ],
+      "center": [
+        5.76,
+        0.74,
+        -5.15
+      ],
+      "id": "table-r1-c3-top",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "primPaths": [
+        "/Environment/Geometry/chunk_058"
+      ],
+      "role": "tabletop",
+      "size": [
+        1.7,
+        0.58
+      ]
+    },
+    {
+      "allowedAssetCategories": [
+        "fixture"
+      ],
+      "center": [
+        1.5,
+        0.74,
+        -3.68
+      ],
+      "id": "table-r2-c1-top",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "primPaths": [
+        "/Environment/Geometry/chunk_056"
+      ],
+      "role": "tabletop",
+      "size": [
+        1.7,
+        0.58
+      ]
+    },
+    {
+      "allowedAssetCategories": [
+        "fixture"
+      ],
+      "center": [
+        4.04,
+        0.74,
+        -3.68
+      ],
+      "id": "table-r2-c2-top",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "primPaths": [
+        "/Environment/Geometry/chunk_058"
+      ],
+      "role": "tabletop",
+      "size": [
+        1.7,
+        0.58
+      ]
+    },
+    {
+      "allowedAssetCategories": [
+        "fixture"
+      ],
+      "center": [
+        5.76,
+        0.74,
+        -3.68
+      ],
+      "id": "table-r2-c3-top",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "primPaths": [
+        "/Environment/Geometry/chunk_058"
+      ],
+      "role": "tabletop",
+      "size": [
+        1.7,
+        0.58
+      ]
+    },
+    {
+      "allowedAssetCategories": [
+        "fixture"
+      ],
+      "center": [
+        1.5,
+        0.74,
+        -2.21
+      ],
+      "id": "table-r3-c1-top",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "primPaths": [
+        "/Environment/Geometry/chunk_057"
+      ],
+      "role": "tabletop",
+      "size": [
+        1.7,
+        0.58
+      ]
+    },
+    {
+      "allowedAssetCategories": [
+        "fixture"
+      ],
+      "center": [
+        4.04,
+        0.74,
+        -2.21
+      ],
+      "id": "table-r3-c2-top",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "primPaths": [
+        "/Environment/Geometry/chunk_059"
+      ],
+      "role": "tabletop",
+      "size": [
+        1.7,
+        0.58
+      ]
+    },
+    {
+      "allowedAssetCategories": [
+        "fixture"
+      ],
+      "center": [
+        5.76,
+        0.74,
+        -2.21
+      ],
+      "id": "table-r3-c3-top",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "primPaths": [
+        "/Environment/Geometry/chunk_059"
+      ],
+      "role": "tabletop",
+      "size": [
+        1.7,
+        0.58
+      ]
+    }
+  ],
+  "title": "Classroom / IMG_3153 reference blockout",
+  "units": "meters",
+  "upAxis": "Y",
+  "version": "4e5b4de0c9592a7b83a13eebe6f866966152a843cfbd6382a43e7756c159b8d6"
+}

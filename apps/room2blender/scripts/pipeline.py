@@ -18,7 +18,7 @@ from specification import draft, validate
 
 APP = Path(__file__).resolve().parents[1]
 SCRIPTS = APP / 'scripts'
-PIPELINE_VERSION = '1.0.0'
+PIPELINE_VERSION = '1.1.0'
 
 
 def digest(path):
@@ -123,7 +123,7 @@ def report(root):
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>{title}</title>
 <style>body{{font:16px system-ui;background:#17212a;color:#ecf0f4;max-width:1400px;margin:32px auto;padding:0 24px}}a{{color:#8cdaef}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}}figure{{margin:0}}img{{width:100%}}figcaption{{padding:8px 0}}li{{margin:8px 0}}</style>
 <h1>{title}</h1><p>{html.escape(spec['scale_status'])}</p>
-<p><a href="output/room.blend">Blender model</a> · <a href="references/contact-sheet.jpg">Movie references</a> ·
+<p><a href="output/room.blend">Blender model</a> · <a href="output/environment.usdz">Vision Pro USDZ</a> · <a href="output/environment.json">Environment manifest</a> · <a href="output/environment-validation.json">Export validation</a> · <a href="references/contact-sheet.jpg">Movie references</a> ·
 <a href="room_spec.json">Reviewed specification</a> · <a href="output/validation.json">Validation</a></p>
 <div class="grid">{cards}<figure><img src="output/interior.png"><figcaption>Interior</figcaption></figure>
 <figure><img src="output/floor-plan.png"><figcaption>Plan</figcaption></figure></div>
@@ -226,6 +226,8 @@ def build(project, capture_dir, source_hash, spec, args):
             stage([binary, '--factory-startup', '-b', str(blend), '--python-exit-code', '1', '--python', str(SCRIPTS/'render_review.py'), '--', '--project', str(temp)], logs/'render.log')
             status(project, 'validating', capture=str(capture_dir.relative_to(project)), source_sha256=source_hash)
             stage([binary, '--factory-startup', '-b', str(blend), '--python-exit-code', '1', '--python', str(SCRIPTS/'validate_room.py'), '--', '--project', str(temp)], logs/'validate.log')
+            status(project, 'exporting', capture=str(capture_dir.relative_to(project)), source_sha256=source_hash)
+            stage([binary, '--factory-startup', '-b', str(blend), '--python-exit-code', '1', '--python', str(SCRIPTS/'export_environment.py'), '--', '--project', str(temp)], logs/'export.log')
             report(temp)
             # Backup is a generated pre-render save, not a hand-edited user file.
             (temp/'output/room.blend1').unlink(missing_ok=True)

@@ -1,6 +1,6 @@
 # room2blender
 
-A CLI pipeline for **movie references → reviewed room specification → Blender review bundle**.
+A CLI pipeline for **movie references → reviewed room specification → Blender review and Vision Pro handoff bundle**.
 It automates extraction, geometry generation, rendering, validation and reporting. It does
 **not** infer a measured room or automatically identify furniture from a movie.
 
@@ -9,6 +9,8 @@ Its provisional dimensions are **7.2 × 7.8 × 2.75 m**. It is a blockout for in
 and occlusion testing, not a surveyed reconstruction.
 
 - [Blender model](output/classroom.blend)
+- [Vision Pro USDZ](output/environment.usdz) and [environment manifest](output/environment.json)
+- [Runtime export validation](output/environment-validation.json)
 - [All four isometric cutaways](output/cutaways.jpg)
 - [Reference contact sheet](references/contact-sheet.jpg)
 - [Scene specification](room_spec.json)
@@ -91,6 +93,9 @@ PROJECT/
     logs/                          # build, render and validation logs
     output/
       room.blend                   # six scenes, packed references, editable meshes
+      environment.usdz             # complete runtime room, meters / Y-up
+      environment.json             # version, checksum, spawn, colliders, surfaces
+      environment-validation.json  # USD compatibility + imported geometry checks
       interior.png
       floor-plan.png
       cutaway-front-left.png
@@ -126,7 +131,8 @@ save it separately or choose a new output project before regenerating.
 | Describe the room | Versioned JSON, explicit evidence and assumptions, source hash | Shape, room dimensions, hidden surfaces, openings, furniture count and positions |
 | Build meshes | The same reviewed JSON and generator produce the same geometry | A deterministic model can still be the wrong interpretation of the room |
 | Render | Seed 0, fixed cameras, sample count, color management, recorded backend | Blender/driver/CPU differences and denoising can alter pixels; `.blend` bytes are not guaranteed identical |
-| Validate | Scene, geometry, placement, occlusion and artifact checks | Internal consistency is not proof of physical accuracy |
+| Export | Evaluated meshes, fixed axis mapping, material/spatial grouping, semantic version and metadata | Unsupported procedural materials need a reviewed replacement or baking; runtime appearance needs headset review |
+| Validate | Scene, geometry, placement, occlusion, USD round trip and artifact checks | Internal consistency is not proof of physical accuracy or RealityKit performance |
 
 An AI interpretation stage could later propose the same JSON schema, but that stage
 would remain probabilistic. Save the proposed JSON, model/prompt version and evidence,
@@ -173,7 +179,7 @@ desk and a cyan occlusion probe behind the wall projection.
 
 Collision proxies are excluded and hidden by default; they are preparation for an
 application's physics setup, not configured Blender physics. The output remains a
-Blender prototype. No Vision Pro runtime or automatic USDZ export is added here.
+Blender authoring artifact. Every successful CLI build also exports a USDZ and the interaction manifest used by `apps/visionos`.
 
 ## Development and verification
 
@@ -203,3 +209,49 @@ blender -b output/classroom.blend --python-exit-code 1 --python scripts/validate
 
 The CLI is the preferred workflow for new captures; it supplies version records,
 separate output directories, caching and the HTML review gallery.
+
+## Vision Pro handoff (schema 1)
+
+Every successful `run --spec …` / `build` includes `output/environment.usdz` beside the
+Blender file and all four cutaways. The export is a complete room; it does not inherit
+cutaway visibility, test props, review cameras/lights, or packed movie frames.
+
+- Geometry has evaluated modifiers and normals. `(x,y,z) → (x,z,-y)` converts Blender
+  Z-up to RealityKit Y-up once. The USD root has an identity transform and meters-per-unit=1.
+- Opaque USD Preview Surface materials preserve base color, roughness and metallic values.
+  The classroom's procedural carpet is deliberately replaced by constant gray PBR; the
+  original shader remains in Blender. Unsupported linked shaders fail visibly. There is
+  no automatic texture baking or calibrated photographic appearance in this milestone.
+- Static pieces are grouped by material and 3m spatial cell. The classroom exports
+  18,744 evaluated triangles, 68 mesh groups and 13 materials. These are asset statistics,
+  not measured RealityKit draw calls or a performance guarantee.
+- `environment.json` declares room ID, semantic content version, USDZ byte size/SHA-256,
+  estimated-scale status, interior bounds, floor-level spawn and yaw, 96 oriented box
+  colliders, and 11 placement surfaces (floor, nine tables, instructor desk).
+- Collider sizes use each box's local axes; rotations are quaternions `[x,y,z,w]`.
+  Placement surfaces are horizontal rectangles with X/Z sizes, upward normals, stable IDs,
+  allowed asset categories and USD prim paths. Current recipes support floor/tabletop
+  placement. Wall/ceiling mounting requires a future schema/loader extension; it is not
+  silently approximated as horizontal placement. A placement surface requires a collider.
+- Geometry, materials and interaction semantics determine the room version. Render
+  samples and camera settings do not. File checksums detect packaging changes separately.
+  Tool-version changes may change USDZ bytes; semantic repeatability is the contract.
+
+The exporter checks the packaged USDZ using OpenUSD's ARKit rules, reopens its meshes,
+checks floor/table placement and wall occlusion rays, and imports it into Blender again
+to verify hierarchy and dimensions. The report records the source `.blend` and exporter
+hashes. This does **not** claim a successful RealityKit or headset test.
+
+To export an existing authoring file after deliberate edits (use a copy of the project,
+not an immutable CLI run you intend to reuse from cache):
+
+```sh
+/path/to/blender -b /path/to/project/output/room.blend --python-exit-code 1 \
+  --python apps/room2blender/scripts/export_environment.py -- --project /path/to/project
+```
+
+The project must retain `room_spec.json` and `output/placement.json`. Edits to spawn or
+placement membership require corresponding metadata edits. Keep proxy geometry aligned
+with visual edits. Blender's authoring file is never saved by the exporter.
+
+For app integration and future downloaded bundles, see [the visionOS README](../visionos/README.md).
