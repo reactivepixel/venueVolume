@@ -15,13 +15,13 @@
       "dmx_channels": null
     },
     "images": ["https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Lighting_Fixtures/Desire_Fresnel/Desire_Fresnel_Glam_960x300.jpg"],
-    "dimensions": {"width_m": 0.455, "height_m": 0.304, "depth_m": 0.356, "axis_status": "documented", "axis_note": "Manufacturer Rev F datasheet; width 455 mm, height 304 mm, depth 356 mm with zoom fully retracted; depth is 505 mm fully extended.", "reference_pose": "Yoke upright; zoom fully retracted"},
+    "dimensions": {"width_m": 0.304, "height_m": 0.455, "depth_m": 0.356, "axis_status": "documented", "axis_note": "Corrected from ETC Rev F Physical table: HEIGHT 455 mm × WIDTH 304 mm × DEPTH 356 mm (fully retracted; 505 mm extended). Drawing on p. 11 labels 455 mm vertical and 304 mm crosswise.", "reference_pose": "Yoke upright; zoom fully retracted"},
     "modeling": {"family": "fresnel", "lens_count": 1, "body_style": "round Fresnel head on yoke", "notes": "DFL7 is a fixed 7-inch aperture variant; allow lens travel in depth."},
     "evidence": [
       {"url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/Desire-Fresnel/Features/", "title": "Desire Fresnel Features", "locator": "7 inch version; product features", "accessed_at": "2026-09-30"},
       {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737506792", "title": "Desire Fresnel 7 Physical Drawing", "locator": "Official ETC DFL7 drawing crosschecked against Rev F datasheet: 455 × 304 × 356 mm retracted; 505 mm extended depth", "accessed_at": "2026-09-30"},
       {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737506619", "title": "Desire Fresnel Technical Datasheet", "locator": "Rev F physical section: DFL7 dimensions and weight", "accessed_at": "2026-09-30"},
-      {"url": "https://www.ecm-sa.ch/media/desire_fresnel_datasheet_revf.pdf", "title": "ETC Desire Fresnel Technical Datasheet", "locator": "Rev F, April 2025; Physical section: DFL7 dimensions, weight, zoom retracted/extended depth", "accessed_at": "2026-09-30"}
+      {"url": "https://www.ecm-sa.ch/media/desire_fresnel_datasheet_revf.pdf", "title": "ETC Desire Fresnel Technical Datasheet", "locator": "Rev F, April 2025, p. 11 Physical table explicitly labels HEIGHT 455 mm, WIDTH 304 mm, DEPTH 356/505 mm. The adjacent dimensioned drawing depicts 455 mm vertical and 304 mm crosswise; 10.8 kg.", "accessed_at": "2026-09-30"}
     ]
   },
   {
@@ -88,10 +88,10 @@
     "url": "https://www.martin.com/en-US/products/mac-viper-performance",
     "data": {"protocols": ["DMX", "RDM"], "source_urls": ["https://www.martin.com/en-US/products/mac-viper-performance"], "power": "1225 W typical", "weight": "37.9 kg", "dmx_channels": null},
     "images": ["https://adn.harmanpro.com/product_attachments/product_attachments/4794_1728940667/macviperperformance_x_large.webp"],
-    "dimensions": {"width_m": 0.472, "height_m": 0.748, "depth_m": 0.472, "axis_status": "documented", "axis_note": "Maximum fixture envelope; manufacturer distinguishes head length, base width and head-straight-up height.", "reference_pose": "Head straight up, yoke centered; overall maximum height"},
-    "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "discharge moving head with framing module, yoke", "notes": "Head body length is 566 mm; base length 472 mm; height maximum 748 mm. Axis-aligned bounding dimensions approximate the irregular shape envelope."},
+    "dimensions": {"width_m": 0.472, "height_m": 0.731, "depth_m": 0.566, "axis_status": "estimated", "axis_note": "Source values: width 472 mm (335 mm base), length 472 mm base / 566 mm head, height 731 mm with head straight up / 748 mm maximum. The product page and drawing list these distinct extents but do not define a single matching W×H×D box; depth uses the longer head length and height uses the head-straight-up pose. Treat this as an estimated envelope, not a fully documented pose.", "reference_pose": "Head straight up; estimated bounding envelope assembled from manufacturer physical values"},
+    "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "discharge moving head with framing module, yoke", "notes": "Estimate uses documented head-straight-up height, maximum width, and head length. Do not read as the bounding box from one manufacturer-dimensioned pose."},
     "evidence": [
-      {"url": "https://www.martin.com/en-US/products/mac-viper-performance", "title": "MAC Viper Performance", "locator": "Specifications / Physical; product image; DMX and RDM connections", "accessed_at": "2026-09-30"}
+      {"url": "https://www.martin.com/en-US/products/mac-viper-performance", "title": "MAC Viper Performance", "locator": "Specifications / Physical explicitly list 472 mm base length, 566 mm head length, width 472 mm (335 mm base), height 731 mm head straight up / 748 mm maximum, mass 37.9 kg; downloads include 2D dimensions drawing", "accessed_at": "2026-09-30"}
     ]
   },
   {
