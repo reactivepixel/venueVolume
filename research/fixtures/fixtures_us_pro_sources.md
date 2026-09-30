@@ -11,13 +11,13 @@ This file records products across ETC, High End Systems, Vari-Lite, and Martin P
 
 ## Data and image conventions
 
-The `data` cell is valid JSON. It includes only dimensions and electrical or performance values when surfaced in the official source content; unknown fields are omitted or set to `null`. Each JSON object includes a `sources` array so technical claims remain traceable. Product page URLs in `url` are official manufacturer sources. Images are JSON arrays containing direct manufacturer-hosted image URLs when found. Empty arrays mean a direct image asset was not confirmed in official accessible sources, not that the product has no image.
+The `data` cell is valid JSON. Retained rows have a numeric dimensions value with units and an explicit `protocols` field naming DMX or Art-Net. Each JSON object includes a `sources` array so technical claims remain traceable. Product page URLs in `url` are official manufacturer sources. Images are JSON arrays containing direct manufacturer-hosted image URLs when found. Empty arrays mean a direct image asset was not confirmed in official accessible sources, not that the product has no image.
 
 ## Known gaps and caveats
 
 - This is a bounded selection of representative digital/LED fixtures rather than a complete catalog. Exact adoption prevalence was not quantified.
 - Some fixtures are listed by family or product model where the manufacturer does not publish a separate stock keeping unit. For those, `model_number` repeats the published product name.
-- Legacy HES models and older Vari-Lite generations have uneven manufacturer archive coverage. Where official product-level technical specs were not discoverable, the row retains only the product identity and documented control eligibility; it does not infer measurements.
-- ETC and Martin include a few family-level pages as official source URLs. Consult the manufacturer’s downloads/manual pages for lens, engine, regional power, and version-specific details before building a production record.
-- Image coverage is partial. Direct official image assets were available for a few ETC entries; many manufacturer pages expose visual media through a dynamic gallery that did not provide a stable direct asset URL here.
-
+- The completeness pass removed rows for which a numeric dimension could not be established from first-party documentation. The final selection is therefore smaller than the initial research pass and is not a representative census of all requested fixture categories.
+- Image coverage is partial. Direct official image assets were not discoverable for most retained products in this environment. The in-app browser/DOM extraction path was unavailable, so `images: []` is retained rather than guessing an asset URL. ETC image assets are available for a subset of its rows.
+- Row counts in the validated pass: ETC 5, High End Systems 2, Vari-Lite 3, Martin Professional (HARMAN) 7. The HES and Vari-Lite selections fall below the initial six-per-brand target because the retained-row rule required sourced numeric dimensions.
+- Five of 17 retained rows have a confirmed direct image asset: three ETC fixtures, one HES fixture, and one Martin fixture; none were confirmed for Vari-Lite.
