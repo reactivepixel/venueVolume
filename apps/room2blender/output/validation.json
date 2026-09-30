@@ -1,5 +1,6 @@
 {
   "passed": true,
+  "geometry_sha256": "29adfad21ee188f3e9127badb6b55203d966c757101aaa03b3ce22e7a46a6d45",
   "blender_version": "4.5.14 LTS",
   "mesh_triangles_before_unapplied_modifiers": 12192,
   "dimension_accuracy": "unmeasured; not validated against a survey",
@@ -14,8 +15,11 @@
       "passed": true,
       "detail": [
         "01 | ROOM - walk and place assets",
-        "02 | CUTAWAY - layout overview",
-        "03 | PLAN - estimated dimensions"
+        "02 | CUTAWAY - front-left",
+        "03 | CUTAWAY - front-right",
+        "04 | CUTAWAY - rear-right",
+        "05 | CUTAWAY - rear-left",
+        "06 | PLAN - estimated dimensions"
       ]
     },
     {
@@ -24,9 +28,72 @@
       "detail": "16 images packed"
     },
     {
-      "check": "camera orientation",
+      "check": "true isometry / front-left",
       "passed": true,
-      "detail": "Start camera faces the teaching wall (+Y); window wall is on the right (+X)"
+      "detail": [
+        0.5773503184318542,
+        -0.5773502588272095,
+        -0.5773502588272095
+      ]
+    },
+    {
+      "check": "cutaway wall selection / front-left",
+      "passed": true,
+      "detail": [
+        "front",
+        "left"
+      ]
+    },
+    {
+      "check": "true isometry / front-right",
+      "passed": true,
+      "detail": [
+        -0.5773503184318542,
+        -0.5773502588272095,
+        -0.5773502588272095
+      ]
+    },
+    {
+      "check": "cutaway wall selection / front-right",
+      "passed": true,
+      "detail": [
+        "front",
+        "right"
+      ]
+    },
+    {
+      "check": "true isometry / rear-right",
+      "passed": true,
+      "detail": [
+        -0.5773501992225647,
+        0.5773502588272095,
+        -0.5773503184318542
+      ]
+    },
+    {
+      "check": "cutaway wall selection / rear-right",
+      "passed": true,
+      "detail": [
+        "rear",
+        "right"
+      ]
+    },
+    {
+      "check": "true isometry / rear-left",
+      "passed": true,
+      "detail": [
+        0.5773501992225647,
+        0.5773502588272095,
+        -0.5773503184318542
+      ]
+    },
+    {
+      "check": "cutaway wall selection / rear-left",
+      "passed": true,
+      "detail": [
+        "left",
+        "rear"
+      ]
     },
     {
       "check": "walk start over clear floor",

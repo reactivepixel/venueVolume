@@ -64,8 +64,9 @@ The result is `/absolute/path/to/clip.ply`. Frames, COLMAP data, trainer output,
 modeled from selected frames of `IMG_3153.MOV`. Open
 [classroom.blend](apps/room2blender/output/classroom.blend) to inspect the full room,
 cutaway, and floor plan, move a sample fixture, and test geometry occlusion.
-Dimensions are explicitly unmeasured estimates. Reference images, a parameter file,
-rebuild scripts, renders, and validation results accompany the model.
+The CLI accepts a movie, extracts references, and builds a reviewed room specification
+into six Blender scenes, including four isometric cutaways. Dimensions remain explicit
+estimates until measured. See the app guide for the review boundary and reproducible pipeline.
 
 ## Gaussian splat viewers
 

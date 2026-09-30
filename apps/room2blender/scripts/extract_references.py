@@ -17,38 +17,33 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("movie", type=Path, nargs="?")
-    parser.add_argument("--contact-sheet-only", action="store_true")
-    parser.add_argument("--times", default="6,22,57,70,100,128,152,177,199,225,256,280,303,326,355,371")
-    args = parser.parse_args()
-    if args.contact_sheet_only:
-        make_contact_sheet(json.loads((ROOT / "references/manifest.json").read_text())["references"])
-        return
-    if args.movie is None:
-        parser.error("movie is required unless --contact-sheet-only is used")
+def extract(movie, root, times=None, count=16):
+    movie, root = Path(movie), Path(root)
     probe = json.loads(subprocess.check_output([
-        "ffprobe", "-v", "error", "-show_format", "-show_streams", "-of", "json", str(args.movie)]))
+        "ffprobe", "-v", "error", "-show_format", "-show_streams", "-of", "json", str(movie)]))
     stream = next(s for s in probe["streams"] if s["codec_type"] == "video")
     duration = float(probe["format"]["duration"])
-    targets = [float(t) for t in args.times.split(",")]
-    if any(t < 1 or t + 0.7 >= duration for t in targets):
-        parser.error("Each reference time must be at least 1 second from the video boundaries")
-    refdir = ROOT / "references"
-    cache = ROOT / ".cache" / "candidates"
+    if not 0.15 < duration < 86400:
+        raise ValueError("Video duration must be between 0.15 seconds and 24 hours")
+    targets = list(times) if times else [(i+0.5)*duration/count for i in range(count)]
+    if not targets or len(targets) > 128 or any(not 0 < t < duration for t in targets):
+        raise ValueError("Select 1–128 reference times strictly within the movie duration")
+    delta = min(0.6, min(min(t, duration-t) for t in targets)/2, duration/(len(targets)*6))
+    refdir = root / "references"
+    cache = root / ".cache" / "candidates"
     cache.mkdir(parents=True, exist_ok=True)
     refdir.mkdir(exist_ok=True)
     hdr = stream.get("color_transfer") in ("arib-std-b67", "smpte2084")
-    filters = "scale=1600:-2"
+    filters = "scale=w='min(1600,iw)':h=-2"
     if hdr:
         filters += ",zscale=t=linear:npl=100,format=gbrpf32le,tonemap=tonemap=hable:desat=0,zscale=p=bt709:t=bt709:m=bt709:r=full,format=yuvj420p"
 
     def extract(job):
         index, seconds = job
         path = cache / f"candidate_{index:03d}.jpg"
+        path.unlink(missing_ok=True)
         command = ["ffmpeg", "-hide_banner", "-loglevel", "warning", "-threads", "2",
-                   "-ss", str(seconds), "-i", str(args.movie), "-an", "-frames:v", "1",
+                   "-ss", str(seconds), "-i", str(movie), "-an", "-frames:v", "1",
                    "-vf", filters, "-q:v", "2", "-update", "1", "-y", str(path)]
         result = subprocess.run(command, capture_output=True, text=True)
         (cache / f"candidate_{index:03d}.log").write_text(result.stderr)
@@ -62,7 +57,7 @@ def main():
                 "decoder_error_lines": errors, "path": str(path)}
 
     jobs = [(i * 3 + j, t + offset) for i, t in enumerate(targets)
-            for j, offset in enumerate((-0.6, 0, 0.6))]
+            for j, offset in enumerate((-delta, 0, delta))]
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
         candidates = list(pool.map(extract, jobs))
     selected = []
@@ -77,26 +72,28 @@ def main():
         selected.append({"file": name, **{k: v for k, v in best.items() if k != "path"}})
         print(name, selected[-1], flush=True)
 
-    with args.movie.open("rb") as movie:
-        digest = hashlib.file_digest(movie, "sha256").hexdigest()
-    manifest = {"source": args.movie.name, "sha256": digest, "duration_seconds": duration,
+    with movie.open("rb") as source_file:
+        digest = hashlib.file_digest(source_file, "sha256").hexdigest()
+    manifest = {"source": movie.name, "sha256": digest, "duration_seconds": duration,
                 "creation_time": probe["format"].get("tags", {}).get("creation_time"),
-                "source_size_bytes": args.movie.stat().st_size, "source_transfer": stream.get("color_transfer"),
+                "source_size_bytes": movie.stat().st_size, "source_transfer": stream.get("color_transfer"),
                 "output_color": "SDR sRGB-compatible BT.709", "hdr_tone_mapped": hdr,
                 "selection": "Best Laplacian sharpness of 3 local candidates, preferring clean decodes; manually review every selection.",
                 "timestamp_note": "Requested seek positions, not calibrated exposure timestamps; damaged sections may skip frames.",
+                "sampling": {"target_seconds": targets, "candidate_offset_seconds": delta, "filter": filters},
                 "references": selected}
     (refdir / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
-    make_contact_sheet(selected)
+    make_contact_sheet(selected, root, movie.name, hdr)
+    return manifest
 
 
-def make_contact_sheet(selected):
-    refdir = ROOT / "references"
+def make_contact_sheet(selected, root, title="Reference views", hdr=False):
+    refdir = root / "references"
     sheet = Image.new("RGB", (1600, ((len(selected) + 3) // 4) * 255 + 70), "#121c27")
     draw = ImageDraw.Draw(sheet)
     font = ImageFont.load_default(size=16)
-    draw.text((18, 14), "IMG_3153 / CLASSROOM REFERENCE VIEWS", fill="white", font=font)
-    draw.text((18, 40), "Selected movie frames / HDR converted to SDR / dimensions remain unmeasured", fill="#a9bdcc", font=font)
+    draw.text((18, 14), title + " / REFERENCE VIEWS", fill="white", font=font)
+    draw.text((18, 40), ("HDR converted to SDR" if hdr else "SDR references") + " / dimensions remain unmeasured", fill="#a9bdcc", font=font)
     for i, ref in enumerate(selected):
         x, y = (i % 4) * 400, (i // 4) * 255 + 70
         photo = Image.open(refdir / ref["file"])
@@ -107,4 +104,12 @@ def make_contact_sheet(selected):
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("movie", type=Path)
+    parser.add_argument("--project", type=Path, default=ROOT)
+    parser.add_argument("--count", type=int, default=16)
+    parser.add_argument("--times", help="Comma-separated explicit reference times in seconds")
+    args = parser.parse_args()
+    if not 1 <= args.count <= 128:
+        parser.error("--count must be between 1 and 128")
+    extract(args.movie, args.project, [float(t) for t in args.times.split(',')] if args.times else None, args.count)

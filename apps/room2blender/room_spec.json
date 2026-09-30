@@ -4,26 +4,117 @@
   "units": "meters",
   "coordinates": "Layout distances: X from left wall toward windows; Y from front teaching wall toward rear; Z above floor. Generator converts to Blender (X, depth-Y, Z), with output origin at rear-left. Not survey coordinates.",
   "scale_status": "UNMEASURED: all dimensions are modeling assumptions, not recovered measurements",
-  "room": {"width": 7.2, "depth": 7.8, "height": 2.75, "wall_thickness": 0.16},
+  "room": {
+    "width": 7.2,
+    "depth": 7.8,
+    "height": 2.75,
+    "wall_thickness": 0.16
+  },
   "shell_evidence": {
-    "front": ["reference_06_0128.0s.jpg", "reference_10_0225.0s.jpg"],
-    "window_wall": ["reference_01_0006.0s.jpg", "reference_11_0256.0s.jpg", "reference_12_0280.0s.jpg"],
-    "back": ["reference_02_0022.0s.jpg", "reference_03_0057.0s.jpg"],
-    "entrance": ["reference_14_0326.0s.jpg", "reference_16_0371.0s.jpg"],
-    "ceiling": ["reference_08_0177.0s.jpg", "reference_10_0225.0s.jpg"]
+    "front": [
+      "reference_06_0128.0s.jpg",
+      "reference_10_0225.0s.jpg"
+    ],
+    "window_wall": [
+      "reference_01_0006.0s.jpg",
+      "reference_11_0256.0s.jpg",
+      "reference_12_0280.0s.jpg"
+    ],
+    "back": [
+      "reference_02_0022.0s.jpg",
+      "reference_03_0057.0s.jpg"
+    ],
+    "entrance": [
+      "reference_14_0326.0s.jpg",
+      "reference_16_0371.0s.jpg"
+    ],
+    "ceiling": [
+      "reference_08_0177.0s.jpg",
+      "reference_10_0225.0s.jpg"
+    ]
   },
   "windows": [
-    {"id": "window-front", "y_start": 0.35, "width": 2.1, "sill": 1.55, "height": 1.03, "panes": 2},
-    {"id": "window-back", "y_start": 4.65, "width": 2.85, "sill": 1.55, "height": 1.03, "panes": 3}
+    {
+      "id": "window-front",
+      "y_start": 0.35,
+      "width": 2.1,
+      "sill": 1.55,
+      "height": 1.03,
+      "panes": 2
+    },
+    {
+      "id": "window-back",
+      "y_start": 4.65,
+      "width": 2.85,
+      "sill": 1.55,
+      "height": 1.03,
+      "panes": 3
+    }
   ],
-  "front_door": {"x": 0.65, "width": 1.25, "height": 2.1},
-  "entrance": {"y_start": 0.18, "width": 2.4, "height": 2.58, "sidelight_width": 0.72, "door_height": 2.08},
-  "west_pier": {"x_depth": 0.6, "y_start": 4.1, "y_length": 1.15},
-  "rear_side_door": {"y_start": 6.25, "width": 0.92, "height": 2.1},
-  "tables": {"width": 1.7, "depth": 0.58, "height": 0.74, "x_centers": [1.5, 4.04, 5.76], "y_centers": [2.65, 4.12, 5.59]},
-  "whiteboard": {"x_start": 2.55, "width": 3.6, "bottom": 0.92, "height": 1.22},
-  "instructor_desk": {"center": [5.65, 1.25, 0.74], "width": 1.65, "depth": 0.72},
-  "spawn": {"eye": [2.66, 6.7, 1.65], "look_at": [3.5, 0.2, 1.45]},
+  "front_door": {
+    "x": 0.65,
+    "width": 1.25,
+    "height": 2.1
+  },
+  "entrance": {
+    "y_start": 0.18,
+    "width": 2.4,
+    "height": 2.58,
+    "sidelight_width": 0.72,
+    "door_height": 2.08
+  },
+  "west_pier": {
+    "x_depth": 0.6,
+    "y_start": 4.1,
+    "y_length": 1.15
+  },
+  "rear_side_door": {
+    "y_start": 6.25,
+    "width": 0.92,
+    "height": 2.1
+  },
+  "tables": {
+    "width": 1.7,
+    "depth": 0.58,
+    "height": 0.74,
+    "x_centers": [
+      1.5,
+      4.04,
+      5.76
+    ],
+    "y_centers": [
+      2.65,
+      4.12,
+      5.59
+    ]
+  },
+  "whiteboard": {
+    "x_start": 2.55,
+    "width": 3.6,
+    "bottom": 0.92,
+    "height": 1.22
+  },
+  "instructor_desk": {
+    "center": [
+      5.65,
+      1.25,
+      0.74
+    ],
+    "width": 1.65,
+    "depth": 0.72
+  },
+  "spawn": {
+    "eye": [
+      2.66,
+      6.7,
+      1.65
+    ],
+    "look_at": [
+      3.5,
+      0.2,
+      1.45
+    ]
+  },
   "assumptions": [
     "The room envelope is estimated as 7.2 x 7.8 x 2.75 m using common furniture proportions; none of those dimensions is measured.",
     "Two separated high window banks, front whiteboard, west glazed entrance, front solid door, rear-side door and west wall projection are visible; exact positions and widths are estimated.",
@@ -32,5 +123,31 @@
     "Ceiling tile spacing, light and vent positions are illustrative. No ceiling equipment specification or concealed structure is inferred.",
     "Blinds and entrance glazing use opaque blockout materials. Exterior and hallway geometry are not reconstructed.",
     "Desk fixture and cyan occlusion probe are synthetic test assets, not observed equipment. Lighting and material colors are illustrative, not calibrated."
+  ],
+  "schema_version": 1,
+  "recipe": "classroom-v1",
+  "source_sha256": "d037bc161000400bd6257d500be959c729edd4663f9035de4b45d10a974f8fd6",
+  "review": {
+    "status": "reviewed",
+    "reviewer": "Codex reference-model review",
+    "basis": "Manual interpretation of IMG_3153 frames; layout is approved as an approximate test model, not measured geometry."
+  },
+  "reference_times": [
+    6,
+    22,
+    57,
+    70,
+    100,
+    128,
+    152,
+    177,
+    199,
+    225,
+    256,
+    280,
+    303,
+    326,
+    355,
+    371
   ]
 }

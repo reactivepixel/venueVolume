@@ -8,17 +8,21 @@ import sys
 import bpy
 from mathutils import Vector
 
-ROOT = Path(__file__).resolve().parents[1]
+APP = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(APP / "scripts"))
+from review_views import configure, make_review_scenes, render_all
+parser = argparse.ArgumentParser()
+parser.add_argument("--project", type=Path, default=APP)
+parser.add_argument("--blend-name", default="classroom.blend")
+parser.add_argument("--no-render", action="store_true")
+parser.add_argument("--cpu", action="store_true")
+parser.add_argument("--samples", type=int, default=32)
+parser.add_argument("--width", type=int, default=1440)
+args = parser.parse_args(sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else [])
+ROOT = args.project.resolve()
 SPEC = json.loads((ROOT / "room_spec.json").read_text())
 OUT = ROOT / "output"
 OUT.mkdir(exist_ok=True)
-parser = argparse.ArgumentParser()
-parser.add_argument("--no-render", action="store_true")
-parser.add_argument("--cpu", action="store_true", help="Render on CPU when GPU memory is busy")
-args = parser.parse_args(sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else [])
-if not args.no_render:
-    for name in ("interior.png", "cutaway.png", "floor-plan.png", "occlusion.png", "occlusion-reveal.png", "validation.json"):
-        (OUT / name).unlink(missing_ok=True)
 bpy.ops.wm.read_factory_settings(use_empty=True)
 scene = bpy.context.scene
 scene.name = "01 | ROOM - walk and place assets"
@@ -26,7 +30,8 @@ scene.unit_settings.system = "METRIC"
 scene.unit_settings.length_unit = "METERS"
 scene.unit_settings.scale_length = 1
 scene["scale_status"] = SPEC["scale_status"]
-scene["source"] = "IMG_3153.MOV / photographic reference modeling, not photogrammetry"
+scene["source"] = SPEC.get("source_sha256", "unspecified")
+scene["recipe"] = "classroom-v1"
 
 
 def collection(name):
@@ -332,8 +337,6 @@ def camera(name, pos, target, lens=23, ortho=None):
 walk = camera("Walk start / back aisle", SPEC["spawn"]["eye"], SPEC["spawn"]["look_at"], 21)
 camera("Front toward rear", (3.0, 0.52, 1.68), (3.7, 7.2, 1.2), 20)
 occlusion_camera = camera("Occlusion check / cube behind pier", (0.30, 3.20, 1.25), (0.30, pier["y_start"]+pier["y_length"]+0.32, 0.3), 30)
-cut_camera = camera("Cutaway overview", (-8.5, 18.5, 13), (3.6, 3.9, 0.55), ortho=12.7)
-plan_camera = camera("Floor plan", (W/2, D/2, 18), (W/2, D/2, 0), ortho=12.0)
 scene.camera = walk
 
 # Pack references into the .blend so it remains useful away from the repository.
@@ -353,48 +356,23 @@ world.use_nodes = True
 world.node_tree.nodes["Background"].inputs[0].default_value = (0.24, 0.28, 0.35, 1)
 world.node_tree.nodes["Background"].inputs[1].default_value = 0.25
 scene.world = world
-scene.render.engine = "CYCLES"
-scene.cycles.samples = 32
-scene.cycles.use_denoising = True
-try:
-    if args.cpu:
-        raise RuntimeError("CPU requested")
-    preferences = bpy.context.preferences.addons["cycles"].preferences
-    preferences.compute_device_type = "CUDA"
-    preferences.get_devices()
-    enabled = False
-    for device in preferences.devices:
-        device.use = device.type == "CUDA"
-        enabled |= device.use
-    if enabled:
-        scene.cycles.device = "GPU"
-except Exception as error:
-    print("Using CPU for rendering:", error)
-scene.render.resolution_x, scene.render.resolution_y = 1440, 1080
-scene.render.resolution_percentage = 100
-scene.render.image_settings.file_format = "PNG"
-scene.view_settings.view_transform = "AgX"
-
-# Copy scenes, but share editable geometry. Visibility is per-scene view layer.
-def scene_variant(name, cam, excluded_collections=(), hidden_objects=()):
-    new = scene.copy()
-    new.name = name
-    new.use_fake_user = True
-    new.camera = cam
-    for name in excluded_collections:
-        new.view_layers[0].layer_collection.children[name].exclude = True
-    for obj in hidden_objects:
-        obj.hide_set(True, view_layer=new.view_layers[0])
-    return new
-
-
-# For render cutaways use separate collection exclusions, never delete room geometry.
-cutwalls = collection("09 Cutaway removable walls")
+configure(scene, args.width, args.samples, cpu=args.cpu)
+wall_objects = {side: [] for side in ("front", "rear", "left", "right")}
 for obj in list(shell.objects):
-    if (obj.name.startswith(("wall-back", "wall-west", "entrance-", "rear-side-door", "rear-door", "skirting-back", "skirting-west"))):
-        move_to(obj, cutwalls)
-cut = scene_variant("02 | CUTAWAY - layout overview", cut_camera, (ceiling.name, cutwalls.name))
-plan = scene_variant("03 | PLAN - estimated dimensions", plan_camera, (ceiling.name,))
+    n = obj.name
+    if n.startswith(("wall-front", "door-front", "whiteboard", "skirting-front")):
+        side = "front"
+    elif n.startswith(("wall-back", "skirting-back")):
+        side = "rear"
+    elif n.startswith(("wall-west", "entrance-", "rear-side-door", "rear-door", "skirting-west")):
+        side = "left"
+    elif n.startswith(("window", "skirting-east")):
+        side = "right"
+    else:
+        continue
+    wall_objects[side].append(obj)
+wall_objects["left"].append(bpy.data.objects["extinguisher"])
+make_review_scenes(scene, (W, D, H), views, ceiling, wall_objects)
 
 for s in bpy.data.scenes:
     s["scale_status"] = SPEC["scale_status"]
@@ -417,23 +395,7 @@ layout = {"room_id": SPEC["id"], "units": "meters", "up_axis": "Z", "scale_statu
           "conversion_to_y_up": "For future RealityKit ingestion map (x, y, z) to (x, z, -y). No native app integration in this prototype."}
 (OUT / "placement.json").write_text(json.dumps(layout, indent=2)+"\n")
 bpy.context.window.scene = scene
-bpy.ops.wm.save_as_mainfile(filepath=str(OUT / "classroom.blend"), compress=True)
+bpy.ops.wm.save_as_mainfile(filepath=str(OUT / args.blend_name), compress=True)
 if not args.no_render:
-    for s, filename in ((scene, "interior.png"), (cut, "cutaway.png"), (plan, "floor-plan.png")):
-        bpy.context.window.scene = s
-        s.render.filepath = str(OUT / filename)
-        bpy.ops.render.render(write_still=True)
-    bpy.context.window.scene = scene
-    scene.camera = occlusion_camera
-    scene.render.filepath = str(OUT / "occlusion.png")
-    bpy.ops.render.render(write_still=True)
-    # Same camera with only the architectural blocker hidden proves the probe position.
-    scene.view_layers[0].objects.active = probe
-    blocker = bpy.data.objects["west-wall-projection"]
-    blocker.hide_render = True
-    scene.render.filepath = str(OUT / "occlusion-reveal.png")
-    bpy.ops.render.render(write_still=True)
-    blocker.hide_render = False
-    scene.camera = walk
-    bpy.ops.wm.save_as_mainfile(filepath=str(OUT / "classroom.blend"), compress=True)
-print("Saved", OUT / "classroom.blend")
+    render_all(ROOT, OUT / args.blend_name)
+print("Saved", OUT / args.blend_name)
