@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "id": "martin-professional-harman/mac-viper-xip",
+  "revision": 1,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Martin Professional (HARMAN)",
+    "model": "MAC Viper XIP",
+    "variant": "MAC Viper XIP",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.martin.com/en-US/products/mac-viper-xip",
+      "title": "Martin Professional (HARMAN) MAC Viper XIP official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://adn.harmanpro.com/productattachment/12248/product_attachment/x_large-5847804c23b1f2f05fd8d8e5c6c9e674.webp",
+      "title": "Martin Professional (HARMAN) MAC Viper XIP official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.webp",
+      "sha256": "746fb5a248aa06ab2a0b0e2f3590756ba0771181d6f09273b35387b5048648cd"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.479,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Maximum envelope is documented; H/W/depth assignment follows the official product drawing."
+    },
+    "height": {
+      "value": 0.776,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Maximum envelope is documented; H/W/depth assignment follows the official product drawing."
+    },
+    "depth": {
+      "value": 0.595,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Maximum envelope is documented; H/W/depth assignment follows the official product drawing."
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {
+      "ip_rating": {
+        "value": "IP54",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "Art-Net",
+          "sACN"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.2395000010728836,
+        0.0,
+        -0.29750001430511475
+      ],
+      "max": [
+        0.2395000010728836,
+        0.7760000228881836,
+        0.29750001430511475
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base"
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke"
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head"
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Head/Lens"
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "name": "primary light output",
+        "prim_path": "/Fixture/Head/Emitter"
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Maximum envelope is documented; H/W/depth assignment follows the official product drawing.",
+      "Moving components are separated but no runtime articulation joints are authored."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "a631f54e21b2b0d0b407e07b6a36561cca2b5125c982cb2a2f00e02554566416"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "ae1f126c179b73194375ae8654203de15fd42c183dc220f8862d42d28d8b7719"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "9605608a8ce06e192418db8ceba45da73ceccfffaa01ccae43e2c34ed0b0d7c2"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "45c77d8c46f36e53b17b4f8febc2044abace9d3e937b0919767d3204e7eef575"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "eb3f91a54ce40767a32e7a359ec94a83a1a835d62abe0aaad6ef9fb14f604fb7"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "e38a7d34969447fe9d37a4309814117e97287071510186ad9779b503ea662238"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "8e61b1bf9d42b59cb11d02464e5386d4a907e62e3372dea9f835a4fd04c0b399"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "cf7f59ff0050a64fc3d5cbe6ea472c35f9c725bf16a072821d0c7bbcbbc1324f"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+  ]
+}

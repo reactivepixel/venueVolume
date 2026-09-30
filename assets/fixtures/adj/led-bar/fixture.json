@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "id": "adj/led-bar",
+  "revision": 1,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ADJ",
+    "model": "LED Bar",
+    "variant": "LED BAR",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.adj.com/products/led-bar",
+      "title": "ADJ LED Bar official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://www.adj.com/cdn/shop/files/7bcfbe90e80e9aca47aa38adedb0ff216906529d_LED_BAR__IMG__001__a4051e307ea2.jpg?v=1776715774&width=2048",
+      "title": "ADJ LED Bar official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "752fd2f0c8c195c927a53bbb3a3003fc062ecf4e524825527dc71ee53a6e7b1c"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.5,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "height": {
+      "value": 0.132,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "depth": {
+      "value": 0.09,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": [
+          "4 x 61 RGB LEDs; 30° beam",
+          "discontinued"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "built-in supply; exact draw not stated on page",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX-512"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.25,
+        0.0,
+        -0.04500100016593933
+      ],
+      "max": [
+        0.25,
+        0.13199999928474426,
+        0.04500000178813934
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body"
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens"
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "name": "primary light output",
+        "prim_path": "/Fixture/Emitter"
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer specifies bar L x W x H; runtime width follows bar length.",
+      "Moving components are separated but no runtime articulation joints are authored."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "b94513076f5e7beb10504a2acf6920b0ad27421309308a54dd7154d123916010"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "7bda4aa25eac9e4dcf3a4222aaaabd4ee69fe233d69851d7dda9e22944a3a44d"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "58e3bcc982308c732cdad273a156c0da9e0a9822c051914351b83c1d4de5ed6c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "7580609daa24202d2d4da82f5b5cf9ed1cc5f777b18a06be2a9675ffb45190bd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "908ee718a0370107feeff3ca8b296aedbb1974f551e569f58bfaace68c41c6ad"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "12b2aba3b74865dccc8bd464799055fafa912866661e73805f1ae45233e73993"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "4f86b6bc2ecb29f1b8d8bbadd8cde4c77a1684d2dcb55cd62c672908aaa60509"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "bf4ad18749384df9b148a9c941e2caae2167f787bbf562062f2bab058b0c4e79"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+  ]
+}

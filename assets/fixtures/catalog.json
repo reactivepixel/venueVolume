@@ -1,4 +1,535 @@
 {
   "schema_version": 1,
-  "fixtures": []
+  "fixtures": [
+    {
+      "id": "adj/7p-hex-ip",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "ADJ",
+      "model": "7P HEX IP",
+      "record": "assets/fixtures/adj/7p-hex-ip/fixture.json",
+      "record_sha256": "c13fa13e5071a5be493ac634c1f5d864cb92483681ba8fd8b68ea10e229435b8",
+      "note": "docs/08 Fixture Library/entries/adj/7p-hex-ip.md"
+    },
+    {
+      "id": "adj/focus-spot-4z",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "ADJ",
+      "model": "Focus Spot 4Z",
+      "record": "assets/fixtures/adj/focus-spot-4z/fixture.json",
+      "record_sha256": "9fdf21e49f8bc4e364a4d2196452299ffe082a4d16f2d98099c5ee91347675aa",
+      "note": "docs/08 Fixture Library/entries/adj/focus-spot-4z.md"
+    },
+    {
+      "id": "adj/hydro-beam-x1",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "ADJ",
+      "model": "Hydro Beam X1",
+      "record": "assets/fixtures/adj/hydro-beam-x1/fixture.json",
+      "record_sha256": "48e350c4f4b6551692eda364c943c1e06be1125746ed5a01c3ac06ddeb50deba",
+      "note": "docs/08 Fixture Library/entries/adj/hydro-beam-x1.md"
+    },
+    {
+      "id": "adj/jolt-bar-fx",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "ADJ",
+      "model": "Jolt Bar FX",
+      "record": "assets/fixtures/adj/jolt-bar-fx/fixture.json",
+      "record_sha256": "771d9e397315ef17a4f1876c675c669aa8eb0f0950600468cb7ef82630016f6b",
+      "note": "docs/08 Fixture Library/entries/adj/jolt-bar-fx.md"
+    },
+    {
+      "id": "adj/led-bar",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "ADJ",
+      "model": "LED Bar",
+      "record": "assets/fixtures/adj/led-bar/fixture.json",
+      "record_sha256": "8a27eb9bf076447d6eb9cd9bbc274298f0dfbbc75fbaccad18b992064125c9ec",
+      "note": "docs/08 Fixture Library/entries/adj/led-bar.md"
+    },
+    {
+      "id": "adj/stryker-wash",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "ADJ",
+      "model": "STRYKER WASH",
+      "record": "assets/fixtures/adj/stryker-wash/fixture.json",
+      "record_sha256": "35bff9bbd3737bebd7422c66725ef116f794cd2f4fe2d8527429389c09da6a2e",
+      "note": "docs/08 Fixture Library/entries/adj/stryker-wash.md"
+    },
+    {
+      "id": "chauvet-professional/colorado-solo-batten",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "CHAUVET Professional",
+      "model": "COLORado Solo Batten",
+      "record": "assets/fixtures/chauvet-professional/colorado-solo-batten/fixture.json",
+      "record_sha256": "7c1461c978305797d3d389ee422ca229b22cac217fe4a7ff8b740bca2afc1248",
+      "note": "docs/08 Fixture Library/entries/chauvet-professional/colorado-solo-batten.md"
+    },
+    {
+      "id": "chauvet-professional/colordash-batten-quad-6",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "CHAUVET Professional",
+      "model": "COLORdash Batten-Quad 6",
+      "record": "assets/fixtures/chauvet-professional/colordash-batten-quad-6/fixture.json",
+      "record_sha256": "bf00c4fc10bdc369c94491e9dcc81069e007443360980bad45da1fe50abaafe1",
+      "note": "docs/08 Fixture Library/entries/chauvet-professional/colordash-batten-quad-6.md"
+    },
+    {
+      "id": "chauvet-professional/maverick-mk2-wash",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "CHAUVET Professional",
+      "model": "Maverick MK2 Wash",
+      "record": "assets/fixtures/chauvet-professional/maverick-mk2-wash/fixture.json",
+      "record_sha256": "f865e5fee8eb9eae6ab8a7fde3d4b0f8b6597ef0e88f8d9c4accffeb3b808752",
+      "note": "docs/08 Fixture Library/entries/chauvet-professional/maverick-mk2-wash.md"
+    },
+    {
+      "id": "chauvet-professional/rogue-r1x-spot",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "CHAUVET Professional",
+      "model": "Rogue R1X Spot",
+      "record": "assets/fixtures/chauvet-professional/rogue-r1x-spot/fixture.json",
+      "record_sha256": "b41a98aebbbd638f8a7132d3c94e993be49be0a185394a57d83cf958c3bd5a43",
+      "note": "docs/08 Fixture Library/entries/chauvet-professional/rogue-r1x-spot.md"
+    },
+    {
+      "id": "chauvet-professional/rogue-r2-wash",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "CHAUVET Professional",
+      "model": "Rogue R2 Wash",
+      "record": "assets/fixtures/chauvet-professional/rogue-r2-wash/fixture.json",
+      "record_sha256": "ac7b36aa92680ae183c094879e89caf38b5aab843d2bda80959ef34503adb916",
+      "note": "docs/08 Fixture Library/entries/chauvet-professional/rogue-r2-wash.md"
+    },
+    {
+      "id": "chauvet-professional/rogue-rh1-hybrid",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "CHAUVET Professional",
+      "model": "Rogue RH1 Hybrid",
+      "record": "assets/fixtures/chauvet-professional/rogue-rh1-hybrid/fixture.json",
+      "record_sha256": "62c188f85ad0937350679d6b9c727ad6370f7e5fece05dfcc501b58186e73f10",
+      "note": "docs/08 Fixture Library/entries/chauvet-professional/rogue-rh1-hybrid.md"
+    },
+    {
+      "id": "claypaky/arolla-profile-mp",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "Claypaky",
+      "model": "Arolla Profile MP",
+      "record": "assets/fixtures/claypaky/arolla-profile-mp/fixture.json",
+      "record_sha256": "bb9cb57fffbd11fee0630b78774d9f0a96c376430ed3f0ca74acb8e594902596",
+      "note": "docs/08 Fixture Library/entries/claypaky/arolla-profile-mp.md"
+    },
+    {
+      "id": "claypaky/arolla-spot-mp",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "Claypaky",
+      "model": "Arolla Spot MP",
+      "record": "assets/fixtures/claypaky/arolla-spot-mp/fixture.json",
+      "record_sha256": "d4049c05b503e951c8fdcd12f677869259880419ee65eab7fdc433e6dad2d258",
+      "note": "docs/08 Fixture Library/entries/claypaky/arolla-spot-mp.md"
+    },
+    {
+      "id": "claypaky/hy-b-eye-k25",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "Claypaky",
+      "model": "HY B-EYE K25",
+      "record": "assets/fixtures/claypaky/hy-b-eye-k25/fixture.json",
+      "record_sha256": "5e1e9a211f22d9d858cde044f36efba873cf0d38c933a165848e318fc491cfeb",
+      "note": "docs/08 Fixture Library/entries/claypaky/hy-b-eye-k25.md"
+    },
+    {
+      "id": "claypaky/sharpy",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "Claypaky",
+      "model": "Sharpy",
+      "record": "assets/fixtures/claypaky/sharpy/fixture.json",
+      "record_sha256": "32f7ea494fd7787ad3c0bbf8b1eb9e253cb507f801ab87058cfb6e2feec79323",
+      "note": "docs/08 Fixture Library/entries/claypaky/sharpy.md"
+    },
+    {
+      "id": "claypaky/sharpy-plus",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "Claypaky",
+      "model": "Sharpy Plus",
+      "record": "assets/fixtures/claypaky/sharpy-plus/fixture.json",
+      "record_sha256": "bdc467434a88f99a46cd52244cb30f711acd04c334a9eba4c6036dcf4437fcc3",
+      "note": "docs/08 Fixture Library/entries/claypaky/sharpy-plus.md"
+    },
+    {
+      "id": "claypaky/sharpy-plus-aqua",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "Claypaky",
+      "model": "Sharpy Plus Aqua",
+      "record": "assets/fixtures/claypaky/sharpy-plus-aqua/fixture.json",
+      "record_sha256": "243198ead14f274e63c304de97b348347bb86761e8902dcbb9faab1fce7a816d",
+      "note": "docs/08 Fixture Library/entries/claypaky/sharpy-plus-aqua.md"
+    },
+    {
+      "id": "elation-professional/dartz-360",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "Elation Professional",
+      "model": "DARTZ 360",
+      "record": "assets/fixtures/elation-professional/dartz-360/fixture.json",
+      "record_sha256": "4223e279b8ec9d835d2a773e79374fc3d0d98b5ff7f887d4b70fa8094f8807f7",
+      "note": "docs/08 Fixture Library/entries/elation-professional/dartz-360.md"
+    },
+    {
+      "id": "elation-professional/fuze-sfx",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "Elation Professional",
+      "model": "Fuze SFX",
+      "record": "assets/fixtures/elation-professional/fuze-sfx/fixture.json",
+      "record_sha256": "c9be34ae3dd3de29427a964622899493c3abf2e4ac07abba5f4cebea5f543aab",
+      "note": "docs/08 Fixture Library/entries/elation-professional/fuze-sfx.md"
+    },
+    {
+      "id": "elation-professional/fuze-wash-500",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "Elation Professional",
+      "model": "Fuze Wash 500",
+      "record": "assets/fixtures/elation-professional/fuze-wash-500/fixture.json",
+      "record_sha256": "cfa502941ea80bc73c07b77fe6a3bd644019b6fa85e4e41a9e95a221feddb1f7",
+      "note": "docs/08 Fixture Library/entries/elation-professional/fuze-wash-500.md"
+    },
+    {
+      "id": "elation-professional/kl-fresnel-8",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "Elation Professional",
+      "model": "KL Fresnel 8",
+      "record": "assets/fixtures/elation-professional/kl-fresnel-8/fixture.json",
+      "record_sha256": "00e2ea4f360d4eb321768fe9a57845209e37c420b9df4606643aa47b336cb6e2",
+      "note": "docs/08 Fixture Library/entries/elation-professional/kl-fresnel-8.md"
+    },
+    {
+      "id": "elation-professional/proteus-radius",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "Elation Professional",
+      "model": "Proteus Radius",
+      "record": "assets/fixtures/elation-professional/proteus-radius/fixture.json",
+      "record_sha256": "13d2f9a6bd7e9520e5369ec84d1db65f11376edd65fec2616ef2129310709ad4",
+      "note": "docs/08 Fixture Library/entries/elation-professional/proteus-radius.md"
+    },
+    {
+      "id": "elation-professional/sixbar-1000",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "Elation Professional",
+      "model": "SixBar 1000",
+      "record": "assets/fixtures/elation-professional/sixbar-1000/fixture.json",
+      "record_sha256": "92a0e2fc7b67b2f6279c14c9dbdc11dc2d7552bd12dc372a640ff9b5295fdca1",
+      "note": "docs/08 Fixture Library/entries/elation-professional/sixbar-1000.md"
+    },
+    {
+      "id": "etc/colorsource-fresnel-v",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "ETC",
+      "model": "ColorSource Fresnel V",
+      "record": "assets/fixtures/etc/colorsource-fresnel-v/fixture.json",
+      "record_sha256": "81f00fc4dd80269330d8b0cc340297f5801fb576e93e198288aea62e3210d575",
+      "note": "docs/08 Fixture Library/entries/etc/colorsource-fresnel-v.md"
+    },
+    {
+      "id": "etc/colorsource-spot-v",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "ETC",
+      "model": "ColorSource Spot V",
+      "record": "assets/fixtures/etc/colorsource-spot-v/fixture.json",
+      "record_sha256": "80167ba58e5f0b632002dade26fe8889f00db6371d2728de5f6a4b837e644598",
+      "note": "docs/08 Fixture Library/entries/etc/colorsource-spot-v.md"
+    },
+    {
+      "id": "etc/desire-d60",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "ETC",
+      "model": "Desire D60",
+      "record": "assets/fixtures/etc/desire-d60/fixture.json",
+      "record_sha256": "be4904cacd9d8242abd008f6b713cc863da2058a68e5deff574b7062724e06d9",
+      "note": "docs/08 Fixture Library/entries/etc/desire-d60.md"
+    },
+    {
+      "id": "etc/fos-4-fresnel",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "ETC",
+      "model": "fos/4 Fresnel",
+      "record": "assets/fixtures/etc/fos-4-fresnel/fixture.json",
+      "record_sha256": "7c8aa25a8c60dc5a5220dc7b9a1c7b41daea690ebdc2982d8f386f7a72b9e735",
+      "note": "docs/08 Fixture Library/entries/etc/fos-4-fresnel.md"
+    },
+    {
+      "id": "etc/source-four-led-series-3-lustr-x8",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "ETC",
+      "model": "Source Four LED Series 3 Lustr X8",
+      "record": "assets/fixtures/etc/source-four-led-series-3-lustr-x8/fixture.json",
+      "record_sha256": "559540300eef5fcb478ab30ccb5ca6a3543801d7695ab36a38c427dc77919749",
+      "note": "docs/08 Fixture Library/entries/etc/source-four-led-series-3-lustr-x8.md"
+    },
+    {
+      "id": "glp/impression-x4-bar-20",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "GLP",
+      "model": "impression X4 Bar 20",
+      "record": "assets/fixtures/glp/impression-x4-bar-20/fixture.json",
+      "record_sha256": "0ee896b2de6650ad626a2b36863f0bb5808db52c71f72605c1087a6d5f041493",
+      "note": "docs/08 Fixture Library/entries/glp/impression-x4-bar-20.md"
+    },
+    {
+      "id": "glp/impression-x5",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "GLP",
+      "model": "impression X5",
+      "record": "assets/fixtures/glp/impression-x5/fixture.json",
+      "record_sha256": "9fd93c31eaf9131849497682004c7f6aca86d1936a8bfb26dd1b1314383f9460",
+      "note": "docs/08 Fixture Library/entries/glp/impression-x5.md"
+    },
+    {
+      "id": "glp/impression-x5-bar-1000",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "GLP",
+      "model": "impression X5 Bar 1000",
+      "record": "assets/fixtures/glp/impression-x5-bar-1000/fixture.json",
+      "record_sha256": "44bbc606dfb5893c3067ff3361d1105b697368e676947f1eef75e9678c08a4a5",
+      "note": "docs/08 Fixture Library/entries/glp/impression-x5-bar-1000.md"
+    },
+    {
+      "id": "glp/impression-x5-compact",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "GLP",
+      "model": "impression X5 Compact",
+      "record": "assets/fixtures/glp/impression-x5-compact/fixture.json",
+      "record_sha256": "eb412a02820d6b62d2a768434ef8e2b516481aac20bbc22d352948bf45f9ab3a",
+      "note": "docs/08 Fixture Library/entries/glp/impression-x5-compact.md"
+    },
+    {
+      "id": "glp/jdc-line-500",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "GLP",
+      "model": "JDC Line 500",
+      "record": "assets/fixtures/glp/jdc-line-500/fixture.json",
+      "record_sha256": "61d8207b65446532942ce71d4b5b6eada364b726e7f8854d73324470a7119ef6",
+      "note": "docs/08 Fixture Library/entries/glp/jdc-line-500.md"
+    },
+    {
+      "id": "glp/jdc1",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "GLP",
+      "model": "JDC1",
+      "record": "assets/fixtures/glp/jdc1/fixture.json",
+      "record_sha256": "40cf41391bace7b8e91c7a3421ed538e93b2d498aa82ba0c76282b8959e209bc",
+      "note": "docs/08 Fixture Library/entries/glp/jdc1.md"
+    },
+    {
+      "id": "high-end-systems/solaframe-3000",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "High End Systems",
+      "model": "SolaFrame 3000",
+      "record": "assets/fixtures/high-end-systems/solaframe-3000/fixture.json",
+      "record_sha256": "990c4d604fd61349d10619977ab4eca31e76ba54d7f7632858f36306d0ce0260",
+      "note": "docs/08 Fixture Library/entries/high-end-systems/solaframe-3000.md"
+    },
+    {
+      "id": "high-end-systems/solawash-2000",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "High End Systems",
+      "model": "SolaWash 2000",
+      "record": "assets/fixtures/high-end-systems/solawash-2000/fixture.json",
+      "record_sha256": "e7408c608c0f86924e12d98b0a8e24b75f8327c15637142ca4d6107667057f30",
+      "note": "docs/08 Fixture Library/entries/high-end-systems/solawash-2000.md"
+    },
+    {
+      "id": "martin-professional-harman/atomic-3000-led",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "Atomic 3000 LED",
+      "record": "assets/fixtures/martin-professional-harman/atomic-3000-led/fixture.json",
+      "record_sha256": "f6e1f8baab905e70d5339fa0e39f965a31eab5c18d04209d947463b2cd6d4264",
+      "note": "docs/08 Fixture Library/entries/martin-professional-harman/atomic-3000-led.md"
+    },
+    {
+      "id": "martin-professional-harman/elp-cl",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "ELP CL",
+      "record": "assets/fixtures/martin-professional-harman/elp-cl/fixture.json",
+      "record_sha256": "7c5c7b2a0ff20dd3d2114170af4d2a0f459076e57e59456795d29288a10867d1",
+      "note": "docs/08 Fixture Library/entries/martin-professional-harman/elp-cl.md"
+    },
+    {
+      "id": "martin-professional-harman/mac-aura-xip",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Aura XIP",
+      "record": "assets/fixtures/martin-professional-harman/mac-aura-xip/fixture.json",
+      "record_sha256": "dd42bcecf7a29fc82aff220b0d08f91d2339efebc15ca1fd94cb0330f0d9b2f4",
+      "note": "docs/08 Fixture Library/entries/martin-professional-harman/mac-aura-xip.md"
+    },
+    {
+      "id": "martin-professional-harman/mac-one",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC One",
+      "record": "assets/fixtures/martin-professional-harman/mac-one/fixture.json",
+      "record_sha256": "bdf8371415502e06919750cac0a19ba43186cba453653ddc559bef4b6420afbf",
+      "note": "docs/08 Fixture Library/entries/martin-professional-harman/mac-one.md"
+    },
+    {
+      "id": "martin-professional-harman/mac-ultra-performance",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Ultra Performance",
+      "record": "assets/fixtures/martin-professional-harman/mac-ultra-performance/fixture.json",
+      "record_sha256": "12e75dba392baad4170b7202555f3055b99ad5bdcced5c79744a727a9a9ac36c",
+      "note": "docs/08 Fixture Library/entries/martin-professional-harman/mac-ultra-performance.md"
+    },
+    {
+      "id": "martin-professional-harman/mac-ultra-wash",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Ultra Wash",
+      "record": "assets/fixtures/martin-professional-harman/mac-ultra-wash/fixture.json",
+      "record_sha256": "ccd287aa3fcbe664ca17cccb16993e85dac4b2aa6c8d63c3d79ebddc58432cb6",
+      "note": "docs/08 Fixture Library/entries/martin-professional-harman/mac-ultra-wash.md"
+    },
+    {
+      "id": "martin-professional-harman/mac-viper-xip",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Viper XIP",
+      "record": "assets/fixtures/martin-professional-harman/mac-viper-xip/fixture.json",
+      "record_sha256": "2089a45036ac821c7c18bda4875af6f5ca5843536c9c315379c02ac1fa09898b",
+      "note": "docs/08 Fixture Library/entries/martin-professional-harman/mac-viper-xip.md"
+    },
+    {
+      "id": "robe-lighting/forte",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "ROBE Lighting",
+      "model": "FORTE",
+      "record": "assets/fixtures/robe-lighting/forte/fixture.json",
+      "record_sha256": "234af9d0bfa2fbe71ab0e05799302abf64fcd73d0a21a9ce1888958c1bf3a909",
+      "note": "docs/08 Fixture Library/entries/robe-lighting/forte.md"
+    },
+    {
+      "id": "robe-lighting/ledbeam-350",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "ROBE Lighting",
+      "model": "LEDBeam 350",
+      "record": "assets/fixtures/robe-lighting/ledbeam-350/fixture.json",
+      "record_sha256": "93ca803f1cc3fc1a0d0ea9a19d084b69769d7a0e29ce06d76dc50ba5e2c612e3",
+      "note": "docs/08 Fixture Library/entries/robe-lighting/ledbeam-350.md"
+    },
+    {
+      "id": "robe-lighting/megapointe",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "ROBE Lighting",
+      "model": "MegaPointe",
+      "record": "assets/fixtures/robe-lighting/megapointe/fixture.json",
+      "record_sha256": "9a8620dc0a1e4e4db96a447ff04f81eba990a72390b438e1b489d77de722a465",
+      "note": "docs/08 Fixture Library/entries/robe-lighting/megapointe.md"
+    },
+    {
+      "id": "robe-lighting/pointe",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "ROBE Lighting",
+      "model": "Pointe",
+      "record": "assets/fixtures/robe-lighting/pointe/fixture.json",
+      "record_sha256": "e4c3bf4756377be2058325cedd5eb5a051c09602511da377708907072f815109",
+      "note": "docs/08 Fixture Library/entries/robe-lighting/pointe.md"
+    },
+    {
+      "id": "robe-lighting/spiider",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "ROBE Lighting",
+      "model": "Spiider",
+      "record": "assets/fixtures/robe-lighting/spiider/fixture.json",
+      "record_sha256": "b1875f5f5cf075b8dd0ec6a2a0dc10c44b1fb5c473d4436b61716d13a60e511d",
+      "note": "docs/08 Fixture Library/entries/robe-lighting/spiider.md"
+    },
+    {
+      "id": "robe-lighting/t1-profile",
+      "revision": 1,
+      "status": "ready_for_visualization",
+      "manufacturer": "ROBE Lighting",
+      "model": "T1 Profile",
+      "record": "assets/fixtures/robe-lighting/t1-profile/fixture.json",
+      "record_sha256": "2f47f1f2a0e278ed464c6ce2f24bfa0c9daf2d3abca4319d214e67a90afee36f",
+      "note": "docs/08 Fixture Library/entries/robe-lighting/t1-profile.md"
+    },
+    {
+      "id": "vari-lite/vl2600-spot",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "Vari-Lite",
+      "model": "VL2600 SPOT",
+      "record": "assets/fixtures/vari-lite/vl2600-spot/fixture.json",
+      "record_sha256": "57ad69bbc012d5201fe93d24c23df3454b180c804a9e4cbd4c8110c3f2ee9e99",
+      "note": "docs/08 Fixture Library/entries/vari-lite/vl2600-spot.md"
+    },
+    {
+      "id": "vari-lite/vl3600-profile-ip",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "Vari-Lite",
+      "model": "VL3600 PROFILE IP",
+      "record": "assets/fixtures/vari-lite/vl3600-profile-ip/fixture.json",
+      "record_sha256": "05903a5d6d33ced050f247caeb6262032cc1f5ba6b8016d7ac8a048fcadd910b",
+      "note": "docs/08 Fixture Library/entries/vari-lite/vl3600-profile-ip.md"
+    },
+    {
+      "id": "vari-lite/vl5led-wash",
+      "revision": 1,
+      "status": "researched",
+      "manufacturer": "Vari-Lite",
+      "model": "VL5LED WASH",
+      "record": "assets/fixtures/vari-lite/vl5led-wash/fixture.json",
+      "record_sha256": "7bdce693394ad9b7940fd26a18a369c752dac29b5fa414e4ffdd665dc1815373",
+      "note": "docs/08 Fixture Library/entries/vari-lite/vl5led-wash.md"
+    }
+  ]
 }

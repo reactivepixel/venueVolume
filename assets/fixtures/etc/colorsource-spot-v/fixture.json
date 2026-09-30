@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "id": "etc/colorsource-spot-v",
+  "revision": 1,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "ETC",
+    "model": "ColorSource Spot V",
+    "variant": "ColorSource Spot V",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/ColorSource-Spot-V/Documentation.aspx",
+      "title": "ETC ColorSource Spot V official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/ColorSource-Spot-V/Features.aspx",
+      "title": "ETC ColorSource Spot V official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Entertainment_Fixtures/ColorSource_V/SpotV_adapters_Zoom_960x460.jpg",
+      "title": "ETC ColorSource Spot V official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "6c11d80c40f30ff2c10b1182077157ee5c746364a9d841ca6af31a6fbcd297c8"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.339,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Maximum barrel/lens envelope is documented; H/W/depth assignment follows the manufacturer drawing orientation."
+    },
+    "height": {
+      "value": 0.593,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Maximum barrel/lens envelope is documented; H/W/depth assignment follows the manufacturer drawing orientation."
+    },
+    "depth": {
+      "value": 0.672,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Maximum barrel/lens envelope is documented; H/W/depth assignment follows the manufacturer drawing orientation."
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "wireless DMX/RDM (Multiverse)"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.16949999332427979,
+        0.0,
+        -0.335999995470047
+      ],
+      "max": [
+        0.16949999332427979,
+        0.5929999947547913,
+        0.335999995470047
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body"
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke"
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens"
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "name": "primary light output",
+        "prim_path": "/Fixture/Emitter"
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Maximum barrel/lens envelope is documented; H/W/depth assignment follows the manufacturer drawing orientation.",
+      "Moving components are separated but no runtime articulation joints are authored."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "a0f39d174b495c3030c58c34457281e659984a1808aabc0afeb60713d8afea35"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "49b42059df256ddaa1183bfbeded563e960e222cd1b483b95965e1a6b251f341"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "63204f92f39319d3ebe7d95b68dcaf9cf16c079059dc45b2ccb054b890770731"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "35e409bd9d6461ebde7d06d5e30367882112c16a196d98db361372f1017d9e5f"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "be5e789ff39c207cae48170986a0ba5dbde3ca190c97ddfbef75e3855459029d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "77f9e3167fb481e4408c519986f260395188dc9698190166da47f1a4a5b18cdd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "435cecbdc34206dfc4a0c555d5b2e2057f7332081a5e272d7ad6668b6d15e6ca"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "b6002969c97093357289810127b31d1bd186b1e940917d30545aa63009b0a333"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+  ]
+}

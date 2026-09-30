@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "id": "claypaky/sharpy-plus",
+  "revision": 1,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Claypaky",
+    "model": "Sharpy Plus",
+    "variant": "CD3000",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.claypaky.it/products/sharpy-plus/",
+      "title": "Claypaky Sharpy Plus official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_SharpyPlus.jpg",
+      "title": "Claypaky Sharpy Plus official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "630335e44fc8ddd509bfef9f942883778181fd4aaf23d99a6517bb199c2cf270"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.375,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Base footprint and height are documented; base width/depth orientation follows the manufacturer drawing."
+    },
+    "height": {
+      "value": 0.635,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Base footprint and height are documented; base width/depth orientation follows the manufacturer drawing."
+    },
+    "depth": {
+      "value": 0.307,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Base footprint and height are documented; base width/depth orientation follows the manufacturer drawing."
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "540 VA max; 100-240 V, 50/60 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "23 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "Art-Net",
+          "RDM",
+          "sACN"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.1875,
+        0.0,
+        -0.1535000056028366
+      ],
+      "max": [
+        0.1875,
+        0.6349999904632568,
+        0.1535000056028366
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base"
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke"
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head"
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Head/Lens"
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "name": "primary light output",
+        "prim_path": "/Fixture/Head/Emitter"
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Base footprint and height are documented; base width/depth orientation follows the manufacturer drawing.",
+      "Moving components are separated but no runtime articulation joints are authored."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "271683aa902953ed72625d14297682adaa4b25fe9d0f42b086301886f65fe036"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "9ba61e4f18641e5e3039adec381473e6c89dc765ba74ca7b9be6945753304d54"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "b99f0714ab6f2cacec4d6a2b70f419a2f628087b86758e838b85b6ac1400cccf"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "cef45d9dc733b33cd00e70bee77a7312ca53f350cb3bd98022bbaec497ee46f7"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "4e278f9f67b6654c1b6a42144e9ba595f8dbea203c13364c7182eb6d04f4ac5c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "5d25759e0a3f27675aa192d8569b961f9c384c55be13263ba72751fd94709add"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "20dd22b37052de156f5045a8742d47cf0a49687e4ad6a8c441ed430b187e5f80"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "a551fff8dd703a4c67e692c21638d883fb8315bb99811ae79a9e61ed10b601dc"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+  ]
+}

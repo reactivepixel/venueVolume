@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "id": "robe-lighting/forte",
+  "revision": 1,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ROBE Lighting",
+    "model": "FORTE",
+    "variant": "FORTE",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.robe.cz/forte",
+      "title": "ROBE Lighting FORTE official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.robe.cz/res/downloads/user_manuals/User_manual_Robin_Forte.pdf",
+      "title": "ROBE Lighting FORTE official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://cdn.aws.robe.cz/v1/image/resize/401bff822913a8182209a6ef40c594071b9596c2?fit=cover&height=452&width=452&withoutEnlargement=false",
+      "title": "ROBE Lighting FORTE official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "a94d862dc068a4c10b7cf81deefc765f848bc9a35245c9eda6ffa7c996af721b"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.4835,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "height": {
+      "value": 0.6355,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "depth": {
+      "value": 0.6245,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "Art-Net",
+          "sACN"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.24175000190734863,
+        0.0,
+        -0.3122499883174896
+      ],
+      "max": [
+        0.24175000190734863,
+        0.6355000138282776,
+        0.3122499883174896
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base"
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke"
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head"
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Head/Lens"
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "name": "primary light output",
+        "prim_path": "/Fixture/Head/Emitter"
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer specifies H x W x D for the horizontal-head pose; upright sweep height is retained separately.",
+      "Moving components are separated but no runtime articulation joints are authored."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "332c3035340178a7f24ae7532a8d2d71bea2211134da4439a78486893eb09f56"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "0501574937e925f6d91d1a5d422d12eed0602cd242aa8beff1ebe26fbb14abaa"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "0f9c0b928b429d58969dfcc0e082197dc024ee4a43699ba91fa702f0c1deff47"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "fa606b245f74cc058e66a6e4355c9cbb614929e1e42e032d7382712c304a0fb8"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "c5cf9f2d7329ba44bb2bcbcd694b62f7f20f3c49451139d4d645a70878805629"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "4fc6611bc8f6410b81b2cf03ae7a711de3e5ea33d3438a7f40ce1d68a93c7ab9"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "02e84c179c23b9d47846741011c8d1c9a8f79a50976b8fc636133d52c960d7c2"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "e1f3060afa87975d74cee2395b14194286e57f1494e7d85c8c2e5612f107cbc5"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+  ]
+}

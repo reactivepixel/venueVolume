@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "id": "elation-professional/fuze-sfx",
+  "revision": 1,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Elation Professional",
+    "model": "Fuze SFX",
+    "variant": "FUZ406",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.elationlighting.com/products/fuze-sfx",
+      "title": "Elation Professional Fuze SFX official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://www.elationlighting.com/cdn/shop/files/89ae202fa3170c155988939b4acfa394ce85a29f_FUZ406__IMG__002__58ee88d3a569_51e85a0c-274f-454a-b2f6-ac00dc5f19c3.jpg?v=1783577951&width=1200",
+      "title": "Elation Professional Fuze SFX official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "c14af5471aca82ce0bca62ed5b4ce93355bc125ba541439efde9fa5c1fc064c6"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.233,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "height": {
+      "value": 0.595,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "depth": {
+      "value": 0.362,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": [
+          "300 W LED; 12,135 lumens; 4.5-38° zoom; IP20"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "432 W max; 100-240 V AC, 50/60 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "45.9 lb (20.8 kg)",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "31-channel mode",
+      "footprint": 31,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.11649999767541885,
+        0.0,
+        -0.1809999942779541
+      ],
+      "max": [
+        0.11649999767541885,
+        0.5950000286102295,
+        0.1809999942779541
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base"
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke"
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head"
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Head/Lens"
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "name": "primary light output",
+        "prim_path": "/Fixture/Head/Emitter"
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer lists length, width and height individually; runtime X/Y/Z uses width/height/length.",
+      "Moving components are separated but no runtime articulation joints are authored."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "8550d9beca80a592e1e0173427d6850ea95fd91ced4a7b3292cda48d18ae1896"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "f536444ef58f2c5c69ae0e894ff40c1fd56c7db46ccece4c61dffd8aff39c311"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "18ce47c9eccf87b84eb817cb430fff56988a593ab7b1381c5db1f7117740a56d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "8033a056a2b3e168c60453495359fc8f5bf74c35da085002253f41cbe90b43fa"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "33814b18638e5bbbec17fb3b550449ddac10e704a9746e6e84385cd3327fb603"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "bcfc2b72c0f2be82442aa3b6666b03143b2851a324e373b3f8afabb1a59b5d81"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "ac8d65ac8f6a56bd8725658dbbd150895fd364c93092b07621d17e2fcbc2326d"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "7f295ee92f0769fbabd45e4defb0776ac85667a4637b5d5ee4f175898763d0ef"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+  ]
+}

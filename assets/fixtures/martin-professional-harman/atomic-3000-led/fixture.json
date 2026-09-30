@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "id": "martin-professional-harman/atomic-3000-led",
+  "revision": 1,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Martin Professional (HARMAN)",
+    "model": "Atomic 3000 LED",
+    "variant": "Atomic 3000 LED",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.martin.com/en-US/products/atomic-3000-led/",
+      "title": "Martin Professional (HARMAN) Atomic 3000 LED official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.martin.com/en-US/products/atomic-3000-led",
+      "title": "Martin Professional (HARMAN) Atomic 3000 LED official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://adn.harmanpro.com/product_attachments/product_attachments/4860_1728940592/Atomic3000_0013_vert_medium.jpg",
+      "title": "Martin Professional (HARMAN) Atomic 3000 LED official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "f867ee4f18b042a3596e4b3833ac7227561471dbe1bb1b8314dcffbde0706f36"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.425,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; H/W/depth assignment follows product imagery and the manufacturer technical page."
+    },
+    "height": {
+      "value": 0.245,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; H/W/depth assignment follows product imagery and the manufacturer technical page."
+    },
+    "depth": {
+      "value": 0.24,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; H/W/depth assignment follows product imagery and the manufacturer technical page."
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.21250000596046448,
+        0.0,
+        -0.11999999731779099
+      ],
+      "max": [
+        0.21250000596046448,
+        0.24500000476837158,
+        0.11999999731779099
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body"
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke"
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens"
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "name": "primary light output",
+        "prim_path": "/Fixture/Emitter"
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Overall dimensions are documented; H/W/depth assignment follows product imagery and the manufacturer technical page.",
+      "Moving components are separated but no runtime articulation joints are authored."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "afd0a637e8aecc1a4949b77e072ce8050a19968b2ab95a2b10572ab1aa757890"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "69daf6475d2933a2c126921140a4e2d3c1d4ee03aab724f7c8f7eb804a70c19f"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "9db4dd386fad8cb1add10ea37d3d8098e895e4a73bc371259e1d23b413840979"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "2bb5e7c071df06952fc42cad883b4ab73e3149cfe58d6967d747db34970a7bc7"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "27b46b3c767d56c0a5bfcd13707363251ba395e8cd924ff9bc00a12e3f665cec"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "1dc7dd7f39bb11691d2bb71eca8804908b09a5db98d98c0b81886c22feaea139"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "73d700799e69658e0f5320945b30a3d13d2a363f7a0fe745ec7b05628b102f0b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "c297d8f41815b2d85fac86551588d1543f28fc950d406274140ec592f9ff4455"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+  ]
+}

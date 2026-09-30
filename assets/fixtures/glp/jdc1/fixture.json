@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "id": "glp/jdc1",
+  "revision": 1,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "GLP",
+    "model": "JDC1",
+    "variant": "JDC1",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://glp.de/en/products/entertainment-lighting/strobes/jdc1-en?ic=1",
+      "title": "GLP JDC1 official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://glp.de/files/products/jdc1-product-data/GLP_JDC1_User_Manual_EN_Rev20240830-01.pdf",
+      "title": "GLP JDC1 official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://glp.de/templates/yootheme/cache/83/JDC1_1-83eb9208.jpeg",
+      "title": "GLP JDC1 official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpeg",
+      "sha256": "969de8d7747c7e242caf279dc29fe358e130fd1712e07ac44d5bb193fc4f87a4"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.39,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "height": {
+      "value": 0.251,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "depth": {
+      "value": 0.15,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "1200 W max at 230 V; 100-240 VAC",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "11.6 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512-A",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.19499999284744263,
+        0.0,
+        -0.07500000298023224
+      ],
+      "max": [
+        0.19499999284744263,
+        0.25099998712539673,
+        0.07500000298023224
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body"
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke"
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens"
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "name": "primary light output",
+        "prim_path": "/Fixture/Emitter"
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer specifies H x W x D.",
+      "Moving components are separated but no runtime articulation joints are authored."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "68f60a0cd32725f23ca87d7c27151f01399561e1c1cc85ab4ffbf081d234c4fa"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "d5fb0a97342ff6c493656ce3779244131f7553587807f1cfbc37e35f22dba98c"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "070f4cb3053031a7ed28d331dc4fa7d34fb88a124ab313e4a72429ddd9124b18"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "dc622777b5ede130ac097a9f89ea8c45f504466fd4797418e69afc0bb56b02b3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "10c62e823591bab6b37e1aa1c8eb0d531a178470ca0b83e919f483697d3dd115"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "70eab1a9a3bb7622ee8d37a9c06724b34a51664cee1df9d7b767c4d22b9a8c87"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "4e3e64ab30852d60f331cd3b8dacd7dd7323da8bde4168c917060bebac23c4a5"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "1aa3576a3a1ea2ae18a640dd0b13dbfdb9d03bd158cc3a5805f502f12ee3b4dd"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+  ]
+}
