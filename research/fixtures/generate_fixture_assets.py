@@ -25,6 +25,14 @@ def artifact(folder,role,path):
     p=folder/path
     return {"role":role,"file":path,"sha256":sha(p)}
 def shape(row):
+    special={
+        ("ADJ","Focus Spot 4Z"):"focus_spot_4z",
+        ("CHAUVET Professional","COLORado Solo Batten"):"colorado_solo_batten",
+        ("Claypaky","Sharpy"):"sharpy",
+        ("Elation Professional","KL Fresnel 8"):"kl_fresnel_8",
+        ("ROBE Lighting","FORTE"):"forte",
+    }
+    if (row["manufacturer"],row["name"]) in special:return special[(row["manufacturer"],row["name"])]
     text=(row["type"]+" "+row["subtype"]).lower()
     if "moving head" in text:return "moving_head"
     if any(x in text for x in ("batten","bar","line")):return "batten"
@@ -77,8 +85,10 @@ def record_for(row,dims,folder,download_sources=True):
     for footprint in dict.fromkeys(x for x in raw_modes if isinstance(x,int) and 1<=x<=512):
         modes.append({"name":f"{footprint}-channel mode","footprint":footprint,"source_ids":sids,"mapping_status":"not_transcribed","channels":[]})
     spec={"id":fid,"width_m":dims["width_m"],"height_m":dims["height_m"],"depth_m":dims["depth_m"],"shape":shape(row)}
-    emitter="/Fixture/Head/Emitter" if spec["shape"]=="moving_head" else "/Fixture/Emitter"
-    parts=[{"name":"base","prim_path":"/Fixture/Base"},{"name":"yoke","prim_path":"/Fixture/Yoke"},{"name":"head","prim_path":"/Fixture/Head"},{"name":"lens","prim_path":"/Fixture/Head/Lens"}] if spec["shape"]=="moving_head" else ([{"name":"body","prim_path":"/Fixture/Body"},{"name":"lens","prim_path":"/Fixture/Lens"}] if spec["shape"]=="batten" else [{"name":"body","prim_path":"/Fixture/Body"},{"name":"yoke","prim_path":"/Fixture/Yoke"},{"name":"lens","prim_path":"/Fixture/Lens"}])
+    moving_shapes={"moving_head","focus_spot_4z","sharpy","forte"}
+    batten_shapes={"batten","colorado_solo_batten"}
+    emitter="/Fixture/Head/Emitter" if spec["shape"] in moving_shapes else "/Fixture/Emitter"
+    parts=[{"name":"base","prim_path":"/Fixture/Base"},{"name":"yoke","prim_path":"/Fixture/Yoke"},{"name":"head","prim_path":"/Fixture/Head"},{"name":"lens","prim_path":"/Fixture/Head/Lens"}] if spec["shape"] in moving_shapes else ([{"name":"body","prim_path":"/Fixture/Body"},{"name":"lens","prim_path":"/Fixture/Lens"}] if spec["shape"] in batten_shapes else [{"name":"body","prim_path":"/Fixture/Body"},{"name":"yoke","prim_path":"/Fixture/Yoke"},{"name":"lens","prim_path":"/Fixture/Lens"}])
     return spec,{"schema_version":1,"id":fid,"revision":1,"updated_at":TODAY,"status":"ready_for_visualization" if ds=="documented" else "researched","identity":{"manufacturer":row["manufacturer"],"model":row["name"],"variant":row["model_number"] or None,"aliases":[]},"sources":sources,"dimensions":{"width":fact(dims["width_m"],sids,ds,"m",note),"height":fact(dims["height_m"],sids,ds,"m",note),"depth":fact(dims["depth_m"],sids,ds,"m",note),"reference_pose":"shipping/upright reference pose; moving head centered"},"features":features,"dmx_modes":modes,"model":{"status":"validated","representation":"procedural_approximation","units":"meters","up_axis":"Y","forward_axis":"-Z","origin":"floor center; X horizontal, Y up, optical forward -Z","reference_pose":"shipping/upright reference pose; moving head centered","dimension_tolerance_m":0.001,"bounds_m":None,"parts":parts,"joints":[],"emitters":[{"name":"primary light output","prim_path":emitter}],"assumptions":["Procedural visualization proxy, not manufacturer CAD.",dims["axis_note"],"Moving components are separated but no runtime articulation joints are authored."],"artifacts":[]},"verification":{"realitykit":"not_tested","hardware":"not_tested","notes":["OpenUSD structural validation passed; RealityKit and physical hardware were not tested."]},"unresolved":(["Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."] if ds=="estimated" else [])+(["No official product image URL was present in the research CSV."] if not imgs else []),"revision_notes":["Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."]}
 
 def write_wrapper(folder,spec):

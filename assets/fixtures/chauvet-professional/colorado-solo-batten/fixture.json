@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "chauvet-professional/colorado-solo-batten",
-  "revision": 1,
+  "revision": 2,
   "updated_at": "2026-09-30",
   "status": "researched",
   "identity": {
@@ -223,50 +223,51 @@
       }
     ],
     "assumptions": [
-      "Procedural visualization proxy, not manufacturer CAD.",
-      "Overall dimensions are documented; bar-length/height/depth axis assignment is inferred from product class and imagery.",
-      "Moving components are separated but no runtime articulation joints are authored."
+      "Fixture-specific procedural approximation informed by the stored official product image; not manufacturer CAD.",
+      "Ribbed extrusion, continuous twelve-segment optic, electronics pod and mounting feet.",
+      "Small fasteners, exact surface curvature, labels, internal mechanics, connector geometry and photometry remain simplified.",
+      "Moving components remain separately addressable, but runtime articulation joints are not authored."
     ],
     "artifacts": [
       {
         "role": "authoring",
         "file": "models/fixture.blend",
-        "sha256": "79937a41631c0c37ddb00d2d86969c912fa8524b94089a768ca77ab7574ed4d4"
+        "sha256": "eff5506ae0f748bfe8085872cdc12e13cf45191fae51ee9f12fe26e6e4944c88"
       },
       {
         "role": "runtime",
         "file": "models/fixture.usdz",
-        "sha256": "8864c04c5f81d56938506f37b365dcae9c6f0ad493ecded3ae587cf7197a5dca"
+        "sha256": "b53a5a44bd323143b2cfaa457494c252534ae5007f848adef0a9d9862bb4fc6d"
       },
       {
         "role": "generator",
         "file": "models/build_fixture.py",
-        "sha256": "0bd651a85790f0c82590a432e57e230aebc3d91e45a1e5b87b1f88e4c5799e7c"
+        "sha256": "709021a0a645aed660c01d902a3130ce0e901c5395c01efbe82116e4c94f9c3d"
       },
       {
         "role": "preview",
         "file": "previews/front.png",
-        "sha256": "668413893e21788eaab16c8b1f5f71a12bf55e33269b8e5814f8888f8e363119"
+        "sha256": "0ca1233f7527bd32040bb7c09574559ce09ce649906a3cf7b2be2db06ff774d1"
       },
       {
         "role": "preview",
         "file": "previews/rear.png",
-        "sha256": "9007471a781cacdef274f26604c1bf4ad621d500213950f3e26bc11aa53edae4"
+        "sha256": "9616d7b23eeb33d80aaf3217d9b98b1396c4372fa115e0d675548709cb469b5b"
       },
       {
         "role": "preview",
         "file": "previews/side.png",
-        "sha256": "143ac7611da7cac159537e75c093c1363df12140a4e8fe66d5887e8728677075"
+        "sha256": "3e159b6a867b89bedac9ba8c248c4a28978e08d32ac9b2da082e0cb1ccd2ec95"
       },
       {
         "role": "preview",
         "file": "previews/three-quarter.png",
-        "sha256": "bfacd9f1f8d7afba03013a992ba9bf0ccee380e2d8b2cc7594251d45306b9e12"
+        "sha256": "c15b17b9d08f3eeeb0fb5332bd9bcd65feb27d89d1180a094e2be8ed2632de22"
       },
       {
         "role": "validation",
         "file": "validation/usdz.json",
-        "sha256": "49b70d12867361825a9ecab33cfac9fea7749576a43e3a9384f19eaaf7cfd573"
+        "sha256": "740ae996babe45a4537d35f2a97eabfb2f41b08219de23ebdacc7f6ea8f145f4"
       }
     ]
   },
@@ -281,6 +282,7 @@
     "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
   ],
   "revision_notes": [
-    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2 replaces the generic proxy with fixture-specific silhouette, optics, housing and mounting details while preserving sourced outer dimensions."
   ]
 }

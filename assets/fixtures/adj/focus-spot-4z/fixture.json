@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "adj/focus-spot-4z",
-  "revision": 1,
+  "revision": 2,
   "updated_at": "2026-09-30",
   "status": "ready_for_visualization",
   "identity": {
@@ -138,7 +138,7 @@
       "min": [
         -0.13930000364780426,
         0.0,
-        -0.09075000137090683
+        -0.09075099974870682
       ],
       "max": [
         0.13930000364780426,
@@ -172,50 +172,51 @@
       }
     ],
     "assumptions": [
-      "Procedural visualization proxy, not manufacturer CAD.",
-      "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L.",
-      "Moving components are separated but no runtime articulation joints are authored."
+      "Fixture-specific procedural approximation informed by the stored official product image; not manufacturer CAD.",
+      "Rounded base/control panel, U-yoke, capsule head, tilt hubs, optical barrel, bezel and cooling vents.",
+      "Small fasteners, exact surface curvature, labels, internal mechanics, connector geometry and photometry remain simplified.",
+      "Moving components remain separately addressable, but runtime articulation joints are not authored."
     ],
     "artifacts": [
       {
         "role": "authoring",
         "file": "models/fixture.blend",
-        "sha256": "0f9430e84b1f5f329fa111fd23a21524f9cb6c855230345001c69f78cf314a59"
+        "sha256": "61388be3ec9361c901b114ab33667757161ccfe7389cf5aacaeacf50b96936a4"
       },
       {
         "role": "runtime",
         "file": "models/fixture.usdz",
-        "sha256": "6e53c4f2c59b7aff292ab9b51c0367d0392add7278e5fa6233278ea469e92489"
+        "sha256": "c128ef16dad7c0ab5519ae73ff29abefc317b967b72558297408a35bda3674d6"
       },
       {
         "role": "generator",
         "file": "models/build_fixture.py",
-        "sha256": "9f90e25f0514f65c88ad7f2accd0b95e04933b6c00c6f65e343dce69de801381"
+        "sha256": "a843c50011a761d3a25d7f6268661c2bba60c2bc536b03b2ad509fd0ea7e857f"
       },
       {
         "role": "preview",
         "file": "previews/front.png",
-        "sha256": "6d2f977da9a113763b9c1603a95a899fd45101d02ff64f3feeab39a64b93ac8a"
+        "sha256": "99916059393f02ecc90f06298a0309cdd8770a697626ba7ba5eaaa3bccbed9ca"
       },
       {
         "role": "preview",
         "file": "previews/rear.png",
-        "sha256": "f173c91b4ce9b7c565c454a589c3b23b69764a41028cfcd50c3fe018a0382c4a"
+        "sha256": "3f98ea343f047bb0459333afcc9905906430cdfa82c71af329e72d56055dc466"
       },
       {
         "role": "preview",
         "file": "previews/side.png",
-        "sha256": "3e217d548c47d6fbca5b90cf70f39a6a241c81c8152112a61ec02ad7c6384346"
+        "sha256": "177c1f1788be121cad4c6351b1b9d6984e09d0eacb200a6d78e6a38295dd2e14"
       },
       {
         "role": "preview",
         "file": "previews/three-quarter.png",
-        "sha256": "8c5fe5ec6a677c80ff1d47bea8e30a0a0ea5f4eaba59ca84f1d163f3f92ff097"
+        "sha256": "1e5d18e83193ad4d8aee44b28bde25bee8bf92877971da58cfad11080a24733e"
       },
       {
         "role": "validation",
         "file": "validation/usdz.json",
-        "sha256": "ec25aadfb80115aecda98af088dd9289fe5aab56ab93b6a2d7c54c0c064a05fa"
+        "sha256": "6e3e97b9a4cb14e3c4c10996baac7ed21c47bb84f3203074f7bd6129166024fa"
       }
     ]
   },
@@ -228,6 +229,7 @@
   },
   "unresolved": [],
   "revision_notes": [
-    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2 replaces the generic proxy with fixture-specific silhouette, optics, housing and mounting details while preserving sourced outer dimensions."
   ]
 }

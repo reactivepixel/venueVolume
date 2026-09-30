@@ -5,12 +5,12 @@ Generated from validated records by the fixture skill. Do not edit this index by
 | Fixture | Revision | Status |
 | --- | --- | --- |
 | [ADJ 7P HEX IP](entries/adj/7p-hex-ip.md) | 1 | ready_for_visualization |
-| [ADJ Focus Spot 4Z](entries/adj/focus-spot-4z.md) | 1 | ready_for_visualization |
+| [ADJ Focus Spot 4Z](entries/adj/focus-spot-4z.md) | 2 | ready_for_visualization |
 | [ADJ Hydro Beam X1](entries/adj/hydro-beam-x1.md) | 1 | ready_for_visualization |
 | [ADJ Jolt Bar FX](entries/adj/jolt-bar-fx.md) | 1 | ready_for_visualization |
 | [ADJ LED Bar](entries/adj/led-bar.md) | 1 | ready_for_visualization |
 | [ADJ STRYKER WASH](entries/adj/stryker-wash.md) | 1 | ready_for_visualization |
-| [CHAUVET Professional COLORado Solo Batten](entries/chauvet-professional/colorado-solo-batten.md) | 1 | researched |
+| [CHAUVET Professional COLORado Solo Batten](entries/chauvet-professional/colorado-solo-batten.md) | 2 | researched |
 | [CHAUVET Professional COLORdash Batten-Quad 6](entries/chauvet-professional/colordash-batten-quad-6.md) | 1 | researched |
 | [CHAUVET Professional Maverick MK2 Wash](entries/chauvet-professional/maverick-mk2-wash.md) | 1 | researched |
 | [CHAUVET Professional Rogue R1X Spot](entries/chauvet-professional/rogue-r1x-spot.md) | 1 | researched |
@@ -19,13 +19,13 @@ Generated from validated records by the fixture skill. Do not edit this index by
 | [Claypaky Arolla Profile MP](entries/claypaky/arolla-profile-mp.md) | 1 | researched |
 | [Claypaky Arolla Spot MP](entries/claypaky/arolla-spot-mp.md) | 1 | ready_for_visualization |
 | [Claypaky HY B-EYE K25](entries/claypaky/hy-b-eye-k25.md) | 1 | researched |
-| [Claypaky Sharpy](entries/claypaky/sharpy.md) | 1 | researched |
+| [Claypaky Sharpy](entries/claypaky/sharpy.md) | 2 | researched |
 | [Claypaky Sharpy Plus](entries/claypaky/sharpy-plus.md) | 1 | researched |
 | [Claypaky Sharpy Plus Aqua](entries/claypaky/sharpy-plus-aqua.md) | 1 | ready_for_visualization |
 | [Elation Professional DARTZ 360](entries/elation-professional/dartz-360.md) | 1 | ready_for_visualization |
 | [Elation Professional Fuze SFX](entries/elation-professional/fuze-sfx.md) | 1 | ready_for_visualization |
 | [Elation Professional Fuze Wash 500](entries/elation-professional/fuze-wash-500.md) | 1 | ready_for_visualization |
-| [Elation Professional KL Fresnel 8](entries/elation-professional/kl-fresnel-8.md) | 1 | ready_for_visualization |
+| [Elation Professional KL Fresnel 8](entries/elation-professional/kl-fresnel-8.md) | 2 | ready_for_visualization |
 | [Elation Professional Proteus Radius](entries/elation-professional/proteus-radius.md) | 1 | ready_for_visualization |
 | [Elation Professional SixBar 1000](entries/elation-professional/sixbar-1000.md) | 1 | ready_for_visualization |
 | [ETC ColorSource Fresnel V](entries/etc/colorsource-fresnel-v.md) | 1 | ready_for_visualization |
@@ -48,7 +48,7 @@ Generated from validated records by the fixture skill. Do not edit this index by
 | [Martin Professional (HARMAN) MAC Ultra Performance](entries/martin-professional-harman/mac-ultra-performance.md) | 1 | researched |
 | [Martin Professional (HARMAN) MAC Ultra Wash](entries/martin-professional-harman/mac-ultra-wash.md) | 1 | researched |
 | [Martin Professional (HARMAN) MAC Viper XIP](entries/martin-professional-harman/mac-viper-xip.md) | 1 | researched |
-| [ROBE Lighting FORTE](entries/robe-lighting/forte.md) | 1 | ready_for_visualization |
+| [ROBE Lighting FORTE](entries/robe-lighting/forte.md) | 2 | ready_for_visualization |
 | [ROBE Lighting LEDBeam 350](entries/robe-lighting/ledbeam-350.md) | 1 | ready_for_visualization |
 | [ROBE Lighting MegaPointe](entries/robe-lighting/megapointe.md) | 1 | ready_for_visualization |
 | [ROBE Lighting Pointe](entries/robe-lighting/pointe.md) | 1 | ready_for_visualization |

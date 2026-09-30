@@ -5,6 +5,6 @@ HERE=Path(__file__).resolve().parent
 module_path=(HERE/'../../../_shared/procedural_fixture.py').resolve()
 s=importlib.util.spec_from_file_location("venue_fixture_builder",module_path)
 m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
-SPEC={'id': 'robe-lighting/forte', 'width_m': 0.4835, 'height_m': 0.6355, 'depth_m': 0.6245, 'shape': 'moving_head'}
+SPEC={'id': 'robe-lighting/forte', 'width_m': 0.4835, 'height_m': 0.6355, 'depth_m': 0.6245, 'shape': 'forte'}
 m.build(SPEC,HERE.parent)
 sys.stdout.flush(); sys.stderr.flush(); os._exit(0)
