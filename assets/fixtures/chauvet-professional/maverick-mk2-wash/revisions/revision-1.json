@@ -1,0 +1,255 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "chauvet-professional/maverick-mk2-wash",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "CHAUVET Professional",
+      "model": "Maverick MK2 Wash",
+      "variant": "MAVERICKMK2WASH",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://chauvetprofessional.com/product/maverick-mk2-wash/",
+        "title": "CHAUVET Professional Maverick MK2 Wash official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://chauvetprofessional.com/wp-content/uploads/2025/10/MAVERICK-MK2-WASH-FRONT-FEAT.png",
+        "title": "CHAUVET Professional Maverick MK2 Wash official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.png",
+        "sha256": "c2014e532ef37d364406d6156eed43ac31eb28a04bebab0342f23ebaa3bf9047"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.233,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Overall dimensions are documented; W/H/L axis assignment follows the manufacturer product-page order used for this moving head."
+      },
+      "height": {
+        "value": 0.471,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Overall dimensions are documented; W/H/L axis assignment follows the manufacturer product-page order used for this moving head."
+      },
+      "depth": {
+        "value": 0.323,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Overall dimensions are documented; W/H/L axis assignment follows the manufacturer product-page order used for this moving head."
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": [
+            "12 x 40 W RGBW LEDs; 4.7-65.5° zoom; IP20"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "503 W; 100-240 V AC",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "32.8 lb (14.8 kg)",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "Art-Net",
+            "sACN",
+            "Kling-Net",
+            "W-DMX",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "20-channel mode",
+        "footprint": 20,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "69-channel mode",
+        "footprint": 69,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "115-channel mode",
+        "footprint": 115,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.11649999767541885,
+          0.0,
+          -0.1615000069141388
+        ],
+        "max": [
+          0.11649999767541885,
+          0.47099998593330383,
+          0.1615000069141388
+        ]
+      },
+      "parts": [
+        {
+          "name": "base",
+          "prim_path": "/Fixture/Base"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "head",
+          "prim_path": "/Fixture/Head"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Head/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Head/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Overall dimensions are documented; W/H/L axis assignment follows the manufacturer product-page order used for this moving head.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "2396218e9887dec7e8f3ff050c48362141d80b1dd12db60774c0dbdc7c2364ac"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "462c14449c6de5f7c685d861ce94cbd603b6ec9b7b20dbff085719242d737a4b"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "2cb102ac8488a2384c8f682ff798c5b5e45ac14136befbe4534231d3d386e665"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "b009abe3e31266b42832b4b196f14bad44762869dbd103451b73268408cdf774"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "e7234046fff9c569fb34093612558e40dea750cf8cf98c13bc34dd719825a8db"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "a1d0c756181d3b81aa5422a147a6168cc5b0d3a18e5721e11a184f8da13b395b"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "a4a862338b8f0738db00696af492f4358f9035be4d197cc970ec2da073988882"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "21c3f39395e9e06f3b34fbed5ac5037a0ed213886dddd50f473c0ae883e35ea0"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-1",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

@@ -1,0 +1,77 @@
+{
+  "mesh_count": 107,
+  "triangle_count": 30844,
+  "geometry_sha256": "ce48482b0ee6925f2df9f583b7968bf4ab29d925df01ad663d6690780fa1e9f9",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.3919345736503601,
+      -0.0864594355225563
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0005178384599275887
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.07494402676820755,
+        0.0005178384599275887
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.3919345736503601,
+        0.0005178384599275887
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.3919345736503601,
+        -0.08328142017126083
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216243743896,
+    1.0356903076171875,
+    0.9944801926612854
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://chauvetprofessional.com/product/maverick-mk2-wash/",
+    "https://chauvetprofessional.com/wp-content/uploads/2025/10/MAVERICK-MK2-WASH-FRONT-FEAT.png"
+  ]
+}

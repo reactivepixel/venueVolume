@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "martin-professional-harman/mac-one",
-  "revision": 1,
+  "revision": 2,
   "updated_at": "2026-09-30",
   "status": "researched",
   "identity": {
@@ -98,86 +98,182 @@
       "min": [
         -0.12700000405311584,
         0.0,
-        -0.10999999940395355
+        -0.10999999946216121
       ],
       "max": [
         0.12700000405311584,
-        0.3490000069141388,
-        0.10999999940395355
+        0.3489999771118164,
+        0.10999999934574589
       ]
     },
     "parts": [
       {
         "name": "base",
-        "prim_path": "/Fixture/Base"
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0005064382567070425
+        ]
       },
       {
         "name": "yoke",
-        "prim_path": "/Fixture/Yoke"
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.0553877130150795,
+          0.0005064382567070425
+        ]
       },
       {
         "name": "head",
-        "prim_path": "/Fixture/Head"
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.26303210854530334,
+          0.0005064382567070425
+        ]
       },
       {
-        "name": "lens",
-        "prim_path": "/Fixture/Head/Lens"
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.26303210854530334,
+          -0.055313486605882645
+        ]
       }
     ],
-    "joints": [],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.0553877130150795,
+          0.0005064382567070425
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.26303210854530334,
+          0.0005064382567070425
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
     "emitters": [
       {
-        "name": "primary light output",
-        "prim_path": "/Fixture/Head/Emitter"
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.26303210854530334,
+          -0.057430412620306015
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
       }
     ],
     "assumptions": [
       "Procedural visualization proxy, not manufacturer CAD.",
       "Maximum envelope is documented; axis assignment follows the official product image and stated yoke width.",
-      "Moving components are separated but no runtime articulation joints are authored."
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
     ],
     "artifacts": [
       {
         "role": "authoring",
         "file": "models/fixture.blend",
-        "sha256": "2f1f478bd283eebcdfdf07b4f1ca64d3e42b393b7d903cc5245cb528cccf8ea4"
+        "sha256": "9bb7fa878e6483fed386234a78e6ffaf6cda3cf836b0422473eacd2500ea876d"
       },
       {
         "role": "runtime",
         "file": "models/fixture.usdz",
-        "sha256": "877ed015fd11af8cdfc9f51693eda50ae3628bacaf7d5d8095da6543c7af35c1"
+        "sha256": "becc0ac2f64c0702afb2c3e3df2f345e61313c2c46afd53f0ff9a5b584fab804"
       },
       {
         "role": "generator",
         "file": "models/build_fixture.py",
-        "sha256": "be12a3752c04a8b6276a4d3cdbf26ba63af2772d48c04bc993a054962d5ff50f"
-      },
-      {
-        "role": "preview",
-        "file": "previews/front.png",
-        "sha256": "3a61dd82cef3859f464025bf161257aa84d389125c08e726a3022339fa8577ca"
-      },
-      {
-        "role": "preview",
-        "file": "previews/rear.png",
-        "sha256": "054b170eb46ed4ac8bddbf9feff46a199a378679b6531019db2e12b871ebf1d1"
-      },
-      {
-        "role": "preview",
-        "file": "previews/side.png",
-        "sha256": "953576cda122713d70ad3cffc590c0bc28574a5b16477e09d695478ffd0c6a16"
-      },
-      {
-        "role": "preview",
-        "file": "previews/three-quarter.png",
-        "sha256": "369cb579122f9ddac914331175797dac5bef6a3c3c2ebe4e7b6ecf7a6b1b1a4c"
+        "sha256": "918bbef1f43044c312e842a013e8fac8e3c5f90840b9c9d82f3b9a345bae243f"
       },
       {
         "role": "validation",
         "file": "validation/usdz.json",
-        "sha256": "02f16ab10895cea797cd578671923fa3593791f21f8608fed2ad72c80a29e654"
+        "sha256": "b1e1554ab54f7f4432767f779d598ef121eaed6942c56fedc4da4440c05d3fd5"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "40815f45a3d5b02dc9f54e99bfbfeb578ef4013ac3124686d47dc2e54e8aaa06"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "ab0f965f74079c93c8d714d9db32b79dab47d4bf15ab08369726e1a7a5274595"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "3556eda42d8893ecfbd302c0c01dff8e5f40ea9b9b9096338613b2377b5f8f8d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "5f0e2f1b1148141aaeb07e78c4ed187f8b8acd038e5a78d25a9ace67ec9be00c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "66958c0b7b277efed8a640a80d2b79eafe3be4ad220710e42daa27378f3b5f0b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "777a7cf9ea78d204b17270ff8117da335aa5e3520e77634f40c756af6cdbc9ed"
       }
-    ]
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "b60efaec41120027bd1ba4fe176d4ed6333d9777a370cfe5f8772e13300686cf",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 1,
+      "aura": true
+    },
+    "mesh_count": 109,
+    "triangle_count": 20808,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
   },
   "verification": {
     "realitykit": "not_tested",
@@ -190,6 +286,7 @@
     "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
   ],
   "revision_notes": [
-    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
   ]
 }

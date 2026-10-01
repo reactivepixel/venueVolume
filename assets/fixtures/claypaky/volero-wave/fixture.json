@@ -1,0 +1,350 @@
+{
+  "schema_version": 1,
+  "id": "claypaky/volero-wave",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Claypaky",
+    "model": "Volero Wave",
+    "variant": "CL3023",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.claypaky.it/products/volero-wave/",
+      "title": "Volero Wave product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Overview and Specs; eight independent heads, 400 VA, weight and size",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_VoleroWave.jpg",
+      "title": "Volero Wave product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.jpg",
+      "sha256": "dd8615f4d2e4d4b597a09ad20d8bd40cde91e5476936ac8f80612ec09a97c1d5"
+    },
+    {
+      "id": "dimension-drawing-review",
+      "url": "https://ltb.no/media/multicase/documents/claypaky/datablad_claypaky_volerowave_11.2022.pdf",
+      "title": "Claypaky Volero Wave datasheet 11/2022 (distributor mirror)",
+      "kind": "manufacturer_drawing",
+      "accessed_at": "2026-09-30",
+      "document_revision": "11/2022",
+      "locator": "Page 1 dimensioned side and isometric drawings",
+      "reuse_status": "reference_only",
+      "file": "sources/volero-datasheet-11-2022.pdf",
+      "sha256": "8b2a2fa3d5e44cb6720023fb82001493549e0c70584c543f1d6810a755f2385e"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 1.0,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Product page lists size 1000 x 329 x 182 mm; long axis treated as width for horizontal bar pose."
+    },
+    "height": {
+      "value": 0.329,
+      "status": "documented",
+      "source_ids": [
+        "dimension-drawing-review"
+      ],
+      "unit": "m",
+      "note": "Claypaky datasheet 11/2022 page 1 drawing: 1000 mm span, 329 mm vertical height and 182 mm head sweep depth; distributor-hosted manufacturer document visually checked."
+    },
+    "depth": {
+      "value": 0.182,
+      "status": "documented",
+      "source_ids": [
+        "dimension-drawing-review"
+      ],
+      "unit": "m",
+      "note": "Claypaky datasheet 11/2022 page 1 drawing: 1000 mm span, 329 mm vertical height and 182 mm head sweep depth; distributor-hosted manufacturer document visually checked."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Bar horizontal with eight head modules at neutral angle."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "400 VA max",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "20.8 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "Art-Net",
+          "sACN",
+          "WebServer"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.4999999701976776,
+        -7.450580596923828e-09,
+        -0.09099999954923987
+      ],
+      "max": [
+        0.4999999701976776,
+        0.32899999618530273,
+        0.09100000420585275
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0031870556995272636,
+          0.004690824542194605
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.19759760797023773,
+          0.004690824542194605
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.19759760797023773,
+          -0.06353574246168137
+        ]
+      },
+      {
+        "name": "head_01",
+        "prim_path": "/Fixture/Head_01",
+        "pivot_m": [
+          -0.3723404109477997,
+          0.2568768858909607,
+          0.004690824542194605
+        ]
+      },
+      {
+        "name": "head_02",
+        "prim_path": "/Fixture/Head_02",
+        "pivot_m": [
+          -0.26595744490623474,
+          0.2568768858909607,
+          0.004690824542194605
+        ]
+      },
+      {
+        "name": "head_03",
+        "prim_path": "/Fixture/Head_03",
+        "pivot_m": [
+          -0.1595744639635086,
+          0.2568768858909607,
+          0.004690824542194605
+        ]
+      },
+      {
+        "name": "head_04",
+        "prim_path": "/Fixture/Head_04",
+        "pivot_m": [
+          -0.05319148674607277,
+          0.2568768858909607,
+          0.004690824542194605
+        ]
+      },
+      {
+        "name": "head_05",
+        "prim_path": "/Fixture/Head_05",
+        "pivot_m": [
+          0.05319148674607277,
+          0.2568768858909607,
+          0.004690824542194605
+        ]
+      },
+      {
+        "name": "head_06",
+        "prim_path": "/Fixture/Head_06",
+        "pivot_m": [
+          0.1595744639635086,
+          0.2568768858909607,
+          0.004690824542194605
+        ]
+      },
+      {
+        "name": "head_07",
+        "prim_path": "/Fixture/Head_07",
+        "pivot_m": [
+          0.26595744490623474,
+          0.2568768858909607,
+          0.004690824542194605
+        ]
+      },
+      {
+        "name": "head_08",
+        "prim_path": "/Fixture/Head_08",
+        "pivot_m": [
+          0.3723404109477997,
+          0.2568768858909607,
+          0.004690824542194605
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.19759760797023773,
+          -0.06533117592334747
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Product page lists size 1000 x 329 x 182 mm; long axis treated as width for horizontal bar pose.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "e5bd7660a67522ac56cb967e5f411963629e59a61aa4dad0b738c60d6a8ffc67"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "d13a5e89e12b479d263389e0f551bfe885fb5c4d15203bf1c99ec611c52dab8e"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "96c6abc1f710b1f5f87d5fc6b1d8cf2e2e5caa073011da70a2cc38f95bec1f0f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "521c96617f61efc83ae24a5e3bc04a62bfa99c590a52bed06aa398968c45207c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "92266e228ffd5627eeeb48900d1164f7d4c3f6ad849d9e1fa350583c4dfb7ed9"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "24add070cfb05414c88b2f51dbea97287f7632b62d46b014683c6817e6b79ea2"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "439f9e01562e6dff799a9aaa1aa2bc093490fd45db0e0575ea354fa5ba287983"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "38c215dfd1c016f659c3f7d856310c62ac9e9c7720b4bd58f0d7ac91146f4b62"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "413b9913fc2929eae891529af04ff740ed3097b07020f7566015f78136a542a8"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "70cb5e8cb707e0ad705188de2b71da339f69bd3222fa6d6f16ff3668c6ec55b5"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "55da9418327900bbbaf704e81a8ccba73a59f39d2f957f9cf72efa4c6af8007d",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "batten",
+      "lens_count": 8,
+      "body_style": "linear chassis with eight individually tilting optical heads",
+      "notes": "Independent modules tilt 220 degrees; product on demand. Render as a fixed bar with separate head pivots.",
+      "multi_heads": true
+    },
+    "mesh_count": 141,
+    "triangle_count": 29628,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Acquired in expansion batch 1. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed batten geometry, editable part pivots, full-detail USDZ export and four refreshed previews.",
+    "Visual drawing review corrected transposed height/depth: 329 mm high, 182 mm deep."
+  ]
+}

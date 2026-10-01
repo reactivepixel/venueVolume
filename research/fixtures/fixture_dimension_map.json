@@ -1,64 +1,566 @@
 {
-  "ADJ|7P HEX IP": {"width_m": 0.1617, "height_m": 0.2325, "depth_m": 0.256, "axis_status": "documented", "axis_note": "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L."},
-  "ADJ|Focus Spot 4Z": {"width_m": 0.2786, "height_m": 0.4574, "depth_m": 0.1815, "axis_status": "documented", "axis_note": "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L."},
-  "ADJ|Hydro Beam X1": {"width_m": 0.21, "height_m": 0.43, "depth_m": 0.336, "axis_status": "documented", "axis_note": "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L."},
-  "ADJ|Jolt Bar FX": {"width_m": 1.0, "height_m": 0.123, "depth_m": 0.107, "axis_status": "documented", "axis_note": "Manufacturer specifies bar L x W x H; runtime width follows bar length."},
-  "ADJ|LED Bar": {"width_m": 0.5, "height_m": 0.132, "depth_m": 0.09, "axis_status": "documented", "axis_note": "Manufacturer specifies bar L x W x H; runtime width follows bar length."},
-  "ADJ|STRYKER WASH": {"width_m": 0.324, "height_m": 0.399, "depth_m": 0.222, "axis_status": "documented", "axis_note": "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L."},
-
-  "CHAUVET Professional|COLORado Solo Batten": {"width_m": 1.0125, "height_m": 0.2498, "depth_m": 0.23, "axis_status": "estimated", "axis_note": "Overall dimensions are documented; bar-length/height/depth axis assignment is inferred from product class and imagery."},
-  "CHAUVET Professional|COLORdash Batten-Quad 6": {"width_m": 0.56, "height_m": 0.164, "depth_m": 0.065, "axis_status": "estimated", "axis_note": "Overall dimensions are documented; bar-length/height/depth axis assignment is inferred from product class and imagery."},
-  "CHAUVET Professional|Maverick MK2 Wash": {"width_m": 0.233, "height_m": 0.471, "depth_m": 0.323, "axis_status": "estimated", "axis_note": "Overall dimensions are documented; W/H/L axis assignment follows the manufacturer product-page order used for this moving head."},
-  "CHAUVET Professional|Rogue R1X Spot": {"width_m": 0.36, "height_m": 0.447, "depth_m": 0.282, "axis_status": "estimated", "axis_note": "Overall dimensions are documented; W/H/L axis assignment follows the manufacturer product-page order used for this moving head."},
-  "CHAUVET Professional|Rogue R2 Wash": {"width_m": 0.306, "height_m": 0.398, "depth_m": 0.218, "axis_status": "estimated", "axis_note": "Overall dimensions are documented; W/H/L axis assignment follows the manufacturer product-page order used for this moving head."},
-  "CHAUVET Professional|Rogue RH1 Hybrid": {"width_m": 0.327, "height_m": 0.638, "depth_m": 0.409, "axis_status": "estimated", "axis_note": "Overall dimensions are documented; W/H/L axis assignment follows the manufacturer product-page order used for this moving head."},
-
-  "Claypaky|Arolla Profile MP": {"width_m": 0.36, "height_m": 0.593, "depth_m": 0.25, "axis_status": "estimated", "axis_note": "Base footprint and height are documented; base width/depth orientation follows the dimensional drawing and product imagery."},
-  "Claypaky|Arolla Spot MP": {"width_m": 0.36, "height_m": 0.593, "depth_m": 0.25, "axis_status": "documented", "axis_note": "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L."},
-  "Claypaky|HY B-EYE K25": {"width_m": 0.387, "height_m": 0.59, "depth_m": 0.329, "axis_status": "estimated", "axis_note": "Base footprint and horizontal-head height are documented; base axis assignment follows the dimensional drawing."},
-  "Claypaky|Sharpy": {"width_m": 0.405, "height_m": 0.475, "depth_m": 0.33, "axis_status": "estimated", "axis_note": "Base footprint and height are documented; base width/depth orientation follows the manufacturer drawing."},
-  "Claypaky|Sharpy Plus": {"width_m": 0.375, "height_m": 0.635, "depth_m": 0.307, "axis_status": "estimated", "axis_note": "Base footprint and height are documented; base width/depth orientation follows the manufacturer drawing."},
-  "Claypaky|Sharpy Plus Aqua": {"width_m": 0.42, "height_m": 0.731, "depth_m": 0.336, "axis_status": "documented", "axis_note": "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L."},
-
-  "Elation Professional|DARTZ 360": {"width_m": 0.19597, "height_m": 0.4547, "depth_m": 0.28415, "axis_status": "documented", "axis_note": "Manufacturer lists length, width and height individually; runtime X/Y/Z uses width/height/length."},
-  "Elation Professional|Fuze SFX": {"width_m": 0.233, "height_m": 0.595, "depth_m": 0.362, "axis_status": "documented", "axis_note": "Manufacturer lists length, width and height individually; runtime X/Y/Z uses width/height/length."},
-  "Elation Professional|Fuze Wash 500": {"width_m": 0.4079, "height_m": 0.5505, "depth_m": 0.3895, "axis_status": "documented", "axis_note": "Manufacturer lists length, width and height with snoot; runtime X/Y/Z uses width/height/length."},
-  "Elation Professional|KL Fresnel 8": {"width_m": 0.3275, "height_m": 0.456, "depth_m": 0.6084, "axis_status": "documented", "axis_note": "Manufacturer lists length, width and height individually; runtime X/Y/Z uses width/height/length."},
-  "Elation Professional|Proteus Radius": {"width_m": 0.395, "height_m": 0.516, "depth_m": 0.27, "axis_status": "documented", "axis_note": "Manufacturer lists length, width and height individually; runtime X/Y/Z uses width/height/length."},
-  "Elation Professional|SixBar 1000": {"width_m": 0.9, "height_m": 0.155, "depth_m": 0.2064, "axis_status": "documented", "axis_note": "Manufacturer lists bar length, width and height; runtime width follows bar length."},
-
-  "ETC|ColorSource Fresnel V": {"width_m": 0.321, "height_m": 0.339, "depth_m": 0.311, "axis_status": "documented", "axis_note": "Manufacturer specifies H x W x D."},
-  "ETC|ColorSource Spot V": {"width_m": 0.339, "height_m": 0.593, "depth_m": 0.672, "axis_status": "estimated", "axis_note": "Maximum barrel/lens envelope is documented; H/W/depth assignment follows the manufacturer drawing orientation."},
-  "ETC|Desire D60": {"width_m": 0.309, "height_m": 0.361, "depth_m": 0.29, "axis_status": "estimated", "axis_note": "Maximum overall dimensions are documented; H/W/depth assignment follows the assembled fixture drawing."},
-  "ETC|fos/4 Fresnel": {"width_m": 0.313, "height_m": 0.435, "depth_m": 0.505, "axis_status": "estimated", "axis_note": "Zoom range envelope is documented; the extended depth is used for a conservative outer bound."},
-  "ETC|Source Four LED Series 3 Lustr X8": {"width_m": 0.34, "height_m": 0.34, "depth_m": 0.721, "axis_status": "estimated", "axis_note": "Maximum lens-tube envelope is documented; long axis is assigned to runtime depth."},
-
-  "GLP|impression X4 Bar 20": {"width_m": 1.0, "height_m": 0.24, "depth_m": 0.1, "axis_status": "documented", "axis_note": "Manufacturer drawing identifies head height/width and yoke width."},
-  "GLP|impression X5": {"width_m": 0.415, "height_m": 0.434, "depth_m": 0.29, "axis_status": "documented", "axis_note": "Manufacturer specifies H x W x D; maximum documented height is used."},
-  "GLP|impression X5 Bar 1000": {"width_m": 1.0, "height_m": 0.296, "depth_m": 0.11, "axis_status": "documented", "axis_note": "Manufacturer specifies H x W x D."},
-  "GLP|impression X5 Compact": {"width_m": 0.25, "height_m": 0.337, "depth_m": 0.183, "axis_status": "documented", "axis_note": "Manufacturer specifies H x W x D."},
-  "GLP|JDC Line 500": {"width_m": 0.507, "height_m": 0.074, "depth_m": 0.2015, "axis_status": "documented", "axis_note": "Manufacturer specifies H x W x D."},
-  "GLP|JDC1": {"width_m": 0.39, "height_m": 0.251, "depth_m": 0.15, "axis_status": "documented", "axis_note": "Manufacturer specifies H x W x D."},
-
-  "High End Systems|SolaFrame 3000": {"width_m": 0.491, "height_m": 0.821, "depth_m": 0.368, "axis_status": "estimated", "axis_note": "Overall dimensions are documented; H/W/depth assignment follows the official dimensional drawing."},
-  "High End Systems|SolaWash 2000": {"width_m": 0.475, "height_m": 0.886, "depth_m": 0.32, "axis_status": "estimated", "axis_note": "Overall dimensions are documented; width/depth/height assignment follows the official dimensional drawing."},
-
-  "Martin Professional (HARMAN)|Atomic 3000 LED": {"width_m": 0.425, "height_m": 0.245, "depth_m": 0.24, "axis_status": "estimated", "axis_note": "Overall dimensions are documented; H/W/depth assignment follows product imagery and the manufacturer technical page."},
-  "Martin Professional (HARMAN)|ELP CL": {"width_m": 0.259, "height_m": 0.427, "depth_m": 0.648, "axis_status": "estimated", "axis_note": "Bracketed envelope is documented; long housing axis is assigned to runtime depth."},
-  "Martin Professional (HARMAN)|MAC Aura XIP": {"width_m": 0.338, "height_m": 0.421, "depth_m": 0.226, "axis_status": "estimated", "axis_note": "Maximum envelope is documented; axis assignment follows the official product image and stated base width."},
-  "Martin Professional (HARMAN)|MAC One": {"width_m": 0.254, "height_m": 0.349, "depth_m": 0.22, "axis_status": "estimated", "axis_note": "Maximum envelope is documented; axis assignment follows the official product image and stated yoke width."},
-  "Martin Professional (HARMAN)|MAC Ultra Performance": {"width_m": 0.52, "height_m": 0.876, "depth_m": 0.66, "axis_status": "estimated", "axis_note": "Maximum envelope is documented; H/W/depth assignment follows the official product drawing."},
-  "Martin Professional (HARMAN)|MAC Ultra Wash": {"width_m": 0.52, "height_m": 0.867, "depth_m": 0.642, "axis_status": "estimated", "axis_note": "Maximum envelope is documented; H/W/depth assignment follows the official product drawing."},
-  "Martin Professional (HARMAN)|MAC Viper XIP": {"width_m": 0.479, "height_m": 0.776, "depth_m": 0.595, "axis_status": "estimated", "axis_note": "Maximum envelope is documented; H/W/depth assignment follows the official product drawing."},
-
-  "ROBE Lighting|FORTE": {"width_m": 0.4835, "height_m": 0.6355, "depth_m": 0.6245, "axis_status": "documented", "axis_note": "Manufacturer specifies H x W x D for the horizontal-head pose; upright sweep height is retained separately."},
-  "ROBE Lighting|LEDBeam 350": {"width_m": 0.32, "height_m": 0.426, "depth_m": 0.22, "axis_status": "documented", "axis_note": "Manufacturer specifies H x W x D with head vertical."},
-  "ROBE Lighting|MegaPointe": {"width_m": 0.396, "height_m": 0.64, "depth_m": 0.23, "axis_status": "documented", "axis_note": "Manufacturer specifies H x W x D."},
-  "ROBE Lighting|Pointe": {"width_m": 0.4, "height_m": 0.53, "depth_m": 0.28, "axis_status": "documented", "axis_note": "Manufacturer specifies H x W x D."},
-  "ROBE Lighting|Spiider": {"width_m": 0.39, "height_m": 0.477, "depth_m": 0.286, "axis_status": "documented", "axis_note": "Manufacturer specifies H x W x D with head vertical."},
-  "ROBE Lighting|T1 Profile": {"width_m": 0.491, "height_m": 0.542, "depth_m": 0.344, "axis_status": "documented", "axis_note": "Manufacturer specifies H x W x D with head vertical."},
-
-  "Vari-Lite|VL2600 SPOT": {"width_m": 0.464, "height_m": 0.715, "depth_m": 0.3, "axis_status": "estimated", "axis_note": "Overall dimensions are documented; width/depth/height assignment follows the official product drawing."},
-  "Vari-Lite|VL3600 PROFILE IP": {"width_m": 0.56, "height_m": 0.799, "depth_m": 0.34, "axis_status": "estimated", "axis_note": "Overall dimensions are documented; width/height/depth assignment follows the official product drawing."},
-  "Vari-Lite|VL5LED WASH": {"width_m": 0.367, "height_m": 0.578, "depth_m": 0.36, "axis_status": "estimated", "axis_note": "Overall dimensions are documented; width/height/depth assignment follows the official datasheet."}
+  "ADJ|7P HEX IP": {
+    "width_m": 0.256,
+    "height_m": 0.2348,
+    "depth_m": 0.1704,
+    "axis_status": "documented",
+    "axis_note": "Floor-standing split-yoke drawing: W256 mm across knobs, H234.8 mm side-view maximum, D170.4 mm floor feet. Product-page 256 x 161.7 x 232.5 mm combines a different folded bracket pose.",
+    "reference_pose": "Floor-standing split-yoke pose, optical axis horizontal"
+  },
+  "ADJ|Focus Spot 4Z": {
+    "width_m": 0.2786,
+    "height_m": 0.4574,
+    "depth_m": 0.1815,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L."
+  },
+  "ADJ|Hydro Beam X1": {
+    "width_m": 0.21,
+    "height_m": 0.43,
+    "depth_m": 0.336,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L."
+  },
+  "ADJ|Jolt Bar FX": {
+    "width_m": 1.0,
+    "height_m": 0.123,
+    "depth_m": 0.107,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies bar L x W x H; runtime width follows bar length."
+  },
+  "ADJ|LED Bar": {
+    "width_m": 0.5,
+    "height_m": 0.132,
+    "depth_m": 0.09,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies bar L x W x H; runtime width follows bar length."
+  },
+  "ADJ|STRYKER WASH": {
+    "width_m": 0.324,
+    "height_m": 0.399,
+    "depth_m": 0.222,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L."
+  },
+  "CHAUVET Professional|COLORado Solo Batten": {
+    "width_m": 1.0125,
+    "height_m": 0.2498,
+    "depth_m": 0.23,
+    "axis_status": "estimated",
+    "axis_note": "Overall dimensions are documented; bar-length/height/depth axis assignment is inferred from product class and imagery."
+  },
+  "CHAUVET Professional|COLORdash Batten-Quad 6": {
+    "width_m": 0.56,
+    "height_m": 0.164,
+    "depth_m": 0.065,
+    "axis_status": "estimated",
+    "axis_note": "Overall dimensions are documented; bar-length/height/depth axis assignment is inferred from product class and imagery."
+  },
+  "CHAUVET Professional|Maverick MK2 Wash": {
+    "width_m": 0.233,
+    "height_m": 0.471,
+    "depth_m": 0.323,
+    "axis_status": "estimated",
+    "axis_note": "Overall dimensions are documented; W/H/L axis assignment follows the manufacturer product-page order used for this moving head."
+  },
+  "CHAUVET Professional|Rogue R1X Spot": {
+    "width_m": 0.36,
+    "height_m": 0.447,
+    "depth_m": 0.282,
+    "axis_status": "estimated",
+    "axis_note": "Overall dimensions are documented; W/H/L axis assignment follows the manufacturer product-page order used for this moving head."
+  },
+  "CHAUVET Professional|Rogue R2 Wash": {
+    "width_m": 0.306,
+    "height_m": 0.398,
+    "depth_m": 0.218,
+    "axis_status": "estimated",
+    "axis_note": "Overall dimensions are documented; W/H/L axis assignment follows the manufacturer product-page order used for this moving head."
+  },
+  "CHAUVET Professional|Rogue RH1 Hybrid": {
+    "width_m": 0.327,
+    "height_m": 0.638,
+    "depth_m": 0.409,
+    "axis_status": "estimated",
+    "axis_note": "Overall dimensions are documented; W/H/L axis assignment follows the manufacturer product-page order used for this moving head."
+  },
+  "Claypaky|Arolla Profile MP": {
+    "width_m": 0.36,
+    "height_m": 0.593,
+    "depth_m": 0.25,
+    "axis_status": "estimated",
+    "axis_note": "Base footprint and height are documented; base width/depth orientation follows the dimensional drawing and product imagery."
+  },
+  "Claypaky|Arolla Spot MP": {
+    "width_m": 0.36,
+    "height_m": 0.593,
+    "depth_m": 0.25,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L."
+  },
+  "Claypaky|HY B-EYE K25": {
+    "width_m": 0.387,
+    "height_m": 0.59,
+    "depth_m": 0.329,
+    "axis_status": "estimated",
+    "axis_note": "Base footprint and horizontal-head height are documented; base axis assignment follows the dimensional drawing."
+  },
+  "Claypaky|Sharpy": {
+    "width_m": 0.405,
+    "height_m": 0.475,
+    "depth_m": 0.33,
+    "axis_status": "estimated",
+    "axis_note": "Base footprint and height are documented; base width/depth orientation follows the manufacturer drawing."
+  },
+  "Claypaky|Sharpy Plus": {
+    "width_m": 0.375,
+    "height_m": 0.635,
+    "depth_m": 0.307,
+    "axis_status": "estimated",
+    "axis_note": "Base footprint and height are documented; base width/depth orientation follows the manufacturer drawing."
+  },
+  "Claypaky|Sharpy Plus Aqua": {
+    "width_m": 0.42,
+    "height_m": 0.731,
+    "depth_m": 0.336,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L."
+  },
+  "Elation Professional|DARTZ 360": {
+    "width_m": 0.19597,
+    "height_m": 0.4547,
+    "depth_m": 0.28415,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer lists length, width and height individually; runtime X/Y/Z uses width/height/length."
+  },
+  "Elation Professional|Fuze SFX": {
+    "width_m": 0.233,
+    "height_m": 0.595,
+    "depth_m": 0.362,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer lists length, width and height individually; runtime X/Y/Z uses width/height/length."
+  },
+  "Elation Professional|Fuze Wash 500": {
+    "width_m": 0.4079,
+    "height_m": 0.5505,
+    "depth_m": 0.3895,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer lists length, width and height with snoot; runtime X/Y/Z uses width/height/length."
+  },
+  "Elation Professional|KL Fresnel 8": {
+    "width_m": 0.3275,
+    "height_m": 0.456,
+    "depth_m": 0.6084,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer lists length, width and height individually; runtime X/Y/Z uses width/height/length."
+  },
+  "Elation Professional|Proteus Radius": {
+    "width_m": 0.395,
+    "height_m": 0.516,
+    "depth_m": 0.27,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer lists length, width and height individually; runtime X/Y/Z uses width/height/length."
+  },
+  "Elation Professional|SixBar 1000": {
+    "width_m": 0.9,
+    "height_m": 0.155,
+    "depth_m": 0.2064,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer lists bar length, width and height; runtime width follows bar length."
+  },
+  "ETC|ColorSource Fresnel V": {
+    "width_m": 0.321,
+    "height_m": 0.339,
+    "depth_m": 0.311,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies H x W x D."
+  },
+  "ETC|ColorSource Spot V": {
+    "width_m": 0.339,
+    "height_m": 0.593,
+    "depth_m": 0.672,
+    "axis_status": "estimated",
+    "axis_note": "Maximum barrel/lens envelope is documented; H/W/depth assignment follows the manufacturer drawing orientation."
+  },
+  "ETC|Desire D60": {
+    "width_m": 0.309,
+    "height_m": 0.361,
+    "depth_m": 0.29,
+    "axis_status": "estimated",
+    "axis_note": "Maximum overall dimensions are documented; H/W/depth assignment follows the assembled fixture drawing."
+  },
+  "ETC|fos/4 Fresnel": {
+    "width_m": 0.313,
+    "height_m": 0.435,
+    "depth_m": 0.505,
+    "axis_status": "estimated",
+    "axis_note": "Zoom range envelope is documented; the extended depth is used for a conservative outer bound."
+  },
+  "ETC|Source Four LED Series 3 Lustr X8": {
+    "width_m": 0.34,
+    "height_m": 0.34,
+    "depth_m": 0.721,
+    "axis_status": "estimated",
+    "axis_note": "Maximum lens-tube envelope is documented; long axis is assigned to runtime depth."
+  },
+  "GLP|impression X4 Bar 20": {
+    "width_m": 1.0,
+    "height_m": 0.24,
+    "depth_m": 0.1,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer drawing identifies head height/width and yoke width."
+  },
+  "GLP|impression X5": {
+    "width_m": 0.415,
+    "height_m": 0.434,
+    "depth_m": 0.29,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies H x W x D; maximum documented height is used."
+  },
+  "GLP|impression X5 Bar 1000": {
+    "width_m": 1.0,
+    "height_m": 0.296,
+    "depth_m": 0.11,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies H x W x D."
+  },
+  "GLP|impression X5 Compact": {
+    "width_m": 0.25,
+    "height_m": 0.337,
+    "depth_m": 0.183,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies H x W x D."
+  },
+  "GLP|JDC Line 500": {
+    "width_m": 0.507,
+    "height_m": 0.074,
+    "depth_m": 0.2015,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies H x W x D."
+  },
+  "GLP|JDC1": {
+    "width_m": 0.39,
+    "height_m": 0.251,
+    "depth_m": 0.15,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies H x W x D."
+  },
+  "High End Systems|SolaFrame 3000": {
+    "width_m": 0.491,
+    "height_m": 0.821,
+    "depth_m": 0.368,
+    "axis_status": "estimated",
+    "axis_note": "Overall dimensions are documented; H/W/depth assignment follows the official dimensional drawing."
+  },
+  "High End Systems|SolaWash 2000": {
+    "width_m": 0.475,
+    "height_m": 0.886,
+    "depth_m": 0.32,
+    "axis_status": "estimated",
+    "axis_note": "Overall dimensions are documented; width/depth/height assignment follows the official dimensional drawing."
+  },
+  "Martin Professional (HARMAN)|Atomic 3000 LED": {
+    "width_m": 0.425,
+    "height_m": 0.245,
+    "depth_m": 0.24,
+    "axis_status": "estimated",
+    "axis_note": "Overall dimensions are documented; H/W/depth assignment follows product imagery and the manufacturer technical page."
+  },
+  "Martin Professional (HARMAN)|ELP CL": {
+    "width_m": 0.259,
+    "height_m": 0.427,
+    "depth_m": 0.648,
+    "axis_status": "estimated",
+    "axis_note": "Bracketed envelope is documented; long housing axis is assigned to runtime depth."
+  },
+  "Martin Professional (HARMAN)|MAC Aura XIP": {
+    "width_m": 0.338,
+    "height_m": 0.421,
+    "depth_m": 0.226,
+    "axis_status": "estimated",
+    "axis_note": "Maximum envelope is documented; axis assignment follows the official product image and stated base width."
+  },
+  "Martin Professional (HARMAN)|MAC One": {
+    "width_m": 0.254,
+    "height_m": 0.349,
+    "depth_m": 0.22,
+    "axis_status": "estimated",
+    "axis_note": "Maximum envelope is documented; axis assignment follows the official product image and stated yoke width."
+  },
+  "Martin Professional (HARMAN)|MAC Ultra Performance": {
+    "width_m": 0.52,
+    "height_m": 0.876,
+    "depth_m": 0.66,
+    "axis_status": "estimated",
+    "axis_note": "Maximum envelope is documented; H/W/depth assignment follows the official product drawing."
+  },
+  "Martin Professional (HARMAN)|MAC Ultra Wash": {
+    "width_m": 0.52,
+    "height_m": 0.867,
+    "depth_m": 0.642,
+    "axis_status": "estimated",
+    "axis_note": "Maximum envelope is documented; H/W/depth assignment follows the official product drawing."
+  },
+  "Martin Professional (HARMAN)|MAC Viper XIP": {
+    "width_m": 0.479,
+    "height_m": 0.776,
+    "depth_m": 0.595,
+    "axis_status": "estimated",
+    "axis_note": "Maximum envelope is documented; H/W/depth assignment follows the official product drawing."
+  },
+  "ROBE Lighting|FORTE": {
+    "width_m": 0.4835,
+    "height_m": 0.6355,
+    "depth_m": 0.6245,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies H x W x D for the horizontal-head pose; upright sweep height is retained separately."
+  },
+  "ROBE Lighting|LEDBeam 350": {
+    "width_m": 0.32,
+    "height_m": 0.426,
+    "depth_m": 0.22,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies H x W x D with head vertical."
+  },
+  "ROBE Lighting|MegaPointe": {
+    "width_m": 0.396,
+    "height_m": 0.64,
+    "depth_m": 0.23,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies H x W x D."
+  },
+  "ROBE Lighting|Pointe": {
+    "width_m": 0.4,
+    "height_m": 0.53,
+    "depth_m": 0.28,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies H x W x D."
+  },
+  "ROBE Lighting|Spiider": {
+    "width_m": 0.39,
+    "height_m": 0.477,
+    "depth_m": 0.286,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies H x W x D with head vertical."
+  },
+  "ROBE Lighting|T1 Profile": {
+    "width_m": 0.491,
+    "height_m": 0.542,
+    "depth_m": 0.344,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifies H x W x D with head vertical."
+  },
+  "Vari-Lite|VL2600 SPOT": {
+    "width_m": 0.464,
+    "height_m": 0.715,
+    "depth_m": 0.3,
+    "axis_status": "estimated",
+    "axis_note": "Overall dimensions are documented; width/depth/height assignment follows the official product drawing."
+  },
+  "Vari-Lite|VL3600 PROFILE IP": {
+    "width_m": 0.56,
+    "height_m": 0.799,
+    "depth_m": 0.34,
+    "axis_status": "estimated",
+    "axis_note": "Overall dimensions are documented; width/height/depth assignment follows the official product drawing."
+  },
+  "Vari-Lite|VL5LED WASH": {
+    "width_m": 0.367,
+    "height_m": 0.578,
+    "depth_m": 0.36,
+    "axis_status": "estimated",
+    "axis_note": "Overall dimensions are documented; width/height/depth assignment follows the official datasheet."
+  },
+  "ADJ|Jolt Bar FX2": {
+    "width_m": 1.0,
+    "height_m": 0.101,
+    "depth_m": 0.1035,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer states 1000 x 103.5 x 101 mm as length x width x height; longitudinal bar axis is width in this record.",
+    "reference_pose": "Assembled bar, optical face forward, long axis horizontal, supplied yoke brackets at their nominal straight-down orientation; manufacturer dimensional drawing."
+  },
+  "ADJ|Encore LP12Z IP": {
+    "width_m": 0.316,
+    "height_m": 0.346,
+    "depth_m": 0.371,
+    "axis_status": "estimated",
+    "axis_note": "ADJ's page conflicts: overview says 222 x 316 x 367 mm while the detailed dimensions list says 371 x 316 x 346 mm. This row retains the detailed list; verify against official CAD before scaling.",
+    "reference_pose": "Complete fixture with scissor yoke, lens axis horizontal and yoke upright; assembled pose corresponding to product-page dimensional drawing."
+  },
+  "ADJ|JOLT 300": {
+    "width_m": 0.389,
+    "height_m": 0.213,
+    "depth_m": 0.143,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer states length x width x height as 389 x 143 x 213 mm; long axis represented as width.",
+    "reference_pose": "Assembled single-yoke fixture, emitting face forward and yoke centered below body, per product dimensional drawing."
+  },
+  "ETC|Desire Fresnel 7": {
+    "width_m": 0.304,
+    "height_m": 0.455,
+    "depth_m": 0.356,
+    "axis_status": "documented",
+    "axis_note": "Corrected from ETC Rev F Physical table: HEIGHT 455 mm × WIDTH 304 mm × DEPTH 356 mm (fully retracted; 505 mm extended). Drawing on p. 11 labels 455 mm vertical and 304 mm crosswise.",
+    "reference_pose": "Yoke upright; zoom fully retracted"
+  },
+  "ETC|ColorSource PAR": {
+    "width_m": 0.203,
+    "height_m": 0.31,
+    "depth_m": 0.24,
+    "axis_status": "documented",
+    "axis_note": "ETC technical specification gives assembled fixture dimensions without mounting hardware; 90 W at 120 V.",
+    "reference_pose": "Yoke upright, head forward"
+  },
+  "High End Systems|SolaFrame 1000": {
+    "width_m": 0.46,
+    "height_m": 0.726,
+    "depth_m": 0.324,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer dimensional drawing / Rev K datasheet, assembled dimensions excluding mounting hardware. Standard power draw is 917 W, 958 W with lens defogger.",
+    "reference_pose": "Head straight up, yoke centered; neutral pose per drawing"
+  },
+  "High End Systems|SolaFrame 2000": {
+    "width_m": 0.475,
+    "height_m": 0.838,
+    "depth_m": 0.32,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer Rev B datasheet, overall assembled fixture dimensions excluding mounting hardware. Power is 864 W at 120 V input.",
+    "reference_pose": "Head straight up, yoke centered; neutral pose per drawing"
+  },
+  "ROBE Lighting|iFORTE": {
+    "width_m": 0.48,
+    "height_m": 0.837,
+    "depth_m": 0.335,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer mechanical specifications, head vertical; use the iFORTE base model, not FS or LTX. Published dimensional sketch gives slightly different heights depending on view; the catalog value of 837 mm is used.",
+    "reference_pose": "Head vertical; base level."
+  },
+  "ROBE Lighting|Tarrantula": {
+    "width_m": 0.588,
+    "height_m": 0.605,
+    "depth_m": 0.523,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer drawing documents overall envelope labels 588, 605, and 523 mm, but extraction does not make their assignment to model width/height/depth unambiguous. Values are assigned as width x height x depth from the front/side orthographic layout; axis assignment is an estimate, the dimensions themselves are manufacturer-documented.",
+    "reference_pose": "Base level; drawing's upper vertical head position with beam shaper installed."
+  },
+  "Claypaky|Sinfonya Profile 600": {
+    "width_m": 0.425,
+    "height_m": 0.796,
+    "depth_m": 0.417,
+    "axis_status": "documented",
+    "axis_note": "Claypaky product page lists 425 x 417 mm base dimensions and 796 mm height with vertical head.",
+    "reference_pose": "Head vertical; base level."
+  },
+  "Claypaky|Volero Wave": {
+    "width_m": 1.0,
+    "height_m": 0.329,
+    "depth_m": 0.182,
+    "axis_status": "documented",
+    "axis_note": "Claypaky datasheet 11/2022 page 1 drawing: 1000 mm span, 329 mm vertical height and 182 mm head sweep depth; distributor-hosted manufacturer document visually checked.",
+    "reference_pose": "Bar horizontal with eight head modules at neutral angle."
+  },
+  "CHAUVET Professional|COLORdash PAR H7X": {
+    "width_m": 0.258,
+    "height_m": 0.24,
+    "depth_m": 0.116,
+    "axis_status": "estimated",
+    "axis_note": "The manufacturer documents the three extents (258 x 240 x 116 mm) but not their axis order in page text; assigned front width x assembled vertical height x front-to-back depth from product views; confirm against linked 2D CAD before modeling.",
+    "reference_pose": "PAR face forward with double-bracket yoke vertical; manufacturer gives overall extents but web spec does not label axis order."
+  },
+  "CHAUVET Professional|COLORdash PAR H12X IP": {
+    "width_m": 0.3054,
+    "height_m": 0.2479,
+    "depth_m": 0.232,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer documents extents in 9.1 x 12 x 9.8 in order but the page does not label axes; mapping them to front width, vertical assembled height, and body depth is an estimate pending CAD confirmation.",
+    "reference_pose": "PAR face forward, double yoke upright; assembled fixture envelope from product-page dimensions."
+  },
+  "CHAUVET Professional|COLORdash Par-Quad 18": {
+    "width_m": 0.323,
+    "height_m": 0.298,
+    "depth_m": 0.106,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer lists 323 x 298 x 106 mm but does not label axes in online specs; assignment uses front width, assembled height, and fixture depth from official manual's orthographic product views.",
+    "reference_pose": "Round PAR face forward with split yoke extending down; dimensions describe unit with mounting bracket installed."
+  },
+  "Elation Professional|SIXBAR 500": {
+    "width_m": 0.45,
+    "height_m": 0.155,
+    "depth_m": 0.2064,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer defines length, width with included glare shield, and vertical height. Long LED bar axis mapped to width.",
+    "reference_pose": "Assembled batten, face forward, long axis horizontal; included glare shield installed, per dimensional drawing."
+  },
+  "Elation Professional|VBAR 270": {
+    "width_m": 0.25,
+    "height_m": 0.212,
+    "depth_m": 0.093,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer lists length x width x height as 250 x 93 x 212 mm; longest dimension is the bar's lateral span.",
+    "reference_pose": "Unit with mounting bracket assembled, front LED panel aimed forward and bar axis horizontal."
+  },
+  "Martin Professional (HARMAN)|MAC Viper Performance": {
+    "width_m": 0.472,
+    "height_m": 0.731,
+    "depth_m": 0.566,
+    "axis_status": "estimated",
+    "axis_note": "Source values: width 472 mm (335 mm base), length 472 mm base / 566 mm head, height 731 mm with head straight up / 748 mm maximum. The product page and drawing list these distinct extents but do not define a single matching W×H×D box; depth uses the longer head length and height uses the head-straight-up pose. Treat this as an estimated envelope, not a fully documented pose.",
+    "reference_pose": "Head straight up; estimated bounding envelope assembled from manufacturer physical values"
+  },
+  "Martin Professional (HARMAN)|MAC Aura": {
+    "width_m": 0.302,
+    "height_m": 0.36,
+    "depth_m": 0.302,
+    "axis_status": "documented",
+    "axis_note": "Overall width and length across yoke plus vertical height with head straight up from manufacturer product specifications.",
+    "reference_pose": "Head straight up, yoke centered"
+  },
+  "Vari-Lite|VL800 EVENTPROFILE": {
+    "width_m": 0.375,
+    "height_m": 0.624,
+    "depth_m": 0.408,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specification sheet gives assembled physical extents; excludes packed dimensions.",
+    "reference_pose": "Yoke upright; head centered"
+  },
+  "Vari-Lite|VL2600 SE WASH": {
+    "width_m": 0.464,
+    "height_m": 0.705,
+    "depth_m": 0.3,
+    "axis_status": "documented",
+    "axis_note": "SE revision manufacturer datasheet lists assembled H × W × L as 705 × 464 × 300 mm; excluded packed dimensions.",
+    "reference_pose": "Head centered, yoke upright; assembled operating envelope"
+  },
+  "Claypaky|Mini-B": {
+    "width_m": 0.22,
+    "height_m": 0.346,
+    "depth_m": 0.186,
+    "axis_status": "documented",
+    "axis_note": "Product page gives base dimensions 186 x 220 mm and height 346 mm with head vertical; corresponding leaflet gives overall size 224 x 186 x 340 mm.",
+    "reference_pose": "Head vertical; base level; standard RGBW Mini-B, not Mini-B WW or ParLED Aqua."
+  },
+  "Claypaky|Tambora Flash": {
+    "width_m": 0.497,
+    "height_m": 0.186,
+    "depth_m": 0.18,
+    "axis_status": "documented",
+    "axis_note": "Current Claypaky product page gives 497 x 180 x 186 mm without handles; order interpreted as length, width, height, with long dimension across batten width. A February 2024 leaflet reports a conflicting length of 533 mm; the current page value is retained and conflict recorded.",
+    "reference_pose": "Body face upward, handles excluded, single unit; mounting angle 0 degrees."
+  },
+  "GLP|impression X5 IP Maxx": {
+    "width_m": 0.483,
+    "height_m": 0.64,
+    "depth_m": 0.358,
+    "axis_status": "documented",
+    "axis_note": "GLP product data and safety manual; height includes rubber feet, width across yoke, head vertical. Datasheet depth is 348 mm while current product page gives 358 mm; conservative current product-page value is retained.",
+    "reference_pose": "Head vertical; yoke/base level; rubber feet installed."
+  },
+  "GLP|JDC Line 1000": {
+    "width_m": 1.0,
+    "height_m": 0.074,
+    "depth_m": 0.2015,
+    "axis_status": "documented",
+    "axis_note": "GLP JDC Line 1000 product page; width 1000 mm, height 74 mm, depth 201.5 mm. Body without optional rigging or alignment brackets.",
+    "reference_pose": "Bar horizontal, optical face upward; no accessory brackets."
+  }
 }

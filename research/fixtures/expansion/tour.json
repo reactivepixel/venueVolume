@@ -8,19 +8,65 @@
     "subtype": "profile / spot",
     "url": "https://www.robe.cz/iforte",
     "data": {
-      "protocols": ["DMX512", "RDM", "Art-Net", "sACN", "Kling-Net"],
-      "source_urls": ["https://www.robe.cz/iforte", "https://www.robe.cz/res/downloads/catalogues/ROBE_iFORTE_FS_leaflet_online_version.pdf", "https://www.robe.cz/res/downloads/user_manuals/User_manual_Robin_iForte_iForte_FS.pdf"],
+      "protocols": [
+        "DMX512",
+        "RDM",
+        "Art-Net",
+        "sACN",
+        "Kling-Net"
+      ],
+      "source_urls": [
+        "https://www.robe.cz/iforte",
+        "https://www.robe.cz/res/downloads/catalogues/ROBE_iFORTE_FS_leaflet_online_version.pdf",
+        "https://www.robe.cz/res/downloads/user_manuals/User_manual_Robin_iForte_iForte_FS.pdf"
+      ],
       "power": "1250 W max",
       "weight": "42.5 kg",
-      "dmx_channels": [54, 55, 73, 96, 111, 113]
+      "dmx_channels": [
+        54,
+        55,
+        73,
+        96,
+        111,
+        113
+      ]
     },
-    "images": ["https://cdn.aws.robe.cz/v1/image/resize/6ee70f896810a7721c20db54b45105162a65661c?fit=cover&height=452&width=452&withoutEnlargement=false"],
-    "dimensions": {"width_m": 0.480, "height_m": 0.837, "depth_m": 0.335, "axis_status": "documented", "axis_note": "Manufacturer mechanical specifications, head vertical; use the iFORTE base model, not FS or LTX. Published dimensional sketch gives slightly different heights depending on view; the catalog value of 837 mm is used.", "reference_pose": "Head vertical; base level."},
-    "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "large sealed moving profile with yoke", "notes": "iFORTE standard IP65 body; not FS, Fresnel, or LTX variant."},
+    "images": [
+      "https://cdn.aws.robe.cz/v1/image/resize/6ee70f896810a7721c20db54b45105162a65661c?fit=cover&height=452&width=452&withoutEnlargement=false"
+    ],
+    "dimensions": {
+      "width_m": 0.48,
+      "height_m": 0.837,
+      "depth_m": 0.335,
+      "axis_status": "documented",
+      "axis_note": "Manufacturer mechanical specifications, head vertical; use the iFORTE base model, not FS or LTX. Published dimensional sketch gives slightly different heights depending on view; the catalog value of 837 mm is used.",
+      "reference_pose": "Head vertical; base level."
+    },
+    "modeling": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "large sealed moving profile with yoke",
+      "notes": "iFORTE standard IP65 body; not FS, Fresnel, or LTX variant."
+    },
     "evidence": [
-      {"url": "https://www.robe.cz/iforte", "title": "iFORTE product page", "locator": "Technical Specification; mechanical and control sections", "accessed_at": "2026-09-30"},
-      {"url": "https://www.robe.cz/res/downloads/catalogues/ROBE_iFORTE_FS_leaflet_online_version.pdf", "title": "ROBE iFORTE / iFORTE FS leaflet", "locator": "Mechanical Specification; iFORTE weight 42.5 kg and head-vertical height 837 mm", "accessed_at": "2026-09-30"},
-      {"url": "https://www.robe.cz/res/downloads/user_manuals/User_manual_Robin_iForte_iForte_FS.pdf", "title": "User Manual Robin iFORTE / iFORTE FS", "locator": "Technical specifications; standard iFORTE 42.5 kg, 540° pan and 270° tilt", "accessed_at": "2026-09-30"}
+      {
+        "url": "https://www.robe.cz/iforte",
+        "title": "iFORTE product page",
+        "locator": "Technical Specification; mechanical and control sections",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://www.robe.cz/res/downloads/catalogues/ROBE_iFORTE_FS_leaflet_online_version.pdf",
+        "title": "ROBE iFORTE / iFORTE FS leaflet",
+        "locator": "Mechanical Specification; iFORTE weight 42.5 kg and head-vertical height 837 mm",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://www.robe.cz/res/downloads/user_manuals/User_manual_Robin_iForte_iForte_FS.pdf",
+        "title": "User Manual Robin iFORTE / iFORTE FS",
+        "locator": "Technical specifications; standard iFORTE 42.5 kg, 540° pan and 270° tilt",
+        "accessed_at": "2026-09-30"
+      }
     ]
   },
   {
@@ -32,19 +78,67 @@
     "subtype": "wash beam hybrid",
     "url": "https://www.robe.cz/tarrantula",
     "data": {
-      "protocols": ["DMX512", "RDM", "Art-Net", "MANet", "MANet2", "sACN", "Kling-Net"],
-      "source_urls": ["https://www.robe.cz/tarrantula", "https://www.robe.cz/res/downloads/exterior_dimensions/Robin_Tarrantula_dimensions.pdf", "https://www.robe.cz/res/downloads/user_manuals/User_manual_Robin_Tarrantula_RGBA.pdf"],
+      "protocols": [
+        "DMX512",
+        "RDM",
+        "Art-Net",
+        "MANet",
+        "MANet2",
+        "sACN",
+        "Kling-Net"
+      ],
+      "source_urls": [
+        "https://www.robe.cz/tarrantula",
+        "https://www.robe.cz/res/downloads/exterior_dimensions/Robin_Tarrantula_dimensions.pdf",
+        "https://www.robe.cz/res/downloads/user_manuals/User_manual_Robin_Tarrantula_RGBA.pdf"
+      ],
       "power": "1000 W max",
       "weight": "21 kg",
-      "dmx_channels": [28, 48, 146, 183, 159, 196]
+      "dmx_channels": [
+        28,
+        48,
+        146,
+        183,
+        159,
+        196
+      ]
     },
-    "images": ["https://cdn.aws.robe.cz/v1/image/resize/6c9de341cb1ae82efd1cbaa4693d7540565e81c6?fit=cover&height=452&width=452&withoutEnlargement=false"],
-    "dimensions": {"width_m": 0.588, "height_m": 0.605, "depth_m": 0.523, "axis_status": "estimated", "axis_note": "Manufacturer drawing documents overall envelope labels 588, 605, and 523 mm, but extraction does not make their assignment to model width/height/depth unambiguous. Values are assigned as width x height x depth from the front/side orthographic layout; axis assignment is an estimate, the dimensions themselves are manufacturer-documented.", "reference_pose": "Base level; drawing's upper vertical head position with beam shaper installed."},
-    "modeling": {"family": "moving_wash", "lens_count": 37, "body_style": "multi-source rounded head with RGBA pixel array", "notes": "37 RGBA LED multichips; beam shaper is removable, but the shown standard assembly includes it."},
+    "images": [
+      "https://cdn.aws.robe.cz/v1/image/resize/6c9de341cb1ae82efd1cbaa4693d7540565e81c6?fit=cover&height=452&width=452&withoutEnlargement=false"
+    ],
+    "dimensions": {
+      "width_m": 0.588,
+      "height_m": 0.605,
+      "depth_m": 0.523,
+      "axis_status": "estimated",
+      "axis_note": "Manufacturer drawing documents overall envelope labels 588, 605, and 523 mm, but extraction does not make their assignment to model width/height/depth unambiguous. Values are assigned as width x height x depth from the front/side orthographic layout; axis assignment is an estimate, the dimensions themselves are manufacturer-documented.",
+      "reference_pose": "Base level; drawing's upper vertical head position with beam shaper installed."
+    },
+    "modeling": {
+      "family": "moving_wash",
+      "lens_count": 37,
+      "body_style": "multi-source rounded head with RGBA pixel array",
+      "notes": "37 RGBA LED multichips; beam shaper is removable, but the shown standard assembly includes it."
+    },
     "evidence": [
-      {"url": "https://www.robe.cz/tarrantula", "title": "Tarrantula product page", "locator": "Technical Specification and product images", "accessed_at": "2026-09-30"},
-      {"url": "https://www.robe.cz/res/downloads/exterior_dimensions/Robin_Tarrantula_dimensions.pdf", "title": "Robin Tarrantula exterior dimensions", "locator": "Sheet 1 of 1, dated 2017-11-16; all dimensions in mm; overall envelope labels 588, 605, and 523 mm; other labels include component spans and motion clearances", "accessed_at": "2026-09-30"},
-      {"url": "https://www.robe.cz/res/downloads/user_manuals/User_manual_Robin_Tarrantula_RGBA.pdf", "title": "User Manual Robin Tarrantula RGBA", "locator": "Technical Specifications, pp. 32-33; weight, max power, modes and operating limits", "accessed_at": "2026-09-30"}
+      {
+        "url": "https://www.robe.cz/tarrantula",
+        "title": "Tarrantula product page",
+        "locator": "Technical Specification and product images",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://www.robe.cz/res/downloads/exterior_dimensions/Robin_Tarrantula_dimensions.pdf",
+        "title": "Robin Tarrantula exterior dimensions",
+        "locator": "Sheet 1 of 1, dated 2017-11-16; all dimensions in mm; overall envelope labels 588, 605, and 523 mm; other labels include component spans and motion clearances",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://www.robe.cz/res/downloads/user_manuals/User_manual_Robin_Tarrantula_RGBA.pdf",
+        "title": "User Manual Robin Tarrantula RGBA",
+        "locator": "Technical Specifications, pp. 32-33; weight, max power, modes and operating limits",
+        "accessed_at": "2026-09-30"
+      }
     ]
   },
   {
@@ -56,17 +150,49 @@
     "subtype": "LED profile",
     "url": "https://www.claypaky.it/products/sinfonya-profile-600/",
     "data": {
-      "protocols": ["DMX", "Art-Net", "sACN", "RDM", "CRMX (optional)", "WebServer"],
-      "source_urls": ["https://www.claypaky.it/products/sinfonya-profile-600/"],
+      "protocols": [
+        "DMX",
+        "Art-Net",
+        "sACN",
+        "RDM",
+        "CRMX (optional)",
+        "WebServer"
+      ],
+      "source_urls": [
+        "https://www.claypaky.it/products/sinfonya-profile-600/"
+      ],
       "power": "770 VA max",
       "weight": "36.8 kg",
-      "dmx_channels": [58, 49, 43]
+      "dmx_channels": [
+        58,
+        49,
+        43
+      ]
     },
-    "images": ["https://www.claypaky.it/wp-content/uploads/2023/04/Claypaky_SinfonyaProfile600.jpg"],
-    "dimensions": {"width_m": 0.425, "height_m": 0.796, "depth_m": 0.417, "axis_status": "documented", "axis_note": "Claypaky product page lists 425 x 417 mm base dimensions and 796 mm height with vertical head.", "reference_pose": "Head vertical; base level."},
-    "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "theatre moving profile with yoke and large circular lens", "notes": "Sinfonya Profile 600 standard model; RGBAL source. Manufacturer lists 14 optical lenses and 165 mm front lens."},
+    "images": [
+      "https://www.claypaky.it/wp-content/uploads/2023/04/Claypaky_SinfonyaProfile600.jpg"
+    ],
+    "dimensions": {
+      "width_m": 0.425,
+      "height_m": 0.796,
+      "depth_m": 0.417,
+      "axis_status": "documented",
+      "axis_note": "Claypaky product page lists 425 x 417 mm base dimensions and 796 mm height with vertical head.",
+      "reference_pose": "Head vertical; base level."
+    },
+    "modeling": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "theatre moving profile with yoke and large circular lens",
+      "notes": "Sinfonya Profile 600 standard model; RGBAL source. Manufacturer lists 14 optical lenses and 165 mm front lens."
+    },
     "evidence": [
-      {"url": "https://www.claypaky.it/products/sinfonya-profile-600/", "title": "Sinfonya Profile 600 product page", "locator": "Specs: control and connections, electrical, Weight - Size; 36.8 kg and 425 x 417 mm base with 796 mm head-vertical height", "accessed_at": "2026-09-30"}
+      {
+        "url": "https://www.claypaky.it/products/sinfonya-profile-600/",
+        "title": "Sinfonya Profile 600 product page",
+        "locator": "Specs: control and connections, electrical, Weight - Size; 36.8 kg and 425 x 417 mm base with 796 mm head-vertical height",
+        "accessed_at": "2026-09-30"
+      }
     ]
   },
   {
@@ -78,17 +204,50 @@
     "subtype": "eight-head moving batten",
     "url": "https://www.claypaky.it/products/volero-wave/",
     "data": {
-      "protocols": ["DMX512", "RDM", "Art-Net", "sACN", "WebServer"],
-      "source_urls": ["https://www.claypaky.it/products/volero-wave/"],
+      "protocols": [
+        "DMX512",
+        "RDM",
+        "Art-Net",
+        "sACN",
+        "WebServer"
+      ],
+      "source_urls": [
+        "https://www.claypaky.it/products/volero-wave/"
+      ],
       "power": "400 VA max",
       "weight": "20.8 kg",
       "dmx_channels": null
     },
-    "images": ["https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_VoleroWave.jpg"],
-    "dimensions": {"width_m": 1.000, "height_m": 0.182, "depth_m": 0.329, "axis_status": "documented", "axis_note": "Product page lists size 1000 x 329 x 182 mm; long axis treated as width for horizontal bar pose.", "reference_pose": "Bar horizontal with eight head modules at neutral angle."},
-    "modeling": {"family": "batten", "lens_count": 8, "body_style": "linear chassis with eight individually tilting optical heads", "notes": "Independent modules tilt 220 degrees; product on demand. Render as a fixed bar with separate head pivots."},
+    "images": [
+      "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_VoleroWave.jpg"
+    ],
+    "dimensions": {
+      "width_m": 1.0,
+      "height_m": 0.329,
+      "depth_m": 0.182,
+      "axis_status": "documented",
+      "axis_note": "Claypaky datasheet 11/2022 page 1 drawing: 1000 mm span, 329 mm vertical height and 182 mm head sweep depth; distributor-hosted manufacturer document visually checked.",
+      "reference_pose": "Bar horizontal with eight head modules at neutral angle."
+    },
+    "modeling": {
+      "family": "batten",
+      "lens_count": 8,
+      "body_style": "linear chassis with eight individually tilting optical heads",
+      "notes": "Independent modules tilt 220 degrees; product on demand. Render as a fixed bar with separate head pivots."
+    },
     "evidence": [
-      {"url": "https://www.claypaky.it/products/volero-wave/", "title": "Volero Wave product page", "locator": "Overview and Specs; eight independent heads, 400 VA, weight and size", "accessed_at": "2026-09-30"}
+      {
+        "url": "https://www.claypaky.it/products/volero-wave/",
+        "title": "Volero Wave product page",
+        "locator": "Overview and Specs; eight independent heads, 400 VA, weight and size",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://ltb.no/media/multicase/documents/claypaky/datablad_claypaky_volerowave_11.2022.pdf",
+        "title": "Claypaky Volero Wave datasheet 11/2022 (distributor mirror)",
+        "locator": "Page 1 dimensioned side and isometric drawings",
+        "accessed_at": "2026-09-30"
+      }
     ]
   },
   {
@@ -100,18 +259,56 @@
     "subtype": "compact LED wash beam",
     "url": "https://www.claypaky.it/products/mini-b/",
     "data": {
-      "protocols": ["DMX512", "RDM", "Art-Net", "sACN", "WebServer"],
-      "source_urls": ["https://www.claypaky.it/products/mini-b/", "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_NewProducts2019-2020_EN.pdf"],
+      "protocols": [
+        "DMX512",
+        "RDM",
+        "Art-Net",
+        "sACN",
+        "WebServer"
+      ],
+      "source_urls": [
+        "https://www.claypaky.it/products/mini-b/",
+        "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_NewProducts2019-2020_EN.pdf"
+      ],
       "power": "375 W max",
       "weight": "6.5 kg",
-      "dmx_channels": [17, 21, 21, 29]
+      "dmx_channels": [
+        17,
+        21,
+        21,
+        29
+      ]
     },
-    "images": ["https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_Mini-B.jpg"],
-    "dimensions": {"width_m": 0.220, "height_m": 0.346, "depth_m": 0.186, "axis_status": "documented", "axis_note": "Product page gives base dimensions 186 x 220 mm and height 346 mm with head vertical; corresponding leaflet gives overall size 224 x 186 x 340 mm.", "reference_pose": "Head vertical; base level; standard RGBW Mini-B, not Mini-B WW or ParLED Aqua."},
-    "modeling": {"family": "moving_wash", "lens_count": 7, "body_style": "compact yoke head with central LED and six outer lenses", "notes": "Seven RGBW LEDs; keep central LED optically distinct from outer ring."},
+    "images": [
+      "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_Mini-B.jpg"
+    ],
+    "dimensions": {
+      "width_m": 0.22,
+      "height_m": 0.346,
+      "depth_m": 0.186,
+      "axis_status": "documented",
+      "axis_note": "Product page gives base dimensions 186 x 220 mm and height 346 mm with head vertical; corresponding leaflet gives overall size 224 x 186 x 340 mm.",
+      "reference_pose": "Head vertical; base level; standard RGBW Mini-B, not Mini-B WW or ParLED Aqua."
+    },
+    "modeling": {
+      "family": "moving_wash",
+      "lens_count": 7,
+      "body_style": "compact yoke head with central LED and six outer lenses",
+      "notes": "Seven RGBW LEDs; keep central LED optically distinct from outer ring."
+    },
     "evidence": [
-      {"url": "https://www.claypaky.it/products/mini-b/", "title": "Mini-B product page", "locator": "Specs and Weight - Size; RGBW model, channel footprints and assembled dimensions", "accessed_at": "2026-09-30"},
-      {"url": "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_NewProducts2019-2020_EN.pdf", "title": "Claypaky New Products 2019-2020", "locator": "Mini-B section; 6.5 kg, 224 x 186 x 340 mm, seven LEDs", "accessed_at": "2026-09-30"}
+      {
+        "url": "https://www.claypaky.it/products/mini-b/",
+        "title": "Mini-B product page",
+        "locator": "Specs and Weight - Size; RGBW model, channel footprints and assembled dimensions",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_NewProducts2019-2020_EN.pdf",
+        "title": "Claypaky New Products 2019-2020",
+        "locator": "Mini-B section; 6.5 kg, 224 x 186 x 340 mm, seven LEDs",
+        "accessed_at": "2026-09-30"
+      }
     ]
   },
   {
@@ -123,18 +320,67 @@
     "subtype": "strobe / wash / blinder",
     "url": "https://www.claypaky.it/products/tambora-flash/",
     "data": {
-      "protocols": ["DMX512", "RDM", "Art-Net", "sACN", "WebServer", "Kling-Net"],
-      "source_urls": ["https://www.claypaky.it/products/tambora-flash/", "https://www.claypaky.it/products/tambora-flash/claypaky_tamboraflash_en/"],
+      "protocols": [
+        "DMX512",
+        "RDM",
+        "Art-Net",
+        "sACN",
+        "WebServer",
+        "Kling-Net"
+      ],
+      "source_urls": [
+        "https://www.claypaky.it/products/tambora-flash/",
+        "https://www.claypaky.it/products/tambora-flash/claypaky_tamboraflash_en/"
+      ],
       "power": "1150 VA max at 230 V / 50 Hz",
       "weight": "10.4 kg",
-      "dmx_channels": {"main_engine": [16, 20, 34, 42, 36], "pixel_engine": [12, 16], "strobe_engine": [16]}
+      "dmx_channels": {
+        "main_engine": [
+          16,
+          20,
+          34,
+          42,
+          36
+        ],
+        "pixel_engine": [
+          12,
+          16
+        ],
+        "strobe_engine": [
+          16
+        ]
+      }
     },
-    "images": ["https://www.claypaky.it/wp-content/uploads/2025/06/Claypaky_TamboraFlash.jpg"],
-    "dimensions": {"width_m": 0.497, "height_m": 0.186, "depth_m": 0.180, "axis_status": "documented", "axis_note": "Current Claypaky product page gives 497 x 180 x 186 mm without handles; order interpreted as length, width, height, with long dimension across batten width. A February 2024 leaflet reports a conflicting length of 533 mm; the current page value is retained and conflict recorded.", "reference_pose": "Body face upward, handles excluded, single unit; mounting angle 0 degrees."},
-    "modeling": {"family": "strobe", "lens_count": 4, "body_style": "IP66 rectangular modular fixture with four central reflector cells and two strobe strips", "notes": "Four RGBWW reflector optics plus two lines of segmented white strobe LEDs; handles excluded from dimensions."},
+    "images": [
+      "https://www.claypaky.it/wp-content/uploads/2025/06/Claypaky_TamboraFlash.jpg"
+    ],
+    "dimensions": {
+      "width_m": 0.497,
+      "height_m": 0.186,
+      "depth_m": 0.18,
+      "axis_status": "documented",
+      "axis_note": "Current Claypaky product page gives 497 x 180 x 186 mm without handles; order interpreted as length, width, height, with long dimension across batten width. A February 2024 leaflet reports a conflicting length of 533 mm; the current page value is retained and conflict recorded.",
+      "reference_pose": "Body face upward, handles excluded, single unit; mounting angle 0 degrees."
+    },
+    "modeling": {
+      "family": "strobe",
+      "lens_count": 4,
+      "body_style": "IP66 rectangular modular fixture with four central reflector cells and two strobe strips",
+      "notes": "Four RGBWW reflector optics plus two lines of segmented white strobe LEDs; handles excluded from dimensions."
+    },
     "evidence": [
-      {"url": "https://www.claypaky.it/products/tambora-flash/", "title": "Tambora Flash product page", "locator": "Specs; source, modes, 1150 VA, weight and dimensions without handles", "accessed_at": "2026-09-30"},
-      {"url": "https://www.claypaky.it/products/tambora-flash/claypaky_tamboraflash_en/", "title": "Tambora Flash technical leaflet", "locator": "Main features; February 2024, stated dimensions 533 x 180 x 186 mm", "accessed_at": "2026-09-30"}
+      {
+        "url": "https://www.claypaky.it/products/tambora-flash/",
+        "title": "Tambora Flash product page",
+        "locator": "Specs; source, modes, 1150 VA, weight and dimensions without handles",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://www.claypaky.it/products/tambora-flash/claypaky_tamboraflash_en/",
+        "title": "Tambora Flash technical leaflet",
+        "locator": "Main features; February 2024, stated dimensions 533 x 180 x 186 mm",
+        "accessed_at": "2026-09-30"
+      }
     ]
   },
   {
@@ -146,19 +392,65 @@
     "subtype": "IP65 LED wash",
     "url": "https://glp.de/en/products/entertainment-lighting/moving-lights/impression-x5-ip-maxx-en",
     "data": {
-      "protocols": ["DMX", "RDM", "Art-Net", "sACN", "CRMX"],
-      "source_urls": ["https://glp.de/en/products/entertainment-lighting/moving-lights/impression-x5-ip-maxx-en", "https://www2.glp.de/files/products/impression-x5-ip-maxx-product-data/GLP_impression_X5_IP_Maxx_Safety_Manual_EN_Rev20241007-1.pdf", "https://www2.glp.de/files/products/impression-x5-ip-maxx-product-data/impression-X5-IP-Maxx_Datasheet_Rev20250430.pdf"],
+      "protocols": [
+        "DMX",
+        "RDM",
+        "Art-Net",
+        "sACN",
+        "CRMX"
+      ],
+      "source_urls": [
+        "https://glp.de/en/products/entertainment-lighting/moving-lights/impression-x5-ip-maxx-en",
+        "https://www2.glp.de/files/products/impression-x5-ip-maxx-product-data/GLP_impression_X5_IP_Maxx_Safety_Manual_EN_Rev20241007-1.pdf",
+        "https://www2.glp.de/files/products/impression-x5-ip-maxx-product-data/impression-X5-IP-Maxx_Datasheet_Rev20250430.pdf"
+      ],
       "power": "1500 W max",
       "weight": "29.7 kg",
-      "dmx_channels": [22, 33, 42, 141, 122, 159]
+      "dmx_channels": [
+        22,
+        33,
+        42,
+        141,
+        122,
+        159
+      ]
     },
-    "images": ["https://glp.de/templates/yootheme/cache/c3/impressionX5IP_Header-c337f84c.png"],
-    "dimensions": {"width_m": 0.483, "height_m": 0.640, "depth_m": 0.358, "axis_status": "documented", "axis_note": "GLP product data and safety manual; height includes rubber feet, width across yoke, head vertical. Datasheet depth is 348 mm while current product page gives 358 mm; conservative current product-page value is retained.", "reference_pose": "Head vertical; yoke/base level; rubber feet installed."},
-    "modeling": {"family": "moving_wash", "lens_count": 37, "body_style": "large IP65 moving wash head with 37 circular RGBL lenses", "notes": "37 x 40 W RGBL pixel array; avoid using the similar non-IP impression X5 body."},
+    "images": [
+      "https://glp.de/templates/yootheme/cache/c3/impressionX5IP_Header-c337f84c.png"
+    ],
+    "dimensions": {
+      "width_m": 0.483,
+      "height_m": 0.64,
+      "depth_m": 0.358,
+      "axis_status": "documented",
+      "axis_note": "GLP product data and safety manual; height includes rubber feet, width across yoke, head vertical. Datasheet depth is 348 mm while current product page gives 358 mm; conservative current product-page value is retained.",
+      "reference_pose": "Head vertical; yoke/base level; rubber feet installed."
+    },
+    "modeling": {
+      "family": "moving_wash",
+      "lens_count": 37,
+      "body_style": "large IP65 moving wash head with 37 circular RGBL lenses",
+      "notes": "37 x 40 W RGBL pixel array; avoid using the similar non-IP impression X5 body."
+    },
     "evidence": [
-      {"url": "https://glp.de/en/products/entertainment-lighting/moving-lights/impression-x5-ip-maxx-en", "title": "impression X5 IP Maxx product page", "locator": "Technical Data; optical/control details, height, yoke width, depth and net weight", "accessed_at": "2026-09-30"},
-      {"url": "https://www2.glp.de/files/products/impression-x5-ip-maxx-product-data/GLP_impression_X5_IP_Maxx_Safety_Manual_EN_Rev20241007-1.pdf", "title": "impression X5 IP Maxx Safety Manual", "locator": "Dimensions and weight; head vertical, rubber feet installed, width across yoke", "accessed_at": "2026-09-30"},
-      {"url": "https://www2.glp.de/files/products/impression-x5-ip-maxx-product-data/impression-X5-IP-Maxx_Datasheet_Rev20250430.pdf", "title": "impression X5 IP Maxx Datasheet", "locator": "Dimensions & Weight and max power, revision 2025-04-30", "accessed_at": "2026-09-30"}
+      {
+        "url": "https://glp.de/en/products/entertainment-lighting/moving-lights/impression-x5-ip-maxx-en",
+        "title": "impression X5 IP Maxx product page",
+        "locator": "Technical Data; optical/control details, height, yoke width, depth and net weight",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://www2.glp.de/files/products/impression-x5-ip-maxx-product-data/GLP_impression_X5_IP_Maxx_Safety_Manual_EN_Rev20241007-1.pdf",
+        "title": "impression X5 IP Maxx Safety Manual",
+        "locator": "Dimensions and weight; head vertical, rubber feet installed, width across yoke",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://www2.glp.de/files/products/impression-x5-ip-maxx-product-data/impression-X5-IP-Maxx_Datasheet_Rev20250430.pdf",
+        "title": "impression X5 IP Maxx Datasheet",
+        "locator": "Dimensions & Weight and max power, revision 2025-04-30",
+        "accessed_at": "2026-09-30"
+      }
     ]
   },
   {
@@ -170,19 +462,66 @@
     "subtype": "strobe / pixel batten",
     "url": "https://www1.glp.de/en/products/entertainment-lighting/strobes/jdc-line-1000-en",
     "data": {
-      "protocols": ["DMX512-A", "RDM", "Art-Net", "sACN"],
-      "source_urls": ["https://www1.glp.de/en/products/entertainment-lighting/strobes/jdc-line-1000-en", "https://glp.de/files/products/jdc-line-1000-product-data/JDC_Line_1000_User_Manual_EN_Rev_20240618-01.pdf", "https://glp.de/files/products/jdc-line-1000-product-data/JDC_Line_1000_DMX_Channel_Index_Rev_20240618-01.pdf"],
+      "protocols": [
+        "DMX512-A",
+        "RDM",
+        "Art-Net",
+        "sACN"
+      ],
+      "source_urls": [
+        "https://www1.glp.de/en/products/entertainment-lighting/strobes/jdc-line-1000-en",
+        "https://glp.de/files/products/jdc-line-1000-product-data/JDC_Line_1000_User_Manual_EN_Rev_20240618-01.pdf",
+        "https://glp.de/files/products/jdc-line-1000-product-data/JDC_Line_1000_DMX_Channel_Index_Rev_20240618-01.pdf"
+      ],
       "power": "1600 W max",
       "weight": "12 kg net",
-      "dmx_channels": {"M1": 32, "M2": 68, "M3": 168, "M4": 94, "M5": 196, "M6": 316, "M7": 78}
+      "dmx_channels": {
+        "M1": 32,
+        "M2": 68,
+        "M3": 168,
+        "M4": 94,
+        "M5": 196,
+        "M6": 316,
+        "M7": 78
+      }
     },
-    "images": ["https://www1.glp.de/templates/yootheme/cache/f0/JDC-Line-1000_Header-f04c3b7d.png"],
-    "dimensions": {"width_m": 1.000, "height_m": 0.074, "depth_m": 0.2015, "axis_status": "documented", "axis_note": "GLP JDC Line 1000 product page; width 1000 mm, height 74 mm, depth 201.5 mm. Body without optional rigging or alignment brackets.", "reference_pose": "Bar horizontal, optical face upward; no accessory brackets."},
-    "modeling": {"family": "batten", "lens_count": 1, "body_style": "linear hybrid strobe and RGB pixel mapping fixture", "notes": "The 1000 mm lens tube shares RGB pixel and white strobe emission; a single continuous tube is a better shape representation than separate visible LEDs."},
+    "images": [
+      "https://www1.glp.de/templates/yootheme/cache/f0/JDC-Line-1000_Header-f04c3b7d.png"
+    ],
+    "dimensions": {
+      "width_m": 1.0,
+      "height_m": 0.074,
+      "depth_m": 0.2015,
+      "axis_status": "documented",
+      "axis_note": "GLP JDC Line 1000 product page; width 1000 mm, height 74 mm, depth 201.5 mm. Body without optional rigging or alignment brackets.",
+      "reference_pose": "Bar horizontal, optical face upward; no accessory brackets."
+    },
+    "modeling": {
+      "family": "batten",
+      "lens_count": 1,
+      "body_style": "linear hybrid strobe and RGB pixel mapping fixture",
+      "notes": "The 1000 mm lens tube shares RGB pixel and white strobe emission; a single continuous tube is a better shape representation than separate visible LEDs.",
+      "diffuser": true
+    },
     "evidence": [
-      {"url": "https://www1.glp.de/en/products/entertainment-lighting/strobes/jdc-line-1000-en", "title": "GLP JDC Line 1000 product page", "locator": "Overview and Technical Data; hybrid strobe/pixel mapping, mode footprints, dimensions and net weight", "accessed_at": "2026-09-30"},
-      {"url": "https://glp.de/files/products/jdc-line-1000-product-data/JDC_Line_1000_User_Manual_EN_Rev_20240618-01.pdf", "title": "JDC Line 1000 User Manual", "locator": "Revision 2024-06-18; operating modes and fixture description", "accessed_at": "2026-09-30"},
-      {"url": "https://glp.de/files/products/jdc-line-1000-product-data/JDC_Line_1000_DMX_Channel_Index_Rev_20240618-01.pdf", "title": "JDC Line 1000 DMX Channel Index", "locator": "Revision 2024-06-18; all seven mode footprints", "accessed_at": "2026-09-30"}
+      {
+        "url": "https://www1.glp.de/en/products/entertainment-lighting/strobes/jdc-line-1000-en",
+        "title": "GLP JDC Line 1000 product page",
+        "locator": "Overview and Technical Data; hybrid strobe/pixel mapping, mode footprints, dimensions and net weight",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://glp.de/files/products/jdc-line-1000-product-data/JDC_Line_1000_User_Manual_EN_Rev_20240618-01.pdf",
+        "title": "JDC Line 1000 User Manual",
+        "locator": "Revision 2024-06-18; operating modes and fixture description",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://glp.de/files/products/jdc-line-1000-product-data/JDC_Line_1000_DMX_Channel_Index_Rev_20240618-01.pdf",
+        "title": "JDC Line 1000 DMX Channel Index",
+        "locator": "Revision 2024-06-18; all seven mode footprints",
+        "accessed_at": "2026-09-30"
+      }
     ]
   }
 ]

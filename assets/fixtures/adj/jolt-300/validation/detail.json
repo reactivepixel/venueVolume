@@ -1,0 +1,68 @@
+{
+  "mesh_count": 111,
+  "triangle_count": 20884,
+  "geometry_sha256": "bff399e0c0660cfef3981ce1fa9e236d9db62ce915d413b68096782fe97f6f90",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.14105959236621857,
+      -0.06367030739784241
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0022751567885279655,
+        -0.0037962100468575954
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.14105959236621857,
+        -0.0037962100468575954
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        0.0,
+        0.14105959236621857,
+        -0.06213507428765297
+      ]
+    }
+  ],
+  "family": "strobe",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9330998659133911,
+    1.0735896825790405,
+    1.0681477785110474
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/products/jolt-300",
+    "https://www.adj.com/cdn/shop/files/24123b2ef30540e21651ee792a1dda543061fbbb_JOL300__IMG__001__fc31c3261e23.jpg?v=1776712495&width=800"
+  ]
+}

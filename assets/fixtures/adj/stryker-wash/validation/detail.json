@@ -1,0 +1,77 @@
+{
+  "mesh_count": 128,
+  "triangle_count": 38116,
+  "geometry_sha256": "e8f90f547793ee8ea4efe4779cf64f776a30b0b921d08815a3f76a8c039f47dc",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.2926727533340454,
+      -0.057993192225694656
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0005067573511041701
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.06328059732913971,
+        0.0005067573511041701
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.2926727533340454,
+        0.0005067573511041701
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.2926727533340454,
+        -0.05585569143295288
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852217435836792,
+    1.0135126113891602,
+    0.9912374019622803
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/products/stryker-wash",
+    "https://www.adj.com/cdn/shop/files/aff04e4f77e061376b58502065e4278f6f563981_STR100__IMG__001__3350049b2831.jpg?v=1776712421&width=800"
+  ]
+}

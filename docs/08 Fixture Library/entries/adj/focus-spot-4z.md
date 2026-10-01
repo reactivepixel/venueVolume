@@ -5,7 +5,7 @@
 - Official source: [https://www.adj.com/products/focus-spot-4z](https://www.adj.com/products/focus-spot-4z) (accessed 2026-09-30)
 - Reference envelope: 0.2786 m W × 0.4574 m H × 0.1815 m D
 - Control: DMX512, RDM; exact personalities are retained as footprints only when the source supplied them. Channel functions are not invented.
-- Model: fixture-specific editable Blender approximation, meter-scale USDZ, Y-up and -Z forward. Rounded base/control panel, U-yoke, capsule head, tilt hubs, optical barrel, bezel and cooling vents.
+- Model: high-detail image-informed procedural approximation; editable Blender and full-detail meter-scale USDZ, Y-up and -Z forward. See the current revision below.
 - Validation: OpenUSD structure, scale envelope, declared prims, and ARKit profile checked. RealityKit rendering and hardware remain untested.
 
 ## Local assets
@@ -22,6 +22,16 @@
 
 ## Assumptions and follow-up
 
-- Procedural visualization proxy, not manufacturer CAD.
+- Detailed procedural visualization model, not manufacturer CAD.
 - Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L.
-- Moving components are separated but no runtime articulation joints are authored.
+- Moving parts have editable pivots; runtime physics joints are not authored.
+
+## Detailed model revision
+
+Revision 5 uses a `moving_spot` profile with 85 visible meshes and 18,516 triangles. The editable Blender model and runtime USDZ contain the same evaluated geometry. Local contours, details and joint pivots remain estimated from manufacturer imagery. Existing dimensional evidence and unresolved axis assignments remain unchanged.
+
+[Detail and parity report](../../../../assets/fixtures/adj/focus-spot-4z/validation/detail.json) · [Front](../../../../assets/fixtures/adj/focus-spot-4z/previews/front.png) · [Side](../../../../assets/fixtures/adj/focus-spot-4z/previews/side.png) · [Rear](../../../../assets/fixtures/adj/focus-spot-4z/previews/rear.png) · [Three-quarter](../../../../assets/fixtures/adj/focus-spot-4z/previews/three-quarter.png)
+
+## Independent saved-file audit
+
+[Blender / USDZ parity](../../../../assets/fixtures/adj/focus-spot-4z/validation/parity.json): all saved mesh vertices, triangle topology and material colors match within 1 micrometre. Runtime device rendering, real fixture response, internal mechanisms and clearance certification are not tested.

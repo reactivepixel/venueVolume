@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "martin-professional-harman/elp-cl",
-  "revision": 1,
+  "revision": 2,
   "updated_at": "2026-09-30",
   "status": "researched",
   "identity": {
@@ -99,78 +99,133 @@
       ],
       "max": [
         0.12950000166893005,
-        0.4269999861717224,
-        0.3240000009536743
+        0.4269999787211418,
+        0.32400000328198075
       ]
     },
     "parts": [
       {
         "name": "body",
-        "prim_path": "/Fixture/Body"
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.1184513047337532,
+          0.005890908185392618
+        ]
       },
       {
         "name": "yoke",
-        "prim_path": "/Fixture/Yoke"
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.11550786346197128,
+          0.005890908185392618
+        ]
       },
       {
         "name": "lens",
-        "prim_path": "/Fixture/Lens"
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.11550786346197128,
+          -0.3055908977985382
+        ]
       }
     ],
     "joints": [],
     "emitters": [
       {
-        "name": "primary light output",
-        "prim_path": "/Fixture/Emitter"
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.11550786346197128,
+          -0.3311590850353241
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
       }
     ],
     "assumptions": [
       "Procedural visualization proxy, not manufacturer CAD.",
       "Bracketed envelope is documented; long housing axis is assigned to runtime depth.",
-      "Moving components are separated but no runtime articulation joints are authored."
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
     ],
     "artifacts": [
       {
         "role": "authoring",
         "file": "models/fixture.blend",
-        "sha256": "0a68d8e5ce6ef2e345430d74b446bf717dd5e75468d780bdba40c7ef1bb13cea"
+        "sha256": "2c99ccc79ede6db1b9d4d1099e0ac19c1a40eb9f6a657de7b33c911ecc0067b6"
       },
       {
         "role": "runtime",
         "file": "models/fixture.usdz",
-        "sha256": "fb1b1cb1b5381ee1c6ee530fe11b1ab4703834375ac3e92b753fe5b277c3f95f"
+        "sha256": "e4dc3aba2336f66128dbc151aab4fc8793e88dc275d080963430f5cb7e732b12"
       },
       {
         "role": "generator",
         "file": "models/build_fixture.py",
-        "sha256": "b7f090892064fc5108dfee98a892e3287bf4a8b90df426d5af750227ead4730f"
-      },
-      {
-        "role": "preview",
-        "file": "previews/front.png",
-        "sha256": "f2dd15f8632e469128d92fc5eecee4075e84db98a1ccadc577203b1938420270"
-      },
-      {
-        "role": "preview",
-        "file": "previews/rear.png",
-        "sha256": "443808d65704fe105d8f79a650830cf4d355bd062ebec764eba3d6c3099a7f4d"
-      },
-      {
-        "role": "preview",
-        "file": "previews/side.png",
-        "sha256": "a2cd747afb2c0c8878676b9990e53674b5171b54cfbec32f183601a1d2405a3c"
-      },
-      {
-        "role": "preview",
-        "file": "previews/three-quarter.png",
-        "sha256": "618bd325ebcbba79427fc7f473c0c2f5caaeec666e746816807fa73709426db3"
+        "sha256": "04992183c9d4bb6b1e9ac700aa39d398f69a25b3467873cf6d11d06d61005b24"
       },
       {
         "role": "validation",
         "file": "validation/usdz.json",
-        "sha256": "065786f35083cdd49624abc61257acdb6a0ef9f1f8f533196635ecec012ec1d7"
+        "sha256": "f5453a076d332202448aaeed0081845d1c6d60ab752b8e13a7a4a90ea887e751"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "d927596ca4a30e0734be7c9f3cd505beb565653282cb527725693802f0c8a461"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "1cf3ababebaea2bda1b9c74065fc036acd87ab38602944978aca2e821bd5b508"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "bf4d6222f92fe32b7be3de01a4cee5c9120225e2a8c73f13e8419134aaa82b7a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "94157214b76bce48135055c788ed3b5548a8d5080aa45b76d59dc72cb172817f"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "736cc49064f7aff58bd057548d8df4cdc8266b311c0f7b475dd4f08d0a15a139"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "6663e5b3b6cacff9d81f91e5dff4552623c44825c828a62345d64c03ee63beda"
       }
-    ]
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "24ab061c836f6d3c2b8de5cecdb9faaacb42470866e0f2031fe5b87dccdc15ce",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "profile",
+      "barrel_ratio": 0.43
+    },
+    "mesh_count": 47,
+    "triangle_count": 16908,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
   },
   "verification": {
     "realitykit": "not_tested",
@@ -183,6 +238,7 @@
     "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
   ],
   "revision_notes": [
-    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed profile geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
   ]
 }

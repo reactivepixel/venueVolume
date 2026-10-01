@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "etc/source-four-led-series-3-lustr-x8",
-  "revision": 1,
+  "revision": 2,
   "updated_at": "2026-09-30",
   "status": "researched",
   "identity": {
@@ -142,77 +142,132 @@
       "max": [
         0.17000000178813934,
         0.3400000035762787,
-        0.3605000078678131
+        0.36050001718103886
       ]
     },
     "parts": [
       {
         "name": "body",
-        "prim_path": "/Fixture/Body"
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.05982404947280884,
+          0.005533525720238686
+        ]
       },
       {
         "name": "yoke",
-        "prim_path": "/Fixture/Yoke"
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.1116715669631958,
+          0.005533525720238686
+        ]
       },
       {
         "name": "lens",
-        "prim_path": "/Fixture/Lens"
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.1116715669631958,
+          -0.3420378267765045
+        ]
       }
     ],
     "joints": [],
     "emitters": [
       {
-        "name": "primary light output",
-        "prim_path": "/Fixture/Emitter"
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.1116715669631958,
+          -0.36767977476119995
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
       }
     ],
     "assumptions": [
       "Procedural visualization proxy, not manufacturer CAD.",
       "Maximum lens-tube envelope is documented; long axis is assigned to runtime depth.",
-      "Moving components are separated but no runtime articulation joints are authored."
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
     ],
     "artifacts": [
       {
         "role": "authoring",
         "file": "models/fixture.blend",
-        "sha256": "053cd4aff20912f2b7966161b5d01659210ef50552bea3ac68dd53af4d1a5010"
+        "sha256": "169fd1e041c71b8ec6d71b4c78c23ffbc046dad048ec49947e654cff39db294d"
       },
       {
         "role": "runtime",
         "file": "models/fixture.usdz",
-        "sha256": "947cef89c3a28d47396e11c800e5eca31130ec6e078a8eb73337cbf2fd6ec50b"
+        "sha256": "565d2e6ae93dd75a998e82e5004b3d54b986867e7a93e35307d3f792dafa43c0"
       },
       {
         "role": "generator",
         "file": "models/build_fixture.py",
-        "sha256": "30f477967f3c9a54b8ac66f5aaba16a76d443b4efb601278cb079ef28a0055b6"
-      },
-      {
-        "role": "preview",
-        "file": "previews/front.png",
-        "sha256": "ba7d89fd92b6f92a89e07fa089e09afd6e17969bd87e90ddf04ac81e57bdfd69"
-      },
-      {
-        "role": "preview",
-        "file": "previews/rear.png",
-        "sha256": "988c3ed82761a7776882e61d0205931a6612cc9b0ac511ed8ac96723e7d5485c"
-      },
-      {
-        "role": "preview",
-        "file": "previews/side.png",
-        "sha256": "1ce600dbae130356b220abbe688131b5f6f1341a88aedc16054d113cfc46d2af"
-      },
-      {
-        "role": "preview",
-        "file": "previews/three-quarter.png",
-        "sha256": "d55a149e9ff2d4ab76b7f34275a630b010af7bebc809e700b416680da4601182"
+        "sha256": "19269e1fd88c402a13ef21129e22000631094b7c314a11502d7faac56c6dd17b"
       },
       {
         "role": "validation",
         "file": "validation/usdz.json",
-        "sha256": "96dfcfdde933f85fb2aea9fde9c27b980fa75562a31000c19005eaf7e206e7f3"
+        "sha256": "e58799634fa1efe2c00cd55e744a4eeeb37a3d426864ef4a06e02bad9bf5e75c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "36b3bcbb391d9ed434be71a83c24bfe2698becbf3d01d52c00783c7b26dd7351"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "5a3179a3d464e3ea42701b542a221af0208b477e0dfe6263c6a75c8fdcf0cd34"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "998bb0a3d4081cbafacbaf033b5c6ecfab3ad201b7d37e5fab2ec1fcb1631734"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "399fe61f6711d93161fb901a5710402594965946b2d9c1809d57b147765813fd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "32a93f367aa1b1bb569f17814b3ae7924ab35959133224ab507f1df9443ee119"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "2829cc0108ae9099d92bf4ec57e9c3f66ae148b7f952e74155e13528865dba44"
       }
-    ]
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "b234d69342764170de293e6a3573cfa287c4e4e19ffa7ce30d219e6edebd5435",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "profile",
+      "barrel_ratio": 0.5
+    },
+    "mesh_count": 47,
+    "triangle_count": 16908,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
   },
   "verification": {
     "realitykit": "not_tested",
@@ -225,6 +280,7 @@
     "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
   ],
   "revision_notes": [
-    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed profile geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
   ]
 }

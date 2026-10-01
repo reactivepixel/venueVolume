@@ -1,0 +1,268 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "glp/jdc1",
+    "revision": 3,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "GLP",
+      "model": "JDC1",
+      "variant": "JDC1",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://glp.de/en/products/entertainment-lighting/strobes/jdc1-en?ic=1",
+        "title": "GLP JDC1 official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://glp.de/files/products/jdc1-product-data/GLP_JDC1_User_Manual_EN_Rev20240830-01.pdf",
+        "title": "GLP JDC1 official source 2",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://glp.de/templates/yootheme/cache/83/JDC1_1-83eb9208.jpeg",
+        "title": "GLP JDC1 official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.jpeg",
+        "sha256": "969de8d7747c7e242caf279dc29fe358e130fd1712e07ac44d5bb193fc4f87a4"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.39,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "height": {
+        "value": 0.251,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "depth": {
+        "value": 0.15,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "1200 W max at 230 V; 100-240 VAC",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "11.6 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512-A",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.19499999284744263,
+          0.0,
+          -0.07500000577419996
+        ],
+        "max": [
+          0.19499999284744263,
+          0.2509999913163483,
+          0.07500000763684511
+        ]
+      },
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body",
+          "pivot_m": [
+            0.0,
+            0.0026810509152710438,
+            -0.0026501743122935295
+          ]
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke",
+          "pivot_m": [
+            0.0,
+            0.1662251502275467,
+            -0.0026501743122935295
+          ]
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens",
+          "pivot_m": [
+            0.0,
+            0.1662251502275467,
+            -0.06307420879602432
+          ]
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "prim_path": "/Fixture/Emitter",
+          "position_m": [
+            0.0,
+            0.1662251502275467,
+            -0.0646643117070198
+          ],
+          "quaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "optical_axis": [
+            0,
+            0,
+            -1
+          ]
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer specifies H x W x D.",
+        "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+        "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints.",
+        "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+        "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "5121a9c7749ee4e0154b5bf2f6115a44161ebfc6340e7b48d7fb9d8fd683fac0"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "9d9f3bf8320114dad8435811046f4e5e907c215ac307447df41d798c3560c84c"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "82878cd51cb1d9f75e727a548947a761dd42a135d61f64019928a76d8625e546"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "121419be5bf7528fe1a743ddd062ee5e16878cfffca6c7d929350846a0ed18b6"
+        },
+        {
+          "role": "validation",
+          "file": "validation/detail.json",
+          "sha256": "47c4da795d0ad378bfd9b48b206905b3f812d07cd8b59b22416dee69816e06c2"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "6549dfa04f5437732506eaaa6197473c0745047c961d9ea1fe2eaca87cfee068"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "18c67b89fd2248005d63bf30e6d10e06dbfcc076fc35c51dc5ab5affe0c2fb10"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "47d4a432c1f7c31aad26f70cfaad25cb07abbdb1073bd4c833be356c377871c1"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "abc366c67e1fa492047deedd6ca3e6673f308321a666a018e6e75a75fdfad1b0"
+        }
+      ],
+      "detail_level": "high",
+      "detail_build_token": "78bd619615f094b5ebc1d429cef9a8cf6cdf7b95bc0d7a9404543037744e9da2",
+      "generator_dependency": {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "dc9aa1aec519f0bd49d33f821a3d47bfa1517c3a5527b5ba8e078b5c1823a257"
+      },
+      "profile": {
+        "family": "strobe",
+        "tilting": true,
+        "cells": 24
+      },
+      "mesh_count": 112,
+      "triangle_count": 21072,
+      "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+      "Revision 2: detailed strobe geometry, editable part pivots, full-detail USDZ export and four refreshed previews.",
+      "Revision 3: detailed strobe geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-3",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

@@ -1,0 +1,299 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "glp/impression-x5",
+    "revision": 2,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "GLP",
+      "model": "impression X5",
+      "variant": "7795",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://glp.de/en/products/entertainment-lighting/moving-lights/impression-x5-en",
+        "title": "GLP impression X5 official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://glp.de/templates/yootheme/cache/a9/impression-X5_Header-a92366da.png",
+        "title": "GLP impression X5 official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.png",
+        "sha256": "ee5f3720b40f59424764a888dba69c14718f4dd197f51f148cba7e44f79f9fbf"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.415,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "height": {
+        "value": 0.434,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "depth": {
+        "value": 0.29,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "710 W max at 230 V; 100-240 VAC",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "13.3 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "Art-Net",
+            "sACN"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.20749998092651367,
+          0.0,
+          -0.14499999349936843
+        ],
+        "max": [
+          0.20749998092651367,
+          0.4339999854564667,
+          0.1449999981559813
+        ]
+      },
+      "parts": [
+        {
+          "name": "base",
+          "prim_path": "/Fixture/Base",
+          "pivot_m": [
+            0.0,
+            0.0,
+            0.005209075752645731
+          ]
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke",
+          "pivot_m": [
+            0.0,
+            0.030113793909549713,
+            0.005209075752645731
+          ]
+        },
+        {
+          "name": "head",
+          "prim_path": "/Fixture/Head",
+          "pivot_m": [
+            0.0,
+            0.3183458149433136,
+            0.005209075752645731
+          ]
+        },
+        {
+          "name": "head_lens",
+          "prim_path": "/Fixture/Head/Lens",
+          "pivot_m": [
+            0.0,
+            0.3183458149433136,
+            -0.11131544411182404
+          ]
+        }
+      ],
+      "joints": [
+        {
+          "name": "pan",
+          "parent": "base",
+          "child": "yoke",
+          "pivot_m": [
+            0.0,
+            0.030113793909549713,
+            0.005209075752645731
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "status": "estimated",
+          "limits": null
+        },
+        {
+          "name": "tilt",
+          "parent": "yoke",
+          "child": "head",
+          "pivot_m": [
+            0.0,
+            0.3183458149433136,
+            0.005209075752645731
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "status": "estimated",
+          "limits": null
+        }
+      ],
+      "emitters": [
+        {
+          "prim_path": "/Fixture/Head/Emitter",
+          "position_m": [
+            0.0,
+            0.3183458149433136,
+            -0.1157345399260521
+          ],
+          "quaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "optical_axis": [
+            0,
+            0,
+            -1
+          ]
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer specifies H x W x D; maximum documented height is used.",
+        "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+        "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "94c8e2e64b01c93bf8b2ae7c471f2d2b3499d21a2841fd515af1f5be0d6c7a58"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "8b63197665a7aafe63ee9c247a14e5f2dc82016b16df84f35ecd20430790b160"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "c5f0322e068cce50ea3e95b8589a7afa4b1a8207ae6c682b20ebd6464c02b9f6"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "7fe900bde5f0733cc4a37d0b4824a4fac5edcdc9a16bf777c7418ddfa80c680e"
+        },
+        {
+          "role": "validation",
+          "file": "validation/detail.json",
+          "sha256": "3ae0008b729497f9b2a8ee9c0577a671a7ffefb51fc3fbca1a1b37f607d9073b"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "59429b6f97a721c7d5570911feaff9862cb5e4fb7e28ee7d5c3e9d868b9c6cd7"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "06bf8b4437e186b18d39f84d93cecaa34db88c536e9885127ebd42e2e45d6b13"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "68602a383fcf98b11ded5658e2c64a8a97581c6d3688589dd62637cb2be7c60b"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "4d58cdf8e6b542643a85806bb544e307891b7d45834d6b128276a4df4b2f6217"
+        }
+      ],
+      "detail_level": "high",
+      "detail_build_token": "e2955dd462b74435b94d519fbf97736a452768febf2a5f30adf91ce03a630b3a",
+      "generator_dependency": {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "3b5f34fc8b48df5bbd42db5f738f7f27f181d7fd3c7154d6f548924fc15babf3"
+      },
+      "profile": {
+        "family": "moving_wash",
+        "lens_count": 19,
+        "baseless": true
+      },
+      "mesh_count": 85,
+      "triangle_count": 30976,
+      "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+      "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "note": "Intermediate unpublished model revision: manifest retained, binary bytes were superseded and were not archived. git_commit identifies the baseline, not these artifact bytes."
+}

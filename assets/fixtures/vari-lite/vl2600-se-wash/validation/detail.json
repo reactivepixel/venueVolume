@@ -1,0 +1,78 @@
+{
+  "mesh_count": 73,
+  "triangle_count": 19160,
+  "geometry_sha256": "a1e9915b11f8c33711009085105615ac01eb3be0c5815cdb3e2b02ac9911a76a",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.5478345155715942,
+      -0.08004811406135559
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0003504473716020584
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.11197312921285629,
+        0.0003504473716020584
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.5478345155715942,
+        0.0003504473716020584
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.5478345155715942,
+        -0.07711046934127808
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    1.0307507514953613,
+    0.9926695823669434
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.vari-lite.com/global/products/vl2600-wash",
+    "https://vari-lite.s3.eu-west-1.amazonaws.com/datasheets/vl2600-se-wash.pdf",
+    "https://www.vari-lite.com/b-dam/vari-lite/products/vl2600-wash/images/vl2600-se-wash-thumbnail.jpg"
+  ]
+}

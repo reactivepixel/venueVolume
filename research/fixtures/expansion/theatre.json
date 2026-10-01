@@ -8,20 +8,63 @@
     "subtype": "LED Fresnel",
     "url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/Desire-Fresnel/Features/",
     "data": {
-      "protocols": ["DMX512", "RDM", "City Theatrical Multiverse wireless DMX"],
-      "source_urls": ["https://www.etcconnect.com/Products/Entertainment-Fixtures/Desire-Fresnel/Features/", "https://www.etcconnect.com/Products/Entertainment-Fixtures/Desire-Fresnel/Documentation.aspx", "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737506619", "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737506792"],
+      "protocols": [
+        "DMX512",
+        "RDM",
+        "City Theatrical Multiverse wireless DMX"
+      ],
+      "source_urls": [
+        "https://www.etcconnect.com/Products/Entertainment-Fixtures/Desire-Fresnel/Features/",
+        "https://www.etcconnect.com/Products/Entertainment-Fixtures/Desire-Fresnel/Documentation.aspx",
+        "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737506619",
+        "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737506792"
+      ],
       "power": null,
       "weight": "10.8 kg",
       "dmx_channels": null
     },
-    "images": ["https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Lighting_Fixtures/Desire_Fresnel/Desire_Fresnel_Glam_960x300.jpg"],
-    "dimensions": {"width_m": 0.304, "height_m": 0.455, "depth_m": 0.356, "axis_status": "documented", "axis_note": "Corrected from ETC Rev F Physical table: HEIGHT 455 mm × WIDTH 304 mm × DEPTH 356 mm (fully retracted; 505 mm extended). Drawing on p. 11 labels 455 mm vertical and 304 mm crosswise.", "reference_pose": "Yoke upright; zoom fully retracted"},
-    "modeling": {"family": "fresnel", "lens_count": 1, "body_style": "round Fresnel head on yoke", "notes": "DFL7 is a fixed 7-inch aperture variant; allow lens travel in depth."},
+    "images": [
+      "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Lighting_Fixtures/Desire_Fresnel/Desire_Fresnel_Glam_960x300.jpg"
+    ],
+    "dimensions": {
+      "width_m": 0.304,
+      "height_m": 0.455,
+      "depth_m": 0.356,
+      "axis_status": "documented",
+      "axis_note": "Corrected from ETC Rev F Physical table: HEIGHT 455 mm × WIDTH 304 mm × DEPTH 356 mm (fully retracted; 505 mm extended). Drawing on p. 11 labels 455 mm vertical and 304 mm crosswise.",
+      "reference_pose": "Yoke upright; zoom fully retracted"
+    },
+    "modeling": {
+      "family": "fresnel",
+      "lens_count": 1,
+      "body_style": "round Fresnel head on yoke",
+      "notes": "DFL7 is a fixed 7-inch aperture variant; allow lens travel in depth."
+    },
     "evidence": [
-      {"url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/Desire-Fresnel/Features/", "title": "Desire Fresnel Features", "locator": "7 inch version; product features", "accessed_at": "2026-09-30"},
-      {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737506792", "title": "Desire Fresnel 7 Physical Drawing", "locator": "Official ETC DFL7 drawing crosschecked against Rev F datasheet: 455 × 304 × 356 mm retracted; 505 mm extended depth", "accessed_at": "2026-09-30"},
-      {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737506619", "title": "Desire Fresnel Technical Datasheet", "locator": "Rev F physical section: DFL7 dimensions and weight", "accessed_at": "2026-09-30"},
-      {"url": "https://www.ecm-sa.ch/media/desire_fresnel_datasheet_revf.pdf", "title": "ETC Desire Fresnel Technical Datasheet", "locator": "Rev F, April 2025, p. 11 Physical table explicitly labels HEIGHT 455 mm, WIDTH 304 mm, DEPTH 356/505 mm. The adjacent dimensioned drawing depicts 455 mm vertical and 304 mm crosswise; 10.8 kg.", "accessed_at": "2026-09-30"}
+      {
+        "url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/Desire-Fresnel/Features/",
+        "title": "Desire Fresnel Features",
+        "locator": "7 inch version; product features",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737506792",
+        "title": "Desire Fresnel 7 Physical Drawing",
+        "locator": "Official ETC DFL7 drawing crosschecked against Rev F datasheet: 455 × 304 × 356 mm retracted; 505 mm extended depth",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737506619",
+        "title": "Desire Fresnel Technical Datasheet",
+        "locator": "Rev F physical section: DFL7 dimensions and weight",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://www.ecm-sa.ch/media/desire_fresnel_datasheet_revf.pdf",
+        "title": "ETC Desire Fresnel Technical Datasheet",
+        "locator": "Rev F, April 2025, p. 11 Physical table explicitly labels HEIGHT 455 mm, WIDTH 304 mm, DEPTH 356/505 mm. The adjacent dimensioned drawing depicts 455 mm vertical and 304 mm crosswise; 10.8 kg.",
+        "accessed_at": "2026-09-30"
+      }
     ]
   },
   {
@@ -32,13 +75,49 @@
     "type": "wash",
     "subtype": "LED PAR",
     "url": "https://www.etcconnect.com/Products/Lighting-Fixtures/ColorSource/PAR.aspx",
-    "data": {"protocols": ["DMX512", "RDM"], "source_urls": ["https://www.etcconnect.com/Products/Lighting-Fixtures/ColorSource/PAR.aspx", "https://www.etcconnect.com/Products/Entertainment-Fixtures/ColorSource-PAR/Tech-Specs.aspx"], "power": "90 W at 120 V", "weight": "3.8 kg", "dmx_channels": null},
-    "images": ["https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Lighting_Fixtures/ColorSource/en-CS-PAR-Leaderlines-960x300.jpg"],
-    "dimensions": {"width_m": 0.203, "height_m": 0.310, "depth_m": 0.240, "axis_status": "documented", "axis_note": "ETC technical specification gives assembled fixture dimensions without mounting hardware; 90 W at 120 V.", "reference_pose": "Yoke upright, head forward"},
-    "modeling": {"family": "par", "lens_count": 1, "body_style": "compact round LED PAR with yoke", "notes": "Original ColorSource PAR RGB-L array, black housing; not Deep Blue or Pearl color-array options."},
+    "data": {
+      "protocols": [
+        "DMX512",
+        "RDM"
+      ],
+      "source_urls": [
+        "https://www.etcconnect.com/Products/Lighting-Fixtures/ColorSource/PAR.aspx",
+        "https://www.etcconnect.com/Products/Entertainment-Fixtures/ColorSource-PAR/Tech-Specs.aspx"
+      ],
+      "power": "90 W at 120 V",
+      "weight": "3.8 kg",
+      "dmx_channels": null
+    },
+    "images": [
+      "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Lighting_Fixtures/ColorSource/en-CS-PAR-Leaderlines-960x300.jpg"
+    ],
+    "dimensions": {
+      "width_m": 0.203,
+      "height_m": 0.31,
+      "depth_m": 0.24,
+      "axis_status": "documented",
+      "axis_note": "ETC technical specification gives assembled fixture dimensions without mounting hardware; 90 W at 120 V.",
+      "reference_pose": "Yoke upright, head forward"
+    },
+    "modeling": {
+      "family": "par",
+      "lens_count": 1,
+      "body_style": "compact round LED PAR with yoke",
+      "notes": "Original ColorSource PAR RGB-L array, black housing; not Deep Blue or Pearl color-array options."
+    },
     "evidence": [
-      {"url": "https://www.etcconnect.com/Products/Lighting-Fixtures/ColorSource/PAR.aspx", "title": "ColorSource PAR Features", "locator": "Original RGB-L wash luminaire; official product image", "accessed_at": "2026-09-30"},
-      {"url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/ColorSource-PAR/Tech-Specs.aspx", "title": "ColorSource PAR Tech Specs", "locator": "Electrical, control, and physical sections; 90 W at 120 V, DMX512/RDM, 310 × 203 × 240 mm, 3.8 kg", "accessed_at": "2026-09-30"}
+      {
+        "url": "https://www.etcconnect.com/Products/Lighting-Fixtures/ColorSource/PAR.aspx",
+        "title": "ColorSource PAR Features",
+        "locator": "Original RGB-L wash luminaire; official product image",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/ColorSource-PAR/Tech-Specs.aspx",
+        "title": "ColorSource PAR Tech Specs",
+        "locator": "Electrical, control, and physical sections; 90 W at 120 V, DMX512/RDM, 310 × 203 × 240 mm, 3.8 kg",
+        "accessed_at": "2026-09-30"
+      }
     ]
   },
   {
@@ -49,15 +128,62 @@
     "type": "moving light",
     "subtype": "LED framing profile",
     "url": "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaFrame/1000/Documentation.aspx",
-    "data": {"protocols": ["DMX", "RDM"], "source_urls": ["https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaFrame/1000/Documentation.aspx", "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737503529", "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737504840"], "power": "917 W standard; 958 W with defogger", "weight": "31.3 kg", "dmx_channels": null},
-    "images": ["https://cdn11.bigcommerce.com/s-cr8amw/images/stencil/1280x1280/products/781/2244/SolaFrame_1000_prod_right_1__26691.1680192507.png?c=2"],
-    "dimensions": {"width_m": 0.460, "height_m": 0.726, "depth_m": 0.324, "axis_status": "documented", "axis_note": "Manufacturer dimensional drawing / Rev K datasheet, assembled dimensions excluding mounting hardware. Standard power draw is 917 W, 958 W with lens defogger.", "reference_pose": "Head straight up, yoke centered; neutral pose per drawing"},
-    "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "moving framing profile with yoke", "notes": "Fixture variant available with different LED engine options; not a geometry variant."},
+    "data": {
+      "protocols": [
+        "DMX",
+        "RDM"
+      ],
+      "source_urls": [
+        "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaFrame/1000/Documentation.aspx",
+        "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737503529",
+        "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737504840"
+      ],
+      "power": "917 W standard; 958 W with defogger",
+      "weight": "31.3 kg",
+      "dmx_channels": null
+    },
+    "images": [
+      "https://cdn11.bigcommerce.com/s-cr8amw/images/stencil/1280x1280/products/781/2244/SolaFrame_1000_prod_right_1__26691.1680192507.png?c=2"
+    ],
+    "dimensions": {
+      "width_m": 0.46,
+      "height_m": 0.726,
+      "depth_m": 0.324,
+      "axis_status": "documented",
+      "axis_note": "Manufacturer dimensional drawing / Rev K datasheet, assembled dimensions excluding mounting hardware. Standard power draw is 917 W, 958 W with lens defogger.",
+      "reference_pose": "Head straight up, yoke centered; neutral pose per drawing"
+    },
+    "modeling": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "moving framing profile with yoke",
+      "notes": "Fixture variant available with different LED engine options; not a geometry variant."
+    },
     "evidence": [
-      {"url": "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaFrame/1000/Documentation.aspx", "title": "SolaFrame 1000 Documentation", "locator": "Datasheet and dimensional information links; DMX channel map listed", "accessed_at": "2026-09-30"},
-      {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737503529", "title": "SolaFrame 1000 Technical Datasheet", "locator": "Rev L, pages 2 and 6; protocols/RDM, 917 W standard or 958 W with defogger, 31.3 kg", "accessed_at": "2026-09-30"},
-      {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737504840", "title": "Dimensional Drawings & Physical Information", "locator": "SolaFrame 1000 drawing page; overall assembled envelope", "accessed_at": "2026-09-30"},
-      {"url": "https://shop.etcconnect.com/solaframe-1000-black-molded-insert/", "title": "SolaFrame 1000 official ETC store product image", "locator": "Product image and overview", "accessed_at": "2026-09-30"}
+      {
+        "url": "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaFrame/1000/Documentation.aspx",
+        "title": "SolaFrame 1000 Documentation",
+        "locator": "Datasheet and dimensional information links; DMX channel map listed",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737503529",
+        "title": "SolaFrame 1000 Technical Datasheet",
+        "locator": "Rev L, pages 2 and 6; protocols/RDM, 917 W standard or 958 W with defogger, 31.3 kg",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737504840",
+        "title": "Dimensional Drawings & Physical Information",
+        "locator": "SolaFrame 1000 drawing page; overall assembled envelope",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://shop.etcconnect.com/solaframe-1000-black-molded-insert/",
+        "title": "SolaFrame 1000 official ETC store product image",
+        "locator": "Product image and overview",
+        "accessed_at": "2026-09-30"
+      }
     ]
   },
   {
@@ -68,14 +194,56 @@
     "type": "moving light",
     "subtype": "LED framing profile",
     "url": "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaFrame/2000/Features.aspx",
-    "data": {"protocols": ["DMX", "RDM"], "source_urls": ["https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaFrame/2000/Features.aspx", "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737503533", "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737504840"], "power": "855 W standard; 890 W with defogger", "weight": "43.5 kg", "dmx_channels": null},
-    "images": ["https://www.etcconnect.com/uploadedImages/Main_Site/Images/High_End_Systems_Images/Lighting_Fixtures/SolaFrame/SolaFrame_2000_prod_right.jpg"],
-    "dimensions": {"width_m": 0.475, "height_m": 0.838, "depth_m": 0.320, "axis_status": "documented", "axis_note": "Manufacturer Rev B datasheet, overall assembled fixture dimensions excluding mounting hardware. Power is 864 W at 120 V input.", "reference_pose": "Head straight up, yoke centered; neutral pose per drawing"},
-    "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "large LED framing head with yoke and circular lens", "notes": "600 W light engine; overall input draw varies by line voltage. Multiple engine variants."},
+    "data": {
+      "protocols": [
+        "DMX",
+        "RDM"
+      ],
+      "source_urls": [
+        "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaFrame/2000/Features.aspx",
+        "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737503533",
+        "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737504840"
+      ],
+      "power": "855 W standard; 890 W with defogger",
+      "weight": "43.5 kg",
+      "dmx_channels": null
+    },
+    "images": [
+      "https://www.etcconnect.com/uploadedImages/Main_Site/Images/High_End_Systems_Images/Lighting_Fixtures/SolaFrame/SolaFrame_2000_prod_right.jpg"
+    ],
+    "dimensions": {
+      "width_m": 0.475,
+      "height_m": 0.838,
+      "depth_m": 0.32,
+      "axis_status": "documented",
+      "axis_note": "Manufacturer Rev B datasheet, overall assembled fixture dimensions excluding mounting hardware. Power is 864 W at 120 V input.",
+      "reference_pose": "Head straight up, yoke centered; neutral pose per drawing"
+    },
+    "modeling": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "large LED framing head with yoke and circular lens",
+      "notes": "600 W light engine; overall input draw varies by line voltage. Multiple engine variants."
+    },
     "evidence": [
-      {"url": "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaFrame/2000/Features.aspx", "title": "SolaFrame 2000 Features", "locator": "High End Systems product page; official product image", "accessed_at": "2026-09-30"},
-      {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737504840", "title": "Dimensional Drawings & Physical Information", "locator": "SolaFrame family drawings; SolaFrame 2000 drawing page", "accessed_at": "2026-09-30"},
-      {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737503533", "title": "SolaFrame 2000 Technical Datasheet", "locator": "Rev B pages 2 and 5; 838 × 475 × 320 mm, 43.5 kg; 855 W standard / 890 W with defogger", "accessed_at": "2026-09-30"}
+      {
+        "url": "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaFrame/2000/Features.aspx",
+        "title": "SolaFrame 2000 Features",
+        "locator": "High End Systems product page; official product image",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737504840",
+        "title": "Dimensional Drawings & Physical Information",
+        "locator": "SolaFrame family drawings; SolaFrame 2000 drawing page",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737503533",
+        "title": "SolaFrame 2000 Technical Datasheet",
+        "locator": "Rev B pages 2 and 5; 838 × 475 × 320 mm, 43.5 kg; 855 W standard / 890 W with defogger",
+        "accessed_at": "2026-09-30"
+      }
     ]
   },
   {
@@ -86,12 +254,42 @@
     "type": "moving light",
     "subtype": "discharge framing profile",
     "url": "https://www.martin.com/en-US/products/mac-viper-performance",
-    "data": {"protocols": ["DMX", "RDM"], "source_urls": ["https://www.martin.com/en-US/products/mac-viper-performance"], "power": "1225 W typical", "weight": "37.9 kg", "dmx_channels": null},
-    "images": ["https://adn.harmanpro.com/product_attachments/product_attachments/4794_1728940667/macviperperformance_x_large.webp"],
-    "dimensions": {"width_m": 0.472, "height_m": 0.731, "depth_m": 0.566, "axis_status": "estimated", "axis_note": "Source values: width 472 mm (335 mm base), length 472 mm base / 566 mm head, height 731 mm with head straight up / 748 mm maximum. The product page and drawing list these distinct extents but do not define a single matching W×H×D box; depth uses the longer head length and height uses the head-straight-up pose. Treat this as an estimated envelope, not a fully documented pose.", "reference_pose": "Head straight up; estimated bounding envelope assembled from manufacturer physical values"},
-    "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "discharge moving head with framing module, yoke", "notes": "Estimate uses documented head-straight-up height, maximum width, and head length. Do not read as the bounding box from one manufacturer-dimensioned pose."},
+    "data": {
+      "protocols": [
+        "DMX",
+        "RDM"
+      ],
+      "source_urls": [
+        "https://www.martin.com/en-US/products/mac-viper-performance"
+      ],
+      "power": "1225 W typical",
+      "weight": "37.9 kg",
+      "dmx_channels": null
+    },
+    "images": [
+      "https://adn.harmanpro.com/product_attachments/product_attachments/4794_1728940667/macviperperformance_x_large.webp"
+    ],
+    "dimensions": {
+      "width_m": 0.472,
+      "height_m": 0.731,
+      "depth_m": 0.566,
+      "axis_status": "estimated",
+      "axis_note": "Source values: width 472 mm (335 mm base), length 472 mm base / 566 mm head, height 731 mm with head straight up / 748 mm maximum. The product page and drawing list these distinct extents but do not define a single matching W×H×D box; depth uses the longer head length and height uses the head-straight-up pose. Treat this as an estimated envelope, not a fully documented pose.",
+      "reference_pose": "Head straight up; estimated bounding envelope assembled from manufacturer physical values"
+    },
+    "modeling": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "discharge moving head with framing module, yoke",
+      "notes": "Estimate uses documented head-straight-up height, maximum width, and head length. Do not read as the bounding box from one manufacturer-dimensioned pose."
+    },
     "evidence": [
-      {"url": "https://www.martin.com/en-US/products/mac-viper-performance", "title": "MAC Viper Performance", "locator": "Specifications / Physical explicitly list 472 mm base length, 566 mm head length, width 472 mm (335 mm base), height 731 mm head straight up / 748 mm maximum, mass 37.9 kg; downloads include 2D dimensions drawing", "accessed_at": "2026-09-30"}
+      {
+        "url": "https://www.martin.com/en-US/products/mac-viper-performance",
+        "title": "MAC Viper Performance",
+        "locator": "Specifications / Physical explicitly list 472 mm base length, 566 mm head length, width 472 mm (335 mm base), height 731 mm head straight up / 748 mm maximum, mass 37.9 kg; downloads include 2D dimensions drawing",
+        "accessed_at": "2026-09-30"
+      }
     ]
   },
   {
@@ -102,13 +300,49 @@
     "type": "moving light",
     "subtype": "LED wash",
     "url": "https://www.martin.com/en-US/products/mac-aura",
-    "data": {"protocols": ["DMX", "RDM"], "source_urls": ["https://www.martin.com/en-US/products/mac-aura"], "power": null, "weight": "5.6 kg", "dmx_channels": null},
-    "images": ["https://adn.harmanpro.com/product_attachments/product_attachments/4827_1728124249/macaura_x_large.webp"],
-    "dimensions": {"width_m": 0.302, "height_m": 0.360, "depth_m": 0.302, "axis_status": "documented", "axis_note": "Overall width and length across yoke plus vertical height with head straight up from manufacturer product specifications.", "reference_pose": "Head straight up, yoke centered"},
-    "modeling": {"family": "moving_wash", "lens_count": 1, "body_style": "compact single-lens RGBW wash with secondary Aura LEDs, yoke", "notes": "Single central lens with secondary backlight array; do not represent Aura emitters as lenses."},
+    "data": {
+      "protocols": [
+        "DMX",
+        "RDM"
+      ],
+      "source_urls": [
+        "https://www.martin.com/en-US/products/mac-aura"
+      ],
+      "power": null,
+      "weight": "5.6 kg",
+      "dmx_channels": null
+    },
+    "images": [
+      "https://adn.harmanpro.com/product_attachments/product_attachments/4827_1728124249/macaura_x_large.webp"
+    ],
+    "dimensions": {
+      "width_m": 0.302,
+      "height_m": 0.36,
+      "depth_m": 0.302,
+      "axis_status": "documented",
+      "axis_note": "Overall width and length across yoke plus vertical height with head straight up from manufacturer product specifications.",
+      "reference_pose": "Head straight up, yoke centered"
+    },
+    "modeling": {
+      "family": "moving_wash",
+      "lens_count": 19,
+      "body_style": "19-lens RGBW moving wash with secondary Aura backlight",
+      "notes": "Official Martin optics table specifies 19 x 10 W RGBW; secondary Aura illumination is not counted as lenses.",
+      "aura": true
+    },
     "evidence": [
-      {"url": "https://www.martin.com/en-US/products/mac-aura", "title": "MAC Aura", "locator": "Physical specifications, 302 × 302 × 360 mm, 5.6 kg; DMX/RDM and product photo", "accessed_at": "2026-09-30"},
-      {"url": "https://www.martin.com/en-US/site_elements/mac-aura-dimensions-2d-pdf", "title": "MAC Aura Dimensions 2D PDF", "locator": "Manufacturer dimensional drawing rev A; all dimensions mm", "accessed_at": "2026-09-30"}
+      {
+        "url": "https://www.martin.com/en-US/products/mac-aura",
+        "title": "MAC Aura",
+        "locator": "Physical specifications, 302 × 302 × 360 mm, 5.6 kg; DMX/RDM and product photo",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://www.martin.com/en-US/site_elements/mac-aura-dimensions-2d-pdf",
+        "title": "MAC Aura Dimensions 2D PDF",
+        "locator": "Manufacturer dimensional drawing rev A; all dimensions mm",
+        "accessed_at": "2026-09-30"
+      }
     ]
   },
   {
@@ -119,13 +353,50 @@
     "type": "moving light",
     "subtype": "LED profile",
     "url": "https://www.vari-lite.com/global/products/vl800-eventprofile",
-    "data": {"protocols": ["DMX", "RDM", "Art-Net"], "source_urls": ["https://www.vari-lite.com/global/products/vl800-eventprofile", "https://vari-lite.s3.eu-west-1.amazonaws.com/datasheets/vl800-eventprofile.pdf"], "power": null, "weight": "21 kg", "dmx_channels": null},
-    "images": ["https://vari-lite.s3.eu-west-1.amazonaws.com/graphics/product-images/vl800-eventprofile-high-res.jpg"],
-    "dimensions": {"width_m": 0.375, "height_m": 0.624, "depth_m": 0.408, "axis_status": "documented", "axis_note": "Manufacturer specification sheet gives assembled physical extents; excludes packed dimensions.", "reference_pose": "Yoke upright; head centered"},
-    "modeling": {"family": "profile", "lens_count": 1, "body_style": "compact framing profile on yoke", "notes": "Black and white body variants; housing shape otherwise same."},
+    "data": {
+      "protocols": [
+        "DMX",
+        "RDM",
+        "Art-Net"
+      ],
+      "source_urls": [
+        "https://www.vari-lite.com/global/products/vl800-eventprofile",
+        "https://vari-lite.s3.eu-west-1.amazonaws.com/datasheets/vl800-eventprofile.pdf"
+      ],
+      "power": null,
+      "weight": "21 kg",
+      "dmx_channels": null
+    },
+    "images": [
+      "https://vari-lite.s3.eu-west-1.amazonaws.com/graphics/product-images/vl800-eventprofile-high-res.jpg"
+    ],
+    "dimensions": {
+      "width_m": 0.375,
+      "height_m": 0.624,
+      "depth_m": 0.408,
+      "axis_status": "documented",
+      "axis_note": "Manufacturer specification sheet gives assembled physical extents; excludes packed dimensions.",
+      "reference_pose": "Yoke upright; head centered"
+    },
+    "modeling": {
+      "family": "profile",
+      "lens_count": 1,
+      "body_style": "compact framing profile on yoke",
+      "notes": "Black and white body variants; housing shape otherwise same."
+    },
     "evidence": [
-      {"url": "https://www.vari-lite.com/global/products/vl800-eventprofile", "title": "VL800 EVENTPROFILE", "locator": "Product page and official high resolution product image", "accessed_at": "2026-09-30"},
-      {"url": "https://vari-lite.s3.eu-west-1.amazonaws.com/datasheets/vl800-eventprofile.pdf", "title": "VL800 EVENTPROFILE Specification Sheet", "locator": "Physical dimensions and weight; 375 × 624 × 408 mm, 21 kg", "accessed_at": "2026-09-30"}
+      {
+        "url": "https://www.vari-lite.com/global/products/vl800-eventprofile",
+        "title": "VL800 EVENTPROFILE",
+        "locator": "Product page and official high resolution product image",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://vari-lite.s3.eu-west-1.amazonaws.com/datasheets/vl800-eventprofile.pdf",
+        "title": "VL800 EVENTPROFILE Specification Sheet",
+        "locator": "Physical dimensions and weight; 375 × 624 × 408 mm, 21 kg",
+        "accessed_at": "2026-09-30"
+      }
     ]
   },
   {
@@ -136,13 +407,49 @@
     "type": "moving light",
     "subtype": "LED wash",
     "url": "https://www.vari-lite.com/global/products/vl2600-wash",
-    "data": {"protocols": ["DMX", "RDM"], "source_urls": ["https://www.vari-lite.com/global/products/vl2600-wash", "https://vari-lite.s3.eu-west-1.amazonaws.com/datasheets/vl2600-se-wash.pdf"], "power": "570 W", "weight": "30 kg", "dmx_channels": null},
-    "images": ["https://www.vari-lite.com/b-dam/vari-lite/products/vl2600-wash/images/vl2600-se-wash-thumbnail.jpg"],
-    "dimensions": {"width_m": 0.464, "height_m": 0.705, "depth_m": 0.300, "axis_status": "documented", "axis_note": "SE revision manufacturer datasheet lists assembled H × W × L as 705 × 464 × 300 mm; excluded packed dimensions.", "reference_pose": "Head centered, yoke upright; assembled operating envelope"},
-    "modeling": {"family": "moving_wash", "lens_count": 1, "body_style": "mid-size wash head with yoke and automated barn doors", "notes": "Do not substitute dimensions of legacy VL2600 Wash for the SE version."},
+    "data": {
+      "protocols": [
+        "DMX",
+        "RDM"
+      ],
+      "source_urls": [
+        "https://www.vari-lite.com/global/products/vl2600-wash",
+        "https://vari-lite.s3.eu-west-1.amazonaws.com/datasheets/vl2600-se-wash.pdf"
+      ],
+      "power": "570 W",
+      "weight": "30 kg",
+      "dmx_channels": null
+    },
+    "images": [
+      "https://www.vari-lite.com/b-dam/vari-lite/products/vl2600-wash/images/vl2600-se-wash-thumbnail.jpg"
+    ],
+    "dimensions": {
+      "width_m": 0.464,
+      "height_m": 0.705,
+      "depth_m": 0.3,
+      "axis_status": "documented",
+      "axis_note": "SE revision manufacturer datasheet lists assembled H × W × L as 705 × 464 × 300 mm; excluded packed dimensions.",
+      "reference_pose": "Head centered, yoke upright; assembled operating envelope"
+    },
+    "modeling": {
+      "family": "moving_wash",
+      "lens_count": 1,
+      "body_style": "mid-size wash head with yoke and automated barn doors",
+      "notes": "Do not substitute dimensions of legacy VL2600 Wash for the SE version."
+    },
     "evidence": [
-      {"url": "https://www.vari-lite.com/global/products/vl2600-wash", "title": "VL2600 SE WASH", "locator": "Product overview; 570 W light engine, 27,500 lm, 12–63 degree zoom; theatre/touring uses", "accessed_at": "2026-09-30"},
-      {"url": "https://vari-lite.s3.eu-west-1.amazonaws.com/datasheets/vl2600-se-wash.pdf", "title": "VL2600 SE WASH Specification Sheet", "locator": "Physical table and dimensional drawing; 300 × 464 × 705 mm, 30 kg; drawing gives motion and clearance", "accessed_at": "2026-09-30"}
+      {
+        "url": "https://www.vari-lite.com/global/products/vl2600-wash",
+        "title": "VL2600 SE WASH",
+        "locator": "Product overview; 570 W light engine, 27,500 lm, 12–63 degree zoom; theatre/touring uses",
+        "accessed_at": "2026-09-30"
+      },
+      {
+        "url": "https://vari-lite.s3.eu-west-1.amazonaws.com/datasheets/vl2600-se-wash.pdf",
+        "title": "VL2600 SE WASH Specification Sheet",
+        "locator": "Physical table and dimensional drawing; 300 × 464 × 705 mm, 30 kg; drawing gives motion and clearance",
+        "accessed_at": "2026-09-30"
+      }
     ]
   }
 ]

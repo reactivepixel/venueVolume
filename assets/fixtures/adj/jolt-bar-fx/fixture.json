@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "adj/jolt-bar-fx",
-  "revision": 1,
+  "revision": 2,
   "updated_at": "2026-09-30",
   "status": "ready_for_visualization",
   "identity": {
@@ -209,80 +209,140 @@
     "dimension_tolerance_m": 0.001,
     "bounds_m": {
       "min": [
-        -0.5,
+        -0.4999999701976776,
         0.0,
-        -0.05350099876523018
+        -0.05350000038743019
       ],
       "max": [
-        0.5,
-        0.12300000339746475,
-        0.05350000038743019
+        0.4999999701976776,
+        0.1230000073555857,
+        0.05350000225007534
       ]
     },
     "parts": [
       {
         "name": "body",
-        "prim_path": "/Fixture/Body"
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.00124594965018332,
+          -0.0036588404327630997
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.07724879682064056,
+          -0.0036588404327630997
+        ]
       },
       {
         "name": "lens",
-        "prim_path": "/Fixture/Lens"
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.07724879682064056,
+          -0.04660587012767792
+        ]
       }
     ],
     "joints": [],
     "emitters": [
       {
-        "name": "primary light output",
-        "prim_path": "/Fixture/Emitter"
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.07724879682064056,
+          -0.04773605614900589
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
       }
     ],
     "assumptions": [
       "Procedural visualization proxy, not manufacturer CAD.",
       "Manufacturer specifies bar L x W x H; runtime width follows bar length.",
-      "Moving components are separated but no runtime articulation joints are authored."
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
     ],
     "artifacts": [
       {
         "role": "authoring",
         "file": "models/fixture.blend",
-        "sha256": "ff10638d64c26d607bab4496047d85bc3f462125861b48874b8a691eba1fe7f3"
+        "sha256": "1117b66a98d8bc165755c4797b49dc9eea2160b24811eab28a1beeadb8838f96"
       },
       {
         "role": "runtime",
         "file": "models/fixture.usdz",
-        "sha256": "ad82fd6f52b782e9daf6ee87048ee35a1e75af22369da2a3399bdcd3eabb5b98"
+        "sha256": "e6286a5b27d177e94728a75d87f5ddcc552cbef897a7a0118436be093a37c1f9"
       },
       {
         "role": "generator",
         "file": "models/build_fixture.py",
-        "sha256": "eb414b8364f6b448256a3db18d128ae08c46222e3bfceae12a1cc45768780934"
-      },
-      {
-        "role": "preview",
-        "file": "previews/front.png",
-        "sha256": "95bf0a24d2b92c12879ac0b4a47bf969092f5110c273e2b8117917cb3bd501b0"
-      },
-      {
-        "role": "preview",
-        "file": "previews/rear.png",
-        "sha256": "9f87c3828e2cbe6135cd91436a32cff0c935bc9345b3c88fab8e3b4294b3dcfd"
-      },
-      {
-        "role": "preview",
-        "file": "previews/side.png",
-        "sha256": "f3dc5769f120f6650a900f7367482fd05ac930d509eb79803af6c9310f843a34"
-      },
-      {
-        "role": "preview",
-        "file": "previews/three-quarter.png",
-        "sha256": "f2d37955e1a57076f247596e6cec2e078100700a4f4184d647ecb7f777ca0703"
+        "sha256": "d5adf4de9000a77b0e5c9e136c7a10238a5e47f77c3c4c64c2b776c155773f78"
       },
       {
         "role": "validation",
         "file": "validation/usdz.json",
-        "sha256": "59f41db81554d5179acc72458699e4c3138787343b385da854649385f955ebb1"
+        "sha256": "f286e4e41b24a7bad02d980cf36681c8742a161ba5fec52c8afabf4d904af32f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "185cdb70d91a213b886c171387ef59d44dbfbea1c0be6156b9459bb40c2c9ee3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "a17f3f3c510fc8cc7d6cb0f2c920d6c35602d366a08902e9bd1dd53db7d63398"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "e6bcdc708652780ab61382af7293124b72fd2c85f66901e95dde1ab96633e1c3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "6b6f4a9cb7e09822461d1bf0b1f58a415b653f6d8386face1e9c9a6b61ae3d04"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "4dcf5c3f6b1f6fac81e0f45bf49fb132ff07d96b801d327936981d827018f4a3"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "ebe67be232208c247c9cf4476a89a7f2efcc6007b6a2ed4104b0cf4d4d345441"
       }
-    ]
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "89f9256cb09f5632a047e5a94e74071b8267d1c962d01a34a7d8a47dc7a2c5d4",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "strobe",
+      "strip": true,
+      "cells": 20
+    },
+    "mesh_count": 99,
+    "triangle_count": 18628,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
   },
   "verification": {
     "realitykit": "not_tested",
@@ -293,6 +353,7 @@
   },
   "unresolved": [],
   "revision_notes": [
-    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed strobe geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
   ]
 }

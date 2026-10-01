@@ -5,7 +5,7 @@
 - Official source: [https://www.claypaky.it/products/sharpy-legacy/](https://www.claypaky.it/products/sharpy-legacy/) (accessed 2026-09-30)
 - Reference envelope: 0.4050 m W × 0.4750 m H × 0.3300 m D
 - Control: DMX, Art-Net, RDM, sACN; exact personalities are retained as footprints only when the source supplied them. Channel functions are not invented.
-- Model: fixture-specific editable Blender approximation, meter-scale USDZ, Y-up and -Z forward. Tapered compact moving-head silhouette, console base, heavy yoke, cylindrical optical body and deep lens bezel.
+- Model: high-detail image-informed procedural approximation; editable Blender and full-detail meter-scale USDZ, Y-up and -Z forward. See the current revision below.
 - Validation: OpenUSD structure, scale envelope, declared prims, and ARKit profile checked. RealityKit rendering and hardware remain untested.
 
 ## Local assets
@@ -22,7 +22,17 @@
 
 ## Assumptions and follow-up
 
-- Procedural visualization proxy, not manufacturer CAD.
+- Detailed procedural visualization model, not manufacturer CAD.
 - Base footprint and height are documented; base width/depth orientation follows the manufacturer drawing.
-- Moving components are separated but no runtime articulation joints are authored.
+- Moving parts have editable pivots; runtime physics joints are not authored.
 - Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion.
+
+## Detailed model revision
+
+Revision 3 uses a `moving_spot` profile with 85 visible meshes and 18,060 triangles. The editable Blender model and runtime USDZ contain the same evaluated geometry. Local contours, details and joint pivots remain estimated from manufacturer imagery. Existing dimensional evidence and unresolved axis assignments remain unchanged.
+
+[Detail and parity report](../../../../assets/fixtures/claypaky/sharpy/validation/detail.json) · [Front](../../../../assets/fixtures/claypaky/sharpy/previews/front.png) · [Side](../../../../assets/fixtures/claypaky/sharpy/previews/side.png) · [Rear](../../../../assets/fixtures/claypaky/sharpy/previews/rear.png) · [Three-quarter](../../../../assets/fixtures/claypaky/sharpy/previews/three-quarter.png)
+
+## Independent saved-file audit
+
+[Blender / USDZ parity](../../../../assets/fixtures/claypaky/sharpy/validation/parity.json): all saved mesh vertices, triangle topology and material colors match within 1 micrometre. Runtime device rendering, real fixture response, internal mechanisms and clearance certification are not tested.

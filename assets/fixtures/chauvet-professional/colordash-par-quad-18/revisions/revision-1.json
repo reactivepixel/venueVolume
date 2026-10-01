@@ -1,0 +1,210 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "chauvet-professional/colordash-par-quad-18",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "CHAUVET Professional",
+      "model": "COLORdash Par-Quad 18",
+      "variant": "COLORDASHPARQUAD18",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://chauvetprofessional.com/product/colordash-par-quad-18/",
+        "title": "COLORdash Par-Quad 18 product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Legacy page; Specifications > Construction/Physical: 12.7 x 11.7 x 4.1 in (323 x 298 x 106 mm), weight 10.2 lb",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.chauvetprofessional.com/wp-content/uploads/2018/01/COLORdash_Par-Quad_18_UM_Rev6.pdf",
+        "title": "COLORdash Par-Quad 18 User Manual Rev. 6",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product Overview, printed p. 3, front/side/rear technical illustrations; Technical Information table, printed p. 14",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "evidence-3",
+        "url": "https://www.fullcompass.com/common/products/lgr/471924.jpg",
+        "title": "Full Compass product image",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Distributor image; reuse status unknown",
+        "reuse_status": "reference_only",
+        "kind": "secondary"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://chauvetprofessional.com/wp-content/uploads/2025/10/COLORDASH-PAR-QUAD-18-FRONT-FEAT.png",
+        "title": "COLORdash Par-Quad 18 product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Reference image; exact-model identity visually reviewed separately",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference.png",
+        "sha256": "7948bb541c38cb74b548760320908b0f782786d7a6114846057d7a48eca7a860"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.323,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "evidence-3"
+        ],
+        "unit": "m",
+        "note": "Manufacturer lists 323 x 298 x 106 mm but does not label axes in online specs; assignment uses front width, assembled height, and fixture depth from official manual's orthographic product views."
+      },
+      "height": {
+        "value": 0.298,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "evidence-3"
+        ],
+        "unit": "m",
+        "note": "Manufacturer lists 323 x 298 x 106 mm but does not label axes in online specs; assignment uses front width, assembled height, and fixture depth from official manual's orthographic product views."
+      },
+      "depth": {
+        "value": 0.106,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "evidence-3"
+        ],
+        "unit": "m",
+        "note": "Manufacturer lists 323 x 298 x 106 mm but does not label axes in online specs; assignment uses front width, assembled height, and fixture depth from official manual's orthographic product views."
+      },
+      "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+      "source_reference_pose": "Round PAR face forward with split yoke extending down; dimensions describe unit with mounting bracket installed."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "118 W at 120 V, 116 W at 208 V, 115 W at 230 V",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "10.2 lb (4.6 kg)",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "4-channel mode",
+        "footprint": 4,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "6-channel mode",
+        "footprint": 6,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "10-channel mode",
+        "footprint": 10,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer lists 323 x 298 x 106 mm but does not label axes in online specs; assignment uses front width, assembled height, and fixture depth from official manual's orthographic product views.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Acquired in expansion batch 2. Technical sources retained with locators; detailed model build pending."
+    ]
+  },
+  "git_commit": "4f96bdc0ec081c3756f42c22c8d181b776dab91a",
+  "note": "Initial research record before any generated model artifacts existed."
+}

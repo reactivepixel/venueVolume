@@ -1,0 +1,79 @@
+{
+  "mesh_count": 107,
+  "triangle_count": 30780,
+  "geometry_sha256": "bf58d2247a62f407ea0b215d926d3b0945ac35a0e7dbfbc3a3142929ef6846d4",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.3177221715450287,
+      -0.057430412620306015
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0005064382567070425
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.06759033352136612,
+        0.0005064382567070425
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.3177221715450287,
+        0.0005064382567070425
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.3177221715450287,
+        -0.055313486605882645
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216243743896,
+    1.0128819942474365,
+    0.9916422367095947
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.robe.cz/ledbeam-350",
+    "https://www.robe.cz/res/downloads/catalogues/ROBE_LEDBeam_350_leaflet_online_version.pdf",
+    "https://www.robe.cz/res/downloads/exterior_dimensions/RobinLEDBeam350-dimensions.pdf",
+    "https://cdn.aws.robe.cz/v1/image/resize/7c16e7d0f45129d3a4fc9e6be99a5f1a32e0e115?fit=cover&height=452&width=452&withoutEnlargement=false"
+  ]
+}

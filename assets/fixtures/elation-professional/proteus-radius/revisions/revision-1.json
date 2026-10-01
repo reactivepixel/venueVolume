@@ -1,0 +1,220 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "elation-professional/proteus-radius",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "Elation Professional",
+      "model": "Proteus Radius",
+      "variant": "PRD013",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.elationlighting.com/products/proteus-radius",
+        "title": "Elation Professional Proteus Radius official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://www.elationlighting.com/cdn/shop/files/8a816888b19c597ff679c5fcb47dd7fcb4a0d392_PRD013__IMG__001__0d483618ed34.png?v=1776814959&width=1200",
+        "title": "Elation Professional Proteus Radius official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.png",
+        "sha256": "bf1d10f98906d6009e11163777858923d33929a5dff51497c6d356b7c6339500"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.395,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "height": {
+        "value": 0.516,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "depth": {
+        "value": 0.27,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": [
+            "100 W laser phosphor engine; 0.9° beam; IP66"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "300 W max; 100-240 V AC, 50/60 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "45.0 lb (20.4 kg)",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM",
+            "Art-Net",
+            "sACN"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.19750000536441803,
+          0.0,
+          -0.13500000536441803
+        ],
+        "max": [
+          0.19750000536441803,
+          0.515999972820282,
+          0.13500000536441803
+        ]
+      },
+      "parts": [
+        {
+          "name": "base",
+          "prim_path": "/Fixture/Base"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "head",
+          "prim_path": "/Fixture/Head"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Head/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Head/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer lists length, width and height individually; runtime X/Y/Z uses width/height/length.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "576d17db68029ac05e802d036a14b5f67f21901abb6a9b3ac59ab84a9396c96e"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "8ca1e57da45c4279602454b7acd8c5eb8c021a803de9e07c130a660112d4bcbd"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "686f5d1adcd6830f5c281e5b86139dfcc2f6d3bcf3a82223271c33466fdb169c"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "edb806dc3ab08e49da2b96ea1ba1d6e8d58487a714eae265d2acefadec3a7d78"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "dca908bbcd5aa7f68f95fcd73568173140a4d5d0f374ffb6bc37716eae99a333"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "43cee33ee4e09d6db197de26f0a8e367c7e08132cc9dfa2427597e688cfbcd2b"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "3a353ac61967e31dfcab6787f721f509067682d3a4c9f2749906b077c5d0b9f4"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "4b4e9788e3b672bdf38728d950984b2188fbadb71ffb63715429e6754c9e7ac2"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-1",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

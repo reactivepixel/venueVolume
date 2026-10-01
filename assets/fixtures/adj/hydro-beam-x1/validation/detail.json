@@ -1,0 +1,77 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 18644,
+  "geometry_sha256": "391e0e1255f2a57c20533410569014438e3ecf9ab7add84d196283278707135a",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.36070001125335693,
+      -0.12638640403747559
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.000518811633810401
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.06880000233650208,
+        0.000518811633810401
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.36070001125335693,
+        0.000518811633810401
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.36070001125335693,
+        -0.12174948304891586
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216243743896,
+    1.0376211404800415,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/products/hydro-beam-x1",
+    "https://www.adj.com/cdn/shop/files/2ca9d5892d774450aa191f321349e6f771ee8f18_HYDRO_BEAM_X1_red_RT.jpg?v=1778306536&width=800"
+  ]
+}

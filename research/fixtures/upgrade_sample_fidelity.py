@@ -28,6 +28,8 @@ for fixture_id in selected:
     folder=ROOT/"assets/fixtures"/fixture_id
     record_path=folder/"fixture.json"
     record=json.loads(record_path.read_text())
+    if record['model'].get('detail_level')=='high':
+        raise SystemExit('Detailed assets preserved; use build_detailed_catalog.py: '+fixture_id)
     subprocess.run(["blender","--background","--python-exit-code","1","--python",str(folder/"models/build_fixture.py")],check=True)
     subprocess.run(["blender","--background","--python-exit-code","1","--python",str(CHECK),"--",str(record_path)],check=True)
     report=json.loads((folder/"validation/usdz.json").read_text())

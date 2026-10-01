@@ -1,0 +1,303 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "adj/jolt-bar-fx",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "ADJ",
+      "model": "Jolt Bar FX",
+      "variant": "JOLT-BAR-FX",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.adj.com/products/jolt-bar-fx",
+        "title": "ADJ Jolt Bar FX official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://www.adj.com/cdn/shop/files/4ba34d07f96ad74129a39daa60a889601126b3e3_JOL250__IMG__003__d947eb5428f7.jpg?v=1776713379&width=800",
+        "title": "ADJ Jolt Bar FX official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.jpg",
+        "sha256": "8d117235afdf91e02ec196e09c7b3ddc41b8f4af8128583bef2d92864c9809ae"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 1.0,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "height": {
+        "value": 0.123,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "depth": {
+        "value": 0.107,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": [
+            "448 RGB plus 112 cool-white LEDs; strobe/blinder zones",
+            "discontinued"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "6-channel mode",
+        "footprint": 6,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "9-channel mode",
+        "footprint": 9,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "13-channel mode",
+        "footprint": 13,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "16-channel mode",
+        "footprint": 16,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "18-channel mode",
+        "footprint": 18,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "32-channel mode",
+        "footprint": 32,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "38-channel mode",
+        "footprint": 38,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "43-channel mode",
+        "footprint": 43,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "64-channel mode",
+        "footprint": 64,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "78-channel mode",
+        "footprint": 78,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "112-channel mode",
+        "footprint": 112,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "127-channel mode",
+        "footprint": 127,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.5,
+          0.0,
+          -0.05350099876523018
+        ],
+        "max": [
+          0.5,
+          0.12300000339746475,
+          0.05350000038743019
+        ]
+      },
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer specifies bar L x W x H; runtime width follows bar length.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "ff10638d64c26d607bab4496047d85bc3f462125861b48874b8a691eba1fe7f3"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "ad82fd6f52b782e9daf6ee87048ee35a1e75af22369da2a3399bdcd3eabb5b98"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "eb414b8364f6b448256a3db18d128ae08c46222e3bfceae12a1cc45768780934"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "95bf0a24d2b92c12879ac0b4a47bf969092f5110c273e2b8117917cb3bd501b0"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "9f87c3828e2cbe6135cd91436a32cff0c935bc9345b3c88fab8e3b4294b3dcfd"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "f3dc5769f120f6650a900f7367482fd05ac930d509eb79803af6c9310f843a34"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "f2d37955e1a57076f247596e6cec2e078100700a4f4184d647ecb7f777ca0703"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "59f41db81554d5179acc72458699e4c3138787343b385da854649385f955ebb1"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-1",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

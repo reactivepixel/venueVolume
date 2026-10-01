@@ -1,0 +1,79 @@
+{
+  "mesh_count": 128,
+  "triangle_count": 38116,
+  "geometry_sha256": "eda2841e82518beb1a4cbf958aa6c6655f2609c2f83dc19e4689676e7a2fd3c3",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.3498869836330414,
+      -0.07602304965257645
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0005146439652889967
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.07565124332904816,
+        0.0005146439652889967
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.3498869836330414,
+        0.0005146439652889967
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.3498869836330414,
+        -0.07322648167610168
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216243743896,
+    1.0292857885360718,
+    0.991237461566925
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.robe.cz/spiider",
+    "https://www.robe.cz/res/downloads/exterior_dimensions/Robin_Spiider_dimensions.pdf",
+    "https://www.robe.cz/res/downloads/catalogues/ROBE_Spiider_leaflet_online_version.pdf",
+    "https://cdn.aws.robe.cz/v1/image/resize/bacf4d213ec3c79f0b0fbc9128588eea91297efa?fit=cover&height=452&width=452&withoutEnlargement=false"
+  ]
+}

@@ -1,3 +1,3 @@
-# Local source assets
+# Local reference assets
 
-No official product-image URL was available in the research CSV. Remote manufacturer sources are recorded in `../fixture.json`.
+Manufacturer imagery and documents here are research references, not runtime textures. URLs, file hashes, source identity caveats and reuse status are recorded in `../fixture.json`. No redistribution license is implied.

@@ -1,0 +1,69 @@
+{
+  "mesh_count": 112,
+  "triangle_count": 21072,
+  "geometry_sha256": "a81a48786dd059a685e683267635b1a357c1b9411db6506b257299d2df9bb6dd",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.1662251502275467,
+      -0.0646643117070198
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0026810509152710438,
+        -0.0026501743122935295
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.1662251502275467,
+        -0.0026501743122935295
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        0.0,
+        0.1662251502275467,
+        -0.06307420879602432
+      ]
+    }
+  ],
+  "family": "strobe",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.933237612247467,
+    1.0600707530975342,
+    1.0681477785110474
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://glp.de/en/products/entertainment-lighting/strobes/jdc1-en?ic=1",
+    "https://glp.de/files/products/jdc1-product-data/GLP_JDC1_User_Manual_EN_Rev20240830-01.pdf",
+    "https://glp.de/templates/yootheme/cache/83/JDC1_1-83eb9208.jpeg"
+  ]
+}

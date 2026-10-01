@@ -1,0 +1,206 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "robe-lighting/forte",
+    "revision": 2,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "ROBE Lighting",
+      "model": "FORTE",
+      "variant": "FORTE",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.robe.cz/forte",
+        "title": "ROBE Lighting FORTE official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.robe.cz/res/downloads/user_manuals/User_manual_Robin_Forte.pdf",
+        "title": "ROBE Lighting FORTE official source 2",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://cdn.aws.robe.cz/v1/image/resize/401bff822913a8182209a6ef40c594071b9596c2?fit=cover&height=452&width=452&withoutEnlargement=false",
+        "title": "ROBE Lighting FORTE official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.jpg",
+        "sha256": "a94d862dc068a4c10b7cf81deefc765f848bc9a35245c9eda6ffa7c996af721b"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.4835,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "height": {
+        "value": 0.6355,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "depth": {
+        "value": 0.6245,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM",
+            "Art-Net",
+            "sACN"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.24175000190734863,
+          0.0,
+          -0.3122510015964508
+        ],
+        "max": [
+          0.24175000190734863,
+          0.6355000138282776,
+          0.3122499883174896
+        ]
+      },
+      "parts": [
+        {
+          "name": "base",
+          "prim_path": "/Fixture/Base"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "head",
+          "prim_path": "/Fixture/Head"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Head/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Head/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Fixture-specific procedural approximation informed by the stored official product image; not manufacturer CAD.",
+        "Vented rounded base, display, angled heavy yoke, long optical barrel, metal bezel and cooling detail.",
+        "Small fasteners, exact surface curvature, labels, internal mechanics, connector geometry and photometry remain simplified.",
+        "Moving components remain separately addressable, but runtime articulation joints are not authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "c582c6628b8e9a70871e010e8660122a0bf6b4e7ac38601f309ab1e4d1ca0955"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "8967cdbe7cd0a5b2f6164408a41c8f0930c3d30ee54e493876dbe15bcbcc1e1e"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "b6291bb6c5ff41b143ca26432d50820f7a03be9e3427b1c5702f337e5116df88"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "9c2837b457308ce3a1795ac5e91d73c2666d127fb9f1ac4d1fd69a282449d83c"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "55fd50a2d8664ac8f818592b87daf8bd92250b3563888b49258705569556cdb3"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "170c752eedb78d2b08d5ac7205389573981a8565261d6f9ec677225646dd1bdb"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "0c47780e1f53fd153694420e63c38616872b56a475351ed459b10b45dbd34d0c"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "029f46b421cd2794c17ee6605f375dca4c267009ae2374da77f432f2f753547c"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+      "Revision 2 replaces the generic proxy with fixture-specific silhouette, optics, housing and mounting details while preserving sourced outer dimensions."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-2",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

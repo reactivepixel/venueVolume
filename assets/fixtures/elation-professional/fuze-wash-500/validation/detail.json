@@ -1,0 +1,77 @@
+{
+  "mesh_count": 94,
+  "triangle_count": 25556,
+  "geometry_sha256": "a6f8cecdd0ddf4cc289cd6fe03a1298ae188a9c2a531388cc815ed6441b8310a",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.4146762490272522,
+      -0.17502954602241516
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0005014471244066954
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.08782230317592621,
+        0.0005014471244066954
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.4146762490272522,
+        0.0005014471244066954
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.4146762490272522,
+        -0.1686159074306488
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    1.0441548824310303,
+    0.9970743656158447
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.elationlighting.com/products/fuze-wash-500",
+    "https://www.elationlighting.com/cdn/shop/files/f261b7f937117cee2f18bcc03abd483d9a2ed232_FUZ567__IMG__005__607642e601ac.jpg?v=1776815760&width=1200"
+  ]
+}
