@@ -1,0 +1,337 @@
+{
+  "schema_version": 1,
+  "id": "chauvet-professional/strike-4",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "CHAUVET Professional",
+    "model": "STRIKE 4",
+    "variant": "STRIKE4",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://chauvetprofessional.com/product/strike-4/",
+      "title": "STRIKE 4",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Dimensions, weight, power and control specifications",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://chauvetprofessional.com/wp-content/uploads/2025/10/STRIKE-4-FRONT-FEAT.png",
+      "title": "STRIKE 4 visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.png",
+      "sha256": "26536942c76a58f63e4bb1d50c35a9f50161d9967c11477f0723673c1dbbffc1"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.362,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer LxWxH values 362 x 362 x 163 mm map to square face width/height and depth with emitting face forward. Neutral-pose axis assignment is image-inferred, not established by a labelled drawing."
+    },
+    "height": {
+      "value": 0.362,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer LxWxH values 362 x 362 x 163 mm map to square face width/height and depth with emitting face forward. Neutral-pose axis assignment is image-inferred, not established by a labelled drawing."
+    },
+    "depth": {
+      "value": 0.163,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer LxWxH values 362 x 362 x 163 mm map to square face width/height and depth with emitting face forward. Neutral-pose axis assignment is image-inferred, not established by a labelled drawing."
+    },
+    "reference_pose": "Four cells facing forward, square panel vertical, body depth toward/away from observer; yoke neutral."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "301 W at 120 V; 286 W at 230 V",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "8.7 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Four cells facing forward, square panel vertical, body depth toward/away from observer; yoke neutral.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.1809999942779541,
+        0.0,
+        -0.08150000311434269
+      ],
+      "max": [
+        0.1809999942779541,
+        0.3619999885559082,
+        0.08150001429021358
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.011553184129297733,
+          0.006175165995955467
+        ]
+      },
+      {
+        "name": "pod_n1_0_25",
+        "prim_path": "/Fixture/Pod_n1_0_25",
+        "pivot_m": [
+          -0.09627658873796463,
+          0.08472340553998947,
+          0.006175165995955467
+        ]
+      },
+      {
+        "name": "pod_n1_0_75",
+        "prim_path": "/Fixture/Pod_n1_0_75",
+        "pivot_m": [
+          -0.09627658873796463,
+          0.27727657556533813,
+          0.006175165995955467
+        ]
+      },
+      {
+        "name": "pod_1_0_25",
+        "prim_path": "/Fixture/Pod_1_0_25",
+        "pivot_m": [
+          0.09627658873796463,
+          0.08472340553998947,
+          0.006175165995955467
+        ]
+      },
+      {
+        "name": "pod_1_0_75",
+        "prim_path": "/Fixture/Pod_1_0_75",
+        "pivot_m": [
+          0.09627658873796463,
+          0.27727657556533813,
+          0.006175165995955467
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.1809999942779541,
+          -0.07880669832229614
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Manufacturer LxWxH values 362 x 362 x 163 mm map to square face width/height and depth with emitting face forward. Neutral-pose axis assignment is image-inferred, not established by a labelled drawing.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "8436c39f0b88b141f64a6c17954dbeea132c0155ba4417cac7ee65567b7032a0"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "50c350a18c1d25532027683121f59dda9baa97082368471eb53a8c5e36be144a"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "d4c27b75c17960a8ab4da415d0325f029002c4f59fc99177bf8e83ca40eeb142"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "0114b35423a12eb848c4f3736096eb136e590b7ac9f231838d9212b616dee14a"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "33e09f33508dfa232f0bb92b4951c16fcb61564996fc87e39fcb993f6fe0d19b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "4734bb072de7423c1499f390b5805e270c60f79e9a1e5b4ffb5842fbb3b6c8ed"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "ccaead7fea710b584647b7477335f6808b2a048629a87a52e9128743fd338c16"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "333a84e163f3598fc037a0d6af19b74dad53233924136f0705b01a495c4eb20a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "e0d27625679cddbb227a27d61328ac8df501e78aeb5ec81ca41cf51fe4895110"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "f16e66372b075ce022f6e4cfa08d119e86afa69b7e8dbfc7829900fcc5373e25"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "5b22f9edc792b5b306bfbf87ead88d041b344c3ca8487dc168318ce3ceb65130",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "blinder",
+      "body_style": "four-cell warm-white blinder panel with yoke",
+      "notes": "Four individually aimable cells; not a tungsten lamp fixture.",
+      "generator": "equipment",
+      "output_kind": "light"
+    },
+    "mesh_count": 53,
+    "triangle_count": 8828,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed blinder geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "lighting.effects.blinder",
+    "control_path": "DMX",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://chauvetprofessional.com/product/strike-4/"
+      ],
+      "control_path": "DMX",
+      "protocols": [
+        "DMX"
+      ],
+      "power": "301 W at 120 V; 286 W at 230 V",
+      "weight": "8.7 kg",
+      "dimensions": {
+        "width_m": 0.362,
+        "height_m": 0.362,
+        "depth_m": 0.163,
+        "axis_status": "estimated",
+        "axis_note": "Manufacturer LxWxH values 362 x 362 x 163 mm map to square face width/height and depth with emitting face forward. Neutral-pose axis assignment is image-inferred, not established by a labelled drawing.",
+        "reference_pose": "Four cells facing forward, square panel vertical, body depth toward/away from observer; yoke neutral."
+      },
+      "research_evidence": [
+        {
+          "url": "https://chauvetprofessional.com/product/strike-4/",
+          "title": "STRIKE 4",
+          "locator": "Dimensions, weight, power and control specifications",
+          "accessed_at": "2026-09-30"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.effects.blinder",
+    "category_path": [
+      "Lighting fixtures",
+      "Visible and audience effects",
+      "Audience blinder"
+    ],
+    "use_tags": [
+      "strobe capable",
+      "blinder capable"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

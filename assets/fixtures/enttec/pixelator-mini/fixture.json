@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "id": "enttec/pixelator-mini",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ENTTEC",
+    "model": "Pixelator Mini",
+    "variant": "70067",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.enttec.com/product/led-pixel-control/pixelator-mini-lighting-controller-ethernet-to-spi-pixel-converter/",
+      "title": "Pixelator Mini product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product capabilities, protocols, connector count and direct manufacturer product render",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "evidence-2",
+      "url": "https://cdn.enttec.com/pdf/assets/70067/70067_PIXELATOR_MINI_DATASHEET.pdf",
+      "reuse_status": "unknown",
+      "kind": "manufacturer_manual",
+      "title": "Pixelator Mini datasheet",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Unit dimensions 200 x 120 x 42 mm; weight and PLink output specs",
+      "file": "sources/enttec-pixelator-mini.pdf",
+      "sha256": "e7f211271fade653bbd86a9b274d8d98182daf3fb764be269593ef78fbb969d4"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://cdn.enttec.com/wp-content/uploads/2022/02/09060535/product_pixelatormini__004.png",
+      "title": "Pixelator Mini visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.png",
+      "sha256": "d6d3f6d304bbcec2f360ea073961e09678795a34e009b9a4af269c4f0ecfc00d"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.2,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "200 x 120 x 42 mm unit dimensions"
+    },
+    "height": {
+      "value": 0.042,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "200 x 120 x 42 mm unit dimensions"
+    },
+    "depth": {
+      "value": 0.12,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "200 x 120 x 42 mm unit dimensions"
+    },
+    "reference_pose": "Tabletop controller, broad face horizontal with printed label/status upward and connectors facing outward; pose inferred from manufacturer render."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Tabletop controller, broad face horizontal with printed label/status upward and connectors facing outward; pose inferred from manufacturer render.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.10000000125728548,
+        0.0,
+        -0.05999999657069566
+      ],
+      "max": [
+        0.10000000172294676,
+        0.041999999433755875,
+        0.06000000074709533
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0016897099558264017,
+          0.0,
+          -6.245612894417718e-05
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "200 x 120 x 42 mm unit dimensions",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "b6a58f2321e37e96e0b1d431a5afb0f97f60aa64ab11317be777f45bc52b59e8"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "d3b49b087c10138005921d184f33a91e58f4794e99eb677c17cdd9f183517ed4"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "843cd85c2afb9bd1c91e5e1e089859d789d06305b5ff2b6184f03a63af0e42c6"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "a18e0998feee1a4ac0ebb076ebcd472fd970bdfa25cb55027356a5d6c9a9c879"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "2d0ca796a079ce5408c78f11dc444bdb0d8dd44c24605361597438c9f12428b3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "381aa5370554dd01fb0b7dcabf01063d9771413359c1c85892057ac23601709d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "33264a9447416be49230226f81a87f148f1c6967347083e0149d6fdedb9cbfdb"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "2298d4ee9b4d990e9552b121b4ab264f1e4a4dd2cb0db6bfbb0f54ae2b5496f5"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "f356248c4b8950746d7fd0ddd8a9d67ff6c6270d519eac572cefa371659deca3"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "e7d3c5fe38a888468cd720eac0b23955dfd9d5aca4be07aabb727e4db8f96e38"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "abf3b0ab3de84c450d537f174896bc1923f4fa115b040bdd0fb80188e4658a9b",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "pixel_controller",
+      "body_style": "low black rectangular controller with front-panel display and multiple output connectors",
+      "notes": "This distributes pixel data using ENTTEC PLink; PLink injectors and their pixel-power connections are separate equipment.",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 20,
+    "triangle_count": 3376,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed pixel_controller geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "control.pixel",
+    "control_path": "Art-Net/sACN/ESP Ethernet input to eight proprietary PLink outputs for compatible PLink injectors; not a fixture power supply and not a DMX512 output device.",
+    "physical_asset_only": true,
+    "source_data": {
+      "dimensions": {
+        "width_m": 0.2,
+        "height_m": 0.042,
+        "depth_m": 0.12,
+        "source_order": "200 x 120 x 42 mm unit dimensions",
+        "axis_status": "documented",
+        "axis_note": "200 x 120 x 42 mm unit dimensions",
+        "reference_pose": "Tabletop controller, broad face horizontal with printed label/status upward and connectors facing outward; pose inferred from manufacturer render."
+      },
+      "control_path": "Art-Net/sACN/ESP Ethernet input to eight proprietary PLink outputs for compatible PLink injectors; not a fixture power supply and not a DMX512 output device.",
+      "pose": "Tabletop controller, broad face horizontal with printed label/status upward and connectors facing outward; pose inferred from manufacturer render.",
+      "research_evidence": [
+        {
+          "url": "https://www.enttec.com/product/led-pixel-control/pixelator-mini-lighting-controller-ethernet-to-spi-pixel-converter/",
+          "title": "Pixelator Mini product page",
+          "locator": "Product capabilities, protocols, connector count and direct manufacturer product render",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://cdn.enttec.com/pdf/assets/70067/70067_PIXELATOR_MINI_DATASHEET.pdf",
+          "title": "Pixelator Mini datasheet",
+          "locator": "Unit dimensions 200 x 120 x 42 mm; weight and PLink output specs",
+          "file": "research/fixtures/taxonomy/support-sources/enttec-pixelator-mini.pdf",
+          "sha256": "e7f211271fade653bbd86a9b274d8d98182daf3fb764be269593ef78fbb969d4",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "control.pixel",
+    "category_path": [
+      "Control and data",
+      "Pixel-data controller / tape driver"
+    ],
+    "use_tags": [
+      "pixel control"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "mesh_count": 81,
+  "triangle_count": 14844,
+  "geometry_sha256": "2c3cbc21b96b839de4cea49ea7922c9e71807d140cbbdf9249650262570a3d1c",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.0,
+      -0.0
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        -0.0
+      ]
+    }
+  ],
+  "family": "console",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0416667461395264,
+    1.0989011526107788,
+    0.9569377303123474
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.etcconnect.com/products/consoles/colorsource/features.aspx",
+    "https://www.etcconnect.com/about/drawing-library/consoles/colorsource.aspx",
+    "https://goknight.com/content/documentation/ColorSource_Console_Spec_Sheet_revG.pdf",
+    "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/ColorSource/CS20_CS40.png"
+  ]
+}

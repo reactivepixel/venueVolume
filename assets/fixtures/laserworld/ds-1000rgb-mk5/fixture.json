@@ -1,0 +1,309 @@
+{
+  "schema_version": 1,
+  "id": "laserworld/ds-1000rgb-mk5",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Laserworld",
+    "model": "DS-1000RGB MK5",
+    "variant": "DS-1000RGB MK5",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.laserworld.com/en/laserworld-ds/laserworld-ds-1000rgb-mk5",
+      "title": "Laserworld DS-1000RGB MK5 official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.laserworld.com/pdf/generate.php?lang=en&productid=7640144997564",
+      "title": "DS-1000RGB MK5 technical datasheet",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact model physical and electrical data",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.laserworld.com/images_product/7640144997564/200/Laserworld_DS-1000RGB_MK5_fr_s.png",
+      "title": "DS-1000RGB MK5 visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.png",
+      "sha256": "4a174b44481a6754c480dc5ce2c29d81af4162c28b9e82f7e1a9caabe6cf9be3"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.2,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Model-specific manufacturer physical dimensions."
+    },
+    "height": {
+      "value": 0.125,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Model-specific manufacturer physical dimensions."
+    },
+    "depth": {
+      "value": 0.185,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Model-specific manufacturer physical dimensions."
+    },
+    "reference_pose": "Enclosure level with aperture forward; carrying frame intact."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "40 W; 85–250 V AC",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "3.8 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Enclosure level with aperture forward; carrying frame intact.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.10000000149011612,
+        0.0,
+        -0.09250000165775418
+      ],
+      "max": [
+        0.10000000149011612,
+        0.125,
+        0.09250000072643161
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0018226797692477703
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.055309735238552094,
+          0.0018226797692477703
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Model-specific manufacturer physical dimensions.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "a315e612ae8c9353dab3d81cd27b9959193437e2a1022e708a79637751555bad"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "d59fb09b6ac7e671428d539550f676754f52357cb909f20cdd9e73a39e2ded0a"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "4dba290ed8af39caff66f02e97b6404627accb18e3f237fe4c54893542fd0026"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "c268e74afb0b06c9f395e7ec44e68af3bb9f77d2119fd300c3d8740cdb89a248"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "98691607e349015208e4fbaca492d06349604976aad92f385c282b07560c5b91"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "a9daa6de2bf98b60134d1658f89d328d95c65b6d0109a5c3a5da5b020eccc6f3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "fe7db3d180304e0f87e259f95ce5d42e1ccc2db27f07012949c9d25dd1c7fded"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "e88ab70d06ee6831d8164087fb7d3a70a5b2f29fb9492345f5994ab64da2a18f"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "e0119bb4dc236bca15444566c2676d51352d913e71da4208d44a6a6fe82fc3a1"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "8283615d6d9b3f05a96dd3256f969e98b8f6d743e79e12b01c2bccda90b27769"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.06637168675661087,
+          -0.08839697390794754
+        ],
+        "kind": "laser_aperture",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "ad68dee91361e52a4eee7cc530d071e08bf916723f96a3ea3c3358dc7680f087",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "laser",
+      "body_style": "rectangular enclosed projector chassis with front aperture and rigging frame",
+      "notes": "No beam effect, aiming, safety behavior, interlock or firing semantics modeled.",
+      "generator": "equipment",
+      "output_kind": "laser_aperture"
+    },
+    "mesh_count": 61,
+    "triangle_count": 10524,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed laser geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "lighting.effects.laser",
+    "control_path": "Physical asset/specification only; no modeled aiming, safety implementation or firing instructions",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://www.laserworld.com/en/laserworld-ds/laserworld-ds-1000rgb-mk5",
+        "https://www.laserworld.com/pdf/generate.php?lang=en&productid=7640144997564"
+      ],
+      "control_path": "Physical asset/specification only; no modeled aiming, safety implementation or firing instructions",
+      "protocols": [],
+      "power": "40 W; 85–250 V AC",
+      "weight": "3.8 kg",
+      "dimensions": {
+        "width_m": 0.2,
+        "height_m": 0.125,
+        "depth_m": 0.185,
+        "axis_status": "documented",
+        "axis_note": "Model-specific manufacturer physical dimensions.",
+        "reference_pose": "Enclosure level with aperture forward; carrying frame intact."
+      },
+      "laser_class": "4",
+      "research_evidence": [
+        {
+          "url": "https://www.laserworld.com/pdf/generate.php?lang=en&productid=7640144997564",
+          "title": "DS-1000RGB MK5 technical datasheet",
+          "locator": "Exact model physical and electrical data",
+          "accessed_at": "2026-09-30"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.effects.laser",
+    "category_path": [
+      "Lighting fixtures",
+      "Visible and audience effects",
+      "Show laser projector"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

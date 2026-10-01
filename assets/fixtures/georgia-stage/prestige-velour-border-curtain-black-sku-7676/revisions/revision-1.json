@@ -1,0 +1,167 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "georgia-stage/prestige-velour-border-curtain-black-sku-7676",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Georgia Stage",
+      "model": "Prestige Velour Border Curtain, Black, SKU 7676",
+      "variant": "7676",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://gastage.com/sale-stage-curtain-valances-and-borders/988-prestige-velour-border-curtain-3-1-x-37-6-black-7676.html",
+        "title": "Georgia Stage Prestige Velour Border Curtain SKU 7676",
+        "kind": "secondary",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product title/size 3 ft 1 in x 37 ft 6 in, 50% fullness, item image and stock SKU; closeout status disclosed",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://gastage.com/3512-large_default/prestige-velour-border-curtain-3-1-x-37-6-black-7676.jpg",
+        "title": "Prestige Velour Border Curtain, Black, SKU 7676 visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.jpg",
+        "sha256": "31d0d651d6bca21cae6e1a14008878de55ec9934cb686d6d86e57677084a2d37"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 11.43,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Retailer gives sewn item size and fullness; the 5 mm depth is an explicit visualization estimate only, because fabric caliper and hanging pleat profile are not specified. Render is a flat silhouette only; actual 50%-fullness gathers require production-specific hanging geometry."
+      },
+      "height": {
+        "value": 0.9398,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Retailer gives sewn item size and fullness; the 5 mm depth is an explicit visualization estimate only, because fabric caliper and hanging pleat profile are not specified. Render is a flat silhouette only; actual 50%-fullness gathers require production-specific hanging geometry."
+      },
+      "depth": {
+        "value": 0.005,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Retailer gives sewn item size and fullness; the 5 mm depth is an explicit visualization estimate only, because fabric caliper and hanging pleat profile are not specified. Render is a flat silhouette only; actual 50%-fullness gathers require production-specific hanging geometry."
+      },
+      "reference_pose": "Flattened inventory silhouette at listed finished width and drop; 5 mm illustrative thickness, not installed pleat depth. Ties and hanging rig omitted."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Flattened inventory silhouette at listed finished width and drop; 5 mm illustrative thickness, not installed pleat depth. Ties and hanging rig omitted.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "Retailer gives sewn item size and fullness; the 5 mm depth is an explicit visualization estimate only, because fabric caliper and hanging pleat profile are not specified. Render is a flat silhouette only; actual 50%-fullness gathers require production-specific hanging geometry.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "theatrical_drape_border",
+      "control_path": "Passive soft goods; manually hung from existing border rigging",
+      "physical_asset_only": true,
+      "source_data": {
+        "source_urls": [
+          "https://gastage.com/sale-stage-curtain-valances-and-borders/988-prestige-velour-border-curtain-3-1-x-37-6-black-7676.html"
+        ],
+        "control_path": "Passive soft goods; manually hung from existing border rigging",
+        "protocols": [],
+        "dimensions": {
+          "width_m": 11.43,
+          "height_m": 0.9398,
+          "depth_m": 0.005,
+          "axis_status": "estimated",
+          "axis_note": "Retailer gives sewn item size and fullness; the 5 mm depth is an explicit visualization estimate only, because fabric caliper and hanging pleat profile are not specified. Render is a flat silhouette only; actual 50%-fullness gathers require production-specific hanging geometry.",
+          "reference_pose": "Flattened inventory silhouette at listed finished width and drop; 5 mm illustrative thickness, not installed pleat depth. Ties and hanging rig omitted."
+        },
+        "fabric": "Heavyweight polyester velour with satin finish; black; listed as inherently flame-retardant; webbing, grommets and ties",
+        "research_evidence": [
+          {
+            "url": "https://gastage.com/sale-stage-curtain-valances-and-borders/988-prestige-velour-border-curtain-3-1-x-37-6-black-7676.html",
+            "title": "Georgia Stage Prestige Velour Border Curtain SKU 7676",
+            "kind": "secondary",
+            "locator": "Product title/size 3 ft 1 in x 37 ft 6 in, 50% fullness, item image and stock SKU; closeout status disclosed",
+            "accessed_at": "2026-09-30"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "0a2d3e6cf6377719db5c9b958639a61b31546652",
+  "note": "Initial research record before any generated model artifacts existed."
+}

@@ -1,0 +1,60 @@
+{
+  "mesh_count": 112,
+  "triangle_count": 20628,
+  "geometry_sha256": "7dc6b3abd0cef6bfcb54e15f2a5590604e93b2a8ca8951f358e9aaeafe284c91",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.18459336459636688,
+      -0.23154602944850922
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.00700401421636343
+      ]
+    },
+    {
+      "name": "output",
+      "prim_path": "/Fixture/Output",
+      "pivot_m": [
+        0.0,
+        0.18459336459636688,
+        -0.23154602944850922
+      ]
+    }
+  ],
+  "family": "low_fog",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9478673338890076,
+    0.9700310230255127,
+    1.0230180025100708
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.chauvetdj.com/products/cumulus-hp/",
+    "https://www.chauvetdj.com/wp-content/uploads/2023/12/Cumulus_HP_UM_Rev1.pdf",
+    "https://www.chauvetdj.com/wp-content/uploads/2023/12/Cumulus_HP_UM_Rev1.pdf"
+  ]
+}

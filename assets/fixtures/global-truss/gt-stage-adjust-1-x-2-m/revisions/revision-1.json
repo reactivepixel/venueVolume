@@ -1,0 +1,184 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "global-truss/gt-stage-adjust-1-x-2-m",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Global Truss",
+      "model": "GT-Stage-Adjust 1 x 2 m",
+      "variant": "STG0004",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.globaltruss.com/gt-stage-adjust",
+        "title": "GT-Stage-Adjust product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "SKU STG0004, platform 1 x 2 m, four adjustable heights through 38.5 inches and direct product image",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "evidence-2",
+        "url": "https://www.globaltruss.com/pub/media/globaltrdownloads/downloads/g/t/gta_catalog_feb_2019_online-compressed.pdf",
+        "reuse_status": "unknown",
+        "kind": "manufacturer_manual",
+        "title": "Global Truss America catalog (February 2019)",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "GT-Stage-Adjust height range is listed as 27.5–39 in, slightly different from the current product page; do not silently reconcile the published discrepancy."
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.globaltruss.com/media/catalog/product/cache/6517c62f5899ad6aa0ba23ceb3eeff97/1/0/1000x1000-20gt-20stage-201x2-41237.jpg",
+        "title": "GT-Stage-Adjust 1 x 2 m visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.jpg",
+        "sha256": "a1fef862668ff9e056bc54792191215586dd89336fa09472324d1fd5ec6be4f1"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 2.0,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "Platform footprint is documented. Maximum adjustable height is uncertain because the current product page says 38.5 in (0.9779 m) while the 2019 catalog says 39 in (0.9906 m); retained current-page value as representative configuration."
+      },
+      "height": {
+        "value": 0.9779,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "Platform footprint is documented. Maximum adjustable height is uncertain because the current product page says 38.5 in (0.9779 m) while the 2019 catalog says 39 in (0.9906 m); retained current-page value as representative configuration."
+      },
+      "depth": {
+        "value": 1.0,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "Platform footprint is documented. Maximum adjustable height is uncertain because the current product page says 38.5 in (0.9779 m) while the 2019 catalog says 39 in (0.9906 m); retained current-page value as representative configuration."
+      },
+      "reference_pose": "Platform horizontal with 2 m edge along X, top surface up; maximum 38.5 in (0.9779 m) leg setting per current product page; height is subject to source conflict."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Platform horizontal with 2 m edge along X, top surface up; maximum 38.5 in (0.9779 m) leg setting per current product page; height is subject to source conflict.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "Platform footprint is documented. Maximum adjustable height is uncertain because the current product page says 38.5 in (0.9779 m) while the 2019 catalog says 39 in (0.9906 m); retained current-page value as representative configuration.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "optional.scenic_softgoods_optional.stage_platforms",
+      "control_path": "Passive structural scenic platform; no electrical or DMX connection.",
+      "physical_asset_only": true,
+      "source_data": {
+        "dimensions": {
+          "width_m": 2.0,
+          "height_m": 0.9779,
+          "depth_m": 1.0,
+          "source_order": "1 x 2 m platform; current product page height range 27 to 38.5 in, exact maximum conversion 0.9779 m; 2019 catalog range differs slightly (27.5–39 in)",
+          "axis_status": "estimated",
+          "axis_note": "Platform footprint is documented. Maximum adjustable height is uncertain because the current product page says 38.5 in (0.9779 m) while the 2019 catalog says 39 in (0.9906 m); retained current-page value as representative configuration.",
+          "reference_pose": "Platform horizontal with 2 m edge along X, top surface up; maximum 38.5 in (0.9779 m) leg setting per current product page; height is subject to source conflict."
+        },
+        "control_path": "Passive structural scenic platform; no electrical or DMX connection.",
+        "pose": "Platform horizontal with 2 m edge along X, top surface upward; adjustable legs at maximum 38.5 in = 0.9779 m setting per current product page. Platform footprint is product size; leg placement shown in render.",
+        "research_evidence": [
+          {
+            "url": "https://www.globaltruss.com/gt-stage-adjust",
+            "title": "GT-Stage-Adjust product page",
+            "locator": "SKU STG0004, platform 1 x 2 m, four adjustable heights through 38.5 inches and direct product image",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown"
+          },
+          {
+            "url": "https://www.globaltruss.com/pub/media/globaltrdownloads/downloads/g/t/gta_catalog_feb_2019_online-compressed.pdf",
+            "title": "Global Truss America catalog (February 2019)",
+            "locator": "GT-Stage-Adjust height range is listed as 27.5–39 in, slightly different from the current product page; do not silently reconcile the published discrepancy.",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "c753c434774c5386e4b9f87fc3f00a1f589aad3c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

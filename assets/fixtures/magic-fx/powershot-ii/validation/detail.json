@@ -1,0 +1,60 @@
+{
+  "mesh_count": 5,
+  "triangle_count": 844,
+  "geometry_sha256": "388a262c0256e15226e42900087a80e5ec601a85a1c10312009c92f818ba1331",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.18563693761825562,
+      -0.021417461335659027
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        -0.005243979394435883,
+        0.003214180236682296
+      ]
+    },
+    {
+      "name": "output",
+      "prim_path": "/Fixture/Output",
+      "pivot_m": [
+        0.0,
+        0.03670786693692207,
+        -0.0055828336626291275
+      ]
+    }
+  ],
+  "family": "confetti",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.010101079940796,
+    0.9774460792541504,
+    1.1039960384368896
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://magicfx.com/products/powershot-ii",
+    "https://magicfx.com/cdn/shop/files/Powershot_II_manual.pdf?v=2824067315526127119",
+    "https://magicfx.com/cdn/shop/files/POWERSHOTII_66533f85-fbf1-4057-ae70-44f6163f6649.jpg?v=1774941991&width=3840"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "mesh_count": 19,
+  "triangle_count": 2996,
+  "geometry_sha256": "3ab8ebccbfde66470611ad2b139f64a1167c7502df46c1ed0f08fac22f3c9369",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      3.3299999237060547,
+      0.1982029527425766
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0025180948432534933,
+        0.1982029527425766
+      ]
+    }
+  ],
+  "family": "stand",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.1518291234970093,
+    1.3213529586791992,
+    0.9992437958717346
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.manfrotto.com/global-uk/black-steel-air-cushioned-heavy-duty-stand-126bsuac/",
+    "https://www.bhphotovideo.com/c/product/512653-REG/Manfrotto_126BSUAC_126BSUAC_Heavy_Duty_Air.html",
+    "https://www.manfrotto.com/media/catalog/product/m/a/manfrotto-heavy-duty-stand-air-cushioned-black-steel-126bsuac.jpg"
+  ]
+}

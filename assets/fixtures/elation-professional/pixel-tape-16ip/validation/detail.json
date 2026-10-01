@@ -1,0 +1,50 @@
+{
+  "mesh_count": 341,
+  "triangle_count": 4092,
+  "geometry_sha256": "767d0732c3eae109957b2384093f83e0e235fa8df7b031d5c58f09d59958a9b7",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.001500000013038516,
+      -0.006120000034570694
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        -0.0
+      ]
+    }
+  ],
+  "family": "pixel_strip",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.elationlighting.com/products/pixel-tape-16ip",
+    "https://www.elationlighting.com/cdn/shop/files/e25056689bf3c664c3ecf2633beaa478799b3ad2_PIX618__IMG__001__9fcf5d2d87a2.jpg?v=1776815651&width=2048"
+  ]
+}

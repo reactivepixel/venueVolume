@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "id": "panasonic/pt-rz660b-with-supplied-et-dle170-lens",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Panasonic",
+    "model": "PT-RZ660B with supplied ET-DLE170 lens",
+    "variant": "PT-RZ660B",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://eu.connect.panasonic.com/gb/en/projectors/pt-rz660",
+      "title": "PT-RZ660 product page and image gallery",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product gallery image labeled PT-RZ660B Angled High-res; supplied image file is a high-resolution angled view",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://na.panasonic.com/ns/246048_rz660_spec_en.pdf",
+      "title": "PT-RZ660B/RZ660W Product Specification File",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Page 4: dimensions with/without supplied lens and footnote *5; Page 5: dimensional drawing, exact 580.8 mm lens-installed depth; Page 4 identifies supplied ET-DLE170",
+      "reuse_status": "reference_only",
+      "file": "sources/panasonic-pt-rz660-spec.pdf",
+      "sha256": "49ff223e2d20ba907d0c79ada15aecb170d5f017e830ccb0b28a06e445cc7df4"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://eu.connect.panasonic.com/sites/default/files/media/image/2024-04/ca90fd90df4b2185ef5c10b1a03a7c59ad66e542.jpg",
+      "title": "PT-RZ660B with supplied ET-DLE170 lens visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "376f3c3abc0411b6744050b0cf618d211aaeb54567c0a2c4ac35ca06489dc97e"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.498,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm"
+    },
+    "height": {
+      "value": 0.2,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm"
+    },
+    "depth": {
+      "value": 0.5808,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm"
+    },
+    "reference_pose": "Cabinet in upright base-resting position, lens forward; manufacturer dimension drawing gives 498 mm width and lens-installed overall depth. Do not add ceiling bracket dimensions."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Cabinet in upright base-resting position, lens forward; manufacturer dimension drawing gives 498 mm width and lens-installed overall depth. Do not add ceiling bracket dimensions.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.24899998307228088,
+        0.0,
+        -0.2903999984264374
+      ],
+      "max": [
+        0.24899998307228088,
+        0.19999998807907104,
+        0.2903999909758568
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0363403782248497
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          -0.10267870873212814,
+          0.11739130318164825,
+          -0.2875158488750458
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "f05082d3c4b9f35e5466202843b438f3df95fe40697f807e32e057891ff3be69"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "67ead76431cac91087927785c1fe8612260186652e27d3235820bc2df7f18195"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "6dec6e744a3a312654a5eabf93e5ecbe629132e5f5930a8af96b72beb7493a4d"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "a9e360bdfaedcfe02328053ab46c60bc05aecf519f8df402be32306fec82e0f5"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "effa4e5b1b2e94f0fcf9bf303d83c00eb823c1c574af4c2f96e6084aaec191ce"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "5ce20faab0d89df54ff420ed1bf7b7df7135ac667c14412a6a1c61884c219ab1"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "0c724ffff5b23bd2b342e14b5fbf62f7fadc2df7dddd615a71fdd5199338b92b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "704fd4d8199f9d09bf947e1e4d540b301f46d107e2c430491ca17d5a221d61a4"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "625dedcbaa7d8a3b3ebdd8d31b112b96907f5bc457628b9478de0a83a963911a"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "0d9914173115eb2b38b29d78131aa73ee48cf409dc5ae7d685f56f904b2fdada"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          -0.10267870873212814,
+          0.11739130318164825,
+          -0.293099582195282
+        ],
+        "kind": "projection",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "b6f3e8ada9c38f8051c740f1a0fba3adf45719c187bcfeec80847247eddbd2f2",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "projector",
+      "body_style": "large rectangular projector cabinet with lens protruding from front face",
+      "notes": "Optional visual-equipment example. Model lens is included and represented at ET-DLE170 geometry; exact lens external dimensions require the ET-DLE170 drawing if a production model is built.",
+      "generator": "equipment",
+      "output_kind": "projection"
+    },
+    "mesh_count": 62,
+    "triangle_count": 11852,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed projector geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "video.projector",
+    "control_path": "Video path by HDMI, SDI, DVI-D, RGB; network/serial control includes Ethernet/PJLink and RS-232. Not DMX-controlled.",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://na.panasonic.com/ns/246048_rz660_spec_en.pdf",
+        "https://eu.connect.panasonic.com/gb/en/projectors/pt-rz660"
+      ],
+      "dimensions": {
+        "width_m": 0.498,
+        "height_m": 0.2,
+        "depth_m": 0.5808,
+        "source_order": "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm",
+        "axis_status": "documented",
+        "axis_note": "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm",
+        "reference_pose": "Cabinet in upright base-resting position, lens forward; manufacturer dimension drawing gives 498 mm width and lens-installed overall depth. Do not add ceiling bracket dimensions."
+      },
+      "dimensions_status": "documented",
+      "dimension_footnote": "Specification footnote *5: 200 mm height with adjustable legs at shortest position. Supplied lens ET-DLE170 is included in 581 mm overall depth; without lens the table gives 538 mm depth. The dimension drawing labels exact depth 580.8 mm.",
+      "control_path": "Video path by HDMI, SDI, DVI-D, RGB; network/serial control includes Ethernet/PJLink and RS-232. Not DMX-controlled.",
+      "pose": "Cabinet in upright base-resting position, lens forward; manufacturer dimension drawing gives 498 mm width and lens-installed overall depth. Do not add ceiling bracket dimensions.",
+      "lens": "ET-DLE170 standard supplied lens, 1.7-2.4:1 throw ratio",
+      "research_evidence": [
+        {
+          "url": "https://na.panasonic.com/ns/246048_rz660_spec_en.pdf",
+          "title": "PT-RZ660B/RZ660W Product Specification File",
+          "locator": "Page 4: dimensions with/without supplied lens and footnote *5; Page 5: dimensional drawing, exact 580.8 mm lens-installed depth; Page 4 identifies supplied ET-DLE170",
+          "file": "research/fixtures/taxonomy/support-sources/panasonic-pt-rz660-spec.pdf",
+          "sha256": "49ff223e2d20ba907d0c79ada15aecb170d5f017e830ccb0b28a06e445cc7df4",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://eu.connect.panasonic.com/gb/en/projectors/pt-rz660",
+          "title": "PT-RZ660 product page and image gallery",
+          "locator": "Product gallery image labeled PT-RZ660B Angled High-res; supplied image file is a high-resolution angled view",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "video.projector",
+    "category_path": [
+      "Video and projected surfaces",
+      "Video projector"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

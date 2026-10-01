@@ -1,0 +1,341 @@
+{
+  "schema_version": 1,
+  "id": "antari/m-9-jet-fog-machine",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Antari",
+    "model": "M-9 Jet Fog Machine",
+    "variant": "M-9",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://antari.com/products/m-9/",
+      "title": "M-9 Jet Fog Machine product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Overview and specifications: FLC compatible fluid, LED count, dimensions, weight, DMX footprints",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://antari.com/wp-content/uploads/M-9_01.jpg",
+      "title": "M-9 Jet Fog Machine visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "25b40d54bd8048cd3c2644572d4ef749b2891385c57ff9bffe0c6fed5eae269b"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.321,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer labels L/W/H; W mapped lateral and L depth. Official product image inspected, but image pose is not itself a dimensional drawing."
+    },
+    "height": {
+      "value": 0.42,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer labels L/W/H; W mapped lateral and L depth. Official product image inspected, but image pose is not itself a dimensional drawing."
+    },
+    "depth": {
+      "value": 0.393,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer labels L/W/H; W mapped lateral and L depth. Official product image inspected, but image pose is not itself a dimensional drawing."
+    },
+    "reference_pose": "Machine standing on its base with LED tray above body; fog outlet direction horizontal. Manufacturer's L/W/H dimensions."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "1820 W; US 100–120 V 50/60 Hz, EU 220–240 V 50/60 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "25.0 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "manual",
+          "timer",
+          "master/slave",
+          "wireless",
+          "optional wireless DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "10-channel mode",
+      "footprint": 10,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "15-channel mode",
+      "footprint": 15,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "25-channel mode",
+      "footprint": 25,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Machine standing on its base with LED tray above body; fog outlet direction horizontal. Manufacturer's L/W/H dimensions.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.16050000488758087,
+        0.0,
+        -0.19650002475827932
+      ],
+      "max": [
+        0.16050000488758087,
+        0.41999998688697815,
+        0.19650001171976328
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          -0.0039472198113799095
+        ]
+      },
+      {
+        "name": "output",
+        "prim_path": "/Fixture/Output",
+        "pivot_m": [
+          0.0,
+          0.42107415199279785,
+          -0.0039472198113799095
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Manufacturer labels L/W/H; W mapped lateral and L depth. Official product image inspected, but image pose is not itself a dimensional drawing.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "a9af51262c99db015c5fabc6848f98ca3650304c49dc4b393153597a645af372"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "96587ec86c42f991cde545313f98261315a3f51ffdf9b4631d9902b653d5f6d1"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "5028d74cfcdc063317b49058672aed29bbf208f55594a127a63a3044b2f9cf62"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "9a65eafb1a7d59aa6d4ff38aa0a0ec98af7998fc0a91941d31168d895b843ced"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "e93a205328cc67020a7bb3dc6e6b1f50b19f5e456da175c3229a3e2cffff4bc7"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "e6a89229fa871b8dc90ebcf983008b38283428f05bfe8f08146b37d86c3a562b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "34b9d77cdfe699d170b488e6cc92ce17049e7eff0a0915012e1d8ee1e88c53d6"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "d73481747dcc1f4c6610217a0991f86ce493c6ea8842aabd489ecaff7cafcf2a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "795e82bef0133e52fca6bffcab2bf2111668f692bf0d6a553f4db21f9864e5a3"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "50accc11b3eaea3ad3967f6b7fed24b4a0538ffc0b883e2abf4d4b462afb0199"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.42107415199279785,
+          -0.0039472198113799095
+        ],
+        "kind": "fog_jet",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "c4bfcef620e888fec83aec5dd95254676e11a88ead745563442068dbbf67286d",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "jet",
+      "notes": "Produces a forceful heated fog plume with integrated LEDs. Antari markets it as a CO2-style visual effect, but its documented consumable is FLC fog fluid; it is not a real CO2 jet.",
+      "body_style": "large faceted black fog machine with top emitter tray containing 27 multicolor LED modules, carry handles and base feet",
+      "generator": "equipment",
+      "output_kind": "fog_jet"
+    },
+    "mesh_count": 88,
+    "triangle_count": 12944,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed jet geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "atmosphere.fog_jet",
+    "control_path": "See source-backed protocol list; compatibility and control system are not implemented.",
+    "physical_asset_only": true,
+    "source_data": {
+      "protocols": [
+        "DMX512",
+        "manual",
+        "timer",
+        "master/slave",
+        "wireless",
+        "optional wireless DMX"
+      ],
+      "source_urls": [
+        "https://antari.com/products/m-9/"
+      ],
+      "power": "1820 W; US 100–120 V 50/60 Hz, EU 220–240 V 50/60 Hz",
+      "weight": "25.0 kg",
+      "dmx_channels": [
+        10,
+        15,
+        25
+      ],
+      "dimensions": {
+        "width_m": 0.321,
+        "height_m": 0.42,
+        "depth_m": 0.393,
+        "axis_status": "documented",
+        "axis_note": "Manufacturer labels L/W/H; W mapped lateral and L depth. Official product image inspected, but image pose is not itself a dimensional drawing.",
+        "reference_pose": "Machine standing on its base with LED tray above body; fog outlet direction horizontal. Manufacturer's L/W/H dimensions."
+      },
+      "light_source": "27 x 8 W 5-in-1 LED; fog fluid product, not CO2 propellant",
+      "research_evidence": [
+        {
+          "url": "https://antari.com/products/m-9/",
+          "title": "M-9 Jet Fog Machine product page",
+          "locator": "Overview and specifications: FLC compatible fluid, LED count, dimensions, weight, DMX footprints",
+          "accessed_at": "2026-09-30"
+        }
+      ],
+      "control_path": "See source-backed protocol list; compatibility and control system are not implemented."
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "atmosphere.fog_jet",
+    "category_path": [
+      "Atmosphere and air movement",
+      "Fog-fluid jet / geyser"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "mesh_count": 88,
+  "triangle_count": 12944,
+  "geometry_sha256": "8d3b99b9bd0920000568c5cc43b56ca3f161ac358edec0754155436f538611bb",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.42107415199279785,
+      -0.0039472198113799095
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        -0.0039472198113799095
+      ]
+    },
+    {
+      "name": "output",
+      "prim_path": "/Fixture/Output",
+      "pivot_m": [
+        0.0,
+        0.42107415199279785,
+        -0.0039472198113799095
+      ]
+    }
+  ],
+  "family": "jet",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9478673338890076,
+    1.0147870779037476,
+    1.0230178833007812
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://antari.com/products/m-9/",
+    "https://antari.com/wp-content/uploads/M-9_01.jpg"
+  ]
+}

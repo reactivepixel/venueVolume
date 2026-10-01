@@ -33,6 +33,10 @@ Use the [Create Venue Fixture skill](docs/08%20Fixture%20Library/skill/create-ve
 with a manufacturer and model number to add or update an entry. The skill and its supporting
 validation tools are preserved in the library documentation.
 
+Browse the [show-equipment hierarchy and renders](assets/fixtures/research/show-equipment.html)
+for lighting, atmosphere, effects, video, control, power, rigging, scenery and accessories.
+The explorer distinguishes modeled representatives from research-only gaps.
+
 ## Product design study
 
 The [React design studio](apps/design-studio/README.md) contains 35 screens with wireframe and high-fidelity modes, simulated interactions, and responsive layouts. Run `npm ci` and `npm run dev` in `apps/design-studio`.

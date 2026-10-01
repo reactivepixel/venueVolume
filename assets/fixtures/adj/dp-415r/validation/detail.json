@@ -1,0 +1,51 @@
+{
+  "mesh_count": 39,
+  "triangle_count": 3620,
+  "geometry_sha256": "35c7f2d902deb320c9bf5afe4aebca9e5603dd3c56b4274fa91dde441966cfa3",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.0,
+      -0.0
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        -0.0
+      ]
+    }
+  ],
+  "family": "dimmer",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9661834836006165,
+    1.0416667461395264,
+    1.0039629936218262
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/products/dp-415r",
+    "https://www.adj.com/blogs/news/adj-dp-415r-a-classic-adj-control-product-gets-an-upgrade",
+    "https://www.adj.com/cdn/shop/files/11936d54e77e05407d8d2c922efdb285134d609c_DPR415__IMG__001__d6965eb649aa.jpg?v=1776712969&width=2048"
+  ]
+}

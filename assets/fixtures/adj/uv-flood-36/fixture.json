@@ -1,0 +1,299 @@
+{
+  "schema_version": 1,
+  "id": "adj/uv-flood-36",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "ADJ",
+    "model": "UV Flood 36",
+    "variant": "UVF021",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.adj.com/products/uv-flood-36",
+      "title": "UV Flood 36",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Dedicated UV, wavelength, dimensions, power and control specifications",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.adj.com/cdn/shop/files/be63d603fe6a6291fae6243a8d0c98e86819e9bf_UVF021__IMG__001__b2c36e475ed4.jpg?v=1774475468&width=2048",
+      "title": "UV Flood 36 visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "1c3a5352610692fa24600dd1544ee54741570f83dc0e20493198f782a56e6770"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.3,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer LxWxH values; front-facing pose inferred from 4-column x 3-row aperture arrangement in product image, not a dimensional drawing."
+    },
+    "height": {
+      "value": 0.235,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer LxWxH values; front-facing pose inferred from 4-column x 3-row aperture arrangement in product image, not a dimensional drawing."
+    },
+    "depth": {
+      "value": 0.115,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer LxWxH values; front-facing pose inferred from 4-column x 3-row aperture arrangement in product image, not a dimensional drawing."
+    },
+    "reference_pose": "Broad LED face vertical and forward; 300 mm horizontal width, 235 mm face height, 115 mm depth."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "35 W; AC 100–240 V",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "2.2 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Broad LED face vertical and forward; 300 mm horizontal width, 235 mm face height, 115 mm depth.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.15000000596046448,
+        0.0,
+        -0.05750000150874257
+      ],
+      "max": [
+        0.15000000596046448,
+        0.23500001360662282,
+        0.057500000577419996
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.0027740306686609983,
+          0.0035343202762305737
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.12932266294956207,
+          -0.05440777540206909
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Manufacturer LxWxH values; front-facing pose inferred from 4-column x 3-row aperture arrangement in product image, not a dimensional drawing.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "d569c25e1896f21db6b2213295de0260ea17615413066f583e6119c58026a235"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "e4eb91189e3a6b62c2e672f8f551bc1add2f2d554436848b82cede8289acf758"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "a40e6cc43a0839c14987e0996e7ed18a82dbe7fc22a954e81193ea0d004dd3ae"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "38e060cd1383117daad73dce392a3a1d2c244d63522df9e68031e2d8b1faca8a"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "2d125216fc9ec1278ee0b2dd3e55927f421a4d3f2ffd2c51ec3a4b9437d3ab22"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "8313e3140f86ad25cb82079b7107ae4e8a06862400bdfe2c6298f030b3176762"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "ccb588b7743e10e7d0bd0c98aba4c940f498b6685332684b351a9b0a2da74f53"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "b4ef088b208cc74be0c7f43f570c3537ee1cdee0cdd6844fca398992172ab967"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "f19949fedf220914ecbea507639ba580a4f5ab705a739a3270a92513f4b7d396"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "3711674440d45a71ac768df822f9af0873b9d4eafe22f41934621c28c1aaefcf"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "f18a990f9ca10b96a35e872a864ae73456e2726a873b72087a51142ff85d4f20",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "uv",
+      "body_style": "low-profile rectangular blacklight with 12 LED apertures",
+      "notes": "Dedicated UV product; pose transform is image-based estimate; no safety claims inferred.",
+      "generator": "equipment",
+      "output_kind": "light"
+    },
+    "mesh_count": 29,
+    "triangle_count": 5452,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed uv geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "lighting.static.uv",
+    "control_path": "DMX, manual dimmer or sound-active",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://www.adj.com/products/uv-flood-36"
+      ],
+      "control_path": "DMX, manual dimmer or sound-active",
+      "protocols": [
+        "DMX"
+      ],
+      "power": "35 W; AC 100–240 V",
+      "weight": "2.2 kg",
+      "dimensions": {
+        "width_m": 0.3,
+        "height_m": 0.235,
+        "depth_m": 0.115,
+        "axis_status": "estimated",
+        "axis_note": "Manufacturer LxWxH values; front-facing pose inferred from 4-column x 3-row aperture arrangement in product image, not a dimensional drawing.",
+        "reference_pose": "Broad LED face vertical and forward; 300 mm horizontal width, 235 mm face height, 115 mm depth."
+      },
+      "wavelength": "395–400 nm",
+      "research_evidence": [
+        {
+          "url": "https://www.adj.com/products/uv-flood-36",
+          "title": "UV Flood 36",
+          "locator": "Dedicated UV, wavelength, dimensions, power and control specifications",
+          "accessed_at": "2026-09-30"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.static.uv",
+    "category_path": [
+      "Lighting fixtures",
+      "Static and manually focused",
+      "Dedicated UV / blacklight"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

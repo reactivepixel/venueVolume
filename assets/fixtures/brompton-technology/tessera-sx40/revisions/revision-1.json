@@ -1,0 +1,186 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "brompton-technology/tessera-sx40",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "Brompton Technology",
+      "model": "Tessera SX40",
+      "variant": "SX40",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.bromptontech.com/product/sx40/",
+        "title": "Brompton Tessera SX40 product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product overview, input/output feature summary and product render",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "evidence-2",
+        "url": "https://www.bromptontech.com/wp-content/uploads/2025/07/Brompton-SX40-Data-Sheet-Feb2025-EN.pdf",
+        "reuse_status": "unknown",
+        "kind": "manufacturer_manual",
+        "title": "Brompton SX40 data sheet",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Physical (W x H x L), unboxed: 482.6 x 88.9 x 406.4 mm; signal input/output details",
+        "file": "sources/brompton-sx40.pdf",
+        "sha256": "6a01e409dffe2cd36af48b25d9fa71c57de766d562c417fe1cb583d8117dfe9f"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.bromptontech.com/wp-content/uploads/2019/05/SX40_front_elevated_Final-1536x810.png.webp",
+        "title": "Tessera SX40 visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.webp",
+        "sha256": "700ae71baf3aa3874909b9a2d0e883230d74517a2f0661afe917c0bfa3f95f61"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.4826,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "482.6 W x 88.9 H x 406.4 L mm unboxed"
+      },
+      "height": {
+        "value": 0.0889,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "482.6 W x 88.9 H x 406.4 L mm unboxed"
+      },
+      "depth": {
+        "value": 0.4064,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "482.6 W x 88.9 H x 406.4 L mm unboxed"
+      },
+      "reference_pose": "19-inch rackmount chassis, front panel vertical toward operator; 482.6 mm rack width x 88.9 mm 2U height x 406.4 mm chassis depth per manufacturer."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "19-inch rackmount chassis, front panel vertical toward operator; 482.6 mm rack width x 88.9 mm 2U height x 406.4 mm chassis depth per manufacturer.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "482.6 W x 88.9 H x 406.4 L mm unboxed",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "optional.video_visuals_optional.video_processing_and_signal_distribution",
+      "control_path": "Video input and LED-panel data output; processor also supports DMX-512A and sACN lighting control integration, which is distinct from the video output path.",
+      "physical_asset_only": true,
+      "source_data": {
+        "dimensions": {
+          "width_m": 0.4826,
+          "height_m": 0.0889,
+          "depth_m": 0.4064,
+          "source_order": "482.6 W x 88.9 H x 406.4 L mm unboxed",
+          "axis_status": "documented",
+          "axis_note": "482.6 W x 88.9 H x 406.4 L mm unboxed",
+          "reference_pose": "19-inch rackmount chassis, front panel vertical toward operator; 482.6 mm rack width x 88.9 mm 2U height x 406.4 mm chassis depth per manufacturer."
+        },
+        "control_path": "Video input and LED-panel data output; processor also supports DMX-512A and sACN lighting control integration, which is distinct from the video output path.",
+        "pose": "19-inch rackmount chassis, front panel vertical toward operator; 482.6 mm rack width x 88.9 mm 2U height x 406.4 mm chassis depth per manufacturer.",
+        "research_evidence": [
+          {
+            "url": "https://www.bromptontech.com/product/sx40/",
+            "title": "Brompton Tessera SX40 product page",
+            "locator": "Product overview, input/output feature summary and product render",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown"
+          },
+          {
+            "url": "https://www.bromptontech.com/wp-content/uploads/2025/07/Brompton-SX40-Data-Sheet-Feb2025-EN.pdf",
+            "title": "Brompton SX40 data sheet",
+            "locator": "Physical (W x H x L), unboxed: 482.6 x 88.9 x 406.4 mm; signal input/output details",
+            "file": "research/fixtures/taxonomy/support-sources/brompton-sx40.pdf",
+            "sha256": "6a01e409dffe2cd36af48b25d9fa71c57de766d562c417fe1cb583d8117dfe9f",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "65ee24e76027977f1cf6c26ca1ffb0c6472db854",
+  "note": "Initial research record before any generated model artifacts existed."
+}

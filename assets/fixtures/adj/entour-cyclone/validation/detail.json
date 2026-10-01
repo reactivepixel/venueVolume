@@ -1,0 +1,78 @@
+{
+  "mesh_count": 50,
+  "triangle_count": 17144,
+  "geometry_sha256": "2e5953798815300cb0702f673f67a0b607fae0dd5f99dd0c79ab6c85ee8a5edb",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.240364208817482,
+      -0.057582419365644455
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.240364208817482,
+        -0.0
+      ]
+    },
+    {
+      "name": "rotor",
+      "prim_path": "/Fixture/Rotor",
+      "pivot_m": [
+        0.0,
+        0.240364208817482,
+        -0.0
+      ]
+    },
+    {
+      "name": "guard",
+      "prim_path": "/Fixture/Guard",
+      "pivot_m": [
+        0.0,
+        0.240364208817482,
+        -0.0
+      ]
+    },
+    {
+      "name": "stand",
+      "prim_path": "/Fixture/Stand",
+      "pivot_m": [
+        0.0,
+        -0.0010778657160699368,
+        -0.0
+      ]
+    }
+  ],
+  "family": "fan",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0256409645080566,
+    1.0989011526107788,
+    1.0216742753982544
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/products/entour-cyclone",
+    "https://www.adj.com/cdn/shop/files/ADJ_Entour_Cyclone_User_Manual.pdf?v=12488028309515808394",
+    "https://www.adj.com/cdn/shop/files/ADJ_Entour_Cyclone_User_Manual.pdf?v=12488028309515808394"
+  ]
+}

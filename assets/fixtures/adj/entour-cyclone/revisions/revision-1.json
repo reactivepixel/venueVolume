@@ -1,0 +1,232 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "adj/entour-cyclone",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "ADJ",
+      "model": "Entour Cyclone",
+      "variant": "ENT550",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.adj.com/products/entour-cyclone",
+        "title": "Entour Cyclone product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "SKU ENT550, 1/2-channel DMX modes, rated power, mass, dimensions L/W/H, product gallery",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.adj.com/cdn/shop/files/ADJ_Entour_Cyclone_User_Manual.pdf?v=12488028309515808394",
+        "title": "Entour Cyclone User Manual",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Printed pages 6–7 / PDF page 4: dimensional drawing maps 350 mm front width, 422 mm front height and 131 mm side depth; final spec page lists 8.39 kg",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.adj.com/cdn/shop/files/ADJ_Entour_Cyclone_User_Manual.pdf?v=12488028309515808394",
+        "title": "Entour Cyclone visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "https://www.adj.com/cdn/shop/files/ADJ_Entour_Cyclone_User_Manual.pdf?v=12488028309515808394#page=4 (printed pages 6–7; dimensional drawing)",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.png",
+        "sha256": "1335a60f98f3eed4cad55b6fb2654dae98c73cff3e76387e2d6fe076c861c8ab"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.35,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "ADJ manual dimensional drawing gives 350 mm width and 422 mm height in the front elevation, and 131 mm front-to-back in side elevation. The product page's L/W/H naming order is atypical; front/side drawing establishes fixture axes."
+      },
+      "height": {
+        "value": 0.422,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "ADJ manual dimensional drawing gives 350 mm width and 422 mm height in the front elevation, and 131 mm front-to-back in side elevation. The product page's L/W/H naming order is atypical; front/side drawing establishes fixture axes."
+      },
+      "depth": {
+        "value": 0.131,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "ADJ manual dimensional drawing gives 350 mm width and 422 mm height in the front elevation, and 131 mm front-to-back in side elevation. The product page's L/W/H naming order is atypical; front/side drawing establishes fixture axes."
+      },
+      "reference_pose": "Front grille vertical, fan unit standing in dual-purpose floor/truss bracket in its upright drawing pose; envelope includes bracket projections as shown."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "120–220 W; region-specific 120 V or 230 V model",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "8.56 kg product page; 8.39 kg manual (conflict; not used for scale)",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "manual",
+            "optional remote controller"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "1-channel mode",
+        "footprint": 1,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "2-channel mode",
+        "footprint": 2,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Front grille vertical, fan unit standing in dual-purpose floor/truss bracket in its upright drawing pose; envelope includes bracket projections as shown.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "ADJ manual dimensional drawing gives 350 mm width and 422 mm height in the front elevation, and 131 mm front-to-back in side elevation. The product page's L/W/H naming order is atypical; front/side drawing establishes fixture axes.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "fx.atmosphere.fan.effect.adj_entour_cyclone",
+      "control_path": "See source-backed protocol list; compatibility and control system are not implemented.",
+      "physical_asset_only": true,
+      "source_data": {
+        "protocols": [
+          "DMX512",
+          "manual",
+          "optional remote controller"
+        ],
+        "source_urls": [
+          "https://www.adj.com/products/entour-cyclone",
+          "https://www.adj.com/cdn/shop/files/ADJ_Entour_Cyclone_User_Manual.pdf?v=12488028309515808394"
+        ],
+        "power": "120–220 W; region-specific 120 V or 230 V model",
+        "weight": "8.56 kg product page; 8.39 kg manual (conflict; not used for scale)",
+        "dmx_channels": [
+          1,
+          2
+        ],
+        "dimensions": {
+          "width_m": 0.35,
+          "height_m": 0.422,
+          "depth_m": 0.131,
+          "axis_status": "documented",
+          "axis_note": "ADJ manual dimensional drawing gives 350 mm width and 422 mm height in the front elevation, and 131 mm front-to-back in side elevation. The product page's L/W/H naming order is atypical; front/side drawing establishes fixture axes.",
+          "reference_pose": "Front grille vertical, fan unit standing in dual-purpose floor/truss bracket in its upright drawing pose; envelope includes bracket projections as shown."
+        },
+        "research_evidence": [
+          {
+            "url": "https://www.adj.com/products/entour-cyclone",
+            "title": "Entour Cyclone product page",
+            "locator": "SKU ENT550, 1/2-channel DMX modes, rated power, mass, dimensions L/W/H, product gallery",
+            "accessed_at": "2026-09-30"
+          },
+          {
+            "url": "https://www.adj.com/cdn/shop/files/ADJ_Entour_Cyclone_User_Manual.pdf?v=12488028309515808394",
+            "title": "Entour Cyclone User Manual",
+            "locator": "Printed pages 6–7 / PDF page 4: dimensional drawing maps 350 mm front width, 422 mm front height and 131 mm side depth; final spec page lists 8.39 kg",
+            "accessed_at": "2026-09-30"
+          }
+        ],
+        "control_path": "See source-backed protocol list; compatibility and control system are not implemented."
+      }
+    }
+  },
+  "git_commit": "c753c434774c5386e4b9f87fc3f00a1f589aad3c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

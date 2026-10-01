@@ -562,5 +562,423 @@
     "axis_status": "documented",
     "axis_note": "GLP JDC Line 1000 product page; width 1000 mm, height 74 mm, depth 201.5 mm. Body without optional rigging or alignment brackets.",
     "reference_pose": "Bar horizontal, optical face upward; no accessory brackets."
+  },
+  "ETC|ColorSource 20": {
+    "width_m": 0.465,
+    "height_m": 0.06,
+    "depth_m": 0.279,
+    "source_order": "465 W x 279 D x 60 H mm, ColorSource Console Spec Sheet rev G; values typical",
+    "axis_status": "documented",
+    "axis_note": "465 W x 279 D x 60 H mm, ColorSource Console Spec Sheet rev G; values typical",
+    "reference_pose": "Normal tabletop operating orientation: fader/touch surface upward, front edge toward operator; inferred from official product image."
+  },
+  "ENTTEC|ODE Mk3": {
+    "width_m": 0.1288,
+    "height_m": 0.04,
+    "depth_m": 0.058,
+    "source_order": "128.8 x 58 x 40 mm; manufacturer CAD drawing, mapped as long side x short side x body height",
+    "axis_status": "documented",
+    "axis_note": "128.8 x 58 x 40 mm; manufacturer CAD drawing, mapped as long side x short side x body height",
+    "reference_pose": "Tabletop enclosure; 128.8 mm long axis is horizontal, status/ID panel upward, DMX connectors at the short end; axis assignment is inferred from the manufacturer orthographic/isometric CAD image."
+  },
+  "ADJ|DP-415R": {
+    "width_m": 0.26,
+    "height_m": 0.076,
+    "depth_m": 0.209,
+    "source_order": "260 L x 209 W x 76 H mm; manufacturer dimensions",
+    "axis_status": "documented",
+    "axis_note": "260 L x 209 W x 76 H mm; manufacturer dimensions",
+    "reference_pose": "Pack body horizontal with flexible mounting bracket in tabletop/nominal storage pose; dimension axes are manufacturer L x W x H. The installed bracket may be rotated for wall, T-bar, or clamp mounting."
+  },
+  "Global Truss|SQ-4110 F34 Straight Segment, Natural Aluminium": {
+    "width_m": 1.0,
+    "height_m": 0.29,
+    "depth_m": 0.29,
+    "source_order": "1 m overall length x 290 x 290 mm external square section",
+    "axis_status": "documented",
+    "axis_note": "1 m overall length x 290 x 290 mm external square section",
+    "reference_pose": "Long axis horizontal; square cross-section upright; convention inferred from manufacturer product image and segment geometry."
+  },
+  "ROE Visual|Black Pearl BP2V2": {
+    "width_m": 0.5,
+    "height_m": 0.5,
+    "depth_m": 0.09,
+    "source_order": "500 x 500 x 90 mm per panel",
+    "axis_status": "documented",
+    "axis_note": "500 x 500 x 90 mm per panel",
+    "reference_pose": "Panel face vertical, display surface forward and 500 mm square; 90 mm depth behind face; pose inferred from official product image and dimension specification."
+  },
+  "Panasonic|PT-RZ660B with supplied ET-DLE170 lens": {
+    "width_m": 0.498,
+    "height_m": 0.2,
+    "depth_m": 0.5808,
+    "source_order": "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm",
+    "axis_status": "documented",
+    "axis_note": "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm",
+    "reference_pose": "Cabinet in upright base-resting position, lens forward; manufacturer dimension drawing gives 498 mm width and lens-installed overall depth. Do not add ceiling bracket dimensions."
+  },
+  "Manfrotto|Heavy Duty Stand, Black, Air-Cushioned, Black Steel": {
+    "width_m": 1.25,
+    "height_m": 3.33,
+    "depth_m": 1.25,
+    "source_order": "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)",
+    "axis_status": "estimated",
+    "axis_note": "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)",
+    "reference_pose": "Three legs fully deployed, stand vertical and fully extended to 3.33 m maximum height, leveling leg down; 1.25 m circular footprint envelope is secondary-source estimate; do not interpret as rectangular dimensions."
+  },
+  "Doughty Engineering|Twenty Clamp": {
+    "width_m": 0.101,
+    "height_m": 0.0615,
+    "depth_m": 0.028,
+    "source_order": "101 L x 61.5 H x 28 W mm per manufacturer's dimension drawing; 48-51 mm tube fit range",
+    "axis_status": "documented",
+    "axis_note": "101 L x 61.5 H x 28 W mm per manufacturer's dimension drawing; 48-51 mm tube fit range",
+    "reference_pose": "Clamp shown in dimension drawing in side orthographic pose with jaw opening sized for 48-51 mm tube and M10 attachment slot; pose follows manufacturer's drawing."
+  },
+  "ENTTEC|D-SPLIT": {
+    "width_m": 0.116,
+    "height_m": 0.052,
+    "depth_m": 0.087,
+    "source_order": "116 x 87 x 52 mm, manufacturer datasheet",
+    "axis_status": "documented",
+    "axis_note": "116 x 87 x 52 mm, manufacturer datasheet",
+    "reference_pose": "Enclosure horizontal with logo face upward and connector edge toward viewer, inferred from official isometric product image; dimensions mapped long x short x overall depth."
+  },
+  "ENTTEC|Pixelator Mini": {
+    "width_m": 0.2,
+    "height_m": 0.042,
+    "depth_m": 0.12,
+    "source_order": "200 x 120 x 42 mm unit dimensions",
+    "axis_status": "documented",
+    "axis_note": "200 x 120 x 42 mm unit dimensions",
+    "reference_pose": "Tabletop controller, broad face horizontal with printed label/status upward and connectors facing outward; pose inferred from manufacturer render."
+  },
+  "Brompton Technology|Tessera SX40": {
+    "width_m": 0.4826,
+    "height_m": 0.0889,
+    "depth_m": 0.4064,
+    "source_order": "482.6 W x 88.9 H x 406.4 L mm unboxed",
+    "axis_status": "documented",
+    "axis_note": "482.6 W x 88.9 H x 406.4 L mm unboxed",
+    "reference_pose": "19-inch rackmount chassis, front panel vertical toward operator; 482.6 mm rack width x 88.9 mm 2U height x 406.4 mm chassis depth per manufacturer."
+  },
+  "Antari|Z-1000III Fog Machine": {
+    "width_m": 0.281,
+    "height_m": 0.266,
+    "depth_m": 0.433,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer labels L/W/H; L mapped to depth in the upright front-facing pose.",
+    "reference_pose": "Machine resting on feet with outlet facing forward and hanging bracket raised; L/W/H."
+  },
+  "CHAUVET DJ|Hurricane Haze 1DX": {
+    "width_m": 0.15,
+    "height_m": 0.223,
+    "depth_m": 0.278,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer lists 278 x 150 x 223 mm without labels; mapped largest axis to depth and shortest to width based on upright product view. Numeric dimensions are preserved; width/depth mapping is estimated.",
+    "reference_pose": "Body upright on base, output scoop facing forward; axis mapping inferred from official product photo."
+  },
+  "MDG|ATMOSPHERE APS Haze Generator": {
+    "width_m": 0.18,
+    "height_m": 0.3,
+    "depth_m": 0.685,
+    "axis_status": "documented",
+    "axis_note": "MDG labels length, width and height explicitly; L mapped to depth. Front/angled official image inspected for body orientation.",
+    "reference_pose": "Machine resting horizontally on its base, fluid reservoir at the front end and carry handle above; MDG product page dimensions."
+  },
+  "CHAUVET DJ|Cumulus HP Low-Lying Fog Machine": {
+    "width_m": 0.304,
+    "height_m": 0.347,
+    "depth_m": 0.464,
+    "axis_status": "documented",
+    "axis_note": "The manual's drawing and specifications label the bare enclosure length 464 mm, width 304 mm, height 347 mm. External output hose and floor nozzle are not included in this housing envelope.",
+    "reference_pose": "Bare Cumulus HP enclosure level on its base; hose and floor nozzle excluded from reference dimensions."
+  },
+  "Antari|M-9 Jet Fog Machine": {
+    "width_m": 0.321,
+    "height_m": 0.42,
+    "depth_m": 0.393,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer labels L/W/H; W mapped lateral and L depth. Official product image inspected, but image pose is not itself a dimensional drawing.",
+    "reference_pose": "Machine standing on its base with LED tray above body; fog outlet direction horizontal. Manufacturer's L/W/H dimensions."
+  },
+  "Antari|B-100 Bubble Machine": {
+    "width_m": 0.265,
+    "height_m": 0.29,
+    "depth_m": 0.341,
+    "axis_status": "documented",
+    "axis_note": "Current product page and current Rev. 05 manual agree on manufacturer L/W/H = 341/265/290 mm; dimensions refer to the B-100 variant.",
+    "reference_pose": "Enclosed bubble machine resting on feet, output/wheel opening front-facing and carry handle above; manufacturer L/W/H."
+  },
+  "Antari|S-500 Snow Machine": {
+    "width_m": 0.551,
+    "height_m": 0.651,
+    "depth_m": 0.592,
+    "axis_status": "estimated",
+    "axis_note": "Antari labels L/W/H = 592/551/651 mm for S-500, but the current product image shows the case open and the dimensions appear to be the protective case's transport envelope. Body orientation mapping follows L/W/H; pose is estimated closed case.",
+    "reference_pose": "Model as the S-500 road case closed, with its open-lid manufacturer photo used only for product identification; exact closed-case drawing not found."
+  },
+  "MAGIC FX|Powershot II": {
+    "width_m": 0.127,
+    "height_m": 0.19,
+    "depth_m": 0.09,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer labels length/width/height; image checked in compact upright mounting pose, length treated as front-to-back short axis.",
+    "reference_pose": "Compact unit held upright with shot socket uppermost, mounting surface down; official product image."
+  },
+  "MAGIC FX|Sparxtar II": {
+    "width_m": 0.254,
+    "height_m": 0.254,
+    "depth_m": 0.226,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer publishes a three-axis size but does not label axis names; the two equal 254 mm axes remain interchangeable and 226 mm is assigned depth based on the product image.",
+    "reference_pose": "Compact black enclosure upright on base feet, front access panel facing forward; image shows the specific Sparxtar II chassis."
+  },
+  "MAGIC FX|Flameblazer": {
+    "width_m": 0.3,
+    "height_m": 0.28,
+    "depth_m": 0.41,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer labels length, width and height; length is mapped to depth for the upright product body pose.",
+    "reference_pose": "Rectangular enclosure resting on bottom feet with output/face panel and connective side facing forward; official standalone image."
+  },
+  "ADJ|Entour Cyclone": {
+    "width_m": 0.35,
+    "height_m": 0.422,
+    "depth_m": 0.131,
+    "axis_status": "documented",
+    "axis_note": "ADJ manual dimensional drawing gives 350 mm width and 422 mm height in the front elevation, and 131 mm front-to-back in side elevation. The product page's L/W/H naming order is atypical; front/side drawing establishes fixture axes.",
+    "reference_pose": "Front grille vertical, fan unit standing in dual-purpose floor/truss bracket in its upright drawing pose; envelope includes bracket projections as shown."
+  },
+  "CHAUVET DJ|High Performance Fog Fluid (FJU) Gallon Jug": {
+    "width_m": 0.155,
+    "height_m": 0.3,
+    "depth_m": 0.155,
+    "axis_status": "estimated",
+    "axis_note": "CHAUVET lists dimensions 155 x 155 x 300 mm without axis labels; bottle photo supports upright height on the 300 mm axis and equal 155 mm base axes.",
+    "reference_pose": "Sealed one-gallon jug upright on its flat base with cap at top; exact external package dimensions from manufacturer listing."
+  },
+  "MAGIC FX|CO2 Bottle To Hose Connector": {
+    "width_m": 0.03,
+    "height_m": 0.03,
+    "depth_m": 0.15,
+    "axis_status": "documented",
+    "axis_note": "Product page gives length/width/height 150/30/30 mm; length is mapped to the connector's long axis in the official photo.",
+    "reference_pose": "Connector lying on its side with long coupler axis horizontal; product image used for orientation."
+  },
+  "Robert Juliat|Roxie2 1166-2 WW": {
+    "width_m": 0.321,
+    "height_m": 0.387,
+    "depth_m": 1.045,
+    "axis_status": "documented",
+    "axis_note": "Exact 1166-2 WW dimensional specification drawing; long dimension is optical-axis length.",
+    "reference_pose": "Assembled followspot, optical axis horizontal; stand excluded."
+  },
+  "Robert Juliat|Lutin 306LPC": {
+    "width_m": 0.3,
+    "height_m": 0.385,
+    "depth_m": 0.43,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer drawing for exact 306LPC variant.",
+    "reference_pose": "Yoke assembled, lens axis horizontal; accessory and lamp excluded unless listed."
+  },
+  "ETC|ColorSource CYC Floor": {
+    "width_m": 0.266,
+    "height_m": 0.199,
+    "depth_m": 0.221,
+    "axis_status": "documented",
+    "axis_note": "ETC floor form dimensions, not hang form.",
+    "reference_pose": "Floor orientation, spill-control installed."
+  },
+  "Altman Lighting|Altman PAR64-AL": {
+    "width_m": 0.279,
+    "height_m": 0.39,
+    "depth_m": 0.406,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer dimension drawing, assembled fixture outline; excludes packaging.",
+    "reference_pose": "PAR face forward, yoke installed; external dimmer not modeled."
+  },
+  "CHAUVET Professional|STRIKE 4": {
+    "width_m": 0.362,
+    "height_m": 0.362,
+    "depth_m": 0.163,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer LxWxH values 362 x 362 x 163 mm map to square face width/height and depth with emitting face forward. Neutral-pose axis assignment is image-inferred, not established by a labelled drawing.",
+    "reference_pose": "Four cells facing forward, square panel vertical, body depth toward/away from observer; yoke neutral."
+  },
+  "ADJ|UV Flood 36": {
+    "width_m": 0.3,
+    "height_m": 0.235,
+    "depth_m": 0.115,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer LxWxH values; front-facing pose inferred from 4-column x 3-row aperture arrangement in product image, not a dimensional drawing.",
+    "reference_pose": "Broad LED face vertical and forward; 300 mm horizontal width, 235 mm face height, 115 mm depth."
+  },
+  "ADJ|ADJ Pinspot LED II": {
+    "width_m": 0.099,
+    "height_m": 0.061,
+    "depth_m": 0.184,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer lists LxWxH but product form indicates 184 mm is the barrel length; mapping to depth follows optical axis, bracket outline not dimensioned.",
+    "reference_pose": "Fixture body horizontal, barrel axis forward/depth, aperture forward; bracket projection approximate."
+  },
+  "Altman Lighting|Altman Scoop 153": {
+    "width_m": 0.273,
+    "height_m": 0.359,
+    "depth_m": 0.203,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer assembled side/front drawing; no package dimensions used.",
+    "reference_pose": "Yoke upright, reflector mouth forward; worklight attachment excluded."
+  },
+  "Astera|NYX Bulb": {
+    "width_m": 0.07,
+    "height_m": 0.13,
+    "depth_m": 0.07,
+    "axis_status": "documented",
+    "axis_note": "Astera-authorized distributor supplies the bulb-only Ø70 x 130 mm and 0.24 kg dimensions.",
+    "reference_pose": "Bulb upright, threaded base down; socket and PowerStation excluded."
+  },
+  "ADJ|LED Pixel Tube 360": {
+    "width_m": 1.0,
+    "height_m": 0.05,
+    "depth_m": 0.05,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer lists 1000 x 50 x 50 mm.",
+    "reference_pose": "Tube straight, horizontal, end connectors installed; controller excluded."
+  },
+  "Elation Professional|PIXEL TAPE 16IP": {
+    "width_m": 2.72,
+    "height_m": 0.003,
+    "depth_m": 0.012,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specified module length and cross-section.",
+    "reference_pose": "Tape laid straight and flat; straightened display pose, not packaging coil."
+  },
+  "ADJ|Dynasty Scan DMX": {
+    "width_m": 0.185,
+    "height_m": 0.195,
+    "depth_m": 0.46,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer LxWxH mapped to a table-mounted scanner with the front optical aperture facing forward along depth. Neutral-pose axis assignment is image-inferred, not established by a labelled drawing.",
+    "reference_pose": "Table-mounted upright, neutral mirror, lens forward; long body axis longitudinal/depth."
+  },
+  "Eliminator Lighting (ADJ Group)|MBMHD3 mirror ball motor": {
+    "width_m": 0.136,
+    "height_m": 0.08,
+    "depth_m": 0.136,
+    "axis_status": "documented",
+    "axis_note": "Motor enclosure dimensions only; ball is separate.",
+    "reference_pose": "Ceiling-mounted with shaft down; compatible ball modeled separately."
+  },
+  "ADJ|M-2020 Mirror Ball": {
+    "width_m": 0.508,
+    "height_m": 0.508,
+    "depth_m": 0.508,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer gives 20-inch sphere dimensions and 6.8 kg mass; sphere diameter used for each axis. Only the 508 mm sphere is modeled; hanging hardware is omitted.",
+    "reference_pose": "Sphere-only variant; undimensioned suspension loop and chain excluded."
+  },
+  "Elation Professional|PIXEL DRIVER 170": {
+    "width_m": 0.101,
+    "height_m": 0.05,
+    "depth_m": 0.0262,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer body dimensions; side mounting tabs visible in photo but excluded from stated size. Display-forward axes rotated from the manufacturer L/W/H list using the photo; 50 mm is face height and 26.2 mm enclosure depth. Mounting tabs excluded.",
+    "reference_pose": "Front/display face forward; body long axis horizontal, mounting flange plane vertical."
+  },
+  "Laserworld|DS-1000RGB MK5": {
+    "width_m": 0.2,
+    "height_m": 0.125,
+    "depth_m": 0.185,
+    "axis_status": "documented",
+    "axis_note": "Model-specific manufacturer physical dimensions.",
+    "reference_pose": "Enclosure level with aperture forward; carrying frame intact."
+  },
+  "Global Truss|GT-Stage-Adjust 1 x 2 m": {
+    "width_m": 2.0,
+    "height_m": 0.9779,
+    "depth_m": 1.0,
+    "source_order": "1 x 2 m platform; current product page height range 27 to 38.5 in, exact maximum conversion 0.9779 m; 2019 catalog range differs slightly (27.5–39 in)",
+    "axis_status": "estimated",
+    "axis_note": "Platform footprint is documented. Maximum adjustable height is uncertain because the current product page says 38.5 in (0.9779 m) while the 2019 catalog says 39 in (0.9906 m); retained current-page value as representative configuration.",
+    "reference_pose": "Platform horizontal with 2 m edge along X, top surface up; maximum 38.5 in (0.9779 m) leg setting per current product page; height is subject to source conflict."
+  },
+  "Da-Lite (Legrand AV)|Fast-Fold Deluxe Screen System, 88692 (frame/screen only; legs omitted)": {
+    "width_m": 3.048,
+    "height_m": 1.7526,
+    "depth_m": 0.03175,
+    "source_order": "Frame/screen only, excluding support legs and case: 120 x 69 in = 3.048 x 1.7526 m; 1.25 in square frame tubing = 31.75 mm depth; viewing area 114.5 x 63.5 in = 2.9083 x 1.6129 m.",
+    "axis_status": "documented",
+    "axis_note": "Manufacturer inch dimensions converted exactly; this record is frame/screen geometry only, not the deployed stand footprint.",
+    "reference_pose": "Screen frame vertical, display face forward; legs/supports omitted."
+  },
+  "CM Entertainment Technology (Columbus McKinnon)|Lodestar D8+ Type L, 1 tonne": {
+    "width_m": 0.582,
+    "height_m": 0.532,
+    "depth_m": 0.321,
+    "source_order": "D8+ Series JJ/L/LL (Type L) mapped envelope: 582 mm length (D+F), 532 mm estimated outer hook-to-hook height (A+2H), 321 mm end width (I+J).",
+    "axis_status": "estimated",
+    "axis_note": "Mapped to axes from the manufacturer drawing; total height adds two labeled 30 mm hook offsets to the 472 mm A span, so the outer envelope is estimated.",
+    "reference_pose": "Body horizontal, suspension hook upright, load hook below; chain and bag omitted. Estimated outer hook envelope."
+  },
+  "Georgia Stage|Prestige Velour Border Curtain, Black, SKU 7676": {
+    "width_m": 11.43,
+    "height_m": 0.9398,
+    "depth_m": 0.005,
+    "axis_status": "estimated",
+    "axis_note": "Retailer gives sewn item size and fullness; the 5 mm depth is an explicit visualization estimate only, because fabric caliper and hanging pleat profile are not specified. Render is a flat silhouette only; actual 50%-fullness gathers require production-specific hanging geometry.",
+    "reference_pose": "Flattened inventory silhouette at listed finished width and drop; 5 mm illustrative thickness, not installed pleat depth. Ties and hanging rig omitted."
+  },
+  "Mean Well|LRS-350-24": {
+    "width_m": 0.215,
+    "height_m": 0.03,
+    "depth_m": 0.115,
+    "source_order": "215 L x 115 W x 30 H mm per manufacturer; terminal details included in overall envelope",
+    "axis_status": "documented",
+    "axis_note": "Manufacturer's named L x W x H dimensions mapped to W x H x D for the broad enclosure face upward.",
+    "reference_pose": "Enclosure base plane level, broad vented cover upward, terminal strip at one short end; pose follows the manufacturer's isometric product figure."
+  },
+  "Neutrik|NC5MXX 5-pole male XLR cable connector": {
+    "width_m": 0.019,
+    "height_m": 0.019,
+    "depth_m": 0.0701,
+    "source_order": "19 mm max circular diameter x 68.1–70.1 mm axial length",
+    "axis_status": "documented",
+    "axis_note": "Circular cross-section is 19 mm maximum; longest manufacturer-dimensioned axis is 70.1 mm; use the maximum of its range.",
+    "reference_pose": "Long axis horizontal, mating end forward; pose follows the manufacturer orthographic views."
+  },
+  "Neutrik|powerCON TRUE1 TOP NAC3FX-W-TOP cable connector (Power-In, EU/US ratings)": {
+    "width_m": 0.032,
+    "height_m": 0.032,
+    "depth_m": 0.08,
+    "source_order": "77–80 mm axial length; 32 mm overall end-view envelope and Ø26.5 mm housing per manufacturer's drawing",
+    "axis_status": "estimated",
+    "axis_note": "Model maximum 80 mm length and conservative 32 mm square end-view envelope from drawing; dimension drawing labels the end view 32 mm overall and 26.5 mm housing diameter. A circular/square conservative envelope is not an exact measured silhouette in both transverse axes.",
+    "reference_pose": "Cable axis horizontal, connector front directed outward; pose follows manufacturer drawing."
+  },
+  "ROBE Lighting|RoboSpot MotionCamera": {
+    "width_m": 0.277,
+    "height_m": 0.386,
+    "depth_m": 0.147,
+    "source_order": "277 W x 386 H x 147 D mm; height explicitly with head vertical",
+    "axis_status": "documented",
+    "axis_note": "Manufacturer mechanical dimensions; pose is head vertical.",
+    "reference_pose": "Head upright, camera optical axis upward to match manufacturer head-vertical height; pan base level."
+  },
+  "MAGIC FX|CO2 JET II": {
+    "width_m": 0.232,
+    "height_m": 0.1245,
+    "depth_m": 0.196,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer documents main dimensions length 232 mm, width 196 mm, height 124.5 mm. Image-based pose maps length to width and manual width to depth; this axis assignment is estimated from the official view. Page triplet 290 x 290 x 200 mm is packaging, corroborated by manual package dimensions 289 x 289 x 201 mm; the manual's appliance dimensions are used. Integration review maps main length to front width using product photos. The rear-facing metal fitting is a gas inlet, not a horizontal output nozzle. Envelope axes/pose are estimated.",
+    "reference_pose": "Main appliance resting level with short outlet inside the rear opening and directed upward; external hoses, baseplate and extension nozzle excluded."
+  },
+  "Doughty Engineering|Doughty Quick Link-10mm-550Kg": {
+    "width_m": 0.09,
+    "height_m": 0.044,
+    "depth_m": 0.016,
+    "axis_status": "estimated",
+    "axis_note": "Estimated outer 90 x 44 x 16 mm from orthographic manufacturer drawing: 70 mm inner length and 20 mm inner clear height, calibrated with 10 mm bar diameter; closure sleeve measures about 1.6x rod diameter in the side view and raises the silhouette about 4 mm beyond the 40 mm loop estimate. These are drawing-calibrated visual bounds, not published outer dimensions or certified clearances. Raw 70/20/11/10 mm measures retained above. Product page says 550 kg while data sheet says WLL 500 kg; appearance research only, not load selection.",
+    "reference_pose": "Closed quick link with loop plane vertical, long axis horizontal and closure sleeve along the lower edge; no attached rigging. Estimated outer silhouette."
   }
 }

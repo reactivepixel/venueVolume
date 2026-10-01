@@ -1,0 +1,203 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "adj/dp-415r",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "ADJ",
+      "model": "DP-415R",
+      "variant": "DPR415",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.adj.com/products/dp-415r",
+        "title": "ADJ DP-415R product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Electrical, Size/Weight, Certifications/IP, product overview; page lists 260 x 209 x 76 mm and 120 V operating variant",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.adj.com/blogs/news/adj-dp-415r-a-classic-adj-control-product-gets-an-upgrade",
+        "title": "ADJ DP-415R: A Classic ADJ Control Product Gets An Upgrade",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Description of reversible bracket and applications; does not change the product-page dimensional authority",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.adj.com/cdn/shop/files/11936d54e77e05407d8d2c922efdb285134d609c_DPR415__IMG__001__d6965eb649aa.jpg?v=1776712969&width=2048",
+        "title": "DP-415R visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.jpg",
+        "sha256": "4c47265b7c4f722b92c37db3df43c4018e3556aaf6eb2dbcc087b5eca9b499c2"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.26,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "260 L x 209 W x 76 H mm; manufacturer dimensions"
+      },
+      "height": {
+        "value": 0.076,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "260 L x 209 W x 76 H mm; manufacturer dimensions"
+      },
+      "depth": {
+        "value": 0.209,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "260 L x 209 W x 76 H mm; manufacturer dimensions"
+      },
+      "reference_pose": "Pack body horizontal with flexible mounting bracket in tabletop/nominal storage pose; dimension axes are manufacturer L x W x H. The installed bracket may be rotated for wall, T-bar, or clamp mounting."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "120 V operation; 15 A maximum total load, 5 A maximum per channel",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Pack body horizontal with flexible mounting bracket in tabletop/nominal storage pose; dimension axes are manufacturer L x W x H. The installed bracket may be rotated for wall, T-bar, or clamp mounting.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "260 L x 209 W x 76 H mm; manufacturer dimensions",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "infrastructure_control.dimming",
+      "control_path": "DMX/RDM control input from console/node; pack dims or switches connected mains-powered loads at Edison outlets. Do not represent outlet power as DMX output.",
+      "physical_asset_only": true,
+      "source_data": {
+        "protocols": [
+          "DMX",
+          "RDM"
+        ],
+        "source_urls": [
+          "https://www.adj.com/products/dp-415r",
+          "https://www.adj.com/blogs/news/adj-dp-415r-a-classic-adj-control-product-gets-an-upgrade"
+        ],
+        "power": "120 V operation; 15 A maximum total load, 5 A maximum per channel",
+        "dimensions": {
+          "width_m": 0.26,
+          "height_m": 0.076,
+          "depth_m": 0.209,
+          "source_order": "260 L x 209 W x 76 H mm; manufacturer dimensions",
+          "axis_status": "documented",
+          "axis_note": "260 L x 209 W x 76 H mm; manufacturer dimensions",
+          "reference_pose": "Pack body horizontal with flexible mounting bracket in tabletop/nominal storage pose; dimension axes are manufacturer L x W x H. The installed bracket may be rotated for wall, T-bar, or clamp mounting."
+        },
+        "dimensions_status": "documented",
+        "control_path": "DMX/RDM control input from console/node; pack dims or switches connected mains-powered loads at Edison outlets. Do not represent outlet power as DMX output.",
+        "pose": "Pack body horizontal with flexible mounting bracket in tabletop/nominal storage pose; dimension axes are manufacturer L x W x H. The installed bracket may be rotated for wall, T-bar, or clamp mounting.",
+        "research_evidence": [
+          {
+            "url": "https://www.adj.com/products/dp-415r",
+            "title": "ADJ DP-415R product page",
+            "locator": "Electrical, Size/Weight, Certifications/IP, product overview; page lists 260 x 209 x 76 mm and 120 V operating variant",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown"
+          },
+          {
+            "url": "https://www.adj.com/blogs/news/adj-dp-415r-a-classic-adj-control-product-gets-an-upgrade",
+            "title": "ADJ DP-415R: A Classic ADJ Control Product Gets An Upgrade",
+            "locator": "Description of reversible bracket and applications; does not change the product-page dimensional authority",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "65ee24e76027977f1cf6c26ca1ffb0c6472db854",
+  "note": "Initial research record before any generated model artifacts existed."
+}

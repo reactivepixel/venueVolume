@@ -1,0 +1,51 @@
+{
+  "mesh_count": 14,
+  "triangle_count": 2632,
+  "geometry_sha256": "f7f19a63c15dd5922c74f2d06a97735a7e0beebdd1f7b3a487bfbc864586da24",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      -0.00489439582452178,
+      -0.0
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.00489439582452178,
+        -0.0
+      ]
+    }
+  ],
+  "family": "deck",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0,
+    1.0,
+    1.001001000404358
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.globaltruss.com/gt-stage-adjust",
+    "https://www.globaltruss.com/pub/media/globaltrdownloads/downloads/g/t/gta_catalog_feb_2019_online-compressed.pdf",
+    "https://www.globaltruss.com/media/catalog/product/cache/6517c62f5899ad6aa0ba23ceb3eeff97/1/0/1000x1000-20gt-20stage-201x2-41237.jpg"
+  ]
+}

@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "id": "chauvet-dj/high-performance-fog-fluid-fju-gallon-jug",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "CHAUVET DJ",
+    "model": "High Performance Fog Fluid (FJU) Gallon Jug",
+    "variant": "FJU",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.chauvetdj.com/products/fog-juice-gallon/",
+      "title": "High Performance Fog Fluid (FJU)",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page: sealed 1 gal / 3.8 L jug, package weight 3.9 kg, package dimensions 155 x 155 x 300 mm",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.chauvetdj.com/wp-content/uploads/2015/12/fju-front-feat.png",
+      "title": "High Performance Fog Fluid (FJU) Gallon Jug visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.png",
+      "sha256": "72ef3f72f425bec3ad7d561d23235e098449800bd25f15e63db9544455770c06"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.155,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "CHAUVET lists dimensions 155 x 155 x 300 mm without axis labels; bottle photo supports upright height on the 300 mm axis and equal 155 mm base axes."
+    },
+    "height": {
+      "value": 0.3,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "CHAUVET lists dimensions 155 x 155 x 300 mm without axis labels; bottle photo supports upright height on the 300 mm axis and equal 155 mm base axes."
+    },
+    "depth": {
+      "value": 0.155,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "CHAUVET lists dimensions 155 x 155 x 300 mm without axis labels; bottle photo supports upright height on the 300 mm axis and equal 155 mm base axes."
+    },
+    "reference_pose": "Sealed one-gallon jug upright on its flat base with cap at top; exact external package dimensions from manufacturer listing."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {
+      "weight": {
+        "value": "3.9 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Sealed one-gallon jug upright on its flat base with cap at top; exact external package dimensions from manufacturer listing.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.07750000804662704,
+        0.0,
+        -0.07750000804662704
+      ],
+      "max": [
+        0.07750000804662704,
+        0.3000000352039933,
+        0.07750000804662704
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.006122446618974209,
+          -0.0
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "CHAUVET lists dimensions 155 x 155 x 300 mm without axis labels; bottle photo supports upright height on the 300 mm axis and equal 155 mm base axes.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "2dcfe845407b642cfbeee034af3ffc0e5a716b86e9fd3be77fa59592aee249db"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "abe21f5f2df5c4060956fa3df8703bf863de0f4fa9ef3622af829826c445284d"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "74a3f2059e888c73d6e5f728a2e5e8e55af0121916dd5c59193300efba61570a"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "06794c2f0d1bcfc1fe25b58428ee44cd31d54f4e9d63df46460527721c939ca3"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "9fcc17a54dc35e6c5aa822aebdcbef81ef5f1aa448a36a905ba07460c421e96d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "a355013f767dd39de824a32323c03532d6f2336d8beaa54dec68110313df3f7a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "4e65cedac9b695339f3a177f95c27e38730c732f049d8f5dea95232c8b09a68a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "85116304f046606ed879591f995f011a406ffe5c1c6b52b001e34c03626505c6"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "2b8712ddaca1fa2cda445e3394eac58f0d14bd6106382fb3f26e4e557a920989"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "d38d290cedae052088cff6eeb5b325b6528b7cc2b3ab2ccaba3f2dfb0742bbbc"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "f9495cbe8cbbc1556a5f3c819b7b8d6f7c6521e3dffebea7c0867fa2399952e3",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "fluid_container",
+      "notes": "Exact sealed FJU gallon jug product/package; record is the container geometry, not a fluid mixture or recipe. CHAUVET identifies the formula as designed for water-based machines.",
+      "body_style": "white handled rectangular plastic gallon jug with screw cap and printed product label",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 30,
+    "triangle_count": 1672,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed fluid_container geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "accessories.fluid",
+    "control_path": "See source-backed protocol list; compatibility and control system are not implemented.",
+    "physical_asset_only": true,
+    "source_data": {
+      "protocols": [],
+      "source_urls": [
+        "https://www.chauvetdj.com/products/fog-juice-gallon/"
+      ],
+      "weight": "3.9 kg",
+      "dimensions": {
+        "width_m": 0.155,
+        "height_m": 0.3,
+        "depth_m": 0.155,
+        "axis_status": "estimated",
+        "axis_note": "CHAUVET lists dimensions 155 x 155 x 300 mm without axis labels; bottle photo supports upright height on the 300 mm axis and equal 155 mm base axes.",
+        "reference_pose": "Sealed one-gallon jug upright on its flat base with cap at top; exact external package dimensions from manufacturer listing."
+      },
+      "research_evidence": [
+        {
+          "url": "https://www.chauvetdj.com/products/fog-juice-gallon/",
+          "title": "High Performance Fog Fluid (FJU)",
+          "locator": "Product page: sealed 1 gal / 3.8 L jug, package weight 3.9 kg, package dimensions 155 x 155 x 300 mm",
+          "accessed_at": "2026-09-30"
+        }
+      ],
+      "control_path": "See source-backed protocol list; compatibility and control system are not implemented."
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "accessories.fluid",
+    "category_path": [
+      "Fixture accessories and consumables",
+      "Approved effect fluid / consumable"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

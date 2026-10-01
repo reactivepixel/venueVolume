@@ -1,0 +1,51 @@
+{
+  "mesh_count": 11,
+  "triangle_count": 1492,
+  "geometry_sha256": "a85a9b0804a1e9d3a8e8e1745a19d04cb11f3ef98fda5b8f881e3725f73c2758",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.25665101408958435,
+      -0.34610527753829956
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.012519565410912037,
+        0.014421030879020691
+      ]
+    }
+  ],
+  "family": "hazer",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0323468446731567,
+    1.0526316165924072,
+    1.0432969331741333
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.mdgfog.com/en/atmosphereaps",
+    "https://www.mdgfog.com/en/2-channel-dmx-interface",
+    "https://mdgfog.s3.amazonaws.com/uploads/img-tiny/atmosphere-a-bb3c9a.png"
+  ]
+}

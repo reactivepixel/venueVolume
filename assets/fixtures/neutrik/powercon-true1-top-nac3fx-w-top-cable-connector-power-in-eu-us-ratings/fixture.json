@@ -1,0 +1,291 @@
+{
+  "schema_version": 1,
+  "id": "neutrik/powercon-true1-top-nac3fx-w-top-cable-connector-power-in-eu-us-ratings",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Neutrik",
+    "model": "powerCON TRUE1 TOP NAC3FX-W-TOP cable connector (Power-In, EU/US ratings)",
+    "variant": "NAC3FX-W-TOP",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.neutrik.com/en/product/nac3fx-w-top",
+      "title": "NAC3FX-W-TOP — Neutrik",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product specification: Power-In cable connector; Europe rating 16 A 250 VAC and USA rating 20 A 250 VAC; source image",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.neutrik.com/media/12872/download/st-nac3fx-w-top.PDF?v=1",
+      "title": "NAC3FX-W-TOP dimensional drawing",
+      "kind": "manufacturer_drawing",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Sheet 1: 77–80 mm overall axial length, 32 mm max end-view envelope and Ø26.5 mm radial housing dimension",
+      "reuse_status": "reference_only",
+      "file": "sources/neutrik-nac3fx-w-top-drawing.pdf",
+      "sha256": "ada9dfa12ef7cad132d8636a306bd07306c0f67c8b9efb561e714d67b4c719c6"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.neutrik.com/uploads/media/400x/02/12832-NAC3FX-W-TOP.jpg?v=1-0",
+      "title": "powerCON TRUE1 TOP NAC3FX-W-TOP cable connector (Power-In, EU/US ratings) visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "7fc3f2a65dab161b70e8bc38fde2f469a5cea58f1ccba887f024b0ee62ba1464"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.032,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Model maximum 80 mm length and conservative 32 mm square end-view envelope from drawing; dimension drawing labels the end view 32 mm overall and 26.5 mm housing diameter. A circular/square conservative envelope is not an exact measured silhouette in both transverse axes."
+    },
+    "height": {
+      "value": 0.032,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Model maximum 80 mm length and conservative 32 mm square end-view envelope from drawing; dimension drawing labels the end view 32 mm overall and 26.5 mm housing diameter. A circular/square conservative envelope is not an exact measured silhouette in both transverse axes."
+    },
+    "depth": {
+      "value": 0.08,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Model maximum 80 mm length and conservative 32 mm square end-view envelope from drawing; dimension drawing labels the end view 32 mm overall and 26.5 mm housing diameter. A circular/square conservative envelope is not an exact measured silhouette in both transverse axes."
+    },
+    "reference_pose": "Cable axis horizontal, connector front directed outward; pose follows manufacturer drawing."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Cable axis horizontal, connector front directed outward; pose follows manufacturer drawing.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.01600000075995922,
+        0.0,
+        -0.04000000028099748
+      ],
+      "max": [
+        0.01600000075995922,
+        0.03200000524520874,
+        0.039999997930863174
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.01600000262260437,
+          2.0607130863936618e-05
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Model maximum 80 mm length and conservative 32 mm square end-view envelope from drawing; dimension drawing labels the end view 32 mm overall and 26.5 mm housing diameter. A circular/square conservative envelope is not an exact measured silhouette in both transverse axes.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "0506442c8ec42406c80874e8138bb8b52dd1ad4bb41fa33f4c093755e354a111"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "7c11509a00c3929da69d0e2af4a4c043ab7e7e75addf7fd6a93664e7cf2274c4"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "356260eec1bf01125fec858314ad2fdf166fa1f1e3720a3f60462086bb58ad5a"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "5bb41bbd8d20e1894bdf3e51e321c9744974fba0dcf96f002e4e3226f031036c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "02cf63427ae64a9b7bc4d51731e5ee25e8a2de6c2ec8d2d4b9ef83f5152e4ce9"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "d8c2bcf8898bc2a234316fefbf3c7ea8d425fcabf58438043d4b6b36596834d8"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "7e0175f3e428475b3abb680222556f759a3deef79f7e939217dd6a1857a8430d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "d3452d800e49235cb89c6162397b6c8e381506bd4d43f13fd27f5548cba88509"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "aff225138e1b6219adf6880d3f7adba4b7399b645e07b6f02f1c60d85792c8ab"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "f6dc1c77737b359265a914b61e3c863eb7bc6986b479ff4a7b6910d0bee2c770"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "134a0f0fa2a39dbc0de6fcfcf0e0e1bd89ff824266bd8f05bd8e9b2812878fbd",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "power_connector",
+      "body_style": "locking female cable connector with molded boot, strain relief and screw-terminal rear section",
+      "notes": "Exact connector component only; omit cable. Geometric W/H are conservative square maximum envelope around the drawing's 32 mm end-view dimension; the secondary radial dimension is 26.5 mm.",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 16,
+    "triangle_count": 7844,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed power_connector geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "power.cable",
+    "control_path": "Mains power connector component, not a DMX/data connector. Female cable connector identifies Power-In; mating inlet, cord conductors, regional wiring and protection are separate.",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://www.neutrik.com/en/product/nac3fx-w-top",
+        "https://www.neutrik.com/media/12872/download/st-nac3fx-w-top.PDF?v=1"
+      ],
+      "dimensions": {
+        "width_m": 0.032,
+        "height_m": 0.032,
+        "depth_m": 0.08,
+        "source_order": "77–80 mm axial length; 32 mm overall end-view envelope and Ø26.5 mm housing per manufacturer's drawing",
+        "axis_status": "estimated",
+        "axis_note": "Model maximum 80 mm length and conservative 32 mm square end-view envelope from drawing; dimension drawing labels the end view 32 mm overall and 26.5 mm housing diameter. A circular/square conservative envelope is not an exact measured silhouette in both transverse axes.",
+        "reference_pose": "Cable axis horizontal, connector front directed outward; pose follows manufacturer drawing."
+      },
+      "dimensions_status": "documented_in_manufacturer_drawing",
+      "regional_rating": {
+        "Europe": "16 A, 250 V AC",
+        "USA": "20 A, 250 V AC"
+      },
+      "control_path": "Mains power connector component, not a DMX/data connector. Female cable connector identifies Power-In; mating inlet, cord conductors, regional wiring and protection are separate.",
+      "safety_note": "Not an adapter or complete cord. Electrical ratings depend on the applicable local approval, mating connector, cord, wiring and installation. Never infer that an assembled system is rated by this connector alone.",
+      "pose": "Cable axis horizontal, connector front directed outward; pose follows manufacturer multi-view and isometric drawing.",
+      "research_evidence": [
+        {
+          "url": "https://www.neutrik.com/en/product/nac3fx-w-top",
+          "title": "NAC3FX-W-TOP — Neutrik",
+          "locator": "Product specification: Power-In cable connector; Europe rating 16 A 250 VAC and USA rating 20 A 250 VAC; source image",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown",
+          "source_kind": "manufacturer_product"
+        },
+        {
+          "url": "https://www.neutrik.com/media/12872/download/st-nac3fx-w-top.PDF?v=1",
+          "title": "NAC3FX-W-TOP dimensional drawing",
+          "locator": "Sheet 1: 77–80 mm overall axial length, 32 mm max end-view envelope and Ø26.5 mm radial housing dimension",
+          "file": "research/fixtures/taxonomy/support-sources/neutrik-nac3fx-w-top-drawing.pdf",
+          "sha256": "ada9dfa12ef7cad132d8636a306bd07306c0f67c8b9efb561e714d67b4c719c6",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown",
+          "source_kind": "manufacturer_drawing"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "power.cable",
+    "category_path": [
+      "Power and dimming",
+      "Power cable / multicore / adapter"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

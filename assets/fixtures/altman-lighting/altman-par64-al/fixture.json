@@ -1,0 +1,317 @@
+{
+  "schema_version": 1,
+  "id": "altman-lighting/altman-par64-al",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Altman Lighting",
+    "model": "Altman PAR64-AL",
+    "variant": "PAR64-AL",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.altmanlighting.com/wp-content/uploads/2019/05/PAR64ALSpecification_disc.pdf",
+      "title": "Altman Lighting Altman PAR64-AL official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.altmanlighting.com/wp-content/uploads/2016/04/PAR56-64.pdf",
+      "title": "Altman PAR56/64 specification and drawing",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Page 1 exact PAR64-AL drawing: 11 x 15.25 x 16 in; max 1000 W",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.altmanlighting.com/wp-content/uploads/2016/04/PAR56-64.pdf",
+      "title": "Altman PAR64-AL visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Official manufacturer PDF, page 1; rendered locally for visual reference.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.png",
+      "sha256": "83ca0d340b2dd0accfa16cc05168794f2746ab0ca2272c8f3d522dd64f81b795"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.279,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer dimension drawing, assembled fixture outline; excludes packaging."
+    },
+    "height": {
+      "value": 0.39,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer dimension drawing, assembled fixture outline; excludes packaging."
+    },
+    "depth": {
+      "value": 0.406,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer dimension drawing, assembled fixture outline; excludes packaging."
+    },
+    "reference_pose": "PAR face forward, yoke installed; external dimmer not modeled."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "Lamp-dependent; no lamp selected",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "PAR face forward, yoke installed; external dimmer not modeled.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.13950000703334808,
+        7.450580596923828e-09,
+        -0.2029999941587448
+      ],
+      "max": [
+        0.13950000703334808,
+        0.38999997824430466,
+        0.20300000824499875
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.12198620289564133,
+          -0.0010410257382318377
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.12198620289564133,
+          -0.1967538446187973
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.12198620289564133,
+          0.0406000055372715
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.12198620289564133,
+          -0.2000851333141327
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Manufacturer dimension drawing, assembled fixture outline; excludes packaging.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "1369b95629feea4606e9cd97bb6a7b088dbc7d8b5f69e6b2e06f2bcba64b4958"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "dca34a5274bc3fdde7429f2364853fdab821416b11cdae4920181a55bc903ab3"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "9e076263463d9c1bd5407ca49820d6498438626bdfaaeccf94f61b93ff71dc98"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "07ce74b6773e554e749fb70ae808c01309518ef8cbe6ebb355a34631f2e07c0f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "7225fd326d47ee1c903ea66c614b03a6ec3feda47e46d527112103c6e4b06874"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "7746f5aaeccee382bd32099b6f61eca5428a23b58f753d2eff3744b77f189c43"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "614256ffc9badd0b4cbc0e91a9b0b7ba6bc7c21f74e4e6ec009e9e446450f0bd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "8b920ed58681f288064b6e3fc99beb46b359149562d75b512b2bb3b50957fc30"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "8aa623d1d7fc7e78aebf24eb3e04d70c524121f2b28771405ba2efac99caf8a5"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "5cf17564be5ede96114e1aaa430b54d8bd2985818c5a08d4d67300fc9a87c552"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "5233520be0d966f35fb2a6bec3dca2f1dce455eef622d3ee35256e5078570c3b",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "par_can",
+      "body_style": "round metal PAR64 reflector can with yoke",
+      "notes": "Traditional passive can; lamp/reflector choice is separate. Discontinued.",
+      "generator": "equipment",
+      "output_kind": "light"
+    },
+    "mesh_count": 28,
+    "triangle_count": 3252,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "No official product image URL was present in the research CSV."
+  ],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed par_can geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "lighting.static.par",
+    "control_path": "Passive tungsten fixture; lamp fed by external mains dimmer",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://www.altmanlighting.com/wp-content/uploads/2019/05/PAR64ALSpecification_disc.pdf",
+        "https://www.altmanlighting.com/wp-content/uploads/2016/04/PAR56-64.pdf"
+      ],
+      "control_path": "Passive tungsten fixture; lamp fed by external mains dimmer",
+      "protocols": [],
+      "power": "Lamp-dependent; no lamp selected",
+      "dimensions": {
+        "width_m": 0.279,
+        "height_m": 0.39,
+        "depth_m": 0.406,
+        "axis_status": "documented",
+        "axis_note": "Manufacturer dimension drawing, assembled fixture outline; excludes packaging.",
+        "reference_pose": "PAR face forward, yoke installed; external dimmer not modeled."
+      },
+      "research_evidence": [
+        {
+          "url": "https://www.altmanlighting.com/wp-content/uploads/2016/04/PAR56-64.pdf",
+          "title": "Altman PAR56/64 specification and drawing",
+          "locator": "Page 1 exact PAR64-AL drawing: 11 x 15.25 x 16 in; max 1000 W",
+          "accessed_at": "2026-09-30"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.static.par",
+    "category_path": [
+      "Lighting fixtures",
+      "Static and manually focused",
+      "PAR and compact wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

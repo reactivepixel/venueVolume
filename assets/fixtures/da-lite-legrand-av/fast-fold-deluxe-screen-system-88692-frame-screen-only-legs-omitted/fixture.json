@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "id": "da-lite-legrand-av/fast-fold-deluxe-screen-system-88692-frame-screen-only-legs-omitted",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Da-Lite (Legrand AV)",
+    "model": "Fast-Fold Deluxe Screen System, 88692 (frame/screen only; legs omitted)",
+    "variant": "88692",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.legrandav.com/products/screens/fastfold-portable-screens/fast-fold-deluxe-screen-system/88692",
+      "title": "Da-Lite Fast-Fold Deluxe Screen System product page, SKU 88692",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product title identifies 88692 and 63.5 x 114.5 in HD Progressive ReView 0.9 screen surface",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "evidence-2",
+      "url": "https://www.legrandav.com/-/media/images/dalite/product/series/resources/fastfold_deluxe_screen_system/fast-fold-deluxe-spec-data.pdf?sc_lang=en",
+      "reuse_status": "unknown",
+      "kind": "manufacturer_manual",
+      "title": "Fast-Fold Deluxe Screens specification data",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Page 1: 16:9 HDTV format table, 69 x 120 in overall size, 63.5 x 114.5 in viewing area; page 2: product view labels 59 1/4 in deployed-foot dimension",
+      "file": "sources/dalite-fast-fold-deluxe-spec.pdf",
+      "sha256": "cd2c1664e91e9e2c7f9786933652cdb1361cb48cad827b90a55fc05dc63264fb"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.legrandav.com/-/media/images/dalite/product/series/resources/fastfold_deluxe_screen_system/fast-fold-deluxe-spec-data.pdf?sc_lang=en",
+      "title": "Fast-Fold Deluxe Screen System, 88692 (frame/screen only; legs omitted) visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.png",
+      "sha256": "d40cad6131a602e3112f09cc7598748f422351a070b0da9a83c640cfd2291f69"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 3.048,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer inch dimensions converted exactly; this record is frame/screen geometry only, not the deployed stand footprint."
+    },
+    "height": {
+      "value": 1.7526,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer inch dimensions converted exactly; this record is frame/screen geometry only, not the deployed stand footprint."
+    },
+    "depth": {
+      "value": 0.03175,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer inch dimensions converted exactly; this record is frame/screen geometry only, not the deployed stand footprint."
+    },
+    "reference_pose": "Screen frame vertical, display face forward; legs/supports omitted."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Screen frame vertical, display face forward; legs/supports omitted.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -1.5240001678466797,
+        0.0,
+        -0.01587500050663948
+      ],
+      "max": [
+        1.5240001678466797,
+        1.7525999546051025,
+        0.015875000797677785
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.000777463719714433
+        ]
+      },
+      {
+        "name": "surface",
+        "prim_path": "/Fixture/Surface",
+        "pivot_m": [
+          0.0,
+          0.8762999773025513,
+          -0.014923973940312862
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Manufacturer inch dimensions converted exactly; this record is frame/screen geometry only, not the deployed stand footprint.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "dcf5605862bf0cd494779e7f4edd5d8027e93bd1680d076f0cd35c5958a5cf1c"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "dba327f6068a84ca190109ccd579b1908b7fac62ae47839bb9b96d342d1cea45"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "d71ceece09cd06d503d0190339c06d93bf0bd826d8cd9b91c7022c45a1424432"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "8d80252ab0e0a19d2c520a7c93235512a26409b24a6ece29cc623d0c75f57cc0"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "e16af42b3fa6ebb0134eb609c586ccb9d89c819bf3bda34814e58d6f0c65d41a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "ae99e971c061a20d46120d7d90ae2d95ca063511c48e697238b2477000c10ad8"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "f8533d1b04e1a6b814e2fb46b8627579de8ca74c538d271b8f5143a8e3b53da2"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "e96f23d041d908365c84c3c5a9a39c1dcc5cb12381297346297b26ebed8d62b9"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "dc2d6aad63fef2ea4c0a035c625dc31c827aa1428dcf14dc8265b7db0156ed39"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "830cde58347f0db0d3096a3d4e5a92df70243c9e276dbb5c212c723e50a58878"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "33deae4f8d68adf4a06a4bbee12020002a62f3b3e5610aa173c584bd97c9d790",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "screen",
+      "body_style": "rectangular vertical screen surface in folding aluminum frame on deployed T-legs",
+      "notes": "Model the screen/frame from exact overall/viewing dimensions. Foot/stand geometry is family-view-derived and should be treated as approximate; do not include carrying case.",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 6,
+    "triangle_count": 776,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "No official product image URL was present in the research CSV."
+  ],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed screen geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "video.screen",
+    "control_path": "Passive projection surface and folding frame; image signal is projected onto surface by separate projector. No electrical or DMX connection.",
+    "physical_asset_only": true,
+    "source_data": {
+      "dimensions": {
+        "width_m": 3.048,
+        "height_m": 1.7526,
+        "depth_m": 0.03175,
+        "source_order": "Frame/screen only, excluding support legs and case: 120 x 69 in = 3.048 x 1.7526 m; 1.25 in square frame tubing = 31.75 mm depth; viewing area 114.5 x 63.5 in = 2.9083 x 1.6129 m.",
+        "axis_status": "documented",
+        "axis_note": "Manufacturer inch dimensions converted exactly; this record is frame/screen geometry only, not the deployed stand footprint.",
+        "reference_pose": "Screen frame vertical, display face forward; legs/supports omitted."
+      },
+      "dimensions_status": "documented_frame_only",
+      "dimension_notes": "Dimensions describe the screen/frame only, with no support legs or carrying case. Exact inch conversions: 120 in=3048 mm, 69 in=1752.6 mm, 1.25 in tubing=31.75 mm. Manufacturer page-2 figure separately labels 59.25 in for a stand-foot span; that figure is excluded from this frame-only model.",
+      "control_path": "Passive projection surface and folding frame; image signal is projected onto surface by separate projector. No electrical or DMX connection.",
+      "pose": "Frame/screen vertical, screen face forward. Frame-only envelope 3.048 m W x 1.7526 m H x 0.03175 m tubing thickness/depth; support legs, skirt, drape and case omitted.",
+      "screen_surface": "HD Progressive ReView 0.9, front projection",
+      "viewing_area_m": {
+        "width": 2.9083,
+        "height": 1.6129
+      },
+      "research_evidence": [
+        {
+          "url": "https://www.legrandav.com/products/screens/fastfold-portable-screens/fast-fold-deluxe-screen-system/88692",
+          "title": "Da-Lite Fast-Fold Deluxe Screen System product page, SKU 88692",
+          "locator": "Product title identifies 88692 and 63.5 x 114.5 in HD Progressive ReView 0.9 screen surface",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://www.legrandav.com/-/media/images/dalite/product/series/resources/fastfold_deluxe_screen_system/fast-fold-deluxe-spec-data.pdf?sc_lang=en",
+          "title": "Fast-Fold Deluxe Screens specification data",
+          "locator": "Page 1: 16:9 HDTV format table, 69 x 120 in overall size, 63.5 x 114.5 in viewing area; page 2: product view labels 59 1/4 in deployed-foot dimension",
+          "file": "research/fixtures/taxonomy/support-sources/dalite-fast-fold-deluxe-spec.pdf",
+          "sha256": "cd2c1664e91e9e2c7f9786933652cdb1361cb48cad827b90a55fc05dc63264fb",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "video.screen",
+    "category_path": [
+      "Video and projected surfaces",
+      "Projection screen / scenic surface"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

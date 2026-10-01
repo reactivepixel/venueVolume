@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "id": "adj/dynasty-scan-dmx",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "ADJ",
+    "model": "Dynasty Scan DMX",
+    "variant": "DYNASTY SCAN",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.adj.com/products/dynasty-scan-dmx",
+      "title": "Dynasty Scan DMX",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product specifications, dimensions, lamp and 6-channel control",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.adj.com/cdn/shop/files/8e8fdf896b7c324fb4ba06faa15832d3cfda9d95_DYNASTY_SCAN__IMG__001__4532095281c8.jpg?v=1776714362&width=2048",
+      "title": "Dynasty Scan DMX visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "299d3ed6f47330a41c0fd19a4617e1ff62f21bade1a821f389a551a0b8085517"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.185,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer LxWxH mapped to a table-mounted scanner with the front optical aperture facing forward along depth. Neutral-pose axis assignment is image-inferred, not established by a labelled drawing."
+    },
+    "height": {
+      "value": 0.195,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer LxWxH mapped to a table-mounted scanner with the front optical aperture facing forward along depth. Neutral-pose axis assignment is image-inferred, not established by a labelled drawing."
+    },
+    "depth": {
+      "value": 0.46,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer LxWxH mapped to a table-mounted scanner with the front optical aperture facing forward along depth. Neutral-pose axis assignment is image-inferred, not established by a labelled drawing."
+    },
+    "reference_pose": "Table-mounted upright, neutral mirror, lens forward; long body axis longitudinal/depth."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "150 W ZB-EFR lamp",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "3.3 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Table-mounted upright, neutral mirror, lens forward; long body axis longitudinal/depth.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.0925000011920929,
+        7.450580596923828e-09,
+        -0.23000000417232513
+      ],
+      "max": [
+        0.0925000011920929,
+        0.19499999284744263,
+        0.23000000533647835
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.08662855625152588,
+          0.0037481796462088823
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.08662855625152588,
+          -0.13294562697410583
+        ]
+      },
+      {
+        "name": "mirror",
+        "prim_path": "/Fixture/Mirror",
+        "pivot_m": [
+          0.0,
+          0.1451132446527481,
+          -0.20364932715892792
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.1451132446527481,
+          -0.21779005229473114
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Manufacturer LxWxH mapped to a table-mounted scanner with the front optical aperture facing forward along depth. Neutral-pose axis assignment is image-inferred, not established by a labelled drawing.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "62172e146138b4ad31d607ebe798ce5eafdd355fcc5b83167513eecadc9c18b9"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "5fda7f494b11152e55f77eca9b0811e526a738fd35d22fd7e91e53614c822328"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "a7a2c20eed3663b4ce3376dc1d316960e619acb543db663c7339542ad0cdfba3"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "bdda75aac4e0202f38d1d3f76edbe1321d87f03b005d00f6eef73c481d223fff"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "544307af6d9b0d2ff68140934c41b4832632ccb1f2859fe19865a983f3eaa22e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "5d303b96a1c6c899c0e60acd139fb93bbe1e59655800cf3aef6e39e6424b8a95"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "7a625ff1b41e44046aa11c58741a5451e620e4dae5bd38d30a68d2c6a017e9e1"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "88562fe98edce28c6559a0c46c0f3601ca4cc59431ac92dd4a25eaa7a58fe552"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "c2e5a3ce464a7dfcc9bde9e32040123db5051026ec805033de5bf31fb1ad8707"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "5ec9f860d9d2546399b3f166143fd001862988473a8a2d20672e39af609ed859"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "6caf03bca120a9cc85e2ff5b53805fced0dcc8d153967067c0ab200931d3c875",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "scanner",
+      "body_style": "compact rectangular lamp housing with front lens and oscillating mirror",
+      "notes": "Discontinued; scanner mirror rather than moving-head yoke.",
+      "generator": "equipment",
+      "output_kind": "light"
+    },
+    "mesh_count": 16,
+    "triangle_count": 9452,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed scanner geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "lighting.moving.scanner",
+    "control_path": "DMX 6-channel or onboard sound-active programs",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://www.adj.com/products/dynasty-scan-dmx"
+      ],
+      "control_path": "DMX 6-channel or onboard sound-active programs",
+      "protocols": [
+        "DMX"
+      ],
+      "power": "150 W ZB-EFR lamp",
+      "weight": "3.3 kg",
+      "dimensions": {
+        "width_m": 0.185,
+        "height_m": 0.195,
+        "depth_m": 0.46,
+        "axis_status": "estimated",
+        "axis_note": "Manufacturer LxWxH mapped to a table-mounted scanner with the front optical aperture facing forward along depth. Neutral-pose axis assignment is image-inferred, not established by a labelled drawing.",
+        "reference_pose": "Table-mounted upright, neutral mirror, lens forward; long body axis longitudinal/depth."
+      },
+      "research_evidence": [
+        {
+          "url": "https://www.adj.com/products/dynasty-scan-dmx",
+          "title": "Dynasty Scan DMX",
+          "locator": "Product specifications, dimensions, lamp and 6-channel control",
+          "accessed_at": "2026-09-30"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.scanner",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Moving-mirror scanner"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

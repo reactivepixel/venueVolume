@@ -1,0 +1,51 @@
+{
+  "mesh_count": 5,
+  "triangle_count": 1612,
+  "geometry_sha256": "c072d3b3a412b896b3ea5a4d184a4052af23ec40336a402db3b7c597fbe01388",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      -0.021242210641503334,
+      0.0020604701712727547,
+      -0.0
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        -0.021242210641503334,
+        0.0020604701712727547,
+        -0.0
+      ]
+    }
+  ],
+  "family": "clamp",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.2246878147125244,
+    0.9999999403953552,
+    0.9572452902793884
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://doughty-usa.com/products/twenty-clamp/",
+    "https://www.doughty-engineering.co.uk/wp-content/uploads/2023/01/T58400-Data-Sheet.pdf",
+    "https://doughty-usa.com/wp-content/uploads/2023/01/T58400-New-Twenty-Clamp-700x700-c-default.jpg"
+  ]
+}

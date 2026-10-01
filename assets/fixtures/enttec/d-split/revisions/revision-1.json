@@ -1,0 +1,186 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "enttec/d-split",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "ENTTEC",
+      "model": "D-SPLIT",
+      "variant": "70574 / 70578 / 70579",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.enttec.com/es/product/dmx-isolated-splitter-din-rail/d-split-dmx-opto-splitter-isolator/",
+        "title": "ENTTEC D-SPLIT product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product identity, output count, SKU family and direct manufacturer product render",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "evidence-2",
+        "url": "https://cdn.enttec.com/pdf/assets/70574_70578_70579/70574_70578_70579_D-SPLIT_DATASHEET.pdf",
+        "reuse_status": "unknown",
+        "kind": "manufacturer_manual",
+        "title": "D-SPLIT datasheet",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Specification page: 116 x 87 x 52 mm dimensions; 1-to-4 DMX splitter; no RDM; 7-24 V DC",
+        "file": "sources/enttec-d-split.pdf",
+        "sha256": "1eb13c74c54e8ba92c07d9251a8b6bd789f19efbf9a697f8376d1dd13e345045"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://cdn.enttec.com/wp-content/uploads/2021/10/10015010/2024_0003_dsplit_Isometric-Top-view-A-3-pin.png",
+        "title": "D-SPLIT visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.png",
+        "sha256": "ccc3f7d2674b5aa6afcb49740a0bf7883d2368ee141ac4320e2f6822b9018db2"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.116,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "116 x 87 x 52 mm, manufacturer datasheet"
+      },
+      "height": {
+        "value": 0.052,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "116 x 87 x 52 mm, manufacturer datasheet"
+      },
+      "depth": {
+        "value": 0.087,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "116 x 87 x 52 mm, manufacturer datasheet"
+      },
+      "reference_pose": "Enclosure horizontal with logo face upward and connector edge toward viewer, inferred from official isometric product image; dimensions mapped long x short x overall depth."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Enclosure horizontal with logo face upward and connector edge toward viewer, inferred from official isometric product image; dimensions mapped long x short x overall depth.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "116 x 87 x 52 mm, manufacturer datasheet",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "infrastructure_control.network_nodes",
+      "control_path": "USITT DMX512-1990 input to four isolated DMX512 outputs; no RDM compatibility; powered separately at 7-24 V DC; not an Ethernet node.",
+      "physical_asset_only": true,
+      "source_data": {
+        "dimensions": {
+          "width_m": 0.116,
+          "height_m": 0.052,
+          "depth_m": 0.087,
+          "source_order": "116 x 87 x 52 mm, manufacturer datasheet",
+          "axis_status": "documented",
+          "axis_note": "116 x 87 x 52 mm, manufacturer datasheet",
+          "reference_pose": "Enclosure horizontal with logo face upward and connector edge toward viewer, inferred from official isometric product image; dimensions mapped long x short x overall depth."
+        },
+        "control_path": "USITT DMX512-1990 input to four isolated DMX512 outputs; no RDM compatibility; powered separately at 7-24 V DC; not an Ethernet node.",
+        "pose": "Enclosure horizontal with logo face upward and connector edge toward viewer, inferred from official isometric product image; dimensions mapped long x short x overall depth.",
+        "research_evidence": [
+          {
+            "url": "https://www.enttec.com/es/product/dmx-isolated-splitter-din-rail/d-split-dmx-opto-splitter-isolator/",
+            "title": "ENTTEC D-SPLIT product page",
+            "locator": "Product identity, output count, SKU family and direct manufacturer product render",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown"
+          },
+          {
+            "url": "https://cdn.enttec.com/pdf/assets/70574_70578_70579/70574_70578_70579_D-SPLIT_DATASHEET.pdf",
+            "title": "D-SPLIT datasheet",
+            "locator": "Specification page: 116 x 87 x 52 mm dimensions; 1-to-4 DMX splitter; no RDM; 7-24 V DC",
+            "file": "research/fixtures/taxonomy/support-sources/enttec-d-split.pdf",
+            "sha256": "1eb13c74c54e8ba92c07d9251a8b6bd789f19efbf9a697f8376d1dd13e345045",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "65ee24e76027977f1cf6c26ca1ffb0c6472db854",
+  "note": "Initial research record before any generated model artifacts existed."
+}

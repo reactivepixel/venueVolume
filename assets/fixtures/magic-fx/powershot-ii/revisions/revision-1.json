@@ -1,0 +1,199 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "magic-fx/powershot-ii",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "MAGIC FX",
+      "model": "Powershot II",
+      "variant": "MFX0304",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://magicfx.com/products/powershot-ii",
+        "title": "Powershot II product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Description identifies electric confetti/streamer launcher; specifications give SKU, size, mass, power and power-on/off control",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://magicfx.com/cdn/shop/files/Powershot_II_manual.pdf?v=2824067315526127119",
+        "title": "MAGIC FX Powershot II official source 2",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://magicfx.com/cdn/shop/files/POWERSHOTII_66533f85-fbf1-4057-ae70-44f6163f6649.jpg?v=1774941991&width=3840",
+        "title": "Powershot II visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.jpg",
+        "sha256": "ce2be4cb12ab4fd7bc5debf6f0b71c6b9d2e6dc491def3ee7f2c057e75d882a8"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.127,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer labels length/width/height; image checked in compact upright mounting pose, length treated as front-to-back short axis."
+      },
+      "height": {
+        "value": 0.19,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer labels length/width/height; image checked in compact upright mounting pose, length treated as front-to-back short axis."
+      },
+      "depth": {
+        "value": 0.09,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer labels length/width/height; image checked in compact upright mounting pose, length treated as front-to-back short axis."
+      },
+      "reference_pose": "Compact unit held upright with shot socket uppermost, mounting surface down; official product image."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "120 W; 220–240 VAC, 50/60 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "1.7 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "power on/off trigger"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Compact unit held upright with shot socket uppermost, mounting surface down; official product image.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "Manufacturer labels length/width/height; image checked in compact upright mounting pose, length treated as front-to-back short axis.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "fx.atmosphere.confetti.launcher",
+      "control_path": "See source-backed protocol list; compatibility and control system are not implemented.",
+      "physical_asset_only": true,
+      "source_data": {
+        "protocols": [
+          "power on/off trigger"
+        ],
+        "source_urls": [
+          "https://magicfx.com/products/powershot-ii",
+          "https://magicfx.com/cdn/shop/files/Powershot_II_manual.pdf?v=2824067315526127119"
+        ],
+        "power": "120 W; 220–240 VAC, 50/60 Hz",
+        "weight": "1.7 kg",
+        "dimensions": {
+          "width_m": 0.127,
+          "height_m": 0.19,
+          "depth_m": 0.09,
+          "axis_status": "documented",
+          "axis_note": "Manufacturer labels length/width/height; image checked in compact upright mounting pose, length treated as front-to-back short axis.",
+          "reference_pose": "Compact unit held upright with shot socket uppermost, mounting surface down; official product image."
+        },
+        "research_evidence": [
+          {
+            "url": "https://magicfx.com/products/powershot-ii",
+            "title": "Powershot II product page",
+            "locator": "Description identifies electric confetti/streamer launcher; specifications give SKU, size, mass, power and power-on/off control",
+            "accessed_at": "2026-09-30"
+          }
+        ],
+        "control_path": "See source-backed protocol list; compatibility and control system are not implemented."
+      }
+    }
+  },
+  "git_commit": "c753c434774c5386e4b9f87fc3f00a1f589aad3c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

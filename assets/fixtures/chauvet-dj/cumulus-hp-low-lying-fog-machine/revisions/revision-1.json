@@ -1,0 +1,224 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "chauvet-dj/cumulus-hp-low-lying-fog-machine",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "CHAUVET DJ",
+      "model": "Cumulus HP Low-Lying Fog Machine",
+      "variant": "Cumulus HP",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.chauvetdj.com/products/cumulus-hp/",
+        "title": "Cumulus HP product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Highlights and specifications: ultrasonic atomizer, DMX, power, mass, size",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.chauvetdj.com/wp-content/uploads/2023/12/Cumulus_HP_UM_Rev1.pdf",
+        "title": "Cumulus HP User Manual Rev. 1",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Printed page 3 (PDF page 6): product overview and labeled L/W/H dimensional drawing; technical specification table on printed page 13",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.chauvetdj.com/wp-content/uploads/2023/12/Cumulus_HP_UM_Rev1.pdf",
+        "title": "Cumulus HP Low-Lying Fog Machine visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "https://www.chauvetdj.com/wp-content/uploads/2023/12/Cumulus_HP_UM_Rev1.pdf#page=6 (printed page 3; product-dimensions drawing)",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.png",
+        "sha256": "e0c2b90a46bd6d67db5c821eb08684d20fb8a848d4bee6301fbe661272a4bbfc"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.304,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "The manual's drawing and specifications label the bare enclosure length 464 mm, width 304 mm, height 347 mm. External output hose and floor nozzle are not included in this housing envelope."
+      },
+      "height": {
+        "value": 0.347,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "The manual's drawing and specifications label the bare enclosure length 464 mm, width 304 mm, height 347 mm. External output hose and floor nozzle are not included in this housing envelope."
+      },
+      "depth": {
+        "value": 0.464,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "The manual's drawing and specifications label the bare enclosure length 464 mm, width 304 mm, height 347 mm. External output hose and floor nozzle are not included in this housing envelope."
+      },
+      "reference_pose": "Bare Cumulus HP enclosure level on its base; hose and floor nozzle excluded from reference dimensions."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "1608 W at 120 V / 60 Hz; 1541 W at 230 V / 50 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "15.7 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "standalone display",
+            "included wireless remote"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "2-channel mode",
+        "footprint": 2,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Bare Cumulus HP enclosure level on its base; hose and floor nozzle excluded from reference dimensions.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "The manual's drawing and specifications label the bare enclosure length 464 mm, width 304 mm, height 347 mm. External output hose and floor nozzle are not included in this housing envelope.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [
+      "No official product image URL was present in the research CSV."
+    ],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "fx.atmosphere.low_fog.ultrasonic",
+      "control_path": "See source-backed protocol list; compatibility and control system are not implemented.",
+      "physical_asset_only": true,
+      "source_data": {
+        "protocols": [
+          "DMX",
+          "standalone display",
+          "included wireless remote"
+        ],
+        "source_urls": [
+          "https://www.chauvetdj.com/products/cumulus-hp/",
+          "https://www.chauvetdj.com/wp-content/uploads/2023/12/Cumulus_HP_UM_Rev1.pdf"
+        ],
+        "power": "1608 W at 120 V / 60 Hz; 1541 W at 230 V / 50 Hz",
+        "weight": "15.7 kg",
+        "dmx_channels": [
+          2
+        ],
+        "dimensions": {
+          "width_m": 0.304,
+          "height_m": 0.347,
+          "depth_m": 0.464,
+          "axis_status": "documented",
+          "axis_note": "The manual's drawing and specifications label the bare enclosure length 464 mm, width 304 mm, height 347 mm. External output hose and floor nozzle are not included in this housing envelope.",
+          "reference_pose": "Bare Cumulus HP enclosure level on its base; hose and floor nozzle excluded from reference dimensions."
+        },
+        "research_evidence": [
+          {
+            "url": "https://www.chauvetdj.com/products/cumulus-hp/",
+            "title": "Cumulus HP product page",
+            "locator": "Highlights and specifications: ultrasonic atomizer, DMX, power, mass, size",
+            "accessed_at": "2026-09-30"
+          },
+          {
+            "url": "https://www.chauvetdj.com/wp-content/uploads/2023/12/Cumulus_HP_UM_Rev1.pdf",
+            "title": "Cumulus HP User Manual Rev. 1",
+            "locator": "Printed page 3 (PDF page 6): product overview and labeled L/W/H dimensional drawing; technical specification table on printed page 13",
+            "accessed_at": "2026-09-30"
+          }
+        ],
+        "control_path": "See source-backed protocol list; compatibility and control system are not implemented."
+      }
+    }
+  },
+  "git_commit": "c753c434774c5386e4b9f87fc3f00a1f589aad3c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

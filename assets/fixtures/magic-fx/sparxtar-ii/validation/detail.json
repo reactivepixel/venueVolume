@@ -1,0 +1,59 @@
+{
+  "mesh_count": 57,
+  "triangle_count": 9772,
+  "geometry_sha256": "30ff7ffb03bc09d2c406cf137ce129da98c0802ded7924c02998951d45ebbac8",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.25661855936050415,
+      -0.003400602377951145
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        -0.003400602377951145
+      ]
+    },
+    {
+      "name": "output",
+      "prim_path": "/Fixture/Output",
+      "pivot_m": [
+        0.0,
+        0.25661855936050415,
+        -0.003400602377951145
+      ]
+    }
+  ],
+  "family": "spark",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9478673338890076,
+    0.9985913038253784,
+    1.0309278964996338
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://magicfx.com/products/sparxtar-ii",
+    "https://magicfx.com/cdn/shop/files/SPARXTAR_II_VIEW-HERO.jpg?v=1783682020&width=3840"
+  ]
+}

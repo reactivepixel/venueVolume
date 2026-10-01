@@ -1,0 +1,186 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "enttec/pixelator-mini",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "ENTTEC",
+      "model": "Pixelator Mini",
+      "variant": "70067",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.enttec.com/product/led-pixel-control/pixelator-mini-lighting-controller-ethernet-to-spi-pixel-converter/",
+        "title": "Pixelator Mini product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product capabilities, protocols, connector count and direct manufacturer product render",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "evidence-2",
+        "url": "https://cdn.enttec.com/pdf/assets/70067/70067_PIXELATOR_MINI_DATASHEET.pdf",
+        "reuse_status": "unknown",
+        "kind": "manufacturer_manual",
+        "title": "Pixelator Mini datasheet",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Unit dimensions 200 x 120 x 42 mm; weight and PLink output specs",
+        "file": "sources/enttec-pixelator-mini.pdf",
+        "sha256": "e7f211271fade653bbd86a9b274d8d98182daf3fb764be269593ef78fbb969d4"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://cdn.enttec.com/wp-content/uploads/2022/02/09060535/product_pixelatormini__004.png",
+        "title": "Pixelator Mini visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.png",
+        "sha256": "d6d3f6d304bbcec2f360ea073961e09678795a34e009b9a4af269c4f0ecfc00d"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.2,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "200 x 120 x 42 mm unit dimensions"
+      },
+      "height": {
+        "value": 0.042,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "200 x 120 x 42 mm unit dimensions"
+      },
+      "depth": {
+        "value": 0.12,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "200 x 120 x 42 mm unit dimensions"
+      },
+      "reference_pose": "Tabletop controller, broad face horizontal with printed label/status upward and connectors facing outward; pose inferred from manufacturer render."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Tabletop controller, broad face horizontal with printed label/status upward and connectors facing outward; pose inferred from manufacturer render.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "200 x 120 x 42 mm unit dimensions",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "infrastructure_control.network_nodes",
+      "control_path": "Art-Net/sACN/ESP Ethernet input to eight proprietary PLink outputs for compatible PLink injectors; not a fixture power supply and not a DMX512 output device.",
+      "physical_asset_only": true,
+      "source_data": {
+        "dimensions": {
+          "width_m": 0.2,
+          "height_m": 0.042,
+          "depth_m": 0.12,
+          "source_order": "200 x 120 x 42 mm unit dimensions",
+          "axis_status": "documented",
+          "axis_note": "200 x 120 x 42 mm unit dimensions",
+          "reference_pose": "Tabletop controller, broad face horizontal with printed label/status upward and connectors facing outward; pose inferred from manufacturer render."
+        },
+        "control_path": "Art-Net/sACN/ESP Ethernet input to eight proprietary PLink outputs for compatible PLink injectors; not a fixture power supply and not a DMX512 output device.",
+        "pose": "Tabletop controller, broad face horizontal with printed label/status upward and connectors facing outward; pose inferred from manufacturer render.",
+        "research_evidence": [
+          {
+            "url": "https://www.enttec.com/product/led-pixel-control/pixelator-mini-lighting-controller-ethernet-to-spi-pixel-converter/",
+            "title": "Pixelator Mini product page",
+            "locator": "Product capabilities, protocols, connector count and direct manufacturer product render",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown"
+          },
+          {
+            "url": "https://cdn.enttec.com/pdf/assets/70067/70067_PIXELATOR_MINI_DATASHEET.pdf",
+            "title": "Pixelator Mini datasheet",
+            "locator": "Unit dimensions 200 x 120 x 42 mm; weight and PLink output specs",
+            "file": "research/fixtures/taxonomy/support-sources/enttec-pixelator-mini.pdf",
+            "sha256": "e7f211271fade653bbd86a9b274d8d98182daf3fb764be269593ef78fbb969d4",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "65ee24e76027977f1cf6c26ca1ffb0c6472db854",
+  "note": "Initial research record before any generated model artifacts existed."
+}

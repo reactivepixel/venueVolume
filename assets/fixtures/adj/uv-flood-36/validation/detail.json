@@ -1,0 +1,50 @@
+{
+  "mesh_count": 29,
+  "triangle_count": 5452,
+  "geometry_sha256": "ce99fcaa5e68a226c627e1e6e4d5f3c452e3990ca525d920358609c3a84689df",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.12932266294956207,
+      -0.05440777540206909
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.0027740306686609983,
+        0.0035343202762305737
+      ]
+    }
+  ],
+  "family": "uv",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0,
+    0.9879300594329834,
+    1.1242271661758423
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/products/uv-flood-36",
+    "https://www.adj.com/cdn/shop/files/be63d603fe6a6291fae6243a8d0c98e86819e9bf_UVF021__IMG__001__b2c36e475ed4.jpg?v=1774475468&width=2048"
+  ]
+}

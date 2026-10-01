@@ -1,0 +1,304 @@
+{
+  "schema_version": 1,
+  "id": "robe-lighting/robospot-motioncamera",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ROBE Lighting",
+    "model": "RoboSpot MotionCamera",
+    "variant": "RoboSpot MotionCamera",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.robelighting.com/robospot-motioncamera",
+      "title": "RoboSpot MotionCamera — Robe",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Technical specification: camera model/resolution/zoom, DMX/RDM and Ethernet video routing; mechanical dimensions and head-vertical pose; product image",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.robelighting.com/res/downloads/catalogues/ROBE_Product_Guide_2021.pdf",
+      "title": "Robe Product Guide 2021",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "RoboSpot MotionCamera specification table: electrical/mechanical values; 386 x 277 x 147 mm, head vertical",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://cdn.aws.robe.cz/v1/image/resize/8a9cbc417b51763a20041409849a29deda12302d?width=904&height=904&fit=cover&withoutEnlargement=false",
+      "title": "RoboSpot MotionCamera visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.webp",
+      "sha256": "51003a7ccbee745cdb427bd6fa7cc8be207270f0ed83baec38eb1144a27ef5e1"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.277,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer mechanical dimensions; pose is head vertical."
+    },
+    "height": {
+      "value": 0.386,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer mechanical dimensions; pose is head vertical."
+    },
+    "depth": {
+      "value": 0.147,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer mechanical dimensions; pose is head vertical."
+    },
+    "reference_pose": "Head upright, camera optical axis upward to match manufacturer head-vertical height; pan base level."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Head upright, camera optical axis upward to match manufacturer head-vertical height; pan base level.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.13850000500679016,
+        0.0,
+        -0.0734999985434115
+      ],
+      "max": [
+        0.13850000500679016,
+        0.38600000739097595,
+        0.07350000133737922
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.00076665123924613
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.07943332940340042,
+          0.00076665123924613
+        ]
+      },
+      {
+        "name": "camera",
+        "prim_path": "/Fixture/Camera",
+        "pivot_m": [
+          0.0,
+          0.24798698723316193,
+          0.00076665123924613
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Manufacturer mechanical dimensions; pose is head vertical.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "6cfc642c25dfcc9c8a73612790b4f9bacce839792aa1b42ce56fd8fe52a9ab40"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "d6ce4f983e562d5e99fbfc4ac40ac537b3c147305c762121746616a0ff4a4670"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "0ff317a2806b8c7d7adec4800570d67482b00ee41e159bc7a7cc1233d1fa29d6"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "3ba0886dafe7021523cab17951e1d502d15a0d42e827e5f57e031e847de5f77a"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "05305faf3d37324ab22753c2d9f955516712b7c97059f3188aaef0c5a3af759e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "8b109f6af9f68d70d5c378fe4ac46c46494bbc9336b238e1fe6b240dd4a2d57a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "e1e57cedfe68f32522b882220710693038da7a9d2622cbae659ee247402211fb"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "89ebcad799e1cc34f8411a9e3872e39b307934abecb1d0bfacc5d3c606fbbee8"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "ce26fee1ebb6a7bc10255f5b02251e144081165352767c6259e4a0cf656f0cea"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "7affc285089503b15b13473751193ba83e6121c12e1483a66ab71230b4fd82f6"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "0a095f85b1944c7f93fba05d43a59bcdd2dd68169e8f5fba3679caf0ee4daf7b",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "tracking_camera",
+      "body_style": "compact moving-head camera with integrated zoom optics, yoke and base adaptor",
+      "notes": "Camera-head visual reference only; no tracking algorithm, video-network or BaseStation geometry is represented. Treat as optional video/followspot-system expansion until broader scope is approved.",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 16,
+    "triangle_count": 3008,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed tracking_camera geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "control.tracking",
+    "control_path": "Moving camera head is controlled by DMX/RDM; camera video travels to RoboSpot BaseStation over Ethernet/Cat5. BaseStation is a separate equipment item.",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://www.robelighting.com/robospot-motioncamera",
+        "https://www.robelighting.com/res/downloads/catalogues/ROBE_Product_Guide_2021.pdf"
+      ],
+      "dimensions": {
+        "width_m": 0.277,
+        "height_m": 0.386,
+        "depth_m": 0.147,
+        "source_order": "277 W x 386 H x 147 D mm; height explicitly with head vertical",
+        "axis_status": "documented",
+        "axis_note": "Manufacturer mechanical dimensions; pose is head vertical.",
+        "reference_pose": "Head upright, camera optical axis upward to match manufacturer head-vertical height; pan base level."
+      },
+      "dimensions_status": "documented_in_manufacturer_product_specification",
+      "camera": {
+        "type": "SNZ-6320",
+        "resolution": "1920 x 1080",
+        "optical_zoom": "32x",
+        "digital_zoom": "16x"
+      },
+      "control_path": "Moving camera head is controlled by DMX/RDM; camera video travels to RoboSpot BaseStation over Ethernet/Cat5. BaseStation is a separate equipment item.",
+      "pose": "Base adaptor at bottom, head in vertical position, lens facing forward; dimensions are manufacturer maximum outer dimensions for that pose.",
+      "research_evidence": [
+        {
+          "url": "https://www.robelighting.com/robospot-motioncamera",
+          "title": "RoboSpot MotionCamera — Robe",
+          "locator": "Technical specification: camera model/resolution/zoom, DMX/RDM and Ethernet video routing; mechanical dimensions and head-vertical pose; product image",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown",
+          "source_kind": "manufacturer_product"
+        },
+        {
+          "url": "https://www.robelighting.com/res/downloads/catalogues/ROBE_Product_Guide_2021.pdf",
+          "title": "Robe Product Guide 2021",
+          "locator": "RoboSpot MotionCamera specification table: electrical/mechanical values; 386 x 277 x 147 mm, head vertical",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown",
+          "source_kind": "manufacturer_catalogue"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "control.tracking",
+    "category_path": [
+      "Control and data",
+      "Followspot tracking / automation control"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

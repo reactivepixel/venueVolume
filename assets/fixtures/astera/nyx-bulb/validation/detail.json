@@ -1,0 +1,51 @@
+{
+  "mesh_count": 11,
+  "triangle_count": 7520,
+  "geometry_sha256": "744dc19e2921d22c5e057883c6abb83a4c0cb5f87d8d9d8190add2bd59cf9d62",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      1.3038507162832502e-08,
+      0.10373737663030624,
+      7.450572603318051e-09
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        1.3038507162832502e-08,
+        -0.001313130953349173,
+        7.450572603318051e-09
+      ]
+    }
+  ],
+  "family": "practical",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9999992847442627,
+    0.999998927116394,
+    1.0101009607315063
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://nyx-for-filmmakers.astera-led.com/",
+    "https://www.koto-jp.com/en/lighting/stage-studio/authorized-manufacturers/astera/1912/",
+    "https://www.koto-jp.com/en/wp-content/uploads/2022/03/NYX_en.jpg"
+  ]
+}

@@ -16,12 +16,12 @@ def dump(p,obj):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dum
 def fid(row):return '/'.join(re.sub('[^a-z0-9]+','-',row[k].lower()).strip('-') for k in ('manufacturer','name'))
 def artifact(folder,role,file):return {'role':role,'file':file,'sha256':sha(folder/file)}
 
-def wrapper(spec):
+def wrapper(spec,builder=BUILDER):
     return f'''#!/usr/bin/env python3
 from pathlib import Path
 import importlib.util, os, sys
 HERE=Path(__file__).resolve().parent
-module_path=(HERE/"../../../_shared/detailed_fixture.py").resolve()
+module_path=(HERE/"../../../_shared/{builder.name}").resolve()
 s=importlib.util.spec_from_file_location("detailed_fixture",module_path)
 m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
 SPEC={spec!r}
@@ -30,13 +30,15 @@ sys.stdout.flush();sys.stderr.flush();os._exit(0)
 '''
 
 def run(cmd,log,env=None):
-    r=subprocess.run(cmd,capture_output=True,text=True,env=env)
+    r=subprocess.run(cmd,capture_output=True,text=True,env=env,timeout=180)
     log.write_text(log.read_text()+'\n'+r.stdout+r.stderr if log.exists() else r.stdout+r.stderr)
     if r.returncode:raise RuntimeError(f'{cmd[0]} failed ({r.returncode}); see {log}')
 
 def build_one(row,profile,force=False):
     ident=fid(row);folder=ROOT/'assets/fixtures'/ident;rp=folder/'fixture.json';record=json.loads(rp.read_text())
-    token=hashlib.sha256((sha(BUILDER)+json.dumps(profile,sort_keys=True)+json.dumps(record['dimensions'],sort_keys=True)).encode()).hexdigest()
+    builder=BUILDER.with_name('equipment_fixture.py') if profile.get('generator')=='equipment' else BUILDER
+    dependency_hash=sha(BUILDER)+(sha(builder) if builder!=BUILDER else '')
+    token=hashlib.sha256((dependency_hash+json.dumps(profile,sort_keys=True)+json.dumps(record['dimensions'],sort_keys=True)).encode()).hexdigest()
     if record['model'].get('detail_build_token')==token and not force:return ident,'already_current'
     for a in record['model']['artifacts']:
         if sha(folder/a['file'])!=a['sha256']:raise RuntimeError(f'Manual edit preserved; refusing overwrite: {ident}/{a["file"]}')
@@ -46,7 +48,7 @@ def build_one(row,profile,force=False):
     with tempfile.TemporaryDirectory(prefix='vv-detail-') as tmp:
         candidate=Path(tmp);(candidate/'models').mkdir();(candidate/'validation').mkdir()
         driver=candidate/'build.py'
-        driver.write_text(f"import importlib.util,os,sys\nfrom pathlib import Path\ns=importlib.util.spec_from_file_location('detail',{str(BUILDER)!r})\nm=importlib.util.module_from_spec(s);s.loader.exec_module(m)\nm.build({spec!r},Path({str(candidate)!r}))\nsys.stdout.flush();sys.stderr.flush();os._exit(0)\n")
+        driver.write_text(f"import importlib.util,os,sys,traceback\nfrom pathlib import Path\ntry:\n s=importlib.util.spec_from_file_location('detail',{str(builder)!r})\n m=importlib.util.module_from_spec(s);s.loader.exec_module(m)\n m.build({spec!r},Path({str(candidate)!r}))\nexcept BaseException:\n traceback.print_exc();sys.stdout.flush();sys.stderr.flush();os._exit(1)\nsys.stdout.flush();sys.stderr.flush();os._exit(0)\n")
         run(['blender','--background','--threads','2','--python-exit-code','1','--python',str(driver)],log)
         detail=json.loads((candidate/'validation/detail.json').read_text())
         # Rebuilding an unpublished candidate is the same library revision.
@@ -58,11 +60,16 @@ def build_one(row,profile,force=False):
         if not prior_is_batch:new['revision']+=1
         new['updated_at']=DATE
         model=new['model'];model['parts']=detail['parts'];model['emitters']=[detail['emitter']]
+        output_kind=profile.get('output_kind','light')
+        if output_kind!='light':
+            model['emitters']=[]
+            model['effect_outlets']=[] if output_kind=='none' else [{'prim_path':detail['emitter']['prim_path'],'position_m':detail['emitter']['position_m'],'kind':output_kind,'status':'estimated','note':'Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters.'}]
         model['joints']=[]
         if profile['family'].startswith('moving_'):
             piv={p['name']:p['pivot_m'] for p in detail['parts']}
             model['joints']=[{'name':'pan','parent':'base','child':'yoke','pivot_m':piv['yoke'],'axis':[0,1,0],'status':'estimated','limits':None},{'name':'tilt','parent':'yoke','child':'head','pivot_m':piv['head'],'axis':[1,0,0],'status':'estimated','limits':None}]
-        model.update({'detail_level':'high','detail_batch':'catalog-expansion-2026-09-30','detail_build_token':token,'generator_dependency':{'file':'../../_shared/detailed_fixture.py','sha256':sha(BUILDER)},'profile':profile,'mesh_count':detail['mesh_count'],'triangle_count':detail['triangle_count'],'authoring_to_runtime':detail['authoring_to_runtime']})
+        model.update({'detail_level':'high','detail_batch':'catalog-expansion-2026-09-30','detail_build_token':token,'generator_dependency':{'file':'../../_shared/'+builder.name,'sha256':sha(builder)},'profile':profile,'mesh_count':detail['mesh_count'],'triangle_count':detail['triangle_count'],'authoring_to_runtime':detail['authoring_to_runtime']})
+        if builder!=BUILDER:model['generator_dependencies']=[{'file':'../../_shared/'+p.name,'sha256':sha(p)} for p in (builder,BUILDER)]
         model['assumptions']=[s for s in model['assumptions'] if 'articulation joints' not in s and 'Moving components remain' not in s]
         model['assumptions']+=['Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.', 'Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints.']
         model['assumptions']=list(dict.fromkeys(model['assumptions']))
@@ -79,8 +86,11 @@ def build_one(row,profile,force=False):
         for group in ('models','previews','validation'):
             (folder/group).mkdir(parents=True,exist_ok=True)
             for path in (candidate/group).iterdir():shutil.copy2(path,folder/group/path.name)
-        (folder/'models/build_fixture.py').write_text(wrapper(spec))
+        (folder/'models/build_fixture.py').write_text(wrapper(spec,builder))
         model['bounds_m']=report['bounds_m'];model['status']='validated'
+        if builder!=BUILDER:
+            new['status']='ready_for_visualization' if all(new['dimensions'][a]['status']=='documented' for a in ('width','height','depth')) and not new['unresolved'] else 'researched'
+            new['verification']['notes']=['OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review.']
         model['artifacts']=[artifact(folder,role,file) for role,file in [('authoring','models/fixture.blend'),('runtime','models/fixture.usdz'),('generator','models/build_fixture.py'),('validation','validation/usdz.json'),('validation','validation/detail.json')]]
         model['artifacts'] += [artifact(folder,'preview',f'previews/{n}.png') for n in ('front','side','rear','three-quarter')]
         dump(rp,new)
@@ -92,7 +102,7 @@ def build_one(row,profile,force=False):
     return ident,'built'
 
 def sync_csv(rows):
-    fields=list(rows[0]);extra=['model_fidelity','model_revision','preview_asset','detail_report','expansion_batch']
+    fields=list(dict.fromkeys(k for row in rows for k in row));extra=['model_fidelity','model_revision','preview_asset','detail_report','expansion_batch']
     fields += [f for f in extra if f not in fields]
     for row in rows:
         ident=fid(row);folder=ROOT/'assets/fixtures'/ident;path=folder/'fixture.json'

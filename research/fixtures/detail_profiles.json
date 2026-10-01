@@ -437,5 +437,355 @@
     "body_style": "linear hybrid strobe and RGB pixel mapping fixture",
     "notes": "The 1000 mm lens tube shares RGB pixel and white strobe emission; a single continuous tube is a better shape representation than separate visible LEDs.",
     "diffuser": true
+  },
+  "etc/colorsource-20": {
+    "family": "console",
+    "body_style": "low tabletop console with 20 faders and central touchscreen",
+    "notes": "Official product image shows both CS20 and CS40; use the smaller upper CS20 image. Dimensions are typical values from ColorSource Console Spec Sheet rev G; exact physical drawing DWG retained but not parsed in this pass.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "enttec/ode-mk3": {
+    "family": "node",
+    "body_style": "compact rectangular network gateway with DMX connectors on one end and Ethernet/DC connections opposite",
+    "notes": "Dimensions cross-checked against drawing 70407-ODE MK3; drawing labels overall 128.8, 58, and 40 mm. A 25 mm body-height detail is also drawn; retain 40 mm overall envelope for the connectors/features shown in the manufacturer overall dimensions. No fictional DMX channel personality applies.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "adj/dp-415r": {
+    "family": "dimmer",
+    "body_style": "compact enclosed pack with reversible hanging bracket and Edison outlets",
+    "notes": "Product page identifies selectable dimmer/switch modes and mounting options; electrical power remains distinct from DMX control data.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "global-truss/sq-4110-f34-straight-segment-natural-aluminium": {
+    "family": "truss",
+    "body_style": "four-chord square truss module with diagonal bracing and end connector plates",
+    "notes": "Use as a visual planning component only; do not infer load capacity from the 3D model. Consult product-specific load tables and a qualified rigger for actual system design.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "roe-visual/black-pearl-bp2v2": {
+    "family": "led_panel",
+    "body_style": "500 mm square modular display with 90 mm rear housing",
+    "notes": "Optional visual-equipment example. Catalog inclusion should follow user-approved scope; one representative panel does not imply a full LED wall, processor, hanging hardware, or all vendors are included.",
+    "generator": "equipment",
+    "output_kind": "video_surface"
+  },
+  "panasonic/pt-rz660b-with-supplied-et-dle170-lens": {
+    "family": "projector",
+    "body_style": "large rectangular projector cabinet with lens protruding from front face",
+    "notes": "Optional visual-equipment example. Model lens is included and represented at ET-DLE170 geometry; exact lens external dimensions require the ET-DLE170 drawing if a production model is built.",
+    "generator": "equipment",
+    "output_kind": "projection"
+  },
+  "manfrotto/heavy-duty-stand-black-air-cushioned-black-steel": {
+    "family": "stand",
+    "body_style": "three-leg base, telescoping upright risers and leveling leg",
+    "notes": "Footprint width/depth is the maximum deployed circle from secondary retail listing; keep that attribution visible and replace with manufacturer drawing evidence if available.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "doughty-engineering/twenty-clamp": {
+    "family": "clamp",
+    "body_style": "cast hook clamp with threaded M10 fixing interface",
+    "notes": "The clamp WLL is not a rigging design approval; system-level loads and compatible attachment hardware require independent review.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "enttec/d-split": {
+    "family": "splitter",
+    "body_style": "small rounded rectangular isolated splitter with DMX and DC connectors on end face",
+    "notes": "Use overall 116 x 87 x 52 mm. Datasheet supplies envelope dimensions but not a dimensioned orthographic drawing; pose is image-inferred.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "enttec/pixelator-mini": {
+    "family": "pixel_controller",
+    "body_style": "low black rectangular controller with front-panel display and multiple output connectors",
+    "notes": "This distributes pixel data using ENTTEC PLink; PLink injectors and their pixel-power connections are separate equipment.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "brompton-technology/tessera-sx40": {
+    "family": "media_server",
+    "body_style": "2U rackmount video/LED processor with front status display and rear I/O",
+    "notes": "An optional visual department example; this is not a fixture or generic DMX node.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "antari/z-1000iii-fog-machine": {
+    "family": "fogger",
+    "notes": "Conventional heated water-based fog machine; chosen instead of Z-1200III because the official Z-1000III source has a consistent dimensional identity. Distinct from compressor hazer and cold CO2 jet.",
+    "body_style": "rectangular metal fogger with carry handle, fluid tank, front outlet and pivoting hanging bracket",
+    "generator": "equipment",
+    "output_kind": "fog"
+  },
+  "chauvet-dj/hurricane-haze-1dx": {
+    "family": "hazer",
+    "notes": "Water-based heated hazer with HFG fluid. Manufacturer page lists one DMX channel and provides the direct right-side product photo; product page does not map the dimension triplet to axes.",
+    "body_style": "compact low-profile metal hazer with top handle, adjustable output scoop and rear controls",
+    "generator": "equipment",
+    "output_kind": "haze"
+  },
+  "mdg/atmosphere-aps-haze-generator": {
+    "family": "hazer",
+    "notes": "Oil-based atomizing fluid plus separate externally supplied compressed CO2; no onboard compressor is claimed and this is not a CO2 plume jet.",
+    "body_style": "long low rectangular violet metal machine with raised fluid reservoir at one end and carry handle",
+    "generator": "equipment",
+    "output_kind": "haze"
+  },
+  "chauvet-dj/cumulus-hp-low-lying-fog-machine": {
+    "family": "low_fog",
+    "notes": "Ultrasonic atomizer uses distilled water; separate fog fluid feeds the warmed carrier fog. No dry ice required.",
+    "body_style": "rugged rectangular case-style enclosure with hose outlet and separate water/fog tanks",
+    "generator": "equipment",
+    "output_kind": "low_fog"
+  },
+  "antari/m-9-jet-fog-machine": {
+    "family": "jet",
+    "notes": "Produces a forceful heated fog plume with integrated LEDs. Antari markets it as a CO2-style visual effect, but its documented consumable is FLC fog fluid; it is not a real CO2 jet.",
+    "body_style": "large faceted black fog machine with top emitter tray containing 27 multicolor LED modules, carry handles and base feet",
+    "generator": "equipment",
+    "output_kind": "fog_jet"
+  },
+  "antari/b-100-bubble-machine": {
+    "family": "bubble",
+    "notes": "Selected B-100 rather than B-200 to avoid a substantial same-model manual/product-page envelope conflict. Current product page and Rev. 05 manual agree on the B-100 envelope and mass.",
+    "body_style": "compact enclosed metal bubble machine with broad wheel/output opening, feet and rear control panel",
+    "generator": "equipment",
+    "output_kind": "bubbles"
+  },
+  "antari/s-500-snow-machine": {
+    "family": "snow",
+    "notes": "Professional snow machine with case and hose; dimensions/mass refer to S-500, not S-500L. Nominal dimensions are treated as the closed road-case envelope (estimated pose); open-lid product photo does not depict that envelope pose.",
+    "body_style": "large black wheeled road case for the snow machine; use closed case geometry for nominal transport envelope",
+    "generator": "equipment",
+    "output_kind": "snow"
+  },
+  "magic-fx/powershot-ii": {
+    "family": "confetti",
+    "notes": "Launcher is a reusable electrical shot appliance; disposable electric cannons/consumables are separate products.",
+    "body_style": "small black box-shaped powered shot unit with top-facing cannon socket, angle indicator and mounting clamps",
+    "generator": "equipment",
+    "output_kind": "confetti"
+  },
+  "magic-fx/sparxtar-ii": {
+    "family": "spark",
+    "notes": "Cold-spark effect appliance; only its physical product metadata is recorded. Manufacturer listing identifies this exact model as Sparxtar II. No operational or firing details included.",
+    "body_style": "compact cuboid black enclosure with front access panel, ventilation, feet and top handling features",
+    "generator": "equipment",
+    "output_kind": "spark"
+  },
+  "magic-fx/flameblazer": {
+    "family": "flame",
+    "notes": "Physical flame-effect appliance; record contains product geometry and identity only, not operating, firing or channel instructions.",
+    "body_style": "rectangular metal effect appliance with side access panels, feet and output/control face",
+    "generator": "equipment",
+    "output_kind": "flame"
+  },
+  "adj/entour-cyclone": {
+    "family": "fan",
+    "notes": "Buildable DMX fan alternative to unresolved Look-Fan. Product page and manual dimensions are similar; manual diagram resolves front width, height and depth. Product page/manual mass disagree slightly, so mass is recorded with source conflict.",
+    "body_style": "compact square axial fan with front/rear grille and dual-purpose scissor/yoke bracket",
+    "generator": "equipment",
+    "output_kind": "air"
+  },
+  "chauvet-dj/high-performance-fog-fluid-fju-gallon-jug": {
+    "family": "fluid_container",
+    "notes": "Exact sealed FJU gallon jug product/package; record is the container geometry, not a fluid mixture or recipe. CHAUVET identifies the formula as designed for water-based machines.",
+    "body_style": "white handled rectangular plastic gallon jug with screw cap and printed product label",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "magic-fx/co2-bottle-to-hose-connector": {
+    "family": "co2_supply",
+    "notes": "Exact MFX1103 cylinder-to-hose fitting. Product page does not specify regional cylinder thread; region-specific fit remains unknown and must not be inferred from its quick connector alone.",
+    "body_style": "short metal high-pressure bottle coupling with knurled connector end and tether cap",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "robert-juliat/roxie2-1166-2-ww": {
+    "family": "followspot",
+    "body_style": "manual followspot with lens barrel, handles, color boomerang and yoke",
+    "notes": "Do not treat dimmer/strobe DMX as motorized pan/tilt.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "robert-juliat/lutin-306lpc": {
+    "family": "pc",
+    "body_style": "compact single-lens plano-convex housing, lens door and yoke",
+    "notes": "True PC optical type, not an ERS/profile proxy.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "etc/colorsource-cyc-floor": {
+    "family": "cyc",
+    "body_style": "low asymmetric cyc wash housing with LED aperture",
+    "notes": "Dedicated cyclorama product.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "altman-lighting/altman-par64-al": {
+    "family": "par_can",
+    "body_style": "round metal PAR64 reflector can with yoke",
+    "notes": "Traditional passive can; lamp/reflector choice is separate. Discontinued.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "chauvet-professional/strike-4": {
+    "family": "blinder",
+    "body_style": "four-cell warm-white blinder panel with yoke",
+    "notes": "Four individually aimable cells; not a tungsten lamp fixture.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "adj/uv-flood-36": {
+    "family": "uv",
+    "body_style": "low-profile rectangular blacklight with 12 LED apertures",
+    "notes": "Dedicated UV product; pose transform is image-based estimate; no safety claims inferred.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "adj/adj-pinspot-led-ii": {
+    "family": "pinspot",
+    "body_style": "compact black cylindrical pinspot barrel with lens, bracket and cable",
+    "notes": "Static beam optic; no moving scanner behavior. Body axes mapped from image/product form; bracket envelope estimated.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "altman-lighting/altman-scoop-153": {
+    "family": "flood",
+    "body_style": "elliptical scoop reflector with yoke and medium-screw lamp socket",
+    "notes": "Discontinued; 400 W maximum and passive control, no onboard DMX.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "astera/nyx-bulb": {
+    "family": "practical",
+    "body_style": "compact color-tunable bulb with E27 base and translucent diffuser",
+    "notes": "Exact FP5-E27 variant; built-in wireless CRMX receiver, not passive mains-only bulb.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "adj/led-pixel-tube-360": {
+    "family": "tube",
+    "body_style": "round translucent polycarbonate pixel tube with end caps",
+    "notes": "External controller is separate physical product; no native DMX attributed to the tube.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "elation-professional/pixel-tape-16ip": {
+    "family": "pixel_strip",
+    "body_style": "flexible conformal-coated strip with 170 RGB pixel packages",
+    "notes": "External driver dependency explicit; 2.72 m module geometry.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "adj/dynasty-scan-dmx": {
+    "family": "scanner",
+    "body_style": "compact rectangular lamp housing with front lens and oscillating mirror",
+    "notes": "Discontinued; scanner mirror rather than moving-head yoke.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "eliminator-lighting-adj-group/mbmhd3-mirror-ball-motor": {
+    "family": "mirror_motor",
+    "body_style": "square motor enclosure with shaft and safety attachment",
+    "notes": "No ball included, no DMX.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "adj/m-2020-mirror-ball": {
+    "family": "mirror_ball",
+    "body_style": "spherical mirror-tiled ball with top suspension loop",
+    "notes": "Separate from MBMHD3 motor. Suspension hardware/load rating unknown; no complete rigging assembly implied.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "elation-professional/pixel-driver-170": {
+    "family": "pixel_driver",
+    "body_style": "rectangular DMX-to-pixel controller with display, terminal blocks and slotted mounting tabs",
+    "notes": "Separate DC supply required; driver is not itself an emitter.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "laserworld/ds-1000rgb-mk5": {
+    "family": "laser",
+    "body_style": "rectangular enclosed projector chassis with front aperture and rigging frame",
+    "notes": "No beam effect, aiming, safety behavior, interlock or firing semantics modeled.",
+    "generator": "equipment",
+    "output_kind": "laser_aperture"
+  },
+  "global-truss/gt-stage-adjust-1-x-2-m": {
+    "family": "deck",
+    "body_style": "rectangular modular deck with four adjustable supports",
+    "notes": "Height selection reflects maximum setting on current product page; catalog PDF has a slight height-range discrepancy, so verify the exact selected leg configuration before precision modeling. Not a rigging/load-plan model.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "da-lite-legrand-av/fast-fold-deluxe-screen-system-88692-frame-screen-only-legs-omitted": {
+    "family": "screen",
+    "body_style": "rectangular vertical screen surface in folding aluminum frame on deployed T-legs",
+    "notes": "Model the screen/frame from exact overall/viewing dimensions. Foot/stand geometry is family-view-derived and should be treated as approximate; do not include carrying case.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "cm-entertainment-technology-columbus-mckinnon/lodestar-d8-type-l-1-tonne": {
+    "family": "hoist",
+    "body_style": "horizontal oval motor/gear housing with upper suspension hook and lower load hook",
+    "notes": "Reference body only; chain and lift height are variable instance/configuration properties, not fixed object geometry. This is an optional engineered-rigging category example, not a certified rigging model.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "georgia-stage/prestige-velour-border-curtain-black-sku-7676": {
+    "family": "drape",
+    "body_style": "wide black velour border with vertical soft folds and sewn top edge",
+    "notes": "Exact stock closeout SKU 7676; full width is listed finished span. Thickness and fold amplitude are visualization estimates, not documented fabric dimensions.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "mean-well/lrs-350-24": {
+    "family": "power_supply",
+    "body_style": "low-profile vented metal enclosure with exposed terminal block and cooling fan",
+    "notes": "Chassis only. Internal components, terminal details and mounting slots can be simplified; electrical installation and safety clearances are outside the visual envelope.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "neutrik/nc5mxx-5-pole-male-xlr-cable-connector": {
+    "family": "data_connector",
+    "body_style": "circular 5-pin XLR male connector with strain-relief boot",
+    "notes": "Use the dimension drawing for outer size and official product image for appearance. Connector only; do not add a cable or claim wiring/termination behavior.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "neutrik/powercon-true1-top-nac3fx-w-top-cable-connector-power-in-eu-us-ratings": {
+    "family": "power_connector",
+    "body_style": "locking female cable connector with molded boot, strain relief and screw-terminal rear section",
+    "notes": "Exact connector component only; omit cable. Geometric W/H are conservative square maximum envelope around the drawing's 32 mm end-view dimension; the secondary radial dimension is 26.5 mm.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "robe-lighting/robospot-motioncamera": {
+    "family": "tracking_camera",
+    "body_style": "compact moving-head camera with integrated zoom optics, yoke and base adaptor",
+    "notes": "Camera-head visual reference only; no tracking algorithm, video-network or BaseStation geometry is represented. Treat as optional video/followspot-system expansion until broader scope is approved.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "magic-fx/co2-jet-ii": {
+    "family": "co2_jet",
+    "notes": "Genuine liquid-CO2 jet. The official manual distinguishes main product dimensions/weight from larger package dimensions/weight, resolving the conflicting product-page figures. Use the outlet-pipe configuration visible in the exact product photo; do not substitute a removable alternate nozzle or add baseplate/rigging hardware.",
+    "body_style": "compact angular black metal box housing with attached short outlet pipe, mounting plate and side connectors",
+    "generator": "equipment",
+    "output_kind": "co2"
+  },
+  "doughty-engineering/doughty-quick-link-10mm-550kg": {
+    "family": "safety_hardware",
+    "notes": "Rigid compact suspension connector, potential visual representative for secondary protection hardware only. Rated values are conflicting source metadata; no operating or rigging directions included. Do not treat product WLL as a selection recommendation.",
+    "body_style": "zinc-plated oval steel quick link with threaded closure sleeve",
+    "generator": "equipment",
+    "output_kind": "none"
   }
 }

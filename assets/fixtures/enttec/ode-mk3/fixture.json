@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "id": "enttec/ode-mk3",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ENTTEC",
+    "model": "ODE Mk3",
+    "variant": "70407",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.enttec.com/product/dmx-ethernet/ode-mk3-dmx-ethernet-converter/",
+      "title": "ODE Mk3 product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "SKU 70407, Features, Connectivity, Specifications, Resources; page lists unit dimensions 129 x 58 x 40 mm",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://cdn.enttec.com/pdf/assets/70407/70407_ODE_MK3_DATASHEET.pdf",
+      "title": "ENTTEC ODE Mk3 official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://cdn.enttec.com/cad/70407/70407_ODE_MK3_CAD.pdf",
+      "title": "70407 ODE MK3 CAD drawing",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Sheet 1, orthographic and isometric drawing; 128.8 x 58 x 40 mm overall, with 25 mm body-only detail; released 2022-06-24",
+      "reuse_status": "reference_only",
+      "file": "sources/enttec-ode-mk3-dimensions.pdf",
+      "sha256": "e857cc768239e692a50552ae3ede49bc164896fdf5060ff33b98e1dfe821b10c"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://cdn.enttec.com/website/products/70407-ode-mk3/70407-ode-mk3-render-00.png",
+      "title": "ODE Mk3 visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.png",
+      "sha256": "8db6c709d07155655ccaacc5e91bd432680d79e4682a1e1e9954f38b9c705ef7"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.1288,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "128.8 x 58 x 40 mm; manufacturer CAD drawing, mapped as long side x short side x body height"
+    },
+    "height": {
+      "value": 0.04,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "128.8 x 58 x 40 mm; manufacturer CAD drawing, mapped as long side x short side x body height"
+    },
+    "depth": {
+      "value": 0.058,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "128.8 x 58 x 40 mm; manufacturer CAD drawing, mapped as long side x short side x body height"
+    },
+    "reference_pose": "Tabletop enclosure; 128.8 mm long axis is horizontal, status/ID panel upward, DMX connectors at the short end; axis assignment is inferred from the manufacturer orthographic/isometric CAD image."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "Ethernet eDMX",
+          "DMX512",
+          "Art-RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Tabletop enclosure; 128.8 mm long axis is horizontal, status/ID panel upward, DMX connectors at the short end; axis assignment is inferred from the manufacturer orthographic/isometric CAD image.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.06440001202281564,
+        0.0,
+        -0.029000001028180122
+      ],
+      "max": [
+        0.06440000014845282,
+        0.03999999910593033,
+        0.029000001028180122
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          -0.001400256878696382,
+          0.0,
+          -0.0
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "128.8 x 58 x 40 mm; manufacturer CAD drawing, mapped as long side x short side x body height",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "354f00e467bbc213b70f8c314d5f93a7164bcb8912b973185b906a8c0bc21d59"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "ed2e4e50b8c17b7610c31b8777603fc179fdca8476d84fc6c7505be8759c2a31"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "5cabb34dbb902869d7cd6f4ebd993d2c21d3ecc9d0c5a3f53a1e7df5d98f8ef8"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "5bae399e5ed80ef48b53f1bb96deb6395aeb282a78e92b2f1b5ecba25d38c551"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "4ce81a6133398c9627edc686b2ee617acd94407fe9535b42a285ccb87f8ac4ba"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "22822e4e1d3f747d906b9c7fa0458c6ae31bb2c49318f65210d99d43a6e1afe5"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "84cd4e4dcbb66066aa72568b78774b3b87d7450d0d6776ecc71cfe232de501c4"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "71b690e1e1ed2532984fdacd2a74adeeb8fb6ce90818d07bf3f8bd985f493155"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "6ef87c41eb87486ea9f2a583423d4c77cf2d7fdf0670ee0c2a71a387fd2403a4"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "0fdfeb7b332fa4ddc8b02774485be133f7b03837668a3bf167538d2dd97e203f"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "88634d704eb1c80e93484f2e721c094e80addc01e3e74abac9f0c16965562367",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "node",
+      "body_style": "compact rectangular network gateway with DMX connectors on one end and Ethernet/DC connections opposite",
+      "notes": "Dimensions cross-checked against drawing 70407-ODE MK3; drawing labels overall 128.8, 58, and 40 mm. A 25 mm body-height detail is also drawn; retain 40 mm overall envelope for the connectors/features shown in the manufacturer overall dimensions. No fictional DMX channel personality applies.",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 12,
+    "triangle_count": 1872,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed node geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "control.node",
+    "control_path": "Ethernet eDMX input to two 5-pin DMX ports; bi-directional eDMX/DMX conversion with Art-RDM. Power by PoE or 12-24 V DC. It is a gateway/node, not a fixture and not a console.",
+    "physical_asset_only": true,
+    "source_data": {
+      "protocols": [
+        "Ethernet eDMX",
+        "DMX512",
+        "Art-RDM"
+      ],
+      "source_urls": [
+        "https://www.enttec.com/product/dmx-ethernet/ode-mk3-dmx-ethernet-converter/",
+        "https://cdn.enttec.com/pdf/assets/70407/70407_ODE_MK3_DATASHEET.pdf",
+        "https://cdn.enttec.com/cad/70407/70407_ODE_MK3_CAD.pdf"
+      ],
+      "dimensions": {
+        "width_m": 0.1288,
+        "height_m": 0.04,
+        "depth_m": 0.058,
+        "source_order": "128.8 x 58 x 40 mm; manufacturer CAD drawing, mapped as long side x short side x body height",
+        "axis_status": "documented",
+        "axis_note": "128.8 x 58 x 40 mm; manufacturer CAD drawing, mapped as long side x short side x body height",
+        "reference_pose": "Tabletop enclosure; 128.8 mm long axis is horizontal, status/ID panel upward, DMX connectors at the short end; axis assignment is inferred from the manufacturer orthographic/isometric CAD image."
+      },
+      "dimensions_status": "documented",
+      "control_path": "Ethernet eDMX input to two 5-pin DMX ports; bi-directional eDMX/DMX conversion with Art-RDM. Power by PoE or 12-24 V DC. It is a gateway/node, not a fixture and not a console.",
+      "pose": "Tabletop enclosure; 128.8 mm long axis is horizontal, status/ID panel upward, DMX connectors at the short end; axis assignment is inferred from the manufacturer orthographic/isometric CAD image.",
+      "research_evidence": [
+        {
+          "url": "https://www.enttec.com/product/dmx-ethernet/ode-mk3-dmx-ethernet-converter/",
+          "title": "ODE Mk3 product page",
+          "locator": "SKU 70407, Features, Connectivity, Specifications, Resources; page lists unit dimensions 129 x 58 x 40 mm",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://cdn.enttec.com/cad/70407/70407_ODE_MK3_CAD.pdf",
+          "title": "70407 ODE MK3 CAD drawing",
+          "locator": "Sheet 1, orthographic and isometric drawing; 128.8 x 58 x 40 mm overall, with 25 mm body-only detail; released 2022-06-24",
+          "file": "research/fixtures/taxonomy/support-sources/enttec-ode-mk3-dimensions.pdf",
+          "sha256": "e857cc768239e692a50552ae3ede49bc164896fdf5060ff33b98e1dfe821b10c",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "control.node",
+    "category_path": [
+      "Control and data",
+      "Network-to-DMX node / gateway"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

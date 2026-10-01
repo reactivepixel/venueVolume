@@ -1,0 +1,60 @@
+{
+  "mesh_count": 62,
+  "triangle_count": 11852,
+  "geometry_sha256": "2827fa03fdca9c54e8f9accb8c7fe2b96d608d5f8d5bb3463dc4f6e80eed646a",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      -0.10267870873212814,
+      0.11739130318164825,
+      -0.293099582195282
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0363403782248497
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        -0.10267870873212814,
+        0.11739130318164825,
+        -0.2875158488750458
+      ]
+    }
+  ],
+  "family": "projector",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0309107303619385,
+    0.9613857269287109,
+    1.08695650100708
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://eu.connect.panasonic.com/gb/en/projectors/pt-rz660",
+    "https://na.panasonic.com/ns/246048_rz660_spec_en.pdf",
+    "https://eu.connect.panasonic.com/sites/default/files/media/image/2024-04/ca90fd90df4b2185ef5c10b1a03a7c59ad66e542.jpg"
+  ]
+}

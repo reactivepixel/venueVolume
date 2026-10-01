@@ -1,0 +1,59 @@
+{
+  "mesh_count": 8,
+  "triangle_count": 2852,
+  "geometry_sha256": "001ec5e36e5e943b53dc2b7e8bb97375bf985aaad206608d7d180fef1d12c3f6",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.13554079830646515,
+      -0.09870148450136185
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.0036632679402828217,
+        0.0003229072317481041
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.1428673416376114,
+        0.07782026380300522
+      ]
+    }
+  ],
+  "family": "flood",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0256410837173462,
+    1.0604454278945923,
+    1.0204081535339355
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.altmanlighting.com/wp-content/uploads/2018/10/Scoop153_Disc_Oct2018.pdf",
+    "https://www.altmanlighting.com/wp-content/uploads/2018/10/Scoop153_Disc_Oct2018.pdf"
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "elation-professional/pixel-tape-16ip",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Elation Professional",
+      "model": "PIXEL TAPE 16IP",
+      "variant": "PIX618",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.elationlighting.com/products/pixel-tape-16ip",
+        "title": "PIXEL TAPE 16IP",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Exact module size, pixel count, voltage, power and driver/control data",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.elationlighting.com/cdn/shop/files/e25056689bf3c664c3ecf2633beaa478799b3ad2_PIX618__IMG__001__9fcf5d2d87a2.jpg?v=1776815651&width=2048",
+        "title": "PIXEL TAPE 16IP visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.jpg",
+        "sha256": "2c6e48f27c429937a4130b6cba65d01b8ca8df32c26b3e82097fb08652a3943c"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 2.72,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer specified module length and cross-section."
+      },
+      "height": {
+        "value": 0.003,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer specified module length and cross-section."
+      },
+      "depth": {
+        "value": 0.012,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer specified module length and cross-section."
+      },
+      "reference_pose": "Tape laid straight and flat; straightened display pose, not packaging coil."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "35 W maximum, 24 V DC",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "under 0.2 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "APA102 pixel data at strip; DMX only via external driver"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Tape laid straight and flat; straightened display pose, not packaging coil.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "Manufacturer specified module length and cross-section.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "pixel_tape_system",
+      "control_path": "External Elation pixel driver; driver translates DMX to APA102 pixel data",
+      "physical_asset_only": true,
+      "source_data": {
+        "source_urls": [
+          "https://www.elationlighting.com/products/pixel-tape-16ip"
+        ],
+        "control_path": "External Elation pixel driver; driver translates DMX to APA102 pixel data",
+        "protocols": [
+          "APA102 pixel data at strip; DMX only via external driver"
+        ],
+        "power": "35 W maximum, 24 V DC",
+        "weight": "under 0.2 kg",
+        "dimensions": {
+          "width_m": 2.72,
+          "height_m": 0.003,
+          "depth_m": 0.012,
+          "axis_status": "documented",
+          "axis_note": "Manufacturer specified module length and cross-section.",
+          "reference_pose": "Tape laid straight and flat; straightened display pose, not packaging coil."
+        },
+        "research_evidence": [
+          {
+            "url": "https://www.elationlighting.com/products/pixel-tape-16ip",
+            "title": "PIXEL TAPE 16IP",
+            "locator": "Exact module size, pixel count, voltage, power and driver/control data",
+            "accessed_at": "2026-09-30"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "c753c434774c5386e4b9f87fc3f00a1f589aad3c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

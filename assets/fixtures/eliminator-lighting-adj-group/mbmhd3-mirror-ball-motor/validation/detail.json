@@ -1,0 +1,50 @@
+{
+  "mesh_count": 4,
+  "triangle_count": 656,
+  "geometry_sha256": "5fb4903a461168db9679980cc157def75120fbd0e3f6d5cc41983d55c31d64eb",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.0,
+      -0.0
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        -0.0
+      ]
+    }
+  ],
+  "family": "mirror_motor",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.020408272743225,
+    1.020408272743225,
+    1.0101009607315063
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/products/mbmhd3",
+    "https://www.adj.com/cdn/shop/files/7d54dc275a1647abdf9352693a3edddb6e35fd7d_MBMHD3_web_01.jpg?v=1784181815&width=2048"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "mesh_count": 33,
+  "triangle_count": 5820,
+  "geometry_sha256": "4dbc56312c8ffa61227a15feb2d4d036baee156e385db8b9eb46c1ce8609a444",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.0,
+      0.0005348956328816712
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0005348956328816712
+      ]
+    }
+  ],
+  "family": "media_server",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9842519760131836,
+    1.0697890520095825,
+    1.0695186853408813
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.bromptontech.com/product/sx40/",
+    "https://www.bromptontech.com/wp-content/uploads/2025/07/Brompton-SX40-Data-Sheet-Feb2025-EN.pdf",
+    "https://www.bromptontech.com/wp-content/uploads/2019/05/SX40_front_elevated_Final-1536x810.png.webp"
+  ]
+}

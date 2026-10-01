@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "id": "magic-fx/co2-bottle-to-hose-connector",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "MAGIC FX",
+    "model": "CO2 Bottle To Hose Connector",
+    "variant": "MFX1103",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://magicfx.com/products/co2-bottle-to-hose-connector",
+      "title": "CO2 Bottle To Hose Connector",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "SKU MFX1103; product purpose, dimensions, mass, and inclusion of quick connector; no region-specific cylinder-thread type documented",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://magicfx.com/cdn/shop/files/CO2Bottletohoseconnector.jpg?v=1773324576&width=3840",
+      "title": "CO2 Bottle To Hose Connector visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "8b7e80fd7b0c158dca5333c8a263d342779a0d665422b24607f70cb9c75f96ae"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.03,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Product page gives length/width/height 150/30/30 mm; length is mapped to the connector's long axis in the official photo."
+    },
+    "height": {
+      "value": 0.03,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Product page gives length/width/height 150/30/30 mm; length is mapped to the connector's long axis in the official photo."
+    },
+    "depth": {
+      "value": 0.15,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Product page gives length/width/height 150/30/30 mm; length is mapped to the connector's long axis in the official photo."
+    },
+    "reference_pose": "Connector lying on its side with long coupler axis horizontal; product image used for orientation."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {
+      "weight": {
+        "value": "0.59 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Connector lying on its side with long coupler axis horizontal; product image used for orientation.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.014999999664723873,
+        -9.313225746154785e-10,
+        -0.07500000228174031
+      ],
+      "max": [
+        0.014999999664723873,
+        0.02999999769963324,
+        0.07500000367872417
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.0020454523619264364,
+          -0.0006444149184972048
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Product page gives length/width/height 150/30/30 mm; length is mapped to the connector's long axis in the official photo.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "f8a276bad1fe0f2e0e64df73d5c61909c0b301d9d0c35495e71ac56ab550db85"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "6f5a68722246619db10ec9dd3961bb9f568928ba3b55500460ab342ce86565f3"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "09f35460c28e58895d8a8955de98c454efca843467d4c8aedd8dc1040407bbbc"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "371328dda08a626bc25d13cfcc9337dd461ff99f44d8b90ae1b5a1892ba978b3"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "a4c28b2f3d7888618a4fda02c725d962dd9d39da8566d0e0fe07ef4346d0745a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "adf40339fe187b091331af0699c3a7a38af91dbcc1695466a5ba92008f43fbcc"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "391a52e0c173db15fa3b60053de12e9c0807e0c1dfa6bdde2037c1b23a593707"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "5a806271c95cfabfea28ba45a96c3de75385214ce8729c0887afae325996f5b8"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "30cb70c523fa904e4e343b7b0f2f3f2e156db9432730873aca82c89a5a6ed6eb"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "fa6ae14fa89739d4a17caf977286e5d4e198cf782f836a02644d59e5d090b912"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "ccc1972124e9e05316d279640327a4f01919d73a28311ccaa8fc711f8694c4e2",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "co2_supply",
+      "notes": "Exact MFX1103 cylinder-to-hose fitting. Product page does not specify regional cylinder thread; region-specific fit remains unknown and must not be inferred from its quick connector alone.",
+      "body_style": "short metal high-pressure bottle coupling with knurled connector end and tether cap",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 21,
+    "triangle_count": 12648,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed co2_supply geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "accessories.gas",
+    "control_path": "See source-backed protocol list; compatibility and control system are not implemented.",
+    "physical_asset_only": true,
+    "source_data": {
+      "protocols": [],
+      "source_urls": [
+        "https://magicfx.com/products/co2-bottle-to-hose-connector"
+      ],
+      "weight": "0.59 kg",
+      "dimensions": {
+        "width_m": 0.03,
+        "height_m": 0.03,
+        "depth_m": 0.15,
+        "axis_status": "documented",
+        "axis_note": "Product page gives length/width/height 150/30/30 mm; length is mapped to the connector's long axis in the official photo.",
+        "reference_pose": "Connector lying on its side with long coupler axis horizontal; product image used for orientation."
+      },
+      "regional_interface": "Manufacturer page identifies a quick connector but does not identify region-specific cylinder-thread compatibility; do not assume fit to NA or EU bottles.",
+      "research_evidence": [
+        {
+          "url": "https://magicfx.com/products/co2-bottle-to-hose-connector",
+          "title": "CO2 Bottle To Hose Connector",
+          "locator": "SKU MFX1103; product purpose, dimensions, mass, and inclusion of quick connector; no region-specific cylinder-thread type documented",
+          "accessed_at": "2026-09-30"
+        }
+      ],
+      "control_path": "See source-backed protocol list; compatibility and control system are not implemented."
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "accessories.gas",
+    "category_path": [
+      "Fixture accessories and consumables",
+      "Gas cylinder / effect supply hardware"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "id": "chauvet-dj/hurricane-haze-1dx",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "CHAUVET DJ",
+    "model": "Hurricane Haze 1DX",
+    "variant": "Hurricane Haze 1DX",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://fr.chauvetdj.com/products/hurricane-haze-1dx/",
+      "title": "Hurricane Haze 1DX product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Specifications: water-based haze, power, dimensions, one-channel DMX; product-view gallery",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://fr.chauvetdj.com/wp-content/uploads/2016/12/wsi-imageoptim-Hurricane-Haze-1DX-RIGHT.jpg",
+      "title": "Hurricane Haze 1DX visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "059e96c95fea2a1cb2484b283d882115430d5e04f2193658a906a30758e3c4aa"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.15,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer lists 278 x 150 x 223 mm without labels; mapped largest axis to depth and shortest to width based on upright product view. Numeric dimensions are preserved; width/depth mapping is estimated."
+    },
+    "height": {
+      "value": 0.223,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer lists 278 x 150 x 223 mm without labels; mapped largest axis to depth and shortest to width based on upright product view. Numeric dimensions are preserved; width/depth mapping is estimated."
+    },
+    "depth": {
+      "value": 0.278,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer lists 278 x 150 x 223 mm without labels; mapped largest axis to depth and shortest to width based on upright product view. Numeric dimensions are preserved; width/depth mapping is estimated."
+    },
+    "reference_pose": "Body upright on base, output scoop facing forward; axis mapping inferred from official product photo."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "303 W at 230 V, 50 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "standalone display",
+          "included wired timer remote"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "1-channel mode",
+      "footprint": 1,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Body upright on base, output scoop facing forward; axis mapping inferred from official product photo.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.07500000298023224,
+        0.0,
+        -0.13899999856948853
+      ],
+      "max": [
+        0.07500000298023224,
+        0.22300000488758087,
+        0.1389999978709966
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.002783342497423291
+        ]
+      },
+      {
+        "name": "output",
+        "prim_path": "/Fixture/Output",
+        "pivot_m": [
+          0.0,
+          0.13809385895729065,
+          -0.13610970973968506
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Manufacturer lists 278 x 150 x 223 mm without labels; mapped largest axis to depth and shortest to width based on upright product view. Numeric dimensions are preserved; width/depth mapping is estimated.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "441a447480d9de8e004897a6ed57f4171f3aeabb26701980b4fd10ae0ff674ff"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "6bb1a65a56f9bfa4773618b788e80722e2349f4da1d9c0086de0bd96930675c6"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "309b39c110cf017d4417bd9b31305e1dca1e6d036a31c6a7755ad6551fc0b93c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "39bd40b16555e95dfe9b859700a4c287224623822c74137e3d3d67bfc3d3abdd"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "8d109fd455388b6c783f39ca76dc2c987ab3d5f488b7ed47813777146a67ed24"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "dd49ad3cf8318bedd059eff64775d0911a37c50988a9ea47b6b3a5c2bb30b7a8"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "832eb884dc42ff8d720d6d6ff37a237fbf4704afa78be928772484fb306f9f80"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "a050640d554cf90ca6d197184029981bd835e8c1866bbc11606d0e5262cc5500"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "79980df4f87a95ddf814af91b714dd4d78732ebd49556b2fab8468c9fe16f059"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "382f777f30adb80f06d9fbcd847568c70345b26c726388fcb4b41919fbe7ad7e"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.13809385895729065,
+          -0.13610970973968506
+        ],
+        "kind": "haze",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "5382d521ffc8c9b3c74f6223f7d1f36f69a0a18784ff6c198b16f64e507b4bfa",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "hazer",
+      "notes": "Water-based heated hazer with HFG fluid. Manufacturer page lists one DMX channel and provides the direct right-side product photo; product page does not map the dimension triplet to axes.",
+      "body_style": "compact low-profile metal hazer with top handle, adjustable output scoop and rear controls",
+      "generator": "equipment",
+      "output_kind": "haze"
+    },
+    "mesh_count": 62,
+    "triangle_count": 10648,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed hazer geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "atmosphere.haze_water",
+    "control_path": "See source-backed protocol list; compatibility and control system are not implemented.",
+    "physical_asset_only": true,
+    "source_data": {
+      "protocols": [
+        "DMX",
+        "standalone display",
+        "included wired timer remote"
+      ],
+      "source_urls": [
+        "https://fr.chauvetdj.com/products/hurricane-haze-1dx/"
+      ],
+      "power": "303 W at 230 V, 50 Hz",
+      "dmx_channels": [
+        1
+      ],
+      "dimensions": {
+        "width_m": 0.15,
+        "height_m": 0.223,
+        "depth_m": 0.278,
+        "axis_status": "estimated",
+        "axis_note": "Manufacturer lists 278 x 150 x 223 mm without labels; mapped largest axis to depth and shortest to width based on upright product view. Numeric dimensions are preserved; width/depth mapping is estimated.",
+        "reference_pose": "Body upright on base, output scoop facing forward; axis mapping inferred from official product photo."
+      },
+      "research_evidence": [
+        {
+          "url": "https://fr.chauvetdj.com/products/hurricane-haze-1dx/",
+          "title": "Hurricane Haze 1DX product page",
+          "locator": "Specifications: water-based haze, power, dimensions, one-channel DMX; product-view gallery",
+          "accessed_at": "2026-09-30"
+        }
+      ],
+      "control_path": "See source-backed protocol list; compatibility and control system are not implemented."
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "atmosphere.haze_water",
+    "category_path": [
+      "Atmosphere and air movement",
+      "Water-based hazer / fazer"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}
