@@ -1,0 +1,80 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 18516,
+  "geometry_sha256": "055f23ba12e2ab90328a111cd684594cd95958c875982567895f53de5e3bf651",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.5741999745368958,
+      -0.1478368192911148
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.00036219647154212
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.11615999788045883,
+        0.00036219647154212
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.5741999745368958,
+        0.00036219647154212
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.5741999745368958,
+        -0.14242184162139893
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216243743896,
+    1.0348515510559082,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaFrame/1000/Documentation.aspx",
+    "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737503529",
+    "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737504840",
+    "https://shop.etcconnect.com/solaframe-1000-black-molded-insert/",
+    "https://cdn11.bigcommerce.com/s-cr8amw/images/stencil/1280x1280/products/781/2244/SolaFrame_1000_prod_right_1__26691.1680192507.png?c=2"
+  ]
+}

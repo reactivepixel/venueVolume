@@ -1,0 +1,162 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "martin-professional-harman/mac-aura",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Aura",
+      "variant": "MAC Aura",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.martin.com/en-US/products/mac-aura",
+        "title": "MAC Aura",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Physical specifications, 302 × 302 × 360 mm, 5.6 kg; DMX/RDM and product photo",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "evidence-2",
+        "url": "https://www.martin.com/en-US/site_elements/mac-aura-dimensions-2d-pdf",
+        "title": "MAC Aura Dimensions 2D PDF",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer dimensional drawing rev A; all dimensions mm",
+        "reuse_status": "reference_only",
+        "kind": "manufacturer_manual"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://adn.harmanpro.com/product_attachments/product_attachments/4827_1728124249/macaura_x_large.webp",
+        "title": "MAC Aura product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Reference image; exact-model identity visually reviewed separately",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference.webp",
+        "sha256": "03b93b4e071c4f9597b8d566bac76c12da514a0557a0160a8fa3bfe6d1ba2467"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.302,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "Overall width and length across yoke plus vertical height with head straight up from manufacturer product specifications."
+      },
+      "height": {
+        "value": 0.36,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "Overall width and length across yoke plus vertical height with head straight up from manufacturer product specifications."
+      },
+      "depth": {
+        "value": 0.302,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "Overall width and length across yoke plus vertical height with head straight up from manufacturer product specifications."
+      },
+      "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+      "source_reference_pose": "Head straight up, yoke centered"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {
+        "weight": {
+          "value": "5.6 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Overall width and length across yoke plus vertical height with head straight up from manufacturer product specifications.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [
+      "Source describes a vertical-head dimensional pose; modeled horizontal optical-axis pose fits that envelope. Verify pose-specific shape before placement/clearance use."
+    ],
+    "revision_notes": [
+      "Acquired in expansion batch 2. Technical sources retained with locators; detailed model build pending."
+    ]
+  },
+  "git_commit": "4f96bdc0ec081c3756f42c22c8d181b776dab91a",
+  "note": "Initial research record before any generated model artifacts existed."
+}

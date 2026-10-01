@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "id": "martin-professional-harman/mac-aura",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Martin Professional (HARMAN)",
+    "model": "MAC Aura",
+    "variant": "MAC Aura",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.martin.com/en-US/products/mac-aura",
+      "title": "MAC Aura",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Physical specifications, 302 × 302 × 360 mm, 5.6 kg; DMX/RDM and product photo",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "evidence-2",
+      "url": "https://www.martin.com/en-US/site_elements/mac-aura-dimensions-2d-pdf",
+      "title": "MAC Aura Dimensions 2D PDF",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer dimensional drawing rev A; all dimensions mm",
+      "reuse_status": "reference_only",
+      "kind": "manufacturer_manual"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://adn.harmanpro.com/product_attachments/product_attachments/4827_1728124249/macaura_x_large.webp",
+      "title": "MAC Aura product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.webp",
+      "sha256": "03b93b4e071c4f9597b8d566bac76c12da514a0557a0160a8fa3bfe6d1ba2467"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.302,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "Overall width and length across yoke plus vertical height with head straight up from manufacturer product specifications."
+    },
+    "height": {
+      "value": 0.36,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "Overall width and length across yoke plus vertical height with head straight up from manufacturer product specifications."
+    },
+    "depth": {
+      "value": 0.302,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "Overall width and length across yoke plus vertical height with head straight up from manufacturer product specifications."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Head straight up, yoke centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {
+      "weight": {
+        "value": "5.6 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.1509999930858612,
+        0.0,
+        -0.15099998970981687
+      ],
+      "max": [
+        0.1509999930858612,
+        0.35999998450279236,
+        0.15099998156074435
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0005161199951544404
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.057095274329185486,
+          0.0005161199951544404
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.2640656530857086,
+          0.0005161199951544404
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.2640656530857086,
+          -0.07757370918989182
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.057095274329185486,
+          0.0005161199951544404
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.2640656530857086,
+          0.0005161199951544404
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.2640656530857086,
+          -0.08053520321846008
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Overall width and length across yoke plus vertical height with head straight up from manufacturer product specifications.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "7643b11853518ca38ab1624c0256b7b65ebf5e4a7afa29aa463a8f0e97d01ed4"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "f8834dc115cca72b12e3c0656c942ad22364db617eb34f7ea05f14d6daf2ff18"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "2fecd5510188c961628f10165ca6c8bceed1d47c4d00d7fb7f0f53821d8b77e2"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "ba8c4671bcc04d2351bad036d4d752b82c6646ca9693d1383a03180b53eb348b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "e8a759de0649c341a792b1e45d12047bde3bc82426680bebd0e1d29b1c6cd762"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "c29330262151cabf56f295cc493551309fbb6a5e9d40a4269136fc4b3a0439e7"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "4e968cd7f82277f5f79da27282e611757e8ffa8d02a7cec13f3380dd7c4ef3e1"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "806b4718a60fd0482fedca55e5eb31962edd4fc1422d9ed45e6be3de53dc698a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "6bfce943b9beef03b97efa2cf4d016bd1fd4eaca524323067aaec03422b83117"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "1102e2f11664ff5f56c64f765db51e2da9753596b66b1b4cfeb026d766f38470"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "cfdd682f1d49bb1b2e9b266edbaf772811096228cbf9eb721195697cfd75519d",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 19,
+      "body_style": "19-lens RGBW moving wash with secondary Aura backlight",
+      "notes": "Official Martin optics table specifies 19 x 10 W RGBW; secondary Aura illumination is not counted as lenses.",
+      "aura": true
+    },
+    "mesh_count": 164,
+    "triangle_count": 39828,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Source describes a vertical-head dimensional pose; modeled horizontal optical-axis pose fits that envelope. Verify pose-specific shape before placement/clearance use."
+  ],
+  "revision_notes": [
+    "Acquired in expansion batch 2. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ]
+}

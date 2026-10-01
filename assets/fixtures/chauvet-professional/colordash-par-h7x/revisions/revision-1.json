@@ -1,0 +1,217 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "chauvet-professional/colordash-par-h7x",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "CHAUVET Professional",
+      "model": "COLORdash PAR H7X",
+      "variant": "COLORDASHPARH7X",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://chauvetprofessional.com/product/colordash-par-h7x/",
+        "title": "COLORdash PAR H7X product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Specifications > Control and Electrical; download list provides user manual, 2D/3D CAD, DMX chart",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "evidence-2",
+        "url": "https://www.bhphotovideo.com/images/fb/chauvet_professional_colordashparh7x_colordash_par_hex_7x_with_1742177.jpg",
+        "title": "B&H Photo product image",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Distributor image; reuse status unknown",
+        "reuse_status": "reference_only",
+        "kind": "secondary"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://chauvetprofessional.com/wp-content/uploads/2025/10/COLORDASH-PAR-H7X-FRONT-FEAT.png",
+        "title": "COLORdash PAR H7X product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Reference image; exact-model identity visually reviewed separately",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference.png",
+        "sha256": "4f1d7e0a5e6481c785a67bc1372adc1d3ee269a51541fb61cf8daa4bc921d91b"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.258,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "The manufacturer documents the three extents (258 x 240 x 116 mm) but not their axis order in page text; assigned front width x assembled vertical height x front-to-back depth from product views; confirm against linked 2D CAD before modeling."
+      },
+      "height": {
+        "value": 0.24,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "The manufacturer documents the three extents (258 x 240 x 116 mm) but not their axis order in page text; assigned front width x assembled vertical height x front-to-back depth from product views; confirm against linked 2D CAD before modeling."
+      },
+      "depth": {
+        "value": 0.116,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "The manufacturer documents the three extents (258 x 240 x 116 mm) but not their axis order in page text; assigned front width x assembled vertical height x front-to-back depth from product views; confirm against linked 2D CAD before modeling."
+      },
+      "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+      "source_reference_pose": "PAR face forward with double-bracket yoke vertical; manufacturer gives overall extents but web spec does not label axis order."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "70 W at 120 V, 67 W at 208 V and 230 V; 100–240 V AC, 50/60 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "6 lb (2.7 kg)",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "6-channel mode",
+        "footprint": 6,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "8-channel mode",
+        "footprint": 8,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "9-channel mode",
+        "footprint": 9,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "13-channel mode",
+        "footprint": 13,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "14-channel mode",
+        "footprint": 14,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "The manufacturer documents the three extents (258 x 240 x 116 mm) but not their axis order in page text; assigned front width x assembled vertical height x front-to-back depth from product views; confirm against linked 2D CAD before modeling.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion.",
+      "Source describes a vertical-head dimensional pose; modeled horizontal optical-axis pose fits that envelope. Verify pose-specific shape before placement/clearance use."
+    ],
+    "revision_notes": [
+      "Acquired in expansion batch 1. Technical sources retained with locators; detailed model build pending."
+    ]
+  },
+  "git_commit": "4f96bdc0ec081c3756f42c22c8d181b776dab91a",
+  "note": "Initial research record before any generated model artifacts existed."
+}

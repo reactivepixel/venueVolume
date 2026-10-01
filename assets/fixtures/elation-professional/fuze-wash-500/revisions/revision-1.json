@@ -1,0 +1,273 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "elation-professional/fuze-wash-500",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "Elation Professional",
+      "model": "Fuze Wash 500",
+      "variant": "FUZ567",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.elationlighting.com/products/fuze-wash-500",
+        "title": "Elation Professional Fuze Wash 500 official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://www.elationlighting.com/cdn/shop/files/f261b7f937117cee2f18bcc03abd483d9a2ed232_FUZ567__IMG__005__607642e601ac.jpg?v=1776815760&width=1200",
+        "title": "Elation Professional Fuze Wash 500 official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.jpg",
+        "sha256": "86610f4b76a71b5be71e8ab442dfb42e982a8a7c7da6f999295bd9e30d246cc3"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.4079,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "height": {
+        "value": 0.5505,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "depth": {
+        "value": 0.3895,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": [
+            "500 W RGBMA LED; up to 17,000 lumens; 6-53° zoom; IP20"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "609 W max; 100-240 V AC, 50/60 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "21-channel mode",
+        "footprint": 21,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "30-channel mode",
+        "footprint": 30,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "19-channel mode",
+        "footprint": 19,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "26-channel mode",
+        "footprint": 26,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "17-channel mode",
+        "footprint": 17,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "15-channel mode",
+        "footprint": 15,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "22-channel mode",
+        "footprint": 22,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.20395000278949738,
+          0.0,
+          -0.19474999606609344
+        ],
+        "max": [
+          0.20395000278949738,
+          0.5504999756813049,
+          0.19474999606609344
+        ]
+      },
+      "parts": [
+        {
+          "name": "base",
+          "prim_path": "/Fixture/Base"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "head",
+          "prim_path": "/Fixture/Head"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Head/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Head/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer lists length, width and height with snoot; runtime X/Y/Z uses width/height/length.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "f7ef20248acd20f32aa2db0a74c0a36ca63cb5f39cf32b1cbfd2ec5307818e06"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "042a03fd793030c1ed8d41db18e05e8bbc3f31d4fc9572723a663787a1aa6de5"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "2c736b0b9dc49435851ac6a570455fb377dcc1da0cc99913664fb55863316d77"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "e1fecfa2b6e1081099d70c93cccc64c2418f1a17490abb0a815cd4edade5916b"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "136fc2eeb34157d2a20173ca0d1ae9401b3e96527bd7c1b0e2011183c48ffc9d"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "4fa3ff78f845d66520d9cfe4a4ec1aa7036e938e5c1c3c54d2f027e0d5fa95d4"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "df9acb17487ad5c86ccb7312df8cad8fe9ef3f1a202d0b1ef1e84c5c43285505"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "74ba3e45c3a7fd01d626aa0848c26c573fc8ecec044d9bc565642424ca62f9aa"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-1",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

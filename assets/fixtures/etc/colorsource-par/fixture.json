@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "id": "etc/colorsource-par",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ETC",
+    "model": "ColorSource PAR",
+    "variant": "CSPAR",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.etcconnect.com/Products/Lighting-Fixtures/ColorSource/PAR.aspx",
+      "title": "ColorSource PAR Features",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Original RGB-L wash luminaire; official product image",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/ColorSource-PAR/Tech-Specs.aspx",
+      "title": "ColorSource PAR Tech Specs",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Electrical, control, and physical sections; 90 W at 120 V, DMX512/RDM, 310 × 203 × 240 mm, 3.8 kg",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Lighting_Fixtures/ColorSource/en-CS-PAR-Leaderlines-960x300.jpg",
+      "title": "ColorSource PAR product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.jpg",
+      "sha256": "cf9fe35e9842653f4613429c47eef4c872917382e29bc8e57efbfc76aca44b1c"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.203,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "ETC technical specification gives assembled fixture dimensions without mounting hardware; 90 W at 120 V."
+    },
+    "height": {
+      "value": 0.31,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "ETC technical specification gives assembled fixture dimensions without mounting hardware; 90 W at 120 V."
+    },
+    "depth": {
+      "value": 0.24,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "ETC technical specification gives assembled fixture dimensions without mounting hardware; 90 W at 120 V."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Yoke upright, head forward"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "90 W at 120 V",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "3.8 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.1014999970793724,
+        -7.450580596923828e-09,
+        -0.11999998241662979
+      ],
+      "max": [
+        0.1014999970793724,
+        0.3100000023841858,
+        0.11999997869133949
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.07467882335186005,
+          -0.007677357643842697
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.09032057225704193,
+          -0.007677357643842697
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.09032057225704193,
+          -0.09690190851688385
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.09032057225704193,
+          -0.12439961731433868
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "ETC technical specification gives assembled fixture dimensions without mounting hardware; 90 W at 120 V.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "8714bdc0d84c158b9430dd4fa6bae4f11b3744c10e71d826da732b1bd345e1b1"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "44204b1bc15defee915b82a6553ec4a632fcf612f2240e6082fd19a7fe7c140e"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "06c1d414b5592ec7b71e2b513edcb84f114a0145795d23dad7ad1886cfa0c514"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "82bd02045ebb113ba9a4013db99ce3ba5f06b5f03787edb780081b324b522643"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "f9a97553acda75976ce1bda81e9c612993c4909c28e81b7531cb1f9e548dfa87"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "304c27911a35b631d1a33a919480af453ac0103ebea8b840baea59947a917a31"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "bdd2dcd1262c454b8d7280529c6182fee24a972f1751ef7de7fdccf836fc0251"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "7d3146cfd92a43c0da085ec3638f69fe33154bdff76248e58d6743f9e2756d51"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "acf4d5c96a09a2fdf6cc1fcabd1988f2fc56588b30f731987d7dd72bc4fbd6aa"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "cd0148738896fcd7b038a5bcbfe89c8a906d0ff10a5a3ddb4c3f111c9cfccfa8"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "8f29054b85d95cb16fb213fe789f1d5a7a72d1d73cd9b67aceff4c134f8d16a2",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "par",
+      "lens_count": 7,
+      "body_style": "compact round LED PAR with yoke",
+      "notes": "Original ColorSource PAR RGB-L array, black housing; not Deep Blue or Pearl color-array options."
+    },
+    "mesh_count": 62,
+    "triangle_count": 22212,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Acquired in expansion batch 1. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed par geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ]
+}

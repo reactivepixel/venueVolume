@@ -1,0 +1,69 @@
+{
+  "mesh_count": 221,
+  "triangle_count": 77756,
+  "geometry_sha256": "926e31df2a8653ba52d87feaebf9f7c034d9b0440fcd50847be3608d7916a7da",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.12069989740848541,
+      -0.14949916303157806
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.059787508100271225,
+        -0.01112702488899231
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.12069989740848541,
+        -0.01112702488899231
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        0.0,
+        0.12069989740848541,
+        -0.1213793233036995
+      ]
+    }
+  ],
+  "family": "par",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.005025029182434,
+    1.1247938871383667,
+    1.1627095937728882
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.etcconnect.com/workarea/DownloadAsset.aspx?id=10737512649",
+    "https://www.etcconnect.com/Products/Lighting-Fixtures/",
+    "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Lighting_Fixtures/Selador/D60_Lustr_clip.jpg"
+  ]
+}

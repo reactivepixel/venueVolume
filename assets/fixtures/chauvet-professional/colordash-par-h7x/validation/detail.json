@@ -1,0 +1,69 @@
+{
+  "mesh_count": 62,
+  "triangle_count": 22212,
+  "geometry_sha256": "74dab35ef53f6101497b14b721e008c232cc40a02d91b65e690597f08835a53d",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.08024370670318604,
+      -0.061868924647569656
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.0397479273378849,
+        0.00023503776174038649
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.08024370670318604,
+        0.00023503776174038649
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        0.0,
+        0.08024370670318604,
+        -0.03768815100193024
+      ]
+    }
+  ],
+  "family": "par",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0050251483917236,
+    0.9672308564186096,
+    1.1627095937728882
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://chauvetprofessional.com/product/colordash-par-h7x/",
+    "https://www.bhphotovideo.com/images/fb/chauvet_professional_colordashparh7x_colordash_par_hex_7x_with_1742177.jpg",
+    "https://chauvetprofessional.com/wp-content/uploads/2025/10/COLORDASH-PAR-H7X-FRONT-FEAT.png"
+  ]
+}

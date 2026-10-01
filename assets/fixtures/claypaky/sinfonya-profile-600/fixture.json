@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "id": "claypaky/sinfonya-profile-600",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Claypaky",
+    "model": "Sinfonya Profile 600",
+    "variant": "CL3018",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.claypaky.it/products/sinfonya-profile-600/",
+      "title": "Sinfonya Profile 600 product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Specs: control and connections, electrical, Weight - Size; 36.8 kg and 425 x 417 mm base with 796 mm head-vertical height",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.claypaky.it/wp-content/uploads/2023/04/Claypaky_SinfonyaProfile600.jpg",
+      "title": "Sinfonya Profile 600 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.jpg",
+      "sha256": "371589134000875665e892aadf8477150fb120b659600aa8b916bcaca9d1fd6c"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.425,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Claypaky product page lists 425 x 417 mm base dimensions and 796 mm height with vertical head."
+    },
+    "height": {
+      "value": 0.796,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Claypaky product page lists 425 x 417 mm base dimensions and 796 mm height with vertical head."
+    },
+    "depth": {
+      "value": 0.417,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Claypaky product page lists 425 x 417 mm base dimensions and 796 mm height with vertical head."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Head vertical; base level."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "770 VA max",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "36.8 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "Art-Net",
+          "sACN",
+          "RDM",
+          "CRMX (optional)",
+          "WebServer"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "58-channel mode",
+      "footprint": 58,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "49-channel mode",
+      "footprint": 49,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "43-channel mode",
+      "footprint": 43,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.21250000596046448,
+        0.0,
+        -0.2085000050428789
+      ],
+      "max": [
+        0.21250000596046448,
+        0.7960000038146973,
+        0.20850000556674786
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.00045793529716320336
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.127360001206398,
+          0.00045793529716320336
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.6557499766349792,
+          0.00045793529716320336
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.6557499766349792,
+          -0.18541692197322845
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.127360001206398,
+          0.00045793529716320336
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.6557499766349792,
+          0.00045793529716320336
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.6557499766349792,
+          -0.19246606528759003
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Claypaky product page lists 425 x 417 mm base dimensions and 796 mm height with vertical head.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "b3fefe29b2e55b79a82dae55449eca64e29a16d829419d04b3f3a91bc7c4f1b3"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "d547bdb1bd5a5f89faae58460d5e6e91a2ce758d01eddba9f2cedf742003b447"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "068084bbf324f3bc977b0a32ae42bfe81b8d11e538aa1e3970ed0f39b89954af"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "62e1109138d9a463a8a7bbe21e4b97c6283b36d2252db60f4a07282cfe48ea37"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "9ab28d2516f0003c979f40609c85a3bcb56298cda5cd534b86977df8a7453b3b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "f4e5bf706d7095e1a0bb6d8a63409e3ac6f6daba0cb90adce34196cd251fbaf0"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "43538a31517d85bee27497d4b1ce9c4a1c3cd6ad8c7b4d81a92493dec6131c81"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "45c233987964aa29e11c0e3055bb7d6dc8daaab519355ae5b938b92bf6d9f709"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "9422a96dcb714a5c7e44bae5351c19524844039a93cfd262fe417515327b393d"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "ea8ccac012fa2422a8ae7eabb5b8a367a9788c958b9f7d0622aad95a9b17b446"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "dabd5514ccd5071ec8122ffcb4c807f1f1816c44064892463561092b46753ac5",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "theatre moving profile with yoke and large circular lens",
+      "notes": "Sinfonya Profile 600 standard model; RGBAL source. Manufacturer lists 14 optical lenses and 165 mm front lens."
+    },
+    "mesh_count": 85,
+    "triangle_count": 18516,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Source describes a vertical-head dimensional pose; modeled horizontal optical-axis pose fits that envelope. Verify pose-specific shape before placement/clearance use."
+  ],
+  "revision_notes": [
+    "Acquired in expansion batch 1. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ]
+}

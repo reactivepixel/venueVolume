@@ -1,0 +1,195 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "vari-lite/vl5led-wash",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Vari-Lite",
+      "model": "VL5LED WASH",
+      "variant": "VL5LED WASH",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.vari-lite.com/global/vl5led-series",
+        "title": "Vari-Lite VL5LED WASH official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://vari-lite.s3.eu-west-1.amazonaws.com/datasheets/Vari-Lite/VL5LED_WASH.pdf",
+        "title": "Vari-Lite VL5LED WASH official source 2",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.367,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Overall dimensions are documented; width/height/depth assignment follows the official datasheet."
+      },
+      "height": {
+        "value": 0.578,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Overall dimensions are documented; width/height/depth assignment follows the official datasheet."
+      },
+      "depth": {
+        "value": 0.36,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Overall dimensions are documented; width/height/depth assignment follows the official datasheet."
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.1835000067949295,
+          0.0,
+          -0.18000000715255737
+        ],
+        "max": [
+          0.1835000067949295,
+          0.578000009059906,
+          0.18000000715255737
+        ]
+      },
+      "parts": [
+        {
+          "name": "base",
+          "prim_path": "/Fixture/Base"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "head",
+          "prim_path": "/Fixture/Head"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Head/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Head/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Overall dimensions are documented; width/height/depth assignment follows the official datasheet.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "b4cfba16cd20f4efc09d15818ca9debdc2cbfa9ebd54d447b324041975943994"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "1e2390bced6c22a16d9b862467d1fa6fe59fc41de9886cdf252cdc238d0e9ea4"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "f316734e6580ac754e351748cea5179c7f0c964464751accd0424fb8b9a22f61"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "73225147fba040adeb7de4209b692470291536c6477af3ec485a9b15c97a32c7"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "c90ef20b30b5dac8f34241e185db1b34c925809808e47e7d628f87a329e92cad"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "4b80105ad7272d59f3c74615e8a08fbc2226c5650e890a863f4f44ca261774d7"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "b7172a13cbc84a45dc024e4495462bbca83d8ad14afad0ef514d196ebbdbf9d4"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "5bf7304c791e255ce9277551afef3f81f30a020f78fcaf3ca6a19399561f1909"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion.",
+      "No official product image URL was present in the research CSV."
+    ],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-1",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

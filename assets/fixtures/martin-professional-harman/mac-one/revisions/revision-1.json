@@ -1,0 +1,200 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "martin-professional-harman/mac-one",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC One",
+      "variant": "MAC One",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.martin.com/en-US/products/mac-one",
+        "title": "Martin Professional (HARMAN) MAC One official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://adn.harmanpro.com/productattachment/12285/product_attachment/x_large-d19708df6ba03b2c31e7e4119c02b81b.webp",
+        "title": "Martin Professional (HARMAN) MAC One official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.webp",
+        "sha256": "2cf039a02b329be3b552b4f1ef7ffd75f18e17d75764b531a4c185c151ac00b3"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.254,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Maximum envelope is documented; axis assignment follows the official product image and stated yoke width."
+      },
+      "height": {
+        "value": 0.349,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Maximum envelope is documented; axis assignment follows the official product image and stated yoke width."
+      },
+      "depth": {
+        "value": 0.22,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Maximum envelope is documented; axis assignment follows the official product image and stated yoke width."
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM",
+            "Art-Net",
+            "sACN",
+            "Martin P3"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.12700000405311584,
+          0.0,
+          -0.10999999940395355
+        ],
+        "max": [
+          0.12700000405311584,
+          0.3490000069141388,
+          0.10999999940395355
+        ]
+      },
+      "parts": [
+        {
+          "name": "base",
+          "prim_path": "/Fixture/Base"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "head",
+          "prim_path": "/Fixture/Head"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Head/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Head/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Maximum envelope is documented; axis assignment follows the official product image and stated yoke width.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "2f1f478bd283eebcdfdf07b4f1ca64d3e42b393b7d903cc5245cb528cccf8ea4"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "877ed015fd11af8cdfc9f51693eda50ae3628bacaf7d5d8095da6543c7af35c1"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "be12a3752c04a8b6276a4d3cdbf26ba63af2772d48c04bc993a054962d5ff50f"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "3a61dd82cef3859f464025bf161257aa84d389125c08e726a3022339fa8577ca"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "054b170eb46ed4ac8bddbf9feff46a199a378679b6531019db2e12b871ebf1d1"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "953576cda122713d70ad3cffc590c0bc28574a5b16477e09d695478ffd0c6a16"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "369cb579122f9ddac914331175797dac5bef6a3c3c2ebe4e7b6ecf7a6b1b1a4c"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "02f16ab10895cea797cd578671923fa3593791f21f8608fed2ad72c80a29e654"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-1",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

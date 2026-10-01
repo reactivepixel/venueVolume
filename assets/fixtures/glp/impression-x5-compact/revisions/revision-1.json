@@ -1,0 +1,219 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "glp/impression-x5-compact",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "GLP",
+      "model": "impression X5 Compact",
+      "variant": "7794",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://glp.de/de/produkte/entertainment-lighting/moving-lights/impression-x5-compact",
+        "title": "GLP impression X5 Compact official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://glp.de/files/products/impression-x5-compact-product-data/GLP_impression-X5-Compact.pdf",
+        "title": "GLP impression X5 Compact official source 2",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://glp.de/templates/yootheme/cache/dc/impression-X5-Compact_Header-dc0173b5.png",
+        "title": "GLP impression X5 Compact official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.png",
+        "sha256": "80d057f5833f8e05bf4bcdf691f12385e40baf7fb47c9c867a3c81b2d7147b0f"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.25,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "height": {
+        "value": 0.337,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "depth": {
+        "value": 0.183,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "350 W max at 230 V; 100-240 VAC",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "7.5 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "Art-Net",
+            "sACN"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.125,
+          0.0,
+          -0.09149999916553497
+        ],
+        "max": [
+          0.125,
+          0.3370000123977661,
+          0.09149999916553497
+        ]
+      },
+      "parts": [
+        {
+          "name": "base",
+          "prim_path": "/Fixture/Base"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "head",
+          "prim_path": "/Fixture/Head"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Head/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Head/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer specifies H x W x D.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "0dc6cc9bc614ba5e5354ffe53a69e167b179102560abf88a94f60cda0d57eec7"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "ed1cae390ff6f3c918246efb55434144fc97c9f64c7793029c8c755a748ac124"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "38b25f08b4082b9c1dbe866f397d37c61d7abcabe94061c6b69924d1e17569a1"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "8677785c4c3fb088256d2531dc388672c0f9d7499c8d2d30c2c9fb3049adb7e2"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "514cf100abb19dec51a193b31ad8d9c014afba9492c53b2f3773395ac2386555"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "60de077255bfcac896efb42cdb346b33c1a86261b1cf6a789680e97541e04c79"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "d1edc6e431e4385f73134c43e37ebf742de8c78a43f2002baebfc9f8c417d45e"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "3c9d9432e3ba8c31ff4bb9431329b608ed1d93ff2f1dbbc191c45d255b9670a9"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-1",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

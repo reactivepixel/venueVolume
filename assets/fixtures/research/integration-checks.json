@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-30",
+  "version": "0.1.14",
+  "fixture_contract_unit_tests": {"passed": true, "count": 8},
+  "design_studio_unit_tests": {"passed": true, "count": 15},
+  "marketing_unit_tests": {"passed": true, "count": 4},
+  "design_studio_production_build": "passed",
+  "marketing_production_build": "passed",
+  "gallery_checks": "gallery-validation.json",
+  "saved_model_geometry_checks": "geometry-audit.json",
+  "catalog_manifest_checks": "catalog-validation.json",
+  "known_dependency_warning": {
+    "package": "vite",
+    "installed_version": "6.4.1",
+    "severity": "high",
+    "source": "npm audit, 2026-09-30",
+    "introduced_by_this_change": false,
+    "action": "Not changed: dependency upgrade is separate from fixture asset work."
+  },
+  "realitykit_device_test": "not_run",
+  "physical_fixture_test": "not_run"
+}

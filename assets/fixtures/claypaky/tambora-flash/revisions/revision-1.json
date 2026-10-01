@@ -1,0 +1,172 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "claypaky/tambora-flash",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "Claypaky",
+      "model": "Tambora Flash",
+      "variant": "CL2020",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.claypaky.it/products/tambora-flash/",
+        "title": "Tambora Flash product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Specs; source, modes, 1150 VA, weight and dimensions without handles",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.claypaky.it/products/tambora-flash/claypaky_tamboraflash_en/",
+        "title": "Tambora Flash technical leaflet",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Main features; February 2024, stated dimensions 533 x 180 x 186 mm",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.claypaky.it/wp-content/uploads/2025/06/Claypaky_TamboraFlash.jpg",
+        "title": "Tambora Flash product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Reference image; exact-model identity visually reviewed separately",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference.jpg",
+        "sha256": "66c46fbb6715c3007dfdf16d3987eb0a594c5230873b3cc9e0b2603fb1aa7f78"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.497,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Current Claypaky product page gives 497 x 180 x 186 mm without handles; order interpreted as length, width, height, with long dimension across batten width. A February 2024 leaflet reports a conflicting length of 533 mm; the current page value is retained and conflict recorded."
+      },
+      "height": {
+        "value": 0.186,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Current Claypaky product page gives 497 x 180 x 186 mm without handles; order interpreted as length, width, height, with long dimension across batten width. A February 2024 leaflet reports a conflicting length of 533 mm; the current page value is retained and conflict recorded."
+      },
+      "depth": {
+        "value": 0.18,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Current Claypaky product page gives 497 x 180 x 186 mm without handles; order interpreted as length, width, height, with long dimension across batten width. A February 2024 leaflet reports a conflicting length of 533 mm; the current page value is retained and conflict recorded."
+      },
+      "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+      "source_reference_pose": "Body face upward, handles excluded, single unit; mounting angle 0 degrees."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "1150 VA max at 230 V / 50 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "10.4 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM",
+            "Art-Net",
+            "sACN",
+            "WebServer",
+            "Kling-Net"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Current Claypaky product page gives 497 x 180 x 186 mm without handles; order interpreted as length, width, height, with long dimension across batten width. A February 2024 leaflet reports a conflicting length of 533 mm; the current page value is retained and conflict recorded.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Acquired in expansion batch 2. Technical sources retained with locators; detailed model build pending."
+    ]
+  },
+  "git_commit": "4f96bdc0ec081c3756f42c22c8d181b776dab91a",
+  "note": "Initial research record before any generated model artifacts existed."
+}

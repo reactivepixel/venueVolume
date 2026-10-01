@@ -1,0 +1,331 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "adj/focus-spot-4z",
+    "revision": 3,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "ADJ",
+      "model": "Focus Spot 4Z",
+      "variant": "FOC200",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.adj.com/products/focus-spot-4z",
+        "title": "ADJ Focus Spot 4Z official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://www.adj.com/cdn/shop/files/a74bd932582c95b0204ab23388d7dc7f7fe9e08b_FOC200__IMG__001__3dc23d06cee1.jpg?v=1776751364&width=800",
+        "title": "ADJ Focus Spot 4Z official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.jpg",
+        "sha256": "3e4e2ad06f2bcf1163478c7c42a6f7700a11e653aa186dfd795cafb36f7b8c01"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.2786,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "height": {
+        "value": 0.4574,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "depth": {
+        "value": 0.1815,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": [
+            "7000 lumens; motorized zoom 11-22°"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "200 W LED engine",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "16-channel mode",
+        "footprint": 16,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "18-channel mode",
+        "footprint": 18,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "22-channel mode",
+        "footprint": 22,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.13930001854896545,
+          0.0,
+          -0.09075000043958426
+        ],
+        "max": [
+          0.13930001854896545,
+          0.45739999413490295,
+          0.0907500023022294
+        ]
+      },
+      "parts": [
+        {
+          "name": "base",
+          "prim_path": "/Fixture/Base",
+          "pivot_m": [
+            0.0,
+            0.0,
+            0.0004991302266716957
+          ]
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke",
+          "pivot_m": [
+            0.0,
+            0.07318399846553802,
+            0.0004991302266716957
+          ]
+        },
+        {
+          "name": "head",
+          "prim_path": "/Fixture/Head",
+          "pivot_m": [
+            0.0,
+            0.3654620051383972,
+            0.0004991302266716957
+          ]
+        },
+        {
+          "name": "head_lens",
+          "prim_path": "/Fixture/Head/Lens",
+          "pivot_m": [
+            0.0,
+            0.3654620051383972,
+            -0.0630420669913292
+          ]
+        }
+      ],
+      "joints": [
+        {
+          "name": "pan",
+          "parent": "base",
+          "child": "yoke",
+          "pivot_m": [
+            0.0,
+            0.07318399846553802,
+            0.0004991302266716957
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "status": "estimated",
+          "limits": null
+        },
+        {
+          "name": "tilt",
+          "parent": "yoke",
+          "child": "head",
+          "pivot_m": [
+            0.0,
+            0.3654620051383972,
+            0.0004991302266716957
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "status": "estimated",
+          "limits": null
+        }
+      ],
+      "emitters": [
+        {
+          "prim_path": "/Fixture/Head/Emitter",
+          "position_m": [
+            0.0,
+            0.3654620051383972,
+            -0.06545180827379227
+          ],
+          "quaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "optical_axis": [
+            0,
+            0,
+            -1
+          ]
+        }
+      ],
+      "assumptions": [
+        "Fixture-specific procedural approximation informed by the stored official product image; not manufacturer CAD.",
+        "Rounded base/control panel, U-yoke, capsule head, tilt hubs, optical barrel, bezel and cooling vents.",
+        "Small fasteners, exact surface curvature, labels, internal mechanics, connector geometry and photometry remain simplified.",
+        "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+        "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "d7920b414253b2e976aa4616806851863f1d62fcf1d8db3e9c108644e4de93a9"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "a2d3af55fbee57ebc3e718aedb22a051324f3d043a15c213c2bb35e8e7eb33cc"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "08a811b39355d3c04d938ccaac3b3fe26815754dd8dc4fd10f77cf3a84c20b3e"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "b754ea7f653e929bad28885e08c40b713db01a5b8fe37603a3fedb67adf034ce"
+        },
+        {
+          "role": "validation",
+          "file": "validation/detail.json",
+          "sha256": "3e4d2b5b7b7295e00cf87bce0b2f33c95c57c6323c1cb321141676eade0f7a0d"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "24d24358e0ea20ec1c87f5ee9c03232b4a787561c026f1539d9a9c7e539cf9bd"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "9f34995b5e31d80b81e4535945b6f68763e71364bff74fd556f450cb00a70ce9"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "aac5eaa58579589c4d86a97847588f2af85e099b79192e9dacf0c9f5ef36d49c"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "acb11d4fc1c358bd62985c5be33cc04ab6349c64b600d0388e3a6fa0c4015c0e"
+        }
+      ],
+      "detail_level": "high",
+      "detail_build_token": "e13d255e3ef96fba4e530b6ead32253a56bb6084cb1c5d703dbc98af8a3ba1a9",
+      "generator_dependency": {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "3b5f34fc8b48df5bbd42db5f738f7f27f181d7fd3c7154d6f548924fc15babf3"
+      },
+      "profile": {
+        "family": "moving_spot",
+        "shell": "round",
+        "lens_ratio": 0.5,
+        "head_depth": 0.7
+      },
+      "mesh_count": 85,
+      "triangle_count": 18516,
+      "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+      "Revision 2 replaces the generic proxy with fixture-specific silhouette, optics, housing and mounting details while preserving sourced outer dimensions.",
+      "Revision 3: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "note": "Intermediate unpublished model revision: manifest retained, binary bytes were superseded and were not archived. git_commit identifies the baseline, not these artifact bytes."
+}

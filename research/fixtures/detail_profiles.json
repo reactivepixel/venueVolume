@@ -1,0 +1,441 @@
+{
+  "adj/7p-hex-ip": {
+    "family": "par",
+    "lens_count": 7,
+    "floor_yoke": true,
+    "body_style": "ribbed",
+    "notes": "Seven circular optics, cooling fins and double floor yoke."
+  },
+  "adj/focus-spot-4z": {
+    "family": "moving_spot",
+    "shell": "round",
+    "lens_ratio": 0.5,
+    "head_depth": 0.7
+  },
+  "adj/hydro-beam-x1": {
+    "family": "moving_spot",
+    "shell": "round",
+    "lens_ratio": 0.63,
+    "head_depth": 0.7
+  },
+  "adj/jolt-bar-fx": {
+    "family": "strobe",
+    "strip": true,
+    "cells": 20
+  },
+  "adj/led-bar": {
+    "family": "batten",
+    "lens_count": 4,
+    "pixel_clusters": true
+  },
+  "adj/stryker-wash": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "shell": "round"
+  },
+  "chauvet-professional/colorado-solo-batten": {
+    "family": "batten",
+    "lens_count": 12,
+    "diffuser": true
+  },
+  "chauvet-professional/colordash-batten-quad-6": {
+    "family": "batten",
+    "lens_count": 6
+  },
+  "chauvet-professional/maverick-mk2-wash": {
+    "family": "moving_wash",
+    "lens_count": 12,
+    "shell": "round"
+  },
+  "chauvet-professional/rogue-r1x-spot": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.49,
+    "head_depth": 0.72
+  },
+  "chauvet-professional/rogue-r2-wash": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "shell": "round"
+  },
+  "chauvet-professional/rogue-rh1-hybrid": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.72,
+    "head_depth": 0.75
+  },
+  "claypaky/arolla-profile-mp": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.63,
+    "head_depth": 0.88
+  },
+  "claypaky/arolla-spot-mp": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.63,
+    "head_depth": 0.88
+  },
+  "claypaky/hy-b-eye-k25": {
+    "family": "moving_wash",
+    "lens_count": 37,
+    "shell": "round"
+  },
+  "claypaky/sharpy": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.77,
+    "head_depth": 0.78,
+    "base_height": 0.15
+  },
+  "claypaky/sharpy-plus": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.64,
+    "head_depth": 0.87
+  },
+  "claypaky/sharpy-plus-aqua": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.65,
+    "head_depth": 0.87
+  },
+  "elation-professional/dartz-360": {
+    "family": "moving_spot",
+    "shell": "round",
+    "lens_ratio": 0.78,
+    "head_depth": 0.73
+  },
+  "elation-professional/fuze-sfx": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.84,
+    "head_depth": 0.82
+  },
+  "elation-professional/fuze-wash-500": {
+    "family": "moving_spot",
+    "shell": "round",
+    "lens_ratio": 0.92,
+    "head_depth": 0.83,
+    "fresnel": true
+  },
+  "elation-professional/kl-fresnel-8": {
+    "family": "fresnel",
+    "barn_doors": true
+  },
+  "elation-professional/proteus-radius": {
+    "family": "moving_spot",
+    "shell": "round",
+    "lens_ratio": 0.82,
+    "head_depth": 0.79
+  },
+  "elation-professional/sixbar-1000": {
+    "family": "batten",
+    "lens_count": 12
+  },
+  "etc/colorsource-fresnel-v": {
+    "family": "fresnel",
+    "barn_doors": true
+  },
+  "etc/colorsource-spot-v": {
+    "family": "profile",
+    "barrel_ratio": 0.44
+  },
+  "etc/desire-d60": {
+    "family": "par",
+    "lens_count": 60
+  },
+  "etc/fos-4-fresnel": {
+    "family": "fresnel",
+    "barn_doors": false
+  },
+  "etc/source-four-led-series-3-lustr-x8": {
+    "family": "profile",
+    "barrel_ratio": 0.5
+  },
+  "glp/impression-x4-bar-20": {
+    "family": "batten",
+    "lens_count": 20,
+    "tilting": true
+  },
+  "glp/impression-x5": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "baseless": true
+  },
+  "glp/impression-x5-bar-1000": {
+    "family": "batten",
+    "lens_count": 18,
+    "tilting": true
+  },
+  "glp/impression-x5-compact": {
+    "family": "moving_wash",
+    "lens_count": 7,
+    "baseless": true
+  },
+  "glp/jdc-line-500": {
+    "family": "strobe",
+    "strip": true,
+    "cells": 24
+  },
+  "glp/jdc1": {
+    "family": "strobe",
+    "tilting": true,
+    "cells": 24
+  },
+  "high-end-systems/solaframe-3000": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.59,
+    "head_depth": 0.88
+  },
+  "high-end-systems/solawash-2000": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.79,
+    "head_depth": 0.89,
+    "fresnel": true
+  },
+  "martin-professional-harman/atomic-3000-led": {
+    "family": "strobe",
+    "cells": 24
+  },
+  "martin-professional-harman/elp-cl": {
+    "family": "profile",
+    "barrel_ratio": 0.43
+  },
+  "martin-professional-harman/mac-aura-xip": {
+    "family": "moving_wash",
+    "lens_count": 7,
+    "aura": true
+  },
+  "martin-professional-harman/mac-one": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "aura": true
+  },
+  "martin-professional-harman/mac-ultra-performance": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.84,
+    "head_depth": 0.9
+  },
+  "martin-professional-harman/mac-ultra-wash": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.89,
+    "head_depth": 0.88,
+    "fresnel": true
+  },
+  "martin-professional-harman/mac-viper-xip": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.73,
+    "head_depth": 0.86
+  },
+  "robe-lighting/forte": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.73,
+    "head_depth": 0.89
+  },
+  "robe-lighting/ledbeam-350": {
+    "family": "moving_wash",
+    "lens_count": 12
+  },
+  "robe-lighting/megapointe": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.73,
+    "head_depth": 0.81
+  },
+  "robe-lighting/pointe": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.67,
+    "head_depth": 0.8
+  },
+  "robe-lighting/spiider": {
+    "family": "moving_wash",
+    "lens_count": 19
+  },
+  "robe-lighting/t1-profile": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.73,
+    "head_depth": 0.86
+  },
+  "vari-lite/vl2600-spot": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.68,
+    "head_depth": 0.84
+  },
+  "vari-lite/vl3600-profile-ip": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.77,
+    "head_depth": 0.85
+  },
+  "vari-lite/vl5led-wash": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "radial_blades": true
+  },
+  "adj/jolt-bar-fx2": {
+    "family": "strobe",
+    "lens_count": 560,
+    "body_style": "linear rectangular bar with central white LED strip, RGB LED fields, and end brackets",
+    "notes": "LED quantity sourced as 448 RGB plus 112 cool-white emitters; bracket/body detail should follow official product imagery and CAD.",
+    "strip": true,
+    "cells": 28
+  },
+  "adj/encore-lp12z-ip": {
+    "family": "par",
+    "lens_count": 12,
+    "body_style": "compact circular-front LED PAR with projecting lens, finned housing, and double-arm scissor yoke",
+    "notes": "Twelve RGBL LED modules documented. No inferred individual lens counts beyond those modules.",
+    "floor_yoke": true
+  },
+  "adj/jolt-300": {
+    "family": "strobe",
+    "lens_count": 288,
+    "body_style": "short rectangular strobe panel with central white LED row, flanking RGB LED rows, and single yoke",
+    "notes": "Official page gives 144 white and 144 RGB SMD LEDs; emitter group count does not define lens geometry."
+  },
+  "etc/desire-fresnel-7": {
+    "family": "fresnel",
+    "barn_doors": true,
+    "lens_count": 1,
+    "body_style": "round Fresnel head on yoke",
+    "notes": "DFL7 is a fixed 7-inch aperture variant; allow lens travel in depth."
+  },
+  "etc/colorsource-par": {
+    "family": "par",
+    "lens_count": 7,
+    "body_style": "compact round LED PAR with yoke",
+    "notes": "Original ColorSource PAR RGB-L array, black housing; not Deep Blue or Pearl color-array options."
+  },
+  "high-end-systems/solaframe-1000": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "moving framing profile with yoke",
+    "notes": "Fixture variant available with different LED engine options; not a geometry variant."
+  },
+  "high-end-systems/solaframe-2000": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "large LED framing head with yoke and circular lens",
+    "notes": "600 W light engine; overall input draw varies by line voltage. Multiple engine variants."
+  },
+  "robe-lighting/iforte": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "large sealed moving profile with yoke",
+    "notes": "iFORTE standard IP65 body; not FS, Fresnel, or LTX variant."
+  },
+  "robe-lighting/tarrantula": {
+    "family": "moving_wash",
+    "lens_count": 37,
+    "body_style": "multi-source rounded head with RGBA pixel array",
+    "notes": "37 RGBA LED multichips; beam shaper is removable, but the shown standard assembly includes it."
+  },
+  "claypaky/sinfonya-profile-600": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "theatre moving profile with yoke and large circular lens",
+    "notes": "Sinfonya Profile 600 standard model; RGBAL source. Manufacturer lists 14 optical lenses and 165 mm front lens."
+  },
+  "claypaky/volero-wave": {
+    "family": "batten",
+    "lens_count": 8,
+    "body_style": "linear chassis with eight individually tilting optical heads",
+    "notes": "Independent modules tilt 220 degrees; product on demand. Render as a fixed bar with separate head pivots.",
+    "multi_heads": true
+  },
+  "chauvet-professional/colordash-par-h7x": {
+    "family": "par",
+    "lens_count": 7,
+    "body_style": "round-front compact PAR can with 7-cell hex-color engine and double yoke",
+    "notes": "Seven RGBAW+UV LED modules documented.",
+    "floor_yoke": false
+  },
+  "chauvet-professional/colordash-par-h12x-ip": {
+    "family": "par",
+    "lens_count": 12,
+    "body_style": "round-front sealed die-cast PAR housing with double-bracket yoke",
+    "notes": "Twelve hex-color modules documented; body orientation should be checked against official CAD."
+  },
+  "chauvet-professional/colordash-par-quad-18": {
+    "family": "par",
+    "lens_count": 18,
+    "body_style": "round metal PAR with 18-cell front array and split yoke",
+    "notes": "Legacy product, marked as such on manufacturer page. Product manual Rev. 6 diagrams show front, side, and rear views."
+  },
+  "elation-professional/sixbar-500": {
+    "family": "batten",
+    "lens_count": 6,
+    "body_style": "compact linear die-cast bar with six independent LED cells, dual integrated rigging brackets and glare shield",
+    "notes": "Legacy product; stated overall width includes the supplied glare shield."
+  },
+  "elation-professional/vbar-270": {
+    "family": "batten",
+    "lens_count": 270,
+    "body_style": "legacy short linear RGB bar with dense 5 mm LED array and mounting bracket",
+    "notes": "270 LEDs (90 each red, green, blue) documented. Manufacturer calls product discontinued.",
+    "pixel_grid": true,
+    "overhead_yoke": true
+  },
+  "martin-professional-harman/mac-viper-performance": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "discharge moving head with framing module, yoke",
+    "notes": "Estimate uses documented head-straight-up height, maximum width, and head length. Do not read as the bounding box from one manufacturer-dimensioned pose."
+  },
+  "martin-professional-harman/mac-aura": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "body_style": "19-lens RGBW moving wash with secondary Aura backlight",
+    "notes": "Official Martin optics table specifies 19 x 10 W RGBW; secondary Aura illumination is not counted as lenses.",
+    "aura": true
+  },
+  "vari-lite/vl800-eventprofile": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact framing profile on yoke",
+    "notes": "Black and white body variants; housing shape otherwise same."
+  },
+  "vari-lite/vl2600-se-wash": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "mid-size wash head with yoke and automated barn doors",
+    "notes": "Do not substitute dimensions of legacy VL2600 Wash for the SE version."
+  },
+  "claypaky/mini-b": {
+    "family": "moving_wash",
+    "lens_count": 7,
+    "body_style": "compact yoke head with central LED and six outer lenses",
+    "notes": "Seven RGBW LEDs; keep central LED optically distinct from outer ring."
+  },
+  "claypaky/tambora-flash": {
+    "family": "strobe",
+    "lens_count": 4,
+    "body_style": "IP66 rectangular modular fixture with four central reflector cells and two strobe strips",
+    "notes": "Four RGBWW reflector optics plus two lines of segmented white strobe LEDs; handles excluded from dimensions.",
+    "reflector_cells": 4
+  },
+  "glp/impression-x5-ip-maxx": {
+    "family": "moving_wash",
+    "lens_count": 37,
+    "body_style": "large IP65 moving wash head with 37 circular RGBL lenses",
+    "notes": "37 x 40 W RGBL pixel array; avoid using the similar non-IP impression X5 body.",
+    "baseless": true
+  },
+  "glp/jdc-line-1000": {
+    "family": "batten",
+    "lens_count": 1,
+    "body_style": "linear hybrid strobe and RGB pixel mapping fixture",
+    "notes": "The 1000 mm lens tube shares RGB pixel and white strobe emission; a single continuous tube is a better shape representation than separate visible LEDs.",
+    "diffuser": true
+  }
+}

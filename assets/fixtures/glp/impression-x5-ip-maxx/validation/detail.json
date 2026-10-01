@@ -1,0 +1,79 @@
+{
+  "mesh_count": 139,
+  "triangle_count": 49776,
+  "geometry_sha256": "fdcef295d43b1f4e65bf5a779016c8a472ea9e99a743eed8c0f1eae1f1cf2795",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.47657454013824463,
+      -0.14929620921611786
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.007805285509675741
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.04442383348941803,
+        0.007805285509675741
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.47657454013824463,
+        0.007805285509675741
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.47657454013824463,
+        -0.14355596899986267
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0136921405792236,
+    1.6878114938735962,
+    0.991603434085846
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://glp.de/en/products/entertainment-lighting/moving-lights/impression-x5-ip-maxx-en",
+    "https://www2.glp.de/files/products/impression-x5-ip-maxx-product-data/GLP_impression_X5_IP_Maxx_Safety_Manual_EN_Rev20241007-1.pdf",
+    "https://www2.glp.de/files/products/impression-x5-ip-maxx-product-data/impression-X5-IP-Maxx_Datasheet_Rev20250430.pdf",
+    "https://glp.de/templates/yootheme/cache/c3/impressionX5IP_Header-c337f84c.png"
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "martin-professional-harman/mac-ultra-performance",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Ultra Performance",
+      "variant": "MAC Ultra Performance",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.martin.com/en-US/products/mac-ultra-performance",
+        "title": "Martin Professional (HARMAN) MAC Ultra Performance official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.martin.com/en-US/site_elements/martin-specifications-mac-ultra-performance-spec-sheet",
+        "title": "Martin Professional (HARMAN) MAC Ultra Performance official source 2",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://adn.harmanpro.com/productattachment/10081/product_attachment/x_large-e6a233739fa59758d3debd9dd6ca02fb.webp",
+        "title": "Martin Professional (HARMAN) MAC Ultra Performance official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.webp",
+        "sha256": "206d08366b6a22cec680b0560f20b7b2b7f597ac673243f17317479f053a37a6"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.52,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Maximum envelope is documented; H/W/depth assignment follows the official product drawing."
+      },
+      "height": {
+        "value": 0.876,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Maximum envelope is documented; H/W/depth assignment follows the official product drawing."
+      },
+      "depth": {
+        "value": 0.66,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Maximum envelope is documented; H/W/depth assignment follows the official product drawing."
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM",
+            "Art-Net",
+            "sACN"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.25999999046325684,
+          0.0,
+          -0.33000001311302185
+        ],
+        "max": [
+          0.25999999046325684,
+          0.8759999871253967,
+          0.33000001311302185
+        ]
+      },
+      "parts": [
+        {
+          "name": "base",
+          "prim_path": "/Fixture/Base"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "head",
+          "prim_path": "/Fixture/Head"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Head/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Head/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Maximum envelope is documented; H/W/depth assignment follows the official product drawing.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "b272f71f1487996e7f71c0825c58032fd29ea6136a95092c812fdca3c5382e4d"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "9e77cdb220a644f89f7bb3df45de40b7ccfb7df8145d81e9b71dd102560f6896"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "2ff05ba471a70693b5e73d854dd3a84588a85f06ffe32514547efb0b2c9b152b"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "2dbc143a80898234e7d6142439f836f08866bdb8f645d830bb61d83e371d3764"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "5138fadc6469bd8b11c5037834af3a09f203cbbf6c971958b86410cc41c5c476"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "ef8c27858fe5ba1041be355a03de627ae392aab3016d526d8d57e95a173d792f"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "ccb2446590974862af6f308fbd593b6a8aa9266a8180f54a2f129ada93f415a6"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "c34e33c059cf292b158c7c931e2926372e92454b45e8d5565f785b4aae1f7fad"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-1",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

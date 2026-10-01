@@ -1,0 +1,235 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "adj/7p-hex-ip",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "ADJ",
+      "model": "7P HEX IP",
+      "variant": "HEX700",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.adj.com/products/7p-hex-ip",
+        "title": "ADJ 7P HEX IP official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://www.adj.com/cdn/shop/files/d067275be528798fdbc863962e9e0de2d25444f7_HEX700__IMG__001__ff60fa4bc937.jpg?v=1776713404&width=850",
+        "title": "ADJ 7P HEX IP official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.jpg",
+        "sha256": "412e91ce2f265ea06c2dbdbea3e4384330cf1e4e8404e2a3bea0aa462c584bb0"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.1617,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "height": {
+        "value": 0.2325,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "depth": {
+        "value": 0.256,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": [
+            "7 x 12 W RGBAW+UV LEDs; 25° beam; IP65"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "6-channel mode",
+        "footprint": 6,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "7-channel mode",
+        "footprint": 7,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "8-channel mode",
+        "footprint": 8,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "13-channel mode",
+        "footprint": 13,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.08084999769926071,
+          0.0,
+          -0.12800000607967377
+        ],
+        "max": [
+          0.08084999769926071,
+          0.23250000178813934,
+          0.12800000607967377
+        ]
+      },
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "699d78e0fcc5f94334619bbe14204017ce6a50dd861dd113e5dd3d8bd2ff5da6"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "0660719d37dcc3482b70e26dbda89a272ebec157a73371d15e1d156d02b411c4"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "91dae27b59e36d677c14870d859038979d177fba6c149be8aa74e4a437b31d3b"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "5499cd0b55c2101dcecaccf24d4eb6b291642e0b462c96ea0bacc38509202daa"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "7797f407c42bf4f300f64cdc7b3191963afcd3b51a92bfeadbc30743530c8c9e"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "1a9f0b4c67f45d74952c69c08cc5aea528955ea391edf69c070e923783bdb3e4"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "36b1435cf793bab93b2d2b7464aa5f82918cf14c82530f469f3783d6dd5555a7"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "41808528898aa47cd785d4fa15a4aeba3fc20d397ae705425892497e59702e47"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-1",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

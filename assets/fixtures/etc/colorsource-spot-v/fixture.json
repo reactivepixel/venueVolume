@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "etc/colorsource-spot-v",
-  "revision": 1,
+  "revision": 4,
   "updated_at": "2026-09-30",
   "status": "researched",
   "identity": {
@@ -104,84 +104,139 @@
     "dimension_tolerance_m": 0.001,
     "bounds_m": {
       "min": [
-        -0.16949999332427979,
+        -0.1694999784231186,
         0.0,
         -0.335999995470047
       ],
       "max": [
-        0.16949999332427979,
-        0.5929999947547913,
-        0.335999995470047
+        0.1694999784231186,
+        0.593000054359436,
+        0.3359999842941761
       ]
     },
     "parts": [
       {
         "name": "body",
-        "prim_path": "/Fixture/Body"
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.17647266387939453,
+          0.005774039775133133
+        ]
       },
       {
         "name": "yoke",
-        "prim_path": "/Fixture/Yoke"
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.15357547998428345,
+          0.005774039775133133
+        ]
       },
       {
         "name": "lens",
-        "prim_path": "/Fixture/Lens"
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.15357547998428345,
+          -0.3175721764564514
+        ]
       }
     ],
     "joints": [],
     "emitters": [
       {
-        "name": "primary light output",
-        "prim_path": "/Fixture/Emitter"
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.15357547998428345,
+          -0.3431663513183594
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
       }
     ],
     "assumptions": [
       "Procedural visualization proxy, not manufacturer CAD.",
       "Maximum barrel/lens envelope is documented; H/W/depth assignment follows the manufacturer drawing orientation.",
-      "Moving components are separated but no runtime articulation joints are authored."
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
     ],
     "artifacts": [
       {
         "role": "authoring",
         "file": "models/fixture.blend",
-        "sha256": "a0f39d174b495c3030c58c34457281e659984a1808aabc0afeb60713d8afea35"
+        "sha256": "2a0eb641214ebb99a77ef3ec4c0f6b6d4dd677adf8037f5b946e3ab98777c246"
       },
       {
         "role": "runtime",
         "file": "models/fixture.usdz",
-        "sha256": "49b42059df256ddaa1183bfbeded563e960e222cd1b483b95965e1a6b251f341"
+        "sha256": "2dbbfa69906de9c570b88cda4a366a48607db8fa031a26b41ec0fe3eb5d03c59"
       },
       {
         "role": "generator",
         "file": "models/build_fixture.py",
-        "sha256": "63204f92f39319d3ebe7d95b68dcaf9cf16c079059dc45b2ccb054b890770731"
-      },
-      {
-        "role": "preview",
-        "file": "previews/front.png",
-        "sha256": "35e409bd9d6461ebde7d06d5e30367882112c16a196d98db361372f1017d9e5f"
-      },
-      {
-        "role": "preview",
-        "file": "previews/rear.png",
-        "sha256": "be5e789ff39c207cae48170986a0ba5dbde3ca190c97ddfbef75e3855459029d"
-      },
-      {
-        "role": "preview",
-        "file": "previews/side.png",
-        "sha256": "77f9e3167fb481e4408c519986f260395188dc9698190166da47f1a4a5b18cdd"
-      },
-      {
-        "role": "preview",
-        "file": "previews/three-quarter.png",
-        "sha256": "435cecbdc34206dfc4a0c555d5b2e2057f7332081a5e272d7ad6668b6d15e6ca"
+        "sha256": "78407048723a059d2f3fd81717ff6d7f8275f07def471a0b7ac89263940a00c5"
       },
       {
         "role": "validation",
         "file": "validation/usdz.json",
-        "sha256": "b6002969c97093357289810127b31d1bd186b1e940917d30545aa63009b0a333"
+        "sha256": "ef42f4072a270ee991272af3790f44a5709ed7520f8f60a38f7dac19e52c6304"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "7098b544bc00b6838d8336324911915212d7888b68d6d16eeb3fb892ec9e616b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "b1569a8aa082ccc8e43fd75e816f01be46517a9edee26a7fd66fd54cb47d6742"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "5222ef647566630562e1f00037ba7d2a29f3e701cf624a873cae0577378732f7"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "f4c1478d1474caeba4a20ed5d4253a06edd0718a3891a0c80eabc894121756f1"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "7054d66b322d228ae6eef179271a3763777880c354c2f7feff276d7fcbf88177"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "2d6a611e41772bd3beca46f273405846603ba2f892d56ddf7e361e2d0b03e42e"
       }
-    ]
+    ],
+    "detail_level": "high",
+    "detail_build_token": "5889ee97186a820a9cde15dea52c12717b6f7a12ed24f55d48d26798f9c5b0c1",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "profile",
+      "barrel_ratio": 0.44
+    },
+    "mesh_count": 47,
+    "triangle_count": 16908,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "detail_batch": "catalog-expansion-2026-09-30"
   },
   "verification": {
     "realitykit": "not_tested",
@@ -194,6 +249,9 @@
     "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
   ],
   "revision_notes": [
-    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed profile geometry, editable part pivots, full-detail USDZ export and four refreshed previews.",
+    "Revision 3: detailed profile geometry, editable part pivots, full-detail USDZ export and four refreshed previews.",
+    "Revision 4: detailed profile geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
   ]
 }

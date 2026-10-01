@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "id": "chauvet-professional/colordash-par-quad-18",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "CHAUVET Professional",
+    "model": "COLORdash Par-Quad 18",
+    "variant": "COLORDASHPARQUAD18",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://chauvetprofessional.com/product/colordash-par-quad-18/",
+      "title": "COLORdash Par-Quad 18 product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Legacy page; Specifications > Construction/Physical: 12.7 x 11.7 x 4.1 in (323 x 298 x 106 mm), weight 10.2 lb",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.chauvetprofessional.com/wp-content/uploads/2018/01/COLORdash_Par-Quad_18_UM_Rev6.pdf",
+      "title": "COLORdash Par-Quad 18 User Manual Rev. 6",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product Overview, printed p. 3, front/side/rear technical illustrations; Technical Information table, printed p. 14",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "evidence-3",
+      "url": "https://www.fullcompass.com/common/products/lgr/471924.jpg",
+      "title": "Full Compass product image",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Distributor image; reuse status unknown",
+      "reuse_status": "reference_only",
+      "kind": "secondary"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://chauvetprofessional.com/wp-content/uploads/2025/10/COLORDASH-PAR-QUAD-18-FRONT-FEAT.png",
+      "title": "COLORdash Par-Quad 18 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.png",
+      "sha256": "7948bb541c38cb74b548760320908b0f782786d7a6114846057d7a48eca7a860"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.323,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "evidence-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer lists 323 x 298 x 106 mm but does not label axes in online specs; assignment uses front width, assembled height, and fixture depth from official manual's orthographic product views."
+    },
+    "height": {
+      "value": 0.298,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "evidence-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer lists 323 x 298 x 106 mm but does not label axes in online specs; assignment uses front width, assembled height, and fixture depth from official manual's orthographic product views."
+    },
+    "depth": {
+      "value": 0.106,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "evidence-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer lists 323 x 298 x 106 mm but does not label axes in online specs; assignment uses front width, assembled height, and fixture depth from official manual's orthographic product views."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Round PAR face forward with split yoke extending down; dimensions describe unit with mounting bracket installed."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "118 W at 120 V, 116 W at 208 V, 115 W at 230 V",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "10.2 lb (4.6 kg)",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "4-channel mode",
+      "footprint": 4,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "6-channel mode",
+      "footprint": 6,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "10-channel mode",
+      "footprint": 10,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.1615000069141388,
+        -7.450580596923828e-09,
+        -0.05300000309944153
+      ],
+      "max": [
+        0.1615000069141388,
+        0.2979999706149101,
+        0.05300000333227217
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.04935368150472641,
+          0.000781242037191987
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.09963592141866684,
+          0.000781242037191987
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.09963592141866684,
+          -0.03312588855624199
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.09963592141866684,
+          -0.056785546243190765
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer lists 323 x 298 x 106 mm but does not label axes in online specs; assignment uses front width, assembled height, and fixture depth from official manual's orthographic product views.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "85014cddc9d5011ac348f953f16ab73811b3d43c5d5d65fc974f1ca0c4de4df1"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "d3fc7d2440f4cdba30c3c80e7dae9da5601af1fa5777f75d1b033ee27e1be135"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "59e9f63947376dba3a5c116414b7041c00abeb15d934658519285165ea52d23b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "1ed56d7a20ed3399d123b7768b90799dfc1012b039fe8b319cae358ee65b9704"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "fc6fb731830235fa11ff6425986c263b525714817c982049b2fd708d6603bb77"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "d757ccd3f17b90a204c0d64a84d9219ccf43e47b7d9180ee1a0611f5d9325fb5"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "5a1bc05e78797c9a4bceafe9d8fd2a32097833a911de979a087b9134f0821904"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "1a224fb3345146b38108d6650ecab3f9898be518262ed2ae980be0443e097c99"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "d3f15f834bd95f564710e0740046104d033712f85743cf9884ca0d0cea0cea9c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "4f85009283190d15dfbd3489664131722378fbfb99e2c0959b3d3f72088cb6ec"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "d98ab6398ba7da18acdc1fd2886be844af5d190a856c00dc25bad7d97c46dc61",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "par",
+      "lens_count": 18,
+      "body_style": "round metal PAR with 18-cell front array and split yoke",
+      "notes": "Legacy product, marked as such on manufacturer page. Product manual Rev. 6 diagrams show front, side, and rear views."
+    },
+    "mesh_count": 95,
+    "triangle_count": 33740,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Acquired in expansion batch 2. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed par geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ]
+}

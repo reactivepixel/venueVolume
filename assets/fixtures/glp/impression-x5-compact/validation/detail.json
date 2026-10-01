@@ -1,0 +1,78 @@
+{
+  "mesh_count": 49,
+  "triangle_count": 18336,
+  "geometry_sha256": "577354e3503b02976dc2745664e6055724f90327e4b6676b852ffaba5788c590",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.25239917635917664,
+      -0.06196413189172745
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.010995738208293915
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.023395271971821785,
+        0.010995738208293915
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.25239917635917664,
+        0.010995738208293915
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.25239917635917664,
+        -0.059298284351825714
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0,
+    1.533414602279663,
+    0.9917452931404114
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://glp.de/de/produkte/entertainment-lighting/moving-lights/impression-x5-compact",
+    "https://glp.de/files/products/impression-x5-compact-product-data/GLP_impression-X5-Compact.pdf",
+    "https://glp.de/templates/yootheme/cache/dc/impression-X5-Compact_Header-dc0173b5.png"
+  ]
+}

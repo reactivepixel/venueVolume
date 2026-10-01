@@ -1,0 +1,69 @@
+{
+  "mesh_count": 62,
+  "triangle_count": 22212,
+  "geometry_sha256": "06a1864f0813dee3e27d8bc79eaa1410221a67804b0a41d288dcf7f5327b4a6f",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.09032057225704193,
+      -0.12439961731433868
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.07467882335186005,
+        -0.007677357643842697
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.09032057225704193,
+        -0.007677357643842697
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        0.0,
+        0.09032057225704193,
+        -0.09690190851688385
+      ]
+    }
+  ],
+  "family": "par",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0050251483917236,
+    1.0999082326889038,
+    1.237804889678955
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.etcconnect.com/Products/Lighting-Fixtures/ColorSource/PAR.aspx",
+    "https://www.etcconnect.com/Products/Entertainment-Fixtures/ColorSource-PAR/Tech-Specs.aspx",
+    "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Lighting_Fixtures/ColorSource/en-CS-PAR-Leaderlines-960x300.jpg"
+  ]
+}

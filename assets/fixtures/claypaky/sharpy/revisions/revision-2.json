@@ -1,0 +1,227 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "claypaky/sharpy",
+    "revision": 2,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Claypaky",
+      "model": "Sharpy",
+      "variant": "C61375",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.claypaky.it/products/sharpy-legacy/",
+        "title": "Claypaky Sharpy official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_sharpy_leaflet.pdf",
+        "title": "Claypaky Sharpy official source 2",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_Sharpy.jpg",
+        "title": "Claypaky Sharpy official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.jpg",
+        "sha256": "d260a1284bf656225ad960bca0ea09796bfafff74b4c212f6606fd065a443c38"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.405,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Base footprint and height are documented; base width/depth orientation follows the manufacturer drawing."
+      },
+      "height": {
+        "value": 0.475,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Base footprint and height are documented; base width/depth orientation follows the manufacturer drawing."
+      },
+      "depth": {
+        "value": 0.33,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Base footprint and height are documented; base width/depth orientation follows the manufacturer drawing."
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "350 VA max; 100-240 V, 50/60 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "19 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "Art-Net",
+            "RDM",
+            "sACN"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.20250000059604645,
+          0.0,
+          -0.1650010049343109
+        ],
+        "max": [
+          0.20250000059604645,
+          0.4749999940395355,
+          0.16500000655651093
+        ]
+      },
+      "parts": [
+        {
+          "name": "base",
+          "prim_path": "/Fixture/Base"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "head",
+          "prim_path": "/Fixture/Head"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Head/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Head/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Fixture-specific procedural approximation informed by the stored official product image; not manufacturer CAD.",
+        "Tapered compact moving-head silhouette, console base, heavy yoke, cylindrical optical body and deep lens bezel.",
+        "Small fasteners, exact surface curvature, labels, internal mechanics, connector geometry and photometry remain simplified.",
+        "Moving components remain separately addressable, but runtime articulation joints are not authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "6c9f6728bc69480af9fec0bc87f21d320d5493674b9ebc17d4b3ba3b237812a2"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "01c20765660ae2109c72b04c6fd6b551ecd32ead67d430c0c73501a9bee68c1e"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "426f12f7d587619f52a8ca2aa3d9a03f780c847353aa5c41cacf97c5b7a2c99a"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "aca92415fab07b0918188d9a651c6bf88d127b435d2407fde42511ceb42114c8"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "a4dfa3e40c4b655c3501fe9e2bd23556c9d0d49767f96dfa56df90f1d8b89d07"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "2473c3b2556cf83faffe7e7e2b014e0161310e655511c9526648b98695a3f7bb"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "83d7c10007679cb15fa1e3f3097e23f1193fffb1495d6c6f769eabdc63c71dc8"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "f496b5b260da6d568084b202ac812255408b3cd74f64a99950c4ad6a28e323d7"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+      "Revision 2 replaces the generic proxy with fixture-specific silhouette, optics, housing and mounting details while preserving sourced outer dimensions."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-2",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

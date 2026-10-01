@@ -1,0 +1,68 @@
+{
+  "mesh_count": 47,
+  "triangle_count": 16908,
+  "geometry_sha256": "1fe7ea883a74ef8d42ab3011f722c6601ef646b2e5b9395a8d0186d206e08e71",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.11550786346197128,
+      -0.3311590850353241
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.1184513047337532,
+        0.005890908185392618
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.11550786346197128,
+        0.005890908185392618
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        0.0,
+        0.11550786346197128,
+        -0.3055908977985382
+      ]
+    }
+  ],
+  "family": "profile",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0050251483917236,
+    1.0227272510528564,
+    1.274217963218689
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.martin.com/en-US/products/elp-cl",
+    "https://adn.harmanpro.com/productattachment/7028/product_attachment/x_large-7585204fdcb485b9e58a0edf39e1a50a.webp"
+  ]
+}

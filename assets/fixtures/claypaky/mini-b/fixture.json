@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "id": "claypaky/mini-b",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Claypaky",
+    "model": "Mini-B",
+    "variant": "CL3005",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.claypaky.it/products/mini-b/",
+      "title": "Mini-B product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Specs and Weight - Size; RGBW model, channel footprints and assembled dimensions",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_NewProducts2019-2020_EN.pdf",
+      "title": "Claypaky New Products 2019-2020",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Mini-B section; 6.5 kg, 224 x 186 x 340 mm, seven LEDs",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_Mini-B.jpg",
+      "title": "Mini-B product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.jpg",
+      "sha256": "3305b3a751de8ab92c2a8f21c54eea9718afc22591576654c9bcdb77eb03703a"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.22,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Product page gives base dimensions 186 x 220 mm and height 346 mm with head vertical; corresponding leaflet gives overall size 224 x 186 x 340 mm."
+    },
+    "height": {
+      "value": 0.346,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Product page gives base dimensions 186 x 220 mm and height 346 mm with head vertical; corresponding leaflet gives overall size 224 x 186 x 340 mm."
+    },
+    "depth": {
+      "value": 0.186,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Product page gives base dimensions 186 x 220 mm and height 346 mm with head vertical; corresponding leaflet gives overall size 224 x 186 x 340 mm."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Head vertical; base level; standard RGBW Mini-B, not Mini-B WW or ParLED Aqua."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "375 W max",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "6.5 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "Art-Net",
+          "sACN",
+          "WebServer"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "17-channel mode",
+      "footprint": 17,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "21-channel mode",
+      "footprint": 21,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "29-channel mode",
+      "footprint": 29,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.10999999940395355,
+        0.0,
+        -0.09300000144867226
+      ],
+      "max": [
+        0.10999999940395355,
+        0.34599998593330383,
+        0.09299999551149085
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0005001284298487008
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.05496785044670105,
+          0.0005001284298487008
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.2714633345603943,
+          0.0005001284298487008
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.2714633345603943,
+          -0.04610474780201912
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.05496785044670105,
+          0.0005001284298487008
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.2714633345603943,
+          0.0005001284298487008
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.2714633345603943,
+          -0.04787220060825348
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Product page gives base dimensions 186 x 220 mm and height 346 mm with head vertical; corresponding leaflet gives overall size 224 x 186 x 340 mm.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "b53dd694fc89b608cd3d8af9c2952b502adc74b5b510d684dddfb285c1095bd6"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "cdc1bea2d6fd848ebdd82969cbc9b9900c5c793948e184e8a6375b579139c2f2"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "31f7d39cf826443e9535db20a390a69ae2d45362b69c4fda24ad5ea5e94d822d"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "17a88ceb38a614047f04aa1bc59269a05484e74add1c5052dde4f1b1b5ef5b73"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "2f8a0c5cf48ea63ca90311aef99900c857a70b6f969cce65db17146f8a29d858"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "afa23ec616d57b04db8611a355d024209f8bea0411a63f04cb45b8014e76bbc8"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "bcddefab8e9fa122dd0bb1bdf040b2d0bf3d06fa68ab1c1460d5093365d95402"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "092785b46c608916293a469e7032cbad2771422972b61b074ef69016244db23c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "96a823e2341fd7e2adfadc277624fed54a460fd9c34880478ea48df012383351"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "9250a53f2c2fc35152ab70636e7c12b9cf2c7102a8b02d270dc1f528084a9cc3"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "c9169edce5610b3f33f3dd4a2a88ae7603995cec1684d7711a145c8731af287a",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 7,
+      "body_style": "compact yoke head with central LED and six outer lenses",
+      "notes": "Seven RGBW LEDs; keep central LED optically distinct from outer ring."
+    },
+    "mesh_count": 92,
+    "triangle_count": 25540,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Source describes a vertical-head dimensional pose; modeled horizontal optical-axis pose fits that envelope. Verify pose-specific shape before placement/clearance use."
+  ],
+  "revision_notes": [
+    "Acquired in expansion batch 2. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ]
+}

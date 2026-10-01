@@ -1,0 +1,418 @@
+{
+  "schema_version": 1,
+  "id": "adj/jolt-bar-fx2",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ADJ",
+    "model": "Jolt Bar FX2",
+    "variant": "JOL286",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.adj.com/products/jolt-bar-fx2",
+      "title": "Jolt Bar FX2 product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Downloads: dimensional drawing, user manual, DMX traits, CAD; page identifies exact SKU JOL286",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.adj.com/cdn/shop/files/e1af7217437ab7f23dec17a84b9dae00a6dcec47_JOL286__IMG__004__067a4c0bb043.jpg?v=1776713904&width=800",
+      "title": "Jolt Bar FX2 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.jpg",
+      "sha256": "1fb91f9263aba982fadee33c175f594e7214a96569486d2ae426ef19f89fde0e"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 1.0,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer states 1000 x 103.5 x 101 mm as length x width x height; longitudinal bar axis is width in this record."
+    },
+    "height": {
+      "value": 0.101,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer states 1000 x 103.5 x 101 mm as length x width x height; longitudinal bar axis is width in this record."
+    },
+    "depth": {
+      "value": 0.1035,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer states 1000 x 103.5 x 101 mm as length x width x height; longitudinal bar axis is width in this record."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Assembled bar, optical face forward, long axis horizontal, supplied yoke brackets at their nominal straight-down orientation; manufacturer dimensional drawing."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "214 W at 120 V; 208 W at 230 V; 100–240 V AC, 50/60 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "13 lb (5.9 kg)",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "Aria X2"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "6-channel mode",
+      "footprint": 6,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "9-channel mode",
+      "footprint": 9,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "13-channel mode",
+      "footprint": 13,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "16-channel mode",
+      "footprint": 16,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "18-channel mode",
+      "footprint": 18,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "20-channel mode",
+      "footprint": 20,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "32-channel mode",
+      "footprint": 32,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "34-channel mode",
+      "footprint": 34,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "38-channel mode",
+      "footprint": 38,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "43-channel mode",
+      "footprint": 43,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "45-channel mode",
+      "footprint": 45,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "64-channel mode",
+      "footprint": 64,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "78-channel mode",
+      "footprint": 78,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "80-channel mode",
+      "footprint": 80,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "112-channel mode",
+      "footprint": 112,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "127-channel mode",
+      "footprint": 127,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "129-channel mode",
+      "footprint": 129,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.4999999701976776,
+        0.0,
+        -0.051750004291534424
+      ],
+      "max": [
+        0.4999999701976776,
+        0.10100000677630305,
+        0.051750003825873137
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0041319760493934155,
+          -0.003643542993813753
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.0646001473069191,
+          -0.003643542993813753
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.0646001473069191,
+          -0.04509581997990608
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.0646001473069191,
+          -0.046186670660972595
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer states 1000 x 103.5 x 101 mm as length x width x height; longitudinal bar axis is width in this record.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "1833a68577308035ea5e166c095cd6b55b2aada893d13c8bb2fdc3762af2b212"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "61281eb5db539deb77ec1daed161357b5384864190456e1c76fda01724d80f61"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "56412a10ebc35b239c5ad6f2113fdcc6d53d8e1d731439ea08f7650731fb0c3e"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "87f657c8ff861c47a826dc05eae2041f139a7ee6f0f554b6f53385a53cf213b8"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "adc66ccbb647af20e9c8703692ed43bc7609ea565625ff3949838a4f823ac3d1"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "8c04dc42a3b69374b10cd5ddec931c7b360ca2c351a75db97b16d24d331a4abb"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "58dfe2de857d45dacc4fdbfabcc0cc311b36d63d81b1e0f3d66c4926f738a784"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "3d391aee7d567a142e06a8d39420859fdb7cc10dd4ca4f63f69617684134fa2e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "422dae0464c5076be4b1374b79211665a4cafc5f8fa3cb7d223de8476ad14d90"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "ef7058558c7d30641cd4c62ce025aeb368bd237edd4473d8cfcf4619a7593acd"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "6544568a6e8915911aeaf1f18ae535dbd6218c3bf812c068c711ee2387576fa1",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "strobe",
+      "lens_count": 560,
+      "body_style": "linear rectangular bar with central white LED strip, RGB LED fields, and end brackets",
+      "notes": "LED quantity sourced as 448 RGB plus 112 cool-white emitters; bracket/body detail should follow official product imagery and CAD.",
+      "strip": true,
+      "cells": 28
+    },
+    "mesh_count": 123,
+    "triangle_count": 23140,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Acquired in expansion batch 1. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed strobe geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ]
+}

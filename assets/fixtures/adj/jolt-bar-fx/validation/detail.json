@@ -1,0 +1,68 @@
+{
+  "mesh_count": 99,
+  "triangle_count": 18628,
+  "geometry_sha256": "2c534d7cb7d5cab6dec7a7204a6dde0f58c0658d6c72d6082cfe9ee78cbf3f21",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.07724879682064056,
+      -0.04773605614900589
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.00124594965018332,
+        -0.0036588404327630997
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.07724879682064056,
+        -0.0036588404327630997
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        0.0,
+        0.07724879682064056,
+        -0.04660587012767792
+      ]
+    }
+  ],
+  "family": "strobe",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.967117965221405,
+    1.0562477111816406,
+    1.0129660367965698
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/products/jolt-bar-fx",
+    "https://www.adj.com/cdn/shop/files/4ba34d07f96ad74129a39daa60a889601126b3e3_JOL250__IMG__003__d947eb5428f7.jpg?v=1776713379&width=800"
+  ]
+}

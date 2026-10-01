@@ -1,0 +1,19 @@
+{
+  "fixture_id": "martin-professional-harman/mac-aura",
+  "passed": true,
+  "mesh_count": 164,
+  "triangle_count": 39828,
+  "max_vertex_deviation_m": 3.3760443329811096e-09,
+  "tolerance_m": 1e-06,
+  "tests": [
+    "Saved Blender and USDZ reopened independently",
+    "World-space positions after unit/axis conversion",
+    "Exact ordered triangle topology",
+    "Material bindings and diffuse color",
+    "No missing or extra physical meshes",
+    "Finite coordinates",
+    "Outward closed-solid winding"
+  ],
+  "errors": [],
+  "realitykit_device_test": "not_run"
+}

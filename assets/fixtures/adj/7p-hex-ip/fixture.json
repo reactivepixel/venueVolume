@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "adj/7p-hex-ip",
-  "revision": 1,
+  "revision": 2,
   "updated_at": "2026-09-30",
   "status": "ready_for_visualization",
   "identity": {
@@ -32,34 +32,49 @@
       "reuse_status": "reference_only",
       "file": "sources/official-product-image.jpg",
       "sha256": "412e91ce2f265ea06c2dbdbea3e4384330cf1e4e8404e2a3bea0aa462c584bb0"
+    },
+    {
+      "id": "floor-pose-drawing",
+      "url": "https://www.adj.eu/mwdownloads/download/link/id/1178",
+      "title": "ADJ 7P HEX IP manual",
+      "kind": "manufacturer_drawing",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Printed p.23, PDF p.24: floor-pose side and rear drawings; folded pose shown separately below",
+      "reuse_status": "reference_only",
+      "file": "sources/7p-hex-ip-manual.pdf",
+      "sha256": "c2e2ca5e80a7d3bc9235487a6a64f277e6f3f433e94efed6a2c47fcb55273fd1"
     }
   ],
   "dimensions": {
     "width": {
-      "value": 0.1617,
-      "status": "documented",
-      "source_ids": [
-        "official-1"
-      ],
-      "unit": "m"
-    },
-    "height": {
-      "value": 0.2325,
-      "status": "documented",
-      "source_ids": [
-        "official-1"
-      ],
-      "unit": "m"
-    },
-    "depth": {
       "value": 0.256,
       "status": "documented",
       "source_ids": [
-        "official-1"
+        "floor-pose-drawing"
       ],
-      "unit": "m"
+      "unit": "m",
+      "note": "Floor-standing split-yoke drawing: W256 mm across knobs, H234.8 mm side-view maximum, D170.4 mm floor feet. Product-page 256 x 161.7 x 232.5 mm combines a different folded bracket pose."
     },
-    "reference_pose": "shipping/upright reference pose; moving head centered"
+    "height": {
+      "value": 0.2348,
+      "status": "documented",
+      "source_ids": [
+        "floor-pose-drawing"
+      ],
+      "unit": "m",
+      "note": "Floor-standing split-yoke drawing: W256 mm across knobs, H234.8 mm side-view maximum, D170.4 mm floor feet. Product-page 256 x 161.7 x 232.5 mm combines a different folded bracket pose."
+    },
+    "depth": {
+      "value": 0.1704,
+      "status": "documented",
+      "source_ids": [
+        "floor-pose-drawing"
+      ],
+      "unit": "m",
+      "note": "Floor-standing split-yoke drawing: W256 mm across knobs, H234.8 mm side-view maximum, D170.4 mm floor feet. Product-page 256 x 161.7 x 232.5 mm combines a different folded bracket pose."
+    },
+    "reference_pose": "Floor-standing split-yoke pose, optical axis horizontal"
   },
   "features": {
     "optical": {
@@ -133,88 +148,146 @@
     "up_axis": "Y",
     "forward_axis": "-Z",
     "origin": "floor center; X horizontal, Y up, optical forward -Z",
-    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "reference_pose": "Floor-standing split-yoke pose, optical axis horizontal",
     "dimension_tolerance_m": 0.001,
     "bounds_m": {
       "min": [
-        -0.08084999769926071,
+        -0.12800000607967377,
         0.0,
-        -0.12800000607967377
+        -0.0851999968290329
       ],
       "max": [
-        0.08084999769926071,
-        0.23250000178813934,
-        0.12800000607967377
+        0.12800000607967377,
+        0.23480000568088144,
+        0.08519999263808131
       ]
     },
     "parts": [
       {
         "name": "body",
-        "prim_path": "/Fixture/Body"
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.0008209102088585496,
+          -0.0030578416772186756
+        ]
       },
       {
         "name": "yoke",
-        "prim_path": "/Fixture/Yoke"
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.14037564396858215,
+          -0.0030578416772186756
+        ]
       },
       {
         "name": "lens",
-        "prim_path": "/Fixture/Lens"
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.14037564396858215,
+          -0.0632522851228714
+        ]
       }
     ],
     "joints": [],
     "emitters": [
       {
-        "name": "primary light output",
-        "prim_path": "/Fixture/Emitter"
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.14037564396858215,
+          -0.08938051760196686
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
       }
     ],
     "assumptions": [
       "Procedural visualization proxy, not manufacturer CAD.",
-      "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L.",
-      "Moving components are separated but no runtime articulation joints are authored."
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints.",
+      "Floor-standing split-yoke drawing: W256 mm across knobs, H234.8 mm side-view maximum, D170.4 mm floor feet. Product-page 256 x 161.7 x 232.5 mm combines a different folded bracket pose."
     ],
     "artifacts": [
       {
         "role": "authoring",
         "file": "models/fixture.blend",
-        "sha256": "699d78e0fcc5f94334619bbe14204017ce6a50dd861dd113e5dd3d8bd2ff5da6"
+        "sha256": "2bf0fb89caf3f72b87bb4f21989e8f37a619fd5587dfbc7f065d37687fc199c0"
       },
       {
         "role": "runtime",
         "file": "models/fixture.usdz",
-        "sha256": "0660719d37dcc3482b70e26dbda89a272ebec157a73371d15e1d156d02b411c4"
+        "sha256": "306b211e7dbe473b749a0ff1a0898d45d45cd7abc6b729f666f069ea06994c29"
       },
       {
         "role": "generator",
         "file": "models/build_fixture.py",
-        "sha256": "91dae27b59e36d677c14870d859038979d177fba6c149be8aa74e4a437b31d3b"
-      },
-      {
-        "role": "preview",
-        "file": "previews/front.png",
-        "sha256": "5499cd0b55c2101dcecaccf24d4eb6b291642e0b462c96ea0bacc38509202daa"
-      },
-      {
-        "role": "preview",
-        "file": "previews/rear.png",
-        "sha256": "7797f407c42bf4f300f64cdc7b3191963afcd3b51a92bfeadbc30743530c8c9e"
-      },
-      {
-        "role": "preview",
-        "file": "previews/side.png",
-        "sha256": "1a9f0b4c67f45d74952c69c08cc5aea528955ea391edf69c070e923783bdb3e4"
-      },
-      {
-        "role": "preview",
-        "file": "previews/three-quarter.png",
-        "sha256": "36b1435cf793bab93b2d2b7464aa5f82918cf14c82530f469f3783d6dd5555a7"
+        "sha256": "d167788d6f3c143996e53f0b1f3dcd20b5c9d611f745e2a4bc88f4884a325dea"
       },
       {
         "role": "validation",
         "file": "validation/usdz.json",
-        "sha256": "41808528898aa47cd785d4fa15a4aeba3fc20d397ae705425892497e59702e47"
+        "sha256": "960bc5a563bf6ca1715c789eb702f40e4dcbf640a19562031b3e14a6626c0ba4"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "16b66586b189a90d8fd497ccede6747640d8eaaee13118c44bc16c6dff6e5920"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "2685ea2339845416f9317298e9351141a897d4a11e95e0db5cad8f9a1e8b095b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "110d0942aa0eefddb98be1fc04a673f8c4019c402cd564f2a75173164fc55432"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "331e769e2290ccd464adf2442e58bf8cb4db94d288c723e43f360c15d65100a6"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "8798b5e2a5b6889a757776ab7a26df8b579fd1ff1b3bff55a775196dab5008a1"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "55571f7ac0ed03c053132e287763ab93a7734858536aaddf95d1628a67d90d5c"
       }
-    ]
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "63171a877dfd979b5c5ba4a070fb4cc9d5887f907a4453acafae15447cd29344",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "par",
+      "lens_count": 7,
+      "floor_yoke": true,
+      "body_style": "ribbed",
+      "notes": "Seven circular optics, cooling fins and double floor yoke."
+    },
+    "mesh_count": 64,
+    "triangle_count": 22588,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
   },
   "verification": {
     "realitykit": "not_tested",
@@ -225,6 +298,8 @@
   },
   "unresolved": [],
   "revision_notes": [
-    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed par geometry, editable part pivots, full-detail USDZ export and four refreshed previews.",
+    "Official drawing review corrected the 7P HEX IP floor-pose width, height and depth."
   ]
 }

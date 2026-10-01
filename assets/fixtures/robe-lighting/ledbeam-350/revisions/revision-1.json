@@ -1,0 +1,238 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "robe-lighting/ledbeam-350",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "ROBE Lighting",
+      "model": "LEDBeam 350",
+      "variant": "LEDBeam 350",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.robe.cz/ledbeam-350",
+        "title": "ROBE Lighting LEDBeam 350 official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.robe.cz/res/downloads/catalogues/ROBE_LEDBeam_350_leaflet_online_version.pdf",
+        "title": "ROBE Lighting LEDBeam 350 official source 2",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-3",
+        "url": "https://www.robe.cz/res/downloads/exterior_dimensions/RobinLEDBeam350-dimensions.pdf",
+        "title": "ROBE Lighting LEDBeam 350 official source 3",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://cdn.aws.robe.cz/v1/image/resize/7c16e7d0f45129d3a4fc9e6be99a5f1a32e0e115?fit=cover&height=452&width=452&withoutEnlargement=false",
+        "title": "ROBE Lighting LEDBeam 350 official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.jpg",
+        "sha256": "17cc2729eb258cf85b2db0112bba302cbe02ec247a36e0b645ab87838ef999a1"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.32,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "height": {
+        "value": 0.426,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "depth": {
+        "value": 0.22,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {
+        "zoom": {
+          "value": "3.8-60 degrees",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "450 W max; 100-240 V, 50/60 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "9.85 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM",
+            "Art-Net",
+            "sACN"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.1599999964237213,
+          0.0,
+          -0.10999999940395355
+        ],
+        "max": [
+          0.1599999964237213,
+          0.4259999990463257,
+          0.10999999940395355
+        ]
+      },
+      "parts": [
+        {
+          "name": "base",
+          "prim_path": "/Fixture/Base"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "head",
+          "prim_path": "/Fixture/Head"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Head/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Head/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer specifies H x W x D with head vertical.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "c03985ac7c27a1374df3cd52c7a5efb2036e52f09af4c996ccf51bcb71684364"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "fe188780b8624cc738c1344bc7e9287e6132f692b9b2e50219c9f251d25b1b0a"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "8c5faab0b8172fb5a50feeb5e8334cacf2d5825c9a2334795c4d536d9d867a49"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "9d077fb65e96d63f79188dcd8949f4b19178554ac67296da1f37e54fe6428ead"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "a897a290c4734cf51f814580bd5994a7170ae0409cc682f433084c93700a4d3b"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "625a67770ce9920a18eeda80e4b34c847f01b31e428642a3f623dbe5dd8bf4b0"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "4f7df58f3f75f3a30239446e0f19c32033476acb614e33b6741d6a2395bab4f8"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "1c507eaaa881cef6db923e5f30522877cd01957548f4f5e1a0f74559a475f4f4"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-1",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

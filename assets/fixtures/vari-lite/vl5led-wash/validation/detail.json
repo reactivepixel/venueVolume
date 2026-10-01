@@ -1,0 +1,78 @@
+{
+  "mesh_count": 89,
+  "triangle_count": 22232,
+  "geometry_sha256": "efcbc69cf30c8375ded21f114f502ad568a332180976b2647fa9a00326b24be6",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.4536580741405487,
+      -0.0969017818570137
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0005204188055358827
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.09182582050561905,
+        0.0005204188055358827
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.4536580741405487,
+        0.0005204188055358827
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.4536580741405487,
+        -0.0933421328663826
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852217435836792,
+    1.0408354997634888,
+    0.992926299571991
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.vari-lite.com/global/products/v5led-wash",
+    "https://vari-lite.s3.eu-west-1.amazonaws.com/datasheets/Vari-Lite/VL5LED_WASH.pdf",
+    "https://www.vari-lite.com/b-dam/vari-lite/products/vl5led-wash/VL5LED-WASH_thumbnail.jpg"
+  ]
+}

@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "id": "claypaky/tambora-flash",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Claypaky",
+    "model": "Tambora Flash",
+    "variant": "CL2020",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.claypaky.it/products/tambora-flash/",
+      "title": "Tambora Flash product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Specs; source, modes, 1150 VA, weight and dimensions without handles",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.claypaky.it/products/tambora-flash/claypaky_tamboraflash_en/",
+      "title": "Tambora Flash technical leaflet",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Main features; February 2024, stated dimensions 533 x 180 x 186 mm",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.claypaky.it/wp-content/uploads/2025/06/Claypaky_TamboraFlash.jpg",
+      "title": "Tambora Flash product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.jpg",
+      "sha256": "66c46fbb6715c3007dfdf16d3987eb0a594c5230873b3cc9e0b2603fb1aa7f78"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.497,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Current Claypaky product page gives 497 x 180 x 186 mm without handles; order interpreted as length, width, height, with long dimension across batten width. A February 2024 leaflet reports a conflicting length of 533 mm; the current page value is retained and conflict recorded."
+    },
+    "height": {
+      "value": 0.186,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Current Claypaky product page gives 497 x 180 x 186 mm without handles; order interpreted as length, width, height, with long dimension across batten width. A February 2024 leaflet reports a conflicting length of 533 mm; the current page value is retained and conflict recorded."
+    },
+    "depth": {
+      "value": 0.18,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Current Claypaky product page gives 497 x 180 x 186 mm without handles; order interpreted as length, width, height, with long dimension across batten width. A February 2024 leaflet reports a conflicting length of 533 mm; the current page value is retained and conflict recorded."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Body face upward, handles excluded, single unit; mounting angle 0 degrees."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "1150 VA max at 230 V / 50 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "10.4 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "Art-Net",
+          "sACN",
+          "WebServer",
+          "Kling-Net"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.2485000044107437,
+        0.0,
+        -0.09000001102685928
+      ],
+      "max": [
+        0.2485000044107437,
+        0.1860000176820904,
+        0.09000000567175448
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0019867552910000086,
+          -0.0021276602055877447
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.12317881733179092,
+          -0.0021276602055877447
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.12317881733179092,
+          -0.07489363104104996
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.12317881733179092,
+          -0.07680852711200714
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Current Claypaky product page gives 497 x 180 x 186 mm without handles; order interpreted as length, width, height, with long dimension across batten width. A February 2024 leaflet reports a conflicting length of 533 mm; the current page value is retained and conflict recorded.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "e182e7458cb248cb7daec65d52b756e1e09eaa05028fe0fa02dc9d6ad888a7ee"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "c13bb89f1ef5b6590ffdeefda333460ee91032732da2c896298b09a26d41a69d"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "0b2df186a9969317d8e84e2845c6e122579888e01fcd00e27ac6b32590594f1f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "6b83ce7920b22c6243c83cbe201e096e654afc385383ceb01ce31a8cf3be6c28"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "79fc62733758383e0e32a8cc083ffe76b784ecfec2e3708bd0bed3940f8ad4ed"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "c8c060c6f8ac01b3c1d8c99e5c597c560f33fa0ced0e7e2e51a9b7252df46221"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "86d644f4c43ec9768148e1f51628afdac90e8ca36db29890591de6a20bdf0f5c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "20ac6efbc0387960e7e6705d4aef590bb67f9811c693922f4a31d460cbca9e77"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "57744ee48abf702b94ee77deb2332be1f986be250e3c1be224e516d145b6f7cd"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "328c834767e5eaa131a71fb7c5334578858c626372bc974bcf61ebb42a4e4401"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "21154e280736d3c60508ce81af59139faf2c1f5b264fbfbf33805e47763ce3fe",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "strobe",
+      "lens_count": 4,
+      "body_style": "IP66 rectangular modular fixture with four central reflector cells and two strobe strips",
+      "notes": "Four RGBWW reflector optics plus two lines of segmented white strobe LEDs; handles excluded from dimensions.",
+      "reflector_cells": 4
+    },
+    "mesh_count": 48,
+    "triangle_count": 11360,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Acquired in expansion batch 2. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed strobe geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ]
+}

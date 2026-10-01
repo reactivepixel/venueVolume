@@ -115,6 +115,8 @@ def main():
         key=f"{row['manufacturer']}|{row['name']}";specdims=dims[key];mid=slug(row["manufacturer"]);fid=f"{mid}/{slug(row['name'])}"
         if a.only and a.only!=fid:updated.append(row);continue
         folder=ROOT/"assets/fixtures"/fid;folder.mkdir(parents=True,exist_ok=True)
+        if (folder/'fixture.json').exists():
+            raise SystemExit('Existing fixture preserved. Use build_detailed_catalog.py for reviewed, hash-checked upgrades: '+fid)
         spec,record=record_for(row,specdims,folder,not a.skip_downloads);write_wrapper(folder,spec)
         (folder/"fixture.json").write_text(json.dumps(record,indent=2,ensure_ascii=False)+"\n")
         subprocess.run(["blender","--background","--python-exit-code","1","--python",str(folder/"models/build_fixture.py")],check=True)

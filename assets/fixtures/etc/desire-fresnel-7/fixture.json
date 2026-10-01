@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "id": "etc/desire-fresnel-7",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ETC",
+    "model": "Desire Fresnel 7",
+    "variant": "DFL7",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/Desire-Fresnel/Features/",
+      "title": "Desire Fresnel Features",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "7 inch version; product features",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/Desire-Fresnel/Documentation.aspx",
+      "title": "ETC Desire Fresnel 7 official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737506619",
+      "title": "Desire Fresnel Technical Datasheet",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Rev F physical section: DFL7 dimensions and weight",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-4",
+      "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737506792",
+      "title": "Desire Fresnel 7 Physical Drawing",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Official ETC DFL7 drawing crosschecked against Rev F datasheet: 455 × 304 × 356 mm retracted; 505 mm extended depth",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "evidence-5",
+      "url": "https://www.ecm-sa.ch/media/desire_fresnel_datasheet_revf.pdf",
+      "title": "ETC Desire Fresnel Technical Datasheet",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Rev F, April 2025, p. 11 Physical table explicitly labels HEIGHT 455 mm, WIDTH 304 mm, DEPTH 356/505 mm. The adjacent dimensioned drawing depicts 455 mm vertical and 304 mm crosswise; 10.8 kg.",
+      "reuse_status": "reference_only",
+      "kind": "secondary"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Lighting_Fixtures/Desire_Fresnel/Desire_Fresnel_Glam_960x300.jpg",
+      "title": "Desire Fresnel 7 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.jpg",
+      "sha256": "82c97ff54adfbe81627a3eb79a15e8e933d1c1266c96bd5f9019f9dba3131ec9"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.304,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3",
+        "official-4",
+        "evidence-5"
+      ],
+      "unit": "m",
+      "note": "Corrected from ETC Rev F Physical table: HEIGHT 455 mm × WIDTH 304 mm × DEPTH 356 mm (fully retracted; 505 mm extended). Drawing on p. 11 labels 455 mm vertical and 304 mm crosswise."
+    },
+    "height": {
+      "value": 0.455,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3",
+        "official-4",
+        "evidence-5"
+      ],
+      "unit": "m",
+      "note": "Corrected from ETC Rev F Physical table: HEIGHT 455 mm × WIDTH 304 mm × DEPTH 356 mm (fully retracted; 505 mm extended). Drawing on p. 11 labels 455 mm vertical and 304 mm crosswise."
+    },
+    "depth": {
+      "value": 0.356,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3",
+        "official-4",
+        "evidence-5"
+      ],
+      "unit": "m",
+      "note": "Corrected from ETC Rev F Physical table: HEIGHT 455 mm × WIDTH 304 mm × DEPTH 356 mm (fully retracted; 505 mm extended). Drawing on p. 11 labels 455 mm vertical and 304 mm crosswise."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Yoke upright; zoom fully retracted"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {
+      "weight": {
+        "value": "10.8 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "City Theatrical Multiverse wireless DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.15199998021125793,
+        0.0,
+        -0.17799998819828033
+      ],
+      "max": [
+        0.15199998021125793,
+        0.45499999821186066,
+        0.17799998819828033
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.038445476442575455,
+          -0.012099608778953552
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.17320694029331207,
+          -0.012099608778953552
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.17320694029331207,
+          -0.14760927855968475
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.17320694029331207,
+          -0.17576350271701813
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Corrected from ETC Rev F Physical table: HEIGHT 455 mm × WIDTH 304 mm × DEPTH 356 mm (fully retracted; 505 mm extended). Drawing on p. 11 labels 455 mm vertical and 304 mm crosswise.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "f53ed71551f0c61998e77792532c949d39c49c81ed109f6488c89661dddacdfe"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "21541c2c5e20ee7c487ca4b6d430406a9f15bc69bed09835c07133fca1d8a67c"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "0d0c4a29f945603218c91e79bae4cf42001a776cdc0b182b4f9373141bff49fc"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "e4cbfcdb9d4684e2110ef53677b0baa330f11b3690986deee3d6bf260009b08e"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "3393fa2fe5c48ffa13312bc08ffc45d19416efb87112573db2529815110b7f1c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "bd6c6e5708c33b15cda1aaf243e8b7ff6df16ba43683c23cfddb5b950aee31ea"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "d30214c635ea89b773d1e43279342e53d01bda7eca8f10ca9d6adf093d39b5da"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "0d48e25533abca048e6273de7023590a64d45c00ebd1aea0ac46b870d2ddba03"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "1fdccf68116e08648e808703859b4d4f07e1ce71dd2271c8ed40fa0838cee5a2"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "c6d4e32df0f0334f48f4bd3bbb006fc1d24e9f505b6837f6dfec1ad00c67a1d6"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "508588eb991b2b1f413cbafdd6357b9571f3d75a621304e0f63a45332e44fdbf",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "fresnel",
+      "barn_doors": true,
+      "lens_count": 1,
+      "body_style": "round Fresnel head on yoke",
+      "notes": "DFL7 is a fixed 7-inch aperture variant; allow lens travel in depth."
+    },
+    "mesh_count": 56,
+    "triangle_count": 23496,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Acquired in expansion batch 1. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed fresnel geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ]
+}

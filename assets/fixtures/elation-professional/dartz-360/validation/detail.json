@@ -1,0 +1,77 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 18580,
+  "geometry_sha256": "762545a554ba172a9fa740c1f0827a21b6889762ecf3df97af651e2b5a837cee",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.3900299072265625,
+      -0.11046873033046722
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.000514455430675298
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.07275199890136719,
+        0.000514455430675298
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.3900299072265625,
+        0.000514455430675298
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.3900299072265625,
+        -0.1064135804772377
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    1.0289241075515747,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.elationlighting.com/products/dartz-360",
+    "https://www.elationlighting.com/cdn/shop/files/9a52b514f22cc4267d1a3efdd11897414280eec0_DAR880__IMG__001__cd987eea5c81.jpg?v=1776815066&width=850"
+  ]
+}

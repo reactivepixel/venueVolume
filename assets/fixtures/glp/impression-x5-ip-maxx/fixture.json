@@ -1,0 +1,392 @@
+{
+  "schema_version": 1,
+  "id": "glp/impression-x5-ip-maxx",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "GLP",
+    "model": "impression X5 IP Maxx",
+    "variant": "7796",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://glp.de/en/products/entertainment-lighting/moving-lights/impression-x5-ip-maxx-en",
+      "title": "impression X5 IP Maxx product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Technical Data; optical/control details, height, yoke width, depth and net weight",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www2.glp.de/files/products/impression-x5-ip-maxx-product-data/GLP_impression_X5_IP_Maxx_Safety_Manual_EN_Rev20241007-1.pdf",
+      "title": "impression X5 IP Maxx Safety Manual",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Dimensions and weight; head vertical, rubber feet installed, width across yoke",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://www2.glp.de/files/products/impression-x5-ip-maxx-product-data/impression-X5-IP-Maxx_Datasheet_Rev20250430.pdf",
+      "title": "impression X5 IP Maxx Datasheet",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Dimensions & Weight and max power, revision 2025-04-30",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://glp.de/templates/yootheme/cache/c3/impressionX5IP_Header-c337f84c.png",
+      "title": "impression X5 IP Maxx product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.png",
+      "sha256": "a4b1b3e2d5ead883becd4773bdb9a9c9c40997aa05880abbffebd60aa47a9053"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.483,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "GLP product data and safety manual; height includes rubber feet, width across yoke, head vertical. Datasheet depth is 348 mm while current product page gives 358 mm; conservative current product-page value is retained."
+    },
+    "height": {
+      "value": 0.64,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "GLP product data and safety manual; height includes rubber feet, width across yoke, head vertical. Datasheet depth is 348 mm while current product page gives 358 mm; conservative current product-page value is retained."
+    },
+    "depth": {
+      "value": 0.358,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "GLP product data and safety manual; height includes rubber feet, width across yoke, head vertical. Datasheet depth is 348 mm while current product page gives 358 mm; conservative current product-page value is retained."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Head vertical; yoke/base level; rubber feet installed."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "1500 W max",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "29.7 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "Art-Net",
+          "sACN",
+          "CRMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "22-channel mode",
+      "footprint": 22,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "33-channel mode",
+      "footprint": 33,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "42-channel mode",
+      "footprint": 42,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "141-channel mode",
+      "footprint": 141,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "122-channel mode",
+      "footprint": 122,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "159-channel mode",
+      "footprint": 159,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.24149999022483826,
+        0.0,
+        -0.1789999925531447
+      ],
+      "max": [
+        0.24149999022483826,
+        0.6399999856948853,
+        0.17900000279769301
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.007805285509675741
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.04442383348941803,
+          0.007805285509675741
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.47657454013824463,
+          0.007805285509675741
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.47657454013824463,
+          -0.14355596899986267
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.04442383348941803,
+          0.007805285509675741
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.47657454013824463,
+          0.007805285509675741
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.47657454013824463,
+          -0.14929620921611786
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "GLP product data and safety manual; height includes rubber feet, width across yoke, head vertical. Datasheet depth is 348 mm while current product page gives 358 mm; conservative current product-page value is retained.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "18fb940e456581e02edfbab669ecc7e97ebb843861041135ec75fa3846f8ace4"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "3a17a04aee93ad9dccf71290c249b59c2e98a534b449c7473ea5814e2262c506"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "b890f99e5cbba4b2b76dbb403b304eea89576cc19745e97be40f8205278fb0b4"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "cb99b82f17d46d3ef4e91a1a62473d2bff51235b92dba23bea2d96395074669f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "0319cb66d14582407205182cf498e10ea71d4d6ed58eac67bf97665cc6f924fe"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "cd5edad65d8d371559704ee1b9cbd601b9f87ea0e3e000e280d7b631c5b04995"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "b747e734027228ed034cd3045447d8ab534e1ffe33af792d04355a3803ad0f9a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "7835213df34f439ed20b560236169125c946620f4a7598c05920210a36df5241"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "7f5918c36b9820ddd20bdb0f1623859ce97c7c33052018bdd1cad04e82762448"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "0d13bc85db3b7c3008799e28af075b7480a7929775a38139a652cd9e5b5d9e41"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "728cae6c04417f741a95b4bc5995c3395e44dd3abbf26977a4e29a111c99c112",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 37,
+      "body_style": "large IP65 moving wash head with 37 circular RGBL lenses",
+      "notes": "37 x 40 W RGBL pixel array; avoid using the similar non-IP impression X5 body.",
+      "baseless": true
+    },
+    "mesh_count": 139,
+    "triangle_count": 49776,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Source describes a vertical-head dimensional pose; modeled horizontal optical-axis pose fits that envelope. Verify pose-specific shape before placement/clearance use."
+  ],
+  "revision_notes": [
+    "Acquired in expansion batch 2. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ]
+}

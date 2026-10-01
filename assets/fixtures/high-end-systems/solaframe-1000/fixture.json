@@ -1,0 +1,346 @@
+{
+  "schema_version": 1,
+  "id": "high-end-systems/solaframe-1000",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "High End Systems",
+    "model": "SolaFrame 1000",
+    "variant": "SolaFrame 1000",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaFrame/1000/Documentation.aspx",
+      "title": "SolaFrame 1000 Documentation",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Datasheet and dimensional information links; DMX channel map listed",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737503529",
+      "title": "SolaFrame 1000 Technical Datasheet",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Rev L, pages 2 and 6; protocols/RDM, 917 W standard or 958 W with defogger, 31.3 kg",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737504840",
+      "title": "Dimensional Drawings & Physical Information",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "SolaFrame 1000 drawing page; overall assembled envelope",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "evidence-4",
+      "url": "https://shop.etcconnect.com/solaframe-1000-black-molded-insert/",
+      "title": "SolaFrame 1000 official ETC store product image",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product image and overview",
+      "reuse_status": "reference_only",
+      "kind": "manufacturer_product"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://cdn11.bigcommerce.com/s-cr8amw/images/stencil/1280x1280/products/781/2244/SolaFrame_1000_prod_right_1__26691.1680192507.png?c=2",
+      "title": "SolaFrame 1000 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.png",
+      "sha256": "3412a8b72f1565cd8e3a2a5552ceb78ac88c26946a6d801e258983ac0a123ee8"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.46,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3",
+        "evidence-4"
+      ],
+      "unit": "m",
+      "note": "Manufacturer dimensional drawing / Rev K datasheet, assembled dimensions excluding mounting hardware. Standard power draw is 917 W, 958 W with lens defogger."
+    },
+    "height": {
+      "value": 0.726,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3",
+        "evidence-4"
+      ],
+      "unit": "m",
+      "note": "Manufacturer dimensional drawing / Rev K datasheet, assembled dimensions excluding mounting hardware. Standard power draw is 917 W, 958 W with lens defogger."
+    },
+    "depth": {
+      "value": 0.324,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3",
+        "evidence-4"
+      ],
+      "unit": "m",
+      "note": "Manufacturer dimensional drawing / Rev K datasheet, assembled dimensions excluding mounting hardware. Standard power draw is 917 W, 958 W with lens defogger."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Head straight up, yoke centered; neutral pose per drawing"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "917 W standard; 958 W with defogger",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "31.3 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.23000000417232513,
+        0.0,
+        -0.1620000065304339
+      ],
+      "max": [
+        0.23000000417232513,
+        0.7260000109672546,
+        0.16200000932440162
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.00036219647154212
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.11615999788045883,
+          0.00036219647154212
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.5741999745368958,
+          0.00036219647154212
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.5741999745368958,
+          -0.14242184162139893
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.11615999788045883,
+          0.00036219647154212
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.5741999745368958,
+          0.00036219647154212
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.5741999745368958,
+          -0.1478368192911148
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer dimensional drawing / Rev K datasheet, assembled dimensions excluding mounting hardware. Standard power draw is 917 W, 958 W with lens defogger.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "9dfb82d7ce2a801e94cfc2124d9c1a657c43ec7dbca46f6b56782c34bb8cef1a"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "64e2c1d5d05e2a490bf1490e91bb74671bf4405dfe8455f88ed1a076398f13c3"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "b65229c682e07f700caa4ec49cef0ecff827178dbf258b8d8be0bc0dd802b122"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "91e36ba16e78d3d52b82fa22e637db8065922cfb4f375376b8a09dd68ea25e82"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "8ba8a4308a2477558e68edc65f5622e6849a4e747b8192ed3883cf2763befbb1"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "23d8cb587d87e6b4594c0b5bfdbbb735430c5f6ff2ff0cbaf85e2b5257776710"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "098b9bae9c1a42e5f727f83402fc6c99c1767a25919f49fcdab3acc7e324e071"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "3e79d3ae5c707eabb5d58f0ea5419cf733524f1f92fd222009106b47ec42fb58"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "47d37d597f8428ab03ad93cbd5108366f8952d793af55974cebb95009a4648d1"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "a8ad8185cc81ad22469a792cd79c68ddc2899730764e05fc39da10a8aafff0cd"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "76b177541f280daed770ab1e7cf212e956cc003909370613b085f834132ea469",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "moving framing profile with yoke",
+      "notes": "Fixture variant available with different LED engine options; not a geometry variant."
+    },
+    "mesh_count": 85,
+    "triangle_count": 18516,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Source describes a vertical-head dimensional pose; modeled horizontal optical-axis pose fits that envelope. Verify pose-specific shape before placement/clearance use."
+  ],
+  "revision_notes": [
+    "Acquired in expansion batch 1. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ]
+}

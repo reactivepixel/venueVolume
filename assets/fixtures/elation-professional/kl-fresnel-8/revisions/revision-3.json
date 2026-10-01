@@ -1,0 +1,295 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "elation-professional/kl-fresnel-8",
+    "revision": 3,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "Elation Professional",
+      "model": "KL Fresnel 8",
+      "variant": "KLF023",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.elationlighting.com/products/kl-fresnel-8",
+        "title": "Elation Professional KL Fresnel 8 official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://www.elationlighting.com/cdn/shop/files/9182ac94ce3e7191a943e08811665c65e4c51157_KLF023__IMG__001__42d4bf9b406c.jpg?v=1776815436&width=850",
+        "title": "Elation Professional KL Fresnel 8 official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.jpg",
+        "sha256": "b849efa264f0249c23328515efc8e35cb7a16eebb692cbdc60e93c167e8fe3bd"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.3275,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "height": {
+        "value": 0.456,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "depth": {
+        "value": 0.6084,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": [
+            "350 W warm-white LED; 11-57° zoom; IP20"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "430 W max; 100-240 V AC, 50/60 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "2-channel mode",
+        "footprint": 2,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "3-channel mode",
+        "footprint": 3,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "6-channel mode",
+        "footprint": 6,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "7-channel mode",
+        "footprint": 7,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.16374999284744263,
+          0.0,
+          -0.3041999936103821
+        ],
+        "max": [
+          0.16374999284744263,
+          0.4559999704360962,
+          0.3041999861598015
+        ]
+      },
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body",
+          "pivot_m": [
+            0.0,
+            -0.028969518840312958,
+            -0.03126493841409683
+          ]
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke",
+          "pivot_m": [
+            0.0,
+            0.17904731631278992,
+            -0.03126493841409683
+          ]
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens",
+          "pivot_m": [
+            0.0,
+            0.17904731631278992,
+            -0.2725141942501068
+          ]
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "prim_path": "/Fixture/Emitter",
+          "position_m": [
+            0.0,
+            0.17904731631278992,
+            -0.3018433749675751
+          ],
+          "quaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "optical_axis": [
+            0,
+            0,
+            -1
+          ]
+        }
+      ],
+      "assumptions": [
+        "Fixture-specific procedural approximation informed by the stored official product image; not manufacturer CAD.",
+        "Cylindrical lamp body, rear electronics enclosure, Fresnel rings, full yoke and four barn-door leaves.",
+        "Small fasteners, exact surface curvature, labels, internal mechanics, connector geometry and photometry remain simplified.",
+        "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+        "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "3f1a1068ea1b1810980b7fca800f4403e6a61708a801df078bb36fc2e4390a36"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "8c458111d6a226c580d4c0c162f475a4540e90cd62be92dddcdedc1379720ca5"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "67b4e888d5720a3084a10dabd7a949f9d1de77d5d66e7ce8d4174433a0c18a0e"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "65c1efa5457892f3c9b1cd2dc2f943d832ee6f5c2531bb4c8ff7f9700526288d"
+        },
+        {
+          "role": "validation",
+          "file": "validation/detail.json",
+          "sha256": "171514a0791cab63d023bfbe266f30c0c5f09a763ef970bef6c83a58071b6a38"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "f734953bb36ccd99ac4f601977628981b3fbec45f4b1ced842063ad1b6191bf4"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "eacccdef4af9593723f3aa175bc762564d6f3272e5cb6ba4803ff68dccd2d10a"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "cb45af90585412bbbfda9186906a3da2629e649109a8fce0f41e241090d2b882"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "6c1caff64e7208e8ea91f48b3dbe1ec978674e52c70dd05497e48e9b045c4883"
+        }
+      ],
+      "detail_level": "high",
+      "detail_build_token": "f7afc15d3b2d58291240645420d6d3ce9951aac119f00388ba18c353cc640a39",
+      "generator_dependency": {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "dc9aa1aec519f0bd49d33f821a3d47bfa1517c3a5527b5ba8e078b5c1823a257"
+      },
+      "profile": {
+        "family": "fresnel",
+        "barn_doors": true
+      },
+      "mesh_count": 56,
+      "triangle_count": 23496,
+      "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+      "Revision 2 replaces the generic proxy with fixture-specific silhouette, optics, housing and mounting details while preserving sourced outer dimensions.",
+      "Revision 3: detailed fresnel geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-3",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

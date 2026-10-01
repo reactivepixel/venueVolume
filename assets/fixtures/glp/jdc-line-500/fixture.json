@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "glp/jdc-line-500",
-  "revision": 1,
+  "revision": 2,
   "updated_at": "2026-09-30",
   "status": "ready_for_visualization",
   "identity": {
@@ -120,78 +120,138 @@
       "min": [
         -0.2535000145435333,
         0.0,
-        -0.10075099766254425
+        -0.10074999183416367
       ],
       "max": [
         0.2535000145435333,
-        0.07400000095367432,
-        0.10074999928474426
+        0.0740000014193356,
+        0.10074999183416367
       ]
     },
     "parts": [
       {
         "name": "body",
-        "prim_path": "/Fixture/Body"
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.005418234039098024,
+          -0.0039781853556632996
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.04822919890284538,
+          -0.0039781853556632996
+        ]
       },
       {
         "name": "lens",
-        "prim_path": "/Fixture/Lens"
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.04822919890284538,
+          -0.0873643234372139
+        ]
       }
     ],
     "joints": [],
     "emitters": [
       {
-        "name": "primary light output",
-        "prim_path": "/Fixture/Emitter"
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.04822919890284538,
+          -0.08955869823694229
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
       }
     ],
     "assumptions": [
       "Procedural visualization proxy, not manufacturer CAD.",
       "Manufacturer specifies H x W x D.",
-      "Moving components are separated but no runtime articulation joints are authored."
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
     ],
     "artifacts": [
       {
         "role": "authoring",
         "file": "models/fixture.blend",
-        "sha256": "3b0880adf2db9058b12d98d7f0243f1fa17eb7f3ac3031f0db674c4ef8d4d36a"
+        "sha256": "65b0beb1b006d82ff9d620f38f91428067e95157d845a1fc561aefd396350499"
       },
       {
         "role": "runtime",
         "file": "models/fixture.usdz",
-        "sha256": "fa22608c5e36fc74dfd3e20d848c18fe7f7eec5e36e20685cac2a4eabd7be95a"
+        "sha256": "085d4021eca000307462a1b5501be8fa870a6b13758e7f89f8a082988bb0a808"
       },
       {
         "role": "generator",
         "file": "models/build_fixture.py",
-        "sha256": "e195d02c7dddd572e87b1c0793876a15094015bf1bbc07bf0226ceefa89e1cb1"
-      },
-      {
-        "role": "preview",
-        "file": "previews/front.png",
-        "sha256": "d878f299f0a3f54b4afca29fa46b5fff7c7ab917fe9c759b73144a50a35310a4"
-      },
-      {
-        "role": "preview",
-        "file": "previews/rear.png",
-        "sha256": "9068306dcc439bba9aab568bd5da784562952ff97c5a9d09203ad636f2ac1c00"
-      },
-      {
-        "role": "preview",
-        "file": "previews/side.png",
-        "sha256": "47492220a4374fc252bd79d23813291357e50ea7bc44eaf22814d6509e56e97d"
-      },
-      {
-        "role": "preview",
-        "file": "previews/three-quarter.png",
-        "sha256": "68742a974db807a54295fbd24f1fb8ebf6ebb336e8f068766bee1acfc86315a8"
+        "sha256": "fe216600c6d41107059f1b11ec8f21e31a50fc5e8d856740dd4acde5acabfc13"
       },
       {
         "role": "validation",
         "file": "validation/usdz.json",
-        "sha256": "77d4b65a5f15383993c885fd1c9c222bfa651ae53d19d4d596bf118abf1776f7"
+        "sha256": "bee67aeb0de1761a268a6db425e18dba263e0c16b1595dc1d1c16da62fb97b1b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "956b77dbc2a404726fe22be61fe5862f2fa2b39f1a37bee5dbf78db42ffbaf51"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "e291b9e59d366533c780777295d6a53f043f40fcbdf89453d84e0496a9186070"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "625733aecb8670afc222dc0cfa01dea43478f5f421253463bc92463163ca8875"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "28b3da8c8e601c8f618d3c354d951d6d57c7b7c55eff4c82f804ec627b2392ee"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "c4c96dbab5990c75c019616f3eeed67d6deaaa7da51dff77091664d8cb7d2269"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "7c3220f8eb6faf3199ae6dbbddc18d6ee25553963bc30d294109d185859db812"
       }
-    ]
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "9db7b405981f43f5bb8da9dab382140bf0de022ca916c0403b4177d0456720cb",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "strobe",
+      "strip": true,
+      "cells": 24
+    },
+    "mesh_count": 111,
+    "triangle_count": 20884,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
   },
   "verification": {
     "realitykit": "not_tested",
@@ -202,6 +262,7 @@
   },
   "unresolved": [],
   "revision_notes": [
-    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed strobe geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
   ]
 }
