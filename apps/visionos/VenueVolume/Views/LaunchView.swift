@@ -16,13 +16,13 @@ struct LaunchView: View {
                 Image(systemName: "cube.transparent").font(.system(size: 76, weight: .ultraLight)).foregroundStyle(.cyan)
                     .accessibilityHidden(true)
             }
-            Text("Place a moving-head fixture in the reconstructed classroom. Aim and light the room with saved DMX preview presets.")
+            Text("Start in the white classroom, import a room, or scan with Vision Pro. Save independent fixture setups and reopen them from the wrist toolbox.")
                 .foregroundStyle(.secondary)
             Divider()
             VStack(alignment: .leading, spacing: 16) {
                 Label("Raise your left palm to reveal the toolbox", systemImage: "hand.raised")
-                Label("Drag a preset onto a fixture to set its look", systemImage: "cube")
-                Label("Open fixture controls for position, pan and tilt", systemImage: "info.circle")
+                Label("Drag fixtures into the room and presets onto fixtures", systemImage: "cube")
+                Label("Open Rooms & saved setups to import, scan, save and load", systemImage: "square.stack.3d.up")
             }
             HStack {
                 Text("\(model.fixtures.count) fixtures · \(model.totalChannels) channels").monospacedDigit()

@@ -13,6 +13,19 @@ public struct RoomPlacements: Codable, Equatable, Sendable {
         self.fixtures = fixtures
         self.revision = revision
     }
+
+    public func validate(environment: EnvironmentManifest) throws {
+        guard schemaVersion == 1, environmentID == environment.id, environmentVersion == environment.version,
+              revision >= 0, fixtures.count <= 64, Set(fixtures.map(\.id)).count == fixtures.count else {
+            throw EnvironmentError.invalid("saved placements belong to a different room version or are invalid")
+        }
+        for fixture in fixtures {
+            if let issue = fixture.validationIssue(among: fixtures) { throw EnvironmentError.invalid(issue) }
+            if let surfaceID = fixture.surfaceID, !environment.surfaces.contains(where: { $0.id == surfaceID }) {
+                throw EnvironmentError.invalid("saved placement surface no longer exists")
+            }
+        }
+    }
 }
 
 /// Room-relative state; deliberately separate from the immutable asset bundle / future download cache.
@@ -29,21 +42,12 @@ public struct PlacementStore: Sendable {
         let file = try url(for: environment)
         guard FileManager.default.fileExists(atPath: file.path) else { return nil }
         let saved = try JSONDecoder().decode(RoomPlacements.self, from: Data(contentsOf: file))
-        guard saved.schemaVersion == 1, saved.environmentID == environment.id,
-              saved.environmentVersion == environment.version, saved.revision >= 0,
-              Set(saved.fixtures.map(\.id)).count == saved.fixtures.count else {
-            throw EnvironmentError.invalid("saved placements belong to a different room version or are invalid")
-        }
-        for fixture in saved.fixtures {
-            if let issue = fixture.validationIssue(among: saved.fixtures) { throw EnvironmentError.invalid(issue) }
-            if let surfaceID = fixture.surfaceID, !environment.surfaces.contains(where: { $0.id == surfaceID }) {
-                throw EnvironmentError.invalid("saved placement surface no longer exists")
-            }
-        }
+        try saved.validate(environment: environment)
         return saved
     }
 
     public func save(_ placements: RoomPlacements, environment: EnvironmentManifest) throws {
+        try placements.validate(environment: environment)
         guard placements.environmentID == environment.id, placements.environmentVersion == environment.version else {
             throw EnvironmentError.invalid("cannot save placements against another room")
         }
