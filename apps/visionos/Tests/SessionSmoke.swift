@@ -107,5 +107,39 @@ struct SessionSmoke {
         check(!model.recent.items.contains(.fixture(fixtureID)), "Delete removes stale recent object")
         check(model.selectedID == nil && model.expandedID == nil, "Delete clears selection")
         print("Session smoke checks passed: drafts, presets, transforms, retarget, reposition, persistence, cancel, delete, recents, mock sync.")
+        let roomModel = VenueModel(arguments: [], defaults: defaults, placementDirectory: directory.appendingPathComponent("room-tests"))
+        roomModel.activate(environment: environment); roomModel.canPlace = true
+        let point = Position3D(x: 2.66, y: 0, z: -2)
+        check(roomModel.dropFixture([FixtureKind.cube.dragToken], at: point, surfaceID: "floor"), "Drop creates a cube")
+        let cubeID = roomModel.fixtures[0].id
+        check(roomModel.fixtures[0].assetID == nil && roomModel.fixtures[0].position.y == 0.12, "Cube rests on the floor")
+        let roomPreset = roomModel.presets[0]
+        check(roomModel.applyPreset(roomPreset.id, to: cubeID), "Assign look before snapshot")
+        roomModel.setupName = "Event A"
+        check(roomModel.saveSetup() && !roomModel.hasUnsavedSetup, "Save named room instance")
+        let eventA = roomModel.savedSetups[0]
+        roomModel.choosePreset(roomPreset); roomModel.presetDraft.channels[0] = 19
+        check(roomModel.savePreset() && roomModel.hasUnsavedSetup, "Preset edit dirties setup")
+        roomModel.setupName = "Event B"
+        check(roomModel.saveSetup(asNew: true) && roomModel.savedSetups.count == 2, "Save as leaves Event A intact")
+        let room = roomModel.activeRoom!
+        roomModel.requestRoom(room); roomModel.activate(environment: environment); roomModel.canPlace = true
+        check(roomModel.fixtures.isEmpty && roomModel.activeSetupID == nil && roomModel.savedSetups.count == 2, "Blank setup preserves saved instances")
+        roomModel.requestRoom(room, setup: eventA); roomModel.activate(environment: environment); roomModel.canPlace = true
+        check(roomModel.fixtures[0].channels == eventA.placements.fixtures[0].channels, "Load restores original resolved DMX")
+        check(roomModel.fixtures[0].presetID != roomPreset.id, "Conflicting preset is forked when restoring a snapshot")
+        check(roomModel.presets.first { $0.id == roomPreset.id }?.channels[0] == 19, "Other preset definitions survive snapshot restore")
+        check(!roomModel.hasUnsavedSetup, "A freshly restored setup is clean")
+        let relaunched = VenueModel(arguments: [], defaults: defaults, placementDirectory: directory.appendingPathComponent("room-tests"))
+        relaunched.activate(environment: environment)
+        check(relaunched.savedSetups.count == 2 && relaunched.fixtures == roomModel.fixtures, "Room library and working arrangement survive relaunch")
+        let workingFile = directory.appendingPathComponent("room-tests/\(environment.id)-\(environment.version).json")
+        let unreadable = Data("unreadable working arrangement".utf8)
+        try unreadable.write(to: workingFile)
+        relaunched.requestRoom(room, setup: eventA); relaunched.activate(environment: environment)
+        let preservedWorkingFile = try Data(contentsOf: workingFile)
+        check(preservedWorkingFile == unreadable, "Loading a named setup preserves a damaged working file")
+        check(relaunched.saveSetup(asNew: true), "Named setup save remains available when working autosave is blocked")
+        print("Room session checks passed: fixture drop, named save/save-as, blank setup, load, preset isolation and relaunch.")
     }
 }

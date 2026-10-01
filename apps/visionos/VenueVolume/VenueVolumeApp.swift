@@ -28,5 +28,8 @@ struct VenueVolumeApp: App {
                 .environment(model)
         }
         .immersionStyle(selection: .constant(.full), in: .full)
+
+        ImmersiveSpace(id: "RoomScan") { RoomScanView().environment(model) }
+            .immersionStyle(selection: .constant(.mixed), in: .mixed)
     }
 }

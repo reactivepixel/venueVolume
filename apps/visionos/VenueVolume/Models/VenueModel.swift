@@ -4,9 +4,29 @@ import VenueVolumeCore
 
 enum AimMethod: String, CaseIterable { case head = "Aim head (DMX)", mount = "Aim mount" }
 enum ScenePick: Equatable { case move(UUID), aim(UUID, AimMethod) }
+struct RoomRequest { var room: LibraryRoom; var setup: VenueSetup?; var blank: Bool }
 
 @MainActor @Observable
 final class VenueModel {
+    let library: RoomLibraryStore
+    private(set) var rooms: [LibraryRoom] = []
+    private(set) var savedSetups: [VenueSetup] = []
+    var roomRequest: RoomRequest?
+    var roomLoadToken = UUID()
+    var libraryMessage: String?
+    var libraryBusy = false
+    var toolboxTab = 0
+    var setupName = "Untitled setup"
+    private(set) var activeSetupID: UUID?
+    private var savedSetup: VenueSetup?
+    var scannedMesh: ScannedMesh?
+    var fixtureKind = FixtureKind.movingHead
+    var draggingFixture: FixtureKind?
+    var activeRoom: LibraryRoom? { rooms.first { $0.manifest.id == environment?.id && $0.manifest.version == environment?.version } }
+    var hasUnsavedSetup: Bool {
+        guard let savedSetup else { return !fixtures.isEmpty }
+        return fixtures != savedSetup.placements.fixtures || setupName != savedSetup.name || whiteRoom != savedSetup.whiteRoom || houseLight != savedSetup.houseLight
+    }
     private(set) var fixtures: [Fixture] = []
     var selectedID: UUID?
     var expandedID: UUID?
@@ -82,6 +102,7 @@ final class VenueModel {
         self.defaults = defaults
         self.arguments = arguments
         placements = PlacementStore(directory: placementDirectory ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("VenueVolume/Placements"))
+        library = RoomLibraryStore(directory: placements.directory.appendingPathComponent(isDemoModeDirectory(arguments) ? "DemoLibrary" : "Library"))
         isDemoMode = arguments.contains("--demo")
         if !isDemoMode, let data = defaults.data(forKey: "venue.presets.v1"),
            let saved = try? JSONDecoder().decode([DMXPreset].self, from: data),
@@ -96,6 +117,47 @@ final class VenueModel {
     }
 
     func activate(environment: EnvironmentManifest) {
+        if rooms.isEmpty { bootstrapLibrary(defaultRoom: environment) }
+        if let request = roomRequest {
+            guard request.room.manifest == environment else { return }
+            self.environment = environment
+            fixtures = request.setup?.placements.fixtures ?? []
+            if let setup = request.setup {
+                // Fork conflicting preset definitions instead of altering other setups.
+                for original in setup.presets {
+                    if let existing = presets.first(where: { $0.id == original.id }), existing != original {
+                        var copy = original
+                        if let equivalent = presets.first(where: { $0.name == original.name && $0.channels == original.channels }) { copy = equivalent }
+                        else { copy.id = UUID(); presets.append(copy) }
+                        for i in fixtures.indices where fixtures[i].presetID == original.id { fixtures[i].presetID = copy.id }
+                    } else if !presets.contains(where: { $0.id == original.id }) { presets.append(original) }
+                }
+                if !isDemoMode, let data = try? JSONEncoder().encode(presets) { defaults.set(data, forKey: "venue.presets.v1") }
+                whiteRoom = setup.whiteRoom; houseLight = setup.houseLight
+            }
+            persistenceBlocked = false
+            if !isDemoMode {
+                do {
+                    let working = try placements.load(environment: environment)
+                    if !request.blank && request.setup == nil, let working { fixtures = working.fixtures }
+                } catch {
+                    persistenceBlocked = true
+                    persistenceStatus = "Autosave disabled to preserve an unreadable working file. Named setups can still be saved."
+                }
+            }
+            revision += 1; syncedRevision = nil; activeSetupID = request.setup?.id
+            setupName = request.setup?.name ?? "Untitled setup"
+            savedSetup = request.setup.map { setup in
+                var copy = setup; copy.placements = .init(environment: environment, fixtures: fixtures, revision: revision); return copy
+            }
+            roomRequest = nil; libraryBusy = false
+            cancelPicking(); selectedID = fixtures.first?.id; expandedID = nil; lastTarget = nil
+            previewDraft = false; blackout = false; recent = RecentItems(); endPresetDrag(); draggingFixture = nil
+            nextFixtureNumber = fixtures.count+1
+            environmentStatus = environment.title; libraryMessage = "Opened \(setupName) in \(environment.title)."
+            persist()
+            return
+        }
         // Preserve the active arrangement across a leave/re-enter transition.
         environmentStatus = environment.title
         if self.environment?.id == environment.id && self.environment?.version == environment.version { return }
@@ -119,6 +181,7 @@ final class VenueModel {
             if arguments.contains("--aim-left") { fixtures[0].channels[4] = 155 }
             if arguments.contains("--fixture-near") { fixtures[0].position = .init(x: 2.66, y: 0, z: -2.3); fixtures[0].surfaceID = "floor" }
             if arguments.contains("--position-tab") { controlsTab = 1 }
+            if arguments.contains("--rooms-tab") { toolboxTab = 1 }
             if arguments.contains("--show-recents") {
                 record(.fixture(fixtures[0].id)); record(.preset(look.id))
             }
@@ -167,26 +230,41 @@ final class VenueModel {
     func place(at position: SIMD3<Float>, surfaceID: String) {
         guard canPlace, isPlacing else { return }
         guard let surface = environment?.surfaces.first(where: { $0.id == surfaceID }),
-              let center = surface.fixturePosition(hit: .init(x: position.x, y: position.y, z: position.z), halfSize: LightingPreview.footprintRadius) else {
+              let center = surface.fixturePosition(hit: .init(x: position.x, y: position.y, z: position.z), halfSize: fixtureKind.radius) else {
             message = "Choose the top of a floor or table with space for the fixture."
             return
         }
-        guard fixtures.filter({ $0.assetID != nil }).count < 4 else {
+        let base = Position3D(x: center.x, y: center.y-fixtureKind.radius, z: center.z)
+        if let scannedMesh, !scannedMesh.supports(base, radius: fixtureKind.radius) { message = "Scan more of this surface before placing here."; return }
+        insertFixture(at: base, surfaceID: surfaceID)
+    }
+
+    func placeOnMesh(at point: Position3D) {
+        guard canPlace, isPlacing, let scannedMesh, scannedMesh.supports(point, radius: fixtureKind.radius) else {
+            message = "Choose a scanned horizontal surface with room for the fixture."; return
+        }
+        insertFixture(at: point, surfaceID: nil)
+    }
+
+    private func insertFixture(at base: Position3D, surfaceID: String?) {
+        guard fixtures.count < 64 else { message = "This setup supports up to 64 objects."; return }
+        guard fixtureKind != .movingHead || fixtures.filter({ $0.assetID != nil }).count < 4 else {
             message = "This lighting proof of concept supports four fixtures."; return
         }
         guard let patch = Fixture.nextAvailablePatch(in: fixtures, footprint: 16) else {
             message = "No free DMX patch is available."
             return
         }
-        let fixture = Fixture(name: String(format: "Room wash %02d", nextFixtureNumber), assetID: LightingPreview.assetID,
+        let fixture = Fixture(name: String(format: fixtureKind == .movingHead ? "Room wash %02d" : "DMX cube %02d", nextFixtureNumber), assetID: fixtureKind.assetID,
                               universe: patch.universe, startAddress: patch.address, channels: Array(repeating: 0, count: 16),
-                              position: .init(x: center.x, y: center.y-LightingPreview.footprintRadius, z: center.z), surfaceID: surfaceID)
+                              position: .init(x: base.x, y: base.y+(fixtureKind == .cube ? fixtureKind.radius : 0), z: base.z), surfaceID: surfaceID)
         message = nil
         fixtures.append(fixture)
         recent.use(.addFixture)
         nextFixtureNumber += 1
         selectedID = fixture.id
         isPlacing = false
+        draggingFixture = nil
         revision += 1
         persist()
     }
@@ -207,6 +285,25 @@ final class VenueModel {
         expandedID = nil
         message = nil
         recent.use(.addFixture)
+    }
+
+    func beginFixtureDrag(_ kind: FixtureKind) {
+        fixtureKind = kind; draggingFixture = kind; isPlacing = true; scenePick = nil
+        dragLease?.cancel()
+        dragLease = Task { [weak self] in
+            do { try await Task.sleep(for: .seconds(30)) } catch { return }
+            self?.draggingFixture = nil; self?.isPlacing = false
+        }
+    }
+
+    func dropFixture(_ tokens: [String], at point: Position3D, surfaceID: String) -> Bool {
+        guard let token = tokens.first, let kind = FixtureKind(token: token), canPlace else { return false }
+        fixtureKind = kind; isPlacing = true
+        let count = fixtures.count
+        place(at: FixtureAiming.vector(point), surfaceID: surfaceID)
+        draggingFixture = nil; dragLease?.cancel()
+        if fixtures.count == count { isPlacing = false }
+        return fixtures.count > count
     }
 
     func openPreset(_ id: UUID?) {
@@ -340,7 +437,7 @@ final class VenueModel {
         message = nil
     }
 
-    func cancelPicking() { scenePick = nil; isPlacing = false; message = nil }
+    func cancelPicking() { scenePick = nil; isPlacing = false; draggingFixture = nil; message = nil }
 
     @discardableResult func acceptTarget(_ target: Position3D) -> Bool {
         guard canPlace, case .aim(let id, let method) = scenePick,
@@ -378,6 +475,15 @@ final class VenueModel {
         fixtures[index].surfaceID = surfaceID
         scenePick = nil; lastTarget = nil
         revision += 1; persist(); message = "Fixture repositioned. Its orientation and DMX values are preserved."
+    }
+
+    func repositionOnMesh(at point: Position3D) {
+        guard canPlace, case .move(let id) = scenePick, let i = fixtures.firstIndex(where: { $0.id == id }), let scannedMesh else { return }
+        let radius: Float = fixtures[i].assetID == nil ? 0.12 : LightingPreview.footprintRadius
+        guard scannedMesh.supports(point, radius: radius) else { message = "Choose a scanned horizontal surface with enough space."; return }
+        fixtures[i].position = .init(x: point.x, y: point.y+(fixtures[i].assetID == nil ? radius : 0), z: point.z)
+        fixtures[i].surfaceID = nil; scenePick = nil; lastTarget = nil
+        revision += 1; persist()
     }
 
     func resetAim(_ id: UUID) {
@@ -442,4 +548,43 @@ final class VenueModel {
             syncStatus = error.localizedDescription
         }
     }
+
+    func bootstrapLibrary(defaultRoom: EnvironmentManifest) {
+        guard rooms.isEmpty else { return }
+        rooms = [LibraryRoom(manifest: defaultRoom, origin: .bundled)]
+        refreshLibrary()
+    }
+
+    func refreshLibrary() {
+        do {
+            let imported = try library.rooms()
+            let bundled = rooms.filter { $0.origin == .bundled }
+            rooms = bundled + imported.filter { room in !bundled.contains { $0.id == room.id } }
+            savedSetups = try library.setups(rooms: rooms)
+        } catch { libraryMessage = "Library could not be read: \(error.localizedDescription). Existing files are preserved." }
+    }
+
+    func requestRoom(_ room: LibraryRoom, setup: VenueSetup? = nil, blank: Bool = true) {
+        guard !libraryBusy else { return }
+        do { if let setup { try setup.validate(room: room) } }
+        catch { libraryMessage = error.localizedDescription; return }
+        libraryBusy = true; canPlace = false; previewDraft = false; cancelPicking()
+        roomRequest = .init(room: room, setup: setup, blank: blank)
+        roomLoadToken = UUID()
+    }
+
+    @discardableResult func saveSetup(asNew: Bool = false) -> Bool {
+        guard let room = activeRoom, !libraryBusy else { return false }
+        let name = setupName.trimmingCharacters(in: .whitespacesAndNewlines)
+        let snapshot = VenueSetup(id: asNew ? UUID() : (activeSetupID ?? UUID()), name: name, room: room,
+                                  fixtures: fixtures, presets: presets, revision: revision, whiteRoom: whiteRoom, houseLight: houseLight)
+        do {
+            try library.save(snapshot, room: room)
+            activeSetupID = snapshot.id; savedSetup = snapshot; setupName = name
+            refreshLibrary(); libraryMessage = "Saved \(name) · \(fixtures.count) fixtures."
+            return true
+        } catch { libraryMessage = error.localizedDescription; return false }
+    }
 }
+
+private func isDemoModeDirectory(_ arguments: [String]) -> Bool { arguments.contains("--demo") }

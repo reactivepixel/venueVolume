@@ -17,9 +17,9 @@ struct FixturePlacementView: View {
                         }.disabled(fixture.assetID == nil)
                     }.disabled(!model.canPlace)
                     Text("Position · room meters").font(.caption).foregroundStyle(.secondary)
-                    axis("X · left / right", value: fixture.position.x, range: 0.23...(room.bounds.max[0]-0.23), fixture: fixture) { $0.x = $1 }
-                    axis("Y · base height", value: fixture.position.y, range: 0...(room.bounds.max[1]-LightingPreview.height), fixture: fixture) { $0.y = $1 }
-                    axis("Z · front / back", value: fixture.position.z, range: (room.bounds.min[2]+0.23)...(-0.23), fixture: fixture) { $0.z = $1 }
+                    axis("X · left / right", value: fixture.position.x, range: bounded(room.bounds.min[0]+0.23, room.bounds.max[0]-0.23), fixture: fixture) { $0.x = $1 }
+                    axis("Y · base height", value: fixture.position.y, range: bounded(0, room.bounds.max[1]-LightingPreview.height), fixture: fixture) { $0.y = $1 }
+                    axis("Z · front / back", value: fixture.position.z, range: bounded(room.bounds.min[2]+0.23, room.bounds.max[2]-0.23), fixture: fixture) { $0.z = $1 }
                     Divider()
                     Text("Mount orientation").font(.caption).foregroundStyle(.secondary)
                     rotation("Yaw", axis: 0, fixture: fixture)
@@ -55,6 +55,8 @@ struct FixturePlacementView: View {
             }), in: axis == 1 ? -89...89 : -180...180, step: 1).accessibilityLabel("Mount \(title)")
         }
     }
+
+    private func bounded(_ lower: Float, _ upper: Float) -> ClosedRange<Float> { lower...max(lower, upper) }
 
     private func axis(_ name: String, value: Float, range: ClosedRange<Float>, fixture: Fixture,
                       set: @escaping (inout Position3D, Float) -> Void) -> some View {
