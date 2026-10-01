@@ -1,0 +1,117 @@
+{
+  "title": "Show-planning equipment taxonomy proposal",
+  "version": 1,
+  "scope": "Core: entertainment lighting, atmosphere, lasers, and stage effects for theatre, bars/clubs, corporate/live events, festivals, arenas, and touring. Broader visual production equipment is marked optional. Audio and backline are out of scope unless separately approved.",
+  "principles": [
+    "Place an asset by its primary equipment function, not by source technology, protocol, venue, or show genre.",
+    "Represent LED/tungsten/discharge/laser-phosphor, moving/static, IP rating, beam angle, output, control protocol, power, mounting, and scale as searchable cross-cutting attributes.",
+    "An asset may carry multiple application tags (for example frontlight, cyc, scenic wash, audience effect, aerial beam) without duplicating its category.",
+    "Keep fixture types, accessories, infrastructure, and virtual-only effects as distinct top-level families.",
+    "Every terminal node is an equipment class with representative asset examples; examples illustrate class membership and do not imply catalog availability."
+  ],
+  "facets_not_categories": {
+    "source_technology": ["LED", "tungsten/halogen", "discharge", "laser-phosphor", "laser diode", "incandescent practical", "other"],
+    "motion": ["static", "moving head", "moving mirror/scanner", "motorized accessory", "handheld/practical"],
+    "environment": ["indoor", "outdoor/IP rating", "temperature limits", "weather protection required"],
+    "control": ["DMX512", "RDM", "Art-Net", "sACN", "MIDI/timecode", "standalone", "manual", "manufacturer-specific"],
+    "deployment": ["floor", "stand", "pipe/batten", "truss", "tower", "followspot position", "handheld", "architectural/permanent"],
+    "application": ["front/key", "fill", "side light", "backlight", "toplight", "cyc", "scenic wash", "aerial beam", "audience effect", "practical", "performer tracking", "atmosphere", "special effect"],
+    "scale_and_context": ["small venue/bar", "black box/studio", "proscenium theatre", "corporate/event", "club", "festival", "arena/tour", "temporary outdoor", "permanent installation"]
+  },
+  "families": [
+    {
+      "id": "lighting_fixtures",
+      "label": "Lighting fixtures",
+      "terminal_categories": [
+        {"id":"profile_ellipsoidal","label":"Profile / ellipsoidal spotlights","purpose":"Hard-edge framing, shutters, iris, and pattern projection.","representative_assets":["ETC Source Four 19° profile", "LED ellipsoidal profile"]},
+        {"id":"fresnel_pc","label":"Fresnel and PC wash spotlights","purpose":"Soft-edged stage washes and area light.","representative_assets":["1 kW Fresnel", "LED Fresnel", "PC lens spotlight"]},
+        {"id":"par_wash","label":"PAR and compact wash fixtures","purpose":"Broad/simple color coverage and short-throw wash.","representative_assets":["PAR can 64", "RGBW LED PAR", "compact COB PAR"]},
+        {"id":"cyc_border","label":"Cyc, border, and strip fixtures","purpose":"Even cyc or vertical scenic surface illumination.","representative_assets":["RGBAL cyc batten", "asymmetric ground row", "linear LED striplight"]},
+        {"id":"flood_scoop","label":"Floods, scoops, and broad-area wash","purpose":"Broad non-imaging coverage for stage or scenic surfaces.","representative_assets":["scoop light", "asymmetric flood", "portable worklight"]},
+        {"id":"moving_profile","label":"Moving profile / spot fixtures","purpose":"Motorized hard-edge beam, framing, gobos, and color.","representative_assets":["moving ellipsoidal", "moving spot with framing shutters"]},
+        {"id":"moving_wash","label":"Moving wash fixtures","purpose":"Motorized soft-edge coverage and color fields.","representative_assets":["moving wash head", "moving wash bar"]},
+        {"id":"moving_beam","label":"Moving beam fixtures","purpose":"Narrow aerial beam effects, often with prisms or beam modifiers.","representative_assets":["moving beam head", "hybrid spot/beam head (tag hybrid capability)"]},
+        {"id":"moving_bar","label":"Moving batten and pixel-bar fixtures","purpose":"Linear, independently addressable or motorized beam/pixel effects.","representative_assets":["tilting LED batten", "pixel-mapped moving bar"]},
+        {"id":"static_beam","label":"Static narrow-beam and ACL-style fixtures","purpose":"Fixed narrow beams and repeated beam arrays.","representative_assets":["PAR ACL lamp", "narrow-beam LED PAR", "ACL bar"]},
+        {"id":"strobe","label":"Strobes and high-intensity flash fixtures","purpose":"Short-duration visual flashes; distinguish from broad audience blinder use.","representative_assets":["xenon strobe", "LED strobe/wash"]},
+        {"id":"blinder_audience","label":"Audience blinders and audience wash","purpose":"Audience-facing hit, crowd illumination, or silhouette effect.","representative_assets":["2-cell tungsten blinder", "four-cell LED blinder", "audience wash bar"]},
+        {"id":"followspot","label":"Followspots and performer-tracking spots","purpose":"Operator or automated tracking of a performer.","representative_assets":["manual followspot", "LED followspot", "remote followspot system (fixture entry plus system tag)"]},
+        {"id":"practical","label":"Practical, handheld, and battery fixtures","purpose":"Visible-in-scene or performer-handled light sources.","representative_assets":["PAR16 birdie practical", "battery LED tube", "handheld lantern"]},
+        {"id":"worklight","label":"Work, rehearsal, and temporary utility lighting","purpose":"Non-show illumination used during setup, rehearsal, or backstage tasks.","representative_assets":["LED worklight", "portable tripod flood"]},
+        {"id":"architectural","label":"Architectural and permanent venue lighting","purpose":"Installed house, architectural, or event-space accent lighting.","representative_assets":["RGBW architectural wash", "house downlight", "building floodlight"]}
+      ]
+    },
+    {
+      "id":"lighting_accessories",
+      "label":"Lighting accessories and optical modifiers",
+      "terminal_categories":[
+        {"id":"lenses","label":"Lenses and beam-angle accessories","purpose":"Change beam spread or optical distribution.","representative_assets":["profile lens tube", "interchangeable Fresnel lens"]},
+        {"id":"gobos","label":"Gobos, templates, and pattern media","purpose":"Project texture, breakup, or imagery through a compatible fixture.","representative_assets":["metal breakup gobo", "glass logo gobo"]},
+        {"id":"color_media","label":"Color media and color-scroller systems","purpose":"Change color in fixtures that accept external media or scrollers.","representative_assets":["gel frame", "motorized color scroller"]},
+        {"id":"diffusion_frost","label":"Diffusion, frost, and beam-softening accessories","purpose":"Soften or spread fixture output.","representative_assets":["frost filter", "diffusion frame"]},
+        {"id":"shutters_iris","label":"Shutters, iris, and framing accessories","purpose":"Shape or reduce a compatible fixture beam.","representative_assets":["pattern holder", "iris", "top hat"]},
+        {"id":"mounting_safety","label":"Fixture clamps, yokes, and safety accessories","purpose":"Attach or secure a fixture to an approved support.","representative_assets":["rated clamp", "safety bond", "floor stand"]}
+      ]
+    },
+    {
+      "id":"atmosphere",
+      "label":"Atmosphere and air movement",
+      "terminal_categories":[
+        {"id":"hazer","label":"Hazers","purpose":"Create sustained, relatively even atmospheric particulate for revealing light beams.","representative_assets":["water-based hazer", "oil-based hazer"]},
+        {"id":"fogger","label":"Foggers and smoke machines","purpose":"Create denser, more transient fog/smoke effects.","representative_assets":["conventional fog machine", "high-output fogger"]},
+        {"id":"low_fog","label":"Low-fog and ground-fog systems","purpose":"Produce a low-lying fog effect using a dedicated machine/system.","representative_assets":["chilled low-fog machine", "dry-ice low-fog system"]},
+        {"id":"fog_gerb_geyser","label":"Fog jets, geysers, and fog bursts","purpose":"Directional or timed fog effects, including vertical bursts.","representative_assets":["CO₂-style fog jet", "heated fog geyser"]},
+        {"id":"fans","label":"Atmosphere distribution fans","purpose":"Move or shape haze/fog output in a space.","representative_assets":["variable-speed floor fan", "ducted fog fan"]},
+        {"id":"atmosphere_consumables","label":"Atmosphere fluids and consumables","purpose":"Consumables associated with atmosphere systems; compatibility is manufacturer-specific metadata.","representative_assets":["haze fluid", "fog fluid", "dry ice"]}
+      ]
+    },
+    {
+      "id":"lasers_and_stage_effects",
+      "label":"Lasers and stage effects",
+      "terminal_categories":[
+        {"id":"show_laser","label":"Show lasers and laser projectors","purpose":"Laser-based aerial, surface, or audience-zone visuals.","representative_assets":["RGB show laser projector", "laser scanning projector"]},
+        {"id":"laser_scanner","label":"Laser scanners and scan heads","purpose":"Scanning/deflection hardware used within a laser projection system.","representative_assets":["galvanometer scanner set", "laser scan head"]},
+        {"id":"snow","label":"Snow and paper-snow machines","purpose":"Simulated falling snow or paper-like flakes.","representative_assets":["snow machine", "paper snow blower"]},
+        {"id":"bubble","label":"Bubble machines","purpose":"Generate bubbles as a scenic or audience effect.","representative_assets":["single-wheel bubble machine", "high-output bubble machine"]},
+        {"id":"confetti_streamer","label":"Confetti and streamer launchers","purpose":"Deploy paper or foil scenic material as a timed effect.","representative_assets":["electric confetti cannon", "CO₂ streamer launcher"]},
+        {"id":"spark_fx","label":"Cold-spark and spark-effect machines","purpose":"Create stage spark-like effects using purpose-built machines.","representative_assets":["cold-spark fountain", "sparkular-style effect unit"]},
+        {"id":"flame_fx","label":"Flame and fire-effect units","purpose":"Purpose-built flame effects; separate safety and permit metadata is required.","representative_assets":["indoor flame-effect unit", "propane flame projector"]},
+        {"id":"water_fx","label":"Water, mist, and rain effects","purpose":"Create controlled water-based scenic effects.","representative_assets":["water curtain", "mist effect bar"]}
+      ]
+    },
+    {
+      "id":"infrastructure_control",
+      "label":"Lighting control and infrastructure",
+      "terminal_categories":[
+        {"id":"console","label":"Lighting consoles and playback controllers","purpose":"Program and operate show lighting and compatible effects.","representative_assets":["theatre lighting console", "busking console"]},
+        {"id":"network_nodes","label":"DMX/network nodes and gateways","purpose":"Bridge or distribute lighting control data.","representative_assets":["Art-Net/sACN node", "DMX opto-splitter"]},
+        {"id":"dimming","label":"Dimmers and power-control units","purpose":"Switch or dim compatible loads.","representative_assets":["dimmer rack", "relay pack", "portable dimmer"]},
+        {"id":"power_dist","label":"Show power distribution","purpose":"Distribute electrical power to lighting and effects equipment.","representative_assets":["portable distro", "breakout box", "power cable set"]},
+        {"id":"data_cabling","label":"Control/data cabling and adapters","purpose":"Carry control data between controllers, nodes, fixtures, and effects.","representative_assets":["DMX cable", "etherCON data cable", "DMX adapter"]},
+        {"id":"rigging_support","label":"Lighting support structures and rigging hardware","purpose":"Support equipment deployment; requires separate load and inspection metadata.","representative_assets":["lighting truss", "wind-up stand", "lighting boom"]}
+      ]
+    },
+    {
+      "id":"virtual_effects",
+      "label":"Virtual and software-only effects",
+      "terminal_categories":[
+        {"id":"console_effects","label":"Console effect palettes and sequences","purpose":"Software programming constructs rather than physical inventory.","representative_assets":["ballyhoo effect", "color chase", "intensity effect"]},
+        {"id":"visualization","label":"Visualization and previz assets","purpose":"Virtual representations used for planning or simulation.","representative_assets":["fixture personality", "3D fixture model", "venue plot/patch"]}
+      ]
+    }
+  ],
+  "optional_expansion_backlog": [
+    {"id":"video_visuals_optional","label":"Video and visual systems (optional broader scope)","candidate_terminal_categories":["LED display panels", "projection systems", "media servers", "camera/IMAG systems", "video processing and signal distribution", "projection surfaces"],"status":"Backlog pending scope approval; do not imply that models or manufacturers are represented."},
+    {"id":"scenic_softgoods_optional","label":"Scenic and soft goods (optional broader scope)","candidate_terminal_categories":["cycloramas and backdrops", "drape and masking", "projection screens", "scenic frames and translucent surfaces"],"status":"Backlog pending scope approval; separate from lighting fixtures even when illuminated."},
+    {"id":"rigging_expansion_optional","label":"Rigging and lifting (optional broader scope)","candidate_terminal_categories":["motors/hoists", "controllers", "steel and slings", "truss accessories", "automation tracks"],"status":"Basic lighting support is in core; engineered rigging inventory is backlog pending scope approval."},
+    {"id":"audio_backline_excluded","label":"Audio and backline","candidate_terminal_categories":[],"status":"Out of scope unless separately approved."}
+  ],
+  "coverage_and_catalog_limitations": [
+    "This is a category proposal, not a populated model/manufacturer catalog. A representative example is illustrative only.",
+    "Do not claim every manufacturer, model, variant, accessory, or fixture personality exists. Track verified catalog coverage separately with source and review date.",
+    "Venue scale describes a use context and should be a facet or saved filter, never a competing copy of each category.",
+    "Laser, flame, atmospheric, rigging, and water equipment may require jurisdiction-, venue-, or production-specific approvals. This taxonomy makes no safety or legal determination.",
+    "Specialty effects such as cryogenic jets, pyro, projection mapping, drones, kinetic scenery, and aerial performers remain backlog until scope and maintenance ownership are agreed."
+  ],
+  "research_basis": "See forum-research.json for source links, visible dates, paraphrased discussion evidence, implications, and limitations."
+}
