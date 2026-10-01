@@ -19,6 +19,9 @@ struct VenueSpaceView: View {
         } attachments: {
             Attachment(id: "targeting") { TargetingPrompt().environment(model) }
             Attachment(id: "toolbox") { ToolboxView().environment(model) }
+            ForEach(model.environment?.surfaces ?? [], id: \.id) { surface in
+                Attachment(id: "surface-drop-\(surface.id)") { FixtureSurfaceDrop(surface: surface).environment(model) }
+            }
             if model.canSimulatePalm || model.needsManualToolbox {
                 Attachment(id: "palm-preview") { SimulatorPalmControl().environment(model) }
             }
@@ -35,8 +38,10 @@ struct VenueSpaceView: View {
             let position = value.convert(value.location3D, from: .local, to: scene.root)
             scene.handleTap(entity: value.entity, position: position, model: model)
         })
-        .task {
-            if await scene.load(model: model) {
+        .task(id: model.roomLoadToken) {
+            model.canPlace = false
+            let loaded = await scene.load(model: model)
+            if !Task.isCancelled && (loaded || model.environment != nil) {
                 await scene.runTracking(model: model)
             }
         }
@@ -69,6 +74,11 @@ struct VenueSpaceView: View {
             if model.isDemoMode && !ProcessInfo.processInfo.arguments.contains("--show-preset-editor") {
                 dismissWindow(id: "presets")
             }
+        }
+        .task {
+            #if DEBUG
+            await RoomLibrarySmoke.run(model: model)
+            #endif
         }
         .onDisappear {
             model.isImmersed = false

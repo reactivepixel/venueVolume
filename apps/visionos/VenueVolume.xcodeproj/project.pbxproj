@@ -11,13 +11,17 @@
 		17B9C89384D24C90C414BF8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A216CAA2CDE7F26E599DD5EF /* Assets.xcassets */; };
 		2783645E3DCA12EDFCFABF73 /* FixtureLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00372CBAA7C8480C7AC8437A /* FixtureLabel.swift */; };
 		2B78E9F222443AE2BBD9F507 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35673AE49B168A54E86ACC38 /* LaunchView.swift */; };
+		3B0F47C7CCF1063038398EAF /* RoomScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939A243D42757B95897B46BF /* RoomScanner.swift */; };
 		401DB4EDFCC193C6117F2594 /* DebugPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58C9AC408DE096B035A72DE /* DebugPanel.swift */; };
 		4073CEA2DD7557680EFADB2B /* FixtureRig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8A9C441DF185E732E8E41E /* FixtureRig.swift */; };
 		565250CAD4D6DA1BD98FB1BE /* VenueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BE4C4EB04D817E031E19E /* VenueModel.swift */; };
 		5947B420885415C67835D201 /* Environments in Resources */ = {isa = PBXBuildFile; fileRef = FF1BBE8A979B55C93151CC1F /* Environments */; };
+		7054BEF7B60581E099871C7B /* RoomLibrarySmoke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7173CF5099A0437DFF8633DD /* RoomLibrarySmoke.swift */; };
 		82005BDBC395435482A872C4 /* VenueScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE7A9FA3734E0BB7EE95721 /* VenueScene.swift */; };
+		8FC4C74944432D3BD74698FB /* RoomLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9926915861960E1C383B16B3 /* RoomLibraryView.swift */; };
 		9BB968DBAB077D17CF8A74FA /* VenueVolumeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 9F29BE575556521651280192 /* VenueVolumeCore */; };
 		A3AD2D01A086CDCF6D63E473 /* VenueVolumeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC612EAB7EDA7D85628811 /* VenueVolumeApp.swift */; };
+		BA725057435FA665998EB8E4 /* RoomAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3055105B38C0B40683E01E33 /* RoomAssets.swift */; };
 		BAC9DE14B1CA468B200F1B78 /* FixtureAssets in Resources */ = {isa = PBXBuildFile; fileRef = 5F8F6E6D8005604A5816EC4B /* FixtureAssets */; };
 		C772781690B63BEBAEA67657 /* PresetEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DE72BEDB41CF8A53707C9C /* PresetEditorView.swift */; };
 		C798C5ECB6528BF8CEEC25B7 /* VenueSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6480D9EF8B26C0AD2C6F7 /* VenueSpaceView.swift */; };
@@ -31,12 +35,16 @@
 		16DE72BEDB41CF8A53707C9C /* PresetEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetEditorView.swift; sourceTree = "<group>"; };
 		1BE7A9FA3734E0BB7EE95721 /* VenueScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueScene.swift; sourceTree = "<group>"; };
 		1FDC612EAB7EDA7D85628811 /* VenueVolumeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueVolumeApp.swift; sourceTree = "<group>"; };
+		3055105B38C0B40683E01E33 /* RoomAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAssets.swift; sourceTree = "<group>"; };
 		31D6480D9EF8B26C0AD2C6F7 /* VenueSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueSpaceView.swift; sourceTree = "<group>"; };
 		35673AE49B168A54E86ACC38 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		4C2ADB8E13E6149392D53533 /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = Core; sourceTree = SOURCE_ROOT; };
 		5F8F6E6D8005604A5816EC4B /* FixtureAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FixtureAssets; path = VenueVolume/FixtureAssets; sourceTree = SOURCE_ROOT; };
+		7173CF5099A0437DFF8633DD /* RoomLibrarySmoke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomLibrarySmoke.swift; sourceTree = "<group>"; };
+		939A243D42757B95897B46BF /* RoomScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomScanner.swift; sourceTree = "<group>"; };
 		94E62033892512E7CB8DF4C0 /* VenueVolume.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = VenueVolume.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97A77C35DB1F4AA96F5DAE3C /* ToolboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolboxView.swift; sourceTree = "<group>"; };
+		9926915861960E1C383B16B3 /* RoomLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomLibraryView.swift; sourceTree = "<group>"; };
 		9C8A9C441DF185E732E8E41E /* FixtureRig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureRig.swift; sourceTree = "<group>"; };
 		A216CAA2CDE7F26E599DD5EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD38AEB3AC858868B97CE99D /* FixturePlacementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturePlacementView.swift; sourceTree = "<group>"; };
@@ -62,6 +70,9 @@
 			isa = PBXGroup;
 			children = (
 				9C8A9C441DF185E732E8E41E /* FixtureRig.swift */,
+				3055105B38C0B40683E01E33 /* RoomAssets.swift */,
+				7173CF5099A0437DFF8633DD /* RoomLibrarySmoke.swift */,
+				939A243D42757B95897B46BF /* RoomScanner.swift */,
 				1BE7A9FA3734E0BB7EE95721 /* VenueScene.swift */,
 				31D6480D9EF8B26C0AD2C6F7 /* VenueSpaceView.swift */,
 			);
@@ -125,6 +136,7 @@
 				AD38AEB3AC858868B97CE99D /* FixturePlacementView.swift */,
 				35673AE49B168A54E86ACC38 /* LaunchView.swift */,
 				16DE72BEDB41CF8A53707C9C /* PresetEditorView.swift */,
+				9926915861960E1C383B16B3 /* RoomLibraryView.swift */,
 				97A77C35DB1F4AA96F5DAE3C /* ToolboxView.swift */,
 			);
 			path = Views;
@@ -214,6 +226,10 @@
 				4073CEA2DD7557680EFADB2B /* FixtureRig.swift in Sources */,
 				2B78E9F222443AE2BBD9F507 /* LaunchView.swift in Sources */,
 				C772781690B63BEBAEA67657 /* PresetEditorView.swift in Sources */,
+				BA725057435FA665998EB8E4 /* RoomAssets.swift in Sources */,
+				7054BEF7B60581E099871C7B /* RoomLibrarySmoke.swift in Sources */,
+				8FC4C74944432D3BD74698FB /* RoomLibraryView.swift in Sources */,
+				3B0F47C7CCF1063038398EAF /* RoomScanner.swift in Sources */,
 				0AAFA831C65D19BFAD1B3037 /* ToolboxView.swift in Sources */,
 				565250CAD4D6DA1BD98FB1BE /* VenueModel.swift in Sources */,
 				82005BDBC395435482A872C4 /* VenueScene.swift in Sources */,

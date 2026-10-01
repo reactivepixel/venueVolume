@@ -11,12 +11,20 @@ struct ToolboxView: View {
             HStack(alignment: .firstTextBaseline) {
                 Text("Toolbox").font(.largeTitle.weight(.semibold))
                 Spacer()
-                Label("Left palm", systemImage: "hand.raised").font(.caption).foregroundStyle(.secondary)
+                Label("Left wrist", systemImage: "hand.raised").font(.caption).foregroundStyle(.secondary)
                 Menu {
                     Button("Diagnostics & sync") { openWindow(id: "diagnostics") }
                     Button("Leave venue") { Task { await dismissSpace() } }
                 } label: { Image(systemName: "ellipsis") }
             }
+            @Bindable var model = model
+            Picker("Toolbox section", selection: $model.toolboxTab) {
+                Text("Fixtures & presets").tag(0)
+                Text("Rooms & saved setups").tag(1)
+            }.pickerStyle(.segmented)
+            if model.toolboxTab == 1 {
+                RoomLibraryView()
+            } else {
             HStack(alignment: .top, spacing: 22) {
                 VStack(alignment: .leading, spacing: 10) {
                     Text("LIBRARY").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
@@ -26,6 +34,13 @@ struct ToolboxView: View {
                             item(.addFixture)
                             item(.presets)
                             item(.sync)
+                            section("Fixtures · drag into the room")
+                            ForEach(FixtureKind.allCases) { kind in
+                                Button { model.fixtureKind = kind; model.beginPlacement() } label: {
+                                    row(kind.name, subtitle: "Drag onto a floor or tabletop", icon: kind == .movingHead ? "light.beacon.max" : "cube.transparent")
+                                }.buttonStyle(.plain).disabled(!model.canPlace)
+                                    .onDrag { model.beginFixtureDrag(kind); return NSItemProvider(object: kind.dragToken as NSString) }
+                            }
                             if model.isPlacing {
                                 Text("Look at a clear floor or tabletop and pinch to place the fixture.").font(.caption)
                             }
@@ -58,6 +73,7 @@ struct ToolboxView: View {
                     Spacer(minLength: 0)
                 }.frame(maxWidth: .infinity, alignment: .leading)
             }.frame(height: 410)
+            }
             Divider()
             HStack {
                 @Bindable var model = model
@@ -108,7 +124,7 @@ struct ToolboxView: View {
                 }.buttonStyle(.plain)
             }
         case .addFixture:
-            Button { model.beginPlacement() } label: {
+            Button { model.fixtureKind = .movingHead; model.beginPlacement() } label: {
                 row(model.isPlacing ? "Cancel placement" : "Add fixture", subtitle: "Rogue R1X · moving head", icon: "plus")
             }.buttonStyle(.plain).disabled(!model.canPlace && !model.isPlacing)
         case .presets:

@@ -1,6 +1,6 @@
 # Venue Volume for visionOS
 
-A runnable RealityKit lighting proof of concept for Simulator and Vision Pro (visionOS 2+). Place a catalog moving-head fixture in the reconstructed classroom, move its base, aim its head with DMX preview channels, and light the room with real dynamic spotlights and shadows.
+A runnable RealityKit lighting proof of concept for Simulator and Vision Pro (visionOS 2+). Start in the white classroom, import another room, or capture a local mesh on Vision Pro. Arrange fixtures, control their pose and DMX preview lighting, and save independent setups for each environment.
 
 ## Run
 
@@ -17,7 +17,7 @@ The script builds, installs, and launches the demo. `VV_SIMULATOR_ID` selects a 
 ## Use
 
 1. Raise your **left palm** toward you to reveal **Toolbox**. Simulator supplies a **Left palm facing me** toggle. The trigger uses hand pose and head direction, not raw eye gaze.
-2. Choose **Add fixture**, then select the top of a clear floor or table. A catalog Rogue R1X Spot visualization appears with its base on that surface. Initial output is zero. The proof of concept allows four moving-head fixtures.
+2. In **Fixtures & presets**, drag **Moving head** or **DMX cube** onto a highlighted floor/table surface. Alternatively select the fixture row, then pinch a clear surface. **Add fixture** selects the Rogue R1X moving-head visualization. Initial output is zero. The proof of concept allows four moving-head lights and 64 total fixtures. The toolbox follows above the left wrist and holds its position during a drag.
 3. Drag a preset from the library or Recent column onto the fixture or label. This commits the saved preset and lights the scene. Recent retains the last ten unique actions/objects/presets.
 4. Select a fixture for **Info**, **Delete**, **Move**, **Retarget**, and **Transform**. Info remains read-only. **Move** arms a floor/table pick that repositions the existing object while preserving its orientation, patch, and DMX values. **Transform** opens the companion window’s position tab.
 5. In **DMX preset**, edit channels and enable **Preview draft on selected fixture** to see edits immediately without changing saved values. Disable preview or close the window to restore the committed look. **Save preset** updates all assigned fixtures. **Save as new** makes an independent preset; **Apply saved** assigns it.
@@ -26,6 +26,19 @@ The script builds, installs, and launches the demo. `VV_SIMULATOR_ID` selects a 
 8. **White model** switches between neutral PBR materials and the room's original materials. **Room light** adjusts ambient illumination. **Blackout** temporarily disables fixture output, leaving room light and saved values intact.
 
 The editor also supports previous/next, New, clear draft, revert, delete, clear assignment, and dirty-navigation confirmation. If a companion window is restored after relaunch without the room, its Enter venue button restores access; demo mode enters automatically. Channel editing stays in the preset window. The mock sync remains available in Toolbox and Diagnostics; it never sends lighting/network output.
+
+## Rooms and saved setups
+
+Open **Rooms & saved setups** in the wrist Toolbox. The left column lists environments; the right lists saved fixture setups across those environments. The bundled white classroom is always the default room on launch.
+
+- **Import** accepts a folder containing `environment.json` and its referenced `environment.usdz` or `environment.mesh.json`, or a standalone meter-scale USDZ. Bundles retain their reviewed placement surfaces, spawn pose, version, and checksum. Standalone USDZ imports infer a rectangular floor from the lowest visual bounds; provide a prepared room bundle for accurate floor/table placement metadata.
+- **Scan** is available on Vision Pro. It opens a mixed-immersion capture view, requests World Sensing permission, and displays the observed mesh over passthrough. Look around to capture floor, walls, and furniture, including the floor beneath you. Name it and choose **Save room & open**. The scan becomes a selectable environment stored on this device. Cancel returns to the previous scene.
+- Select an environment to open a blank setup. Place fixtures, apply presets, then name the setup and choose **Save**. **Save as new** preserves the previous setup as an independent instance. **New blank** clears the current arrangement while retaining the room geometry and all named saves. Switching away from changed fixtures offers Save, Discard, or Cancel.
+- Select a saved setup to restore its room, fixtures, transforms, patch, resolved DMX values, per-fixture aim overrides, white/original material mode, and room-light level. Referenced preset definitions are included. If a shared preset has changed, restoration reuses an equivalent definition or creates an independent copy, preserving the saved look without modifying other setups.
+
+Room geometry is immutable and shared by its setups. Named snapshots are separate from the existing per-room working-arrangement autosave. Normal library data lives beneath Application Support at `VenueVolume/Placements/Library`; demo saves use `DemoLibrary` and do not alter normal saved data. Saves are atomic, and invalid existing working files are preserved rather than overwritten. There is no cloud backup or room export UI yet.
+
+Local capture uses ARKit scene reconstruction, not RoomPlan or movie reconstruction. It stores geometry, not photographic textures, with a limit of one million triangles / 2,048 mesh chunks. Unseen surfaces remain absent. Fixture placement on scan meshes checks horizontal support beneath the center and footprint corners; this is a sampled support check, not a collision or rigging solver. Captured rooms reopen as neutral, lightable meshes in full immersion, aligned to the saved spawn pose. They are not relocalized onto the original physical room. Simulator cannot scan, but can import and replay the same saved mesh format.
 
 ## Retargeting behavior
 
@@ -62,7 +75,7 @@ The fixture comes from `assets/fixtures/chauvet-professional/rogue-r1x-spot`, re
 
 Lumens, RGB, beam, and material response are not photometrically calibrated. This is direct lighting without baked indirect bounce or volumetric haze. No manufacturer gobos, physical strobe, safety/reset channels, Art-Net, sACN, or hardware control are implemented. Room placement is bounded by floor/ceiling/walls; manual XYZ edits can intersect furniture and are not a rigging/physics solver. A person can physically walk through virtual geometry; colliders do not constrain wearer movement.
 
-Normal-mode fixtures, asset IDs, transforms, per-fixture aim overrides, preset assignments, and resolved channels persist per room version. Presets are stored separately in UserDefaults. Legacy cube saves remain readable. Draft preview, blackout, room-light level, material mode, and Recents are session-only. User-saved older generic presets retain their channel bytes; on a moving-head proxy those bytes are interpreted using the displayed preview personality.
+Normal-mode fixtures, asset IDs, transforms, per-fixture aim overrides, preset assignments, and resolved channels autosave per room version. Presets are stored separately in UserDefaults and included in named setup snapshots. Legacy cube saves remain readable. Named setups also retain room-light level and material mode; draft preview, blackout, and Recents remain session-only. User-saved older generic presets retain their channel bytes; on a moving-head proxy those bytes are interpreted using the displayed preview personality.
 
 This is a standalone visualization spike. The production research's immutable profile revisions, semantic partial presets, publish/arm boundaries, and calibrated lighting remain separate future work.
 
@@ -82,16 +95,20 @@ xcodebuild -project VenueVolume.xcodeproj -scheme VenueVolume \
   -derivedDataPath DerivedData-device CODE_SIGNING_ALLOWED=NO build
 ```
 
-31 Core tests and model/session checks cover head/mount solving, emitter parallax, motor-limit rejection, Euler singularities, aim persistence/preset isolation, reposition/cancel/delete, mapping/clamping, preview isolation/release, save/save-as, preset propagation, placement bounds, transforms, persistence/re-entry, legacy decoding, patch conflicts, manifest integrity, and mock synchronization. Asset checks compare bundled room/fixture hashes with the source artifacts. Both simulator and unsigned device targets compile. Real Simulator captures show warm/blue output, retargeted head and mount, the target marker/prompt, transform controls, speaker shadows, blackout, and UI states.
+34 Core tests and model/session checks cover room/setup round trips, immutable room versions, snapshot validation, mesh support, fixture drop commands, blank setups, save/save-as, restore/relaunch, preset conflict isolation, corrupt working-file preservation, and the existing aiming, placement, preview, patch, and sync behavior. Asset checks compare bundled room/fixture hashes with the source artifacts. Both simulator and unsigned device targets compile. A native Simulator runtime check imports a room bundle, replays a synthetic mesh, places fixtures, saves setups, switches to blank scenes, and restores the original classroom setup through the real model and renderer.
 
-The Mac was locked during verification, so interactive pinch/drag/drop/slider automation was unavailable. No physical Vision Pro was connected: code signing, device installation, physical hand detection, tracking alignment, comfort, frame time, and thermal performance still require device acceptance. Compilation is not a device rendering/performance test.
+The Mac was locked during verification, so interactive pinch/drag/drop/slider automation was unavailable. Native drag gestures, live mesh capture, wrist following, code signing, device installation, tracking alignment, comfort, frame time, and thermal performance still require acceptance on a physical Vision Pro. Compilation and synthetic mesh replay do not establish that live headset capture works correctly.
 
 Demo presentation flags: `--blue`, `--blackout`, `--aim-left`, `--fixture-near`, `--palm-hidden`, `--show-info`, `--show-recents`, `--show-preset-editor`, `--position-tab`, `--targeting`, `--retarget-head`, `--retarget-mount`. The last two call the same targeting commands as the UI five seconds after room alignment; `--targeting` leaves the pick pending. Demo launches dismiss a restored preset window unless `--show-preset-editor` is requested. These seed reproducible app states, not simulated user gestures. At default pan the whiteboard is lit; the left-pan case shows the speaker's cast shadow.
 
 Retarget captures: [animation recording](Screenshots/fixture-retarget.mp4), [head aim](Screenshots/fixture-retarget-head.png), [mount aim](Screenshots/fixture-retarget-mount.png), [targeting prompt](Screenshots/fixture-targeting.png), [full transform controls](Screenshots/fixture-transform.png).
+
+Room-library captures: [initial room library](Screenshots/room-library.png), [imported rooms and saved setups](Screenshots/room-library-saved.png). Launch `./scripts/run-demo.sh --blue --rooms-tab` to open this toolbox tab. Add `--library-smoke` to run the debug-only native integration check; it writes clearly labelled demo setups and a synthetic mesh replay fixture into DemoLibrary. The synthetic mesh is test data, not a headset scan.
 
 Earlier screenshots: [blue light](Screenshots/white-room-blue.png), [pan and cast shadow](Screenshots/white-room-aim.png), [blackout](Screenshots/white-room-blackout.png), [toolbox](Screenshots/white-room-toolbox.png), [DMX controls](Screenshots/white-room-controls.png), [position controls](Screenshots/white-room-position.png). Older screenshots document earlier milestones.
 
 `project.yml` is the project source of truth. Regenerate with `xcodegen generate` after adding files. The Environments and FixtureAssets folders must remain folder resources. If XcodeGen emits `BuildableName="VenueVolume.app"`, set it to `Venue Volume.app` in the shared schemes.
 
 References: [Apple dynamic lights and shadows](https://developer.apple.com/videos/play/wwdc2024/10103/), [SpotLightComponent](https://developer.apple.com/documentation/realitykit/spotlightcomponent), [static mesh collisions](https://developer.apple.com/documentation/realitykit/shaperesource/generatestaticmesh(from:)), [input targeting](https://developer.apple.com/documentation/realitykit/inputtargetcomponent), [transform animation](https://developer.apple.com/documentation/realitykit/hastransform/move(to:relativeto:duration:timingfunction:)), [environment lighting weight](https://developer.apple.com/documentation/realitykit/environmentlightingconfigurationcomponent), and [the repository's current movie workflow](../../docs/05%20Operations/mov2splat-review.md).
+
+Capture references: [Applying mesh to real-world surroundings](https://developer.apple.com/documentation/visionOS/applying-mesh-to-real-world-surroundings), [SceneReconstructionProvider](https://developer.apple.com/documentation/arkit/scenereconstructionprovider), and [MeshAnchor](https://developer.apple.com/documentation/arkit/meshanchor).

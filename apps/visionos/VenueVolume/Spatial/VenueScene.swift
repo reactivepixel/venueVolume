@@ -48,7 +48,14 @@ final class VenueScene {
                 source = DirectoryEnvironmentRepository(directory: resources.appendingPathComponent("Environments/Classroom"))
             }
             model.environmentStatus = "Loading classroom…"
-            let resolved = try await source.resolve(id: environmentID)
+            if model.rooms.isEmpty {
+                let bundled = try await source.resolve(id: environmentID)
+                model.bootstrapLibrary(defaultRoom: bundled.manifest)
+            }
+            guard let selected = model.roomRequest?.room ?? model.activeRoom ?? model.rooms.first else { throw EnvironmentError.invalid("room library is empty") }
+            let resolved: ResolvedEnvironment
+            if selected.origin == .bundled { resolved = try await source.resolve(id: selected.manifest.id) }
+            else { resolved = try await DirectoryEnvironmentRepository(directory: model.library.roomDirectory(selected)).resolve(id: selected.manifest.id) }
             try resolved.manifest.validate()
             guard resolved.assetURL.isFileURL else { throw EnvironmentError.invalid("asset must be local") }
             let checksum = try await Task.detached {
@@ -57,35 +64,37 @@ final class VenueScene {
                 return SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
             }.value
             guard checksum == resolved.manifest.asset.sha256 else { throw EnvironmentError.invalid("USDZ checksum mismatch") }
-            let room = try await Entity(contentsOf: resolved.assetURL)
+            let room: Entity
+            let scan: ScannedMesh?
+            if resolved.manifest.asset.file == "environment.mesh.json" {
+                scan = try JSONDecoder().decode(ScannedMesh.self, from: Data(contentsOf: resolved.assetURL))
+                room = try RoomAssets.meshEntity(scan!)
+            } else { scan = nil; room = try await Entity(contentsOf: resolved.assetURL) }
+            if let translation = resolved.manifest.assetTranslation { room.position = [translation[0],translation[1],translation[2]] }
             try Task.checkCancellation()
-            root.children.removeAll()
-            cubes.removeAll()
-            aligned = false
-            root.transform = Transform()
-            root.isEnabled = false
-            root.addChild(room)
-            roomMaterials.removeAll()
-            rememberMaterials(room)
+            var newMaterials: [(Entity, ModelComponent)] = []
+            func collect(_ entity: Entity) {
+                if let component = entity.components[ModelComponent.self] { newMaterials.append((entity, component)) }
+                for child in entity.children { collect(child) }
+            }
+            collect(room)
             model.environmentStatus = "Preparing room targeting…"
-            for (entity, component) in roomMaterials {
+            for (entity, component) in newMaterials {
                 let shape = try await ShapeResource.generateStaticMesh(from: component.mesh)
                 try Task.checkCancellation()
                 entity.name = "aim-surface:" + entity.name
                 entity.components.set(CollisionComponent(shapes: [shape]))
                 entity.components.set(InputTargetComponent(allowedInputTypes: []))
             }
-            displayedWhiteRoom = nil
             guard let fixtureURL = Bundle.main.resourceURL?.appendingPathComponent("FixtureAssets/RogueR1X/fixture.usdz") else {
                 throw EnvironmentError.invalid("fixture resources are missing")
             }
             let template = try await Entity(contentsOf: fixtureURL)
             try Task.checkCancellation()
-            fixtureTemplate = template
             // Fail visibly before accepting placements if the expected rig cannot be built.
             _ = try FixtureRig(template: template, id: UUID())
             model.fixtureAssetStatus = "Rogue R1X Spot · catalog visualization proxy"
-            rigs.removeAll()
+            var proxies: [Entity] = []
             for proxy in resolved.manifest.colliders {
                 let entity = Entity()
                 entity.name = "room-collider:" + proxy.sourceID
@@ -96,8 +105,16 @@ final class VenueScene {
                 entity.components.set(PhysicsBodyComponent(shapes: [shape], mass: 0, mode: .static))
                 // Keep the whole collider active: walls block targeting through the room.
                 entity.components.set(InputTargetComponent(allowedInputTypes: [.indirect]))
-                root.addChild(entity)
+                proxies.append(entity)
             }
+            // Publish only after all assets and collision shapes are ready.
+            // A failed import/open therefore leaves the previous room usable.
+            try Task.checkCancellation()
+            root.children.removeAll(); cubes.removeAll(); rigs.removeAll(); labels.removeAll(); drops.removeAll()
+            aligned = false; root.transform = Transform(); root.isEnabled = false
+            root.addChild(room); proxies.forEach { root.addChild($0) }
+            roomMaterials = newMaterials; displayedWhiteRoom = nil; fixtureTemplate = template
+            model.scannedMesh = scan
             // Imported opaque PBR meshes receive dynamic light and write depth.
             manifest = resolved.manifest
             model.activate(environment: resolved.manifest)
@@ -110,6 +127,8 @@ final class VenueScene {
             model.canPlace = false
             model.needsManualToolbox = true
             model.toolboxVisible = true
+            model.libraryMessage = error.localizedDescription
+            model.roomRequest = nil; model.libraryBusy = false
             return false
         }
     }
@@ -124,6 +143,10 @@ final class VenueScene {
         let point = Position3D(x: position.x, y: position.y, z: position.z)
         if entity.name.hasPrefix("aim-surface:"), model.isRetargeting {
             _ = model.acceptTarget(point)
+        } else if entity.name.hasPrefix("aim-surface:"), model.scannedMesh != nil, model.isPlacing {
+            model.placeOnMesh(at: point)
+        } else if entity.name.hasPrefix("aim-surface:"), model.scannedMesh != nil, model.scenePick != nil {
+            model.repositionOnMesh(at: point)
         } else if entity.name.hasPrefix("room-collider:") {
             let id = String(entity.name.dropFirst("room-collider:".count))
             if model.isPlacing { model.place(at: position, surfaceID: id) }
@@ -155,6 +178,9 @@ final class VenueScene {
             overlayRoot.addChild(pane)
             pane.position = [-0.68, 1.35, -1.45]
             pane.components.set(BillboardComponent())
+            #if !targetEnvironment(simulator)
+            pane.scale = .init(repeating: 0.6)
+            #endif
             toolbox = pane
         }
         toolbox?.isEnabled = model.toolboxVisible
@@ -167,10 +193,20 @@ final class VenueScene {
         targetMarker.isEnabled = model.lastTarget != nil
         if let target = model.lastTarget { targetMarker.position = FixtureAiming.vector(target) }
         for (entity, _) in roomMaterials {
-            entity.components.set(InputTargetComponent(allowedInputTypes: model.isRetargeting ? [.indirect] : []))
+            entity.components.set(InputTargetComponent(allowedInputTypes: model.isRetargeting || (model.scannedMesh != nil && model.isPickingRoom) ? [.indirect] : []))
         }
         for child in root.children where child.name.hasPrefix("room-collider:") {
-            child.components.set(InputTargetComponent(allowedInputTypes: model.isRetargeting ? [] : [.indirect]))
+            child.components.set(InputTargetComponent(allowedInputTypes: model.isRetargeting || model.scannedMesh != nil ? [] : [.indirect]))
+        }
+        for surface in model.environment?.surfaces ?? [] {
+            if let zone = attachments.entity(for: "surface-drop-\(surface.id)") {
+                if zone.parent == nil { root.addChild(zone) }
+                let extents = zone.visualBounds(relativeTo: zone).extents
+                if extents.x > 0 && extents.y > 0 { zone.scale = [surface.size[0]/extents.x, surface.size[1]/extents.y, 1] }
+                zone.orientation = simd_quatf(angle: -.pi/2, axis: [1,0,0])
+                zone.position = [surface.center[0],surface.center[1]+0.01,surface.center[2]]
+                zone.isEnabled = model.draggingFixture != nil
+            }
         }
         if let preview = attachments.entity(for: "palm-preview"), preview.parent == nil {
             preview.position = [0.57, -0.30, -1.3]
@@ -252,7 +288,7 @@ final class VenueScene {
         // ARKit device tracking is unavailable in Simulator; use its floor origin and forward direction.
         while !Task.isCancelled {
             model.handTrackingStatus = "Simulator palm preview"
-            setToolboxVisible(model.simulatedPalm || model.draggingPresetID != nil, model: model)
+            setToolboxVisible(model.simulatedPalm || model.draggingPresetID != nil || model.draggingFixture != nil, model: model)
             try? await Task.sleep(for: .milliseconds(33))
         }
         #else
@@ -308,7 +344,7 @@ final class VenueScene {
                 }
                 let revealed = palmGate.update(eligible: eligible, now: now)
                 let visible = model.needsManualToolbox ? model.simulatedPalm : revealed
-                setToolboxVisible(visible || model.draggingPresetID != nil, model: model)
+                setToolboxVisible(visible || model.draggingPresetID != nil || model.draggingFixture != nil, model: model)
                 try await Task.sleep(for: .milliseconds(33))
             }
         } catch is CancellationError {
@@ -347,7 +383,7 @@ final class VenueScene {
         let facing = simd_dot(simd_normalize(normal), -simd_normalize(towardPalm)) > 0.55
         // Use head orientation as a viewing-area approximation; no eye gaze is read.
         if visible && facing {
-            palmPosition = head + simd_normalize(towardPalm) * max(distance, 0.95) + [0, 0.18, 0]
+            palmPosition = center + [0, 0.16, 0]
         }
         return visible && facing
     }
@@ -356,6 +392,8 @@ final class VenueScene {
         #if !targetEnvironment(simulator)
         if visible && !model.toolboxVisible {
             toolbox?.position = palmPosition
+        } else if visible && model.draggingFixture == nil && model.draggingPresetID == nil, let toolbox {
+            toolbox.position += (palmPosition-toolbox.position)*0.15
         }
         #endif
         if model.toolboxVisible != visible { model.toolboxVisible = visible }
