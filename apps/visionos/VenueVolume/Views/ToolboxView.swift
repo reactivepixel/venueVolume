@@ -12,7 +12,11 @@ struct ToolboxView: View {
                 Text("Toolbox").font(.largeTitle.weight(.semibold))
                 Spacer()
                 HistoryControls()
-                Label("Left wrist", systemImage: "hand.raised").font(.caption).foregroundStyle(.secondary)
+                VStack(alignment: .trailing, spacing: 2) {
+                    Label("Left wrist", systemImage: "hand.raised")
+                    Text(appVersion).font(.caption.weight(.semibold)).foregroundStyle(.cyan).monospacedDigit()
+                        .accessibilityLabel("Venue Volume version \(appVersion)")
+                }.font(.caption).foregroundStyle(.secondary)
                 Menu {
                     Button("Diagnostics & sync") { openWindow(id: "diagnostics") }
                     Button("Leave venue") { model.flushHistoryEdits(); model.auditExternal("Leave venue"); Task { await dismissSpace() } }
@@ -99,6 +103,12 @@ struct ToolboxView: View {
         .padding(26).frame(width: 720)
         .disabled(model.libraryBusy)
         .glassBackgroundEffect(in: RoundedRectangle(cornerRadius: 30))
+    }
+
+    private var appVersion: String {
+        guard let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
+              !version.isEmpty else { return "Version unavailable" }
+        return "v\(version)"
     }
 
     private func section(_ title: String) -> some View {
