@@ -47,7 +47,8 @@ struct VenueSpaceView: View {
             }
         }
         .task {
-            if model.isDemoMode && ProcessInfo.processInfo.arguments.contains("--show-preset-editor") {
+            let arguments = ProcessInfo.processInfo.arguments
+            if model.isDemoMode && (arguments.contains("--show-preset-editor") || arguments.contains("--position-tab")) {
                 try? await Task.sleep(for: .seconds(3))
                 guard !Task.isCancelled else { return }
                 if !model.presetWindowVisible { openWindow(id: "presets") }
@@ -72,7 +73,8 @@ struct VenueSpaceView: View {
         .onAppear {
             model.isImmersed = true
             dismissWindow(id: "launch")
-            if model.isDemoMode && !ProcessInfo.processInfo.arguments.contains("--show-preset-editor") {
+            let arguments = ProcessInfo.processInfo.arguments
+            if model.isDemoMode && !arguments.contains("--show-preset-editor") && !arguments.contains("--position-tab") {
                 dismissWindow(id: "presets")
             }
         }
