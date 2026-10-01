@@ -1,0 +1,235 @@
+[
+  {
+    "category_id": "fx.atmosphere.fogger.heated",
+    "name": "Z-1200III Fog Machine",
+    "model_number": "Z-1200III",
+    "manufacturer": "Antari",
+    "type": "atmospherics",
+    "subtype": "heated water-based fogger",
+    "url": "https://antari.com/products/z-1200iii/",
+    "data": {
+      "protocols": ["DMX512", "manual", "timer", "optional wireless", "optional cable remote"],
+      "source_urls": ["https://antari.com/products/z-1200iii/", "https://www.antari.com/usermanual/Z/Z-1200III/Z-1200III.pdf"],
+      "power": "1200 W; US 100–120 V 50/60 Hz, EU 220–240 V 50/60 Hz",
+      "weight": "11.0 kg",
+      "dmx_channels": [1],
+      "dimensions": {"product_page_and_manual": "L x W x H = 458 x 320 x 326 mm; 11.0 kg", "conflicting_official_DM_flyer": "L x W x H = 315 x 128 x 218 mm; 4.2 kg. Variant identity/revision not resolved; do not scale pending confirmation."}
+    },
+    "images": ["https://antari.com/wp-content/uploads/Z-1200III_01.jpg"],
+    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "The product page and manual agree at 458 x 320 x 326 mm / 11.0 kg, but another official Antari DM flyer for the same model label gives 315 x 128 x 218 mm / 4.2 kg. Exact variant/revision cannot be reconciled from available docs.", "reference_pose": "Product image shows machine resting on feet with nozzle facing forward and hanging bracket raised; dimensional variant remains unresolved."},
+    "modeling": {"family": "fogger", "notes": "Conventional heated fog machine, distinct from a compressor hazer and cold CO2 jet. Official sources conflict on dimensions and mass; confirm product revision before scale model.", "body_style": "rectangular metal fogger with carry handle, fluid tank, front outlet and pivoting hanging bracket"},
+    "evidence": [
+      {"url": "https://antari.com/products/z-1200iii/", "title": "Z-1200III Fog Machine product page", "locator": "Specifications: rated power, control, DMX channels, dimensions, weight", "accessed_at": "2026-09-30"},
+      {"url": "https://www.antari.com/usermanual/Z/Z-1200III/Z-1200III.pdf", "title": "Z-1200III User Manual", "locator": "Technical Specifications; exact model and 1-channel DMX; 458 x 320 x 326 mm and 11.0 kg", "accessed_at": "2026-09-30"},
+      {"url": "https://antari.com/DM/Z/Z-1200III/Z-1200III.pdf", "title": "Z-1200III DM flyer", "locator": "Official alternate flyer gives 315 x 128 x 218 mm and 4.2 kg; product variant/revision not identified", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "category_id": "fx.atmosphere.hazer.water_based",
+    "name": "Hurricane Haze 1D",
+    "model_number": "Hurricane Haze 1D",
+    "manufacturer": "CHAUVET DJ",
+    "type": "atmospherics",
+    "subtype": "water-based heated hazer",
+    "url": "https://www.chauvetdj.com/products/hurricane-haze-1d/",
+    "data": {
+      "protocols": ["DMX", "standalone display", "included wired timer remote"],
+      "source_urls": ["https://www.chauvetdj.com/products/hurricane-haze-1d/", "https://www.chauvetdj.com/wp-content/uploads/2016/01/Hurricane_Haze_1D_UM_Rev1_WO.pdf", "https://www.chauvetdj.com/products/haze-fluid-gallon/"],
+      "power": "840 W at 120 V, 60 Hz; page specifies US input",
+      "weight": "3.7 kg",
+      "dmx_channels": [1],
+      "dimensions": {"source_order": "Length x width x height = 318 x 268 x 250 mm; manual Rev. 1 table"},
+      "availability": "Product page says Hurricane Haze 1D is discontinued and identifies Hurricane Haze 1DX as the next-generation product. This record intentionally retains the exact 1D model." 
+    },
+    "images": [],
+    "dimensions": {"width_m": 0.268, "height_m": 0.25, "depth_m": 0.318, "axis_status": "documented", "axis_note": "User Manual Rev. 1, technical specifications table explicitly labels length 318, width 268, height 250 mm; length mapped front-to-back. Product is discontinued.", "reference_pose": "Body upright on its base with top handle above and output scoop facing front; manufacturer length/width/height pose."},
+    "modeling": {"family": "hazer", "notes": "Manufacturer explicitly identifies water-based haze and compatible HFG fluid. Product is discontinued; the page points to Hurricane Haze 1DX as successor. Direct product image URL not captured.", "body_style": "compact low-profile metal hazer with top handle, adjustable output scoop and rear controls"},
+    "evidence": [
+      {"url": "https://www.chauvetdj.com/products/hurricane-haze-1d/", "title": "Hurricane Haze 1D product page", "locator": "Overview and specifications: water-based haze, power, mass, size, 1-channel DMX; next-generation 1DX listed", "accessed_at": "2026-09-30"},
+      {"url": "https://www.chauvetdj.com/wp-content/uploads/2016/01/Hurricane_Haze_1D_UM_Rev1_WO.pdf", "title": "Hurricane Haze 1D User Manual Rev. 1", "locator": "Page 16: dimensions and weight table labels length, width, height", "accessed_at": "2026-09-30"},
+      {"url": "https://www.chauvetdj.com/products/haze-fluid-gallon/", "title": "High Performance Haze Fluid product page", "locator": "HFG is formulated for water-based haze machines", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "category_id": "fx.atmosphere.hazer.oil_compressor",
+    "name": "ATMOSPHERE APS Haze Generator",
+    "model_number": "ATMOSPHERE APS",
+    "manufacturer": "MDG",
+    "type": "atmospherics",
+    "subtype": "oil-based compressor hazer",
+    "url": "https://www.mdgfog.com/en/atmosphereaps",
+    "data": {
+      "protocols": ["DMX via optional 2-channel interface", "remote timer"],
+      "source_urls": ["https://www.mdgfog.com/en/atmosphereaps", "https://www.mdgfog.com/en/2-channel-dmx-interface"],
+      "power": "715 W; 115 or 230 VAC, 50/60 Hz single phase",
+      "weight": "19 kg (machine); shipping/flight case weight excluded",
+      "dmx_channels": [2],
+      "dimensions": {"source_order": "Length 685 mm x width 180 mm x height 300 mm"},
+      "process": "Compressor hazer; MDG Neutral fluid is mineral-oil based; CO2 consumption is separately documented as 0.18 kg/h at 1.38 bar (20 psi)."
+    },
+    "images": ["https://mdgfog.s3.amazonaws.com/uploads/img-tiny/atmosphere-a-bb3c9a.png", "https://mdgfog.s3.amazonaws.com/uploads/img-tiny/atmosphere-b-b46a60.png"],
+    "dimensions": {"width_m": 0.18, "height_m": 0.3, "depth_m": 0.685, "axis_status": "documented", "axis_note": "MDG labels length, width and height explicitly; L mapped to depth. Front/angled official image inspected for body orientation.", "reference_pose": "Machine resting horizontally on its base, fluid reservoir at the front end and carry handle above; MDG product page dimensions."},
+    "modeling": {"family": "hazer", "notes": "Oil-based atomizing fluid plus separate compressed CO2 supply; not a CO2 plume jet.", "body_style": "long low rectangular violet metal machine with raised fluid reservoir at one end and carry handle"},
+    "evidence": [
+      {"url": "https://www.mdgfog.com/en/atmosphereaps", "title": "ATMOSPHERE APS product page", "locator": "Specifications: consumption, fluid, power, dimensions, machine weight; excludes 34 kg shipping weight", "accessed_at": "2026-09-30"},
+      {"url": "https://www.mdgfog.com/en/2-channel-dmx-interface", "title": "2-channel DMX interface product page", "locator": "Interface compatible with ATMOSPHERE; separate accessory", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "category_id": "fx.atmosphere.low_fog.ultrasonic",
+    "name": "Cumulus HP Low-Lying Fog Machine",
+    "model_number": "Cumulus HP",
+    "manufacturer": "CHAUVET DJ",
+    "type": "atmospherics",
+    "subtype": "ultrasonic water-mist low fogger",
+    "url": "https://www.chauvetdj.com/products/cumulus-hp/",
+    "data": {
+      "protocols": ["DMX", "standalone display", "included wireless remote"],
+      "source_urls": ["https://www.chauvetdj.com/products/cumulus-hp/"],
+      "power": "1608 W at 120 V / 60 Hz; 1541 W at 230 V / 50 Hz",
+      "weight": "15.7 kg",
+      "dmx_channels": [2],
+      "dimensions": {"source_order": "18.3 x 11.9 x 13.7 in (464 x 304 x 347 mm); page calls this Size and does not assign axes"}
+    },
+    "images": [],
+    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "Manufacturer publishes a 3-axis size triplet without axis labels; no mapping inferred.", "reference_pose": "Upright rugged enclosure with output hose/nozzle connected, level on its base."},
+    "modeling": {"family": "low_fog", "notes": "Ultrasonic atomizer uses distilled water; separate fog fluid feeds the warmed carrier fog. No dry ice required.", "body_style": "rugged rectangular case-style enclosure with hose outlet and separate water/fog tanks"},
+    "evidence": [{"url": "https://www.chauvetdj.com/products/cumulus-hp/", "title": "Cumulus HP product page", "locator": "Highlights and specifications: ultrasonic atomizer, DMX, power, mass, size", "accessed_at": "2026-09-30"}]
+  },
+  {
+    "category_id": "fx.atmosphere.jet.led_fog",
+    "name": "M-9 Jet Fog Machine",
+    "model_number": "M-9",
+    "manufacturer": "Antari",
+    "type": "atmospherics",
+    "subtype": "LED-equipped heated fog jet",
+    "url": "https://antari.com/products/m-9/",
+    "data": {
+      "protocols": ["DMX512", "manual", "timer", "master/slave", "wireless", "optional wireless DMX"],
+      "source_urls": ["https://antari.com/products/m-9/"],
+      "power": "1820 W; US 100–120 V 50/60 Hz, EU 220–240 V 50/60 Hz",
+      "weight": "25.0 kg",
+      "dmx_channels": [10, 15, 25],
+      "dimensions": {"source_order": "L x W x H = 393 x 321 x 420 mm"},
+      "light_source": "27 x 8 W 5-in-1 LED; fog fluid product, not CO2 propellant"
+    },
+    "images": ["https://antari.com/wp-content/uploads/M-9_01.jpg"],
+    "dimensions": {"width_m": 0.321, "height_m": 0.42, "depth_m": 0.393, "axis_status": "documented", "axis_note": "Manufacturer labels L/W/H; W mapped lateral and L depth. Official product image inspected, but image pose is not itself a dimensional drawing.", "reference_pose": "Machine standing on its base with LED tray above body; fog outlet direction horizontal. Manufacturer's L/W/H dimensions."},
+    "modeling": {"family": "jet", "notes": "Produces a forceful heated fog plume with integrated LEDs. Antari markets it as a CO2-style visual effect, but its documented consumable is FLC fog fluid; it is not a real CO2 jet.", "body_style": "large faceted black fog machine with top emitter tray containing 27 multicolor LED modules, carry handles and base feet"},
+    "evidence": [{"url": "https://antari.com/products/m-9/", "title": "M-9 Jet Fog Machine product page", "locator": "Overview and specifications: FLC compatible fluid, LED count, dimensions, weight, DMX footprints", "accessed_at": "2026-09-30"}]
+  },
+  {
+    "category_id": "fx.atmosphere.bubble.machine",
+    "name": "B-200 Bubble Machine",
+    "model_number": "B-200",
+    "manufacturer": "Antari",
+    "type": "atmospherics",
+    "subtype": "DMX bubble machine",
+    "url": "https://antari.com/products/b-200/",
+    "data": {
+      "protocols": ["DMX512", "manual", "optional timer", "optional wireless", "optional cable remote"],
+      "source_urls": ["https://antari.com/products/b-200/", "https://www.antari.com/DM/B/B-200/B-200.pdf"],
+      "power": "120 W; US 100–120 V 50/60 Hz, EU 220–240 V 50/60 Hz",
+      "weight": "11.0 kg",
+      "dmx_channels": [1],
+      "dimensions": {"product_page_and_flyer": "L x W x H = 508 x 251 x 391 mm; 11.0 kg", "conflicting_official_user_manual": "L x W x H = 421 x 250 x 213 mm; 11.0 kg. Variant/revision not resolved; do not scale pending confirmation."}
+    },
+    "images": ["https://antari.com/wp-content/uploads/B-200-01.jpg"],
+    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "Product page and current product flyer give 508 x 251 x 391 mm; official B-200 User Manual gives 421 x 250 x 213 mm at the same 11 kg mass. Variant/revision unresolved.", "reference_pose": "Official image is consistent with enclosed bubble machine and wheel assembly; dimensional variant unresolved."},
+    "modeling": {"family": "bubble", "notes": "Official image shows an enclosed machine with multiple bubble wheels; official page and user manual conflict on dimensions, so no scale should be claimed until the product revision is confirmed.", "body_style": "rectangular black bubble machine with broad wheel/output opening and rear control panel"},
+    "evidence": [
+      {"url": "https://antari.com/products/b-200/", "title": "B-200 Bubble Machine product page", "locator": "Specifications: power, fluid, DMX channel, 508 x 251 x 391 mm, mass 11 kg", "accessed_at": "2026-09-30"},
+      {"url": "https://www.antari.com/DM/B/B-200/B-200.pdf", "title": "B-200 product flyer", "locator": "Current official product flyer gives 508 x 251 x 391 mm and 11 kg", "accessed_at": "2026-09-30"},
+      {"url": "https://antari.com/wp-content/uploads/B-200.pdf", "title": "B-200 User Manual", "locator": "Technical Specifications gives 421 x 250 x 213 mm and 11 kg; conflicts with the current product page/flyer", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "category_id": "fx.atmosphere.snow.machine",
+    "name": "S-500 Snow Machine",
+    "model_number": "S-500",
+    "manufacturer": "Antari",
+    "type": "atmospherics",
+    "subtype": "water-based snow effect machine",
+    "url": "https://antari.com/products/s-500/",
+    "data": {
+      "protocols": ["DMX512", "manual", "timer", "optional wireless", "optional wireless DMX", "optional cable remote"],
+      "source_urls": ["https://antari.com/products/s-500/"],
+      "power": "900 W; US 100–120 V 50/60 Hz, EU 220–240 V 50/60 Hz",
+      "weight": "37.2 kg (S-500); S-500L variant is 46.4 kg and excluded",
+      "dmx_channels": [2],
+      "dimensions": {"source_order": "L x W x H = 592 x 551 x 651 mm for S-500; S-500L variant dimensions excluded"}
+    },
+    "images": ["https://antari.com/wp-content/uploads/S-500_main-1000x1000-1.jpg"],
+    "dimensions": {"width_m": 0.551, "height_m": 0.651, "depth_m": 0.592, "axis_status": "documented", "axis_note": "Manufacturer labels L/W/H; L mapped front-to-back. Product image shows machine with road-case lid open; listed dimensions are nominal S-500 assembly, not the larger S-500L variant.", "reference_pose": "S-500 machine seated in its wheeled road case, case lid open, output hose/nozzle connection at front; manufacturer L/W/H."},
+    "modeling": {"family": "snow", "notes": "Professional snow machine with fluid supply, case and hose; dimensions/mass refer to S-500, not S-500L. Image reviewed.", "body_style": "large black wheeled road case housing the snow machine, with fluid connection and outlet hose"},
+    "evidence": [{"url": "https://antari.com/products/s-500/", "title": "S-500 Snow Machine product page", "locator": "Specifications: rated power, fluid, 2-channel DMX, dimensions and weight; S-500 and S-500L variants separated", "accessed_at": "2026-09-30"}]
+  },
+  {
+    "category_id": "fx.atmosphere.fan.effect",
+    "name": "Look-Fan DMX",
+    "model_number": "Look-Fan DMX",
+    "manufacturer": "Look Solutions",
+    "type": "atmospherics",
+    "subtype": "DMX axial effect fan",
+    "url": "https://www.looksolutions.com/uploads/pdf/en_fr/info_dmxfan_e.pdf",
+    "data": {
+      "protocols": ["DMX512", "display standalone control"],
+      "source_urls": ["https://www.looksolutions.com/uploads/pdf/en_fr/info_dmxfan_e.pdf", "https://www.looksolutions.com/products/look_fan_s/8.html"],
+      "power": "850 W maximum; 230 V / 50 Hz",
+      "weight": "29.5 kg",
+      "dmx_channels": null,
+      "dimensions": {"diagram_dimensions_mm": {"fan_diameter": 665, "overall_front_width": 721, "body_depth": 425, "overall_side_height": 460}, "source_order": "Technical data sheet dimension diagram; dimensions include the fan and supplied yoke geometry as drawn"},
+      "airflow": "approximately 9000 m3/h; up to 1250 rpm"
+    },
+    "images": [],
+    "dimensions": {"width_m": 0.721, "height_m": 0.46, "depth_m": 0.425, "axis_status": "documented", "axis_note": "Official dimension drawing shows 721 mm overall front width, 460 mm side elevation height and 425 mm body depth; 665 mm rotor guard diameter separately noted.", "reference_pose": "Fan face front-on, supplied hanging yoke attached and rotated to neutral top position; dimensions from official technical diagram."},
+    "modeling": {"family": "fan", "notes": "Source sheet gives diagram dimensions and electrical specs, but not the DMX channel footprint or direct image URL.", "body_style": "large guarded axial fan with circular grille, yoke and rear motor housing"},
+    "evidence": [{"url": "https://www.looksolutions.com/uploads/pdf/en_fr/info_dmxfan_e.pdf", "title": "Look-Fan DMX technical data sheet", "locator": "Page 1: diagram dimensions, power, voltage, weight and DMX operation", "accessed_at": "2026-09-30"}]
+  },
+  {
+    "category_id": "fx.atmosphere.confetti.launcher",
+    "name": "Powershot II",
+    "model_number": "MFX0304",
+    "manufacturer": "MAGIC FX",
+    "type": "atmospherics",
+    "subtype": "electric confetti / streamer shot launcher",
+    "url": "https://magicfx.com/products/powershot-ii",
+    "data": {
+      "protocols": ["power on/off trigger"],
+      "source_urls": ["https://magicfx.com/products/powershot-ii", "https://magicfx.com/cdn/shop/files/Powershot_II_manual.pdf?v=2824067315526127119"],
+      "power": "120 W; 220–240 VAC, 50/60 Hz",
+      "weight": "1.7 kg",
+      "dmx_channels": null,
+      "dimensions": {"source_order": "Length 90 mm x width 127 mm x height 190 mm"}
+    },
+    "images": ["https://magicfx.com/cdn/shop/files/POWERSHOTII_66533f85-fbf1-4057-ae70-44f6163f6649.jpg?v=1774941991&width=3840"],
+    "dimensions": {"width_m": 0.127, "height_m": 0.19, "depth_m": 0.09, "axis_status": "documented", "axis_note": "Manufacturer labels length/width/height; image checked in compact upright mounting pose, length treated as front-to-back short axis.", "reference_pose": "Compact unit held upright with shot socket uppermost, mounting surface down; official product image."},
+    "modeling": {"family": "confetti", "notes": "Launcher is a reusable electrical shot appliance; disposable electric cannons/consumables are separate products.", "body_style": "small black box-shaped powered shot unit with top-facing cannon socket, angle indicator and mounting clamps"},
+    "evidence": [{"url": "https://magicfx.com/products/powershot-ii", "title": "Powershot II product page", "locator": "Description identifies electric confetti/streamer launcher; specifications give SKU, size, mass, power and power-on/off control", "accessed_at": "2026-09-30"}]
+  },
+  {
+    "category_id": "fx.atmosphere.co2_jet.gas",
+    "name": "CO2jet II",
+    "model_number": "MFX1118",
+    "manufacturer": "MAGIC FX",
+    "type": "atmospherics",
+    "subtype": "liquid CO2 gas jet",
+    "url": "https://magicfx.com/products/co2jet-ii",
+    "data": {
+      "protocols": ["direct on/off output; product page says manual control"],
+      "source_urls": ["https://magicfx.com/products/co2jet-ii", "https://magicfx.com/cdn/shop/files/CO2jet_II_manual.pdf?v=5588412156141481997"],
+      "power": "20 W; 220–240 VAC, 50–60 Hz",
+      "weight": "3.7 kg empty in Rev 01-03 manual; live product page lists 4.29 kg",
+      "dmx_channels": null,
+      "dimensions": {"manual_source_order": "L x W x H = 232 x 196 x 124.5 mm; current product page instead gives 290 x 290 x 200 mm", "discrepancy": "Two official sources disagree substantially. Manual is code MFX1118, Rev 01-03 (2023); current page exact SKU also MFX1118. Do not scale until manufacturer confirms current housing."},
+      "propellant": "Liquid CO2; product manual identifies CO2 FX and liquid CO2 input. Distinct from heated-fluid LED fog jets."
+    },
+    "images": ["https://magicfx.com/cdn/shop/files/CO2JETII-02.jpg?v=1773148408&width=3840", "https://magicfx.com/cdn/shop/files/CO2JETII-04.jpg?v=1773148408&width=3840"],
+    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "Conflicting manufacturer dimensions/mass for matching MFX1118 identity leave assembly bounds unresolved; manual dimensions are retained only as source values.", "reference_pose": "Product code MFX1118 with rotatable output nozzle in neutral forward orientation; confirm current generation and dimensional reference before modeling."},
+    "modeling": {"family": "co2_jet", "notes": "Genuine liquid-CO2 jet, unlike the Antari M-9 LED fog jet which uses fog fluid. Manufacturer source conflict blocks dependable scaled bounds.", "body_style": "compact black riggable housing with pivoting nozzle, input connection and power in/out"},
+    "evidence": [
+      {"url": "https://magicfx.com/products/co2jet-ii", "title": "CO2jet II product page", "locator": "SKU MFX1118; CO2 consumable and 0.5 kg/s rate; dimensions 29 x 29 x 20 cm, 4.29 kg; power/control", "accessed_at": "2026-09-30"},
+      {"url": "https://magicfx.com/cdn/shop/files/CO2jet_II_manual.pdf?v=5588412156141481997", "title": "CO2 JET II User and installation manual", "locator": "Rev 01-03, 24 Nov 2023; §1.2, p.6; exact code MFX1118; dimensions 232 x 196 x 124.5 mm, empty mass 3.7 kg, power and liquid CO2", "accessed_at": "2026-09-30"}
+    ]
+  }
+]
