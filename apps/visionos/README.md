@@ -14,6 +14,8 @@ For an already booted visionOS Simulator, from this directory:
 
 The script builds, installs, and launches the demo. `VV_SIMULATOR_ID` selects a particular booted device. Extra arguments are forwarded, for example `./scripts/run-demo.sh --blue --palm-hidden`. Demo mode is available on both Simulator and hardware and never writes normal placements or presets.
 
+The left-wrist Toolbox header shows the app's `CFBundleShortVersionString`, sourced from Xcode `MARKETING_VERSION` ([Simulator capture](Screenshots/toolbox-version.png)). Run `python3 scripts/check-version.py` from this directory to confirm it matches the latest reachable `vMAJOR.MINOR.PATCH` Git tag and both npm app versions. Release integration runs the check with `--release` after tagging to require an annotated tag at `HEAD`.
+
 ## Use
 
 1. Raise your **left palm** toward you to reveal **Toolbox**. Simulator supplies a **Left palm facing me** toggle. The trigger uses hand pose and head direction, not raw eye gaze.
