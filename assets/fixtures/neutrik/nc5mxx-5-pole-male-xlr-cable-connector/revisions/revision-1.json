@@ -1,0 +1,194 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "neutrik/nc5mxx-5-pole-male-xlr-cable-connector",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Neutrik",
+      "model": "NC5MXX 5-pole male XLR cable connector",
+      "variant": "NC5MXX",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.neutrik.com/en/product/nc5mxx",
+        "title": "NC5MXX — Neutrik",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product description and downloads; five-pole male cable connector; cable diameter range 3.5–8.0 mm",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.neutrik.com/media/8230/download/nc5mxx-1.pdf?v=1",
+        "title": "XX-Series NC5MXX dimensional drawing",
+        "kind": "manufacturer_drawing",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Sheet 1: axial length 68.1–70.1 mm; max diameter 19 mm",
+        "reuse_status": "reference_only",
+        "file": "sources/neutrik-nc5mxx-drawing.pdf",
+        "sha256": "ee530903c8e592f12301d5f462dcb529c55a06f1db7d05a4e317bbd5df890e34"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.neutrik.com/uploads/media/400x/02/322-nc5mxx.jpg?v=1-0",
+        "title": "NC5MXX 5-pole male XLR cable connector visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.jpg",
+        "sha256": "d600f9b0fc58908824b9b75b41ecb790c43b70282881de98b8e5efb603c7896f"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.019,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Circular cross-section is 19 mm maximum; longest manufacturer-dimensioned axis is 70.1 mm; use the maximum of its range."
+      },
+      "height": {
+        "value": 0.019,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Circular cross-section is 19 mm maximum; longest manufacturer-dimensioned axis is 70.1 mm; use the maximum of its range."
+      },
+      "depth": {
+        "value": 0.0701,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Circular cross-section is 19 mm maximum; longest manufacturer-dimensioned axis is 70.1 mm; use the maximum of its range."
+      },
+      "reference_pose": "Long axis horizontal, mating end forward; pose follows the manufacturer orthographic views."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Long axis horizontal, mating end forward; pose follows the manufacturer orthographic views.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "Circular cross-section is 19 mm maximum; longest manufacturer-dimensioned axis is 70.1 mm; use the maximum of its range.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "infrastructure_control.data_cabling",
+      "control_path": "Passive connector component for a 5-pole XLR data cable; it carries no active processing. Connector pinout and cable assembly are separate; do not identify this part as a terminator.",
+      "physical_asset_only": true,
+      "source_data": {
+        "source_urls": [
+          "https://www.neutrik.com/en/product/nc5mxx",
+          "https://www.neutrik.com/media/8230/download/nc5mxx-1.pdf?v=1"
+        ],
+        "dimensions": {
+          "width_m": 0.019,
+          "height_m": 0.019,
+          "depth_m": 0.0701,
+          "source_order": "19 mm max circular diameter x 68.1–70.1 mm axial length",
+          "axis_status": "documented",
+          "axis_note": "Circular cross-section is 19 mm maximum; longest manufacturer-dimensioned axis is 70.1 mm; use the maximum of its range.",
+          "reference_pose": "Long axis horizontal, mating end forward; pose follows the manufacturer orthographic views."
+        },
+        "dimensions_status": "documented_in_manufacturer_drawing",
+        "control_path": "Passive connector component for a 5-pole XLR data cable; it carries no active processing. Connector pinout and cable assembly are separate; do not identify this part as a terminator.",
+        "pose": "Long axis horizontal, mating end forward; circular housing cross-section up; pose follows the manufacturer's orthographic drawing.",
+        "limitations": "Drawing length is a 68.1–70.1 mm range. Use maximum 70.1 mm envelope for placement. Model is connector only; variable cable gland fit (3.5–8 mm cable OD) does not define a cable or bend radius.",
+        "research_evidence": [
+          {
+            "url": "https://www.neutrik.com/en/product/nc5mxx",
+            "title": "NC5MXX — Neutrik",
+            "locator": "Product description and downloads; five-pole male cable connector; cable diameter range 3.5–8.0 mm",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown",
+            "source_kind": "manufacturer_product"
+          },
+          {
+            "url": "https://www.neutrik.com/media/8230/download/nc5mxx-1.pdf?v=1",
+            "title": "XX-Series NC5MXX dimensional drawing",
+            "locator": "Sheet 1: axial length 68.1–70.1 mm; max diameter 19 mm",
+            "file": "research/fixtures/taxonomy/support-sources/neutrik-nc5mxx-drawing.pdf",
+            "sha256": "ee530903c8e592f12301d5f462dcb529c55a06f1db7d05a4e317bbd5df890e34",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown",
+            "source_kind": "manufacturer_drawing"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "0a2d3e6cf6377719db5c9b958639a61b31546652",
+  "note": "Initial research record before any generated model artifacts existed."
+}

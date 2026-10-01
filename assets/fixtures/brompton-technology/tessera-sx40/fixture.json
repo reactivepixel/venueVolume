@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "id": "brompton-technology/tessera-sx40",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Brompton Technology",
+    "model": "Tessera SX40",
+    "variant": "SX40",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.bromptontech.com/product/sx40/",
+      "title": "Brompton Tessera SX40 product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product overview, input/output feature summary and product render",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "evidence-2",
+      "url": "https://www.bromptontech.com/wp-content/uploads/2025/07/Brompton-SX40-Data-Sheet-Feb2025-EN.pdf",
+      "reuse_status": "unknown",
+      "kind": "manufacturer_manual",
+      "title": "Brompton SX40 data sheet",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Physical (W x H x L), unboxed: 482.6 x 88.9 x 406.4 mm; signal input/output details",
+      "file": "sources/brompton-sx40.pdf",
+      "sha256": "6a01e409dffe2cd36af48b25d9fa71c57de766d562c417fe1cb583d8117dfe9f"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.bromptontech.com/wp-content/uploads/2019/05/SX40_front_elevated_Final-1536x810.png.webp",
+      "title": "Tessera SX40 visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.webp",
+      "sha256": "700ae71baf3aa3874909b9a2d0e883230d74517a2f0661afe917c0bfa3f95f61"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.4826,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "482.6 W x 88.9 H x 406.4 L mm unboxed"
+    },
+    "height": {
+      "value": 0.0889,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "482.6 W x 88.9 H x 406.4 L mm unboxed"
+    },
+    "depth": {
+      "value": 0.4064,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "482.6 W x 88.9 H x 406.4 L mm unboxed"
+    },
+    "reference_pose": "19-inch rackmount chassis, front panel vertical toward operator; 482.6 mm rack width x 88.9 mm 2U height x 406.4 mm chassis depth per manufacturer."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "19-inch rackmount chassis, front panel vertical toward operator; 482.6 mm rack width x 88.9 mm 2U height x 406.4 mm chassis depth per manufacturer.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.24130000174045563,
+        0.0,
+        -0.20319999399362132
+      ],
+      "max": [
+        0.24130000174045563,
+        0.08889999985694885,
+        0.20320000109495595
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0005348956328816712
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "482.6 W x 88.9 H x 406.4 L mm unboxed",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "6f5233d182e102ea5a806900afb438b17a62139fb97ea072a18920a19492c771"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "9973978766c1b845b81b75e421fa9c2b3bfefe90dbfe810bcf473baa5f72cfa4"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "36c5c2aed821f9378b608bd8f64dc2ad24bca495f33a8273bb2a9cff4a5ae97b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "b1c4bac36b95cf890cbc8d846d354e6114aca7b5366b8bde1c423d0d99b78401"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "27b73e3052e17e57b9997f1abd6284bfca3b017b012a7879c21f689c74edbf35"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "6555b8e1ce19ef97fececc9e6a3393f47eebee1b41f6cd4d0a476ff8f51e1317"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "ca76b768e8abbfc15cc39e533111637f5811e55d618e33977688d5d33b3a8ccf"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "84baf2623537ad135549f47738d8c3841ebcd5dc2a54b6024fa7d3162490b132"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "d4cad1bea9bf36475acc6a05911bcbc49edb4050b05dfc9a5a10de4d4f250fb5"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "1721df204f1b7b7090271828abe6adf466718a156f718dee1afb552873833e17"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "2c32c1e5fab381c3d9614d95cb6f210c4362cbdb2547a712f42b51db3d375ea5",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "media_server",
+      "body_style": "2U rackmount video/LED processor with front status display and rear I/O",
+      "notes": "An optional visual department example; this is not a fixture or generic DMX node.",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 33,
+    "triangle_count": 5820,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed media_server geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "video.processor",
+    "control_path": "Video input and LED-panel data output; processor also supports DMX-512A and sACN lighting control integration, which is distinct from the video output path.",
+    "physical_asset_only": true,
+    "source_data": {
+      "dimensions": {
+        "width_m": 0.4826,
+        "height_m": 0.0889,
+        "depth_m": 0.4064,
+        "source_order": "482.6 W x 88.9 H x 406.4 L mm unboxed",
+        "axis_status": "documented",
+        "axis_note": "482.6 W x 88.9 H x 406.4 L mm unboxed",
+        "reference_pose": "19-inch rackmount chassis, front panel vertical toward operator; 482.6 mm rack width x 88.9 mm 2U height x 406.4 mm chassis depth per manufacturer."
+      },
+      "control_path": "Video input and LED-panel data output; processor also supports DMX-512A and sACN lighting control integration, which is distinct from the video output path.",
+      "pose": "19-inch rackmount chassis, front panel vertical toward operator; 482.6 mm rack width x 88.9 mm 2U height x 406.4 mm chassis depth per manufacturer.",
+      "research_evidence": [
+        {
+          "url": "https://www.bromptontech.com/product/sx40/",
+          "title": "Brompton Tessera SX40 product page",
+          "locator": "Product overview, input/output feature summary and product render",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://www.bromptontech.com/wp-content/uploads/2025/07/Brompton-SX40-Data-Sheet-Feb2025-EN.pdf",
+          "title": "Brompton SX40 data sheet",
+          "locator": "Physical (W x H x L), unboxed: 482.6 x 88.9 x 406.4 mm; signal input/output details",
+          "file": "research/fixtures/taxonomy/support-sources/brompton-sx40.pdf",
+          "sha256": "6a01e409dffe2cd36af48b25d9fa71c57de766d562c417fe1cb583d8117dfe9f",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "video.processor",
+    "category_path": [
+      "Video and projected surfaces",
+      "Media server / video processor"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

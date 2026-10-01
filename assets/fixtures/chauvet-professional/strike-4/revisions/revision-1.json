@@ -1,0 +1,187 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "chauvet-professional/strike-4",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "CHAUVET Professional",
+      "model": "STRIKE 4",
+      "variant": "STRIKE4",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://chauvetprofessional.com/product/strike-4/",
+        "title": "STRIKE 4",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Dimensions, weight, power and control specifications",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://chauvetprofessional.com/wp-content/uploads/2025/10/STRIKE-4-FRONT-FEAT.png",
+        "title": "STRIKE 4 visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.png",
+        "sha256": "26536942c76a58f63e4bb1d50c35a9f50161d9967c11477f0723673c1dbbffc1"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.362,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer LxWxH values 362 x 362 x 163 mm map to square face width/height and depth with emitting face forward. Neutral-pose axis assignment is image-inferred, not established by a labelled drawing."
+      },
+      "height": {
+        "value": 0.362,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer LxWxH values 362 x 362 x 163 mm map to square face width/height and depth with emitting face forward. Neutral-pose axis assignment is image-inferred, not established by a labelled drawing."
+      },
+      "depth": {
+        "value": 0.163,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer LxWxH values 362 x 362 x 163 mm map to square face width/height and depth with emitting face forward. Neutral-pose axis assignment is image-inferred, not established by a labelled drawing."
+      },
+      "reference_pose": "Four cells facing forward, square panel vertical, body depth toward/away from observer; yoke neutral."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "301 W at 120 V; 286 W at 230 V",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "8.7 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Four cells facing forward, square panel vertical, body depth toward/away from observer; yoke neutral.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "Manufacturer LxWxH values 362 x 362 x 163 mm map to square face width/height and depth with emitting face forward. Neutral-pose axis assignment is image-inferred, not established by a labelled drawing.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "audience_blinder_four_cell",
+      "control_path": "DMX",
+      "physical_asset_only": true,
+      "source_data": {
+        "source_urls": [
+          "https://chauvetprofessional.com/product/strike-4/"
+        ],
+        "control_path": "DMX",
+        "protocols": [
+          "DMX"
+        ],
+        "power": "301 W at 120 V; 286 W at 230 V",
+        "weight": "8.7 kg",
+        "dimensions": {
+          "width_m": 0.362,
+          "height_m": 0.362,
+          "depth_m": 0.163,
+          "axis_status": "estimated",
+          "axis_note": "Manufacturer LxWxH values 362 x 362 x 163 mm map to square face width/height and depth with emitting face forward. Neutral-pose axis assignment is image-inferred, not established by a labelled drawing.",
+          "reference_pose": "Four cells facing forward, square panel vertical, body depth toward/away from observer; yoke neutral."
+        },
+        "research_evidence": [
+          {
+            "url": "https://chauvetprofessional.com/product/strike-4/",
+            "title": "STRIKE 4",
+            "locator": "Dimensions, weight, power and control specifications",
+            "accessed_at": "2026-09-30"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "c753c434774c5386e4b9f87fc3f00a1f589aad3c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

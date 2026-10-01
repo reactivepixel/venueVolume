@@ -1,0 +1,50 @@
+{
+  "mesh_count": 46,
+  "triangle_count": 10220,
+  "geometry_sha256": "bd3a74ab4f8baaa672d699d47ae40b89d593d28ea4849289bccbde439df2e500",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0026741281617432833,
+      -0.001232876442372799,
+      0.00037384239840321243
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0026741281617432833,
+        -0.001232876442372799,
+        0.00037384239840321243
+      ]
+    }
+  ],
+  "family": "power_supply",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9950248599052429,
+    1.024225115776062,
+    1.0273971557617188
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.meanwell.com/Upload/PDF/LRS-350/LRS-350-SPEC.PDF",
+    "https://www.meanwell.com/Upload/PDF/LRS-350/LRS-350-SPEC.PDF"
+  ]
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "look-solutions/look-fan-dmx",
+    "category_id": "fx.atmosphere.fan.effect",
+    "reason": "Missing or conflicting dimensional envelope",
+    "note": "Official sheet labels fan Ø665 mm, front-view overall width 721 mm, side-view projection 460 mm, and depth 425 mm. The drawing does not make clear whether the 460 mm projection is a pose-dependent yoke dimension or overall height in the intended mounted reference pose; do not map these into a bounding box without clarification."
+  },
+  {
+    "id": "magic-fx/co2-jet-i",
+    "category_id": "fx.atmosphere.co2_jet.gas",
+    "reason": "Missing or conflicting dimensional envelope",
+    "note": "Although the manufacturer page lists a 200 x 150 x 130 mm triplet, its matching manual gives 195 x 150 x 130 mm and a conflicting mass; neither clarifies whether the protruding removable output tube is included. The canonical assembled envelope is unresolved."
+  },
+  {
+    "id": "fontana-fountains/fontana-jumping-jet-mxp-3000",
+    "category_id": "fx.atmosphere.water_jet.fountain",
+    "reason": "Missing or conflicting dimensional envelope",
+    "note": "Manufacturer lists maximum/variable extents rather than a single fixed pose: total width 370 mm, total height up to 570 mm, total length up to 480 mm, and 275 mm diameter. Do not treat these pose-dependent maximums as a fixed rigid fixture envelope."
+  },
+  {
+    "id": "mdg/mdg-co2-gas-bottle-1-5-kg-north-american",
+    "category_id": "fx.atmosphere.co2_supply.cylinder_north_american",
+    "reason": "Missing or conflicting dimensional envelope",
+    "note": "Exact North American 1.5 kg MDG bottle identity is documented, but cylinder dimensions are not published; no standard-cylinder envelope is assumed."
+  },
+  {
+    "id": "kupo/kupo-75-cm-safety-wire-black",
+    "category_id": "fx.atmosphere.rigging.secondary_safety_wire",
+    "reason": "Missing or conflicting dimensional envelope",
+    "note": "A flexible safety wire has 750 mm length and 3.2 mm cable diameter, but no fixed 3D bounding box in the variable coil/installed pose; retain those source measures without assigning an envelope."
+  },
+  {
+    "id": "etc/source-four-36-edlt-lens-tube",
+    "category_id": "profile_lens_tube_accessory",
+    "reason": "Missing or conflicting dimensional envelope",
+    "note": "The cited official accessory sheet identifies and illustrates the body-only tube but gives no outer dimensions; do not borrow assembled Source Four dimensions."
+  },
+  {
+    "id": "etc/source-four-drop-in-iris",
+    "category_id": "profile_iris_accessory",
+    "reason": "Missing or conflicting dimensional envelope",
+    "note": "The manual documents aperture range, not the iris assembly’s outer envelope; no fixture dimensions are substituted."
+  },
+  {
+    "id": "rosco/rosco-78042-large-squares",
+    "category_id": "metal_gobo",
+    "reason": "Missing or conflicting dimensional envelope",
+    "note": "Rosco specifies the 92 mm S-size OD; exact metal thickness for this standard pattern is not published, so no thickness scale claim is made."
+  },
+  {
+    "id": "rosco/cinegel-r3008-tough-frost-20-x-24-in-sheet",
+    "category_id": "color_filter_diffusion_sheet",
+    "reason": "Missing or conflicting dimensional envelope",
+    "note": "Rosco identifies R3008 and standard Cinegel sheet sizes; exact per-variant thickness is not published in the cited product sources and remains unknown."
+  }
+]

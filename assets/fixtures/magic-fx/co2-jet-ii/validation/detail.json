@@ -1,0 +1,51 @@
+{
+  "mesh_count": 12,
+  "triangle_count": 1680,
+  "geometry_sha256": "e191322c48f7b558915792c3513d50fd12f40a1213ece4886acfac88faa9711d",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.11314740777015686,
+      0.06388942897319794
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.000378419499611482,
+        0.005789007991552353
+      ]
+    }
+  ],
+  "family": "co2_jet",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0416666269302368,
+    0.9562281370162964,
+    1.0131711959838867
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://magicfx.com/products/co2jet-ii",
+    "https://magicfx.com/cdn/shop/files/CO2jet_II_manual.pdf?v=5588412156141481997",
+    "https://magicfx.com/cdn/shop/files/CO2JETII-01.jpg?v=1773148408&width=3840"
+  ]
+}

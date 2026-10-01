@@ -1,0 +1,50 @@
+{
+  "mesh_count": 67,
+  "triangle_count": 6260,
+  "geometry_sha256": "50af01d4a16b29d3894d75900e10904f47d57264c4ac3f5bed6f391cba0b67dd",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      -0.014802875928580761,
+      -0.007305653300136328,
+      -0.0
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        -0.014802875928580761,
+        -0.007305653300136328,
+        -0.0
+      ]
+    }
+  ],
+  "family": "hoist",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.1061779260635376,
+    1.0416666269302368,
+    1.0274648666381836
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.cmco.com/globalassets/catalogs--documents/emea/cmco-cm-et-product-catalogue-2022.pdf",
+    "https://www.cmco.com/globalassets/catalogs--documents/emea/cmco-cm-et-product-catalogue-2022.pdf"
+  ]
+}

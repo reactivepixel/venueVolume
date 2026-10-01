@@ -1,0 +1,299 @@
+{
+  "schema_version": 1,
+  "id": "elation-professional/pixel-tape-16ip",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Elation Professional",
+    "model": "PIXEL TAPE 16IP",
+    "variant": "PIX618",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.elationlighting.com/products/pixel-tape-16ip",
+      "title": "PIXEL TAPE 16IP",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact module size, pixel count, voltage, power and driver/control data",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.elationlighting.com/cdn/shop/files/e25056689bf3c664c3ecf2633beaa478799b3ad2_PIX618__IMG__001__9fcf5d2d87a2.jpg?v=1776815651&width=2048",
+      "title": "PIXEL TAPE 16IP visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "2c6e48f27c429937a4130b6cba65d01b8ca8df32c26b3e82097fb08652a3943c"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 2.72,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer specified module length and cross-section."
+    },
+    "height": {
+      "value": 0.003,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer specified module length and cross-section."
+    },
+    "depth": {
+      "value": 0.012,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer specified module length and cross-section."
+    },
+    "reference_pose": "Tape laid straight and flat; straightened display pose, not packaging coil."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "35 W maximum, 24 V DC",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "under 0.2 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "APA102 pixel data at strip; DMX only via external driver"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Tape laid straight and flat; straightened display pose, not packaging coil.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -1.3600000143051147,
+        0.0,
+        -0.006000000052154064
+      ],
+      "max": [
+        1.3600000143051147,
+        0.003000000026077032,
+        0.006000000052154064
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          -0.0
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.001500000013038516,
+          -0.006120000034570694
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Manufacturer specified module length and cross-section.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "e1797ea819792eab0bb5d13523bf6da32f05bd94c61177fa58877c4a70f8f0d4"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "9b628f49ae5a7309f7b602779377e3a3113e34f3f6df059e408739a633339841"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "6faa951531dccf5fdc3aa52c18ec7397fb4433d011e2eec71bab4b81e4e505bc"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "ce3e9425374416e71e9cfae393715d85cf0c78d49194d41d1bd33820dc2d131f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "ef9283371602be5a76af1a8d654650eea1171d9be47a4da3817e5a7f36a51d9e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "c6b4c4c3682c15d877276e05aa414253a4c33d8d8ab271f612cd7d8c8c625233"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "cf436429afffd2d7db5a173eab2e0eb73e89dadb6dc6ef3992a18411b22eb852"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "751db341bfc0b2bdc14a42ed720761271612b00477c7a1286c15bc8b00ed169a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "0db6d58ffe5bac50cedcd2adb542dad3ef33b4508660c87e2924bbf689fd4337"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "860f03c977744bfd9480058404e2c9e18caf86e49c2020a06c8a68e9ed9b5612"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "c73580da58dbb3051bbc6ad6068673b5ed1d96c10c1244537b38fdf57332d180",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "pixel_strip",
+      "body_style": "flexible conformal-coated strip with 170 RGB pixel packages",
+      "notes": "External driver dependency explicit; 2.72 m module geometry.",
+      "generator": "equipment",
+      "output_kind": "light"
+    },
+    "mesh_count": 341,
+    "triangle_count": 4092,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed pixel_strip geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "lighting.static.pixel_tape",
+    "control_path": "External Elation pixel driver; driver translates DMX to APA102 pixel data",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://www.elationlighting.com/products/pixel-tape-16ip"
+      ],
+      "control_path": "External Elation pixel driver; driver translates DMX to APA102 pixel data",
+      "protocols": [
+        "APA102 pixel data at strip; DMX only via external driver"
+      ],
+      "power": "35 W maximum, 24 V DC",
+      "weight": "under 0.2 kg",
+      "dimensions": {
+        "width_m": 2.72,
+        "height_m": 0.003,
+        "depth_m": 0.012,
+        "axis_status": "documented",
+        "axis_note": "Manufacturer specified module length and cross-section.",
+        "reference_pose": "Tape laid straight and flat; straightened display pose, not packaging coil."
+      },
+      "research_evidence": [
+        {
+          "url": "https://www.elationlighting.com/products/pixel-tape-16ip",
+          "title": "PIXEL TAPE 16IP",
+          "locator": "Exact module size, pixel count, voltage, power and driver/control data",
+          "accessed_at": "2026-09-30"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.static.pixel_tape",
+    "category_path": [
+      "Lighting fixtures",
+      "Static and manually focused",
+      "Flexible pixel tape / scenic pixels"
+    ],
+    "use_tags": [
+      "pixel control",
+      "weather-rated variant"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

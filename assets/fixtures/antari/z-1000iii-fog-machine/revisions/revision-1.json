@@ -1,0 +1,206 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "antari/z-1000iii-fog-machine",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Antari",
+      "model": "Z-1000III Fog Machine",
+      "variant": "Z-1000III",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://antari.com/products/z-1000iii/",
+        "title": "Z-1000III Fog Machine product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Specifications: 1000 W, 7.9 kg, L/W/H 433/281/266 mm, one-channel DMX",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://antari.com/wp-content/uploads/Z-1000III_01.jpg",
+        "title": "Z-1000III Fog Machine visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.jpg",
+        "sha256": "c0706e1bb949e56a482ac3901e6f3fd6eabf1410bc904a24d86119a2ec96eded"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.281,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer labels L/W/H; L mapped to depth in the upright front-facing pose."
+      },
+      "height": {
+        "value": 0.266,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer labels L/W/H; L mapped to depth in the upright front-facing pose."
+      },
+      "depth": {
+        "value": 0.433,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer labels L/W/H; L mapped to depth in the upright front-facing pose."
+      },
+      "reference_pose": "Machine resting on feet with outlet facing forward and hanging bracket raised; L/W/H."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "1000 W",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "7.9 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "manual",
+            "timer",
+            "optional wireless",
+            "optional cable remote"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "1-channel mode",
+        "footprint": 1,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Machine resting on feet with outlet facing forward and hanging bracket raised; L/W/H.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "Manufacturer labels L/W/H; L mapped to depth in the upright front-facing pose.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "fx.atmosphere.fogger.heated",
+      "control_path": "See source-backed protocol list; compatibility and control system are not implemented.",
+      "physical_asset_only": true,
+      "source_data": {
+        "protocols": [
+          "DMX512",
+          "manual",
+          "timer",
+          "optional wireless",
+          "optional cable remote"
+        ],
+        "source_urls": [
+          "https://antari.com/products/z-1000iii/"
+        ],
+        "power": "1000 W",
+        "weight": "7.9 kg",
+        "dmx_channels": [
+          1
+        ],
+        "dimensions": {
+          "width_m": 0.281,
+          "height_m": 0.266,
+          "depth_m": 0.433,
+          "axis_status": "documented",
+          "axis_note": "Manufacturer labels L/W/H; L mapped to depth in the upright front-facing pose.",
+          "reference_pose": "Machine resting on feet with outlet facing forward and hanging bracket raised; L/W/H."
+        },
+        "research_evidence": [
+          {
+            "url": "https://antari.com/products/z-1000iii/",
+            "title": "Z-1000III Fog Machine product page",
+            "locator": "Specifications: 1000 W, 7.9 kg, L/W/H 433/281/266 mm, one-channel DMX",
+            "accessed_at": "2026-09-30"
+          }
+        ],
+        "control_path": "See source-backed protocol list; compatibility and control system are not implemented."
+      }
+    }
+  },
+  "git_commit": "c753c434774c5386e4b9f87fc3f00a1f589aad3c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

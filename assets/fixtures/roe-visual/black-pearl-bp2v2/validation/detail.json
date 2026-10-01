@@ -1,0 +1,60 @@
+{
+  "mesh_count": 9,
+  "triangle_count": 1692,
+  "geometry_sha256": "d2224c166a2e82581bbc6fa270d7a2e11d20276a702f83b53ecd0d8f74e3f6cb",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.25,
+      -0.04448092356324196
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        -0.007107366342097521
+      ]
+    },
+    {
+      "name": "surface",
+      "prim_path": "/Fixture/Surface",
+      "pivot_m": [
+        0.0,
+        0.25,
+        -0.0437622033059597
+      ]
+    }
+  ],
+  "family": "led_panel",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0,
+    0.7985803484916687,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.roevisual.com/en/products/black-pearl-2v2",
+    "https://www.roevisual.com/uploads/files/Product%20File/Black%20Pearl/bp2v2-brochure-en-feb.-3-2024.pdf",
+    "https://www.roevisual.com/uploads/Images/Products/Black%20Pearl%202%20V2/bp2v2-list1.png"
+  ]
+}

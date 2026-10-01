@@ -1,0 +1,68 @@
+{
+  "mesh_count": 16,
+  "triangle_count": 9452,
+  "geometry_sha256": "1771eedcbef18eff1b564e4121ffb9e6755e28df28778b0e1258506a5f87a426",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.1451132446527481,
+      -0.21779005229473114
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.08662855625152588,
+        0.0037481796462088823
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        0.0,
+        0.08662855625152588,
+        -0.13294562697410583
+      ]
+    },
+    {
+      "name": "mirror",
+      "prim_path": "/Fixture/Mirror",
+      "pivot_m": [
+        0.0,
+        0.1451132446527481,
+        -0.20364932715892792
+      ]
+    }
+  ],
+  "family": "scanner",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.25,
+    1.0246912240982056,
+    1.304006576538086
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/products/dynasty-scan-dmx",
+    "https://www.adj.com/cdn/shop/files/8e8fdf896b7c324fb4ba06faa15832d3cfda9d95_DYNASTY_SCAN__IMG__001__4532095281c8.jpg?v=1776714362&width=2048"
+  ]
+}

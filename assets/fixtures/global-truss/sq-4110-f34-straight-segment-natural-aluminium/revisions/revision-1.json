@@ -1,0 +1,192 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "global-truss/sq-4110-f34-straight-segment-natural-aluminium",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "Global Truss",
+      "model": "SQ-4110 F34 Straight Segment, Natural Aluminium",
+      "variant": "F340066",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.globaltruss.com/sq-4110",
+        "title": "Global Truss SQ-4110",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "SKU F340066; 1 m overall length, 290 mm overall width, 50 mm tube, resources/dimensional drawing",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://d295jznhem2tn9.cloudfront.net/ItemRelatedFiles/11147/F34-SQ-4110.pdf",
+        "title": "F34-SQ-4110 dimensional drawing",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer linked dimensional drawing; supplied from product page",
+        "reuse_status": "reference_only",
+        "file": "sources/globaltruss-sq-4110-dimensions.pdf",
+        "sha256": "cdc6ba9f48af605f0ace545501cc5cb2aeb5f948e1e5c775df840694e3c629de"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.globaltruss.com/media/catalog/product/cache/6517c62f5899ad6aa0ba23ceb3eeff97/1/0/1000x1000-20f34-20straight-41866.jpg",
+        "title": "SQ-4110 F34 Straight Segment, Natural Aluminium visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.jpg",
+        "sha256": "92509d4ea633d1d1846a5787925478c07607240248ee8e26e312187e4d4dd9ef"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 1.0,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "1 m overall length x 290 x 290 mm external square section"
+      },
+      "height": {
+        "value": 0.29,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "1 m overall length x 290 x 290 mm external square section"
+      },
+      "depth": {
+        "value": 0.29,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "1 m overall length x 290 x 290 mm external square section"
+      },
+      "reference_pose": "Long axis horizontal; square cross-section upright; convention inferred from manufacturer product image and segment geometry."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Long axis horizontal; square cross-section upright; convention inferred from manufacturer product image and segment geometry.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "1 m overall length x 290 x 290 mm external square section",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "infrastructure_control.rigging_support",
+      "control_path": "Passive mechanical support; no DMX, network, or electrical control connection.",
+      "physical_asset_only": true,
+      "source_data": {
+        "source_urls": [
+          "https://www.globaltruss.com/sq-4110",
+          "https://d295jznhem2tn9.cloudfront.net/ItemRelatedFiles/11147/F34-SQ-4110.pdf"
+        ],
+        "dimensions": {
+          "width_m": 1.0,
+          "height_m": 0.29,
+          "depth_m": 0.29,
+          "source_order": "1 m overall length x 290 x 290 mm external square section",
+          "axis_status": "documented",
+          "axis_note": "1 m overall length x 290 x 290 mm external square section",
+          "reference_pose": "Long axis horizontal; square cross-section upright; convention inferred from manufacturer product image and segment geometry."
+        },
+        "dimensions_status": "documented",
+        "control_path": "Passive mechanical support; no DMX, network, or electrical control connection.",
+        "pose": "Long axis horizontal; square cross-section upright; convention inferred from manufacturer product image and segment geometry.",
+        "materials": "50 x 2 mm main tubing, 20 x 2 mm diagonal bracing; connecting hardware included per manufacturer page",
+        "research_evidence": [
+          {
+            "url": "https://www.globaltruss.com/sq-4110",
+            "title": "Global Truss SQ-4110",
+            "locator": "SKU F340066; 1 m overall length, 290 mm overall width, 50 mm tube, resources/dimensional drawing",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown"
+          },
+          {
+            "url": "https://d295jznhem2tn9.cloudfront.net/ItemRelatedFiles/11147/F34-SQ-4110.pdf",
+            "title": "F34-SQ-4110 dimensional drawing",
+            "locator": "Manufacturer linked dimensional drawing; supplied from product page",
+            "file": "research/fixtures/taxonomy/support-sources/globaltruss-sq-4110-dimensions.pdf",
+            "sha256": "cdc6ba9f48af605f0ace545501cc5cb2aeb5f948e1e5c775df840694e3c629de",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "65ee24e76027977f1cf6c26ca1ffb0c6472db854",
+  "note": "Initial research record before any generated model artifacts existed."
+}

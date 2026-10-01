@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "id": "georgia-stage/prestige-velour-border-curtain-black-sku-7676",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Georgia Stage",
+    "model": "Prestige Velour Border Curtain, Black, SKU 7676",
+    "variant": "7676",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://gastage.com/sale-stage-curtain-valances-and-borders/988-prestige-velour-border-curtain-3-1-x-37-6-black-7676.html",
+      "title": "Georgia Stage Prestige Velour Border Curtain SKU 7676",
+      "kind": "secondary",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product title/size 3 ft 1 in x 37 ft 6 in, 50% fullness, item image and stock SKU; closeout status disclosed",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://gastage.com/3512-large_default/prestige-velour-border-curtain-3-1-x-37-6-black-7676.jpg",
+      "title": "Prestige Velour Border Curtain, Black, SKU 7676 visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "31d0d651d6bca21cae6e1a14008878de55ec9934cb686d6d86e57677084a2d37"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 11.43,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Retailer gives sewn item size and fullness; the 5 mm depth is an explicit visualization estimate only, because fabric caliper and hanging pleat profile are not specified. Render is a flat silhouette only; actual 50%-fullness gathers require production-specific hanging geometry."
+    },
+    "height": {
+      "value": 0.9398,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Retailer gives sewn item size and fullness; the 5 mm depth is an explicit visualization estimate only, because fabric caliper and hanging pleat profile are not specified. Render is a flat silhouette only; actual 50%-fullness gathers require production-specific hanging geometry."
+    },
+    "depth": {
+      "value": 0.005,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Retailer gives sewn item size and fullness; the 5 mm depth is an explicit visualization estimate only, because fabric caliper and hanging pleat profile are not specified. Render is a flat silhouette only; actual 50%-fullness gathers require production-specific hanging geometry."
+    },
+    "reference_pose": "Flattened inventory silhouette at listed finished width and drop; 5 mm illustrative thickness, not installed pleat depth. Ties and hanging rig omitted."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Flattened inventory silhouette at listed finished width and drop; 5 mm illustrative thickness, not installed pleat depth. Ties and hanging rig omitted.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -5.715000152587891,
+        0.0,
+        -0.002500000293366611
+      ],
+      "max": [
+        5.715000152587891,
+        0.9398000240325928,
+        0.0024999999441206455
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0008108109468594193
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Retailer gives sewn item size and fullness; the 5 mm depth is an explicit visualization estimate only, because fabric caliper and hanging pleat profile are not specified. Render is a flat silhouette only; actual 50%-fullness gathers require production-specific hanging geometry.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "7fa47e98bb7704b7590399c6b175dd5f172526c92b3db6dd661494cf9bc23dcc"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "a6fa7da62fcea7abc80d8f9f647387a50f6167f8f56bf3dfd8f8be38d4da5522"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "1bc0108e92b6dbb4889f22bb26a0efe7bef67c322e76f7d4a6426d51cd674c8c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "60155272c3f1fc6c44a8cefd7e1ff37176e81acb0bcd0ce7fc43c9bc74ff750f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "b9440ae622bdcff5e1b3d8f59bfc31c76a9675dbea7e7fce24154c657df852c5"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "4d688fe5976e8ccd7968fc34c20cb3cb8ceeba560530b0742060233c4c324e73"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "5ea62c3ece169acf12c2977825e23179c003901289eb9cf9eace69f5e0a6ea80"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "a69955ac06d29690ef81d888c9869a3f6643869fbf770f7e388ca2fe23ba8c52"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "b601afd994d913e42e234f9851c61413f7a281c9e0c2c123083ab4bb419d3c6c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "ac58381d336099d6ca77ca2dab46684bc66155b2ba37efff14049b439e8d6730"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "e6c797cd4d94daa9f1e71e2db59954b336259352018f79c22ccf20e6cfeaad82",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "drape",
+      "body_style": "wide black velour border with vertical soft folds and sewn top edge",
+      "notes": "Exact stock closeout SKU 7676; full width is listed finished span. Thickness and fold amplitude are visualization estimates, not documented fabric dimensions.",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 75,
+    "triangle_count": 55332,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed drape geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "scenic.drape",
+    "control_path": "Passive soft goods; manually hung from existing border rigging",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://gastage.com/sale-stage-curtain-valances-and-borders/988-prestige-velour-border-curtain-3-1-x-37-6-black-7676.html"
+      ],
+      "control_path": "Passive soft goods; manually hung from existing border rigging",
+      "protocols": [],
+      "dimensions": {
+        "width_m": 11.43,
+        "height_m": 0.9398,
+        "depth_m": 0.005,
+        "axis_status": "estimated",
+        "axis_note": "Retailer gives sewn item size and fullness; the 5 mm depth is an explicit visualization estimate only, because fabric caliper and hanging pleat profile are not specified. Render is a flat silhouette only; actual 50%-fullness gathers require production-specific hanging geometry.",
+        "reference_pose": "Flattened inventory silhouette at listed finished width and drop; 5 mm illustrative thickness, not installed pleat depth. Ties and hanging rig omitted."
+      },
+      "fabric": "Heavyweight polyester velour with satin finish; black; listed as inherently flame-retardant; webbing, grommets and ties",
+      "research_evidence": [
+        {
+          "url": "https://gastage.com/sale-stage-curtain-valances-and-borders/988-prestige-velour-border-curtain-3-1-x-37-6-black-7676.html",
+          "title": "Georgia Stage Prestige Velour Border Curtain SKU 7676",
+          "kind": "secondary",
+          "locator": "Product title/size 3 ft 1 in x 37 ft 6 in, 50% fullness, item image and stock SKU; closeout status disclosed",
+          "accessed_at": "2026-09-30"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "scenic.drape",
+    "category_path": [
+      "Scenic and stage elements",
+      "Drape / masking / backdrop"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

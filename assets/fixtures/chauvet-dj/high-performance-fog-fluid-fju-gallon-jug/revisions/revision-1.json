@@ -1,0 +1,174 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "chauvet-dj/high-performance-fog-fluid-fju-gallon-jug",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "CHAUVET DJ",
+      "model": "High Performance Fog Fluid (FJU) Gallon Jug",
+      "variant": "FJU",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.chauvetdj.com/products/fog-juice-gallon/",
+        "title": "High Performance Fog Fluid (FJU)",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page: sealed 1 gal / 3.8 L jug, package weight 3.9 kg, package dimensions 155 x 155 x 300 mm",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.chauvetdj.com/wp-content/uploads/2015/12/fju-front-feat.png",
+        "title": "High Performance Fog Fluid (FJU) Gallon Jug visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.png",
+        "sha256": "72ef3f72f425bec3ad7d561d23235e098449800bd25f15e63db9544455770c06"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.155,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "CHAUVET lists dimensions 155 x 155 x 300 mm without axis labels; bottle photo supports upright height on the 300 mm axis and equal 155 mm base axes."
+      },
+      "height": {
+        "value": 0.3,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "CHAUVET lists dimensions 155 x 155 x 300 mm without axis labels; bottle photo supports upright height on the 300 mm axis and equal 155 mm base axes."
+      },
+      "depth": {
+        "value": 0.155,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "CHAUVET lists dimensions 155 x 155 x 300 mm without axis labels; bottle photo supports upright height on the 300 mm axis and equal 155 mm base axes."
+      },
+      "reference_pose": "Sealed one-gallon jug upright on its flat base with cap at top; exact external package dimensions from manufacturer listing."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {
+        "weight": {
+          "value": "3.9 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Sealed one-gallon jug upright on its flat base with cap at top; exact external package dimensions from manufacturer listing.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "CHAUVET lists dimensions 155 x 155 x 300 mm without axis labels; bottle photo supports upright height on the 300 mm axis and equal 155 mm base axes.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "fx.atmosphere.fluid_container.water_based_fog",
+      "control_path": "See source-backed protocol list; compatibility and control system are not implemented.",
+      "physical_asset_only": true,
+      "source_data": {
+        "protocols": [],
+        "source_urls": [
+          "https://www.chauvetdj.com/products/fog-juice-gallon/"
+        ],
+        "weight": "3.9 kg",
+        "dimensions": {
+          "width_m": 0.155,
+          "height_m": 0.3,
+          "depth_m": 0.155,
+          "axis_status": "estimated",
+          "axis_note": "CHAUVET lists dimensions 155 x 155 x 300 mm without axis labels; bottle photo supports upright height on the 300 mm axis and equal 155 mm base axes.",
+          "reference_pose": "Sealed one-gallon jug upright on its flat base with cap at top; exact external package dimensions from manufacturer listing."
+        },
+        "research_evidence": [
+          {
+            "url": "https://www.chauvetdj.com/products/fog-juice-gallon/",
+            "title": "High Performance Fog Fluid (FJU)",
+            "locator": "Product page: sealed 1 gal / 3.8 L jug, package weight 3.9 kg, package dimensions 155 x 155 x 300 mm",
+            "accessed_at": "2026-09-30"
+          }
+        ],
+        "control_path": "See source-backed protocol list; compatibility and control system are not implemented."
+      }
+    }
+  },
+  "git_commit": "c753c434774c5386e4b9f87fc3f00a1f589aad3c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

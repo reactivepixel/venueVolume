@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "id": "adj/m-2020-mirror-ball",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ADJ",
+    "model": "M-2020 Mirror Ball",
+    "variant": "M-2020",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.adj.com/m-2020",
+      "title": "ADJ M-2020 product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact product identity, 20-inch size, mass and compatible-motor safety note",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.adj.com/cdn/shop/files/6f6095a0527f5c470d06959344a15172076cf0c2_M_2020__IMG__001__1171d2bbbf43.jpg?v=1776712813&width=2048",
+      "title": "M-2020 Mirror Ball visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "a9f5c59e7ae76fcc82c1993dc0434c5ca85e18d506b8f611706876d79234eef1"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.508,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer gives 20-inch sphere dimensions and 6.8 kg mass; sphere diameter used for each axis. Only the 508 mm sphere is modeled; hanging hardware is omitted."
+    },
+    "height": {
+      "value": 0.508,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer gives 20-inch sphere dimensions and 6.8 kg mass; sphere diameter used for each axis. Only the 508 mm sphere is modeled; hanging hardware is omitted."
+    },
+    "depth": {
+      "value": 0.508,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer gives 20-inch sphere dimensions and 6.8 kg mass; sphere diameter used for each axis. Only the 508 mm sphere is modeled; hanging hardware is omitted."
+    },
+    "reference_pose": "Sphere-only variant; undimensioned suspension loop and chain excluded."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {
+      "weight": {
+        "value": "6.8 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Sphere-only variant; undimensioned suspension loop and chain excluded.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.2540000081062317,
+        0.0,
+        -0.2540000081062317
+      ],
+      "max": [
+        0.2540000081062317,
+        0.5079999566078186,
+        0.2540000081062317
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.24892541766166687,
+          -0.0
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Manufacturer gives 20-inch sphere dimensions and 6.8 kg mass; sphere diameter used for each axis. Only the 508 mm sphere is modeled; hanging hardware is omitted.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "0ec85cd21fbb7504ea4e5f03cce7eef0cf05aa1d21fcac7f06855cb925300709"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "13278609cd720c50c4a84aad2f81c90217adc5286d5635bf6e0c7c7c82d815aa"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "81088e5c26746f61f31fa204118aa11ff1e73ea99e86e72b945405d7991a1c87"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "4ed93a0a84f1d1c7d1349135e0ffee404a4131f8944e750698dac504f00654fd"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "618ee9742d282e3629a34ab104e287a7a6c47d208f5837d70facd120bf574bba"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "9189b27a88e2a776bb0ef7d8525335f418f8bc54b8b921adb9b190a254f65a4a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "81561f34bdcc2db6e42934f5f6be2d3cd721f133079291ad6b7db38bccd8a0bf"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "05d8d37d0e5b7364feadbc3e31ab6558dd7cd6db7532dbb3ffa44d5f5f7385c4"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "424324cb0d5a48a9f5f44a379f90f2bd23dfecf6bb14750e61842d3334d5565c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "f0e88e61e4311d8e3b809d2a08885033e4d2105657b967182a0e534c8d278521"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "c9523766c9376293bebdf26d04e37a37d62d8f64ac7d8faaab9fb212601764d6",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "mirror_ball",
+      "body_style": "spherical mirror-tiled ball with top suspension loop",
+      "notes": "Separate from MBMHD3 motor. Suspension hardware/load rating unknown; no complete rigging assembly implied.",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 33,
+    "triangle_count": 19664,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed mirror_ball geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "lighting.effects.mirror_ball",
+    "control_path": "Passive reflective accessory; requires separately rated motor and suspension",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://www.adj.com/m-2020"
+      ],
+      "control_path": "Passive reflective accessory; requires separately rated motor and suspension",
+      "protocols": [],
+      "weight": "6.8 kg",
+      "dimensions": {
+        "width_m": 0.508,
+        "height_m": 0.508,
+        "depth_m": 0.508,
+        "axis_status": "documented",
+        "axis_note": "Manufacturer gives 20-inch sphere dimensions and 6.8 kg mass; sphere diameter used for each axis. Only the 508 mm sphere is modeled; hanging hardware is omitted.",
+        "reference_pose": "Sphere-only variant; undimensioned suspension loop and chain excluded."
+      },
+      "suspension": "Top loop shown; loop dimensions/load rating not specified",
+      "research_evidence": [
+        {
+          "url": "https://www.adj.com/m-2020",
+          "title": "ADJ M-2020 product page",
+          "locator": "Exact product identity, 20-inch size, mass and compatible-motor safety note",
+          "accessed_at": "2026-09-30"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.effects.mirror_ball",
+    "category_path": [
+      "Lighting fixtures",
+      "Visible and audience effects",
+      "Mirror ball / reflective effect"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

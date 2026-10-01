@@ -1,0 +1,195 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "da-lite-legrand-av/fast-fold-deluxe-screen-system-88692-frame-screen-only-legs-omitted",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Da-Lite (Legrand AV)",
+      "model": "Fast-Fold Deluxe Screen System, 88692 (frame/screen only; legs omitted)",
+      "variant": "88692",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.legrandav.com/products/screens/fastfold-portable-screens/fast-fold-deluxe-screen-system/88692",
+        "title": "Da-Lite Fast-Fold Deluxe Screen System product page, SKU 88692",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product title identifies 88692 and 63.5 x 114.5 in HD Progressive ReView 0.9 screen surface",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "evidence-2",
+        "url": "https://www.legrandav.com/-/media/images/dalite/product/series/resources/fastfold_deluxe_screen_system/fast-fold-deluxe-spec-data.pdf?sc_lang=en",
+        "reuse_status": "unknown",
+        "kind": "manufacturer_manual",
+        "title": "Fast-Fold Deluxe Screens specification data",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Page 1: 16:9 HDTV format table, 69 x 120 in overall size, 63.5 x 114.5 in viewing area; page 2: product view labels 59 1/4 in deployed-foot dimension",
+        "file": "sources/dalite-fast-fold-deluxe-spec.pdf",
+        "sha256": "cd2c1664e91e9e2c7f9786933652cdb1361cb48cad827b90a55fc05dc63264fb"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.legrandav.com/-/media/images/dalite/product/series/resources/fastfold_deluxe_screen_system/fast-fold-deluxe-spec-data.pdf?sc_lang=en",
+        "title": "Fast-Fold Deluxe Screen System, 88692 (frame/screen only; legs omitted) visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.png",
+        "sha256": "d40cad6131a602e3112f09cc7598748f422351a070b0da9a83c640cfd2291f69"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 3.048,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer inch dimensions converted exactly; this record is frame/screen geometry only, not the deployed stand footprint."
+      },
+      "height": {
+        "value": 1.7526,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer inch dimensions converted exactly; this record is frame/screen geometry only, not the deployed stand footprint."
+      },
+      "depth": {
+        "value": 0.03175,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "evidence-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer inch dimensions converted exactly; this record is frame/screen geometry only, not the deployed stand footprint."
+      },
+      "reference_pose": "Screen frame vertical, display face forward; legs/supports omitted."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Screen frame vertical, display face forward; legs/supports omitted.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "Manufacturer inch dimensions converted exactly; this record is frame/screen geometry only, not the deployed stand footprint.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [
+      "No official product image URL was present in the research CSV."
+    ],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "optional.video_visuals_optional.projection_surfaces",
+      "control_path": "Passive projection surface and folding frame; image signal is projected onto surface by separate projector. No electrical or DMX connection.",
+      "physical_asset_only": true,
+      "source_data": {
+        "dimensions": {
+          "width_m": 3.048,
+          "height_m": 1.7526,
+          "depth_m": 0.03175,
+          "source_order": "Frame/screen only, excluding support legs and case: 120 x 69 in = 3.048 x 1.7526 m; 1.25 in square frame tubing = 31.75 mm depth; viewing area 114.5 x 63.5 in = 2.9083 x 1.6129 m.",
+          "axis_status": "documented",
+          "axis_note": "Manufacturer inch dimensions converted exactly; this record is frame/screen geometry only, not the deployed stand footprint.",
+          "reference_pose": "Screen frame vertical, display face forward; legs/supports omitted."
+        },
+        "dimensions_status": "documented_frame_only",
+        "dimension_notes": "Dimensions describe the screen/frame only, with no support legs or carrying case. Exact inch conversions: 120 in=3048 mm, 69 in=1752.6 mm, 1.25 in tubing=31.75 mm. Manufacturer page-2 figure separately labels 59.25 in for a stand-foot span; that figure is excluded from this frame-only model.",
+        "control_path": "Passive projection surface and folding frame; image signal is projected onto surface by separate projector. No electrical or DMX connection.",
+        "pose": "Frame/screen vertical, screen face forward. Frame-only envelope 3.048 m W x 1.7526 m H x 0.03175 m tubing thickness/depth; support legs, skirt, drape and case omitted.",
+        "screen_surface": "HD Progressive ReView 0.9, front projection",
+        "viewing_area_m": {
+          "width": 2.9083,
+          "height": 1.6129
+        },
+        "research_evidence": [
+          {
+            "url": "https://www.legrandav.com/products/screens/fastfold-portable-screens/fast-fold-deluxe-screen-system/88692",
+            "title": "Da-Lite Fast-Fold Deluxe Screen System product page, SKU 88692",
+            "locator": "Product title identifies 88692 and 63.5 x 114.5 in HD Progressive ReView 0.9 screen surface",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown"
+          },
+          {
+            "url": "https://www.legrandav.com/-/media/images/dalite/product/series/resources/fastfold_deluxe_screen_system/fast-fold-deluxe-spec-data.pdf?sc_lang=en",
+            "title": "Fast-Fold Deluxe Screens specification data",
+            "locator": "Page 1: 16:9 HDTV format table, 69 x 120 in overall size, 63.5 x 114.5 in viewing area; page 2: product view labels 59 1/4 in deployed-foot dimension",
+            "file": "research/fixtures/taxonomy/support-sources/dalite-fast-fold-deluxe-spec.pdf",
+            "sha256": "cd2c1664e91e9e2c7f9786933652cdb1361cb48cad827b90a55fc05dc63264fb",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "c753c434774c5386e4b9f87fc3f00a1f589aad3c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

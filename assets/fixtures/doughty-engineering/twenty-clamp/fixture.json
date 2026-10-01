@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "id": "doughty-engineering/twenty-clamp",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Doughty Engineering",
+    "model": "Twenty Clamp",
+    "variant": "T58400",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://doughty-usa.com/products/twenty-clamp/",
+      "title": "Doughty Twenty Clamp product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Part T58400, fit range 48-51 mm, 28 mm clamp width, WLL 20 kg, product downloads",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.doughty-engineering.co.uk/wp-content/uploads/2023/01/T58400-Data-Sheet.pdf",
+      "title": "T58400 Twenty Clamp data sheet",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "One-page dimension drawing: 101, 61.5, 51.0 tube aperture, 28, 13, and Ø10.5 mm; text: 48-51 mm tube, M10 fixing, vertical WLL 20 kg, 0.28 kg, 5:1 safety factor, TÜV approval",
+      "reuse_status": "reference_only",
+      "file": "sources/doughty-t58400-datasheet.pdf",
+      "sha256": "c503be90cdb4714d8424731856c327126eef5cccfaf96f8a0b13c364e09dcc5b"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://doughty-usa.com/wp-content/uploads/2023/01/T58400-New-Twenty-Clamp-700x700-c-default.jpg",
+      "title": "Twenty Clamp visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "8fe8fe6f872458c9d261b78190d15d73d73b08f14b4e094ba5b0eca6ce324d78"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.101,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "101 L x 61.5 H x 28 W mm per manufacturer's dimension drawing; 48-51 mm tube fit range"
+    },
+    "height": {
+      "value": 0.0615,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "101 L x 61.5 H x 28 W mm per manufacturer's dimension drawing; 48-51 mm tube fit range"
+    },
+    "depth": {
+      "value": 0.028,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "101 L x 61.5 H x 28 W mm per manufacturer's dimension drawing; 48-51 mm tube fit range"
+    },
+    "reference_pose": "Clamp shown in dimension drawing in side orthographic pose with jaw opening sized for 48-51 mm tube and M10 attachment slot; pose follows manufacturer's drawing."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Clamp shown in dimension drawing in side orthographic pose with jaw opening sized for 48-51 mm tube and M10 attachment slot; pose follows manufacturer's drawing.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.05050000175833702,
+        0.0,
+        -0.014000000432133675
+      ],
+      "max": [
+        0.05050000362098217,
+        0.06150000263005495,
+        0.014000000432133675
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          -0.021242210641503334,
+          0.0020604701712727547,
+          -0.0
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "101 L x 61.5 H x 28 W mm per manufacturer's dimension drawing; 48-51 mm tube fit range",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "98c6bc28077736c00e91736a0b559033a104d8cf49aaca82980c539f04ce7616"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "63677be7abbbdb54c7f2fc386fa212b057b836ba1e5d4a9c27e646828cd3b1d4"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "2c8b41a640d0710c24ccb2d2d4a43f09816560b2eb7ba8d48ff754b5d27a60cb"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "7e1dfbad70df2e842fabe9a72c22b3c239fe7c3f1f9cf3a5a7bd42324c97e8e6"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "d25c40a3733543810ce5d2cac83321022da0baee885878e89e6af85a0ba76255"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "8f2e6e28b6c821c027d59e24762d46dc6413aaa9370d13b30b7c3de6c10a346d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "6d6887590d6bab8d4e06acf2100b98e0d2da09596a53e687edcde711c3b2cf14"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "a1544f894f3186cb984d2a93ca6369397d13843f1dd0d509ed21bdf79494dccd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "b9f7a583b75443d1938c0a9f555b2facb02f41067a0792f82a28d1dfbd3e18fa"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "1758714906c31555db40502727b98e7a7bfcb0876bb77eb910293b49ab2c5503"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "ba94ff7df0ee387f0108c78ecc7f9e7cfb451b25d15bf5ba5d8b5a667b9e1c2e",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "clamp",
+      "body_style": "cast hook clamp with threaded M10 fixing interface",
+      "notes": "The clamp WLL is not a rigging design approval; system-level loads and compatible attachment hardware require independent review.",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 5,
+    "triangle_count": 1612,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed clamp geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "rigging.clamp",
+    "control_path": "Passive mechanical clamp; no DMX, network, or electrical connection.",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://doughty-usa.com/products/twenty-clamp/",
+        "https://www.doughty-engineering.co.uk/wp-content/uploads/2023/01/T58400-Data-Sheet.pdf"
+      ],
+      "dimensions": {
+        "width_m": 0.101,
+        "height_m": 0.0615,
+        "depth_m": 0.028,
+        "source_order": "101 L x 61.5 H x 28 W mm per manufacturer's dimension drawing; 48-51 mm tube fit range",
+        "axis_status": "documented",
+        "axis_note": "101 L x 61.5 H x 28 W mm per manufacturer's dimension drawing; 48-51 mm tube fit range",
+        "reference_pose": "Clamp shown in dimension drawing in side orthographic pose with jaw opening sized for 48-51 mm tube and M10 attachment slot; pose follows manufacturer's drawing."
+      },
+      "dimensions_status": "documented",
+      "control_path": "Passive mechanical clamp; no DMX, network, or electrical connection.",
+      "pose": "Clamp shown in dimension drawing in side orthographic pose with jaw opening sized for 48-51 mm tube and M10 attachment slot; pose follows manufacturer's drawing.",
+      "wll_kg": 20,
+      "attachment": "M10 fixing; hand-tight only; manufacturer data sheet states 20 kg vertical WLL, 0.28 kg mass, 5:1 safety factor, TÜV approved",
+      "research_evidence": [
+        {
+          "url": "https://doughty-usa.com/products/twenty-clamp/",
+          "title": "Doughty Twenty Clamp product page",
+          "locator": "Part T58400, fit range 48-51 mm, 28 mm clamp width, WLL 20 kg, product downloads",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://www.doughty-engineering.co.uk/wp-content/uploads/2023/01/T58400-Data-Sheet.pdf",
+          "title": "T58400 Twenty Clamp data sheet",
+          "locator": "One-page dimension drawing: 101, 61.5, 51.0 tube aperture, 28, 13, and Ø10.5 mm; text: 48-51 mm tube, M10 fixing, vertical WLL 20 kg, 0.28 kg, 5:1 safety factor, TÜV approval",
+          "file": "research/fixtures/taxonomy/support-sources/doughty-t58400-datasheet.pdf",
+          "sha256": "c503be90cdb4714d8424731856c327126eef5cccfaf96f8a0b13c364e09dcc5b",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "rigging.clamp",
+    "category_path": [
+      "Rigging and support",
+      "Clamp / coupler / mounting adapter"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "adj/led-pixel-tube-360",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "ADJ",
+      "model": "LED Pixel Tube 360",
+      "variant": "LED075",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.adj.com/products/led-pixel-tube-360",
+        "title": "LED Pixel Tube 360",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Dimensions, power and controller compatibility",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.adj.com/products/led-pixel-10c",
+        "title": "ADJ LED Pixel Tube 360 official source 2",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.adj.com/cdn/shop/files/429d3536aa084bddeeeb30bfad5c4762f264648f_LED075__IMG__001__adb6428d9066.jpg?v=1776713790&width=450",
+        "title": "LED Pixel Tube 360 visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.jpg",
+        "sha256": "77dca60eb7e3849ef96bfde00fc80fcc7e4cc0da92c56235ae9392e33f105d20"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 1.0,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer lists 1000 x 50 x 50 mm."
+      },
+      "height": {
+        "value": 0.05,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer lists 1000 x 50 x 50 mm."
+      },
+      "depth": {
+        "value": 0.05,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer lists 1000 x 50 x 50 mm."
+      },
+      "reference_pose": "Tube straight, horizontal, end connectors installed; controller excluded."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "15 W, DC 24 V",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "0.5 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "Proprietary wired 4-pin controller connection"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Tube straight, horizontal, end connectors installed; controller excluded.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "Manufacturer lists 1000 x 50 x 50 mm.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "led_pixel_tube",
+      "control_path": "External ADJ LED Pixel 4C or 10C controller; tube itself is not directly DMX addressable",
+      "physical_asset_only": true,
+      "source_data": {
+        "source_urls": [
+          "https://www.adj.com/products/led-pixel-tube-360",
+          "https://www.adj.com/products/led-pixel-10c"
+        ],
+        "control_path": "External ADJ LED Pixel 4C or 10C controller; tube itself is not directly DMX addressable",
+        "protocols": [
+          "Proprietary wired 4-pin controller connection"
+        ],
+        "power": "15 W, DC 24 V",
+        "weight": "0.5 kg",
+        "dimensions": {
+          "width_m": 1.0,
+          "height_m": 0.05,
+          "depth_m": 0.05,
+          "axis_status": "documented",
+          "axis_note": "Manufacturer lists 1000 x 50 x 50 mm.",
+          "reference_pose": "Tube straight, horizontal, end connectors installed; controller excluded."
+        },
+        "research_evidence": [
+          {
+            "url": "https://www.adj.com/products/led-pixel-tube-360",
+            "title": "LED Pixel Tube 360",
+            "locator": "Dimensions, power and controller compatibility",
+            "accessed_at": "2026-09-30"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "c753c434774c5386e4b9f87fc3f00a1f589aad3c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

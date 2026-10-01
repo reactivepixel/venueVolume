@@ -1,0 +1,51 @@
+{
+  "mesh_count": 17,
+  "triangle_count": 7776,
+  "geometry_sha256": "7d125f86b2e428ac6a27d053d89aa7f65a7149ee97b898afe01e92bb4aceb343",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      -0.00039583235047757626,
+      1.805835017876234e-05
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.009499998763203621,
+        1.805835017876234e-05
+      ]
+    }
+  ],
+  "family": "data_connector",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0416666269302368,
+    1.0303966999053955,
+    1.0416665077209473
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.neutrik.com/en/product/nc5mxx",
+    "https://www.neutrik.com/media/8230/download/nc5mxx-1.pdf?v=1",
+    "https://www.neutrik.com/uploads/media/400x/02/322-nc5mxx.jpg?v=1-0"
+  ]
+}

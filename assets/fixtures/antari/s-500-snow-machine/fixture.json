@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "id": "antari/s-500-snow-machine",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Antari",
+    "model": "S-500 Snow Machine",
+    "variant": "S-500",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://antari.com/products/s-500/",
+      "title": "S-500 Snow Machine product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Specifications: rated power, fluid, 2-channel DMX, dimensions and weight; S-500 and S-500L variants separated",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://antari.com/wp-content/uploads/S-500_main-1000x1000-1.jpg",
+      "title": "S-500 Snow Machine visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "10a63de8670623f53313eaa1f2df002ee6655eda8da28e02a556908c64e38057"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.551,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Antari labels L/W/H = 592/551/651 mm for S-500, but the current product image shows the case open and the dimensions appear to be the protective case's transport envelope. Body orientation mapping follows L/W/H; pose is estimated closed case."
+    },
+    "height": {
+      "value": 0.651,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Antari labels L/W/H = 592/551/651 mm for S-500, but the current product image shows the case open and the dimensions appear to be the protective case's transport envelope. Body orientation mapping follows L/W/H; pose is estimated closed case."
+    },
+    "depth": {
+      "value": 0.592,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Antari labels L/W/H = 592/551/651 mm for S-500, but the current product image shows the case open and the dimensions appear to be the protective case's transport envelope. Body orientation mapping follows L/W/H; pose is estimated closed case."
+    },
+    "reference_pose": "Model as the S-500 road case closed, with its open-lid manufacturer photo used only for product identification; exact closed-case drawing not found."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "900 W; US 100–120 V 50/60 Hz, EU 220–240 V 50/60 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "37.2 kg (S-500); S-500L variant is 46.4 kg and excluded",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "manual",
+          "timer",
+          "optional wireless",
+          "optional wireless DMX",
+          "optional cable remote"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "2-channel mode",
+      "footprint": 2,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Model as the S-500 road case closed, with its open-lid manufacturer photo used only for product identification; exact closed-case drawing not found.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.27550002932548523,
+        0.0,
+        -0.29600000381469727
+      ],
+      "max": [
+        0.27550002932548523,
+        0.6510000177659094,
+        0.29600000381469727
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.00685263192281127,
+          -0.0
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Antari labels L/W/H = 592/551/651 mm for S-500, but the current product image shows the case open and the dimensions appear to be the protective case's transport envelope. Body orientation mapping follows L/W/H; pose is estimated closed case.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "0368f3627672fedda80548aa816e3d246c9bec6a0d485e1520c4cea397028aaf"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "32d078d3eddfd4c7b32aceff1cca6ec0373fa4a8901c4ab4c835233cf98bda61"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "63a36c23797b694f9f65e7651e550ac91d50df9299d9d68434ae1586c0558a8e"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "9e45f9e4dd0072b5f452f2e35fa35cc114fbbfed5e5c9c7430a06d8d4aaf8939"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "7d052b754749e3a50ddf51950c497d23fd698e32bb26f52a28981e4726f02eaa"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "ebe53523e626284201e948b4d97ed66e84a44cb254f88b94f7982da96d3b4f5a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "f365f832e94713549b12d091e9d7dfe4c96fc4a9acdd5cf6475042be68dda690"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "e15995a4ca233f6dd1ee231c6ef4f5980c003942255cb25fe7d15a1bf2662358"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "00b53aab261cba89c6a8e6ea347684a2ac3877d9b2ec56807c4a6a3d5890da59"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "4ee6d73bce4e320c71884167721f86faed8a64b9489566b9d779886157999130"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.5070947408676147,
+          -0.2944663166999817
+        ],
+        "kind": "snow",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "57c08372d3e346106e6e7757c8776567bc45fa0c7c1687b7b7eef75e53708ab0",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "snow",
+      "notes": "Professional snow machine with case and hose; dimensions/mass refer to S-500, not S-500L. Nominal dimensions are treated as the closed road-case envelope (estimated pose); open-lid product photo does not depict that envelope pose.",
+      "body_style": "large black wheeled road case for the snow machine; use closed case geometry for nominal transport envelope",
+      "generator": "equipment",
+      "output_kind": "snow"
+    },
+    "mesh_count": 23,
+    "triangle_count": 3940,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed snow geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "effects.snow",
+    "control_path": "See source-backed protocol list; compatibility and control system are not implemented.",
+    "physical_asset_only": true,
+    "source_data": {
+      "protocols": [
+        "DMX512",
+        "manual",
+        "timer",
+        "optional wireless",
+        "optional wireless DMX",
+        "optional cable remote"
+      ],
+      "source_urls": [
+        "https://antari.com/products/s-500/"
+      ],
+      "power": "900 W; US 100–120 V 50/60 Hz, EU 220–240 V 50/60 Hz",
+      "weight": "37.2 kg (S-500); S-500L variant is 46.4 kg and excluded",
+      "dmx_channels": [
+        2
+      ],
+      "dimensions": {
+        "width_m": 0.551,
+        "height_m": 0.651,
+        "depth_m": 0.592,
+        "axis_status": "estimated",
+        "axis_note": "Antari labels L/W/H = 592/551/651 mm for S-500, but the current product image shows the case open and the dimensions appear to be the protective case's transport envelope. Body orientation mapping follows L/W/H; pose is estimated closed case.",
+        "reference_pose": "Model as the S-500 road case closed, with its open-lid manufacturer photo used only for product identification; exact closed-case drawing not found."
+      },
+      "research_evidence": [
+        {
+          "url": "https://antari.com/products/s-500/",
+          "title": "S-500 Snow Machine product page",
+          "locator": "Specifications: rated power, fluid, 2-channel DMX, dimensions and weight; S-500 and S-500L variants separated",
+          "accessed_at": "2026-09-30"
+        }
+      ],
+      "control_path": "See source-backed protocol list; compatibility and control system are not implemented."
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "effects.snow",
+    "category_path": [
+      "Special-effects appliances",
+      "Snow / foam-look machine"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

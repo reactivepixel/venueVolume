@@ -1,0 +1,195 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "chauvet-dj/hurricane-haze-1dx",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "CHAUVET DJ",
+      "model": "Hurricane Haze 1DX",
+      "variant": "Hurricane Haze 1DX",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://fr.chauvetdj.com/products/hurricane-haze-1dx/",
+        "title": "Hurricane Haze 1DX product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Specifications: water-based haze, power, dimensions, one-channel DMX; product-view gallery",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://fr.chauvetdj.com/wp-content/uploads/2016/12/wsi-imageoptim-Hurricane-Haze-1DX-RIGHT.jpg",
+        "title": "Hurricane Haze 1DX visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.jpg",
+        "sha256": "059e96c95fea2a1cb2484b283d882115430d5e04f2193658a906a30758e3c4aa"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.15,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer lists 278 x 150 x 223 mm without labels; mapped largest axis to depth and shortest to width based on upright product view. Numeric dimensions are preserved; width/depth mapping is estimated."
+      },
+      "height": {
+        "value": 0.223,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer lists 278 x 150 x 223 mm without labels; mapped largest axis to depth and shortest to width based on upright product view. Numeric dimensions are preserved; width/depth mapping is estimated."
+      },
+      "depth": {
+        "value": 0.278,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer lists 278 x 150 x 223 mm without labels; mapped largest axis to depth and shortest to width based on upright product view. Numeric dimensions are preserved; width/depth mapping is estimated."
+      },
+      "reference_pose": "Body upright on base, output scoop facing forward; axis mapping inferred from official product photo."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "303 W at 230 V, 50 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "standalone display",
+            "included wired timer remote"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "1-channel mode",
+        "footprint": 1,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Body upright on base, output scoop facing forward; axis mapping inferred from official product photo.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "Manufacturer lists 278 x 150 x 223 mm without labels; mapped largest axis to depth and shortest to width based on upright product view. Numeric dimensions are preserved; width/depth mapping is estimated.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "fx.atmosphere.hazer.water_based",
+      "control_path": "See source-backed protocol list; compatibility and control system are not implemented.",
+      "physical_asset_only": true,
+      "source_data": {
+        "protocols": [
+          "DMX",
+          "standalone display",
+          "included wired timer remote"
+        ],
+        "source_urls": [
+          "https://fr.chauvetdj.com/products/hurricane-haze-1dx/"
+        ],
+        "power": "303 W at 230 V, 50 Hz",
+        "dmx_channels": [
+          1
+        ],
+        "dimensions": {
+          "width_m": 0.15,
+          "height_m": 0.223,
+          "depth_m": 0.278,
+          "axis_status": "estimated",
+          "axis_note": "Manufacturer lists 278 x 150 x 223 mm without labels; mapped largest axis to depth and shortest to width based on upright product view. Numeric dimensions are preserved; width/depth mapping is estimated.",
+          "reference_pose": "Body upright on base, output scoop facing forward; axis mapping inferred from official product photo."
+        },
+        "research_evidence": [
+          {
+            "url": "https://fr.chauvetdj.com/products/hurricane-haze-1dx/",
+            "title": "Hurricane Haze 1DX product page",
+            "locator": "Specifications: water-based haze, power, dimensions, one-channel DMX; product-view gallery",
+            "accessed_at": "2026-09-30"
+          }
+        ],
+        "control_path": "See source-backed protocol list; compatibility and control system are not implemented."
+      }
+    }
+  },
+  "git_commit": "c2251cdc09edc66326919cda8bb3a5d31d253c57",
+  "note": "Initial research record before any generated model artifacts existed."
+}

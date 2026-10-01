@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "id": "etc/colorsource-cyc-floor",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ETC",
+    "model": "ColorSource CYC Floor",
+    "variant": "CSCYC",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.etcconnect.com/products/entertainment-fixtures/colorsource-cyc/tech-specs.aspx",
+      "title": "ColorSource CYC Tech Specs",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Floor dimensions, mass, power and control",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Lighting_Fixtures/ColorSource/en-CS-CYC-Leaderlines-960x300.jpg",
+      "title": "ColorSource CYC Floor visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "d36be67e0d2a935e114a95488b6e9ac7f88b3ae3e5441876817b4fff5a076b04"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.266,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "ETC floor form dimensions, not hang form."
+    },
+    "height": {
+      "value": 0.199,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "ETC floor form dimensions, not hang form."
+    },
+    "depth": {
+      "value": 0.221,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "ETC floor form dimensions, not hang form."
+    },
+    "reference_pose": "Floor orientation, spill-control installed."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "133 W; 100–240 V AC",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "4.67 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Floor orientation, spill-control installed.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.132999986410141,
+        0.0,
+        -0.11049999296665192
+      ],
+      "max": [
+        0.132999986410141,
+        0.1990000158548355,
+        0.11049999482929707
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.006851779296994209
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.09453607350587845,
+          -0.08577004075050354
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.09453607350587845,
+          -0.09018059819936752
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "ETC floor form dimensions, not hang form.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "d550c46b1ffa575fff767ef6dc3c078ebc94eb5d97a37d38a8fc7ba3409c9766"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "f462c8bd9d57a03745b70fa7972ced0a140b316c792a5f4c9dff6e0e7c6fc75f"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "63bdb8fc976f7e415b858332ef6c80028298f1b13b4b6fabce5483b753ca18c0"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "a34c89960083d18d757c3b09901b3c231aebd227c33d65e18df7f7274d438af6"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "89f32697bbbb12403e27859cf83acc1619658d7621a90bc4bc331a9e30e0247f"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "18f44c3e62045cf6a57cf3994dbf2ffdea27ebf97397c7f590499df7f8b7cfc2"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "dee4042e1bcc1982b41a9fbddcf26b93cf0a3e2ac4218a4816832eac0dc6ce78"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "fa995e6c8e46725d1db2458410cb276f36955fc66e91e439c149a93bd07ff595"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "dbdf34d6243b905a88428c16de22c52867cec19682578f03185633b5b3faf1b7"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "74eae3ddf160582854feaa0cc5830e127c6c5261c4dc333c649fe982c3f9127c"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "7a57afa99788395a95ceea6ff65245f1299e38befbf162dcc5663f536280ae96",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "cyc",
+      "body_style": "low asymmetric cyc wash housing with LED aperture",
+      "notes": "Dedicated cyclorama product.",
+      "generator": "equipment",
+      "output_kind": "light"
+    },
+    "mesh_count": 24,
+    "triangle_count": 4608,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed cyc geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "lighting.static.cyc",
+    "control_path": "DMX/RDM and local presets",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://www.etcconnect.com/products/entertainment-fixtures/colorsource-cyc/tech-specs.aspx"
+      ],
+      "control_path": "DMX/RDM and local presets",
+      "protocols": [
+        "DMX512",
+        "RDM"
+      ],
+      "power": "133 W; 100–240 V AC",
+      "weight": "4.67 kg",
+      "dimensions": {
+        "width_m": 0.266,
+        "height_m": 0.199,
+        "depth_m": 0.221,
+        "axis_status": "documented",
+        "axis_note": "ETC floor form dimensions, not hang form.",
+        "reference_pose": "Floor orientation, spill-control installed."
+      },
+      "research_evidence": [
+        {
+          "url": "https://www.etcconnect.com/products/entertainment-fixtures/colorsource-cyc/tech-specs.aspx",
+          "title": "ColorSource CYC Tech Specs",
+          "locator": "Floor dimensions, mass, power and control",
+          "accessed_at": "2026-09-30"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.static.cyc",
+    "category_path": [
+      "Lighting fixtures",
+      "Static and manually focused",
+      "Cyclorama / asymmetric wall wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

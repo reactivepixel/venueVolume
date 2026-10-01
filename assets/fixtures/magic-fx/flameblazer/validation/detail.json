@@ -1,0 +1,59 @@
+{
+  "mesh_count": 57,
+  "triangle_count": 9772,
+  "geometry_sha256": "a48432cef15381d99432edb2f72b05f923dbc20beb528e5e6910eb8a7e052345",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.2828865647315979,
+      -0.004000889603048563
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        -0.004000889603048563
+      ]
+    },
+    {
+      "name": "output",
+      "prim_path": "/Fixture/Output",
+      "pivot_m": [
+        0.0,
+        0.2828865647315979,
+        -0.004000889603048563
+      ]
+    }
+  ],
+  "family": "flame",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9478673338890076,
+    1.0157113075256348,
+    1.0309277772903442
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://magicfx.com/products/flameblazer",
+    "https://magicfx.com/cdn/shop/files/FLAMEBLAZER-03_b1e6b1f8-cda1-42e9-a702-83a9c509f9f8.jpg?v=1773150186"
+  ]
+}

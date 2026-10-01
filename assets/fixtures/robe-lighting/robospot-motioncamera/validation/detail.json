@@ -1,0 +1,69 @@
+{
+  "mesh_count": 16,
+  "triangle_count": 3008,
+  "geometry_sha256": "fbf20f32901107ad2aa5c36d28a0cece395444c1b33834d690ca466e26ce06c5",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.38747966289520264,
+      0.00076665123924613
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.00076665123924613
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.07943332940340042,
+        0.00076665123924613
+      ]
+    },
+    {
+      "name": "camera",
+      "prim_path": "/Fixture/Camera",
+      "pivot_m": [
+        0.0,
+        0.24798698723316193,
+        0.00076665123924613
+      ]
+    }
+  ],
+  "family": "tracking_camera",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0309278964996338,
+    1.0640530586242676,
+    1.003833293914795
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.robelighting.com/robospot-motioncamera",
+    "https://www.robelighting.com/res/downloads/catalogues/ROBE_Product_Guide_2021.pdf",
+    "https://cdn.aws.robe.cz/v1/image/resize/8a9cbc417b51763a20041409849a29deda12302d?width=904&height=904&fit=cover&withoutEnlargement=false"
+  ]
+}

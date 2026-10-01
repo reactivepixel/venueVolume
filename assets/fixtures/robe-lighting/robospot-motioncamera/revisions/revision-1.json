@@ -1,0 +1,195 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "robe-lighting/robospot-motioncamera",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Robe lighting",
+      "model": "RoboSpot MotionCamera",
+      "variant": "RoboSpot MotionCamera",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.robelighting.com/robospot-motioncamera",
+        "title": "RoboSpot MotionCamera — Robe",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Technical specification: camera model/resolution/zoom, DMX/RDM and Ethernet video routing; mechanical dimensions and head-vertical pose; product image",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.robelighting.com/res/downloads/catalogues/ROBE_Product_Guide_2021.pdf",
+        "title": "Robe Product Guide 2021",
+        "kind": "manufacturer_catalogue",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "RoboSpot MotionCamera specification table: electrical/mechanical values; 386 x 277 x 147 mm, head vertical",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://cdn.aws.robe.cz/v1/image/resize/8a9cbc417b51763a20041409849a29deda12302d?width=904&height=904&fit=cover&withoutEnlargement=false",
+        "title": "RoboSpot MotionCamera visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.webp",
+        "sha256": "51003a7ccbee745cdb427bd6fa7cc8be207270f0ed83baec38eb1144a27ef5e1"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.277,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer mechanical dimensions; pose is head vertical."
+      },
+      "height": {
+        "value": 0.386,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer mechanical dimensions; pose is head vertical."
+      },
+      "depth": {
+        "value": 0.147,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer mechanical dimensions; pose is head vertical."
+      },
+      "reference_pose": "Head upright, camera optical axis upward to match manufacturer head-vertical height; pan base level."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Head upright, camera optical axis upward to match manufacturer head-vertical height; pan base level.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "Manufacturer mechanical dimensions; pose is head vertical.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "optional.video_visuals_optional.camera_imaging",
+      "control_path": "Moving camera head is controlled by DMX/RDM; camera video travels to RoboSpot BaseStation over Ethernet/Cat5. BaseStation is a separate equipment item.",
+      "physical_asset_only": true,
+      "source_data": {
+        "source_urls": [
+          "https://www.robelighting.com/robospot-motioncamera",
+          "https://www.robelighting.com/res/downloads/catalogues/ROBE_Product_Guide_2021.pdf"
+        ],
+        "dimensions": {
+          "width_m": 0.277,
+          "height_m": 0.386,
+          "depth_m": 0.147,
+          "source_order": "277 W x 386 H x 147 D mm; height explicitly with head vertical",
+          "axis_status": "documented",
+          "axis_note": "Manufacturer mechanical dimensions; pose is head vertical.",
+          "reference_pose": "Head upright, camera optical axis upward to match manufacturer head-vertical height; pan base level."
+        },
+        "dimensions_status": "documented_in_manufacturer_product_specification",
+        "camera": {
+          "type": "SNZ-6320",
+          "resolution": "1920 x 1080",
+          "optical_zoom": "32x",
+          "digital_zoom": "16x"
+        },
+        "control_path": "Moving camera head is controlled by DMX/RDM; camera video travels to RoboSpot BaseStation over Ethernet/Cat5. BaseStation is a separate equipment item.",
+        "pose": "Base adaptor at bottom, head in vertical position, lens facing forward; dimensions are manufacturer maximum outer dimensions for that pose.",
+        "research_evidence": [
+          {
+            "url": "https://www.robelighting.com/robospot-motioncamera",
+            "title": "RoboSpot MotionCamera — Robe",
+            "locator": "Technical specification: camera model/resolution/zoom, DMX/RDM and Ethernet video routing; mechanical dimensions and head-vertical pose; product image",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown",
+            "source_kind": "manufacturer_product"
+          },
+          {
+            "url": "https://www.robelighting.com/res/downloads/catalogues/ROBE_Product_Guide_2021.pdf",
+            "title": "Robe Product Guide 2021",
+            "locator": "RoboSpot MotionCamera specification table: electrical/mechanical values; 386 x 277 x 147 mm, head vertical",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown",
+            "source_kind": "manufacturer_catalogue"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "0a2d3e6cf6377719db5c9b958639a61b31546652",
+  "note": "Initial research record before any generated model artifacts existed."
+}

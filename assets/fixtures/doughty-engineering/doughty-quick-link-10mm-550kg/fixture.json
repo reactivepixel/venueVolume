@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "id": "doughty-engineering/doughty-quick-link-10mm-550kg",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Doughty Engineering",
+    "model": "Doughty Quick Link-10mm-550Kg",
+    "variant": "T23505",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://doughty-engineering.co.uk/products/quick-link-10mm-550kg/",
+      "title": "Quick Link-10mm-550Kg – Doughty Engineering",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact part T23505; 10 mm size, 550 kg stated on manufacturer product page; product image link; zinc finish",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://doughty-engineering.co.uk/wp-content/uploads/2023/01/T23505-Data-Sheet-US.pdf",
+      "title": "T23505 Product Data Sheet",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Official one-page sheet: exact T23505 SKU, 10 mm bar, zinc plated, WLL 500 kg and DIN 56926; drawing labels 70 mm inner clear length, 20 mm inner clear height, 11 mm closure gap, 10 mm bar; no explicit outer envelope",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://doughty-engineering.co.uk/wp-content/uploads/Product-Images/T23505-Quick-Link-1-700x700-c-default.jpg",
+      "title": "Doughty Quick Link-10mm-550Kg visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Official product image for T23505; the accompanying manufacturer PDF drawing shows top and side views with 70/20/11/10 mm labels.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "c8123180c6808302646f2c80a5c30c5dfb4a0c98a04a55cfa508156eb9eef02f"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.09,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Estimated outer 90 x 44 x 16 mm from orthographic manufacturer drawing: 70 mm inner length and 20 mm inner clear height, calibrated with 10 mm bar diameter; closure sleeve measures about 1.6x rod diameter in the side view and raises the silhouette about 4 mm beyond the 40 mm loop estimate. These are drawing-calibrated visual bounds, not published outer dimensions or certified clearances. Raw 70/20/11/10 mm measures retained above. Product page says 550 kg while data sheet says WLL 500 kg; appearance research only, not load selection."
+    },
+    "height": {
+      "value": 0.044,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Estimated outer 90 x 44 x 16 mm from orthographic manufacturer drawing: 70 mm inner length and 20 mm inner clear height, calibrated with 10 mm bar diameter; closure sleeve measures about 1.6x rod diameter in the side view and raises the silhouette about 4 mm beyond the 40 mm loop estimate. These are drawing-calibrated visual bounds, not published outer dimensions or certified clearances. Raw 70/20/11/10 mm measures retained above. Product page says 550 kg while data sheet says WLL 500 kg; appearance research only, not load selection."
+    },
+    "depth": {
+      "value": 0.016,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Estimated outer 90 x 44 x 16 mm from orthographic manufacturer drawing: 70 mm inner length and 20 mm inner clear height, calibrated with 10 mm bar diameter; closure sleeve measures about 1.6x rod diameter in the side view and raises the silhouette about 4 mm beyond the 40 mm loop estimate. These are drawing-calibrated visual bounds, not published outer dimensions or certified clearances. Raw 70/20/11/10 mm measures retained above. Product page says 550 kg while data sheet says WLL 500 kg; appearance research only, not load selection."
+    },
+    "reference_pose": "Closed quick link with loop plane vertical, long axis horizontal and closure sleeve along the lower edge; no attached rigging. Estimated outer silhouette."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Closed quick link with loop plane vertical, long axis horizontal and closure sleeve along the lower edge; no attached rigging. Estimated outer silhouette.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.04500000178813934,
+        0.0,
+        -0.00800000037997961
+      ],
+      "max": [
+        0.04500000178813934,
+        0.04399999976158142,
+        0.00800000037997961
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.002023555338382721,
+          -0.0
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Estimated outer 90 x 44 x 16 mm from orthographic manufacturer drawing: 70 mm inner length and 20 mm inner clear height, calibrated with 10 mm bar diameter; closure sleeve measures about 1.6x rod diameter in the side view and raises the silhouette about 4 mm beyond the 40 mm loop estimate. These are drawing-calibrated visual bounds, not published outer dimensions or certified clearances. Raw 70/20/11/10 mm measures retained above. Product page says 550 kg while data sheet says WLL 500 kg; appearance research only, not load selection.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "9bc09802df6ec69ff1dae0d50f73560a726ca01d02e2e4f46cd5984364dc6969"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "7133b41a6a18483c8f757cf1467c07055bd00c3bfcc7313a67f35dfb6cd04673"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "7718ef04d013cf7b0b23e126d6e75f7e6d01c3787c694a4161fa2b420522ec59"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "64ed017914219eafd9289b392e53c96de417ec76c0bd8d55a8d77095180f8201"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "014f5f891c86ad6d3402be7301d78cd8f73b227e785967c0f6c51462b2abd9bd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "18bb42b13490b4aa34300bb4e6d1a18e5fa0bd08a29e52d697877527ebe5e33f"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "1e26919595629fd171bdfc405e5ea0644c9436b149dacb2e01fb34c0f65d8567"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "ec654e565423450c64083f5e75421f5860b0e5e65c62f13e828f1ccfa780dca7"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "d74ad47d810a4dc0230a78a9f5c253d2e79e3be3907ead1a45a719aa6e9fb1fd"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "6d472b75d427efc4de1fffda598929bd454e2a7dd1ba8f54118af2eacd87dc05"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "48f5f670cf233ca7e5aec04a511988d3eee862b70e96b5fe092fe288e027dcb5",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "safety_hardware",
+      "notes": "Rigid compact suspension connector, potential visual representative for secondary protection hardware only. Rated values are conflicting source metadata; no operating or rigging directions included. Do not treat product WLL as a selection recommendation.",
+      "body_style": "zinc-plated oval steel quick link with threaded closure sleeve",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 3,
+    "triangle_count": 1728,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed safety_hardware geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "rigging.secondary",
+    "control_path": "See source-backed protocol list; compatibility and control system are not implemented.",
+    "physical_asset_only": true,
+    "source_data": {
+      "protocols": [],
+      "source_urls": [
+        "https://doughty-engineering.co.uk/products/quick-link-10mm-550kg/",
+        "https://doughty-engineering.co.uk/wp-content/uploads/2023/01/T23505-Data-Sheet-US.pdf"
+      ],
+      "dimensions": {
+        "width_m": 0.09,
+        "height_m": 0.044,
+        "depth_m": 0.016,
+        "axis_status": "estimated",
+        "axis_note": "Estimated outer 90 x 44 x 16 mm from orthographic manufacturer drawing: 70 mm inner length and 20 mm inner clear height, calibrated with 10 mm bar diameter; closure sleeve measures about 1.6x rod diameter in the side view and raises the silhouette about 4 mm beyond the 40 mm loop estimate. These are drawing-calibrated visual bounds, not published outer dimensions or certified clearances. Raw 70/20/11/10 mm measures retained above. Product page says 550 kg while data sheet says WLL 500 kg; appearance research only, not load selection.",
+        "reference_pose": "Closed quick link with loop plane vertical, long axis horizontal and closure sleeve along the lower edge; no attached rigging. Estimated outer silhouette."
+      },
+      "working_load_limit": "500 kg on the product data sheet; product page heading/description says 550 kg. Conflict retained; confirm exact rating from product marking/manufacturer before any load application.",
+      "finish": "Zinc plated; product data sheet states DIN 56926",
+      "research_evidence": [
+        {
+          "url": "https://doughty-engineering.co.uk/products/quick-link-10mm-550kg/",
+          "title": "Quick Link-10mm-550Kg – Doughty Engineering",
+          "locator": "Exact part T23505; 10 mm size, 550 kg stated on manufacturer product page; product image link; zinc finish",
+          "accessed_at": "2026-09-30"
+        },
+        {
+          "url": "https://doughty-engineering.co.uk/wp-content/uploads/2023/01/T23505-Data-Sheet-US.pdf",
+          "title": "T23505 Product Data Sheet",
+          "locator": "Official one-page sheet: exact T23505 SKU, 10 mm bar, zinc plated, WLL 500 kg and DIN 56926; drawing labels 70 mm inner clear length, 20 mm inner clear height, 11 mm closure gap, 10 mm bar; no explicit outer envelope",
+          "accessed_at": "2026-09-30"
+        }
+      ],
+      "control_path": "See source-backed protocol list; compatibility and control system are not implemented."
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "rigging.secondary",
+    "category_path": [
+      "Rigging and support",
+      "Secondary suspension / safety hardware"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

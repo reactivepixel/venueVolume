@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "id": "eliminator-lighting-adj-group/mbmhd3-mirror-ball-motor",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Eliminator Lighting (ADJ Group)",
+    "model": "MBMHD3 mirror ball motor",
+    "variant": "MBMHD3",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.adj.com/products/mbmhd3",
+      "title": "MBMHD3",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Dimensions, mass, max ball diameter/load and fixed rotation",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.adj.com/cdn/shop/files/7d54dc275a1647abdf9352693a3edddb6e35fd7d_MBMHD3_web_01.jpg?v=1784181815&width=2048",
+      "title": "MBMHD3 mirror ball motor visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "388ce78e0cbe49f66ee4970b1740a2a61d2e2585e75ae1b6bb7a86b9f2090ea6"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.136,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Motor enclosure dimensions only; ball is separate."
+    },
+    "height": {
+      "value": 0.08,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Motor enclosure dimensions only; ball is separate."
+    },
+    "depth": {
+      "value": 0.136,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Motor enclosure dimensions only; ball is separate."
+    },
+    "reference_pose": "Ceiling-mounted with shaft down; compatible ball modeled separately."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "120 V 60 Hz or 230 V 50 Hz variant",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "1.055 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Ceiling-mounted with shaft down; compatible ball modeled separately.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.06800000369548798,
+        0.0,
+        -0.06800000369548798
+      ],
+      "max": [
+        0.06800000369548798,
+        0.07999999821186066,
+        0.06800000369548798
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          -0.0
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Motor enclosure dimensions only; ball is separate.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "c6f9a7e968d9b7b5bb19766d93ee2e86f6b530e2444fa8291c0ea096251b4ce0"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "0e339e80d87023aaccc0bc9bef48cba321ab06045844ca85d6af2d7aaa6f42de"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "3aa1f39374d8d10707f7cc12f0eb3a78d974dfa473db58b67ebdff8b2dada982"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "cead18f1e9daef0d6fc27210eae5d53ed88bae1c57c61a47aab00ce5df47242a"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "a689bb40f7653a91cfd013a7905f398a84d051975af5a7a20cbab2fd9395df4a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "9ff38f4354f477797de4d4936a6df4e0b4fc2062073cfc5fc4c8b4e6c5f7f089"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "3af305a1fb74aa26b82771181d36abfa202b25ed55a5cc9b05070fbca5d0ea3a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "b3bca85a62855d36b4be1dabd3585b290a8b5f7d5c8f011d1cf9cc13a7982601"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "c1ef57ffa3a61da002cac7ac7ea0bd2f4ec9e33da7f3c9e785d5cd67fb69df9c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "2d831b5711c695bc62b72be27c11f0a2fa702a77cfed62dc67a79321df75f838"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "dfef3724ce53ca9ab612f13ec0e02340dce66a02f98e117adf52ecc8047b9731",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "mirror_motor",
+      "body_style": "square motor enclosure with shaft and safety attachment",
+      "notes": "No ball included, no DMX.",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 4,
+    "triangle_count": 656,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed mirror_motor geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "lighting.effects.mirror_motor",
+    "control_path": "Mains-powered fixed-speed motor; separate ball",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://www.adj.com/products/mbmhd3"
+      ],
+      "control_path": "Mains-powered fixed-speed motor; separate ball",
+      "protocols": [],
+      "power": "120 V 60 Hz or 230 V 50 Hz variant",
+      "weight": "1.055 kg",
+      "dimensions": {
+        "width_m": 0.136,
+        "height_m": 0.08,
+        "depth_m": 0.136,
+        "axis_status": "documented",
+        "axis_note": "Motor enclosure dimensions only; ball is separate.",
+        "reference_pose": "Ceiling-mounted with shaft down; compatible ball modeled separately."
+      },
+      "ball_capacity": "500 mm diameter / 10 kg maximum; 2.5–3 rpm",
+      "research_evidence": [
+        {
+          "url": "https://www.adj.com/products/mbmhd3",
+          "title": "MBMHD3",
+          "locator": "Dimensions, mass, max ball diameter/load and fixed rotation",
+          "accessed_at": "2026-09-30"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.effects.mirror_motor",
+    "category_path": [
+      "Lighting fixtures",
+      "Visible and audience effects",
+      "Mirror-ball motor"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

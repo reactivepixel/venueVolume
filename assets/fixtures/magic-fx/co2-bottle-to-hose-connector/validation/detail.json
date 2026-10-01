@@ -1,0 +1,50 @@
+{
+  "mesh_count": 21,
+  "triangle_count": 12648,
+  "geometry_sha256": "271a60d125db87e5b7624348ef92d5c33650b558d67d59e50d27e64165c60b42",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      -0.0020454523619264364,
+      -0.0006444149184972048
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.0020454523619264364,
+        -0.0006444149184972048
+      ]
+    }
+  ],
+  "family": "co2_supply",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.1363636255264282,
+    0.9914078116416931,
+    1.1363635063171387
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://magicfx.com/products/co2-bottle-to-hose-connector",
+    "https://magicfx.com/cdn/shop/files/CO2Bottletohoseconnector.jpg?v=1773324576&width=3840"
+  ]
+}

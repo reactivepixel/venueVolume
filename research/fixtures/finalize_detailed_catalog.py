@@ -6,7 +6,9 @@ from pathlib import Path
 from build_detailed_catalog import ROOT,CSV,dump,fid,LIB
 rows=list(csv.DictReader(CSV.open()));cards=[];states=Counter();batches=Counter();totalbytes=0
 for row in rows:
+    if row['manufacturer'].casefold()=='robe lighting':row['manufacturer']='ROBE Lighting'
     ident=fid(row);folder=ROOT/row['asset_root'];rp=folder/'fixture.json';r=json.loads(rp.read_text());model=r['model']
+    r['identity']['manufacturer']=row['manufacturer']
     assert model['detail_level']=='high' and model['status']=='validated',ident
     parity=json.loads((folder/'validation/parity.json').read_text());assert parity['passed'],ident
     data=json.loads(row['data']);raw_modes=data.get('dmx_channels',{})
@@ -18,8 +20,13 @@ for row in rows:
     for a in model['artifacts']:
         path=folder/a['file'];assert hashlib.sha256(path.read_bytes()).hexdigest()==a['sha256'],str(path)
     assert hashlib.sha256((folder/model['generator_dependency']['file']).read_bytes()).hexdigest()==model['generator_dependency']['sha256']
+    for dependency in model.get('generator_dependencies',[]):
+        assert hashlib.sha256((folder/dependency['file']).read_bytes()).hexdigest()==dependency['sha256']
     r['revision_notes']=list(dict.fromkeys(r['revision_notes']));dump(rp,r)
     dims=r['dimensions'];note=ROOT/row['fixture_note'];body=note.read_text()
+    body=re.sub(r'\A# [^\n]+',lambda _: '# '+row['manufacturer']+' '+row['name'],body,count=1)
+    body=re.sub(r'^- Library state:.*$',f'- Library state: `{r["status"]}`',body,flags=re.M)
+    if data.get('control_path'):body=re.sub(r'^- Control:.*$',lambda _: '- Control: '+data['control_path'],body,flags=re.M)
     envelope=' × '.join(f'{dims[k]["value"]:.4f} m {label}' for k,label in [('width','W'),('height','H'),('depth','D')])
     body=re.sub(r'^- Reference envelope:.*$', '- Reference envelope: '+envelope,body,flags=re.M)
     body=re.sub(r'^- Model:.*$', '- Model: high-detail image-informed procedural approximation; editable Blender and full-detail meter-scale USDZ, Y-up and -Z forward. See the current revision below.',body,flags=re.M)
@@ -45,7 +52,8 @@ for row in rows:
     totalbytes+=(folder/'models/fixture.usdz').stat().st_size
     cards.append({'id':ident,'name':row['name'],'manufacturer':row['manufacturer'],'type':row['type']+' / '+row['subtype'],'state':r['status'],'batch':str(row.get('expansion_batch') or 'original'),'dimensions':envelope,'meshes':model['mesh_count'],'triangles':model['triangle_count'],'url':row['url'],'note':'../../../'+row['fixture_note'],'uncertain':any(dims[k]['status']!='documented' for k in ('width','height','depth')) or bool(r['unresolved'])})
 assert len({fid(row) for row in rows})==len(rows)
-assert len({row['manufacturer'] for row in rows})<=10
+# The original research batch was capped at ten lighting makers. Show equipment
+# adds specialist atmosphere, effects, control and support manufacturers.
 with CSV.open('w',newline='') as f:w=csv.DictWriter(f,fieldnames=list(rows[0]),lineterminator='\n');w.writeheader();w.writerows(rows)
 summary={'fixture_count':len(rows),'manufacturer_count':len({r['manufacturer'] for r in rows}),'all_models_high_detail':True,'all_runtime_models_validated':True,'all_saved_geometry_parity_checks_passed':True,'asset_states':dict(states),'batches':dict(batches),'runtime_asset_bytes':totalbytes,'representation':'Image-informed procedural approximations, not manufacturer CAD','realitykit_device_test':'not_run','hardware_test':'not_run'}
 dump(ROOT/'assets/fixtures/research/catalog-validation.json',summary)
@@ -57,7 +65,10 @@ page='''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewpor
 <form onsubmit="return false"><label>Search <input id="search" type="search" placeholder="Model, type or manufacturer"></label><label>Manufacturer <select id="maker"><option value="">All</option></select></label><label>Batch <select id="batch"><option value="">All</option><option value="original">Original 53</option><option value="1">Expansion 1</option><option value="2">Expansion 2</option></select></label><label>View <select id="view"><option>three-quarter</option><option>front</option><option>side</option><option>rear</option></select></label></form></header><main><output id="count"></output><div id="grid"></div></main>
 <script>const rows=PAYLOAD;const $=id=>document.getElementById(id);const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));for(const m of [...new Set(rows.map(r=>r.manufacturer))].sort())$('maker').add(new Option(m,m));function render(){const q=$('search').value.toLowerCase();const selected=rows.filter(r=>(!$('maker').value||r.manufacturer===$('maker').value)&&(!$('batch').value||r.batch===$('batch').value)&&JSON.stringify([r.name,r.manufacturer,r.type]).toLowerCase().includes(q));$('count').textContent=selected.length+' fixtures';$('grid').innerHTML=selected.map(r=>{const b='../'+r.id+'/';return `<article><a href="${b}previews/${$('view').value}.png"><img loading="lazy" alt="${esc(r.manufacturer+' '+r.name+' '+$('view').value)}" src="${b}previews/${$('view').value}.png"></a><section><div class="meta">${esc(r.manufacturer)} · ${r.batch==='original'?'Original catalog':'Expansion '+r.batch}</div><h2>${esc(r.name)}</h2><p>${esc(r.type)}</p><div class="meta">${esc(r.dimensions)}<br>${r.meshes} meshes · ${r.triangles.toLocaleString()} triangles</div><p class="${r.uncertain?'flag':'meta'}">${r.uncertain?'Evidence / pose caveats — see record':'Documented dimensional envelope'} · ${esc(r.state)}</p><div class="links"><a href="${b}models/fixture.blend">Blender</a><a href="${b}models/fixture.usdz">USDZ</a><a href="${b}fixture.json">Record</a><a href="${esc(r.note)}">Note</a><a href="${b}validation/usdz.json">USDZ check</a><a href="${b}validation/parity.json">Parity</a><a href="${esc(r.url)}">Official source</a></div></section></article>`}).join('')}for(const id of ['search','maker','batch','view'])$(id).addEventListener('input',render);render();</script></html>'''
 headline=f"{len(rows)} fixtures · {summary['manufacturer_count']} manufacturers · {batches['original']} upgraded + {len(rows)-batches['original']} additions in {len(batches)-1} batches."
+page=page.replace('</style>','label{min-width:0;max-width:100%}select,input{min-width:0;max-width:100%}@media(max-width:600px){form label{width:100%;display:flex;flex-direction:column;align-items:stretch}article h2{overflow-wrap:anywhere}}</style>')
 page=page.replace('77 fixtures · 10 manufacturers · 53 upgraded + 24 additions in two batches.',headline).replace('Original 53',f"Original {batches['original']}")
+page=page.replace('<option value="2">Expansion 2</option>','<option value="2">Expansion 2</option><option value="taxonomy">Category coverage</option>')
+page=page.replace('<a href="major-manufacturer-fixtures.csv">','<a href="show-equipment.html">Category hierarchy &amp; coverage</a><a href="major-manufacturer-fixtures.csv">')
 (ROOT/'assets/fixtures/research/catalog-preview.html').write_text(page.replace('PAYLOAD',payload))
 subprocess.run([sys.executable,str(LIB),'index','--root',str(ROOT)],check=True)
 print(json.dumps(summary,indent=2))

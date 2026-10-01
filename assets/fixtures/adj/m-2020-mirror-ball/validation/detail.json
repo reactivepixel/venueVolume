@@ -1,0 +1,50 @@
+{
+  "mesh_count": 33,
+  "triangle_count": 19664,
+  "geometry_sha256": "8cad83ecd2a23b0f98cd21ef86fc183f505b43e66bf5b65a69c72777336378fc",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.24892541766166687,
+      -0.0
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.24892541766166687,
+        -0.0
+      ]
+    }
+  ],
+  "family": "mirror_ball",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9989295601844788,
+    0.9989295601844788,
+    0.998929500579834
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/m-2020",
+    "https://www.adj.com/cdn/shop/files/6f6095a0527f5c470d06959344a15172076cf0c2_M_2020__IMG__001__1171d2bbbf43.jpg?v=1776712813&width=2048"
+  ]
+}

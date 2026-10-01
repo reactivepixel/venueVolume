@@ -1,0 +1,189 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "magic-fx/sparxtar-ii",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "MAGIC FX",
+      "model": "Sparxtar II",
+      "variant": "MFX5003",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://magicfx.com/products/sparxtar-ii",
+        "title": "Sparxtar II product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "SKU MFX5003, product image, dimensions, weight, power and DMX/RDM protocol listing",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://magicfx.com/cdn/shop/files/SPARXTAR_II_VIEW-HERO.jpg?v=1783682020&width=3840",
+        "title": "Sparxtar II visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.jpg",
+        "sha256": "ae7821162eece38ca9e01b475b255dbb5ee8b57f1845ff173fe29fc53ea30fa9"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.254,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer publishes a three-axis size but does not label axis names; the two equal 254 mm axes remain interchangeable and 226 mm is assigned depth based on the product image."
+      },
+      "height": {
+        "value": 0.254,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer publishes a three-axis size but does not label axis names; the two equal 254 mm axes remain interchangeable and 226 mm is assigned depth based on the product image."
+      },
+      "depth": {
+        "value": 0.226,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer publishes a three-axis size but does not label axis names; the two equal 254 mm axes remain interchangeable and 226 mm is assigned depth based on the product image."
+      },
+      "reference_pose": "Compact black enclosure upright on base feet, front access panel facing forward; image shows the specific Sparxtar II chassis."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "700 W; 220–250 VAC",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "10.25 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Compact black enclosure upright on base feet, front access panel facing forward; image shows the specific Sparxtar II chassis.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "Manufacturer publishes a three-axis size but does not label axis names; the two equal 254 mm axes remain interchangeable and 226 mm is assigned depth based on the product image.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "fx.atmosphere.spark.cold_spark",
+      "control_path": "See source-backed protocol list; compatibility and control system are not implemented.",
+      "physical_asset_only": true,
+      "source_data": {
+        "protocols": [
+          "DMX512",
+          "RDM"
+        ],
+        "source_urls": [
+          "https://magicfx.com/products/sparxtar-ii"
+        ],
+        "power": "700 W; 220–250 VAC",
+        "weight": "10.25 kg",
+        "dimensions": {
+          "width_m": 0.254,
+          "height_m": 0.254,
+          "depth_m": 0.226,
+          "axis_status": "estimated",
+          "axis_note": "Manufacturer publishes a three-axis size but does not label axis names; the two equal 254 mm axes remain interchangeable and 226 mm is assigned depth based on the product image.",
+          "reference_pose": "Compact black enclosure upright on base feet, front access panel facing forward; image shows the specific Sparxtar II chassis."
+        },
+        "research_evidence": [
+          {
+            "url": "https://magicfx.com/products/sparxtar-ii",
+            "title": "Sparxtar II product page",
+            "locator": "SKU MFX5003, product image, dimensions, weight, power and DMX/RDM protocol listing",
+            "accessed_at": "2026-09-30"
+          }
+        ],
+        "control_path": "See source-backed protocol list; compatibility and control system are not implemented."
+      }
+    }
+  },
+  "git_commit": "c753c434774c5386e4b9f87fc3f00a1f589aad3c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

@@ -1,0 +1,174 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "altman-lighting/altman-scoop-153",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Altman Lighting",
+      "model": "Altman Scoop 153",
+      "variant": "153",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.altmanlighting.com/wp-content/uploads/2018/10/Scoop153_Disc_Oct2018.pdf",
+        "title": "Altman Scoop 153 discontinued datasheet",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Page 1 product photograph, 400 W and assembled dimensional drawing",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.altmanlighting.com/wp-content/uploads/2018/10/Scoop153_Disc_Oct2018.pdf",
+        "title": "Altman Scoop 153 visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Official manufacturer PDF, page 1; rendered locally for visual reference.",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.png",
+        "sha256": "9f2ea0c3ea2c3b5df6c954911c8f8350debbac106a615e6ec9c15c511e888eba"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.273,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer assembled side/front drawing; no package dimensions used."
+      },
+      "height": {
+        "value": 0.359,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer assembled side/front drawing; no package dimensions used."
+      },
+      "depth": {
+        "value": 0.203,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer assembled side/front drawing; no package dimensions used."
+      },
+      "reference_pose": "Yoke upright, reflector mouth forward; worklight attachment excluded."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "400 W maximum",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Yoke upright, reflector mouth forward; worklight attachment excluded.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "Manufacturer assembled side/front drawing; no package dimensions used.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [
+      "No official product image URL was present in the research CSV."
+    ],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "scoop_flood_worklight",
+      "control_path": "Passive medium-screw incandescent socket; external dimmer only with compatible lamp",
+      "physical_asset_only": true,
+      "source_data": {
+        "source_urls": [
+          "https://www.altmanlighting.com/wp-content/uploads/2018/10/Scoop153_Disc_Oct2018.pdf"
+        ],
+        "control_path": "Passive medium-screw incandescent socket; external dimmer only with compatible lamp",
+        "protocols": [],
+        "power": "400 W maximum",
+        "dimensions": {
+          "width_m": 0.273,
+          "height_m": 0.359,
+          "depth_m": 0.203,
+          "axis_status": "documented",
+          "axis_note": "Manufacturer assembled side/front drawing; no package dimensions used.",
+          "reference_pose": "Yoke upright, reflector mouth forward; worklight attachment excluded."
+        },
+        "research_evidence": [
+          {
+            "url": "https://www.altmanlighting.com/wp-content/uploads/2018/10/Scoop153_Disc_Oct2018.pdf",
+            "title": "Altman Scoop 153 discontinued datasheet",
+            "locator": "Page 1 product photograph, 400 W and assembled dimensional drawing",
+            "accessed_at": "2026-09-30"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "c753c434774c5386e4b9f87fc3f00a1f589aad3c",
+  "note": "Initial research record before any generated model artifacts existed."
+}
