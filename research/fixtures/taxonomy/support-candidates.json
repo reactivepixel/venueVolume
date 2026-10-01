@@ -1,6 +1,6 @@
 {
   "research_access_date": "2026-09-30",
-  "purpose": "Eight source-backed representative products to ground the proposed equipment taxonomy. Product coverage is illustrative and does not claim that the catalog contains every model or manufacturer.",
+  "purpose": "Source-backed representative products to ground the proposed equipment taxonomy. Product coverage is illustrative and does not claim that the catalog contains every model or manufacturer.",
   "schema_note": "Uses the research/fixtures/expansion/bars.json record shape, extended with category_id, scope_status, dimensional evidence, local acquired source files, and explicit control_path semantics. Passive equipment is explicitly marked passive; a DMX path is not invented for it.",
   "source_reuse_note": "Downloaded images, drawings, and documents are kept for research traceability only. Copyright/reuse permission for republication is unknown unless separately documented; image URLs are direct manufacturer/brand-hosted assets.",
   "candidates": [
@@ -14,22 +14,73 @@
       "subtype": "20-fader theatrical lighting console",
       "url": "https://www.etcconnect.com/products/consoles/colorsource/features.aspx",
       "data": {
-        "source_urls": ["https://www.etcconnect.com/products/consoles/colorsource/features.aspx", "https://www.etcconnect.com/about/drawing-library/consoles/colorsource.aspx"],
-        "dimensions": {"width_m": 0.465, "height_m": 0.060, "depth_m": 0.279, "source_order": "465 W x 279 D x 60 H mm, values supplied in task brief; manufacturer physical drawing downloaded, not parsed in this pass"},
-        "dimensions_status": "task_brief_values; manufacturer physical drawing is a DWG and remains to be checked in CAD",
+        "source_urls": [
+          "https://www.etcconnect.com/products/consoles/colorsource/features.aspx",
+          "https://www.etcconnect.com/about/drawing-library/consoles/colorsource.aspx"
+        ],
+        "dimensions": {
+          "width_m": 0.465,
+          "height_m": 0.060,
+          "depth_m": 0.279,
+          "source_order": "465 W x 279 D x 60 H mm, ColorSource Console Spec Sheet rev G; values typical"
+        },
+        "dimensions_status": "documented_in_manufacturer_spec_sheet_mirrored_by_distributor",
         "control_path": "Console outputs control over one 5-pin DMX port to DMX fixtures/nodes. Base ColorSource 20 feature table does not list sACN/Art-Net; do not conflate with the AV variant.",
-        "protocols": ["DMX512", "RDM discovery/configuration"],
+        "protocols": [
+          "DMX512",
+          "RDM discovery/configuration"
+        ],
         "pose": "Normal tabletop operating orientation: fader/touch surface upward, front edge toward operator; inferred from official product image."
       },
-      "images": ["https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/ColorSource/CS20_CS40.png"],
+      "images": [
+        "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/ColorSource/CS20_CS40.png"
+      ],
       "image_reuse_status": "unknown",
-      "image_file": "support-sources/etc-colorsource20.png",
+      "image_file": "research/fixtures/taxonomy/support-sources/etc-colorsource20.png",
+      "reference_image_file": "research/fixtures/taxonomy/support-sources/etc-colorsource20.png",
       "image_sha256": "b11c73e5a2efefa88f400e023bface45a50cd3c59cd1775f1f033c9dcba4fb41",
-      "modeling": {"family": "console", "body_style": "low tabletop console with 20 faders and central touchscreen", "notes": "Official product image shows both CS20 and CS40; use the smaller upper CS20 image. Product dimensions come from task brief and await extraction from the downloaded official standard-drawing DWG."},
+      "modeling": {
+        "family": "console",
+        "body_style": "low tabletop console with 20 faders and central touchscreen",
+        "notes": "Official product image shows both CS20 and CS40; use the smaller upper CS20 image. Dimensions are typical values from ColorSource Console Spec Sheet rev G; exact physical drawing DWG retained but not parsed in this pass."
+      },
       "evidence": [
-        {"url": "https://www.etcconnect.com/products/consoles/colorsource/features.aspx", "title": "ColorSource Consoles Features", "locator": "ColorSource 20 feature list and comparison table (base CS20: 20 faders and one 5-pin DMX port)", "accessed_at": "2026-09-30", "reuse_status": "unknown"},
-        {"url": "https://www.etcconnect.com/about/drawing-library/consoles/colorsource.aspx", "title": "ETC ColorSource console drawings", "locator": "Physical standard drawing library; ColorSource 20 EU drawing dated 10-2025 and US drawing dated 09-2024; US DWG downloaded as support-sources/etc-colorsource20-dimensions.dwg", "file": "support-sources/etc-colorsource20-dimensions.dwg", "sha256": "3c4a5087a24fb0b6ec3ee835d58afc759b2738f4fe9c9296b96327eb6e80cb98", "accessed_at": "2026-09-30", "reuse_status": "unknown"}
-      ]
+        {
+          "url": "https://www.etcconnect.com/products/consoles/colorsource/features.aspx",
+          "title": "ColorSource Consoles Features",
+          "locator": "ColorSource 20 feature list and comparison table (base CS20: 20 faders and one 5-pin DMX port)",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://www.etcconnect.com/about/drawing-library/consoles/colorsource.aspx",
+          "title": "ETC ColorSource console drawings",
+          "locator": "Physical standard drawing library; ColorSource 20 EU drawing dated 10-2025 and US drawing dated 09-2024; US DWG downloaded as research/fixtures/taxonomy/support-sources/etc-colorsource20-dimensions.dwg",
+          "file": "research/fixtures/taxonomy/support-sources/etc-colorsource20-dimensions.dwg",
+          "sha256": "3c4a5087a24fb0b6ec3ee835d58afc759b2738f4fe9c9296b96327eb6e80cb98",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://goknight.com/content/documentation/ColorSource_Console_Spec_Sheet_revG.pdf",
+          "title": "ColorSource Console Spec Sheet rev G (ETC manufacturer document, distributor-hosted copy)",
+          "locator": "Page 6, dimensions table: CS20/CS20AV height 60 mm, width 465 mm, depth 279 mm; dimension values called typical",
+          "file": "research/fixtures/taxonomy/support-sources/colorsource-console-spec-revG.pdf",
+          "sha256": "169da1cb5c9679410b95dcaa2ed59852219d31aca08271bdf9b4e93f59738ee3",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown",
+          "source_kind": "secondary_host_of_manufacturer_document"
+        }
+      ],
+      "dimensions": {
+        "width_m": 0.465,
+        "height_m": 0.060,
+        "depth_m": 0.279,
+        "source_order": "465 W x 279 D x 60 H mm, ColorSource Console Spec Sheet rev G; values typical",
+        "axis_status": "documented",
+        "axis_note": "465 W x 279 D x 60 H mm, ColorSource Console Spec Sheet rev G; values typical",
+        "reference_pose": "Normal tabletop operating orientation: fader/touch surface upward, front edge toward operator; inferred from official product image."
+      }
     },
     {
       "name": "ODE Mk3",
@@ -41,22 +92,65 @@
       "subtype": "two-universe Ethernet-to-DMX/RDM gateway",
       "url": "https://www.enttec.com/product/dmx-ethernet/ode-mk3-dmx-ethernet-converter/",
       "data": {
-        "protocols": ["Ethernet eDMX", "DMX512", "Art-RDM"],
-        "source_urls": ["https://www.enttec.com/product/dmx-ethernet/ode-mk3-dmx-ethernet-converter/", "https://cdn.enttec.com/pdf/assets/70407/70407_ODE_MK3_DATASHEET.pdf", "https://cdn.enttec.com/cad/70407/70407_ODE_MK3_CAD.pdf"],
-        "dimensions": {"width_m": 0.1288, "height_m": 0.040, "depth_m": 0.058, "source_order": "128.8 x 58 x 40 mm; manufacturer CAD drawing, mapped as long side x short side x body height"},
+        "protocols": [
+          "Ethernet eDMX",
+          "DMX512",
+          "Art-RDM"
+        ],
+        "source_urls": [
+          "https://www.enttec.com/product/dmx-ethernet/ode-mk3-dmx-ethernet-converter/",
+          "https://cdn.enttec.com/pdf/assets/70407/70407_ODE_MK3_DATASHEET.pdf",
+          "https://cdn.enttec.com/cad/70407/70407_ODE_MK3_CAD.pdf"
+        ],
+        "dimensions": {
+          "width_m": 0.1288,
+          "height_m": 0.040,
+          "depth_m": 0.058,
+          "source_order": "128.8 x 58 x 40 mm; manufacturer CAD drawing, mapped as long side x short side x body height"
+        },
         "dimensions_status": "documented",
         "control_path": "Ethernet eDMX input to two 5-pin DMX ports; bi-directional eDMX/DMX conversion with Art-RDM. Power by PoE or 12-24 V DC. It is a gateway/node, not a fixture and not a console.",
         "pose": "Tabletop enclosure; 128.8 mm long axis is horizontal, status/ID panel upward, DMX connectors at the short end; axis assignment is inferred from the manufacturer orthographic/isometric CAD image."
       },
-      "images": ["https://cdn.enttec.com/website/products/70407-ode-mk3/70407-ode-mk3-render-00.png"],
+      "images": [
+        "https://cdn.enttec.com/website/products/70407-ode-mk3/70407-ode-mk3-render-00.png"
+      ],
       "image_reuse_status": "unknown",
-      "image_file": "support-sources/enttec-ode-mk3.png",
+      "image_file": "research/fixtures/taxonomy/support-sources/enttec-ode-mk3.png",
+      "reference_image_file": "research/fixtures/taxonomy/support-sources/enttec-ode-mk3.png",
       "image_sha256": "8db6c709d07155655ccaacc5e91bd432680d79e4682a1e1e9954f38b9c705ef7",
-      "modeling": {"family": "node", "body_style": "compact rectangular network gateway with DMX connectors on one end and Ethernet/DC connections opposite", "notes": "Dimensions cross-checked against drawing 70407-ODE MK3; drawing labels overall 128.8, 58, and 40 mm. A 25 mm body-height detail is also drawn; retain 40 mm overall envelope for the connectors/features shown in the manufacturer overall dimensions. No fictional DMX channel personality applies."},
+      "modeling": {
+        "family": "node",
+        "body_style": "compact rectangular network gateway with DMX connectors on one end and Ethernet/DC connections opposite",
+        "notes": "Dimensions cross-checked against drawing 70407-ODE MK3; drawing labels overall 128.8, 58, and 40 mm. A 25 mm body-height detail is also drawn; retain 40 mm overall envelope for the connectors/features shown in the manufacturer overall dimensions. No fictional DMX channel personality applies."
+      },
       "evidence": [
-        {"url": "https://www.enttec.com/product/dmx-ethernet/ode-mk3-dmx-ethernet-converter/", "title": "ODE Mk3 product page", "locator": "SKU 70407, Features, Connectivity, Specifications, Resources; page lists unit dimensions 129 x 58 x 40 mm", "accessed_at": "2026-09-30", "reuse_status": "unknown"},
-        {"url": "https://cdn.enttec.com/cad/70407/70407_ODE_MK3_CAD.pdf", "title": "70407 ODE MK3 CAD drawing", "locator": "Sheet 1, orthographic and isometric drawing; 128.8 x 58 x 40 mm overall, with 25 mm body-only detail; released 2022-06-24", "file": "support-sources/enttec-ode-mk3-dimensions.pdf", "sha256": "e857cc768239e692a50552ae3ede49bc164896fdf5060ff33b98e1dfe821b10c", "accessed_at": "2026-09-30", "reuse_status": "unknown"}
-      ]
+        {
+          "url": "https://www.enttec.com/product/dmx-ethernet/ode-mk3-dmx-ethernet-converter/",
+          "title": "ODE Mk3 product page",
+          "locator": "SKU 70407, Features, Connectivity, Specifications, Resources; page lists unit dimensions 129 x 58 x 40 mm",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://cdn.enttec.com/cad/70407/70407_ODE_MK3_CAD.pdf",
+          "title": "70407 ODE MK3 CAD drawing",
+          "locator": "Sheet 1, orthographic and isometric drawing; 128.8 x 58 x 40 mm overall, with 25 mm body-only detail; released 2022-06-24",
+          "file": "research/fixtures/taxonomy/support-sources/enttec-ode-mk3-dimensions.pdf",
+          "sha256": "e857cc768239e692a50552ae3ede49bc164896fdf5060ff33b98e1dfe821b10c",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ],
+      "dimensions": {
+        "width_m": 0.1288,
+        "height_m": 0.040,
+        "depth_m": 0.058,
+        "source_order": "128.8 x 58 x 40 mm; manufacturer CAD drawing, mapped as long side x short side x body height",
+        "axis_status": "documented",
+        "axis_note": "128.8 x 58 x 40 mm; manufacturer CAD drawing, mapped as long side x short side x body height",
+        "reference_pose": "Tabletop enclosure; 128.8 mm long axis is horizontal, status/ID panel upward, DMX connectors at the short end; axis assignment is inferred from the manufacturer orthographic/isometric CAD image."
+      }
     },
     {
       "name": "DP-415R",
@@ -68,26 +162,65 @@
       "subtype": "four-channel DMX dimmer/switch pack with eight Edison outlets",
       "url": "https://www.adj.com/products/dp-415r",
       "data": {
-        "protocols": ["DMX", "RDM"],
-        "source_urls": ["https://www.adj.com/products/dp-415r", "https://www.adj.com/blogs/news/adj-dp-415r-a-classic-adj-control-product-gets-an-upgrade"],
+        "protocols": [
+          "DMX",
+          "RDM"
+        ],
+        "source_urls": [
+          "https://www.adj.com/products/dp-415r",
+          "https://www.adj.com/blogs/news/adj-dp-415r-a-classic-adj-control-product-gets-an-upgrade"
+        ],
         "power": "120 V operation; 15 A maximum total load, 5 A maximum per channel",
-        "dimensions": {"width_m": 0.260, "height_m": 0.076, "depth_m": 0.209, "source_order": "260 L x 209 W x 76 H mm; manufacturer dimensions"},
+        "dimensions": {
+          "width_m": 0.260,
+          "height_m": 0.076,
+          "depth_m": 0.209,
+          "source_order": "260 L x 209 W x 76 H mm; manufacturer dimensions"
+        },
         "dimensions_status": "documented",
         "control_path": "DMX/RDM control input from console/node; pack dims or switches connected mains-powered loads at Edison outlets. Do not represent outlet power as DMX output.",
         "pose": "Pack body horizontal with flexible mounting bracket in tabletop/nominal storage pose; dimension axes are manufacturer L x W x H. The installed bracket may be rotated for wall, T-bar, or clamp mounting."
       },
-      "images": ["https://www.adj.com/cdn/shop/files/11936d54e77e05407d8d2c922efdb285134d609c_DPR415__IMG__001__d6965eb649aa.jpg?v=1776712969&width=2048"],
+      "images": [
+        "https://www.adj.com/cdn/shop/files/11936d54e77e05407d8d2c922efdb285134d609c_DPR415__IMG__001__d6965eb649aa.jpg?v=1776712969&width=2048"
+      ],
       "image_reuse_status": "unknown",
-      "image_file": "support-sources/adj-dp-415r.jpg",
+      "image_file": "research/fixtures/taxonomy/support-sources/adj-dp-415r.jpg",
       "image_sha256": "4c47265b7c4f722b92c37db3df43c4018e3556aaf6eb2dbcc087b5eca9b499c2",
-      "modeling": {"family": "dimmer", "body_style": "compact enclosed pack with reversible hanging bracket and Edison outlets", "notes": "Product page identifies selectable dimmer/switch modes and mounting options; electrical power remains distinct from DMX control data."},
+      "modeling": {
+        "family": "dimmer",
+        "body_style": "compact enclosed pack with reversible hanging bracket and Edison outlets",
+        "notes": "Product page identifies selectable dimmer/switch modes and mounting options; electrical power remains distinct from DMX control data."
+      },
       "evidence": [
-        {"url": "https://www.adj.com/products/dp-415r", "title": "ADJ DP-415R product page", "locator": "Electrical, Size/Weight, Certifications/IP, product overview; page lists 260 x 209 x 76 mm and 120 V operating variant", "accessed_at": "2026-09-30", "reuse_status": "unknown"},
-        {"url": "https://www.adj.com/blogs/news/adj-dp-415r-a-classic-adj-control-product-gets-an-upgrade", "title": "ADJ DP-415R: A Classic ADJ Control Product Gets An Upgrade", "locator": "Description of reversible bracket and applications; does not change the product-page dimensional authority", "accessed_at": "2026-09-30", "reuse_status": "unknown"}
-      ]
+        {
+          "url": "https://www.adj.com/products/dp-415r",
+          "title": "ADJ DP-415R product page",
+          "locator": "Electrical, Size/Weight, Certifications/IP, product overview; page lists 260 x 209 x 76 mm and 120 V operating variant",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://www.adj.com/blogs/news/adj-dp-415r-a-classic-adj-control-product-gets-an-upgrade",
+          "title": "ADJ DP-415R: A Classic ADJ Control Product Gets An Upgrade",
+          "locator": "Description of reversible bracket and applications; does not change the product-page dimensional authority",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ],
+      "dimensions": {
+        "width_m": 0.260,
+        "height_m": 0.076,
+        "depth_m": 0.209,
+        "source_order": "260 L x 209 W x 76 H mm; manufacturer dimensions",
+        "axis_status": "documented",
+        "axis_note": "260 L x 209 W x 76 H mm; manufacturer dimensions",
+        "reference_pose": "Pack body horizontal with flexible mounting bracket in tabletop/nominal storage pose; dimension axes are manufacturer L x W x H. The installed bracket may be rotated for wall, T-bar, or clamp mounting."
+      },
+      "reference_image_file": "research/fixtures/taxonomy/support-sources/adj-dp-415r.jpg"
     },
     {
-      "name": "SQ-4110 MTE/BLK F34 Straight Segment",
+      "name": "SQ-4110 F34 Straight Segment, Natural Aluminium",
       "model_number": "F340066",
       "manufacturer": "Global Truss",
       "category_id": "infrastructure_control.rigging_support",
@@ -96,22 +229,60 @@
       "subtype": "one-meter F34 square aluminum truss section",
       "url": "https://www.globaltruss.com/sq-4110",
       "data": {
-        "source_urls": ["https://www.globaltruss.com/sq-4110", "https://d295jznhem2tn9.cloudfront.net/ItemRelatedFiles/11147/F34-SQ-4110.pdf"],
-        "dimensions": {"width_m": 1.000, "height_m": 0.290, "depth_m": 0.290, "source_order": "1 m overall length x 290 x 290 mm external square section"},
+        "source_urls": [
+          "https://www.globaltruss.com/sq-4110",
+          "https://d295jznhem2tn9.cloudfront.net/ItemRelatedFiles/11147/F34-SQ-4110.pdf"
+        ],
+        "dimensions": {
+          "width_m": 1.000,
+          "height_m": 0.290,
+          "depth_m": 0.290,
+          "source_order": "1 m overall length x 290 x 290 mm external square section"
+        },
         "dimensions_status": "documented",
         "control_path": "Passive mechanical support; no DMX, network, or electrical control connection.",
         "pose": "Long axis horizontal; square cross-section upright; convention inferred from manufacturer product image and segment geometry.",
         "materials": "50 x 2 mm main tubing, 20 x 2 mm diagonal bracing; connecting hardware included per manufacturer page"
       },
-      "images": ["https://www.globaltruss.com/media/catalog/product/cache/6517c62f5899ad6aa0ba23ceb3eeff97/1/0/1000x1000-20f34-20straight-41866.jpg"],
+      "images": [
+        "https://www.globaltruss.com/media/catalog/product/cache/6517c62f5899ad6aa0ba23ceb3eeff97/1/0/1000x1000-20f34-20straight-41866.jpg"
+      ],
       "image_reuse_status": "unknown",
-      "image_file": "support-sources/globaltruss-sq-4110.jpg",
+      "image_file": "research/fixtures/taxonomy/support-sources/globaltruss-sq-4110.jpg",
       "image_sha256": "92509d4ea633d1d1846a5787925478c07607240248ee8e26e312187e4d4dd9ef",
-      "modeling": {"family": "truss", "body_style": "four-chord square truss module with diagonal bracing and end connector plates", "notes": "Use as a visual planning component only; do not infer load capacity from the 3D model. Consult product-specific load tables and a qualified rigger for actual system design."},
+      "modeling": {
+        "family": "truss",
+        "body_style": "four-chord square truss module with diagonal bracing and end connector plates",
+        "notes": "Use as a visual planning component only; do not infer load capacity from the 3D model. Consult product-specific load tables and a qualified rigger for actual system design."
+      },
       "evidence": [
-        {"url": "https://www.globaltruss.com/sq-4110", "title": "Global Truss SQ-4110", "locator": "SKU F340066; 1 m overall length, 290 mm overall width, 50 mm tube, resources/dimensional drawing", "accessed_at": "2026-09-30", "reuse_status": "unknown"},
-        {"url": "https://d295jznhem2tn9.cloudfront.net/ItemRelatedFiles/11147/F34-SQ-4110.pdf", "title": "F34-SQ-4110 dimensional drawing", "locator": "Manufacturer linked dimensional drawing; supplied from product page", "file": "support-sources/globaltruss-sq-4110-dimensions.pdf", "sha256": "cdc6ba9f48af605f0ace545501cc5cb2aeb5f948e1e5c775df840694e3c629de", "accessed_at": "2026-09-30", "reuse_status": "unknown"}
-      ]
+        {
+          "url": "https://www.globaltruss.com/sq-4110",
+          "title": "Global Truss SQ-4110",
+          "locator": "SKU F340066; 1 m overall length, 290 mm overall width, 50 mm tube, resources/dimensional drawing",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://d295jznhem2tn9.cloudfront.net/ItemRelatedFiles/11147/F34-SQ-4110.pdf",
+          "title": "F34-SQ-4110 dimensional drawing",
+          "locator": "Manufacturer linked dimensional drawing; supplied from product page",
+          "file": "research/fixtures/taxonomy/support-sources/globaltruss-sq-4110-dimensions.pdf",
+          "sha256": "cdc6ba9f48af605f0ace545501cc5cb2aeb5f948e1e5c775df840694e3c629de",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ],
+      "dimensions": {
+        "width_m": 1.000,
+        "height_m": 0.290,
+        "depth_m": 0.290,
+        "source_order": "1 m overall length x 290 x 290 mm external square section",
+        "axis_status": "documented",
+        "axis_note": "1 m overall length x 290 x 290 mm external square section",
+        "reference_pose": "Long axis horizontal; square cross-section upright; convention inferred from manufacturer product image and segment geometry."
+      },
+      "reference_image_file": "research/fixtures/taxonomy/support-sources/globaltruss-sq-4110.jpg"
     },
     {
       "name": "Black Pearl BP2V2",
@@ -123,22 +294,66 @@
       "subtype": "2.84 mm pixel-pitch broadcast/virtual-production LED panel",
       "url": "https://www.roevisual.com/en/products/black-pearl-2v2",
       "data": {
-        "source_urls": ["https://www.roevisual.com/en/products/black-pearl-2v2", "https://www.roevisual.com/uploads/files/Product%20File/Black%20Pearl/bp2v2-brochure-en-feb.-3-2024.pdf"],
-        "dimensions": {"width_m": 0.500, "height_m": 0.500, "depth_m": 0.090, "source_order": "500 x 500 x 90 mm per panel"},
+        "source_urls": [
+          "https://www.roevisual.com/en/products/black-pearl-2v2",
+          "https://www.roevisual.com/uploads/files/Product%20File/Black%20Pearl/bp2v2-brochure-en-feb.-3-2024.pdf"
+        ],
+        "dimensions": {
+          "width_m": 0.500,
+          "height_m": 0.500,
+          "depth_m": 0.090,
+          "source_order": "500 x 500 x 90 mm per panel"
+        },
         "dimensions_status": "documented",
         "control_path": "Video content path through supported LED processing platform to panel data connection; panel power path is separate. Not DMX-controlled lighting.",
         "pose": "Panel face vertical, display surface forward and 500 mm square; 90 mm depth behind face; pose inferred from official product image and dimension specification.",
-        "application_tags": ["indoor display", "broadcast", "film/virtual production", "event stage", "theatre"]
+        "application_tags": [
+          "indoor display",
+          "broadcast",
+          "film/virtual production",
+          "event stage",
+          "theatre"
+        ]
       },
-      "images": ["https://www.roevisual.com/uploads/Images/Products/Black%20Pearl%202%20V2/bp2v2-list1.png"],
+      "images": [
+        "https://www.roevisual.com/uploads/Images/Products/Black%20Pearl%202%20V2/bp2v2-list1.png"
+      ],
       "image_reuse_status": "unknown",
-      "image_file": "support-sources/roe-black-pearl-bp2v2.png",
+      "image_file": "research/fixtures/taxonomy/support-sources/roe-black-pearl-bp2v2.png",
       "image_sha256": "39091e36e160dc5aeeee1cf2decf76f41be511e54ff1c2e852d16eba50c0d4c3",
-      "modeling": {"family": "led_panel", "body_style": "500 mm square modular display with 90 mm rear housing", "notes": "Optional visual-equipment example. Catalog inclusion should follow user-approved scope; one representative panel does not imply a full LED wall, processor, hanging hardware, or all vendors are included."},
+      "modeling": {
+        "family": "led_panel",
+        "body_style": "500 mm square modular display with 90 mm rear housing",
+        "notes": "Optional visual-equipment example. Catalog inclusion should follow user-approved scope; one representative panel does not imply a full LED wall, processor, hanging hardware, or all vendors are included."
+      },
       "evidence": [
-        {"url": "https://www.roevisual.com/en/products/black-pearl-2v2", "title": "Black Pearl 2V2 product page", "locator": "BP2V2 Specs: panel dimensions 500 x 500 x 90 mm, pixel pitch, weight and environment rating", "accessed_at": "2026-09-30", "reuse_status": "unknown"},
-        {"url": "https://www.roevisual.com/uploads/files/Product%20File/Black%20Pearl/bp2v2-brochure-en-feb.-3-2024.pdf", "title": "Black Pearl BP2V2 brochure", "locator": "Specifications table and product-dimension diagram", "file": "support-sources/roe-bp2v2-brochure.pdf", "sha256": "92882d41a36713f248ad6ecafdf265a54cd3b053ef2d0f355a01080951d92583", "accessed_at": "2026-09-30", "reuse_status": "unknown"}
-      ]
+        {
+          "url": "https://www.roevisual.com/en/products/black-pearl-2v2",
+          "title": "Black Pearl 2V2 product page",
+          "locator": "BP2V2 Specs: panel dimensions 500 x 500 x 90 mm, pixel pitch, weight and environment rating",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://www.roevisual.com/uploads/files/Product%20File/Black%20Pearl/bp2v2-brochure-en-feb.-3-2024.pdf",
+          "title": "Black Pearl BP2V2 brochure",
+          "locator": "Specifications table and product-dimension diagram",
+          "file": "research/fixtures/taxonomy/support-sources/roe-bp2v2-brochure.pdf",
+          "sha256": "92882d41a36713f248ad6ecafdf265a54cd3b053ef2d0f355a01080951d92583",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ],
+      "dimensions": {
+        "width_m": 0.500,
+        "height_m": 0.500,
+        "depth_m": 0.090,
+        "source_order": "500 x 500 x 90 mm per panel",
+        "axis_status": "documented",
+        "axis_note": "500 x 500 x 90 mm per panel",
+        "reference_pose": "Panel face vertical, display surface forward and 500 mm square; 90 mm depth behind face; pose inferred from official product image and dimension specification."
+      },
+      "reference_image_file": "research/fixtures/taxonomy/support-sources/roe-black-pearl-bp2v2.png"
     },
     {
       "name": "PT-RZ660B with supplied ET-DLE170 lens",
@@ -150,23 +365,61 @@
       "subtype": "WUXGA 1-chip DLP solid-state laser projector, supplied ET-DLE170 lens",
       "url": "https://eu.connect.panasonic.com/gb/en/projectors/pt-rz660",
       "data": {
-        "source_urls": ["https://na.panasonic.com/ns/246048_rz660_spec_en.pdf", "https://eu.connect.panasonic.com/gb/en/projectors/pt-rz660"],
-        "dimensions": {"width_m": 0.498, "height_m": 0.200, "depth_m": 0.5808, "source_order": "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm"},
+        "source_urls": [
+          "https://na.panasonic.com/ns/246048_rz660_spec_en.pdf",
+          "https://eu.connect.panasonic.com/gb/en/projectors/pt-rz660"
+        ],
+        "dimensions": {
+          "width_m": 0.498,
+          "height_m": 0.200,
+          "depth_m": 0.5808,
+          "source_order": "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm"
+        },
         "dimensions_status": "documented",
         "dimension_footnote": "Specification footnote *5: 200 mm height with adjustable legs at shortest position. Supplied lens ET-DLE170 is included in 581 mm overall depth; without lens the table gives 538 mm depth. The dimension drawing labels exact depth 580.8 mm.",
         "control_path": "Video path by HDMI, SDI, DVI-D, RGB; network/serial control includes Ethernet/PJLink and RS-232. Not DMX-controlled.",
         "pose": "Cabinet in upright base-resting position, lens forward; manufacturer dimension drawing gives 498 mm width and lens-installed overall depth. Do not add ceiling bracket dimensions.",
         "lens": "ET-DLE170 standard supplied lens, 1.7-2.4:1 throw ratio"
       },
-      "images": ["https://eu.connect.panasonic.com/sites/default/files/media/image/2024-04/ca90fd90df4b2185ef5c10b1a03a7c59ad66e542.jpg"],
+      "images": [
+        "https://eu.connect.panasonic.com/sites/default/files/media/image/2024-04/ca90fd90df4b2185ef5c10b1a03a7c59ad66e542.jpg"
+      ],
       "image_reuse_status": "unknown",
-      "image_file": "support-sources/panasonic-pt-rz660b.jpg",
+      "image_file": "research/fixtures/taxonomy/support-sources/panasonic-pt-rz660b.jpg",
       "image_sha256": "376f3c3abc0411b6744050b0cf618d211aaeb54567c0a2c4ac35ca06489dc97e",
-      "modeling": {"family": "projector", "body_style": "large rectangular projector cabinet with lens protruding from front face", "notes": "Optional visual-equipment example. Model lens is included and represented at ET-DLE170 geometry; exact lens external dimensions require the ET-DLE170 drawing if a production model is built."},
+      "modeling": {
+        "family": "projector",
+        "body_style": "large rectangular projector cabinet with lens protruding from front face",
+        "notes": "Optional visual-equipment example. Model lens is included and represented at ET-DLE170 geometry; exact lens external dimensions require the ET-DLE170 drawing if a production model is built."
+      },
       "evidence": [
-        {"url": "https://na.panasonic.com/ns/246048_rz660_spec_en.pdf", "title": "PT-RZ660B/RZ660W Product Specification File", "locator": "Page 4: dimensions with/without supplied lens and footnote *5; Page 5: dimensional drawing, exact 580.8 mm lens-installed depth; Page 4 identifies supplied ET-DLE170", "file": "support-sources/panasonic-pt-rz660-spec.pdf", "sha256": "49ff223e2d20ba907d0c79ada15aecb170d5f017e830ccb0b28a06e445cc7df4", "accessed_at": "2026-09-30", "reuse_status": "unknown"},
-        {"url": "https://eu.connect.panasonic.com/gb/en/projectors/pt-rz660", "title": "PT-RZ660 product page and image gallery", "locator": "Product gallery image labeled PT-RZ660B Angled High-res; supplied image file is a high-resolution angled view", "accessed_at": "2026-09-30", "reuse_status": "unknown"}
-      ]
+        {
+          "url": "https://na.panasonic.com/ns/246048_rz660_spec_en.pdf",
+          "title": "PT-RZ660B/RZ660W Product Specification File",
+          "locator": "Page 4: dimensions with/without supplied lens and footnote *5; Page 5: dimensional drawing, exact 580.8 mm lens-installed depth; Page 4 identifies supplied ET-DLE170",
+          "file": "research/fixtures/taxonomy/support-sources/panasonic-pt-rz660-spec.pdf",
+          "sha256": "49ff223e2d20ba907d0c79ada15aecb170d5f017e830ccb0b28a06e445cc7df4",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://eu.connect.panasonic.com/gb/en/projectors/pt-rz660",
+          "title": "PT-RZ660 product page and image gallery",
+          "locator": "Product gallery image labeled PT-RZ660B Angled High-res; supplied image file is a high-resolution angled view",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ],
+      "dimensions": {
+        "width_m": 0.498,
+        "height_m": 0.200,
+        "depth_m": 0.5808,
+        "source_order": "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm",
+        "axis_status": "documented",
+        "axis_note": "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm",
+        "reference_pose": "Cabinet in upright base-resting position, lens forward; manufacturer dimension drawing gives 498 mm width and lens-installed overall depth. Do not add ceiling bracket dimensions."
+      },
+      "reference_image_file": "research/fixtures/taxonomy/support-sources/panasonic-pt-rz660b.jpg"
     },
     {
       "name": "Heavy Duty Stand, Black, Air-Cushioned, Black Steel",
@@ -178,24 +431,61 @@
       "subtype": "air-cushioned heavy-duty leveling-leg stand with 28 mm junior receiver and 16 mm stud",
       "url": "https://www.manfrotto.com/global-uk/black-steel-air-cushioned-heavy-duty-stand-126bsuac/",
       "data": {
-        "source_urls": ["https://www.manfrotto.com/global-uk/black-steel-air-cushioned-heavy-duty-stand-126bsuac/", "https://www.bhphotovideo.com/c/product/512653-REG/Manfrotto_126BSUAC_126BSUAC_Heavy_Duty_Air.html"],
-        "dimensions": {"width_m": 1.25, "height_m": 3.33, "depth_m": 1.25, "source_order": "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)"},
-        "dimensions_status": "mixed_documented_and_secondary",
+        "source_urls": [
+          "https://www.manfrotto.com/global-uk/black-steel-air-cushioned-heavy-duty-stand-126bsuac/",
+          "https://www.bhphotovideo.com/c/product/512653-REG/Manfrotto_126BSUAC_126BSUAC_Heavy_Duty_Air.html"
+        ],
+        "dimensions": {
+          "width_m": 1.25,
+          "height_m": 3.33,
+          "depth_m": 1.25,
+          "source_order": "Maximum extended height 3330 mm (manufacturer); deployed tripod footprint diameter 1250 mm (secondary retailer), a circular envelope rather than rectangular W/D"
+        },
+        "dimensions_status": "estimated_envelope_with_secondary_footprint",
         "dimension_notes": "Manfrotto official page documents min height 131 cm, max height 333 cm, closed length 131 cm, 8.3 kg mass, and attachment fittings. The 125 cm footprint diameter is from B&H Photo Video, a secondary retailer, and should be verified against manufacturer drawing before precision modeling.",
         "control_path": "Passive mechanical support; no electrical or DMX control.",
-        "pose": "Three legs fully deployed, stand vertical, leveling leg down; maximum 1.25 m footprint diameter is secondary-source estimate; risers fully retracted for closed length measurement.",
+        "pose": "Three legs fully deployed, stand vertical and fully extended to 3.33 m maximum height, leveling leg down; 1.25 m circular footprint envelope from secondary source.",
         "max_payload_kg": 40,
         "attachment": "28 mm socket with 16 mm stud; verify the exact adapter/interface before attaching show equipment"
       },
-      "images": ["https://www.manfrotto.com/media/catalog/product/m/a/manfrotto-heavy-duty-stand-air-cushioned-black-steel-126bsuac.jpg"],
+      "images": [
+        "https://www.manfrotto.com/media/catalog/product/m/a/manfrotto-heavy-duty-stand-air-cushioned-black-steel-126bsuac.jpg"
+      ],
       "image_reuse_status": "unknown",
-      "image_file": "support-sources/manfrotto-126bsuac.jpg",
+      "image_file": "research/fixtures/taxonomy/support-sources/manfrotto-126bsuac.jpg",
       "image_sha256": "9092c3e9bfda33a4a9cd04b8c980b85afbe45bf32d62f8d0e8e189d75ae30d59",
-      "modeling": {"family": "stand", "body_style": "three-leg base, telescoping upright risers and leveling leg", "notes": "Footprint width/depth is the maximum deployed circle from secondary retail listing; keep that attribution visible and replace with manufacturer drawing evidence if available."},
+      "modeling": {
+        "family": "stand",
+        "body_style": "three-leg base, telescoping upright risers and leveling leg",
+        "notes": "Footprint width/depth is the maximum deployed circle from secondary retail listing; keep that attribution visible and replace with manufacturer drawing evidence if available."
+      },
       "evidence": [
-        {"url": "https://www.manfrotto.com/global-uk/black-steel-air-cushioned-heavy-duty-stand-126bsuac/", "title": "Manfrotto 126BSUAC product page", "locator": "Product overview/specifications: min/max height, closed length, load rating, attachment type", "accessed_at": "2026-09-30", "reuse_status": "unknown"},
-        {"url": "https://www.bhphotovideo.com/c/product/512653-REG/Manfrotto_126BSUAC_126BSUAC_Heavy_Duty_Air.html", "title": "B&H Photo Video Manfrotto 126BSUAC listing", "locator": "Footprint Diameter: 49 in / 125 cm; secondary retailer dimension", "accessed_at": "2026-09-30", "reuse_status": "unknown"}
-      ]
+        {
+          "url": "https://www.manfrotto.com/global-uk/black-steel-air-cushioned-heavy-duty-stand-126bsuac/",
+          "title": "Manfrotto 126BSUAC product page",
+          "locator": "Product overview/specifications: min/max height, closed length, load rating, attachment type",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://www.bhphotovideo.com/c/product/512653-REG/Manfrotto_126BSUAC_126BSUAC_Heavy_Duty_Air.html",
+          "title": "B&H Photo Video Manfrotto 126BSUAC listing",
+          "locator": "Footprint Diameter: 49 in / 125 cm; secondary retailer dimension",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown",
+          "source_kind": "secondary"
+        }
+      ],
+      "dimensions": {
+        "width_m": 1.25,
+        "height_m": 3.33,
+        "depth_m": 1.25,
+        "source_order": "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)",
+        "axis_status": "estimated_envelope",
+        "axis_note": "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)",
+        "reference_pose": "Three legs fully deployed, stand vertical and fully extended to 3.33 m maximum height, leveling leg down; 1.25 m circular footprint envelope is secondary-source estimate; do not interpret as rectangular dimensions."
+      },
+      "reference_image_file": "research/fixtures/taxonomy/support-sources/manfrotto-126bsuac.jpg"
     },
     {
       "name": "Twenty Clamp",
@@ -207,33 +497,299 @@
       "subtype": "pressure die-cast aluminium lightweight lantern clamp for 48-51 mm tube",
       "url": "https://doughty-usa.com/products/twenty-clamp/",
       "data": {
-        "source_urls": ["https://doughty-usa.com/products/twenty-clamp/", "https://www.doughty-engineering.co.uk/wp-content/uploads/2023/01/T58400-Data-Sheet.pdf"],
-        "dimensions": {"width_m": 0.101, "height_m": 0.0615, "depth_m": 0.028, "source_order": "101 L x 61.5 H x 28 W mm per manufacturer's dimension drawing; 48-51 mm tube fit range"},
+        "source_urls": [
+          "https://doughty-usa.com/products/twenty-clamp/",
+          "https://www.doughty-engineering.co.uk/wp-content/uploads/2023/01/T58400-Data-Sheet.pdf"
+        ],
+        "dimensions": {
+          "width_m": 0.101,
+          "height_m": 0.0615,
+          "depth_m": 0.028,
+          "source_order": "101 L x 61.5 H x 28 W mm per manufacturer's dimension drawing; 48-51 mm tube fit range"
+        },
         "dimensions_status": "documented",
         "control_path": "Passive mechanical clamp; no DMX, network, or electrical connection.",
         "pose": "Clamp shown in dimension drawing in side orthographic pose with jaw opening sized for 48-51 mm tube and M10 attachment slot; pose follows manufacturer's drawing.",
         "wll_kg": 20,
         "attachment": "M10 fixing; hand-tight only; manufacturer data sheet states 20 kg vertical WLL, 0.28 kg mass, 5:1 safety factor, TÜV approved"
       },
-      "images": ["https://doughty-usa.com/wp-content/uploads/2023/01/T58400-New-Twenty-Clamp-700x700-c-default.jpg"],
+      "images": [
+        "https://doughty-usa.com/wp-content/uploads/2023/01/T58400-New-Twenty-Clamp-700x700-c-default.jpg"
+      ],
       "image_reuse_status": "unknown",
-      "image_file": "support-sources/doughty-t58400.jpg",
+      "image_file": "research/fixtures/taxonomy/support-sources/doughty-t58400.jpg",
       "image_sha256": "8fe8fe6f872458c9d261b78190d15d73d73b08f14b4e094ba5b0eca6ce324d78",
       "dimension_image": "https://doughty-usa.com/wp-content/uploads/2023/01/T58400-Data-Dims-700x700-c-default.png",
-      "dimension_image_file": "support-sources/doughty-t58400-dimensions.png",
+      "dimension_image_file": "research/fixtures/taxonomy/support-sources/doughty-t58400-dimensions.png",
       "dimension_image_sha256": "126d4cf09eb28c2afb5a90ffc9da66b75b1c7bab43dc7f698b9f46705440e418",
-      "modeling": {"family": "clamp", "body_style": "cast hook clamp with threaded M10 fixing interface", "notes": "The clamp WLL is not a rigging design approval; system-level loads and compatible attachment hardware require independent review."},
+      "modeling": {
+        "family": "clamp",
+        "body_style": "cast hook clamp with threaded M10 fixing interface",
+        "notes": "The clamp WLL is not a rigging design approval; system-level loads and compatible attachment hardware require independent review."
+      },
       "evidence": [
-        {"url": "https://doughty-usa.com/products/twenty-clamp/", "title": "Doughty Twenty Clamp product page", "locator": "Part T58400, fit range 48-51 mm, 28 mm clamp width, WLL 20 kg, product downloads", "accessed_at": "2026-09-30", "reuse_status": "unknown"},
-        {"url": "https://www.doughty-engineering.co.uk/wp-content/uploads/2023/01/T58400-Data-Sheet.pdf", "title": "T58400 Twenty Clamp data sheet", "locator": "One-page dimension drawing: 101, 61.5, 51.0 tube aperture, 28, 13, and Ø10.5 mm; text: 48-51 mm tube, M10 fixing, vertical WLL 20 kg, 0.28 kg, 5:1 safety factor, TÜV approval", "file": "support-sources/doughty-t58400-datasheet.pdf", "sha256": "c503be90cdb4714d8424731856c327126eef5cccfaf96f8a0b13c364e09dcc5b", "accessed_at": "2026-09-30", "reuse_status": "unknown"}
-      ]
+        {
+          "url": "https://doughty-usa.com/products/twenty-clamp/",
+          "title": "Doughty Twenty Clamp product page",
+          "locator": "Part T58400, fit range 48-51 mm, 28 mm clamp width, WLL 20 kg, product downloads",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://www.doughty-engineering.co.uk/wp-content/uploads/2023/01/T58400-Data-Sheet.pdf",
+          "title": "T58400 Twenty Clamp data sheet",
+          "locator": "One-page dimension drawing: 101, 61.5, 51.0 tube aperture, 28, 13, and Ø10.5 mm; text: 48-51 mm tube, M10 fixing, vertical WLL 20 kg, 0.28 kg, 5:1 safety factor, TÜV approval",
+          "file": "research/fixtures/taxonomy/support-sources/doughty-t58400-datasheet.pdf",
+          "sha256": "c503be90cdb4714d8424731856c327126eef5cccfaf96f8a0b13c364e09dcc5b",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ],
+      "dimensions": {
+        "width_m": 0.101,
+        "height_m": 0.0615,
+        "depth_m": 0.028,
+        "source_order": "101 L x 61.5 H x 28 W mm per manufacturer's dimension drawing; 48-51 mm tube fit range",
+        "axis_status": "documented",
+        "axis_note": "101 L x 61.5 H x 28 W mm per manufacturer's dimension drawing; 48-51 mm tube fit range",
+        "reference_pose": "Clamp shown in dimension drawing in side orthographic pose with jaw opening sized for 48-51 mm tube and M10 attachment slot; pose follows manufacturer's drawing."
+      },
+      "reference_image_file": "research/fixtures/taxonomy/support-sources/doughty-t58400.jpg"
+    },
+    {
+      "name": "D-SPLIT",
+      "model_number": "70574 / 70578 / 70579",
+      "manufacturer": "ENTTEC",
+      "category_id": "infrastructure_control.network_nodes",
+      "scope_status": "core_candidate",
+      "type": "dmx_splitter",
+      "subtype": "one-input, four-output optically isolated DMX splitter",
+      "url": "https://www.enttec.com/es/product/dmx-isolated-splitter-din-rail/d-split-dmx-opto-splitter-isolator/",
+      "data": {
+        "dimensions": {
+          "width_m": 0.116,
+          "height_m": 0.052,
+          "depth_m": 0.087,
+          "source_order": "116 x 87 x 52 mm, manufacturer datasheet"
+        },
+        "control_path": "USITT DMX512-1990 input to four isolated DMX512 outputs; no RDM compatibility; powered separately at 7-24 V DC; not an Ethernet node.",
+        "pose": "Enclosure horizontal with logo face upward and connector edge toward viewer, inferred from official isometric product image; dimensions mapped long x short x overall depth."
+      },
+      "images": [
+        "https://cdn.enttec.com/wp-content/uploads/2021/10/10015010/2024_0003_dsplit_Isometric-Top-view-A-3-pin.png"
+      ],
+      "image_reuse_status": "unknown",
+      "image_file": "research/fixtures/taxonomy/support-sources/enttec-d-split.png",
+      "reference_image_file": "research/fixtures/taxonomy/support-sources/enttec-d-split.png",
+      "image_sha256": "ccc3f7d2674b5aa6afcb49740a0bf7883d2368ee141ac4320e2f6822b9018db2",
+      "modeling": {
+        "family": "dmx_splitter",
+        "body_style": "small rounded rectangular isolated splitter with DMX and DC connectors on end face",
+        "notes": "Use overall 116 x 87 x 52 mm. Datasheet supplies envelope dimensions but not a dimensioned orthographic drawing; pose is image-inferred."
+      },
+      "evidence": [
+        {
+          "url": "https://www.enttec.com/es/product/dmx-isolated-splitter-din-rail/d-split-dmx-opto-splitter-isolator/",
+          "title": "ENTTEC D-SPLIT product page",
+          "locator": "Product identity, output count, SKU family and direct manufacturer product render",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://cdn.enttec.com/pdf/assets/70574_70578_70579/70574_70578_70579_D-SPLIT_DATASHEET.pdf",
+          "title": "D-SPLIT datasheet",
+          "locator": "Specification page: 116 x 87 x 52 mm dimensions; 1-to-4 DMX splitter; no RDM; 7-24 V DC",
+          "file": "research/fixtures/taxonomy/support-sources/enttec-d-split.pdf",
+          "sha256": "1eb13c74c54e8ba92c07d9251a8b6bd789f19efbf9a697f8376d1dd13e345045",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ],
+      "dimensions": {
+        "width_m": 0.116,
+        "height_m": 0.052,
+        "depth_m": 0.087,
+        "source_order": "116 x 87 x 52 mm, manufacturer datasheet",
+        "axis_status": "documented",
+        "axis_note": "116 x 87 x 52 mm, manufacturer datasheet",
+        "reference_pose": "Enclosure horizontal with logo face upward and connector edge toward viewer, inferred from official isometric product image; dimensions mapped long x short x overall depth."
+      }
+    },
+    {
+      "name": "Pixelator Mini",
+      "model_number": "70067",
+      "manufacturer": "ENTTEC",
+      "category_id": "infrastructure_control.network_nodes",
+      "scope_status": "core_candidate",
+      "type": "pixel_data_controller",
+      "subtype": "Ethernet-to-PLink pixel data converter",
+      "url": "https://www.enttec.com/product/led-pixel-control/pixelator-mini-lighting-controller-ethernet-to-spi-pixel-converter/",
+      "data": {
+        "dimensions": {
+          "width_m": 0.200,
+          "height_m": 0.042,
+          "depth_m": 0.120,
+          "source_order": "200 x 120 x 42 mm unit dimensions"
+        },
+        "control_path": "Art-Net/sACN/ESP Ethernet input to eight proprietary PLink outputs for compatible PLink injectors; not a fixture power supply and not a DMX512 output device.",
+        "pose": "Tabletop controller, broad face horizontal with printed label/status upward and connectors facing outward; pose inferred from manufacturer render."
+      },
+      "images": [
+        "https://cdn.enttec.com/wp-content/uploads/2022/02/09060535/product_pixelatormini__004.png"
+      ],
+      "image_reuse_status": "unknown",
+      "image_file": "research/fixtures/taxonomy/support-sources/enttec-pixelator-mini.png",
+      "reference_image_file": "research/fixtures/taxonomy/support-sources/enttec-pixelator-mini.png",
+      "image_sha256": "d6d3f6d304bbcec2f360ea073961e09678795a34e009b9a4af269c4f0ecfc00d",
+      "modeling": {
+        "family": "pixel_controller",
+        "body_style": "low black rectangular controller with front-panel display and multiple output connectors",
+        "notes": "This distributes pixel data using ENTTEC PLink; PLink injectors and their pixel-power connections are separate equipment."
+      },
+      "evidence": [
+        {
+          "url": "https://www.enttec.com/product/led-pixel-control/pixelator-mini-lighting-controller-ethernet-to-spi-pixel-converter/",
+          "title": "Pixelator Mini product page",
+          "locator": "Product capabilities, protocols, connector count and direct manufacturer product render",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://cdn.enttec.com/pdf/assets/70067/70067_PIXELATOR_MINI_DATASHEET.pdf",
+          "title": "Pixelator Mini datasheet",
+          "locator": "Unit dimensions 200 x 120 x 42 mm; weight and PLink output specs",
+          "file": "research/fixtures/taxonomy/support-sources/enttec-pixelator-mini.pdf",
+          "sha256": "e7f211271fade653bbd86a9b274d8d98182daf3fb764be269593ef78fbb969d4",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ],
+      "dimensions": {
+        "width_m": 0.200,
+        "height_m": 0.042,
+        "depth_m": 0.120,
+        "source_order": "200 x 120 x 42 mm unit dimensions",
+        "axis_status": "documented",
+        "axis_note": "200 x 120 x 42 mm unit dimensions",
+        "reference_pose": "Tabletop controller, broad face horizontal with printed label/status upward and connectors facing outward; pose inferred from manufacturer render."
+      }
+    },
+    {
+      "name": "Tessera SX40",
+      "model_number": "SX40",
+      "manufacturer": "Brompton Technology",
+      "category_id": "optional.video_visuals_optional.video_processing_and_signal_distribution",
+      "scope_status": "optional_candidate",
+      "type": "led_video_processor",
+      "subtype": "LED display processor for video ingest and panel mapping",
+      "url": "https://www.bromptontech.com/product/sx40/",
+      "data": {
+        "dimensions": {
+          "width_m": 0.4826,
+          "height_m": 0.0889,
+          "depth_m": 0.4064,
+          "source_order": "482.6 W x 88.9 H x 406.4 L mm unboxed"
+        },
+        "control_path": "Video input and LED-panel data output; processor also supports DMX-512A and sACN lighting control integration, which is distinct from the video output path.",
+        "pose": "19-inch rackmount chassis, front panel vertical toward operator; 482.6 mm rack width x 88.9 mm 2U height x 406.4 mm chassis depth per manufacturer."
+      },
+      "images": [
+        "https://www.bromptontech.com/wp-content/uploads/2019/05/SX40_front_elevated_Final-1536x810.png.webp"
+      ],
+      "image_reuse_status": "unknown",
+      "image_file": "research/fixtures/taxonomy/support-sources/brompton-sx40.webp",
+      "reference_image_file": "research/fixtures/taxonomy/support-sources/brompton-sx40.webp",
+      "image_sha256": "700ae71baf3aa3874909b9a2d0e883230d74517a2f0661afe917c0bfa3f95f61",
+      "modeling": {
+        "family": "media_processor",
+        "body_style": "2U rackmount video/LED processor with front status display and rear I/O",
+        "notes": "An optional visual department example; this is not a fixture or generic DMX node."
+      },
+      "evidence": [
+        {
+          "url": "https://www.bromptontech.com/product/sx40/",
+          "title": "Brompton Tessera SX40 product page",
+          "locator": "Product overview, input/output feature summary and product render",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://www.bromptontech.com/wp-content/uploads/2025/07/Brompton-SX40-Data-Sheet-Feb2025-EN.pdf",
+          "title": "Brompton SX40 data sheet",
+          "locator": "Physical (W x H x L), unboxed: 482.6 x 88.9 x 406.4 mm; signal input/output details",
+          "file": "research/fixtures/taxonomy/support-sources/brompton-sx40.pdf",
+          "sha256": "6a01e409dffe2cd36af48b25d9fa71c57de766d562c417fe1cb583d8117dfe9f",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ],
+      "dimensions": {
+        "width_m": 0.4826,
+        "height_m": 0.0889,
+        "depth_m": 0.4064,
+        "source_order": "482.6 W x 88.9 H x 406.4 L mm unboxed",
+        "axis_status": "documented",
+        "axis_note": "482.6 W x 88.9 H x 406.4 L mm unboxed",
+        "reference_pose": "19-inch rackmount chassis, front panel vertical toward operator; 482.6 mm rack width x 88.9 mm 2U height x 406.4 mm chassis depth per manufacturer."
+      }
+    },
+    {
+      "name": "GT-Stage-Adjust 1 x 2 m",
+      "model_number": "STG0004",
+      "manufacturer": "Global Truss",
+      "category_id": "optional.scenic_softgoods_optional.stage_platforms",
+      "scope_status": "optional_candidate",
+      "type": "stage_deck",
+      "subtype": "adjustable-height modular stage platform",
+      "url": "https://www.globaltruss.com/gt-stage-adjust",
+      "data": {
+        "dimensions": {
+          "width_m": 2.0,
+          "height_m": 0.984,
+          "depth_m": 1.0,
+          "source_order": "1 x 2 m platform; adjustable height 27 to 38.5 inches per current manufacturer product page; selected max-height pose"
+        },
+        "control_path": "Passive structural scenic platform; no electrical or DMX connection.",
+        "pose": "Platform horizontal with 2 m edge along X, top surface upward; adjustable legs at maximum 38.5 inch/0.984 m setting. Platform footprint is product size; leg placement is shown in render."
+      },
+      "images": [
+        "https://www.globaltruss.com/media/catalog/product/cache/6517c62f5899ad6aa0ba23ceb3eeff97/1/0/1000x1000-20gt-20stage-201x2-41237.jpg"
+      ],
+      "image_reuse_status": "unknown",
+      "image_file": "research/fixtures/taxonomy/support-sources/globaltruss-stage-adjust.jpg",
+      "reference_image_file": "research/fixtures/taxonomy/support-sources/globaltruss-stage-adjust.jpg",
+      "image_sha256": "a1fef862668ff9e056bc54792191215586dd89336fa09472324d1fd5ec6be4f1",
+      "modeling": {
+        "family": "stage_deck",
+        "body_style": "rectangular modular deck with four adjustable supports",
+        "notes": "Height selection reflects maximum setting on current product page; catalog PDF has a slight height-range discrepancy, so verify the exact selected leg configuration before precision modeling. Not a rigging/load-plan model."
+      },
+      "evidence": [
+        {
+          "url": "https://www.globaltruss.com/gt-stage-adjust",
+          "title": "GT-Stage-Adjust product page",
+          "locator": "SKU STG0004, platform 1 x 2 m, four adjustable heights through 38.5 inches and direct product image",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ],
+      "dimensions": {
+        "width_m": 2.0,
+        "height_m": 0.984,
+        "depth_m": 1.0,
+        "source_order": "1 x 2 m platform; adjustable height 27 to 38.5 inches per current manufacturer product page; selected max-height pose",
+        "axis_status": "documented",
+        "axis_note": "1 x 2 m platform; adjustable height 27 to 38.5 inches per current manufacturer product page; selected max-height pose",
+        "reference_pose": "Platform horizontal with 2 m edge along X, top surface upward; adjustable legs at maximum 38.5 inch/0.984 m setting. Platform footprint is product size; leg placement is shown in render."
+      }
     }
   ],
   "coverage_notes": [
     "The BP2V2 panel and Panasonic projector are optional visual-system examples because video/projection is outside the confirmed core scope.",
     "The Global Truss section and Manfrotto stand illustrate physical support categories. A truss or stand model is not an engineering load model.",
-    "ColorSource 20's supplied dimensions are retained from the task brief; its official physical drawing file was acquired but is a DWG and has not been parsed to independently verify those extents.",
-    "The Manfrotto footprint uses a secondary source because its official product page exposes height and fittings but not deployed tripod spread.",
-    "Control paths distinguish control data, video signals, mains power, and passive mechanical connections; no DMX personalities are invented for products that are not DMX fixtures."
+    "ColorSource 20 typical dimensions (465 W x 279 D x 60 H mm) verified in the ETC Spec Sheet rev G mirrored by distributor; physical DWG retained but not parsed.",
+    "The Manfrotto 1.25 m tripod spread is a secondary-source circular footprint envelope, not rectangular W/D; treat the overall bound as estimated.",
+    "Control paths distinguish control data, video signals, mains power, and passive mechanical connections; no DMX personalities are invented for products that are not DMX fixtures.",
+    "Second-pass documented candidates include a DMX splitter, pixel-data controller, optional LED video processor and optional adjustable stage deck. Projection-screen and followspot camera/system hardware remain unfilled because no exact model passed the direct-image plus dimension evidence bar in this pass."
   ]
 }
