@@ -3,6 +3,7 @@ import VenueVolumeCore
 
 struct PresetEditorView: View {
     @Environment(VenueModel.self) private var model
+    @Environment(\.scenePhase) private var scenePhase
     @State private var pendingNavigation: Navigation?
     @State private var showUnsaved = false
     @State private var showDelete = false
@@ -21,12 +22,17 @@ struct PresetEditorView: View {
                     Text("DMX preset").tag(0)
                     Text("Fixture position").tag(1)
                 }.pickerStyle(.segmented)
+                HistoryControls()
                 if model.controlsTab == 0 { editor; footer }
                 else { FixturePlacementView().frame(maxHeight: .infinity) }
             }.padding(28).frame(maxWidth: .infinity)
-        }.frame(width: 1040, height: 780)
+        }.frame(width: 1040, height: 820)
+        .disabled(model.libraryBusy)
         .onAppear { model.presetWindowVisible = true }
-        .onDisappear { model.previewDraft = false; model.presetWindowVisible = false }
+        .onDisappear { model.finishHistoryGesture(); model.previewDraft = false; model.presetWindowVisible = false; model.flushHistoryEdits() }
+        .onChange(of: scenePhase) { _, phase in
+            if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits() }
+        }
         .confirmationDialog("Unsaved preset changes", isPresented: $showUnsaved, titleVisibility: .visible) {
             Button("Save and continue") { if model.savePreset() { navigate() } }
             Button("Discard changes", role: .destructive) { navigate() }
@@ -159,7 +165,9 @@ struct PresetEditorView: View {
             Slider(value: Binding(
                 get: { model.presetDraft.channels.indices.contains(index) ? Double(model.presetDraft.channels[index]) : 0 },
                 set: { if model.presetDraft.channels.indices.contains(index) { model.presetDraft.channels[index] = Int($0) } }
-            ), in: 0...255, step: 1).accessibilityLabel("Preset channel \(index + 1)")
+            ), in: 0...255, step: 1, onEditingChanged: { editing in
+                if editing { model.beginHistoryAction("Edit DMX channel \(index+1)") } else { model.endHistoryAction() }
+            }).accessibilityLabel("Preset channel \(index + 1)")
         }
     }
 

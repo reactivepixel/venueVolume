@@ -3,11 +3,13 @@ import SwiftUI
 @main
 struct VenueVolumeApp: App {
     @State private var model = VenueModel()
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
         WindowGroup(id: "launch") {
             LaunchView()
                 .environment(model)
+                .onChange(of: scenePhase) { _, phase in if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits() } }
         }
         .windowResizability(.contentSize)
         .defaultSize(width: 620, height: 620)

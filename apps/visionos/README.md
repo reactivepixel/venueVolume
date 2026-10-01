@@ -29,7 +29,7 @@ The editor also supports previous/next, New, clear draft, revert, delete, clear 
 
 ## Rooms and saved setups
 
-Open **Rooms & saved setups** in the wrist Toolbox. The left column lists environments; the right lists saved fixture setups across those environments. The bundled white classroom is always the default room on launch.
+Open **Rooms & saved setups** in the wrist Toolbox. The left column lists environments; the right lists saved fixture setups across those environments. The bundled white classroom is the default on first launch. Subsequent normal sessions resume the active room and state from audit history.
 
 - **Import** accepts a folder containing `environment.json` and its referenced `environment.usdz` or `environment.mesh.json`, or a standalone meter-scale USDZ. Bundles retain their reviewed placement surfaces, spawn pose, version, and checksum. Standalone USDZ imports infer a rectangular floor from the lowest visual bounds; provide a prepared room bundle for accurate floor/table placement metadata.
 - **Scan** is available on Vision Pro. It opens a mixed-immersion capture view, requests World Sensing permission, and displays the observed mesh over passthrough. Look around to capture floor, walls, and furniture, including the floor beneath you. Name it and choose **Save room & open**. The scan becomes a selectable environment stored on this device. Cancel returns to the previous scene.
@@ -39,6 +39,20 @@ Open **Rooms & saved setups** in the wrist Toolbox. The left column lists enviro
 Room geometry is immutable and shared by its setups. Named snapshots are separate from the existing per-room working-arrangement autosave. Normal library data lives beneath Application Support at `VenueVolume/Placements/Library`; demo saves use `DemoLibrary` and do not alter normal saved data. Saves are atomic, and invalid existing working files are preserved rather than overwritten. There is no cloud backup or room export UI yet.
 
 Local capture uses ARKit scene reconstruction, not RoomPlan or movie reconstruction. It stores geometry, not photographic textures, with a limit of one million triangles / 2,048 mesh chunks. Unseen surfaces remain absent. Fixture placement on scan meshes checks horizontal support beneath the center and footprint corners; this is a sampled support check, not a collision or rigging solver. Captured rooms reopen as neutral, lightable meshes in full immersion, aligned to the saved spawn pose. They are not relocalized onto the original physical room. Simulator cannot scan, but can import and replay the same saved mesh format.
+
+## Audit history, Undo and Redo
+
+**Undo** and **Redo** stay visible at the top of the wrist Toolbox and in the fixture editor. A connected keyboard can use Command-Z and Shift-Command-Z. Open **History** in the toolbox for a timestamped event list; **Restore** returns to the state immediately after that event, including its room when necessary.
+
+History covers fixture insertion/deletion/selection/info, position/orientation/aim, preset application/clearing/deletion/saving, preset drafts, room light/materials/blackout, room import or scan registration, room/setup loading, setup naming, and Save/Save as new. Multi-object preset updates and each continuous slider gesture form one undo step. Text/direct edits are grouped after 400 ms of inactivity and flushed before commands, navigation, leaving the venue, and app backgrounding. An abrupt process termination can lose an unfinished gesture or pending text edit. Tracking frames, hover, palette tabs, and transient drag/pick modes do not fill the log; restore cancels in-progress spatial gestures and clears Recent items.
+
+The timeline retains branches: editing after Undo clears the immediate Redo route, but older events remain selectable in History. Undo, Redo, and Restore append navigation entries without deleting prior events. Snapshots include active room identity, fixture state, the preset library and draft, saved-setup catalog and active setup, selection, and lighting settings. Normal sessions resume the current cursor and retain undo/redo after relaunch.
+
+Room geometry stays immutable. Undoing import/capture removes a room from the visible catalog while retaining its bytes for future replay. Undoing a named save restores the earlier catalog/version; retained snapshot files are not treated as new saves on restart. The audit cursor is authoritative once initialized. Asset loading and validation finish before a cross-room restore is committed; a failed restore leaves the current state and history position intact.
+
+Mock sync requests/results, scan start/cancel/save failures, room-load failures, and leaving the venue are logged as external actions. History navigation never resends these actions or reverses a prior network request. Restoring state clears its sync acknowledgment; use Sync explicitly afterward. Live AR sessions, OS windows, head/palm poses, and tracking permissions are not time-traveled.
+
+The local journal is `Library/audit-history.json`, with immutable snapshots in `Library/audit-history.states/`, beneath the placement directory. Each change writes its new snapshot once and atomically replaces the smaller event/cursor index. Earlier snapshots and asset files are retained; no automatic history pruning or cloud backup is implemented. Demo runs use DemoLibrary and start a fresh demo timeline. A corrupt journal is preserved and disables history with a visible error; write failures are reported rather than silently claiming an event was logged. This is an application recovery log, not a tamper-proof compliance ledger.
 
 ## Retargeting behavior
 
@@ -95,7 +109,7 @@ xcodebuild -project VenueVolume.xcodeproj -scheme VenueVolume \
   -derivedDataPath DerivedData-device CODE_SIGNING_ALLOWED=NO build
 ```
 
-34 Core tests and model/session checks cover room/setup round trips, immutable room versions, snapshot validation, mesh support, fixture drop commands, blank setups, save/save-as, restore/relaunch, preset conflict isolation, corrupt working-file preservation, and the existing aiming, placement, preview, patch, and sync behavior. Asset checks compare bundled room/fixture hashes with the source artifacts. Both simulator and unsigned device targets compile. A native Simulator runtime check imports a room bundle, replays a synthetic mesh, places fixtures, saves setups, switches to blank scenes, and restores the original classroom setup through the real model and renderer.
+37 Core tests and model/session checks cover room/setup round trips, immutable room versions, snapshot validation, mesh support, fixture drop commands, blank setups, save/save-as, restore/relaunch, preset conflict isolation, corrupt working-file preservation, and the existing aiming, placement, preview, patch, and sync behavior. Audit checks exercise exact undo/redo, gesture grouping, branching, draft/preset and aim restoration, catalog/save reversal, cross-room load failure, relaunch, external sync logging, and corrupt journal preservation. Asset checks compare bundled room/fixture hashes with the source artifacts. Both simulator and unsigned device targets compile. Native Simulator integration exercises bundle import, synthetic mesh replay, named setups, cross-room Undo/Redo, and undoing fixture deletion through the real model and renderer.
 
 The Mac was locked during verification, so interactive pinch/drag/drop/slider automation was unavailable. Native drag gestures, live mesh capture, wrist following, code signing, device installation, tracking alignment, comfort, frame time, and thermal performance still require acceptance on a physical Vision Pro. Compilation and synthetic mesh replay do not establish that live headset capture works correctly.
 
@@ -104,6 +118,8 @@ Demo presentation flags: `--blue`, `--blackout`, `--aim-left`, `--fixture-near`,
 Retarget captures: [animation recording](Screenshots/fixture-retarget.mp4), [head aim](Screenshots/fixture-retarget-head.png), [mount aim](Screenshots/fixture-retarget-mount.png), [targeting prompt](Screenshots/fixture-targeting.png), [full transform controls](Screenshots/fixture-transform.png).
 
 Room-library captures: [initial room library](Screenshots/room-library.png), [imported rooms and saved setups](Screenshots/room-library-saved.png). Launch `./scripts/run-demo.sh --blue --rooms-tab` to open this toolbox tab. Add `--library-smoke` to run the debug-only native integration check; it writes clearly labelled demo setups and a synthetic mesh replay fixture into DemoLibrary. The synthetic mesh is test data, not a headset scan.
+
+Audit capture: [history and persistent Undo/Redo controls](Screenshots/audit-history.png). Run `./scripts/run-demo.sh --blue --history-smoke` to exercise room-library operations plus history navigation and finish in the History tab. This invokes the same commands as the UI; it does not simulate pinch gestures or keyboard shortcuts.
 
 Earlier screenshots: [blue light](Screenshots/white-room-blue.png), [pan and cast shadow](Screenshots/white-room-aim.png), [blackout](Screenshots/white-room-blackout.png), [toolbox](Screenshots/white-room-toolbox.png), [DMX controls](Screenshots/white-room-controls.png), [position controls](Screenshots/white-room-position.png). Older screenshots document earlier milestones.
 

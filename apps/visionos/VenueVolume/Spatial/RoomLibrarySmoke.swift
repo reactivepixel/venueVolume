@@ -6,7 +6,8 @@ import VenueVolumeCore
 /// paths in Simulator; its synthetic mesh is explicitly not a headset scan.
 @MainActor enum RoomLibrarySmoke {
     static func run(model: VenueModel) async {
-        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--library-smoke") else { return }
+        let arguments = ProcessInfo.processInfo.arguments
+        guard model.isDemoMode, arguments.contains("--library-smoke") || arguments.contains("--history-smoke") else { return }
         do {
             try await ready(model)
             guard let bundled = model.activeRoom, let resources = Bundle.main.resourceURL else { throw EnvironmentError.invalid("default room missing") }
@@ -21,7 +22,7 @@ import VenueVolumeCore
             try JSONEncoder().encode(manifest).write(to: folder.appendingPathComponent("environment.json"))
             try FileManager.default.copyItem(at: resources.appendingPathComponent("Environments/Classroom/environment.usdz"), to: folder.appendingPathComponent("environment.usdz"))
             let imported = try await RoomAssets.importRoom(from: folder, store: model.library)
-            model.refreshLibrary(); model.requestRoom(imported)
+            model.registerRoom(imported); model.requestRoom(imported)
             try await ready(model, room: imported)
             guard model.fixtures.isEmpty else { throw EnvironmentError.invalid("new room was not blank") }
             guard model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 2.66,y: 0,z: -2), surfaceID: "floor"),
@@ -39,7 +40,7 @@ import VenueVolumeCore
                 checksum: RoomAssets.checksum(data), bytes: data.count, scanned: true)
             let replay = LibraryRoom(manifest: scanManifest, origin: .imported)
             try model.library.install(room: replay, asset: data)
-            model.refreshLibrary(); model.requestRoom(replay)
+            model.registerRoom(replay); model.requestRoom(replay)
             try await ready(model, room: replay)
             model.fixtureKind = .movingHead; model.beginPlacement(); model.placeOnMesh(at: .init(x: 0,y: 0,z: -2))
             guard model.scannedMesh != nil, model.fixtures.count == 1 else { throw EnvironmentError.invalid("mesh replay placement failed") }
@@ -54,8 +55,24 @@ import VenueVolumeCore
             model.toolboxTab = 1
             model.libraryMessage = "Runtime check passed · import, mesh replay, blank setup, save and restore."
             print("ROOM_LIBRARY_SMOKE_PASS")
+            if arguments.contains("--history-smoke") {
+                let before = model.auditState
+                model.undo()
+                try await ready(model, room: replay)
+                model.redo()
+                try await ready(model, room: bundled)
+                guard model.auditState == before else { throw EnvironmentError.invalid("cross-room history replay differed") }
+                model.remove(savedFixtures[0].id)
+                guard model.fixtures.isEmpty else { throw EnvironmentError.invalid("delete failed") }
+                model.undo()
+                guard model.auditState == before, model.canRedo else { throw EnvironmentError.invalid("delete undo failed") }
+                model.toolboxTab = 2
+                model.historyMessage = "Runtime check passed · cross-room Undo/Redo and fixture restoration."
+                print("AUDIT_HISTORY_SMOKE_PASS")
+            }
         } catch {
             model.libraryMessage = "Runtime check failed: \(error.localizedDescription)"
+            model.historyMessage = model.libraryMessage
             print("ROOM_LIBRARY_SMOKE_FAIL: \(error)")
         }
     }

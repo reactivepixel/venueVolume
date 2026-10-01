@@ -89,8 +89,8 @@ struct RoomLibraryView: View {
                     defer { model.libraryBusy = false }
                     do {
                         let room = try await RoomAssets.importRoom(from: url, store: model.library)
-                        model.refreshLibrary(); model.libraryMessage = "Imported \(room.manifest.title). Select it to open a blank setup."
-                    } catch { model.libraryMessage = "Import failed: \(error.localizedDescription)" }
+                        model.registerRoom(room); model.libraryMessage = "Imported \(room.manifest.title). Select it to open a blank setup."
+                    } catch { model.libraryMessage = "Import failed: \(error.localizedDescription)"; model.auditExternal("Room import failed · \(error.localizedDescription)") }
                 }
             case .failure(let error): model.libraryMessage = error.localizedDescription
             }
@@ -104,6 +104,7 @@ struct RoomLibraryView: View {
         switch action {
         case .open(let room, let setup): model.requestRoom(room, setup: setup)
         case .scan:
+            model.auditExternal("Start local room scan")
             Task { @MainActor in
                 await dismissSpace()
                 switch await openSpace(id: "RoomScan") {

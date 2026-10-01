@@ -5,6 +5,7 @@ struct VenueSpaceView: View {
     @Environment(VenueModel.self) private var model
     @Environment(\.dismissWindow) private var dismissWindow
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.scenePhase) private var scenePhase
     @State private var scene = VenueScene()
 
     var body: some View {
@@ -81,6 +82,8 @@ struct VenueSpaceView: View {
             #endif
         }
         .onDisappear {
+            model.finishHistoryGesture()
+            model.flushHistoryEdits()
             model.isImmersed = false
             model.cancelPicking()
             model.canPlace = false
@@ -90,6 +93,9 @@ struct VenueSpaceView: View {
             model.previewDraft = false
             scene.clearAttachments()
             openWindow(id: "launch")
+        }
+        .onChange(of: scenePhase) { _, phase in
+            if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits() }
         }
     }
 }

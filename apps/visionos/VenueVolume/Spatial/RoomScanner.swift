@@ -158,8 +158,8 @@ struct RoomScanView: View {
                             Task {
                                 do {
                                     let room = try await scanner.save(name: name, store: model.library)
-                                    model.refreshLibrary(); await finish(room: room)
-                                } catch { self.error = error.localizedDescription }
+                                    model.registerRoom(room); await finish(room: room)
+                                } catch { self.error = error.localizedDescription; model.auditExternal("Room scan save failed · \(error.localizedDescription)") }
                             }
                         }.buttonStyle(.borderedProminent).disabled(!scanner.canSave || name.trimmingCharacters(in: .whitespaces).isEmpty)
                     }.disabled(finishing || scanner.saving)
@@ -174,6 +174,7 @@ struct RoomScanView: View {
     }
     private func finish(room: LibraryRoom?) async {
         finishing = true
+        if room == nil { model.auditExternal("Cancel local room scan") }
         if let room { model.requestRoom(room) }
         await dismissSpace()
         switch await openSpace(id: "VenueSpace") {
