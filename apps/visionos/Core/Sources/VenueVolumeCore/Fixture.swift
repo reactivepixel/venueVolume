@@ -25,22 +25,26 @@ public struct Quaternion3D: Codable, Equatable, Sendable {
 /// A generic, unverified DMX fixture. Addresses are one-based logical addresses.
 public struct Fixture: Identifiable, Codable, Equatable, Sendable {
     public let id: UUID
+    public var assetID: String?
+    public var presetID: UUID?
     public var name: String
     public var universe: Int
     public var startAddress: Int
     public var channels: [Int]
-    /// Center, orientation and scale relative to the environment root (never session world).
+    /// Room-local asset origin (base for catalog assets, center for legacy cubes), orientation and scale.
     public var position: Position3D
     public var orientation: Quaternion3D
     public var scale: Position3D
     public var surfaceID: String?
 
-    public init(id: UUID = UUID(), name: String, universe: Int = 1,
+    public init(id: UUID = UUID(), presetID: UUID? = nil, name: String, assetID: String? = nil, universe: Int = 1,
                 startAddress: Int = 1, channels: [Int] = Array(repeating: 0, count: 8),
                 position: Position3D = .init(x: 0, y: 1.4, z: -2),
                 orientation: Quaternion3D = .init(), scale: Position3D = .init(x: 1, y: 1, z: 1),
                 surfaceID: String? = nil) {
         self.id = id
+        self.presetID = presetID
+        self.assetID = assetID
         self.name = name
         self.universe = universe
         self.startAddress = startAddress

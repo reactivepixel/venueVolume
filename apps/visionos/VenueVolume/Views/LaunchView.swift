@@ -10,19 +10,19 @@ struct LaunchView: View {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("VENUE VOLUME").font(.caption.weight(.bold)).tracking(3).foregroundStyle(.cyan)
-                    Text("Your space.\nYour fixtures.").font(.system(size: 44, weight: .semibold, design: .rounded))
+                    Text("White room.\nLive light.").font(.system(size: 44, weight: .semibold, design: .rounded))
                 }
                 Spacer()
                 Image(systemName: "cube.transparent").font(.system(size: 76, weight: .ultraLight)).foregroundStyle(.cyan)
                     .accessibilityHidden(true)
             }
-            Text("Enter the classroom, place virtual DMX fixtures on its floor and tables, and restore your arrangement next time.")
+            Text("Place a moving-head fixture in the reconstructed classroom. Aim and light the room with saved DMX preview presets.")
                 .foregroundStyle(.secondary)
             Divider()
             VStack(alignment: .leading, spacing: 16) {
-                Label("Place fixture → look at a floor or table → pinch", systemImage: "scope")
-                Label("Select a cube to highlight its fixture", systemImage: "cube")
-                Label("Double-select its name to open DMX controls", systemImage: "slider.horizontal.3")
+                Label("Raise your left palm to reveal the toolbox", systemImage: "hand.raised")
+                Label("Drag a preset onto a fixture to set its look", systemImage: "cube")
+                Label("Open fixture controls for position, pan and tilt", systemImage: "info.circle")
             }
             HStack {
                 Text("\(model.fixtures.count) fixtures · \(model.totalChannels) channels").monospacedDigit()
@@ -68,6 +68,29 @@ struct LaunchView: View {
             case .error: model.message = "The venue could not open. Try entering again."
             @unknown default: model.message = "The system could not open the venue."
             }
+        }
+    }
+}
+
+/// A companion window may be restored without the launch window after a relaunch.
+/// Keep room entry reachable from those windows and let the demo resume there too.
+struct VenueEntryButton: View {
+    @Environment(VenueModel.self) private var model
+    @Environment(\.openImmersiveSpace) private var openSpace
+    var body: some View {
+        Button("Enter venue", systemImage: "viewfinder") { Task { await enter() } }
+            .disabled(model.isTransitioning)
+            .task { if model.consumeDemoAutoEntry() { await enter() } }
+    }
+    private func enter() async {
+        guard !model.isImmersed, !model.isTransitioning else { return }
+        model.isTransitioning = true
+        defer { model.isTransitioning = false }
+        switch await openSpace(id: "VenueSpace") {
+        case .opened: model.isImmersed = true
+        case .userCancelled: break
+        case .error: model.message = "The room could not open. Choose Enter venue to retry."
+        @unknown default: model.message = "The system could not open the room."
         }
     }
 }
