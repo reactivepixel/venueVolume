@@ -12,7 +12,7 @@ struct FixturePlacementView: View {
                     HStack {
                         Button("Reposition") { model.beginReposition(id); dismissWindow(id: "presets") }
                         Menu("Retarget", systemImage: "scope") {
-                            Button("Aim head (DMX)") { model.beginRetarget(id, method: .head); dismissWindow(id: "presets") }
+                            Button("Aim head (preview)") { model.beginRetarget(id, method: .head); dismissWindow(id: "presets") }
                             Button("Aim mount") { model.beginRetarget(id, method: .mount); dismissWindow(id: "presets") }
                         }.disabled(fixture.assetID == nil)
                     }.disabled(!model.canPlace)
@@ -20,6 +20,17 @@ struct FixturePlacementView: View {
                     axis("X · left / right", value: fixture.position.x, range: 0.23...(room.bounds.max[0]-0.23), fixture: fixture) { $0.x = $1 }
                     axis("Y · base height", value: fixture.position.y, range: 0...(room.bounds.max[1]-LightingPreview.height), fixture: fixture) { $0.y = $1 }
                     axis("Z · front / back", value: fixture.position.z, range: (room.bounds.min[2]+0.23)...(-0.23), fixture: fixture) { $0.z = $1 }
+                    if fixture.assetID == LightingPreview.assetID && fixture.channels.count >= 6 {
+                        Divider()
+                        Text("MOVING HEAD PILOT · ROGUE R1X SPOT")
+                            .font(.caption.weight(.semibold)).foregroundStyle(.cyan)
+                        Text("Aim this fixture's head. These VV Preview 16 controls animate the model and beam; they are not the manufacturer's DMX channels.")
+                            .font(.caption).foregroundStyle(.secondary)
+                        headAxis("Pan", axis: 0, fixture: fixture)
+                        headAxis("Tilt", axis: 1, fixture: fixture)
+                        Button("Use preset aim") { model.resetAim(id) }
+                            .disabled(fixture.aimOverride == nil)
+                    }
                     Divider()
                     Text("Mount orientation").font(.caption).foregroundStyle(.secondary)
                     rotation("Yaw", axis: 0, fixture: fixture)
@@ -39,6 +50,24 @@ struct FixturePlacementView: View {
             }
         } else {
             ContentUnavailableView("Select a fixture", systemImage: "light.beacon.max", description: Text("Select an object in the room to change its transform or target."))
+        }
+    }
+
+    private func headAxis(_ title: String, axis: Int, fixture: Fixture) -> some View {
+        let preview = LightingPreview(channels: fixture.channels)
+        let value = axis == 0 ? preview.panDegrees : preview.tiltDegrees
+        let range = axis == 0 ? FixtureAiming.panRange : FixtureAiming.tiltRange
+        return VStack(spacing: 4) {
+            HStack {
+                Text(title)
+                Spacer()
+                Text(String(format: "%.1f°", value)).monospacedDigit()
+            }
+            Slider(value: Binding(get: { Double(value) }, set: { next in
+                if axis == 0 { model.setHeadAim(fixture.id, panDegrees: Float(next)) }
+                else { model.setHeadAim(fixture.id, tiltDegrees: Float(next)) }
+            }), in: Double(range.lowerBound)...Double(range.upperBound), step: 1)
+                .accessibilityLabel("Pilot head \(title)")
         }
     }
 

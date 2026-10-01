@@ -84,7 +84,7 @@ final class VenueScene {
             fixtureTemplate = template
             // Fail visibly before accepting placements if the expected rig cannot be built.
             _ = try FixtureRig(template: template, id: UUID())
-            model.fixtureAssetStatus = "Rogue R1X Spot · catalog visualization proxy"
+            model.fixtureAssetStatus = "Moving head pilot · Rogue R1X Spot · VV Preview 16"
             rigs.removeAll()
             for proxy in resolved.manifest.colliders {
                 let entity = Entity()

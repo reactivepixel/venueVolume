@@ -2,7 +2,7 @@ import Foundation
 import Observation
 import VenueVolumeCore
 
-enum AimMethod: String, CaseIterable { case head = "Aim head (DMX)", mount = "Aim mount" }
+enum AimMethod: String, CaseIterable { case head = "Aim head (preview)", mount = "Aim mount" }
 enum ScenePick: Equatable { case move(UUID), aim(UUID, AimMethod) }
 
 @MainActor @Observable
@@ -110,7 +110,7 @@ final class VenueModel {
         persistenceBlocked = false
         if isDemoMode {
             let look = arguments.contains("--blue") ? presets[1] : presets[0]
-            fixtures = [Fixture(presetID: look.id, name: "Room wash 01", assetID: LightingPreview.assetID,
+            fixtures = [Fixture(presetID: look.id, name: "Rogue R1X 01", assetID: LightingPreview.assetID,
                                 channels: look.channels, position: .init(x: 4.04, y: 0.74, z: -3.68), surfaceID: "table-r2-c2-top")]
             selectedID = fixtures[0].id
             expandedID = arguments.contains("--show-info") ? fixtures[0].id : nil
@@ -178,7 +178,7 @@ final class VenueModel {
             message = "No free DMX patch is available."
             return
         }
-        let fixture = Fixture(name: String(format: "Room wash %02d", nextFixtureNumber), assetID: LightingPreview.assetID,
+        let fixture = Fixture(name: String(format: "Rogue R1X %02d", nextFixtureNumber), assetID: LightingPreview.assetID,
                               universe: patch.universe, startAddress: patch.address, channels: Array(repeating: 0, count: 16),
                               position: .init(x: center.x, y: center.y-LightingPreview.footprintRadius, z: center.z), surfaceID: surfaceID)
         message = nil
@@ -298,6 +298,25 @@ final class VenueModel {
 
     func renderedChannels(for fixture: Fixture) -> [Int] {
         previewDraft && selectedID == fixture.id ? presetDraft.channels : fixture.channels
+    }
+
+    /// Direct preview articulation belongs to this placed fixture, not its shared preset.
+    func setHeadAim(_ id: UUID, panDegrees: Float? = nil, tiltDegrees: Float? = nil) {
+        guard let index = fixtures.firstIndex(where: { $0.id == id }),
+              fixtures[index].assetID == LightingPreview.assetID,
+              fixtures[index].channels.count >= 6,
+              [panDegrees, tiltDegrees].compactMap({ $0 }).allSatisfy(\.isFinite) else { return }
+        var candidate = fixtures[index]
+        let pan = panDegrees.map(FixtureAiming.panByte(for:)) ?? candidate.channels[4]
+        let tilt = tiltDegrees.map(FixtureAiming.tiltByte(for:)) ?? candidate.channels[5]
+        candidate.aimOverride = .init(pan: pan, tilt: tilt)
+        candidate.preserveAimOverride()
+        guard candidate != fixtures[index], candidate.validationIssue(among: fixtures) == nil else { return }
+        fixtures[index] = candidate
+        previewDraft = false
+        lastTarget = nil
+        revision += 1
+        persist()
     }
 
     func moveFixture(_ id: UUID, position: Position3D, yawDegrees: Float) {

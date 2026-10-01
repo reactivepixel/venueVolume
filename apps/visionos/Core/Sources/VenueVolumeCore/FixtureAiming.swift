@@ -27,8 +27,20 @@ public enum FixtureAiming {
               tilt >= tiltRange.lowerBound-epsilon, tilt <= tiltRange.upperBound+epsilon else {
             throw PresetError("That point is outside the preview head's pan/tilt range. Rotate the mount or choose Aim mount.")
         }
-        return .init(pan: max(0, min(255, Int((pan / 270 * 255 + 128).rounded()))),
-                     tilt: max(0, min(255, Int((tilt / 120 * 255 + 128).rounded()))))
+        return .init(pan: panByte(for: pan), tilt: tiltByte(for: tilt))
+    }
+
+    /// Encode the pilot's preview angles, not the manufacturer's DMX personality.
+    public static func panByte(for degrees: Float) -> Int {
+        guard degrees.isFinite else { return 128 }
+        let bounded = min(panRange.upperBound, max(panRange.lowerBound, degrees))
+        return max(0, min(255, Int((bounded / 270 * 255 + 128).rounded())))
+    }
+
+    public static func tiltByte(for degrees: Float) -> Int {
+        guard degrees.isFinite else { return 128 }
+        let bounded = min(tiltRange.upperBound, max(tiltRange.lowerBound, degrees))
+        return max(0, min(255, Int((bounded / 120 * 255 + 128).rounded())))
     }
 
     /// Rotate the entire mount while preserving the existing head channels.

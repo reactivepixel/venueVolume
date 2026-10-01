@@ -4,6 +4,17 @@ import Testing
 
 private func point(_ v: SIMD3<Float>) -> Position3D { .init(x: v.x, y: v.y, z: v.z) }
 
+@Test func pilotHeadSliderAnglesEncodeToPreviewValues() {
+    for value in [0, 1, 64, 128, 192, 254, 255] {
+        let pan = LightingPreview(channels: [0, 0, 0, 0, value, 128]).panDegrees
+        let tilt = LightingPreview(channels: [0, 0, 0, 0, 128, value]).tiltDegrees
+        #expect(FixtureAiming.panByte(for: pan) == value)
+        #expect(FixtureAiming.tiltByte(for: tilt) == value)
+    }
+    #expect(FixtureAiming.panByte(for: .infinity) == 128)
+    #expect(FixtureAiming.tiltByte(for: .nan) == 128)
+}
+
 @Test func headAimSolvesInFixtureCoordinatesWithQuantizedDmx() throws {
     var fixture = Fixture(name: "Aim", channels: LightingPreview.presets[0].channels,
                           position: .init(x: 3, y: 1, z: -2),
