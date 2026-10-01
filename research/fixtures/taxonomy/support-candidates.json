@@ -745,12 +745,12 @@
       "data": {
         "dimensions": {
           "width_m": 2.0,
-          "height_m": 0.984,
+          "height_m": 0.9779,
           "depth_m": 1.0,
-          "source_order": "1 x 2 m platform; adjustable height 27 to 38.5 inches per current manufacturer product page; selected max-height pose"
+          "source_order": "1 x 2 m platform; manufacturer product page says adjustable height 27 to 38.5 in; selected max-height pose, exact conversion 0.9779 m. A 2019 catalog gives a slightly different 27.5–39 in range."
         },
         "control_path": "Passive structural scenic platform; no electrical or DMX connection.",
-        "pose": "Platform horizontal with 2 m edge along X, top surface upward; adjustable legs at maximum 38.5 inch/0.984 m setting. Platform footprint is product size; leg placement is shown in render."
+        "pose": "Platform horizontal with 2 m edge along X, top surface upward; adjustable legs at maximum 38.5 in = 0.9779 m setting per current product page. Platform footprint is product size; leg placement shown in render."
       },
       "images": [
         "https://www.globaltruss.com/media/catalog/product/cache/6517c62f5899ad6aa0ba23ceb3eeff97/1/0/1000x1000-20gt-20stage-201x2-41237.jpg"
@@ -771,16 +771,148 @@
           "locator": "SKU STG0004, platform 1 x 2 m, four adjustable heights through 38.5 inches and direct product image",
           "accessed_at": "2026-09-30",
           "reuse_status": "unknown"
+        },
+        {
+          "url": "https://www.globaltruss.com/pub/media/globaltrdownloads/downloads/g/t/gta_catalog_feb_2019_online-compressed.pdf",
+          "title": "Global Truss America catalog (February 2019)",
+          "locator": "GT-Stage-Adjust height range is listed as 27.5–39 in, slightly different from the current product page; do not silently reconcile the published discrepancy.",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
         }
       ],
       "dimensions": {
         "width_m": 2.0,
-        "height_m": 0.984,
+        "height_m": 0.9779,
         "depth_m": 1.0,
-        "source_order": "1 x 2 m platform; adjustable height 27 to 38.5 inches per current manufacturer product page; selected max-height pose",
-        "axis_status": "documented",
-        "axis_note": "1 x 2 m platform; adjustable height 27 to 38.5 inches per current manufacturer product page; selected max-height pose",
-        "reference_pose": "Platform horizontal with 2 m edge along X, top surface upward; adjustable legs at maximum 38.5 inch/0.984 m setting. Platform footprint is product size; leg placement is shown in render."
+        "source_order": "1 x 2 m platform; current product page height range 27 to 38.5 in, exact maximum conversion 0.9779 m; 2019 catalog range differs slightly (27.5–39 in)",
+        "axis_status": "documented_platform_estimated_height",
+        "axis_note": "Platform L/W given as 2 x 1 m; height is the maximum position of adjustable legs. Product page says 27–38.5 in; 2019 catalog gives 27.5–39 in, so the height configuration conflicts between manufacturer sources.",
+        "reference_pose": "Platform horizontal with 2 m edge along X, top surface up; maximum 38.5 in (0.9779 m) leg setting per current product page; height is subject to source conflict."
+      }
+    },
+    {
+      "name": "Fast-Fold Deluxe Screen System, 88692",
+      "model_number": "88692",
+      "manufacturer": "Da-Lite (Legrand AV)",
+      "category_id": "optional.video_visuals_optional.projection_surfaces",
+      "scope_status": "optional_candidate",
+      "type": "projection_screen",
+      "subtype": "portable folding front/rear projection screen, 16:9 HDTV, HD Progressive ReView 0.9 surface",
+      "url": "https://www.legrandav.com/products/screens/fastfold-portable-screens/fast-fold-deluxe-screen-system/88692",
+      "data": {
+        "dimensions": {
+          "width_m": 3.048,
+          "height_m": 1.753,
+          "depth_m": 1.505,
+          "source_order": "For model 88692: overall screen/frame size 120 x 69 in (305 x 175 cm rounded); figure also labels a 59 1/4 in (150.5 cm) deployed leg footprint dimension; surface-view area 114.5 x 63.5 in (291 x 161 cm rounded). Depth is support-foot span, not case size."
+        },
+        "dimensions_status": "screen_frame_documented_support_footprint_dimensioned_in_family_view",
+        "dimension_notes": "The manufacturer data sheet lists 69 x 120 in overall size, which matches the SKU page name/surface designation for 88692; the page-2 product view labels a 59 1/4 in leg-foot dimension but does not identify which screen size the illustration depicts. Treat footprint depth as family illustration evidence, not a guaranteed SKU-specific chassis dimension.",
+        "control_path": "Passive projection surface and folding frame; image signal is projected onto surface by separate projector. No electrical or DMX connection.",
+        "pose": "Frame vertical and screen surface facing audience/projector, with standard T-legs deployed. Display frame envelope is 3.048 m wide x 1.753 m high; support-foot spread is shown by manufacturer family view but is not guaranteed SKU-specific.",
+        "screen_surface": "HD Progressive ReView 0.9, front projection",
+        "viewing_area_m": {
+          "width": 2.908,
+          "height": 1.613
+        }
+      },
+      "images": [
+        "https://www.legrandav.com/-/media/images/dalite/product/series/resources/fastfold_deluxe_screen_system/fast-fold-deluxe-spec-data.pdf?sc_lang=en"
+      ],
+      "image_reuse_status": "unknown",
+      "image_asset_note": "The local reference image is a page-2 product view excerpt from the official spec/data PDF; no separate direct raster URL for SKU 88692 was found.",
+      "image_file": "research/fixtures/taxonomy/support-sources/dalite-fast-fold-deluxe-spec-page2.png",
+      "reference_image_file": "research/fixtures/taxonomy/support-sources/dalite-fast-fold-deluxe-spec-page2.png",
+      "image_sha256": "d40cad6131a602e3112f09cc7598748f422351a070b0da9a83c640cfd2291f69",
+      "modeling": {
+        "family": "projection_screen",
+        "body_style": "rectangular vertical screen surface in folding aluminum frame on deployed T-legs",
+        "notes": "Model the screen/frame from exact overall/viewing dimensions. Foot/stand geometry is family-view-derived and should be treated as approximate; do not include carrying case."
+      },
+      "evidence": [
+        {
+          "url": "https://www.legrandav.com/products/screens/fastfold-portable-screens/fast-fold-deluxe-screen-system/88692",
+          "title": "Da-Lite Fast-Fold Deluxe Screen System product page, SKU 88692",
+          "locator": "Product title identifies 88692 and 63.5 x 114.5 in HD Progressive ReView 0.9 screen surface",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://www.legrandav.com/-/media/images/dalite/product/series/resources/fastfold_deluxe_screen_system/fast-fold-deluxe-spec-data.pdf?sc_lang=en",
+          "title": "Fast-Fold Deluxe Screens specification data",
+          "locator": "Page 1: 16:9 HDTV format table, 69 x 120 in overall size, 63.5 x 114.5 in viewing area; page 2: product view labels 59 1/4 in deployed-foot dimension",
+          "file": "research/fixtures/taxonomy/support-sources/dalite-fast-fold-deluxe-spec.pdf",
+          "sha256": "cd2c1664e91e9e2c7f9786933652cdb1361cb48cad827b90a55fc05dc63264fb",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ],
+      "dimensions": {
+        "width_m": 3.048,
+        "height_m": 1.753,
+        "depth_m": 1.505,
+        "source_order": "For model 88692: overall screen/frame size 120 x 69 in (305 x 175 cm rounded); figure also labels a 59 1/4 in (150.5 cm) deployed leg footprint dimension; surface-view area 114.5 x 63.5 in (291 x 161 cm rounded). Depth is support-foot span, not case size.",
+        "axis_status": "screen_frame_documented_support_footprint_dimensioned_in_family_view",
+        "axis_note": "The manufacturer data sheet lists 69 x 120 in overall size, which matches the SKU page name/surface designation for 88692; the page-2 product view labels a 59 1/4 in leg-foot dimension but does not identify which screen size the illustration depicts. Treat footprint depth as family illustration evidence, not a guaranteed SKU-specific chassis dimension.",
+        "reference_pose": "Frame vertical and screen surface facing audience/projector, with standard T-legs deployed. Display frame envelope is 3.048 m wide x 1.753 m high; support-foot spread is shown by manufacturer family view but is not guaranteed SKU-specific."
+      }
+    },
+    {
+      "name": "Lodestar D8+ Type L, 1 tonne",
+      "model_number": "Lodestar D8+ Model L",
+      "manufacturer": "CM Entertainment Technology (Columbus McKinnon)",
+      "category_id": "optional.rigging_expansion_optional.motors_hoists",
+      "scope_status": "optional_candidate",
+      "type": "electric_chain_hoist",
+      "subtype": "1,000 kg / 1 tonne, 4 m/min, 400 V three-phase single-reeved entertainment hoist",
+      "url": "https://www.cmco.com/globalassets/catalogs--documents/emea/cmco-cm-et-product-catalogue-2022.pdf",
+      "data": {
+        "dimensions": {
+          "width_m": 0.522,
+          "height_m": 0.413,
+          "depth_m": 0.154,
+          "source_order": "Manufacturer D8+ Series drawing: A=413 mm overall hook-to-hook height; B=154 mm end-view span; right-view length derives D+F=297+225=522 mm for the standard D8+ Series column. Hook/chain placement is pose dependent."
+        },
+        "dimensions_status": "mapped_from_manufacturer_dimension_drawing",
+        "dimension_notes": "Dimensions mapped from labeled manufacturer drawing for standard D8+ Series (not JJ/LH/RR or BH/RR frame variants). The 522 mm horizontal envelope is the sum of labeled D and F spans. These are a planning envelope, not a structural/rigging model; do not use for lift clearances or load engineering.",
+        "control_path": "Mains-powered lifting equipment with hoist controller and chain; not a lighting DMX fixture. Power/control model and rigging compatibility are production-specific.",
+        "pose": "Hoist body horizontal, suspension/top hook upright, load hook directly below; no chain bag included. Envelope dimensions include hook extremities per drawing A and horizontal spans D+F.",
+        "rated_capacity_kg": 1000,
+        "lifting_speed_m_per_min": 4,
+        "reeving": "single reeved"
+      },
+      "images": [
+        "https://www.cmco.com/globalassets/catalogs--documents/emea/cmco-cm-et-product-catalogue-2022.pdf"
+      ],
+      "image_reuse_status": "unknown",
+      "image_asset_note": "Local reference image is the Lodestar D8+ product render clipped from page 4 of the official CM entertainment catalog; exact model-specific dimensions are on page 5.",
+      "image_file": "research/fixtures/taxonomy/support-sources/cm-lodestar-d8plus-catalog-page4.png",
+      "reference_image_file": "research/fixtures/taxonomy/support-sources/cm-lodestar-d8plus-catalog-page4.png",
+      "image_sha256": "ad63e9332b3ce30f28bb7539d7849f637aa6fea08172da9176e5de033d0fe870",
+      "modeling": {
+        "family": "chain_hoist",
+        "body_style": "horizontal oval motor/gear housing with upper suspension hook and lower load hook",
+        "notes": "Reference body only; chain and lift height are variable instance/configuration properties, not fixed object geometry. This is an optional engineered-rigging category example, not a certified rigging model."
+      },
+      "evidence": [
+        {
+          "url": "https://www.cmco.com/globalassets/catalogs--documents/emea/cmco-cm-et-product-catalogue-2022.pdf",
+          "title": "CM Entertainment Technology product catalog 2022",
+          "locator": "Page 4 Lodestar D8+ product view and capability family; page 5: dimension drawing D8+ Series columns and Type L 1,000 kg, 4 m/min, 400 V 3-phase specification",
+          "file": "research/fixtures/taxonomy/support-sources/cm-lodestar-d8plus-catalog.pdf",
+          "sha256": "f453768cc9847d4361ef3dceedc190ebb5c97e22388ae2d472a96ea1ef885674",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ],
+      "dimensions": {
+        "width_m": 0.522,
+        "height_m": 0.413,
+        "depth_m": 0.154,
+        "source_order": "Manufacturer D8+ Series drawing: A=413 mm overall hook-to-hook height; B=154 mm end-view span; right-view length derives D+F=297+225=522 mm for the standard D8+ Series column. Hook/chain placement is pose dependent.",
+        "axis_status": "mapped_from_manufacturer_dimension_drawing",
+        "axis_note": "Dimensions mapped from labeled manufacturer drawing for standard D8+ Series (not JJ/LH/RR or BH/RR frame variants). The 522 mm horizontal envelope is the sum of labeled D and F spans. These are a planning envelope, not a structural/rigging model; do not use for lift clearances or load engineering.",
+        "reference_pose": "Hoist body horizontal, suspension/top hook upright, load hook directly below; no chain bag included. Envelope dimensions include hook extremities per drawing A and horizontal spans D+F."
       }
     }
   ],
@@ -790,6 +922,10 @@
     "ColorSource 20 typical dimensions (465 W x 279 D x 60 H mm) verified in the ETC Spec Sheet rev G mirrored by distributor; physical DWG retained but not parsed.",
     "The Manfrotto 1.25 m tripod spread is a secondary-source circular footprint envelope, not rectangular W/D; treat the overall bound as estimated.",
     "Control paths distinguish control data, video signals, mains power, and passive mechanical connections; no DMX personalities are invented for products that are not DMX fixtures.",
-    "Second-pass documented candidates include a DMX splitter, pixel-data controller, optional LED video processor and optional adjustable stage deck. Projection-screen and followspot camera/system hardware remain unfilled because no exact model passed the direct-image plus dimension evidence bar in this pass."
+    "Second-pass documented candidates include a DMX splitter, pixel-data controller, optional LED video processor and optional adjustable stage deck. Projection-screen and followspot camera/system hardware remain unfilled because no exact model passed the direct-image plus dimension evidence bar in this pass.",
+    "Da-Lite screen sample uses exact SKU 88692 frame/viewing-area dimensions from its product page and manufacturer series spec sheet; the attached-leg footprint is only dimensioned in a family illustration, and no separate direct raster URL for that exact SKU was found.",
+    "Drapes/soft goods, stairs and custom scenic pieces should be authored as parametric production-specific objects (width, height, fullness, trim, stair rise/run and profile), not treated as universally fixed exact-product models.",
+    "A power-distro exact candidate was not added: ETC Sensor3 portable-pack physical drawing is DWG and was not dimension-extracted, while candidate secondary listings did not establish exact dimensions/image provenance for a same SKU. No exact manufacturer-dimensioned cable/terminator or mains adapter candidate with exact geometry and visual source passed this pass; represent cable runs by specified length plus estimated coil/straight form, and adapters as parametric connector forms pending verified references.",
+    "The Lodestar D8+ entry is an optional rigging-hardware visual reference, not a certified hoist/rigging design; chain, chain bag, controller, lift, and clearance are instance/configuration parameters."
   ]
 }
