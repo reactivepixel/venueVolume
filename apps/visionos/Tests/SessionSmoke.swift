@@ -40,6 +40,28 @@ struct SessionSmoke {
         let manualRestored = VenueModel(arguments: [], defaults: defaults, placementDirectory: directory)
         manualRestored.activate(environment: environment)
         check(manualRestored.fixtures[0].aimOverride == manualAim.aimOverride, "Pilot manual aim survives relaunch")
+        let isolation = VenueModel(arguments: [], defaults: defaults, placementDirectory: directory.appendingPathComponent("pilot-isolation"))
+        isolation.activate(environment: environment); isolation.canPlace = true
+        check(isolation.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 2.66, y: 0, z: -2), surfaceID: "floor"), "Place first pilot")
+        let firstID = isolation.fixtures[0].id
+        check(isolation.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 5, y: 0, z: -2), surfaceID: "floor"), "Place second pilot")
+        let secondID = isolation.fixtures[1].id
+        check(isolation.applyPreset(presetID, to: firstID) && isolation.applyPreset(presetID, to: secondID), "Share one preset across two pilots")
+        let secondBeforeAim = isolation.fixture(secondID)!
+        isolation.beginHistoryAction("Drag pilot Pan")
+        isolation.setHeadAim(firstID, panDegrees: 10)
+        isolation.setHeadAim(firstID, panDegrees: 20)
+        isolation.setHeadAim(firstID, panDegrees: 35)
+        isolation.endHistoryAction()
+        let firstAfterAim = isolation.fixture(firstID)!
+        check(firstAfterAim.aimOverride != nil && isolation.fixture(secondID) == secondBeforeAim,
+              "Continuous aim updates only the selected fixture")
+        isolation.undo()
+        check(isolation.fixture(firstID)?.aimOverride == nil && isolation.fixture(secondID) == secondBeforeAim,
+              "One Undo restores the entire Pan gesture without touching the shared preset")
+        isolation.redo()
+        check(isolation.fixture(firstID) == firstAfterAim && isolation.fixture(secondID) == secondBeforeAim,
+              "Redo restores the Pan gesture and preserves the other fixture")
         model.resetAim(fixtureID)
         check(model.fixtures[0].aimOverride == nil && model.fixtures[0].channels == pilotPreset.channels,
               "Pilot reset restores the preset aim")

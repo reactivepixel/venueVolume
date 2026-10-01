@@ -63,7 +63,11 @@ struct FixturePlacementView: View {
                 Spacer()
                 Text(String(format: "%.1f°", value)).monospacedDigit()
             }
-            Slider(value: Binding(get: { Double(value) }, set: { next in
+            Slider(value: Binding(get: {
+                let current = model.fixture(fixture.id) ?? fixture
+                let live = LightingPreview(channels: current.channels)
+                return Double(axis == 0 ? live.panDegrees : live.tiltDegrees)
+            }, set: { next in
                 if axis == 0 { model.setHeadAim(fixture.id, panDegrees: Float(next)) }
                 else { model.setHeadAim(fixture.id, tiltDegrees: Float(next)) }
             }), in: Double(range.lowerBound)...Double(range.upperBound), step: 1, onEditingChanged: { editing in
