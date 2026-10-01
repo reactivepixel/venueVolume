@@ -8,6 +8,19 @@ struct RoomRequest { var room: LibraryRoom; var setup: VenueSetup?; var blank: B
 
 @MainActor @Observable
 final class VenueModel {
+    private(set) var history: AuditHistory<VenueAuditState>?
+    var historyMessage: String?
+    private var historyBlocked = false
+    private var restoringHistory = false
+    private var actionDepth = 0
+    private var actionTitle = "Edit"
+    private var pendingEdit: (title: String, state: VenueAuditState)?
+    private var editTask: Task<Void, Never>?
+    private var historyDestination: (id: UUID, kind: AuditHistory<VenueAuditState>.Entry.Kind?)?
+    private var preparedHistory: AuditHistory<VenueAuditState>?
+    var canUndo: Bool { !libraryBusy && !historyBlocked && (pendingEdit != nil || history?.undoTarget != nil || (actionDepth > 0 && auditState != history?.current.state)) }
+    var canRedo: Bool { !libraryBusy && !historyBlocked && pendingEdit == nil && history?.redoTarget != nil }
+    private var historyURL: URL { library.directory.appendingPathComponent("audit-history.json") }
     let library: RoomLibraryStore
     private(set) var rooms: [LibraryRoom] = []
     private(set) var savedSetups: [VenueSetup] = []
@@ -16,7 +29,7 @@ final class VenueModel {
     var libraryMessage: String?
     var libraryBusy = false
     var toolboxTab = 0
-    var setupName = "Untitled setup"
+    var setupName = "Untitled setup" { didSet { queueHistoryEdit("Rename setup") } }
     private(set) var activeSetupID: UUID?
     private var savedSetup: VenueSetup?
     var scannedMesh: ScannedMesh?
@@ -32,7 +45,7 @@ final class VenueModel {
     var expandedID: UUID?
     private(set) var presets: [DMXPreset] = LightingPreview.presets
     private(set) var recent = RecentItems()
-    var presetDraft = DMXPreset(name: "New preset")
+    var presetDraft = DMXPreset(name: "New preset") { didSet { queueHistoryEdit("Edit preset draft") } }
     var editingPresetID: UUID?
     var presetMessage: String?
     var toolboxVisible = false
@@ -43,10 +56,10 @@ final class VenueModel {
     private var dragLease: Task<Void, Never>?
     private let defaults: UserDefaults
     private let arguments: [String]
-    var previewDraft = false
-    var blackout = false
-    var houseLight: Float = 0.15
-    var whiteRoom = true
+    var previewDraft = false { didSet { queueHistoryEdit("Change draft preview") } }
+    var blackout = false { didSet { queueHistoryEdit("Change blackout") } }
+    var houseLight: Float = 0.15 { didSet { queueHistoryEdit("Adjust room light") } }
+    var whiteRoom = true { didSet { queueHistoryEdit("Change room materials") } }
     var scenePick: ScenePick?
     var lastTarget: Position3D?
     var isRetargeting: Bool { if case .aim = scenePick { true } else { false } }
@@ -118,6 +131,17 @@ final class VenueModel {
 
     func activate(environment: EnvironmentManifest) {
         if rooms.isEmpty { bootstrapLibrary(defaultRoom: environment) }
+        if let destination = historyDestination, let state = history?.node(destination.id)?.state {
+            guard state.rooms.first(where: { $0.id == state.roomID })?.manifest == environment else { return }
+            do { try prepareHistoryRestore() }
+            catch { historyRestoreFailed(error.localizedDescription); return }
+            if let preparedHistory { history = preparedHistory }
+            self.preparedHistory = nil; historyDestination = nil; roomRequest = nil; libraryBusy = false
+            applyHistoryState(state)
+            return
+        }
+        beginHistoryAction(roomRequest?.setup.map { "Load setup · \($0.name)" } ?? "Open blank room · \(environment.title)")
+        defer { endHistoryAction(); startHistoryIfNeeded() }
         if let request = roomRequest {
             guard request.room.manifest == environment else { return }
             self.environment = environment
@@ -148,7 +172,8 @@ final class VenueModel {
             revision += 1; syncedRevision = nil; activeSetupID = request.setup?.id
             setupName = request.setup?.name ?? "Untitled setup"
             savedSetup = request.setup.map { setup in
-                var copy = setup; copy.placements = .init(environment: environment, fixtures: fixtures, revision: revision); return copy
+                var copy = setup; copy.placements = .init(environment: environment, fixtures: fixtures, revision: revision)
+                copy.presets = presets.filter { preset in fixtures.contains { $0.presetID == preset.id } }; return copy
             }
             roomRequest = nil; libraryBusy = false
             cancelPicking(); selectedID = fixtures.first?.id; expandedID = nil; lastTarget = nil
@@ -247,6 +272,8 @@ final class VenueModel {
     }
 
     private func insertFixture(at base: Position3D, surfaceID: String?) {
+        guard !libraryBusy else { return }
+        beginHistoryAction("Place \(fixtureKind.name)"); defer { endHistoryAction() }
         guard fixtures.count < 64 else { message = "This setup supports up to 64 objects."; return }
         guard fixtureKind != .movingHead || fixtures.filter({ $0.assetID != nil }).count < 4 else {
             message = "This lighting proof of concept supports four fixtures."; return
@@ -270,6 +297,8 @@ final class VenueModel {
     }
 
     func select(_ id: UUID, expand: Bool = false) {
+        guard !libraryBusy else { return }
+        beginHistoryAction(expand ? "Toggle fixture info" : "Select fixture"); defer { endHistoryAction() }
         guard fixture(id) != nil else { return }
         if selectedID != id { expandedID = nil; lastTarget = nil }
         scenePick = nil
@@ -319,6 +348,8 @@ final class VenueModel {
     }
 
     func choosePreset(_ preset: DMXPreset) {
+        guard !libraryBusy else { return }
+        beginHistoryAction("Open preset · \(preset.name)"); defer { endHistoryAction() }
         presetDraft = preset
         editingPresetID = preset.id
         presetMessage = nil
@@ -326,12 +357,16 @@ final class VenueModel {
     }
 
     func newPreset() {
+        guard !libraryBusy else { return }
+        beginHistoryAction("New preset draft"); defer { endHistoryAction() }
         editingPresetID = nil
         presetDraft = DMXPreset(name: "New preset")
         presetMessage = nil
     }
 
     @discardableResult func savePreset(asNew: Bool = false) -> Bool {
+        guard !libraryBusy else { return false }
+        beginHistoryAction(asNew ? "Save preset as new" : "Save preset"); defer { endHistoryAction() }
         var candidate = presetDraft
         candidate.name = candidate.name.trimmingCharacters(in: .whitespacesAndNewlines)
         if asNew { candidate.id = UUID() }
@@ -354,6 +389,8 @@ final class VenueModel {
     }
 
     func deletePreset(_ id: UUID) {
+        guard !libraryBusy else { return }
+        beginHistoryAction("Delete preset"); defer { endHistoryAction() }
         guard presets.contains(where: { $0.id == id }) else { return }
         let updated = PresetOperations.clearing(id, fixtures: fixtures)
         if fixtures != updated { fixtures = updated; revision += 1; persist() }
@@ -365,6 +402,8 @@ final class VenueModel {
     }
 
     @discardableResult func applyPreset(_ presetID: UUID, to fixtureID: UUID) -> Bool {
+        guard !libraryBusy else { return false }
+        beginHistoryAction("Apply preset"); defer { endHistoryAction() }
         defer { endPresetDrag() }
         guard let preset = presets.first(where: { $0.id == presetID }) else {
             message = "That preset no longer exists."
@@ -384,6 +423,8 @@ final class VenueModel {
     }
 
     func clearAssignment(_ id: UUID) {
+        guard !libraryBusy else { return }
+        beginHistoryAction("Clear fixture preset"); defer { endHistoryAction() }
         guard let index = fixtures.firstIndex(where: { $0.id == id }), fixtures[index].presetID != nil else { return }
         fixtures[index].presetID = nil
         fixtures[index].channels = Array(repeating: 0, count: fixtures[index].channels.count)
@@ -404,6 +445,8 @@ final class VenueModel {
     }
 
     func transformFixture(_ id: UUID, position: Position3D, yaw: Float, pitch: Float, roll: Float) {
+        guard !libraryBusy else { return }
+        beginHistoryAction("Transform fixture"); defer { endHistoryAction() }
         guard let index = fixtures.firstIndex(where: { $0.id == id }), let environment else { return }
         if let issue = LightingPreview.placementIssue(position, in: environment) { message = issue; return }
         guard [yaw,pitch,roll].allSatisfy(\.isFinite) else { return }
@@ -440,6 +483,8 @@ final class VenueModel {
     func cancelPicking() { scenePick = nil; isPlacing = false; draggingFixture = nil; message = nil }
 
     @discardableResult func acceptTarget(_ target: Position3D) -> Bool {
+        guard !libraryBusy else { return false }
+        beginHistoryAction("Retarget fixture"); defer { endHistoryAction() }
         guard canPlace, case .aim(let id, let method) = scenePick,
               let index = fixtures.firstIndex(where: { $0.id == id }) else { return false }
         var candidate = fixtures[index]
@@ -464,6 +509,8 @@ final class VenueModel {
     }
 
     func reposition(at hit: Position3D, surfaceID: String) {
+        guard !libraryBusy else { return }
+        beginHistoryAction("Reposition fixture"); defer { endHistoryAction() }
         guard canPlace, case .move(let id) = scenePick,
               let index = fixtures.firstIndex(where: { $0.id == id }),
               let surface = environment?.surfaces.first(where: { $0.id == surfaceID }) else { return }
@@ -478,6 +525,8 @@ final class VenueModel {
     }
 
     func repositionOnMesh(at point: Position3D) {
+        guard !libraryBusy else { return }
+        beginHistoryAction("Reposition fixture on mesh"); defer { endHistoryAction() }
         guard canPlace, case .move(let id) = scenePick, let i = fixtures.firstIndex(where: { $0.id == id }), let scannedMesh else { return }
         let radius: Float = fixtures[i].assetID == nil ? 0.12 : LightingPreview.footprintRadius
         guard scannedMesh.supports(point, radius: radius) else { message = "Choose a scanned horizontal surface with enough space."; return }
@@ -487,6 +536,8 @@ final class VenueModel {
     }
 
     func resetAim(_ id: UUID) {
+        guard !libraryBusy else { return }
+        beginHistoryAction("Reset fixture aim"); defer { endHistoryAction() }
         guard let index = fixtures.firstIndex(where: { $0.id == id }), fixtures[index].aimOverride != nil else { return }
         let saved = presets.first(where: { $0.id == fixtures[index].presetID })
         fixtures[index].aimOverride = nil
@@ -517,6 +568,8 @@ final class VenueModel {
     func record(_ item: ToolboxItem) { recent.use(item) }
 
     func remove(_ id: UUID) {
+        guard !libraryBusy else { return }
+        beginHistoryAction("Delete fixture"); defer { endHistoryAction() }
         guard fixtures.contains(where: { $0.id == id }) else { return }
         fixtures.removeAll { $0.id == id }
         scenePick = nil; lastTarget = nil
@@ -535,6 +588,7 @@ final class VenueModel {
         defer { isSyncing = false }
         // Capture before suspension: edits made during the request stay marked as unsynced.
         let payload = SyncPayload(fixtures: fixtures, revision: revision, environment: environment)
+        auditExternal("Mock sync requested · revision \(payload.revision) · \(payload.totalFixtures) fixtures")
         do {
             lastRequestJSON = String(decoding: try payload.jsonData(), as: UTF8.self)
             syncStatus = "Sending \(payload.totalFixtures) fixtures…"
@@ -543,9 +597,11 @@ final class VenueModel {
                 syncedRevision = receipt.revision
             }
             syncStatus = "HTTP 200 · \(receipt.acceptedFixtures) fixtures · \(receipt.acceptedChannels) channels"
+            auditExternal("Mock sync succeeded · revision \(payload.revision) · HTTP 200")
         } catch {
             syncFailed = true
             syncStatus = error.localizedDescription
+            auditExternal("Mock sync failed · revision \(payload.revision) · \(error.localizedDescription)")
         }
     }
 
@@ -553,9 +609,26 @@ final class VenueModel {
         guard rooms.isEmpty else { return }
         rooms = [LibraryRoom(manifest: defaultRoom, origin: .bundled)]
         refreshLibrary()
+        guard !isDemoMode else { return }
+        do {
+            if let saved = try AuditHistory<VenueAuditState>.load(from: historyURL) {
+                for node in saved.nodes { try node.state.validate() }
+                history = saved
+                let state = saved.current.state
+                rooms = state.rooms; savedSetups = state.setups
+                if let room = rooms.first(where: { $0.id == state.roomID }) {
+                    historyDestination = (saved.cursor, nil)
+                    roomRequest = .init(room: room, setup: nil, blank: true)
+                }
+            }
+        } catch {
+            historyBlocked = true
+            historyMessage = "History could not be read. Existing log preserved; history recording is disabled: \(error.localizedDescription)"
+        }
     }
 
     func refreshLibrary() {
+        guard history == nil else { return }
         do {
             let imported = try library.rooms()
             let bundled = rooms.filter { $0.origin == .bundled }
@@ -566,6 +639,7 @@ final class VenueModel {
 
     func requestRoom(_ room: LibraryRoom, setup: VenueSetup? = nil, blank: Bool = true) {
         guard !libraryBusy else { return }
+        flushHistoryEdits()
         do { if let setup { try setup.validate(room: room) } }
         catch { libraryMessage = error.localizedDescription; return }
         libraryBusy = true; canPlace = false; previewDraft = false; cancelPicking()
@@ -575,15 +649,148 @@ final class VenueModel {
 
     @discardableResult func saveSetup(asNew: Bool = false) -> Bool {
         guard let room = activeRoom, !libraryBusy else { return false }
+        beginHistoryAction(asNew ? "Save setup as new" : "Save setup"); defer { endHistoryAction() }
         let name = setupName.trimmingCharacters(in: .whitespacesAndNewlines)
         let snapshot = VenueSetup(id: asNew ? UUID() : (activeSetupID ?? UUID()), name: name, room: room,
                                   fixtures: fixtures, presets: presets, revision: revision, whiteRoom: whiteRoom, houseLight: houseLight)
         do {
             try library.save(snapshot, room: room)
             activeSetupID = snapshot.id; savedSetup = snapshot; setupName = name
-            refreshLibrary(); libraryMessage = "Saved \(name) · \(fixtures.count) fixtures."
+            savedSetups.removeAll { $0.id == snapshot.id }; savedSetups.insert(snapshot, at: 0)
+            libraryMessage = "Saved \(name) · \(fixtures.count) fixtures."
             return true
         } catch { libraryMessage = error.localizedDescription; return false }
+    }
+}
+
+extension VenueModel {
+    var auditState: VenueAuditState? {
+        guard let room = activeRoom else { return nil }
+        return .init(rooms: rooms, setups: savedSetups, roomID: room.id, fixtures: fixtures, presets: presets,
+                     draft: presetDraft, editingPresetID: editingPresetID, setupName: setupName, activeSetupID: activeSetupID,
+                     savedSetup: savedSetup, whiteRoom: whiteRoom, houseLight: houseLight, blackout: blackout,
+                     selectedID: selectedID, expandedID: expandedID, previewDraft: previewDraft)
+    }
+
+    private func startHistoryIfNeeded() {
+        guard history == nil, !historyBlocked, let state = auditState else { return }
+        let initial = AuditHistory(state: state)
+        do { try state.validate(); try initial.save(to: historyURL); history = initial }
+        catch { historyMessage = "History could not start: \(error.localizedDescription)" }
+    }
+
+    /// Nestable transactions keep multi-object operations and slider gestures atomic.
+    func beginHistoryAction(_ title: String) {
+        if actionDepth == 0 { flushHistoryEdits(); actionTitle = title }
+        actionDepth += 1
+    }
+    func endHistoryAction() {
+        guard actionDepth > 0 else { return }
+        actionDepth -= 1
+        if actionDepth == 0, let state = auditState { recordHistory(actionTitle, state: state) }
+    }
+    private func queueHistoryEdit(_ title: String) {
+        guard history != nil, !historyBlocked, !restoringHistory, actionDepth == 0, !libraryBusy, let state = auditState else { return }
+        if let pendingEdit, pendingEdit.title != title { flushHistoryEdits() }
+        pendingEdit = (title, state)
+        editTask?.cancel()
+        editTask = Task { [weak self] in
+            do { try await Task.sleep(for: .milliseconds(400)) } catch { return }
+            self?.flushHistoryEdits()
+        }
+    }
+    func flushHistoryEdits() {
+        editTask?.cancel(); editTask = nil
+        guard let edit = pendingEdit else { return }
+        pendingEdit = nil
+        recordHistory(edit.title, state: edit.state)
+    }
+    private func recordHistory(_ title: String, state: VenueAuditState) {
+        guard !restoringHistory, !historyBlocked, var next = history else { return }
+        do {
+            try state.validate()
+            guard next.record(title, state: state) else { return }
+            try next.save(to: historyURL); history = next; historyMessage = nil
+        } catch { historyMessage = "History save failed: \(error.localizedDescription)" }
+    }
+    func auditExternal(_ title: String) {
+        flushHistoryEdits()
+        guard !historyBlocked, var next = history else { return }
+        next.append(title)
+        do { try next.save(to: historyURL); history = next }
+        catch { historyMessage = "Audit save failed: \(error.localizedDescription)" }
+    }
+    func registerRoom(_ room: LibraryRoom) {
+        beginHistoryAction("\(room.origin == .scanned ? "Scan" : "Import") room · \(room.manifest.title)")
+        defer { endHistoryAction() }
+        if !rooms.contains(where: { $0.id == room.id }) { rooms.append(room) }
+    }
+
+    func undo() {
+        finishHistoryGesture()
+        flushHistoryEdits()
+        if let id = history?.undoTarget { restoreHistory(id, kind: .undo) }
+    }
+    func redo() {
+        finishHistoryGesture()
+        flushHistoryEdits()
+        if let id = history?.redoTarget { restoreHistory(id, kind: .redo) }
+    }
+    func restoreHistory(_ id: UUID, kind: AuditHistory<VenueAuditState>.Entry.Kind = .jump) {
+        guard !libraryBusy, !historyBlocked else { return }
+        // Undo/Redo always includes an in-progress edit before choosing its destination.
+        finishHistoryGesture()
+        flushHistoryEdits()
+        guard let state = history?.node(id)?.state, history?.cursor != id,
+              let room = state.rooms.first(where: { $0.id == state.roomID }) else { return }
+        do {
+            try state.validate()
+            historyDestination = (id, kind)
+            if room.id == activeRoom?.id {
+                try prepareHistoryRestore()
+                if let preparedHistory { history = preparedHistory }
+                self.preparedHistory = nil; historyDestination = nil
+                applyHistoryState(state)
+            } else {
+                libraryBusy = true; canPlace = false
+                roomRequest = .init(room: room, setup: nil, blank: true)
+                roomLoadToken = UUID()
+            }
+        } catch { historyRestoreFailed(error.localizedDescription) }
+    }
+
+    func finishHistoryGesture() {
+        if actionDepth > 0 { actionDepth = 1; endHistoryAction() }
+    }
+
+    /// Called after async asset validation but before publishing a replacement scene.
+    /// Failure leaves the old renderer and history cursor untouched.
+    func prepareHistoryRestore() throws {
+        guard preparedHistory == nil, let destination = historyDestination, var next = history else { return }
+        if let kind = destination.kind { try next.move(to: destination.id, kind: kind); try next.save(to: historyURL) }
+        preparedHistory = next
+    }
+    func historyRestoreFailed(_ reason: String) {
+        if historyDestination != nil { historyMessage = "Could not restore history: \(reason)" }
+        historyDestination = nil; preparedHistory = nil; roomRequest = nil; libraryBusy = false
+    }
+    private func applyHistoryState(_ state: VenueAuditState) {
+        restoringHistory = true
+        defer { restoringHistory = false }
+        cancelPicking(); endPresetDrag(); lastTarget = nil; recent = RecentItems()
+        rooms = state.rooms; savedSetups = state.setups
+        environment = state.rooms.first { $0.id == state.roomID }!.manifest
+        fixtures = state.fixtures; presets = state.presets; presetDraft = state.draft; editingPresetID = state.editingPresetID
+        setupName = state.setupName; activeSetupID = state.activeSetupID; savedSetup = state.savedSetup
+        whiteRoom = state.whiteRoom; houseLight = state.houseLight; blackout = state.blackout
+        selectedID = state.selectedID; expandedID = state.expandedID; previewDraft = state.previewDraft
+        revision += 1; syncedRevision = nil; nextFixtureNumber = fixtures.count+1
+        if !isDemoMode, let data = try? JSONEncoder().encode(presets) { defaults.set(data, forKey: "venue.presets.v1") }
+        persistenceBlocked = false
+        if let environment { do { _ = try placements.load(environment: environment) } catch { persistenceBlocked = true } }
+        persist()
+        environmentStatus = environment!.title
+        historyMessage = "Restored · \(history?.current.title ?? "state")"
     }
 }
 

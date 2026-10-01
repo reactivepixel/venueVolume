@@ -11,6 +11,7 @@
 		17B9C89384D24C90C414BF8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A216CAA2CDE7F26E599DD5EF /* Assets.xcassets */; };
 		2783645E3DCA12EDFCFABF73 /* FixtureLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00372CBAA7C8480C7AC8437A /* FixtureLabel.swift */; };
 		2B78E9F222443AE2BBD9F507 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35673AE49B168A54E86ACC38 /* LaunchView.swift */; };
+		31168DE9ABBE06BB43C628B8 /* AuditHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCC5AEC820ED40A582D3DE4 /* AuditHistoryView.swift */; };
 		3B0F47C7CCF1063038398EAF /* RoomScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939A243D42757B95897B46BF /* RoomScanner.swift */; };
 		401DB4EDFCC193C6117F2594 /* DebugPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58C9AC408DE096B035A72DE /* DebugPanel.swift */; };
 		4073CEA2DD7557680EFADB2B /* FixtureRig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8A9C441DF185E732E8E41E /* FixtureRig.swift */; };
@@ -40,6 +41,7 @@
 		35673AE49B168A54E86ACC38 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		4C2ADB8E13E6149392D53533 /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = Core; sourceTree = SOURCE_ROOT; };
 		5F8F6E6D8005604A5816EC4B /* FixtureAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FixtureAssets; path = VenueVolume/FixtureAssets; sourceTree = SOURCE_ROOT; };
+		6DCC5AEC820ED40A582D3DE4 /* AuditHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditHistoryView.swift; sourceTree = "<group>"; };
 		7173CF5099A0437DFF8633DD /* RoomLibrarySmoke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomLibrarySmoke.swift; sourceTree = "<group>"; };
 		939A243D42757B95897B46BF /* RoomScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomScanner.swift; sourceTree = "<group>"; };
 		94E62033892512E7CB8DF4C0 /* VenueVolume.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = VenueVolume.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +132,7 @@
 		DCB6E7E3210CB8F84B897279 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6DCC5AEC820ED40A582D3DE4 /* AuditHistoryView.swift */,
 				F58C9AC408DE096B035A72DE /* DebugPanel.swift */,
 				00372CBAA7C8480C7AC8437A /* FixtureLabel.swift */,
 				CDAD85CBEF3AD8C985E74BDC /* FixturePanel.swift */,
@@ -219,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31168DE9ABBE06BB43C628B8 /* AuditHistoryView.swift in Sources */,
 				401DB4EDFCC193C6117F2594 /* DebugPanel.swift in Sources */,
 				2783645E3DCA12EDFCFABF73 /* FixtureLabel.swift in Sources */,
 				DF7F226A13D50185AD29409F /* FixturePanel.swift in Sources */,

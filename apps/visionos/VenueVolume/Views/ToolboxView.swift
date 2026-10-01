@@ -11,18 +11,22 @@ struct ToolboxView: View {
             HStack(alignment: .firstTextBaseline) {
                 Text("Toolbox").font(.largeTitle.weight(.semibold))
                 Spacer()
+                HistoryControls()
                 Label("Left wrist", systemImage: "hand.raised").font(.caption).foregroundStyle(.secondary)
                 Menu {
                     Button("Diagnostics & sync") { openWindow(id: "diagnostics") }
-                    Button("Leave venue") { Task { await dismissSpace() } }
+                    Button("Leave venue") { model.flushHistoryEdits(); model.auditExternal("Leave venue"); Task { await dismissSpace() } }
                 } label: { Image(systemName: "ellipsis") }
             }
             @Bindable var model = model
             Picker("Toolbox section", selection: $model.toolboxTab) {
                 Text("Fixtures & presets").tag(0)
                 Text("Rooms & saved setups").tag(1)
+                Text("History").tag(2)
             }.pickerStyle(.segmented)
-            if model.toolboxTab == 1 {
+            if model.toolboxTab == 2 {
+                AuditHistoryView()
+            } else if model.toolboxTab == 1 {
                 RoomLibraryView()
             } else {
             HStack(alignment: .top, spacing: 22) {
@@ -80,17 +84,20 @@ struct ToolboxView: View {
                 Toggle("White model", isOn: $model.whiteRoom).toggleStyle(.button)
                 Toggle("Blackout", isOn: $model.blackout).toggleStyle(.button)
                 Text("Room light").font(.caption)
-                Slider(value: $model.houseLight, in: 0...1).frame(width: 150).accessibilityLabel("Room light")
+                Slider(value: $model.houseLight, in: 0...1, onEditingChanged: { editing in
+                    if editing { model.beginHistoryAction("Adjust room light") } else { model.endHistoryAction() }
+                }).frame(width: 150).accessibilityLabel("Room light")
                 Spacer()
                 Text("VV Preview 16").font(.caption).foregroundStyle(.secondary)
             }
             HStack {
-                Text(model.message ?? model.handTrackingStatus).lineLimit(2)
+                Text(model.historyMessage ?? model.message ?? model.handTrackingStatus).lineLimit(2)
                 Spacer()
                 Text("\(model.fixtures.count) objects · \(model.totalChannels) channels").monospacedDigit()
             }.font(.caption).foregroundStyle(.secondary)
         }
         .padding(26).frame(width: 720)
+        .disabled(model.libraryBusy)
         .glassBackgroundEffect(in: RoundedRectangle(cornerRadius: 30))
     }
 

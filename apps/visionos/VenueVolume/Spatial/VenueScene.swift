@@ -110,6 +110,7 @@ final class VenueScene {
             // Publish only after all assets and collision shapes are ready.
             // A failed import/open therefore leaves the previous room usable.
             try Task.checkCancellation()
+            try model.prepareHistoryRestore()
             root.children.removeAll(); cubes.removeAll(); rigs.removeAll(); labels.removeAll(); drops.removeAll()
             aligned = false; root.transform = Transform(); root.isEnabled = false
             root.addChild(room); proxies.forEach { root.addChild($0) }
@@ -122,6 +123,8 @@ final class VenueScene {
         } catch is CancellationError {
             return false
         } catch {
+            model.historyRestoreFailed(error.localizedDescription)
+            model.auditExternal("Room load failed · \(error.localizedDescription)")
             model.environmentStatus = "Room could not load"
             model.message = error.localizedDescription + " Leave and re-enter to retry."
             model.canPlace = false

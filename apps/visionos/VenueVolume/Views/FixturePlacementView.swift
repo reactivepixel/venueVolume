@@ -52,7 +52,9 @@ struct FixturePlacementView: View {
                 let a = FixtureAiming.angles(current.orientation)
                 model.transformFixture(fixture.id, position: current.position,
                                        yaw: axis == 0 ? next : a.yaw, pitch: axis == 1 ? next : a.pitch, roll: axis == 2 ? next : a.roll)
-            }), in: axis == 1 ? -89...89 : -180...180, step: 1).accessibilityLabel("Mount \(title)")
+            }), in: axis == 1 ? -89...89 : -180...180, step: 1, onEditingChanged: { editing in
+                if editing { model.beginHistoryAction("Rotate fixture · \(title)") } else { model.endHistoryAction() }
+            }).accessibilityLabel("Mount \(title)")
         }
     }
 
@@ -66,7 +68,9 @@ struct FixturePlacementView: View {
                 guard let current = model.fixture(fixture.id) else { return }
                 var position = current.position; set(&position, next)
                 model.moveFixture(fixture.id, position: position, yawDegrees: model.yawDegrees(for: current))
-            }), in: range, step: 0.01).accessibilityLabel(name)
+            }), in: range, step: 0.01, onEditingChanged: { editing in
+                if editing { model.beginHistoryAction("Move fixture · \(name)") } else { model.endHistoryAction() }
+            }).accessibilityLabel(name)
         }
     }
 }

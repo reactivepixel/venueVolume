@@ -141,5 +141,6 @@ struct SessionSmoke {
         check(preservedWorkingFile == unreadable, "Loading a named setup preserves a damaged working file")
         check(relaunched.saveSetup(asNew: true), "Named setup save remains available when working autosave is blocked")
         print("Room session checks passed: fixture drop, named save/save-as, blank setup, load, preset isolation and relaunch.")
+        try await AuditSmoke.run(environment: environment)
     }
 }
