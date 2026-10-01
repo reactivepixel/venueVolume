@@ -8,6 +8,13 @@ import VenueVolumeCore
 @MainActor
 final class VenueScene {
     let root = Entity()
+    let overlayRoot = Entity()
+    private var frameSubscription: EventSubscription?
+    private let targetMarker = ModelEntity(mesh: .generateSphere(radius: 0.025), materials: [UnlitMaterial(color: .cyan)])
+    private var roomMaterials: [(Entity, ModelComponent)] = []
+    private var displayedWhiteRoom: Bool?
+    private var fixtureTemplate: Entity?
+    private var rigs: [UUID: FixtureRig] = [:]
     let headAnchor = AnchorEntity(.head, trackingMode: .continuous)
     private let repository: (any EnvironmentRepository)?
     private let environmentID: String
@@ -15,7 +22,12 @@ final class VenueScene {
     private var aligned = false
     private var cubes: [UUID: ModelEntity] = [:]
     private var labels: [UUID: Entity] = [:]
-    private var panels: [UUID: Entity] = [:]
+    private var drops: [UUID: Entity] = [:]
+    private var toolbox: Entity?
+    private var palmGate = PalmRevealGate()
+    private var latestLeftHand: HandAnchor?
+    private var lastHandUpdate: Double = 0
+    private var palmPosition = SIMD3<Float>(-0.5, 1.3, -1.2)
     private var deviceTransform = matrix_identity_float4x4
 
     init(repository: (any EnvironmentRepository)? = nil, environmentID: String = "img3153-classroom-v1") {
@@ -53,6 +65,27 @@ final class VenueScene {
             root.transform = Transform()
             root.isEnabled = false
             root.addChild(room)
+            roomMaterials.removeAll()
+            rememberMaterials(room)
+            model.environmentStatus = "Preparing room targeting…"
+            for (entity, component) in roomMaterials {
+                let shape = try await ShapeResource.generateStaticMesh(from: component.mesh)
+                try Task.checkCancellation()
+                entity.name = "aim-surface:" + entity.name
+                entity.components.set(CollisionComponent(shapes: [shape]))
+                entity.components.set(InputTargetComponent(allowedInputTypes: []))
+            }
+            displayedWhiteRoom = nil
+            guard let fixtureURL = Bundle.main.resourceURL?.appendingPathComponent("FixtureAssets/RogueR1X/fixture.usdz") else {
+                throw EnvironmentError.invalid("fixture resources are missing")
+            }
+            let template = try await Entity(contentsOf: fixtureURL)
+            try Task.checkCancellation()
+            fixtureTemplate = template
+            // Fail visibly before accepting placements if the expected rig cannot be built.
+            _ = try FixtureRig(template: template, id: UUID())
+            model.fixtureAssetStatus = "Rogue R1X Spot · catalog visualization proxy"
+            rigs.removeAll()
             for proxy in resolved.manifest.colliders {
                 let entity = Entity()
                 entity.name = "room-collider:" + proxy.sourceID
@@ -65,7 +98,7 @@ final class VenueScene {
                 entity.components.set(InputTargetComponent(allowedInputTypes: [.indirect]))
                 root.addChild(entity)
             }
-            // RealityKit's default immersive IBL lights these portable PBR materials.
+            // Imported opaque PBR meshes receive dynamic light and write depth.
             manifest = resolved.manifest
             model.activate(environment: resolved.manifest)
             return true
@@ -75,17 +108,34 @@ final class VenueScene {
             model.environmentStatus = "Room could not load"
             model.message = error.localizedDescription + " Leave and re-enter to retry."
             model.canPlace = false
+            model.needsManualToolbox = true
+            model.toolboxVisible = true
             return false
         }
     }
 
+    func startAnimation(in content: RealityViewContent) {
+        frameSubscription = content.subscribe(to: SceneEvents.Update.self) { [weak self] event in
+            self?.rigs.values.forEach { $0.tick(deltaTime: event.deltaTime) }
+        }
+    }
+
     func handleTap(entity: Entity, position: SIMD3<Float>, model: VenueModel) {
-        if entity.name.hasPrefix("room-collider:"), model.isPlacing {
+        let point = Position3D(x: position.x, y: position.y, z: position.z)
+        if entity.name.hasPrefix("aim-surface:"), model.isRetargeting {
+            _ = model.acceptTarget(point)
+        } else if entity.name.hasPrefix("room-collider:") {
             let id = String(entity.name.dropFirst("room-collider:".count))
-            model.place(at: position, surfaceID: id)
-        } else if let id = UUID(uuidString: entity.name) {
+            if model.isPlacing { model.place(at: position, surfaceID: id) }
+            else if model.scenePick != nil { model.reposition(at: point, surfaceID: id) }
+        } else if !model.isPickingRoom, let id = UUID(uuidString: entity.name) {
             model.select(id)
         }
+    }
+
+    private func rememberMaterials(_ entity: Entity) {
+        if let model = entity.components[ModelComponent.self] { roomMaterials.append((entity, model)) }
+        for child in entity.children { rememberMaterials(child) }
     }
 
     private func alignToSpawn() {
@@ -101,103 +151,226 @@ final class VenueScene {
     }
 
     func update(model: VenueModel, attachments: RealityViewAttachments) {
-        if let debug = attachments.entity(for: "debug"), debug.parent == nil {
-            debug.position = [0.52, -0.16, -1.15]
-            headAnchor.addChild(debug)
+        if let pane = attachments.entity(for: "toolbox"), pane.parent == nil {
+            overlayRoot.addChild(pane)
+            pane.position = [-0.68, 1.35, -1.45]
+            pane.components.set(BillboardComponent())
+            toolbox = pane
+        }
+        toolbox?.isEnabled = model.toolboxVisible
+        if let hud = attachments.entity(for: "targeting") {
+            if hud.parent == nil { hud.position = [0, -0.42, -1.2]; headAnchor.addChild(hud) }
+            hud.isEnabled = model.isPickingRoom
+        }
+        if targetMarker.parent == nil { root.addChild(targetMarker) }
+        targetMarker.components.set(DynamicLightShadowComponent(castsShadow: false))
+        targetMarker.isEnabled = model.lastTarget != nil
+        if let target = model.lastTarget { targetMarker.position = FixtureAiming.vector(target) }
+        for (entity, _) in roomMaterials {
+            entity.components.set(InputTargetComponent(allowedInputTypes: model.isRetargeting ? [.indirect] : []))
+        }
+        for child in root.children where child.name.hasPrefix("room-collider:") {
+            child.components.set(InputTargetComponent(allowedInputTypes: model.isRetargeting ? [] : [.indirect]))
+        }
+        if let preview = attachments.entity(for: "palm-preview"), preview.parent == nil {
+            preview.position = [0.57, -0.30, -1.3]
+            headAnchor.addChild(preview)
         }
 
+        if displayedWhiteRoom != model.whiteRoom {
+            var white = PhysicallyBasedMaterial()
+            white.baseColor = .init(tint: UIColor(white: 0.82, alpha: 1))
+            white.roughness = .init(floatLiteral: 0.85)
+            for (entity, original) in roomMaterials {
+                var component = original
+                if model.whiteRoom { component.materials = original.materials.map { _ in white } }
+                entity.components.set(component)
+            }
+            displayedWhiteRoom = model.whiteRoom
+        }
+        root.components.set(EnvironmentLightingConfigurationComponent(environmentLightingWeight: model.houseLight))
         let ids = Set(model.fixtures.map(\.id))
+        for id in Array(rigs.keys) where !ids.contains(id) {
+            rigs.removeValue(forKey: id)?.entity.removeFromParent()
+            labels.removeValue(forKey: id)?.removeFromParent()
+            drops.removeValue(forKey: id)?.removeFromParent()
+        }
         for id in Array(cubes.keys) where !ids.contains(id) {
             cubes.removeValue(forKey: id)?.removeFromParent()
             labels.removeValue(forKey: id)?.removeFromParent()
-            panels.removeValue(forKey: id)?.removeFromParent()
+            drops.removeValue(forKey: id)?.removeFromParent()
         }
         for fixture in model.fixtures {
-            let cube: ModelEntity
-            if let existing = cubes[fixture.id] {
-                cube = existing
-            } else {
-                cube = Self.makeCube(id: fixture.id)
-                cubes[fixture.id] = cube
-                root.addChild(cube)
-            }
             let position = SIMD3<Float>(fixture.position.x, fixture.position.y, fixture.position.z)
-            cube.position = position
-            cube.orientation = simd_quatf(ix: fixture.orientation.x, iy: fixture.orientation.y, iz: fixture.orientation.z, r: fixture.orientation.w)
-            cube.scale = SIMD3(fixture.scale.x, fixture.scale.y, fixture.scale.z)
             let selected = model.selectedID == fixture.id
-            cube.model?.materials = [Self.glass(opacity: selected ? 0.16 : 0.07)]
-            cube.children.forEach { $0.components.set(OpacityComponent(opacity: selected ? 1 : 0.45)) }
-            // Room collision surfaces receive placement gestures while placement is armed.
-            cube.components.set(InputTargetComponent(allowedInputTypes: model.isPlacing ? [] : [.indirect, .direct]))
+            if fixture.assetID == LightingPreview.assetID, let template = fixtureTemplate {
+                if rigs[fixture.id] == nil {
+                    do {
+                        let rig = try FixtureRig(template: template, id: fixture.id)
+                        rigs[fixture.id] = rig; root.addChild(rig.entity)
+                    } catch { model.message = error.localizedDescription }
+                }
+                rigs[fixture.id]?.update(fixture: fixture, channels: model.renderedChannels(for: fixture),
+                                         selected: selected, blackout: model.blackout, placing: model.isPickingRoom)
+            } else {
+                let cube = cubes[fixture.id] ?? Self.makeCube(id: fixture.id)
+                if cube.parent == nil { root.addChild(cube); cubes[fixture.id] = cube }
+                cube.position = position
+                cube.orientation = simd_quatf(ix: fixture.orientation.x, iy: fixture.orientation.y, iz: fixture.orientation.z, r: fixture.orientation.w)
+                cube.scale = FixtureAiming.vector(fixture.scale)
+                cube.model?.materials = [Self.glass(opacity: selected ? 0.16 : 0.07)]
+                cube.components.set(InputTargetComponent(allowedInputTypes: model.isPickingRoom ? [] : [.indirect, .direct]))
+            }
             if let label = attachments.entity(for: "label-\(fixture.id)") {
                 if label.parent == nil { root.addChild(label) }
-                label.position = position + [0, 0.24, 0]
+                // Pin the lower edge above the cube so Info expands upward.
+                let height = label.visualBounds(relativeTo: label).extents.y
+                label.position = position + [0, (fixture.assetID == nil ? 0.18 : 0.55) + height / 2, 0.04]
                 label.components.set(BillboardComponent())
                 labels[fixture.id] = label
             }
-            if model.expandedID == fixture.id, let panel = attachments.entity(for: "panel-\(fixture.id)") {
-                if panel.parent == nil { root.addChild(panel) }
-                panel.position = position + [-0.48, -0.08, 0.1]
-                panel.components.set(BillboardComponent())
-                panels[fixture.id] = panel
-            } else {
-                panels.removeValue(forKey: fixture.id)?.removeFromParent()
+            if let drop = attachments.entity(for: "drop-\(fixture.id)") {
+                if drop.parent == nil { root.addChild(drop) }
+                drop.position = position + [0, fixture.assetID == nil ? 0 : 0.22, 0.20]
+                drop.components.set(BillboardComponent())
+                drop.isEnabled = !model.isPickingRoom
+                drops[fixture.id] = drop
             }
         }
     }
 
     func runTracking(model: VenueModel) async {
+        defer {
+            model.canPlace = false
+            model.toolboxVisible = false
+            palmGate = PalmRevealGate()
+        }
         #if targetEnvironment(simulator)
         model.trackingStatus = "Simulator · room-relative placement"
         alignToSpawn()
         model.canPlace = manifest != nil
         // ARKit device tracking is unavailable in Simulator; use its floor origin and forward direction.
         while !Task.isCancelled {
+            model.handTrackingStatus = "Simulator palm preview"
+            setToolboxVisible(model.simulatedPalm || model.draggingPresetID != nil, model: model)
             try? await Task.sleep(for: .milliseconds(33))
         }
-        model.canPlace = false
         #else
         guard WorldTrackingProvider.isSupported else {
-            model.trackingStatus = "World tracking is unavailable on this device."
+            model.trackingStatus = "World tracking is unavailable."
             return
         }
-        // A stopped ARKit provider cannot be restarted; each entrance gets a fresh pair.
         let session = ARKitSession()
-        let worldTracking = WorldTrackingProvider()
-        defer {
-            session.stop()
-            model.canPlace = false
+        let world = WorldTrackingProvider()
+        let hands = HandTrackingProvider()
+        defer { session.stop(); latestLeftHand = nil }
+        var handAccess = false
+        if HandTrackingProvider.isSupported {
+            let status = await session.requestAuthorization(for: [.handTracking])
+            handAccess = status[.handTracking] == .allowed
         }
+        model.needsManualToolbox = !handAccess
+        model.handTrackingStatus = handAccess ? "Raise your left palm toward you" : "Hand tracking unavailable · use Show toolbox"
         do {
-            try await session.run([worldTracking])
+            if handAccess { try await session.run([world, hands]) }
+            else { try await session.run([world]) }
+            // Cache the update stream instead of consuming latestAnchors every frame;
+            // missing a provider tick must not restart the reveal debounce.
+            let handTask: Task<Void, Never>? = handAccess ? Task { @MainActor in
+                for await update in hands.anchorUpdates {
+                    guard !Task.isCancelled else { return }
+                    if update.anchor.chirality == .left {
+                        self.latestLeftHand = update.event == .removed ? nil : update.anchor
+                        self.lastHandUpdate = CACurrentMediaTime()
+                    }
+                }
+            } : nil
+            defer { handTask?.cancel() }
             while !Task.isCancelled {
-                if worldTracking.state == .running,
-                   let anchor = worldTracking.queryDeviceAnchor(atTimestamp: CACurrentMediaTime()), anchor.isTracked {
-                    deviceTransform = anchor.originFromAnchorTransform
+                let now = CACurrentMediaTime()
+                var eligible = false
+                if world.state == .running,
+                   let device = world.queryDeviceAnchor(atTimestamp: now), device.isTracked {
+                    deviceTransform = device.originFromAnchorTransform
                     alignToSpawn()
                     model.canPlace = manifest != nil
                     model.trackingStatus = "World tracking active"
+                    if handAccess, hands.state == .running, now - lastHandUpdate < 0.25, let hand = latestLeftHand {
+                        eligible = palmFacesViewer(hand)
+                    }
                 } else {
                     model.canPlace = false
                     model.trackingStatus = "Tracking paused · look around to recover"
                 }
+                if handAccess && hands.state == .stopped {
+                    model.needsManualToolbox = true
+                    model.handTrackingStatus = "Hand tracking stopped · use Show toolbox or re-enter to retry"
+                }
+                let revealed = palmGate.update(eligible: eligible, now: now)
+                let visible = model.needsManualToolbox ? model.simulatedPalm : revealed
+                setToolboxVisible(visible || model.draggingPresetID != nil, model: model)
                 try await Task.sleep(for: .milliseconds(33))
             }
         } catch is CancellationError {
-            // Immersive space dismissed.
         } catch {
             model.trackingStatus = "Tracking unavailable: \(error.localizedDescription)"
+            model.needsManualToolbox = true
+            model.handTrackingStatus = "Use Show toolbox or re-enter the venue to retry tracking."
+            // Keep the explicit fallback responsive even after authorization/session failure.
+            while !Task.isCancelled {
+                setToolboxVisible(model.simulatedPalm, model: model)
+                try? await Task.sleep(for: .milliseconds(33))
+            }
         }
         #endif
     }
 
+    private func palmFacesViewer(_ hand: HandAnchor) -> Bool {
+        guard hand.chirality == .left, hand.isTracked, let skeleton = hand.handSkeleton else { return false }
+        let names: [HandSkeleton.JointName] = [.wrist, .indexFingerKnuckle, .littleFingerKnuckle]
+        let joints = names.map { skeleton.joint($0) }
+        guard joints.allSatisfy(\.isTracked) else { return false }
+        let points = joints.map { joint -> SIMD3<Float> in
+            let t = hand.originFromAnchorTransform * joint.anchorFromJointTransform
+            return SIMD3(t.columns.3.x, t.columns.3.y, t.columns.3.z)
+        }
+        let wrist = points[0], index = points[1], little = points[2]
+        let normal = simd_cross(index - wrist, little - wrist)
+        guard simd_length(normal) > 0.0001 else { return false }
+        let center = (wrist + index + little) / 3
+        let head = SIMD3(deviceTransform.columns.3.x, deviceTransform.columns.3.y, deviceTransform.columns.3.z)
+        let towardPalm = center - head
+        let distance = simd_length(towardPalm)
+        guard distance > 0.15, distance < 1.0 else { return false }
+        let forward = -SIMD3(deviceTransform.columns.2.x, deviceTransform.columns.2.y, deviceTransform.columns.2.z)
+        let visible = simd_dot(simd_normalize(towardPalm), forward) > 0.72
+        let facing = simd_dot(simd_normalize(normal), -simd_normalize(towardPalm)) > 0.55
+        // Use head orientation as a viewing-area approximation; no eye gaze is read.
+        if visible && facing {
+            palmPosition = head + simd_normalize(towardPalm) * max(distance, 0.95) + [0, 0.18, 0]
+        }
+        return visible && facing
+    }
+
+    private func setToolboxVisible(_ visible: Bool, model: VenueModel) {
+        #if !targetEnvironment(simulator)
+        if visible && !model.toolboxVisible {
+            toolbox?.position = palmPosition
+        }
+        #endif
+        if model.toolboxVisible != visible { model.toolboxVisible = visible }
+        toolbox?.isEnabled = visible
+    }
+
     func clearAttachments() {
         for entity in labels.values { entity.removeFromParent() }
-        for entity in panels.values { entity.removeFromParent() }
+        for entity in drops.values { entity.removeFromParent() }
         labels.removeAll()
-        panels.removeAll()
+        drops.removeAll()
+        toolbox?.removeFromParent()
+        toolbox = nil
         headAnchor.children.removeAll()
+        frameSubscription?.cancel(); frameSubscription = nil
     }
 
     private static func glass(opacity: Float) -> PhysicallyBasedMaterial {

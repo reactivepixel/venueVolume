@@ -16,8 +16,11 @@ targets:
     platform: visionOS
     sources:
       - path: VenueVolume
-        excludes: [Environments]
+        excludes: [Environments, FixtureAssets]
       - path: VenueVolume/Environments
+        type: folder
+        buildPhase: resources
+      - path: VenueVolume/FixtureAssets
         type: folder
         buildPhase: resources
     dependencies:
