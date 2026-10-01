@@ -121,6 +121,12 @@ struct PresetEditorView: View {
                 }.padding(.vertical, 6)
             }.frame(maxHeight: .infinity)
             Divider()
+            if let selected = model.selectedID.flatMap(model.fixture), let aim = selected.aimOverride {
+                HStack {
+                    Text("Selected fixture aim: Pan \(aim.pan) / Tilt \(aim.tilt). Saved presets preserve this override.").font(.caption)
+                    Button("Use preset aim") { model.resetAim(selected.id) }.font(.caption)
+                }
+            }
             if let id = model.selectedID, let fixture = model.fixture(id) {
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {

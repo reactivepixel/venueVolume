@@ -8,6 +8,15 @@ import VenueVolumeCore
     private let yoke: Entity
     private let head: Entity
     private let emitter: Entity
+    private var lastBase: Transform?
+    private var requestedPan: Float?
+    private var requestedTilt: Float?
+    private var currentPan: Float = 0
+    private var currentTilt: Float = 0
+    private var startPan: Float = 0
+    private var startTilt: Float = 0
+    private var elapsed: Double = 0.6
+    private let duration: Double = 0.6
     private let selection: ModelEntity
 
     init(template: Entity, id: UUID) throws {
@@ -45,12 +54,22 @@ import VenueVolumeCore
     }
 
     func update(fixture: Fixture, channels: [Int], selected: Bool, blackout: Bool, placing: Bool) {
-        entity.position = [fixture.position.x, fixture.position.y, fixture.position.z]
-        entity.orientation = simd_quatf(ix: fixture.orientation.x, iy: fixture.orientation.y, iz: fixture.orientation.z, r: fixture.orientation.w)
-        entity.scale = [fixture.scale.x, fixture.scale.y, fixture.scale.z]
+        let base = Transform(scale: [fixture.scale.x, fixture.scale.y, fixture.scale.z],
+                             rotation: simd_quatf(ix: fixture.orientation.x, iy: fixture.orientation.y, iz: fixture.orientation.z, r: fixture.orientation.w),
+                             translation: [fixture.position.x, fixture.position.y, fixture.position.z])
+        if lastBase != base {
+            if lastBase == nil { entity.transform = base }
+            else { entity.move(to: base, relativeTo: entity.parent, duration: duration, timingFunction: .easeInOut) }
+            lastBase = base
+        }
         let look = LightingPreview(channels: channels, blackout: blackout)
-        yoke.orientation = simd_quatf(angle: look.panDegrees * .pi/180, axis: [0,1,0])
-        head.orientation = simd_quatf(angle: look.tiltDegrees * .pi/180, axis: [1,0,0])
+        if requestedPan != look.panDegrees || requestedTilt != look.tiltDegrees {
+            if requestedPan == nil { currentPan = look.panDegrees; currentTilt = look.tiltDegrees }
+            startPan = currentPan; startTilt = currentTilt
+            requestedPan = look.panDegrees; requestedTilt = look.tiltDegrees
+            elapsed = 0
+            tick(deltaTime: 0)
+        }
         var light = SpotLightComponent()
         light.intensity = look.intensity
         light.color = UIColor(red: CGFloat(look.rgb[0]), green: CGFloat(look.rgb[1]), blue: CGFloat(look.rgb[2]), alpha: 1)
@@ -62,6 +81,18 @@ import VenueVolumeCore
         for child in entity.children where child.components.has(InputTargetComponent.self) {
             child.components.set(InputTargetComponent(allowedInputTypes: placing ? [] : [.indirect, .direct]))
         }
+    }
+
+    func tick(deltaTime: Double) {
+        guard let pan = requestedPan, let tilt = requestedTilt else { return }
+        elapsed = min(duration, elapsed + max(0, deltaTime))
+        let t = Float(elapsed / duration), eased = t*t*(3-2*t)
+        // Scalar interpolation travels through the valid motor range, never the
+        // quaternion shortest path through the head's forbidden rear sector.
+        currentPan = startPan + (pan-startPan)*eased
+        currentTilt = startTilt + (tilt-startTilt)*eased
+        yoke.orientation = simd_quatf(angle: currentPan * .pi/180, axis: [0,1,0])
+        head.orientation = simd_quatf(angle: currentTilt * .pi/180, axis: [1,0,0])
     }
 
     private static func disableSelfShadows(_ entity: Entity) {

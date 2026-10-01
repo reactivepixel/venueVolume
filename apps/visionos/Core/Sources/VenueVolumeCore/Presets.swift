@@ -65,6 +65,7 @@ public enum PresetOperations {
         var result = fixtures
         result[index].presetID = preset.id
         result[index].channels = preset.channels
+        result[index].preserveAimOverride()
         try validate(result)
         return result
     }
@@ -74,6 +75,7 @@ public enum PresetOperations {
         var result = fixtures
         for index in result.indices where result[index].presetID == preset.id {
             result[index].channels = preset.channels
+            result[index].preserveAimOverride()
         }
         try validate(result)
         return result
@@ -85,6 +87,7 @@ public enum PresetOperations {
             if fixture.presetID == presetID {
                 fixture.presetID = nil
                 fixture.channels = Array(repeating: 0, count: fixture.channels.count)
+                fixture.preserveAimOverride()
             }
             return fixture
         }

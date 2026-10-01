@@ -9,6 +9,8 @@ import VenueVolumeCore
 final class VenueScene {
     let root = Entity()
     let overlayRoot = Entity()
+    private var frameSubscription: EventSubscription?
+    private let targetMarker = ModelEntity(mesh: .generateSphere(radius: 0.025), materials: [UnlitMaterial(color: .cyan)])
     private var roomMaterials: [(Entity, ModelComponent)] = []
     private var displayedWhiteRoom: Bool?
     private var fixtureTemplate: Entity?
@@ -65,6 +67,14 @@ final class VenueScene {
             root.addChild(room)
             roomMaterials.removeAll()
             rememberMaterials(room)
+            model.environmentStatus = "Preparing room targeting…"
+            for (entity, component) in roomMaterials {
+                let shape = try await ShapeResource.generateStaticMesh(from: component.mesh)
+                try Task.checkCancellation()
+                entity.name = "aim-surface:" + entity.name
+                entity.components.set(CollisionComponent(shapes: [shape]))
+                entity.components.set(InputTargetComponent(allowedInputTypes: []))
+            }
             displayedWhiteRoom = nil
             guard let fixtureURL = Bundle.main.resourceURL?.appendingPathComponent("FixtureAssets/RogueR1X/fixture.usdz") else {
                 throw EnvironmentError.invalid("fixture resources are missing")
@@ -104,11 +114,21 @@ final class VenueScene {
         }
     }
 
+    func startAnimation(in content: RealityViewContent) {
+        frameSubscription = content.subscribe(to: SceneEvents.Update.self) { [weak self] event in
+            self?.rigs.values.forEach { $0.tick(deltaTime: event.deltaTime) }
+        }
+    }
+
     func handleTap(entity: Entity, position: SIMD3<Float>, model: VenueModel) {
-        if entity.name.hasPrefix("room-collider:"), model.isPlacing {
+        let point = Position3D(x: position.x, y: position.y, z: position.z)
+        if entity.name.hasPrefix("aim-surface:"), model.isRetargeting {
+            _ = model.acceptTarget(point)
+        } else if entity.name.hasPrefix("room-collider:") {
             let id = String(entity.name.dropFirst("room-collider:".count))
-            model.place(at: position, surfaceID: id)
-        } else if let id = UUID(uuidString: entity.name) {
+            if model.isPlacing { model.place(at: position, surfaceID: id) }
+            else if model.scenePick != nil { model.reposition(at: point, surfaceID: id) }
+        } else if !model.isPickingRoom, let id = UUID(uuidString: entity.name) {
             model.select(id)
         }
     }
@@ -138,6 +158,20 @@ final class VenueScene {
             toolbox = pane
         }
         toolbox?.isEnabled = model.toolboxVisible
+        if let hud = attachments.entity(for: "targeting") {
+            if hud.parent == nil { hud.position = [0, -0.42, -1.2]; headAnchor.addChild(hud) }
+            hud.isEnabled = model.isPickingRoom
+        }
+        if targetMarker.parent == nil { root.addChild(targetMarker) }
+        targetMarker.components.set(DynamicLightShadowComponent(castsShadow: false))
+        targetMarker.isEnabled = model.lastTarget != nil
+        if let target = model.lastTarget { targetMarker.position = FixtureAiming.vector(target) }
+        for (entity, _) in roomMaterials {
+            entity.components.set(InputTargetComponent(allowedInputTypes: model.isRetargeting ? [.indirect] : []))
+        }
+        for child in root.children where child.name.hasPrefix("room-collider:") {
+            child.components.set(InputTargetComponent(allowedInputTypes: model.isRetargeting ? [] : [.indirect]))
+        }
         if let preview = attachments.entity(for: "palm-preview"), preview.parent == nil {
             preview.position = [0.57, -0.30, -1.3]
             headAnchor.addChild(preview)
@@ -177,13 +211,15 @@ final class VenueScene {
                     } catch { model.message = error.localizedDescription }
                 }
                 rigs[fixture.id]?.update(fixture: fixture, channels: model.renderedChannels(for: fixture),
-                                         selected: selected, blackout: model.blackout, placing: model.isPlacing)
+                                         selected: selected, blackout: model.blackout, placing: model.isPickingRoom)
             } else {
                 let cube = cubes[fixture.id] ?? Self.makeCube(id: fixture.id)
                 if cube.parent == nil { root.addChild(cube); cubes[fixture.id] = cube }
                 cube.position = position
+                cube.orientation = simd_quatf(ix: fixture.orientation.x, iy: fixture.orientation.y, iz: fixture.orientation.z, r: fixture.orientation.w)
+                cube.scale = FixtureAiming.vector(fixture.scale)
                 cube.model?.materials = [Self.glass(opacity: selected ? 0.16 : 0.07)]
-                cube.components.set(InputTargetComponent(allowedInputTypes: model.isPlacing ? [] : [.indirect, .direct]))
+                cube.components.set(InputTargetComponent(allowedInputTypes: model.isPickingRoom ? [] : [.indirect, .direct]))
             }
             if let label = attachments.entity(for: "label-\(fixture.id)") {
                 if label.parent == nil { root.addChild(label) }
@@ -197,7 +233,7 @@ final class VenueScene {
                 if drop.parent == nil { root.addChild(drop) }
                 drop.position = position + [0, fixture.assetID == nil ? 0 : 0.22, 0.20]
                 drop.components.set(BillboardComponent())
-                drop.isEnabled = !model.isPlacing
+                drop.isEnabled = !model.isPickingRoom
                 drops[fixture.id] = drop
             }
         }
@@ -334,6 +370,7 @@ final class VenueScene {
         toolbox?.removeFromParent()
         toolbox = nil
         headAnchor.children.removeAll()
+        frameSubscription?.cancel(); frameSubscription = nil
     }
 
     private static func glass(opacity: Float) -> PhysicallyBasedMaterial {

@@ -2,6 +2,9 @@ import Foundation
 import Observation
 import VenueVolumeCore
 
+enum AimMethod: String, CaseIterable { case head = "Aim head (DMX)", mount = "Aim mount" }
+enum ScenePick: Equatable { case move(UUID), aim(UUID, AimMethod) }
+
 @MainActor @Observable
 final class VenueModel {
     private(set) var fixtures: [Fixture] = []
@@ -24,6 +27,18 @@ final class VenueModel {
     var blackout = false
     var houseLight: Float = 0.15
     var whiteRoom = true
+    var scenePick: ScenePick?
+    var lastTarget: Position3D?
+    var isRetargeting: Bool { if case .aim = scenePick { true } else { false } }
+    var isPickingRoom: Bool { isPlacing || scenePick != nil }
+    var pickingInstruction: String {
+        switch scenePick {
+        case .move: "Look at a clear floor or tabletop, then pinch to reposition."
+        case .aim(_, .head): "Look at a point on the room, then pinch to aim the head."
+        case .aim(_, .mount): "Look at a point on the room, then pinch to aim the mount."
+        case nil: "Look at a clear floor or tabletop, then pinch to place."
+        }
+    }
     var controlsTab = 0
     var presetWindowVisible = false
     var fixtureAssetStatus = "Loading fixture asset…"
@@ -178,7 +193,8 @@ final class VenueModel {
 
     func select(_ id: UUID, expand: Bool = false) {
         guard fixture(id) != nil else { return }
-        if selectedID != id { expandedID = nil }
+        if selectedID != id { expandedID = nil; lastTarget = nil }
+        scenePick = nil
         selectedID = id
         recent.use(.fixture(id))
         isPlacing = false
@@ -186,6 +202,7 @@ final class VenueModel {
     }
 
     func beginPlacement() {
+        scenePick = nil
         isPlacing.toggle()
         expandedID = nil
         message = nil
@@ -247,7 +264,7 @@ final class VenueModel {
         recent.remove(.preset(id))
         if !isDemoMode, let data = try? JSONEncoder().encode(presets) { defaults.set(data, forKey: "venue.presets.v1") }
         if let first = presets.first { choosePreset(first) } else { newPreset() }
-        presetMessage = "Preset deleted. Its assigned fixtures are now zeroed and unassigned."
+        presetMessage = "Preset deleted. Assigned fixtures are dark and unassigned; aim overrides are preserved."
     }
 
     @discardableResult func applyPreset(_ presetID: UUID, to fixtureID: UUID) -> Bool {
@@ -273,9 +290,10 @@ final class VenueModel {
         guard let index = fixtures.firstIndex(where: { $0.id == id }), fixtures[index].presetID != nil else { return }
         fixtures[index].presetID = nil
         fixtures[index].channels = Array(repeating: 0, count: fixtures[index].channels.count)
+        fixtures[index].preserveAimOverride()
         revision += 1
         persist()
-        presetMessage = "Object assignment cleared; channel values are zero."
+        presetMessage = "Assignment cleared. Output is zero; any aim override is preserved."
     }
 
     func renderedChannels(for fixture: Fixture) -> [Int] {
@@ -283,21 +301,94 @@ final class VenueModel {
     }
 
     func moveFixture(_ id: UUID, position: Position3D, yawDegrees: Float) {
+        guard let fixture = fixture(id) else { return }
+        let angles = FixtureAiming.angles(fixture.orientation)
+        transformFixture(id, position: position, yaw: yawDegrees, pitch: angles.pitch, roll: angles.roll)
+    }
+
+    func transformFixture(_ id: UUID, position: Position3D, yaw: Float, pitch: Float, roll: Float) {
         guard let index = fixtures.firstIndex(where: { $0.id == id }), let environment else { return }
         if let issue = LightingPreview.placementIssue(position, in: environment) { message = issue; return }
-        guard yawDegrees.isFinite else { return }
-        let angle = yawDegrees * .pi / 180
+        guard [yaw,pitch,roll].allSatisfy(\.isFinite) else { return }
         var candidate = fixtures[index]
         candidate.position = position
-        candidate.orientation = .init(y: sin(angle/2), w: cos(angle/2))
-        candidate.surfaceID = nil // manual rigging no longer claims a supporting surface
+        candidate.orientation = FixtureAiming.euler(yaw: yaw, pitch: pitch, roll: roll)
+        candidate.surfaceID = nil
         guard candidate != fixtures[index] else { return }
         fixtures[index] = candidate
+        lastTarget = nil
         revision += 1; persist(); message = nil
     }
 
-    func yawDegrees(for fixture: Fixture) -> Float {
-        2 * atan2(fixture.orientation.y, fixture.orientation.w) * 180 / .pi
+    func yawDegrees(for fixture: Fixture) -> Float { FixtureAiming.angles(fixture.orientation).yaw }
+
+    func beginRetarget(_ id: UUID, method: AimMethod) {
+        guard canPlace, fixture(id)?.assetID == LightingPreview.assetID else { return }
+        select(id)
+        previewDraft = false
+        scenePick = .aim(id, method)
+        lastTarget = nil
+        message = nil
+    }
+
+    func beginReposition(_ id: UUID) {
+        guard canPlace, fixture(id) != nil else { return }
+        select(id)
+        scenePick = .move(id)
+        previewDraft = false
+        lastTarget = nil
+        message = nil
+    }
+
+    func cancelPicking() { scenePick = nil; isPlacing = false; message = nil }
+
+    @discardableResult func acceptTarget(_ target: Position3D) -> Bool {
+        guard canPlace, case .aim(let id, let method) = scenePick,
+              let index = fixtures.firstIndex(where: { $0.id == id }) else { return false }
+        var candidate = fixtures[index]
+        do {
+            switch method {
+            case .head:
+                guard candidate.channels.count >= 6 else { throw PresetError("Apply a preset with at least six channels before aiming the head.") }
+                candidate.aimOverride = try FixtureAiming.articulated(candidate, target: target)
+                candidate.preserveAimOverride()
+            case .mount:
+                candidate.orientation = try FixtureAiming.mounted(candidate, target: target)
+                candidate.surfaceID = nil
+            }
+            if let issue = candidate.validationIssue(among: fixtures) { throw PresetError(issue) }
+            fixtures[index] = candidate
+            lastTarget = target
+            scenePick = nil
+            revision += 1; persist()
+            message = method == .head ? "Head retargeted · pan/tilt override saved for this fixture." : "Mount retargeted · DMX values unchanged."
+            return true
+        } catch { message = error.localizedDescription; return false }
+    }
+
+    func reposition(at hit: Position3D, surfaceID: String) {
+        guard canPlace, case .move(let id) = scenePick,
+              let index = fixtures.firstIndex(where: { $0.id == id }),
+              let surface = environment?.surfaces.first(where: { $0.id == surfaceID }) else { return }
+        let radius: Float = fixtures[index].assetID == nil ? 0.12 : LightingPreview.footprintRadius
+        guard let center = surface.fixturePosition(hit: hit, halfSize: radius) else {
+            message = "Choose a top surface with enough space for the fixture."; return
+        }
+        fixtures[index].position = .init(x: center.x, y: center.y-(fixtures[index].assetID == nil ? 0 : radius), z: center.z)
+        fixtures[index].surfaceID = surfaceID
+        scenePick = nil; lastTarget = nil
+        revision += 1; persist(); message = "Fixture repositioned. Its orientation and DMX values are preserved."
+    }
+
+    func resetAim(_ id: UUID) {
+        guard let index = fixtures.firstIndex(where: { $0.id == id }), fixtures[index].aimOverride != nil else { return }
+        let saved = presets.first(where: { $0.id == fixtures[index].presetID })
+        fixtures[index].aimOverride = nil
+        for channel in 4...5 {
+            fixtures[index].channels[channel] = saved.flatMap { $0.channels.indices.contains(channel) ? $0.channels[channel] : nil } ?? 128
+        }
+        previewDraft = false; lastTarget = nil
+        revision += 1; persist(); message = saved == nil ? "Head returned to neutral pan and tilt." : "Restored the preset's pan and tilt."
     }
 
     func beginPresetDrag(_ id: UUID) {
@@ -322,6 +413,7 @@ final class VenueModel {
     func remove(_ id: UUID) {
         guard fixtures.contains(where: { $0.id == id }) else { return }
         fixtures.removeAll { $0.id == id }
+        scenePick = nil; lastTarget = nil
         recent.remove(.fixture(id))
         if selectedID == id { selectedID = nil }
         if expandedID == id { expandedID = nil }

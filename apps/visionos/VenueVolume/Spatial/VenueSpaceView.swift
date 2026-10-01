@@ -9,6 +9,7 @@ struct VenueSpaceView: View {
 
     var body: some View {
         RealityView { content, attachments in
+            scene.startAnimation(in: content)
             content.add(scene.root)
             content.add(scene.overlayRoot)
             content.add(scene.headAnchor)
@@ -16,6 +17,7 @@ struct VenueSpaceView: View {
         } update: { _, attachments in
             scene.update(model: model, attachments: attachments)
         } attachments: {
+            Attachment(id: "targeting") { TargetingPrompt().environment(model) }
             Attachment(id: "toolbox") { ToolboxView().environment(model) }
             if model.canSimulatePalm || model.needsManualToolbox {
                 Attachment(id: "palm-preview") { SimulatorPalmControl().environment(model) }
@@ -45,13 +47,32 @@ struct VenueSpaceView: View {
                 if !model.presetWindowVisible { openWindow(id: "presets") }
             }
         }
+        .task {
+            let arguments = ProcessInfo.processInfo.arguments
+            guard model.isDemoMode,
+                  arguments.contains("--targeting") || arguments.contains("--retarget-head") || arguments.contains("--retarget-mount") else { return }
+            // Reproducible presentation states exercise the same model commands
+            // as the UI, after the room has loaded and aligned. They are not gesture tests.
+            while !model.canPlace {
+                do { try await Task.sleep(for: .milliseconds(100)) } catch { return }
+            }
+            guard let id = model.selectedID else { return }
+            model.beginRetarget(id, method: arguments.contains("--retarget-mount") ? .mount : .head)
+            if !arguments.contains("--targeting") {
+                do { try await Task.sleep(for: .seconds(5)) } catch { return }
+                _ = model.acceptTarget(.init(x: 2.9, y: 1.8, z: -7.67))
+            }
+        }
         .onAppear {
             model.isImmersed = true
             dismissWindow(id: "launch")
+            if model.isDemoMode && !ProcessInfo.processInfo.arguments.contains("--show-preset-editor") {
+                dismissWindow(id: "presets")
+            }
         }
         .onDisappear {
             model.isImmersed = false
-            model.isPlacing = false
+            model.cancelPicking()
             model.canPlace = false
             model.expandedID = nil
             model.toolboxVisible = false

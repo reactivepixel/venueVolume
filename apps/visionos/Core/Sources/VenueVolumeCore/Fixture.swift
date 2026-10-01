@@ -25,6 +25,7 @@ public struct Quaternion3D: Codable, Equatable, Sendable {
 /// A generic, unverified DMX fixture. Addresses are one-based logical addresses.
 public struct Fixture: Identifiable, Codable, Equatable, Sendable {
     public let id: UUID
+    public var aimOverride: PanTiltOverride?
     public var assetID: String?
     public var presetID: UUID?
     public var name: String
@@ -55,9 +56,21 @@ public struct Fixture: Identifiable, Codable, Equatable, Sendable {
         self.surfaceID = surfaceID
     }
 
+    public mutating func preserveAimOverride() {
+        if let aimOverride, channels.count >= 6 {
+            channels[4] = aimOverride.pan; channels[5] = aimOverride.tilt
+        }
+    }
+
     public var endAddress: Int { startAddress + channels.count - 1 }
 
     public func validationIssue(among fixtures: [Fixture]) -> String? {
+        if let aim = aimOverride {
+            if channels.count < 6 || !(0...255).contains(aim.pan) || !(0...255).contains(aim.tilt) {
+                return "Retargeting needs valid pan/tilt values and at least six channels. Clear the aim override first."
+            }
+            if channels[4] != aim.pan || channels[5] != aim.tilt { return "Resolved channels must match the aim override." }
+        }
         if name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { return "Give this fixture a name." }
         if !(1...63999).contains(universe) { return "Universe must be between 1 and 63999." }
         if !(1...16).contains(channels.count) { return "Choose between 1 and 16 channels." }
