@@ -481,7 +481,7 @@
         "height_m": 3.33,
         "depth_m": 1.25,
         "source_order": "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)",
-        "axis_status": "estimated_envelope",
+        "axis_status": "estimated",
         "axis_note": "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)",
         "reference_pose": "Three legs fully deployed, stand vertical and fully extended to 3.33 m maximum height, leveling leg down; 1.25 m circular footprint envelope is secondary-source estimate; do not interpret as rectangular dimensions."
       },
@@ -785,13 +785,13 @@
         "height_m": 0.9779,
         "depth_m": 1.0,
         "source_order": "1 x 2 m platform; current product page height range 27 to 38.5 in, exact maximum conversion 0.9779 m; 2019 catalog range differs slightly (27.5–39 in)",
-        "axis_status": "documented_platform_estimated_height",
-        "axis_note": "Platform L/W given as 2 x 1 m; height is the maximum position of adjustable legs. Product page says 27–38.5 in; 2019 catalog gives 27.5–39 in, so the height configuration conflicts between manufacturer sources.",
+        "axis_status": "estimated",
+        "axis_note": "Platform footprint is documented. Maximum adjustable height is uncertain because the current product page says 38.5 in (0.9779 m) while the 2019 catalog says 39 in (0.9906 m); retained current-page value as representative configuration.",
         "reference_pose": "Platform horizontal with 2 m edge along X, top surface up; maximum 38.5 in (0.9779 m) leg setting per current product page; height is subject to source conflict."
       }
     },
     {
-      "name": "Fast-Fold Deluxe Screen System, 88692",
+      "name": "Fast-Fold Deluxe Screen System, 88692 (frame/screen only; legs omitted)",
       "model_number": "88692",
       "manufacturer": "Da-Lite (Legrand AV)",
       "category_id": "optional.video_visuals_optional.projection_surfaces",
@@ -802,25 +802,23 @@
       "data": {
         "dimensions": {
           "width_m": 3.048,
-          "height_m": 1.753,
-          "depth_m": 1.505,
-          "source_order": "For model 88692: overall screen/frame size 120 x 69 in (305 x 175 cm rounded); figure also labels a 59 1/4 in (150.5 cm) deployed leg footprint dimension; surface-view area 114.5 x 63.5 in (291 x 161 cm rounded). Depth is support-foot span, not case size."
+          "height_m": 1.7526,
+          "depth_m": 0.03175,
+          "source_order": "Screen/frame only (legs omitted): 120 x 69 in outer frame = 3.048 x 1.7526 m; frame tubing is 1.25 x 1.25 in = 31.75 x 31.75 mm. Viewing area 114.5 x 63.5 in = 2.9083 x 1.6129 m."
         },
-        "dimensions_status": "screen_frame_documented_support_footprint_dimensioned_in_family_view",
-        "dimension_notes": "The manufacturer data sheet lists 69 x 120 in overall size, which matches the SKU page name/surface designation for 88692; the page-2 product view labels a 59 1/4 in leg-foot dimension but does not identify which screen size the illustration depicts. Treat footprint depth as family illustration evidence, not a guaranteed SKU-specific chassis dimension.",
+        "dimensions_status": "documented_frame_only",
+        "dimension_notes": "Dimensions describe the screen/frame only, with no support legs or carrying case. Exact inch conversions: 120 in=3048 mm, 69 in=1752.6 mm, 1.25 in tubing=31.75 mm. Manufacturer page-2 figure separately labels 59.25 in for a stand-foot span; that figure is excluded from this frame-only model.",
         "control_path": "Passive projection surface and folding frame; image signal is projected onto surface by separate projector. No electrical or DMX connection.",
-        "pose": "Frame vertical and screen surface facing audience/projector, with standard T-legs deployed. Display frame envelope is 3.048 m wide x 1.753 m high; support-foot spread is shown by manufacturer family view but is not guaranteed SKU-specific.",
+        "pose": "Frame/screen vertical, screen face forward. Frame-only envelope 3.048 m W x 1.7526 m H x 0.03175 m tubing thickness/depth; support legs, skirt, drape and case omitted.",
         "screen_surface": "HD Progressive ReView 0.9, front projection",
         "viewing_area_m": {
-          "width": 2.908,
-          "height": 1.613
+          "width": 2.9083,
+          "height": 1.6129
         }
       },
-      "images": [
-        "https://www.legrandav.com/-/media/images/dalite/product/series/resources/fastfold_deluxe_screen_system/fast-fold-deluxe-spec-data.pdf?sc_lang=en"
-      ],
+      "images": [],
       "image_reuse_status": "unknown",
-      "image_asset_note": "The local reference image is a page-2 product view excerpt from the official spec/data PDF; no separate direct raster URL for SKU 88692 was found.",
+      "image_asset_note": "Reference PNG is a product-view excerpt rendered from the official spec PDF; retained as local evidence only, not represented as a direct image URL.",
       "image_file": "research/fixtures/taxonomy/support-sources/dalite-fast-fold-deluxe-spec-page2.png",
       "reference_image_file": "research/fixtures/taxonomy/support-sources/dalite-fast-fold-deluxe-spec-page2.png",
       "image_sha256": "d40cad6131a602e3112f09cc7598748f422351a070b0da9a83c640cfd2291f69",
@@ -849,12 +847,12 @@
       ],
       "dimensions": {
         "width_m": 3.048,
-        "height_m": 1.753,
-        "depth_m": 1.505,
-        "source_order": "For model 88692: overall screen/frame size 120 x 69 in (305 x 175 cm rounded); figure also labels a 59 1/4 in (150.5 cm) deployed leg footprint dimension; surface-view area 114.5 x 63.5 in (291 x 161 cm rounded). Depth is support-foot span, not case size.",
-        "axis_status": "screen_frame_documented_support_footprint_dimensioned_in_family_view",
-        "axis_note": "The manufacturer data sheet lists 69 x 120 in overall size, which matches the SKU page name/surface designation for 88692; the page-2 product view labels a 59 1/4 in leg-foot dimension but does not identify which screen size the illustration depicts. Treat footprint depth as family illustration evidence, not a guaranteed SKU-specific chassis dimension.",
-        "reference_pose": "Frame vertical and screen surface facing audience/projector, with standard T-legs deployed. Display frame envelope is 3.048 m wide x 1.753 m high; support-foot spread is shown by manufacturer family view but is not guaranteed SKU-specific."
+        "height_m": 1.7526,
+        "depth_m": 0.03175,
+        "source_order": "Frame/screen only, excluding support legs and case: 120 x 69 in = 3.048 x 1.7526 m; 1.25 in square frame tubing = 31.75 mm depth; viewing area 114.5 x 63.5 in = 2.9083 x 1.6129 m.",
+        "axis_status": "documented",
+        "axis_note": "Manufacturer inch dimensions converted exactly; this record is frame/screen geometry only, not the deployed stand footprint.",
+        "reference_pose": "Screen frame vertical, display face forward; legs/supports omitted."
       }
     },
     {
@@ -868,24 +866,22 @@
       "url": "https://www.cmco.com/globalassets/catalogs--documents/emea/cmco-cm-et-product-catalogue-2022.pdf",
       "data": {
         "dimensions": {
-          "width_m": 0.522,
-          "height_m": 0.413,
-          "depth_m": 0.154,
-          "source_order": "Manufacturer D8+ Series drawing: A=413 mm overall hook-to-hook height; B=154 mm end-view span; right-view length derives D+F=297+225=522 mm for the standard D8+ Series column. Hook/chain placement is pose dependent."
+          "width_m": 0.582,
+          "height_m": 0.532,
+          "depth_m": 0.321,
+          "source_order": "For middle D8+ Series JJ/L/LL column: horizontal envelope D+F=253+329=582 mm; end width I+J=145+176=321 mm; overall hook-extremity height estimated from A=472 mm inner reference span plus 2H=60 mm = 532 mm."
         },
-        "dimensions_status": "mapped_from_manufacturer_dimension_drawing",
-        "dimension_notes": "Dimensions mapped from labeled manufacturer drawing for standard D8+ Series (not JJ/LH/RR or BH/RR frame variants). The 522 mm horizontal envelope is the sum of labeled D and F spans. These are a planning envelope, not a structural/rigging model; do not use for lift clearances or load engineering.",
+        "dimensions_status": "estimated_envelope_from_manufacturer_drawing",
+        "dimension_notes": "Type L is the middle D8+ Series JJ/L/LL column, not the F column. D+F gives 582 mm horizontal envelope; I+J gives 321 mm end width; A=472 mm is the inner hook span. Adding H=30 mm at each hook end yields an estimated 532 mm outer hook envelope; confirm datum interpretation before precise clearance modeling. Values describe one reeving pose only and are not a structural/rigging model.",
         "control_path": "Mains-powered lifting equipment with hoist controller and chain; not a lighting DMX fixture. Power/control model and rigging compatibility are production-specific.",
-        "pose": "Hoist body horizontal, suspension/top hook upright, load hook directly below; no chain bag included. Envelope dimensions include hook extremities per drawing A and horizontal spans D+F.",
+        "pose": "Hoist body horizontal, suspension hook upright and load hook directly below; no chain or chain bag included. Estimated outer hook extremities in vertical envelope.",
         "rated_capacity_kg": 1000,
         "lifting_speed_m_per_min": 4,
         "reeving": "single reeved"
       },
-      "images": [
-        "https://www.cmco.com/globalassets/catalogs--documents/emea/cmco-cm-et-product-catalogue-2022.pdf"
-      ],
+      "images": [],
       "image_reuse_status": "unknown",
-      "image_asset_note": "Local reference image is the Lodestar D8+ product render clipped from page 4 of the official CM entertainment catalog; exact model-specific dimensions are on page 5.",
+      "image_asset_note": "Reference PNG is a Lodestar D8+ product-render excerpt from page 4 of the official CM catalog; retained locally, not represented as a direct image URL.",
       "image_file": "research/fixtures/taxonomy/support-sources/cm-lodestar-d8plus-catalog-page4.png",
       "reference_image_file": "research/fixtures/taxonomy/support-sources/cm-lodestar-d8plus-catalog-page4.png",
       "image_sha256": "ad63e9332b3ce30f28bb7539d7849f637aa6fea08172da9176e5de033d0fe870",
@@ -906,13 +902,13 @@
         }
       ],
       "dimensions": {
-        "width_m": 0.522,
-        "height_m": 0.413,
-        "depth_m": 0.154,
-        "source_order": "Manufacturer D8+ Series drawing: A=413 mm overall hook-to-hook height; B=154 mm end-view span; right-view length derives D+F=297+225=522 mm for the standard D8+ Series column. Hook/chain placement is pose dependent.",
-        "axis_status": "mapped_from_manufacturer_dimension_drawing",
-        "axis_note": "Dimensions mapped from labeled manufacturer drawing for standard D8+ Series (not JJ/LH/RR or BH/RR frame variants). The 522 mm horizontal envelope is the sum of labeled D and F spans. These are a planning envelope, not a structural/rigging model; do not use for lift clearances or load engineering.",
-        "reference_pose": "Hoist body horizontal, suspension/top hook upright, load hook directly below; no chain bag included. Envelope dimensions include hook extremities per drawing A and horizontal spans D+F."
+        "width_m": 0.582,
+        "height_m": 0.532,
+        "depth_m": 0.321,
+        "source_order": "D8+ Series JJ/L/LL (Type L) mapped envelope: 582 mm length (D+F), 532 mm estimated outer hook-to-hook height (A+2H), 321 mm end width (I+J).",
+        "axis_status": "estimated",
+        "axis_note": "Mapped to axes from the manufacturer drawing; total height adds two labeled 30 mm hook offsets to the 472 mm A span, so the outer envelope is estimated.",
+        "reference_pose": "Body horizontal, suspension hook upright, load hook below; chain and bag omitted. Estimated outer hook envelope."
       }
     }
   ],
@@ -923,7 +919,7 @@
     "The Manfrotto 1.25 m tripod spread is a secondary-source circular footprint envelope, not rectangular W/D; treat the overall bound as estimated.",
     "Control paths distinguish control data, video signals, mains power, and passive mechanical connections; no DMX personalities are invented for products that are not DMX fixtures.",
     "Second-pass documented candidates include a DMX splitter, pixel-data controller, optional LED video processor and optional adjustable stage deck. Projection-screen and followspot camera/system hardware remain unfilled because no exact model passed the direct-image plus dimension evidence bar in this pass.",
-    "Da-Lite screen sample uses exact SKU 88692 frame/viewing-area dimensions from its product page and manufacturer series spec sheet; the attached-leg footprint is only dimensioned in a family illustration, and no separate direct raster URL for that exact SKU was found.",
+    "Da-Lite 88692 sample is a frame/screen-only geometry (legs and case omitted), using SKU dimensions and manufacturer tubing size; a product-view excerpt is preserved locally from the spec PDF, with no image URL claimed.",
     "Drapes/soft goods, stairs and custom scenic pieces should be authored as parametric production-specific objects (width, height, fullness, trim, stair rise/run and profile), not treated as universally fixed exact-product models.",
     "A power-distro exact candidate was not added: ETC Sensor3 portable-pack physical drawing is DWG and was not dimension-extracted, while candidate secondary listings did not establish exact dimensions/image provenance for a same SKU. No exact manufacturer-dimensioned cable/terminator or mains adapter candidate with exact geometry and visual source passed this pass; represent cable runs by specified length plus estimated coil/straight form, and adapters as parametric connector forms pending verified references.",
     "The Lodestar D8+ entry is an optional rigging-hardware visual reference, not a certified hoist/rigging design; chain, chain bag, controller, lift, and clearance are instance/configuration parameters."
