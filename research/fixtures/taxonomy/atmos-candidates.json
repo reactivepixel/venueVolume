@@ -231,6 +231,33 @@
     ]
   },
   {
+    "category_id": "fx.atmosphere.co2_jet.gas.co2jet_ii",
+    "name": "CO2 JET II",
+    "model_number": "MFX1118",
+    "manufacturer": "MAGIC FX",
+    "type": "atmospherics",
+    "subtype": "liquid CO2 gas jet",
+    "url": "https://magicfx.com/products/co2jet-ii",
+    "data": {
+      "protocols": ["direct output; manual lists direct output control"],
+      "source_urls": ["https://magicfx.com/products/co2jet-ii", "https://magicfx.com/cdn/shop/files/CO2jet_II_manual.pdf?v=5588412156141481997"],
+      "power": "20 W; 220–240 VAC, 50–60 Hz",
+      "weight": "3.7 kg empty",
+      "dmx_channels": null,
+      "dimensions": {"source_order": "Main product dimensions: length 232 mm x width 196 mm x height 124.5 mm. The product page dimensions 290 x 290 x 200 mm and 4.29 kg match the manual's 289 x 289 x 201 mm package dimensions / 4.2 kg packaged weight, not appliance dimensions."},
+      "propellant": "Liquid CO2; manual identifies the appliance as CO2 FX and lists liquid CO2. This is distinct from heated-fluid LED fog jets."
+    },
+    "images": ["https://magicfx.com/cdn/shop/files/CO2JETII-01.jpg?v=1773148408&width=3840"],
+    "reference_image_file": "research/fixtures/taxonomy/atmos-sources/magicfx-co2jet-ii-01.jpg",
+    "reference_image_locator": "Official product gallery image CO2JETII-01; visually inspected view includes the outlet pipe/nozzle attached in a horizontal orientation.",
+    "dimensions": {"width_m": 0.232, "height_m": 0.1245, "depth_m": 0.196, "axis_status": "estimated", "axis_note": "Manufacturer documents main dimensions length 232 mm, width 196 mm, height 124.5 mm. Image-based pose maps length to width and manual width to depth; this axis assignment is estimated from the official view. Page triplet 290 x 290 x 200 mm is packaging, corroborated by manual package dimensions 289 x 289 x 201 mm; the manual's appliance dimensions are used.", "reference_pose": "Main appliance with attached short outlet pipe angled upward as in official CO2JETII-01 image; exclude external baseplate, clamp, hoses, and case."},
+    "modeling": {"family": "co2_jet", "notes": "Genuine liquid-CO2 jet. The official manual distinguishes main product dimensions/weight from larger package dimensions/weight, resolving the conflicting product-page figures. Use the outlet-pipe configuration visible in the exact product photo; do not substitute a removable alternate nozzle or add baseplate/rigging hardware.", "body_style": "compact angular black metal box housing with attached short outlet pipe, mounting plate and side connectors"},
+    "evidence": [
+      {"url": "https://magicfx.com/products/co2jet-ii", "title": "CO2jet II product page", "locator": "SKU MFX1118; genuine CO2 effect; product page figures 29 x 29 x 20 cm and 4.29 kg are identified by manual as package dimensions/packaged mass; electrical and direct output data", "accessed_at": "2026-09-30"},
+      {"url": "https://magicfx.com/cdn/shop/files/CO2jet_II_manual.pdf?v=5588412156141481997", "title": "MAGICFX CO2 JET II User and Installation Manual", "locator": "Page 6 printed / PDF page 5: Product code MFX1118; main dimensions L 232 x W 196 x H 124.5 mm; empty mass 3.7 kg; package dimensions and packaged mass separately listed; 20W, 220-240VAC, 50-60Hz; liquid CO2 propellant", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
     "category_id": "fx.atmosphere.spark.cold_spark",
     "name": "Sparxtar II",
     "model_number": "MFX5003",
@@ -388,6 +415,34 @@
     "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "A flexible safety wire has 750 mm length and 3.2 mm cable diameter, but no fixed 3D bounding box in the variable coil/installed pose; retain those source measures without assigning an envelope.", "reference_pose": "Black galvanized safety wire with spring hook and pressed loop shown in a loose loop; dimension depends on installed routing."},
     "modeling": {"family": "safety_wire", "notes": "Product is identified as a secondary protection device; no installation or rigging procedure included. 10 kg load-capacity rating is recorded solely as product metadata.", "body_style": "flexible black galvanized steel wire with spring hook, pressed loop/ferrule and circular cable coil"},
     "evidence": [{"url": "https://www.kuposhop.com/en/product-697067/KUPO-75cm-Safety-Wire-3-2mm-Diameter-Black-SW-01-B.html", "title": "KUPO 75 cm Safety Wire SW-01-B", "locator": "Manufacturer product page: exact model, 750 mm length, 3.2 mm diameter, hook, 10 kg load capacity, secondary-protection application", "accessed_at": "2026-09-30"}]
+  },
+  {
+    "category_id": "fx.atmosphere.rigging.secondary_safety_connector.t23505",
+    "name": "Doughty Quick Link-10mm-550Kg",
+    "model_number": "T23505",
+    "manufacturer": "Doughty Engineering",
+    "type": "atmospherics",
+    "subtype": "rated secondary-suspension quick link",
+    "url": "https://doughty-engineering.co.uk/products/quick-link-10mm-550kg/",
+    "data": {
+      "protocols": [],
+      "source_urls": ["https://doughty-engineering.co.uk/products/quick-link-10mm-550kg/", "https://doughty-engineering.co.uk/wp-content/uploads/2023/01/T23505-Data-Sheet-US.pdf"],
+      "power": null,
+      "weight": null,
+      "dmx_channels": null,
+      "dimensions": {"source_drawing": "70 mm inner clear length; 20 mm inner clear height; 11 mm gap near closure; 10 mm bar diameter/thickness. These are diagram dimensions, not a published outside bounding box.", "derived_estimate": "Approx. 90 x 40 x 10 mm maximum envelope by adding two 10 mm bar diameters to the 70 x 20 mm inner clear opening; estimate only, since the drawing does not dimension the closure-sleeve outer envelope."},
+      "working_load_limit": "500 kg on the product data sheet; product page heading/description says 550 kg. Conflict retained; confirm exact rating from product marking/manufacturer before any load application.",
+      "finish": "Zinc plated; product data sheet states DIN 56926"
+    },
+    "images": ["https://doughty-engineering.co.uk/wp-content/uploads/Product-Images/T23505-Quick-Link-1-700x700-c-default.jpg"],
+    "reference_image_file": "research/fixtures/taxonomy/atmos-sources/doughty-t23505.jpg",
+    "reference_image_locator": "Official product image for T23505; the accompanying manufacturer PDF drawing shows top and side views with 70/20/11/10 mm labels.",
+    "dimensions": {"width_m": 0.09, "height_m": 0.044, "depth_m": 0.016, "axis_status": "estimated", "axis_note": "Estimated outer 90 x 44 x 16 mm from orthographic manufacturer drawing: 70 mm inner length and 20 mm inner clear height, calibrated with 10 mm bar diameter; closure sleeve measures about 1.6x rod diameter in the side view and raises the silhouette about 4 mm beyond the 40 mm loop estimate. These are drawing-calibrated visual bounds, not published outer dimensions or certified clearances. Raw 70/20/11/10 mm measures retained above. Product page says 550 kg while data sheet says WLL 500 kg; appearance research only, not load selection.", "reference_pose": "Small oval quick link laid flat, closure sleeve facing forward; envelope axes follow official top and side views."},
+    "modeling": {"family": "safety_hardware", "notes": "Rigid compact suspension connector, potential visual representative for secondary protection hardware only. Rated values are conflicting source metadata; no operating or rigging directions included. Do not treat product WLL as a selection recommendation.", "body_style": "zinc-plated oval steel quick link with threaded closure sleeve"},
+    "evidence": [
+      {"url": "https://doughty-engineering.co.uk/products/quick-link-10mm-550kg/", "title": "Quick Link-10mm-550Kg – Doughty Engineering", "locator": "Exact part T23505; 10 mm size, 550 kg stated on manufacturer product page; product image link; zinc finish", "accessed_at": "2026-09-30"},
+      {"url": "https://doughty-engineering.co.uk/wp-content/uploads/2023/01/T23505-Data-Sheet-US.pdf", "title": "T23505 Product Data Sheet", "locator": "Official one-page sheet: exact T23505 SKU, 10 mm bar, zinc plated, WLL 500 kg and DIN 56926; drawing labels 70 mm inner clear length, 20 mm inner clear height, 11 mm closure gap, 10 mm bar; no explicit outer envelope", "accessed_at": "2026-09-30"}
+    ]
   },
   {
     "category_id": "fx.atmosphere.co2_supply.bottle_connector",
