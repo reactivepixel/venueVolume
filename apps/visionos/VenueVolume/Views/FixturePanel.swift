@@ -9,9 +9,17 @@ struct FixturePanel: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            LabeledContent("Object", value: fixture.assetID == nil ? "Legacy cube · 24 cm" : "Rogue R1X visual proxy")
-            LabeledContent("Patch", value: "U\(fixture.universe) · \(fixture.startAddress)–\(fixture.endAddress)")
-            LabeledContent("Channels", value: "\(fixture.channels.count) · 8-bit DMX")
+            LabeledContent("Object", value: fixture.assetID == nil ? "Legacy cube · 24 cm" : "CHAUVET Rogue R1X Spot")
+            if fixture.assetID == LightingPreview.assetID {
+                LabeledContent("Model", value: "Moving head pilot · visual proxy")
+                LabeledContent("Controls", value: LightingPreview.profileName)
+                Text("Head pan/tilt and the beam respond to preview values. This is not the manufacturer's DMX map or calibrated photometry.")
+                    .font(.caption).foregroundStyle(.secondary)
+                Text("Pilot travel: about 270° pan / 120° tilt. The physical Rogue R1X Spot is specified for up to 540° / 250°.")
+                    .font(.caption).foregroundStyle(.secondary)
+            }
+            LabeledContent("Preview patch", value: "U\(fixture.universe) · \(fixture.startAddress)–\(fixture.endAddress)")
+            LabeledContent("Channels", value: "\(fixture.channels.count) · 8-bit preview values")
             Text(String(format: "Position  %.2f, %.2f, %.2f m", fixture.position.x, fixture.position.y, fixture.position.z))
                 .font(.caption.monospacedDigit()).foregroundStyle(.secondary)
             Text(fixture.id.uuidString).font(.system(size: 10, design: .monospaced)).foregroundStyle(.tertiary)

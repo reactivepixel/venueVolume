@@ -132,7 +132,7 @@ struct ToolboxView: View {
             }
         case .addFixture:
             Button { model.fixtureKind = .movingHead; model.beginPlacement() } label: {
-                row(model.isPlacing ? "Cancel placement" : "Add fixture", subtitle: "Rogue R1X · moving head", icon: "plus")
+                row(model.isPlacing ? "Cancel placement" : "Add moving head pilot", subtitle: "Rogue R1X Spot · VV Preview 16", icon: "plus")
             }.buttonStyle(.plain).disabled(!model.canPlace && !model.isPlacing)
         case .presets:
             Button { model.record(.presets); openWindow(id: "presets") } label: {

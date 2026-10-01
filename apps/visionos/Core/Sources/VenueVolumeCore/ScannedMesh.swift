@@ -53,7 +53,7 @@ public struct ScannedMesh: Codable, Equatable, Sendable {
 public enum FixtureKind: String, CaseIterable, Identifiable, Sendable {
     case movingHead, cube
     public var id: String { rawValue }
-    public var name: String { self == .movingHead ? "Moving head" : "DMX cube" }
+    public var name: String { self == .movingHead ? "Rogue R1X moving head pilot" : "DMX cube" }
     public var radius: Float { self == .movingHead ? LightingPreview.footprintRadius : 0.12 }
     public var assetID: String? { self == .movingHead ? LightingPreview.assetID : nil }
     public var dragToken: String { "venue-volume:fixture-kind:" + rawValue }

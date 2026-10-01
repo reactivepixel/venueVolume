@@ -15,6 +15,10 @@ struct FixtureLabel: View {
                 Button { withAnimation { model.select(fixture.id) } } label: {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(fixture.name).font(.headline)
+                        if fixture.assetID == LightingPreview.assetID {
+                            Text("MOVING HEAD PILOT · VV PREVIEW 16")
+                                .font(.caption2.weight(.semibold)).foregroundStyle(.cyan)
+                        }
                         Text(model.presets.first(where: { $0.id == fixture.presetID })?.name ?? "No preset")
                             .font(.caption).foregroundStyle(.secondary)
                     }
@@ -33,7 +37,7 @@ struct FixtureLabel: View {
                     Button("Move", systemImage: "arrow.up.and.down.and.arrow.left.and.right") { model.beginReposition(fixture.id) }
                         .disabled(!model.canPlace)
                     Menu("Retarget", systemImage: "scope") {
-                        Button("Aim head (DMX)") { model.beginRetarget(fixture.id, method: .head) }
+                        Button("Aim head (preview)") { model.beginRetarget(fixture.id, method: .head) }
                         Button("Aim mount") { model.beginRetarget(fixture.id, method: .mount) }
                     }.disabled(!model.canPlace || fixture.assetID == nil)
                     Button("Transform", systemImage: "rotate.3d") { model.controlsTab = 1; openWindow(id: "presets") }

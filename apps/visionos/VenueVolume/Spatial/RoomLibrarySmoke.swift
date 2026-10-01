@@ -45,6 +45,8 @@ import VenueVolumeCore
             model.fixtureKind = .movingHead; model.beginPlacement(); model.placeOnMesh(at: .init(x: 0,y: 0,z: -2))
             guard model.scannedMesh != nil, model.fixtures.count == 1 else { throw EnvironmentError.invalid("mesh replay placement failed") }
             _ = model.applyPreset(model.presets[1].id, to: model.fixtures[0].id)
+            model.setHeadAim(model.fixtures[0].id, panDegrees: 35, tiltDegrees: -20)
+            guard model.fixtures[0].aimOverride != nil else { throw EnvironmentError.invalid("moving head pilot did not aim in the mesh room") }
             model.setupName = "Mesh replay · test light"
             guard model.saveSetup() else { throw EnvironmentError.invalid("mesh setup save failed") }
             try await Task.sleep(for: .seconds(4))

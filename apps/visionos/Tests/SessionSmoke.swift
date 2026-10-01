@@ -22,6 +22,27 @@ struct SessionSmoke {
         let fixtureID = model.fixtures[0].id
         let presetID = model.presets[0].id
         check(model.applyPreset(presetID, to: fixtureID), "Apply saved preset")
+        let pilotPreset = model.presets[0]
+        let beforeManualAim = model.fixtures[0]
+        model.beginHistoryAction("Aim moving head pilot")
+        model.setHeadAim(fixtureID, panDegrees: 35)
+        model.setHeadAim(fixtureID, tiltDegrees: -20)
+        model.endHistoryAction()
+        let manualAim = model.fixtures[0]
+        check(manualAim.aimOverride != nil && abs(LightingPreview(channels: manualAim.channels).panDegrees-35) < 1.1,
+              "Pilot pan slider stores a per-fixture aim override")
+        check(abs(LightingPreview(channels: manualAim.channels).tiltDegrees+20) < 0.5 && model.presets[0] == pilotPreset,
+              "Pilot tilt slider moves the head without editing the shared preset")
+        model.undo()
+        check(model.fixtures[0] == beforeManualAim, "Pilot slider gesture is one undoable aim change")
+        model.redo()
+        check(model.fixtures[0] == manualAim, "Redo restores the pilot head aim")
+        let manualRestored = VenueModel(arguments: [], defaults: defaults, placementDirectory: directory)
+        manualRestored.activate(environment: environment)
+        check(manualRestored.fixtures[0].aimOverride == manualAim.aimOverride, "Pilot manual aim survives relaunch")
+        model.resetAim(fixtureID)
+        check(model.fixtures[0].aimOverride == nil && model.fixtures[0].channels == pilotPreset.channels,
+              "Pilot reset restores the preset aim")
         let applied = model.fixtures[0].channels
         model.choosePreset(model.presets[0])
         model.presetDraft.channels[0] = 42

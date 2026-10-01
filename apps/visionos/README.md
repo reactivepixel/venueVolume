@@ -1,6 +1,6 @@
 # Venue Volume for visionOS
 
-A runnable RealityKit lighting proof of concept for Simulator and Vision Pro (visionOS 2+). Start in the white classroom, import another room, or capture a local mesh on Vision Pro. Arrange fixtures, control their pose and DMX preview lighting, and save independent setups for each environment.
+A runnable RealityKit lighting proof of concept for Simulator and Vision Pro (visionOS 2+). Start in the white classroom, import another room, or capture a local mesh on Vision Pro. The clearly labeled **Moving head pilot** uses the CHAUVET Professional Rogue R1X Spot library model; place and aim it in any supported room, preview its beam, and save setups for each environment.
 
 ## Run
 
@@ -17,12 +17,12 @@ The script builds, installs, and launches the demo. `VV_SIMULATOR_ID` selects a 
 ## Use
 
 1. Raise your **left palm** toward you to reveal **Toolbox**. Simulator supplies a **Left palm facing me** toggle. The trigger uses hand pose and head direction, not raw eye gaze.
-2. In **Fixtures & presets**, drag **Moving head** or **DMX cube** onto a highlighted floor/table surface. Alternatively select the fixture row, then pinch a clear surface. **Add fixture** selects the Rogue R1X moving-head visualization. Initial output is zero. The proof of concept allows four moving-head lights and 64 total fixtures. The toolbox follows above the left wrist and holds its position during a drag.
+2. In **Fixtures & presets**, drag **Rogue R1X moving head pilot** or **DMX cube** onto a highlighted floor/table surface. Alternatively select the fixture row, then pinch a clear surface. **Add moving head pilot** selects the Rogue R1X visualization. Initial output is zero. The proof of concept allows four moving-head lights and 64 total fixtures. The toolbox follows above the left wrist and holds its position during a drag.
 3. Drag a preset from the library or Recent column onto the fixture or label. This commits the saved preset and lights the scene. Recent retains the last ten unique actions/objects/presets.
 4. Select a fixture for **Info**, **Delete**, **Move**, **Retarget**, and **Transform**. Info remains read-only. **Move** arms a floor/table pick that repositions the existing object while preserving its orientation, patch, and DMX values. **Transform** opens the companion window’s position tab.
 5. In **DMX preset**, edit channels and enable **Preview draft on selected fixture** to see edits immediately without changing saved values. Disable preview or close the window to restore the committed look. **Save preset** updates all assigned fixtures. **Save as new** makes an independent preset; **Apply saved** assigns it.
-6. In **Fixture position**, adjust X/Y/Z in room meters and mount **yaw, pitch, and roll**. These changes save immediately and do not alter the preset. **Move to floor** sets base height to zero; **Upright mount** resets mounting orientation.
-7. Choose **Retarget → Aim head (DMX)**, look at a point on the room, then pinch (click the surface in Simulator). The head animates toward it and stores the corresponding pan/tilt bytes on that fixture. **Aim mount** rotates the entire asset to point the light at the target while keeping its DMX values. A head-following prompt offers **Cancel**. Unreachable head targets leave the fixture unchanged and explain how to retry.
+6. In **Fixture position**, adjust X/Y/Z in room meters and mount **yaw, pitch, and roll**. The **Moving head pilot** section also has direct **Pan** and **Tilt** sliders in degrees; these animate this fixture's head and beam, save a per-fixture aim override, and leave the shared preset unchanged. **Use preset aim** restores its preset angles. **Move to floor** sets base height to zero; **Upright mount** resets mounting orientation.
+7. Choose **Retarget → Aim head (preview)**, look at a point on the room, then pinch (click the surface in Simulator). The head animates toward it and stores the corresponding preview pan/tilt bytes on that fixture. **Aim mount** rotates the entire asset to point the light at the target while keeping its preview values. A head-following prompt offers **Cancel**. Unreachable head targets leave the fixture unchanged and explain how to retry.
 8. **White model** switches between neutral PBR materials and the room's original materials. **Room light** adjusts ambient illumination. **Blackout** temporarily disables fixture output, leaving room light and saved values intact.
 
 The editor also supports previous/next, New, clear draft, revert, delete, clear assignment, and dirty-navigation confirmation. If a companion window is restored after relaunch without the room, its Enter venue button restores access; demo mode enters automatically. Channel editing stays in the preset window. The mock sync remains available in Toolbox and Diagnostics; it never sends lighting/network output.
@@ -72,11 +72,13 @@ The shipped classroom has 18,744 triangles, 68 mesh chunks, 96 collision boxes, 
 
 **White model** is a reversible runtime material override of that classroom geometry. The source USDZ is unchanged. Turn it off to see the original materials. The intended room assumption is the reconstructed classroom; there is no separately named white-room asset in the fetched repository.
 
-The fixture comes from `assets/fixtures/chauvet-professional/rogue-r1x-spot`, revision 2. The bundled USDZ and metadata are byte-identical copies. It is an original procedural visualization proxy, not manufacturer CAD. The runtime reparents Head beneath Yoke while preserving its rest transform, then adds `SpotLightComponent` and `SpotLightComponent.Shadow` at the authored emitter. The fixture's own meshes do not cast shadows, avoiding lens self-occlusion; room meshes do. Imported opaque surfaces naturally hide fixtures behind them; room collider targets block placement taps through walls.
+The fixture comes from `assets/fixtures/chauvet-professional/rogue-r1x-spot`, revision 2. The bundled USDZ and metadata are byte-identical copies. It is an original procedural visualization proxy, not manufacturer CAD. The runtime reparents Head beneath Yoke while preserving its rest transform, then adds `SpotLightComponent` and `SpotLightComponent.Shadow` at the authored emitter. The fixture's own meshes do not cast shadows, avoiding lens self-occlusion; room meshes do. Imported opaque surfaces naturally hide fixtures behind them; room collider targets block placement taps through walls. The toolbox, floating fixture label, Info panel, and position controls all mark this asset as the moving-head pilot and identify its preview profile.
 
 ## Preview personality
 
 **VV Preview 16** is a synthetic visualization profile, **not the Rogue R1X manufacturer's DMX map**. The catalog lists manufacturer modes but their channel definitions are not transcribed. RGB mixing and variable beam width here are visualization controls and must not be interpreted as that product's physical capabilities.
+
+The pilot limits head travel to roughly 270° pan and 120° tilt so its one-shot room targeting has a single, reviewable range. The [manufacturer's Rogue R1X Spot specifications](https://chauvetprofessional.com/product/rogue-r1x-spot/) list 540° pan and 250° tilt for the physical fixture. This pilot is an aiming and placement workflow check, not a full mechanical travel simulation.
 
 | Channel | Preview function | Range |
 | --- | --- | --- |
