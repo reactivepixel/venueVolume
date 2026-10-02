@@ -123,3 +123,34 @@ The integration was prepared in the assigned worktree from current `dev` `bda9e0
 Re-ran `swift test --package-path Core` (39 tests), `./scripts/test-session.sh` (all four smoke groups), and `python3 Tests/verify-assets.py`: PASS. `./scripts/run-demo.sh --blue --transform-gizmo` built, installed and launched the release candidate; the unsigned generic visionOS device build passed too. Reading both built app Info.plist files with Python `plistlib` confirmed `CFBundleShortVersionString` is `0.1.22` for `Debug-xrsimulator` and `Debug-xros`. [Updated wrist version capture](../Screenshots/toolbox-version.png) displays v0.1.22 alongside the rings and inspector. Capture command: `xcrun simctl io 37FB51A4-DFF5-40C0-BFE1-32F8AA69EE4F screenshot Screenshots/toolbox-version.png`.
 
 The release uses an annotated `v0.1.22` tag on the final merge commit, with `python3 apps/visionos/scripts/check-version.py --release` required before publishing `dev` and the tag. Direct Simulator gestures and physical headset acceptance remain open as described above.
+
+## Mac and headset results — 2026-10-01, Toolbox window and selection repair
+
+**Source.** `agent/toolbox-window-selection` in `.worktree/toolbox-window-selection`, based on `dev` v0.1.22 (`73c144c`). Implementation, regression coverage and screenshot: `62bd38b`. The primary checkout already had local Xcode project/signing edits; they were preserved. The signed command uses the owner's existing team as a build override. This is a development build with bundle version 0.1.22, not a new tagged release.
+
+**Changes.** The Toolbox is now a normal `WindowGroup` with its system movement bar and a header X. Palm tracking issues an opening request only on the debounced rising edge. Lowering the hand leaves the window in place; closing it while the palm remains raised keeps it closed. Lowering and raising again recalls a fresh window instance near the current view. Manual recall remains available when hand tracking is unavailable and in Simulator. The window is no longer attached to or following the left hand. Window callbacks track instance identity so a departing window cannot mark its replacement closed.
+
+The zero-distance drag recognizer now matches only `SpatialDragTarget` entities: axis handles and room surfaces while retargeting. It no longer competes with ordinary fixture taps. Removed the enclosing background collision sphere, disabled coarse placement proxies during normal selection, and enabled preset drop panels only during active preset drags. Fixture and gizmo inputs use indirect selection to avoid accidental direct-hand activation. Visible room-surface taps continue to deselect.
+
+**Verification.** Xcode 27.0 (27A266a); Simulator visionOS 27.0 (24M362), UDID `37FB51A4-DFF5-40C0-BFE1-32F8AA69EE4F`. Chris’s physical Apple Vision Pro: visionOS 27.0 (24M362), Developer Mode enabled, UDID `00008112-001619923CC1A01E`.
+
+Commands run from `apps/visionos` in the assigned worktree:
+
+| Command | Result |
+| --- | --- |
+| `swift test --package-path Core` | PASS: 39 tests. |
+| `./scripts/test-session.sh` | PASS: session, room, audit and interaction checks. New coverage tests single activation per held palm, staying open when lowered, close-with-palm-raised, reactivation and manual recall. |
+| `python3 Tests/verify-assets.py` | PASS. |
+| `./scripts/run-demo.sh --blue --input-smoke` | Simulator build/install/launch PASS. |
+| `xcrun simctl launch --console-pty --terminate-running-process 37FB51A4-DFF5-40C0-BFE1-32F8AA69EE4F com.venuevolume.VenueVolume --demo -ApplePersistenceIgnoreState YES --blue --input-smoke` | `TOOLBOX_WINDOW_SMOKE_PASS` and `SPATIAL_INPUT_SMOKE_PASS`. Real window creation, close, reopen and recall callbacks were observed. A RealityKit ray reaches the fixture collider as the nearest enabled indirect input target; command routing selects it, room taps deselect it, ordinary fixture targets reject held manipulation, and aim surfaces gain/lose drag eligibility with retarget mode. |
+| `xcodebuild -project VenueVolume.xcodeproj -scheme VenueVolume -destination 'id=00008112-001619923CC1A01E' -derivedDataPath DerivedData-device DEVELOPMENT_TEAM=3M53U7Y396 -allowProvisioningUpdates build` | Signed physical-device BUILD SUCCEEDED. |
+| `codesign --verify --deep --strict 'DerivedData-device/Build/Products/Debug-xros/Venue Volume.app'` | PASS. |
+| `xcrun devicectl device install app --device 00008112-001619923CC1A01E 'DerivedData-device/Build/Products/Debug-xros/Venue Volume.app' --json-output /tmp/vv-toolbox-install.json` | PASS: installed `com.venuevolume.VenueVolume` on the physical headset. |
+| `xcrun devicectl device process launch --device 00008112-001619923CC1A01E --terminate-existing --json-output /tmp/vv-toolbox-launch.json com.venuevolume.VenueVolume --demo --blue` | PASS on retry: activated PID 1007. The initial launch was rejected with `SFBSurfBoardErrorDomain` code 50, “Application launch not allowed in current system mode (Enrollment Mode Update).” The system mode subsequently cleared. |
+| `xcrun devicectl device info processes --device 00008112-001619923CC1A01E --json-output /tmp/vv-toolbox-processes.json` | Confirmed Venue Volume PID 1007 still running after launch. |
+| `python3 scripts/check-version.py` | PASS for the current v0.1.22 baseline. |
+| `git diff --check` | PASS. |
+
+[Native Toolbox window capture](../Screenshots/toolbox-window.png), captured with `xcrun simctl io 37FB51A4-DFF5-40C0-BFE1-32F8AA69EE4F screenshot Screenshots/toolbox-window.png`, shows the header X, system movement bar, selected fixture pane and manual recall control. This is a Simulator capture, not a headset screenshot. The Simulator emits an appearance-transition warning during rapid scripted window recall, but window lifecycle and spatial input assertions pass. Native builds emit the routine unused AppIntents metadata warning.
+
+**Acceptance boundary.** Signed hardware installation and foreground launch are now verified. Physical palm activation, positioning the window by hand, fixture gaze/pinch selection and sustained held targeting still require the wearer's confirmation; the user was asked to try those behaviors after launch. Live room scanning was not exercised in this repair. The demo launch uses its separate demo data and does not replace the normal saved arrangement.
