@@ -152,7 +152,8 @@
     "data": {"protocols": null, "dmx_channels": null, "power": null, "weight": null, "notable": "Current product index lists standard, MG, FS and FS MG codes; treat these as separate geometry/control variants pending evidence.", "source_urls": ["https://www.claypaky.it/products/arolla-aqua-lt/"]},
     "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "Variant dimensions not transcribed.", "reference_pose": null},
     "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "weather-rated long-throw moving profile", "notes": "FS and MG variants can alter front body and source; no combined model should be assumed."},
-    "evidence": [{"url": "https://www.claypaky.it/products/arolla-aqua-lt/", "title": "Arolla Aqua LT product page", "locator": "Product identity and variant codes", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}]
+    "evidence": [{"url": "https://www.claypaky.it/products/arolla-aqua-lt/", "title": "Arolla Aqua LT product page", "locator": "Product identity and variant codes", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": "Official index exposes several product codes but not enough exact-model technical data or isolated product imagery to split and build the variants reliably."
   },
   {
     "expansion_batch": 2,
@@ -166,7 +167,8 @@
     "data": {"protocols": null, "dmx_channels": null, "power": null, "weight": null, "notable": "Current manufacturer index lists HP model codes and framing-system variants; exact variant split remains to resolve.", "source_urls": ["https://www.claypaky.it/products/arolla-aqua-hp/"]},
     "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "Variant dimensions not transcribed.", "reference_pose": null},
     "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "large weather-rated profile", "notes": "Variant range unresolved; retain as acquisition record and split after model codes are individually identified."},
-    "evidence": [{"url": "https://www.claypaky.it/products/arolla-aqua-hp/", "title": "Arolla Aqua HP product page", "locator": "Product index and model codes", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}]
+    "evidence": [{"url": "https://www.claypaky.it/products/arolla-aqua-hp/", "title": "Arolla Aqua HP product page", "locator": "Product index and model codes", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": "Official index lists HP and framing-system variants, but exact technical data, dimensions, controls and exact-model product imagery were not captured; model codes remain unsplit."
   },
   {
     "expansion_batch": 2,
@@ -180,7 +182,8 @@
     "data": {"protocols": null, "dmx_channels": null, "power": null, "weight": null, "notable": "Manufacturer lists PC lens and Fresnel lens variants; variants should remain distinct pending dimensional confirmation.", "source_urls": ["https://www.claypaky.it/products/arolla-aqua-wash-hc/"]},
     "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "Lens-specific body and dimensions not transcribed.", "reference_pose": null},
     "modeling": {"family": "moving_wash", "lens_count": 1, "body_style": "weather-rated wash head", "notes": "PC and Fresnel optics are not assumed interchangeable in geometry."},
-    "evidence": [{"url": "https://www.claypaky.it/products/arolla-aqua-wash-hc/", "title": "Arolla Aqua Wash HC product page", "locator": "Product variants", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}]
+    "evidence": [{"url": "https://www.claypaky.it/products/arolla-aqua-wash-hc/", "title": "Arolla Aqua Wash HC product page", "locator": "Product variants", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": "Official product page identifies PC and Fresnel optical variants but exact-model images, dimensions and variant-specific control/specification data were not captured."
   },
   {
     "expansion_batch": 2,
