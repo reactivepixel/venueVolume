@@ -14,6 +14,11 @@ import VenueVolumeCore
         model.beginPlacement(); model.place(at: [2.66,0,-2], surfaceID: "floor")
         let fixture = model.fixtures[0]
         let placed = model.auditState!
+        var legacyJSON = try JSONSerialization.jsonObject(with: JSONEncoder().encode(placed)) as! [String: Any]
+        legacyJSON.removeValue(forKey: "previewBlackout")
+        let legacy = try JSONDecoder().decode(VenueAuditState.self, from: JSONSerialization.data(withJSONObject: legacyJSON))
+        try legacy.validate()
+        check(legacy.previewBlackout == nil, "Existing audit snapshots without simulation blackout still decode")
         model.undo()
         check(model.fixtures.isEmpty && model.canRedo, "Undo placement")
         model.redo()
@@ -31,12 +36,12 @@ import VenueVolumeCore
         model.redo(); check(model.auditState == transformed, "Redo entire gesture")
 
         check(model.applyPreset(model.presets[0].id, to: fixture.id), "Apply a preset")
-        model.beginRetarget(fixture.id, method: .head)
+        model.beginRetarget(fixture.id)
         check(model.acceptTarget(.init(x: 2.9,y: 1.8,z: -7.67)), "Retarget")
         check(model.saveTarget(), "Save retarget")
         let aimed = model.auditState!
-        model.resetAim(fixture.id); model.undo()
-        check(model.auditState == aimed, "Undo restores pan/tilt override")
+        model.undo(); model.redo()
+        check(model.auditState == aimed, "Undo/Redo restores preset target and fixtures together")
         model.presetDraft.channels[0] = 17; model.flushHistoryEdits()
         let beforeSave = model.auditState!
         check(model.savePreset(), "Save preset")

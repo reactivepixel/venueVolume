@@ -119,14 +119,14 @@ struct VenueSpaceView: View {
         .task {
             let arguments = ProcessInfo.processInfo.arguments
             guard model.isDemoMode,
-                  arguments.contains("--targeting") || arguments.contains("--retarget-head") || arguments.contains("--retarget-mount") else { return }
+                  arguments.contains("--targeting") || arguments.contains("--retarget-head") else { return }
             // Reproducible presentation states exercise the same model commands
             // as the UI, after the room has loaded and aligned. They are not gesture tests.
             while !model.canPlace {
                 do { try await Task.sleep(for: .milliseconds(100)) } catch { return }
             }
             guard let id = model.selectedID else { return }
-            model.beginRetarget(id, method: arguments.contains("--retarget-mount") ? .mount : .head)
+            model.beginRetarget(id)
             if !arguments.contains("--targeting") {
                 do { try await Task.sleep(for: .seconds(5)) } catch { return }
                 _ = model.acceptTarget(.init(x: 2.9, y: 1.8, z: -7.67))

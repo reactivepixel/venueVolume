@@ -136,14 +136,15 @@ public struct VenueAuditState: Codable, Equatable, Sendable {
     public var selectedID: UUID?
     public var expandedID: UUID?
     public var previewDraft: Bool
+    public var previewBlackout: Bool?
 
     public init(rooms: [LibraryRoom], setups: [VenueSetup], roomID: String, fixtures: [Fixture], presets: [DMXPreset],
                 draft: DMXPreset, editingPresetID: UUID?, setupName: String, activeSetupID: UUID?, savedSetup: VenueSetup?,
-                whiteRoom: Bool, houseLight: Float, blackout: Bool, selectedID: UUID?, expandedID: UUID?, previewDraft: Bool) {
+                whiteRoom: Bool, houseLight: Float, blackout: Bool, selectedID: UUID?, expandedID: UUID?, previewDraft: Bool, previewBlackout: Bool? = nil) {
         self.rooms = rooms; self.setups = setups; self.roomID = roomID; self.fixtures = fixtures; self.presets = presets
         self.draft = draft; self.editingPresetID = editingPresetID; self.setupName = setupName; self.activeSetupID = activeSetupID
         self.savedSetup = savedSetup; self.whiteRoom = whiteRoom; self.houseLight = houseLight; self.blackout = blackout
-        self.selectedID = selectedID; self.expandedID = expandedID; self.previewDraft = previewDraft
+        self.selectedID = selectedID; self.expandedID = expandedID; self.previewDraft = previewDraft; self.previewBlackout = previewBlackout
     }
     public func validate() throws {
         guard let room = rooms.first(where: { $0.id == roomID }), Set(rooms.map(\.id)).count == rooms.count,

@@ -35,10 +35,7 @@ struct FixtureLabel: View {
                 HStack {
                     Button("Move", systemImage: "arrow.up.and.down.and.arrow.left.and.right") { model.beginReposition(fixture.id) }
                         .disabled(!model.canPlace)
-                    Menu("Retarget", systemImage: "scope") {
-                        Button("Aim head (preview)") { model.beginRetarget(fixture.id, method: .head) }
-                        Button("Aim mount") { model.beginRetarget(fixture.id, method: .mount) }
-                    }.disabled(!model.canPlace || fixture.assetID == nil)
+                    Button("Retarget DMX", systemImage: "scope") { model.beginRetarget(fixture.id) }.disabled(!model.canPlace || fixture.assetID == nil)
                     Button("Transform", systemImage: "rotate.3d") { model.beginTransform(fixture.id) }
                 }.font(.caption)
                 if let aim = fixture.aimOverride {
@@ -79,11 +76,11 @@ struct TargetingPrompt: View {
                     .font(.callout)
             } else {
             HStack {
-                Label(model.isRetargeting ? "Retarget fixture" : "Position fixture", systemImage: "scope").font(.headline)
+                Label(model.isRetargeting ? "Retarget preset" : "Position fixture", systemImage: "scope").font(.headline)
                 Spacer()
                 Button("Cancel") { model.cancelPicking() }
                 if model.isRetargeting {
-                    Button("Save target") { model.saveTarget() }.disabled(!model.canSaveTarget)
+                    Button("Save preset target") { model.saveTarget() }.disabled(!model.canSaveTarget)
                         .buttonStyle(.borderedProminent)
                 }
             }

@@ -210,7 +210,7 @@ final class VenueScene {
             guard model.selectedID == fixture.id else { throw EnvironmentError.invalid("fixture tap did not select") }
             handleTap(entity: surface, position: center, model: model)
             guard model.selectedID == nil else { throw EnvironmentError.invalid("room tap did not deselect") }
-            model.beginRetarget(fixture.id, method: .head)
+            model.beginRetarget(fixture.id)
             try await Task.sleep(for: .milliseconds(250))
             guard surface.components.has(SpatialDragTarget.self) else { throw EnvironmentError.invalid("aim surface did not enable held targeting") }
             model.cancelPicking()
@@ -309,7 +309,7 @@ final class VenueScene {
                     } catch { model.message = error.localizedDescription }
                 }
                 rigs[fixture.id]?.update(fixture: displayed, channels: model.renderedChannels(for: fixture),
-                                         selected: selected, blackout: model.blackout, placing: model.isPickingRoom,
+                                         selected: selected, blackout: model.isBlackedOut(fixture), placing: model.isPickingRoom,
                                          interactive: model.isTransformDragging)
             } else {
                 let cube = cubes[fixture.id] ?? Self.makeCube(id: fixture.id)

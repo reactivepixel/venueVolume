@@ -100,7 +100,7 @@ struct SessionSmoke {
         let beforeAim = model.fixtures[0]
         let savedPresets = model.presets
         model.previewDraft = true
-        model.beginRetarget(fixtureID, method: .head)
+        model.beginRetarget(fixtureID)
         check(model.isRetargeting && !model.previewDraft, "Retarget uses committed fixture values")
         check(!model.acceptTarget(beforeAim.position), "Unreachable target is rejected")
         check(model.isRetargeting && model.fixtures[0] == beforeAim, "Failed aim preserves object and allows retry")
@@ -110,18 +110,14 @@ struct SessionSmoke {
         check(model.saveTarget(), "Save commits target")
         check(!model.isPickingRoom && model.lastTarget == aimPoint, "Saving ends targeting with a marker")
         let aimed = model.fixtures[0]
-        check(aimed.aimOverride != nil && aimed.channels[4] != beforeAim.channels[4], "Head aim writes resolved DMX")
+        check(aimed.aimOverride == nil && aimed.channels[4] != beforeAim.channels[4], "Target writes preset DMX without a fixture override")
         check(aimed.position == beforeAim.position && aimed.orientation == beforeAim.orientation, "Head aim keeps mount transform")
-        check(model.presets == savedPresets, "Retarget does not edit shared presets")
+        check(model.presets != savedPresets && model.presets.first { $0.id == presetID }?.channels == aimed.channels, "Retarget saves current preset")
         check(model.applyPreset(presetID, to: fixtureID), "Can apply preset after aiming")
         check(model.fixtures[0].aimOverride == aimed.aimOverride && model.fixtures[0].channels[4] == aimed.channels[4], "Preset preserves aim")
         let aimRestored = VenueModel(arguments: [], defaults: defaults, placementDirectory: directory)
         aimRestored.activate(environment: environment)
         check(aimRestored.fixtures == model.fixtures, "Aim override survives relaunch")
-        model.beginRetarget(fixtureID, method: .mount)
-        check(model.acceptTarget(.init(x: 4, y: 2, z: -2)), "Mount can aim behind the original heading")
-        check(model.saveTarget(), "Save mount aim")
-        check(model.fixtures[0].orientation != aimed.orientation && model.fixtures[0].channels == aimed.channels, "Mount aim preserves DMX")
         let mount = model.fixtures[0]
         model.beginReposition(fixtureID)
         model.reposition(at: .init(x: -9, y: 0, z: -3), surfaceID: "floor")
@@ -130,7 +126,7 @@ struct SessionSmoke {
         check(model.fixtures.count == 1 && model.fixtures[0].id == fixtureID, "Reposition moves existing fixture")
         check(model.fixtures[0].position.y == 0 && !model.isPickingRoom, "Reposition puts base on surface")
         check(model.fixtures[0].orientation == mount.orientation && model.fixtures[0].channels == mount.channels, "Reposition preserves orientation and channels")
-        model.beginRetarget(fixtureID, method: .head)
+        model.beginRetarget(fixtureID)
         model.cancelPicking()
         check(!model.isPickingRoom && !model.acceptTarget(aimPoint), "Cancel disarms targeting")
         model.resetAim(fixtureID)
@@ -147,7 +143,7 @@ struct SessionSmoke {
         check(!model.recent.items.contains(.preset(presetID)), "Delete removes stale recent preset")
         await model.sync()
         check(!model.hasUnsyncedChanges && model.syncStatus.contains("HTTP 200"), "Sync accepts the new snapshot")
-        model.beginRetarget(fixtureID, method: .head)
+        model.beginRetarget(fixtureID)
         model.remove(fixtureID)
         check(!model.isPickingRoom, "Deleting target cancels picking")
         check(!model.recent.items.contains(.fixture(fixtureID)), "Delete removes stale recent object")

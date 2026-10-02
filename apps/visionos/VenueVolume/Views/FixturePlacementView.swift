@@ -39,11 +39,8 @@ struct FixturePlacementView: View {
                     if fixture.assetID != nil {
                         Divider()
                         Text("Head aim").font(.headline)
-                        Text("Retarget previews this fixture's pan/tilt and beam. Save the target to keep it, or Cancel to restore the previous look.")
-                        Menu("Retarget", systemImage: "scope") {
-                            Button("Aim head (preview)") { model.beginRetarget(id, method: .head) }
-                            Button("Aim mount") { model.beginRetarget(id, method: .mount) }
-                        }.disabled(!model.canPlace)
+                        Text("Retarget previews the assigned preset. Save updates its Pan/Tilt and every assigned fixture; Cancel restores.")
+                        Button("Retarget DMX", systemImage: "scope") { model.beginRetarget(id) }.disabled(!model.canPlace)
                         Button("Use preset aim") { model.resetAim(id) }.disabled(fixture.aimOverride == nil)
                     }
                     if let message = model.message { Text(message).font(.caption).foregroundStyle(.orange) }

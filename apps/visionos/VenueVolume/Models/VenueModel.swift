@@ -2,8 +2,8 @@ import Foundation
 import Observation
 import VenueVolumeCore
 
-enum AimMethod: String, CaseIterable { case head = "Aim head (preview)", mount = "Aim mount" }
-enum ScenePick: Equatable { case move(UUID), aim(UUID, AimMethod) }
+enum ScenePick: Equatable { case move(UUID), aim(UUID) }
+private enum TargetPresetSource { case saved(UUID), draft(UUID) }
 enum FixtureTransformMode: String, CaseIterable, Identifiable { case move = "Move", rotate = "Rotate"; var id: String { rawValue } }
 private struct FixtureTransformDrag {
     var fixture: Fixture
@@ -78,6 +78,9 @@ final class VenueModel {
     private let defaults: UserDefaults
     private let arguments: [String]
     var previewDraft = false { didSet { queueHistoryEdit("Change draft preview") } }
+    var previewBlackout = false { didSet { queueHistoryEdit("Change preset simulation blackout") } }
+    var toolboxBlackout: Bool { blackout || (previewDraft && previewBlackout && selectedID != nil) }
+    private var targetPresetSource: TargetPresetSource?
     var blackout = false { didSet { queueHistoryEdit("Change blackout") } }
     var houseLight: Float = 0.15 { didSet { queueHistoryEdit("Adjust room light") } }
     var whiteRoom = true { didSet { queueHistoryEdit("Change room materials") } }
@@ -95,8 +98,7 @@ final class VenueModel {
     var pickingInstruction: String {
         switch scenePick {
         case .move: "Look at a clear floor or tabletop, then pinch to reposition."
-        case .aim(_, .head): "Look and click to preview head aim. Hold the pinch/click and move your hand to adjust, then Save or Cancel."
-        case .aim(_, .mount): "Look and click to preview mount aim. Hold the pinch/click and move your hand to adjust, then Save or Cancel."
+        case .aim: "Look and click to preview DMX aim. Hold and move your hand to adjust. Save updates this preset and its assigned fixtures; Cancel restores."
         case nil: "Look at a clear floor or tabletop, then pinch to place."
         }
     }
@@ -391,6 +393,8 @@ final class VenueModel {
     func choosePreset(_ preset: DMXPreset) {
         guard !libraryBusy else { return }
         beginHistoryAction("Open preset · \(preset.name)"); defer { endHistoryAction() }
+        cancelPicking()
+        previewDraft = true; previewBlackout = false
         presetDraft = preset
         editingPresetID = preset.id
         presetMessage = nil
@@ -401,7 +405,9 @@ final class VenueModel {
         guard !libraryBusy else { return }
         beginHistoryAction("New preset draft"); defer { endHistoryAction() }
         editingPresetID = nil
-        presetDraft = DMXPreset(name: "New preset")
+        cancelPicking()
+        previewDraft = true; previewBlackout = false
+        presetDraft = DMXPreset(name: "")
         presetMessage = nil
     }
 
@@ -467,6 +473,7 @@ final class VenueModel {
         guard !libraryBusy else { return }
         beginHistoryAction("Clear fixture preset"); defer { endHistoryAction() }
         guard let index = fixtures.firstIndex(where: { $0.id == id }), fixtures[index].presetID != nil else { return }
+        if case .aim(let targetID) = scenePick, targetID == id { cancelPicking() }
         fixtures[index].presetID = nil
         fixtures[index].channels = Array(repeating: 0, count: fixtures[index].channels.count)
         fixtures[index].preserveAimOverride()
@@ -481,11 +488,18 @@ final class VenueModel {
     }
 
     func renderedFixture(_ fixture: Fixture) -> Fixture {
-        guard let preview = targetPreview, preview.id == fixture.id, case .aim(_, let method) = scenePick else { return fixture }
+        guard let preview = targetPreview, preview.id == fixture.id, isRetargeting else { return fixture }
         var current = fixture
-        if method == .head { current.aimOverride = preview.aimOverride; current.preserveAimOverride() }
-        else { current.orientation = preview.orientation; current.surfaceID = nil }
+        current.channels = targetingPreset?.channels ?? preview.channels
+        if current.channels.count >= 6 {
+            current.channels[4] = preview.channels[4]; current.channels[5] = preview.channels[5]
+        }
+        current.aimOverride = nil
         return current
+    }
+
+    func isBlackedOut(_ fixture: Fixture) -> Bool {
+        blackout || (previewDraft && previewBlackout && selectedID == fixture.id)
     }
 
     /// Direct preview articulation belongs to this placed fixture, not its shared preset.
@@ -535,14 +549,37 @@ final class VenueModel {
 
     func yawDegrees(for fixture: Fixture) -> Float { FixtureAiming.angles(fixture.orientation).yaw }
 
-    func beginRetarget(_ id: UUID, method: AimMethod) {
-        guard canPlace, fixture(id)?.assetID == LightingPreview.assetID else { return }
+    /// Scene retarget always starts from the fixture's assigned, saved preset.
+    func beginRetarget(_ id: UUID) {
+        guard canPlace, let fixture = fixture(id), fixture.assetID == LightingPreview.assetID else { return }
+        guard let presetID = fixture.presetID, presets.contains(where: { $0.id == presetID }) else {
+            message = "Apply a preset before retargeting, or create one in the preset editor."
+            return
+        }
         select(id)
-        gizmoVisible = false
-        previewDraft = false
-        scenePick = .aim(id, method)
-        lastTarget = nil
-        message = nil
+        gizmoVisible = false; previewDraft = false
+        targetPresetSource = .saved(presetID)
+        scenePick = .aim(id); lastTarget = nil; message = nil
+    }
+
+    /// Editor targeting uses all current draft values and saves/assigns that preset.
+    func beginPresetTarget() {
+        guard canPlace, let id = selectedID, fixture(id)?.assetID == LightingPreview.assetID else { return }
+        guard presetDraft.validationIssue == nil, presetDraft.channels.count >= 6 else {
+            presetMessage = presetDraft.validationIssue ?? "Target requires at least six channels."
+            return
+        }
+        cancelPicking(); gizmoVisible = false; previewDraft = true
+        targetPresetSource = .draft(presetDraft.id)
+        scenePick = .aim(id); lastTarget = nil; message = nil
+    }
+
+    private var targetingPreset: DMXPreset? {
+        switch targetPresetSource {
+        case .saved(let id): return presets.first { $0.id == id }
+        case .draft(let id): return presetDraft.id == id ? presetDraft : nil
+        case nil: return nil
+        }
     }
 
     func beginReposition(_ id: UUID) {
@@ -556,28 +593,23 @@ final class VenueModel {
     }
 
     func cancelPicking() {
-        scenePick = nil; targetPreview = nil; pendingTarget = nil
+        scenePick = nil; targetPreview = nil; pendingTarget = nil; targetPresetSource = nil
         isPlacing = false; draggingFixture = nil; message = nil
     }
 
     @discardableResult func acceptTarget(_ target: Position3D) -> Bool {
-        guard !libraryBusy else { return false }
-        guard canPlace, case .aim(let id, let method) = scenePick,
-              let index = fixtures.firstIndex(where: { $0.id == id }) else { return false }
-        var candidate = fixtures[index]
+        guard !libraryBusy, canPlace, case .aim(let id) = scenePick,
+              var candidate = fixture(id), let preset = targetingPreset else { return false }
         do {
-            switch method {
-            case .head:
-                guard candidate.channels.count >= 6 else { throw PresetError("Apply a preset with at least six channels before aiming the head.") }
-                candidate.aimOverride = try FixtureAiming.articulated(candidate, target: target)
-                candidate.preserveAimOverride()
-            case .mount:
-                candidate.orientation = try FixtureAiming.mounted(candidate, target: target)
-                candidate.surfaceID = nil
-            }
+            guard preset.channels.count >= 6 else { throw PresetError("Target requires a preset with at least six channels.") }
+            candidate.channels = preset.channels
+            candidate.presetID = preset.id
+            candidate.aimOverride = nil
+            let aim = try FixtureAiming.articulated(candidate, target: target)
+            candidate.channels[4] = aim.pan; candidate.channels[5] = aim.tilt
             if let issue = candidate.validationIssue(among: fixtures) { throw PresetError(issue) }
             targetPreview = candidate; pendingTarget = target
-            message = "Previewing \(method == .head ? "head" : "mount") aim · Save to keep this target, or Cancel to restore."
+            message = "Previewing \(preset.name) · Save updates preset Pan/Tilt and assigned fixtures. Cancel restores."
             return true
         } catch {
             targetPreview = nil; pendingTarget = nil
@@ -586,17 +618,35 @@ final class VenueModel {
     }
 
     @discardableResult func saveTarget() -> Bool {
-        guard !libraryBusy, canPlace, case .aim(let id, let method) = scenePick,
-              let target = pendingTarget else { return false }
-        // Re-solve against current committed values: a preset may have been saved
-        // while this dialogue was open. Never publish a stale preview snapshot.
-        guard acceptTarget(target), let candidate = targetPreview, candidate.id == id,
-              let index = fixtures.firstIndex(where: { $0.id == id }), candidate.validationIssue(among: fixtures) == nil else { return false }
-        beginHistoryAction("Retarget fixture"); defer { endHistoryAction() }
-        fixtures[index] = candidate; lastTarget = target
-        cancelPicking(); revision += 1; persist()
-        message = method == .head ? "Head retargeted · pan/tilt override saved for this fixture." : "Mount retargeted · DMX values unchanged."
-        return true
+        guard !libraryBusy, canPlace, case .aim(let id) = scenePick, let target = pendingTarget,
+              var preset = targetingPreset, acceptTarget(target), let candidate = targetPreview else { return false }
+        // Re-solve using the latest preset/draft, then validate the entire assignment
+        // before changing either the library or fixtures. One Save is one Undo step.
+        preset.channels = candidate.channels
+        preset.name = preset.name.trimmingCharacters(in: .whitespacesAndNewlines)
+        do {
+            var assigned = fixtures
+            for index in assigned.indices where assigned[index].presetID == preset.id || assigned[index].id == id {
+                assigned[index].presetID = preset.id
+                assigned[index].aimOverride = nil
+            }
+            let updated = try PresetOperations.saving(preset, fixtures: assigned)
+            var library = presets
+            if let index = library.firstIndex(where: { $0.id == preset.id }) { library[index] = preset }
+            else { library.append(preset) }
+            let encoded = try JSONEncoder().encode(library)
+            let refreshEditor = editingPresetID == preset.id && !draftHasChanges
+            beginHistoryAction("Retarget preset · \(preset.name)"); defer { endHistoryAction() }
+            if !isDemoMode { defaults.set(encoded, forKey: "venue.presets.v1") }
+            presets = library; fixtures = updated
+            // Preserve an unrelated unsaved editor draft when targeting from the scene.
+            if case .draft = targetPresetSource { presetDraft = preset; editingPresetID = preset.id }
+            else if refreshEditor { presetDraft = preset }
+            cancelPicking(); lastTarget = target; revision += 1; persist()
+            message = "Saved \(preset.name) target · preset Pan/Tilt updated."
+            presetMessage = message
+            return true
+        } catch { message = error.localizedDescription; return false }
     }
 
     func beginTransform(_ id: UUID) {
@@ -825,7 +875,7 @@ extension VenueModel {
         return .init(rooms: rooms, setups: savedSetups, roomID: room.id, fixtures: fixtures, presets: presets,
                      draft: presetDraft, editingPresetID: editingPresetID, setupName: setupName, activeSetupID: activeSetupID,
                      savedSetup: savedSetup, whiteRoom: whiteRoom, houseLight: houseLight, blackout: blackout,
-                     selectedID: selectedID, expandedID: expandedID, previewDraft: previewDraft)
+                     selectedID: selectedID, expandedID: expandedID, previewDraft: previewDraft, previewBlackout: previewBlackout)
     }
 
     private func startHistoryIfNeeded() {
@@ -940,7 +990,7 @@ extension VenueModel {
         fixtures = state.fixtures; presets = state.presets; presetDraft = state.draft; editingPresetID = state.editingPresetID
         setupName = state.setupName; activeSetupID = state.activeSetupID; savedSetup = state.savedSetup
         whiteRoom = state.whiteRoom; houseLight = state.houseLight; blackout = state.blackout
-        selectedID = state.selectedID; expandedID = state.expandedID; previewDraft = state.previewDraft
+        selectedID = state.selectedID; expandedID = state.expandedID; previewDraft = state.previewDraft; previewBlackout = state.previewBlackout ?? false
         revision += 1; syncedRevision = nil; nextFixtureNumber = fixtures.count+1
         if !isDemoMode, let data = try? JSONEncoder().encode(presets) { defaults.set(data, forKey: "venue.presets.v1") }
         persistenceBlocked = false

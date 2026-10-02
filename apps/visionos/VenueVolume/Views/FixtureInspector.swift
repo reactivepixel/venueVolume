@@ -70,10 +70,7 @@ struct FixtureActions: View {
     let fixture: Fixture
     var body: some View {
         HStack {
-            Menu("Retarget", systemImage: "scope") {
-                Button("Aim head (preview)") { model.beginRetarget(fixture.id, method: .head) }
-                Button("Aim mount") { model.beginRetarget(fixture.id, method: .mount) }
-            }.disabled(!model.canPlace || fixture.assetID == nil)
+            Button("Retarget DMX", systemImage: "scope") { model.beginRetarget(fixture.id) }.disabled(!model.canPlace || fixture.assetID == nil)
             Button("Axes", systemImage: "rotate.3d") { model.beginTransform(fixture.id) }.disabled(!model.canPlace)
             Button(role: .destructive) { model.remove(fixture.id) } label: { Image(systemName: "trash") }
                 .accessibilityLabel("Delete \(fixture.name)")
