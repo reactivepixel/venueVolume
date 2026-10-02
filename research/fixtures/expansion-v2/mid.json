@@ -36,7 +36,7 @@
       "notable": "300 W Ushio NSL lamp; 0.8° beam; 14-color wheel, 17 static gobos, dual prisms and frost.",
       "source_urls": ["https://chauvetprofessional.com/product/rogue-r3-beam/"]
     },
-    "dimensions": {"width_m": 0.325, "height_m": 0.220, "depth_m": 0.550, "axis_status": "estimated", "axis_note": "Product specifications state 325 × 220 × 550 mm without named axes; mapped as width × height × depth for a candidate envelope. Confirm mapping against linked CAD before scale modeling.", "reference_pose": "Base level; head at neutral vertical orientation."},
+    "dimensions": {"width_m": 0.325, "height_m": 0.550, "depth_m": 0.220, "axis_status": "estimated", "axis_note": "Product specifications state 325 × 220 × 550 mm without named axes. In the official upright product pose, the 550 mm axis is vertical and 220 mm is front-to-back; mapped as width × height × depth = 325 × 550 × 220 mm. Treat as an image-informed estimate pending a dimensioned CAD drawing.", "reference_pose": "Base level; head at neutral vertical orientation."},
     "modeling": {"family": "moving_spot", "shell": "faceted", "lens_ratio": 0.72, "head_depth": 0.8, "notes": "Discharge beam fixture with compact front aperture and long optical barrel."},
     "evidence": [{"url": "https://chauvetprofessional.com/product/rogue-r3-beam/", "title": "Rogue R3 Beam product specifications", "locator": "Specifications: Optical, Dynamic Effects, Construction/Physical; 325 × 220 × 550 mm and 15.6 kg", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
     "acquisition_errors": []
@@ -138,5 +138,47 @@
     "modeling": {"family": "moving_wash", "lens_count": 5, "body_style": "linear multi-head bar with independently articulating optical heads", "notes": "Atypical five-head geometry; do not approximate as a conventional single moving head or static batten."},
     "evidence": [{"url": "https://en.acmelighting.com/item/TORNADO", "title": "ACME TORNADO product specifications", "locator": "Overview; Technical Specification: light source, optical system, control, pan & tilt, electrical, physical; dimensions 1000 × 350 × 192 mm and weight 30 kg", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
     "acquisition_errors": ["Five individual head pivot coordinates and their swept clearance are not dimensioned in the page drawing; overall neutral envelope is known, articulation geometry needs a dimensioned CAD model/manual review."]
+  },
+  {
+    "name": "LIGHTNING",
+    "model_number": "STROBE 6 IP",
+    "manufacturer": "ACME",
+    "type": "strobe",
+    "subtype": "pixel strobe / wash / beam array",
+    "url": "https://en.acmelighting.com/item/LIGHTNING",
+    "images": ["https://en.acmelighting.com/upload/image/20250113/2dca5f7c2c24d4cefba4178a862171ec.png"],
+    "data": {"protocols": ["DMX512", "RDM", "Art-Net", "sACN"], "dmx_channels": [10, 17, 24, 21, 26, 36, 41, 61, 150, 158], "power": "1610 W", "weight": "13.3 kg", "notable": "240 RGBW LEDs in 30 sections and 30 cool-white pixel beam LEDs; Smart Glass electronic frost; IP66.", "source_urls": ["https://en.acmelighting.com/item/LIGHTNING"]},
+    "dimensions": {"width_m": 0.483, "height_m": 0.224, "depth_m": 0.212, "axis_status": "documented", "axis_note": "Manufacturer physical specs explicitly label width 483 mm, depth 212 mm, height 224 mm.", "reference_pose": "Assembled fixture with yoke; universal working position."},
+    "modeling": {"family": "strobe", "strip": true, "cells": 30, "body_style": "IP66 pixel strobe/wash panel with side and top camlock joinery", "notes": "One cool-white beam emitter centered in each of 30 RGBW sections; housing has integrated yoke and matrix-joining hardware."},
+    "evidence": [{"url": "https://en.acmelighting.com/item/LIGHTNING", "title": "ACME LIGHTNING product specifications", "locator": "Technical Specification: source, control, effects, electrical and physical; 483 × 212 × 224 mm, 13.3 kg, 1610 W", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": []
+  },
+  {
+    "name": "Lonestar Prime",
+    "model_number": "Lonestar Prime",
+    "manufacturer": "High End Systems",
+    "type": "moving light",
+    "subtype": "profile / framing spot, IP54",
+    "url": "https://www.etcconnect.com/Lonestar-Prime/",
+    "images": ["https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Live_Events/Lighting_Fixtures/Lonestar_Prime/LonestarPrime_547x400.jpg"],
+    "data": {"protocols": ["DMX512"], "dmx_channels": [52], "power": null, "weight": "23.1 kg", "notable": "17,000 lm Bright White LED; 3.8°–55° zoom; full-curtain framing, 9 rotating and 10 fixed gobos, animation wheel, dual frost/prism; IP54.", "source_urls": ["https://www.etcconnect.com/Lonestar-Prime/", "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737520529"]},
+    "dimensions": {"width_m": 0.350, "height_m": 0.584, "depth_m": 0.230, "axis_status": "documented", "axis_note": "Manufacturer datasheet explicitly lists height 584 mm, width 350 mm and depth 230 mm; fixture excluding mounting hardware.", "reference_pose": "Manufacturer overall envelope; moving head orientation not separately specified."},
+    "modeling": {"family": "moving_spot", "shell": "faceted", "lens_ratio": 0.6, "head_depth": 0.86, "notes": "Compact automated profile with four-plane framing module and full-curtain shutters."},
+    "evidence": [{"url": "https://www.etcconnect.com/Lonestar-Prime/", "title": "Lonestar Prime product page", "locator": "Features: 17,000 lm, IP54, CMY/CTO, framing, patterns and effect package", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737520529", "title": "Lonestar Prime Datasheet, revision C, 2026-05", "locator": "Product Dimensions table; physical, optical, control sections; 584 × 350 × 230 mm, 23.1 kg; 52-channel mode", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": []
+  },
+  {
+    "name": "Source Four 36°",
+    "model_number": "Source Four Ellipsoidal 36°",
+    "manufacturer": "ETC",
+    "type": "conventional light",
+    "subtype": "ellipsoidal reflector spotlight",
+    "url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/Source-Four/",
+    "images": ["https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Lighting_Fixtures/Source_Four/S4_clip.jpg"],
+    "data": {"protocols": [], "dmx_channels": [], "power": null, "weight": "6.4 kg (includes C-clamp)", "notable": "36° fixed lens tube; 750 W HPL lamp compatibility is common for this family but this model-specific source did not establish a lamp/power limit.", "source_urls": ["https://www.etcconnect.com/Products/Entertainment-Fixtures/Source-Four/", "https://www.etcconnect.com/workarea/DownloadAsset.aspx?id=10737460423"]},
+    "dimensions": {"width_m": 0.338, "height_m": 0.541, "depth_m": 0.579, "axis_status": "documented", "axis_note": "Manufacturer 36° physical drawing labels 338 mm front-view width, 541 mm overall height and 579 mm maximum side-view depth; these are drawing extents for the assembled yoke/clamp pose.", "reference_pose": "Manufacturer 36° dimensional drawing, yoke/clamp assembled; using maximum height/depth envelope."},
+    "modeling": {"family": "profile", "barrel_ratio": 0.36, "body_style": "conventional ellipsoidal reflector spotlight with fixed 36-degree tube and yoke", "notes": "Classic ETC Source Four rental/theatre body; body and 36° lens tube are separately variant-dependent. Geometry should include lamp housing, barrel, lens tube, shutter/gobo gate, yoke, C-clamp and gel-frame holder."},
+    "evidence": [{"url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/Source-Four/", "title": "ETC Source Four product page", "locator": "Entertainment fixtures overview and Source Four family navigation", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://www.etcconnect.com/workarea/DownloadAsset.aspx?id=10737460423", "title": "Source Four 36° Ellipsoidal Series physical drawing", "locator": "Physical dimension drawing; front and side orthographic dimensions; Source Four Weights table: 36° fixture 14 lb / 6.4 kg including 2.3 lb C-clamp", "accessed_at": "2026-10-02", "source_kind": "manufacturer_drawing"}],
+    "acquisition_errors": ["Power, lamp type options, accessory kit and current/legacy availability were not resolved from a current model-specific specification sheet."]
   }
 ]

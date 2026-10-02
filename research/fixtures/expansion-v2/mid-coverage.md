@@ -20,6 +20,9 @@ pages or official range/documentation pages unless identified as a legacy archiv
 | Cameo | OPUS X4 IP | `mid.json` | Official product image and key specs; exact IP variant dimensions not stated in retrieved material. |
 | PROLIGHTS | Astra Hybrid330 | `mid.json` | Official image, page specs, 29-channel footprint and physical dimensions. |
 | ACME | TORNADO | `mid.json` | Official image, specs and dimensions; head-pivot geometry remains to be checked. |
+| ACME | LIGHTNING | `mid.json` | Official image, exact dimensions, power, mass, effects and control modes. |
+| High End Systems | Lonestar Prime | `mid.json` | Official image and May 2026 datasheet; exact dimensions, mass and 52-channel footprint. |
+| ETC | Source Four 36° Ellipsoidal | `mid.json` | Official image and model-specific dimensional drawing; classic rental/theatre fixture. |
 
 ## Official catalog inventory and candidate models
 
@@ -71,12 +74,35 @@ Official collection pages: [Proteus](https://www.elationlighting.com/collections
 [Fuze](https://www.elationlighting.com/collections/fuze); official
 [Proteus Series brochure](https://www.elationlighting.com/proteus-series-brochure).
 
-- PROTEUS collection currently lists Excalibur OPS, Rayzor 760 WMG, Rayzor 1960,
-  Rayzor Blade L, Excalibur, Maximus, Atlas, Brutus, Rayzor Blade S, Hybrid MAX WMG,
-  Lucius, Rayzor 760, Brutus FS, Radius, Hybrid MAX, and Odeon.
-- Fuze collection currently lists Fuze Profile+, PFX WH, Wash 250, Max Profile,
-  Pendant (HW), Teatro, Wash 500 WH, PFX, Wash 500 Motorized Barndoors, Wash 500
-  Ovalizer, SFX, Wash 500 Radial Frost, and Wash 500.
+- Current PROTEUS collection product links: [Excalibur OPS](https://www.elationlighting.com/products/proteus-excalibur-ops),
+  [Rayzor 760 WMG](https://www.elationlighting.com/products/proteus-rayzor-760-wmg),
+  [Rayzor 1960](https://www.elationlighting.com/products/proteus-rayzor-1960),
+  [Rayzor Blade L](https://www.elationlighting.com/products/proteus-rayzor-blade-l),
+  [Excalibur](https://www.elationlighting.com/products/proteus-excalibur),
+  [Maximus](https://www.elationlighting.com/products/proteus-maximus),
+  [Atlas](https://www.elationlighting.com/products/proteus-atlas),
+  [Brutus](https://www.elationlighting.com/products/proteus-brutus),
+  [Rayzor Blade S](https://www.elationlighting.com/products/proteus-rayzor-blade-s),
+  [Hybrid MAX WMG](https://www.elationlighting.com/products/proteus-hybrid-max-wmg),
+  [Lucius](https://www.elationlighting.com/products/proteus-lucius),
+  [Rayzor 760](https://www.elationlighting.com/products/proteus-rayzor-760),
+  [Brutus FS](https://www.elationlighting.com/products/proteus-brutus-fs),
+  [Radius](https://www.elationlighting.com/products/proteus-radius),
+  [Hybrid MAX](https://www.elationlighting.com/products/proteus-hybrid-max), and
+  [Odeon](https://www.elationlighting.com/products/proteus-odeon).
+- Current FUZE collection product links: [Max Profile](https://www.elationlighting.com/products/fuze-max-profile),
+  [Pendant HW](https://www.elationlighting.com/products/fuze-pendant-hw),
+  [PFX](https://www.elationlighting.com/products/fuze-pfx),
+  [PFX WH](https://www.elationlighting.com/products/fuze-pfx-wh),
+  [Profile](https://www.elationlighting.com/products/fuze-profile-1),
+  [SFX](https://www.elationlighting.com/products/fuze-sfx),
+  [Teatro](https://www.elationlighting.com/products/fuze-teatro),
+  [Wash 250](https://www.elationlighting.com/products/fuze-wash-250),
+  [Wash 500](https://www.elationlighting.com/products/fuze-wash-500),
+  [Wash 500 Motorized Barndoors](https://www.elationlighting.com/products/fuze-wash-500-motorized-barndoors),
+  [Wash 500 Ovalizer](https://www.elationlighting.com/products/fuze-wash-500-ovalizer),
+  [Wash 500 Radial Frost](https://www.elationlighting.com/products/fuze-wash-500-radial-frost),
+  and [Wash 500 WH](https://www.elationlighting.com/products/fuze-wash-500-wh).
 - Other professional candidates on the official range/product pages include KL Core IP,
   KL Profile Compact, KL PAR FC, Paragon S/M/LT, Rebel Profile, and Artiste Mondrian.
 - Existing exact records skipped: DARTZ 360, Fuze SFX, Fuze Wash 500, KL Fresnel 8,
@@ -109,38 +135,77 @@ Official pages: [Entertainment Fixtures](https://www.etcconnect.com/Products/Lig
   Source Four LED Series 3 Lustr X8, ColorSource PAR, ColorSource CYC Floor.
 - Legacy rental/theatre anchors for possible later inclusion: Source Four tungsten ERS,
   Source Four PAR, Source Four PARNel, Source Four Fresnel, Source Four HID.
+- [Source Four 36°](https://www.etcconnect.com/Products/Entertainment-Fixtures/Source-Four/) — acquired as a legacy rental anchor; exact physical drawing checked.
 - Official Series 3 documentation index includes 2025/2026 datasheets, manuals, CAD
   blocks and physical drawings by lens-tube variant. It should be treated as a family
   of distinct outer envelopes where the tube materially changes depth.
 
 ### Astera
 
-Official home/range: [Astera product site](https://astera-led.com/products/). Automated HTML
-retrieval of the official product site was blocked during this pass; pages and datasheets
-must be checked manually before making image/spec claims.
+Official home/range: [Astera Products](https://astera-led.com/products/).
+Product-specific manufacturer pages/resources verified in search results include
+[Helios Tube specifications](https://astera-led.com/fr/products/helios-tube/specs/),
+[AX5 TriplePAR](https://astera-led.com/fr/products/ax5-triplepar/),
+[AX9 PowerPAR](https://astera-led.com/zh/products/ax9-powerpar/), and the
+[HydraPanel datasheet](https://astera-led.com/wp-content/uploads/FP6_HydraPanel_Datasheet_V1.pdf).
+The manufacturer also provides a [Titan Tube / AX1 PixelTube accessory page](https://astera-led.com/fr/products/snapgrid-for-titan-tube-ax1-pixeltube/).
+Automated retrieval of Astera's English product HTML was blocked during this pass, so exact
+current product pages and hero image URLs remain unconfirmed.
 
 - Core professional battery fixtures to cover: Titan Tube, Helios Tube, Hyperion Tube,
   AX1 PixelTube, AX5 TriplePAR, AX9 PowerPAR, AX3 Lightdrop, HydraPanel, QuikBeam,
-  QuikSpot, and LunaBulb.
-- Official Astera HydraPanel datasheet was discoverable; it identifies compatibility with
-  Helios/Titan Tube charging and accessory systems. It does not replace per-fixture source
-  research. Product image URLs and outer dimensions remain blockers for this batch.
+  QuikSpot, LeoFresnel, and LunaBulb.
+- The HydraPanel datasheet is manufacturer documentation and includes dimensions,
+  mass, LED/source/color data, IP65 rating, wireless protocol support and output. It does
+  not substitute for a direct product image URL and human-readable product page.
 - Existing exact record skipped: NYX Bulb.
 
 ### ACME
 
-Official range pages: [ACME home/catalog](https://en.acmelighting.com/index),
-[Pixel Line IP](https://en.acmelighting.com/item/PIXEL-LINE-IP),
-[Tornado](https://en.acmelighting.com/item/TORNADO),
-[Lightning](https://en.acmelighting.com/item/LIGHTNING),
-[Lightning X](https://en.acmelighting.com/item/LIGHTNING-X).
-
-- Official catalog navigation and featured list surfaced SANA Profile, SANA Beam,
-  PULSAR PLUS S2, CYCLONE, PHOTON HYBRID 500, HUE 6 IP, SUPERNOVA LT, HYPERZONE,
-  LINEFORCE IP, AUTOLUX, LIGHTNING X, LYRA, MANA PROFILE, MANA HYBRID, TORNADO,
-  PIXEL LINE IP, plus beam/hybrid models ARES IP, SAGITTA IP, BEAMONE PRO, ZEUS,
-  SK YTRK (catalog page spells it SKYTRK), and COMET.
+Official manufacturer catalog: [ACME home](https://en.acmelighting.com/index). Model links
+from current product navigation (where a card linked to a non-product series page, that is
+called out): [SUPERNOVA LT](https://en.acmelighting.com/item/SUPERNOVA-LT),
+[SUPERNOVA](https://en.acmelighting.com/item/SUPERNOVA),
+[LYRA](https://en.acmelighting.com/item/LYRA),
+[MANA PROFILE](https://en.acmelighting.com/item/MANA-PROFILE),
+[SANA PROFILE](https://en.acmelighting.com/item/SANA-PROFILE),
+[AECO 30 IP](https://en.acmelighting.com/item/AECO-30-IP),
+[AECO 15](https://en.acmelighting.com/item/AECO-15),
+[MANA HYBRID](https://en.acmelighting.com/item/MANA-HYBRID),
+[WILLOW 500](https://en.acmelighting.com/item/WILLOW-500),
+[LYRA BW](https://en.acmelighting.com/item/LYRA-BW),
+[AUTOLUX](https://en.acmelighting.com/item/AUTOLUX),
+[SANA BEAM](https://en.acmelighting.com/item/SANA-BEAM),
+[HUE 6 IP](https://en.acmelighting.com/item/HUE-6-IP),
+[HYPERZONE](https://en.acmelighting.com/item/HYPERZONE),
+[THETA](https://en.acmelighting.com/item/THETA),
+[SANDANE FROST](https://en.acmelighting.com/item/SANDANE-FROST),
+[TORNADO](https://en.acmelighting.com/item/TORNADO),
+[SUPER DOTLINE](https://en.acmelighting.com/item/SUPER-DOTLINE),
+[PULSAR PLUS S2](https://en.acmelighting.com/item/PULSAR-PLUS-S2),
+[PULSAR S2](https://en.acmelighting.com/item/PULSAR-S2),
+[CYCLONE](https://en.acmelighting.com/item/CYCLONE),
+[PIXEL LINE IP](https://en.acmelighting.com/item/PIXEL-LINE-IP),
+[PIXEL LINE IP 500](https://en.acmelighting.com/item/PIXEL-LINE-IP-500),
+[LIGHTNING X](https://en.acmelighting.com/item/LIGHTNING-X),
+[LIGHTNING](https://en.acmelighting.com/item/LIGHTNING),
+[THUNDERBOLT](https://en.acmelighting.com/item/THUNDERBOLT),
+[VOLTKA](https://en.acmelighting.com/item/VOLTKA),
+[ULTRA PAR IP](https://en.acmelighting.com/item/ULTRA-PAR-IP),
+[ULTRA BLINDER IP](https://en.acmelighting.com/item/ULTRA-BLINDER-IP),
+[ZEUS](https://en.acmelighting.com/item/ZEUS),
+[ARES IP](https://en.acmelighting.com/item/ARES-IP),
+[SAGITTA IP](https://en.acmelighting.com/item/SAGITTA-IP),
+[ARES](https://en.acmelighting.com/item/ARES),
+[BEAMONE PRO](https://en.acmelighting.com/item/BEAMONE-PRO),
+[PHOTON HYBRID 500](https://en.acmelighting.com/item/PHOTON-HYBRID-500),
+[SKYTRK](https://en.acmelighting.com/item/SKYTRK), and
+[COMET](https://en.acmelighting.com/item/COMET). NEOZONE, OXYGEN, STAGE PAR 400 ZOOM IP,
+ELLIPSOIDAL 300/40, THEATRE SPOT 500/300, TV LIGHT PANEL 3000/1000, TANGO, and additional
+line/blinder products appear in the navigation but their direct links were not resolved
+in this pass.
 - [TORNADO](https://en.acmelighting.com/item/TORNADO) — acquired.
+- [LIGHTNING](https://en.acmelighting.com/item/LIGHTNING) — acquired.
 - [PIXEL LINE IP](https://en.acmelighting.com/item/PIXEL-LINE-IP) and
   [LIGHTNING](https://en.acmelighting.com/item/LIGHTNING) are strong bar/strobe rental
   candidates. Image/drawing extraction and exact body dimensions not included yet.
@@ -160,15 +225,29 @@ Official site: [PR Lighting](https://www.pr-lighting.com/).
 
 ### PROLIGHTS
 
-Official product indexes: [Moving Lights](https://prolights.it/products/Moving%20Lights),
-[Astra Hybrid330](https://prolights.it/en/product/ASTRAHYB330).
+Official product index: [Moving Lights: Beam & Hybrid](https://prolights.it/products/Moving%20Lights?categories%5B%5D=Beam+%26+Hybrid).
+The index's products include [Jet Beam120IP](https://www.prolights.it/en/product/JETBEAM120IP),
+[Astra Hybrid260IP](https://www.prolights.it/en/product/ASTRAHYB260IP),
+[Astra Beam120IP](https://www.prolights.it/en/product/ASTRABEAM120IP),
+[Astra Hybrid330](https://www.prolights.it/en/product/ASTRAHYB330),
+[Astra Hybrid330IP](https://www.prolights.it/en/product/ASTRAHYB330IP),
+[Jet Hybrid200](https://www.prolights.it/en/product/JETHYB200),
+[Astra Beam260IP](https://www.prolights.it/en/product/ASTRABEAM260IP),
+[Astra Hybrid420](https://www.prolights.it/en/product/ASTRAHYB420),
+[Astra Hybrid420IP](https://www.prolights.it/en/product/ASTRAHYB420IP),
+[PanoramaIP AirBeam](https://www.prolights.it/en/product/PANORAMAIPAB),
+[Razor 440](https://www.prolights.it/en/product/RAZOR440),
+[Pixie Beam](https://www.prolights.it/en/product/PIXIEBEAM),
+[Jade](https://www.prolights.it/en/product/JADE),
+[Onyx](https://www.prolights.it/en/product/ONYX),
+[Ruby](https://www.prolights.it/en/product/RUBYBK),
+[Ruby FCX](https://www.prolights.it/en/product/RUBYFCX),
+[Mini Ruby](https://www.prolights.it/en/product/MINIRUBY), and
+[Jet Beam1](https://www.prolights.it/en/product/JETBEAM1).
 
 - Astra Hybrid330 — acquired.
-- Current/high-value ranges to inventory next: Astra Hybrid330 IP, Astra Wash19Pix,
-  Astra Wash7Pix, Astra Profile400, Astra Profile600, Astra Beam260, Astra Beam300,
-  Astra Wash7Pix IP, Astra Blade, Astra Wash19Pix IP, Ruby FCX, Ruby FC, Ruby, Stark,
-  Stark 1000, Jet Spot 4Z, Jet Profile 4Z, Solar 27Q, SunBlast 3000FC, EclPanel TWC,
-  EclFresnel CT+, EclProfile CT+, and LumiPix XB.
+- This is the Beam & Hybrid category, not a complete PROLIGHTS inventory. Follow-on work
+  should include Profile, Wash, Stage Lights, Strobes/Blinders, LED Bars, and Pixel Mapping.
 - Astra Hybrid330 official page exposes full specs, DMX personalities, manuals, CAD and
   3D files. The specification page's revision listing is current through 2026-08.
 
@@ -179,13 +258,25 @@ Official [OPUS series](https://www.cameolight.com/en/series/opus-series/),
 and [outdoor rental category](https://www.cameolight.com/en/solutions/rental/outdoor-lighting/outdoor-lights/).
 
 - OPUS X4 and OPUS X4 IP — acquired.
-- OPUS range listing also surfaced OPUS X, OPUS SP6 FC, OPUS SP6 IP, OPUS SP5+,
-  OPUS SP5, OPUS W5, OPUS W5 IP; several page-level variant URLs require confirmation.
-- OTOS outdoor range: OTOS W12, OTOS B5, OTOS H5, OTOS SP6, OTOS H4; verify each
-  variant and generation on product pages.
-- Other professional/rental candidates: EVOS W7, EVOS W3, ZENIT W600, ZENIT W300,
-  ZENIT B60, PIXBAR 650 CPRO, PIXBAR 600 PRO, PIXBAR DTW, ROOT PAR IP, ROOT PAR 6,
-  ROOT BAR 6, F2 FC, F4 FC, G4 FC, Q-SPOT 40, and Q-SPOT 60.
+- OPUS range listing also surfaced [OPUS X PROFILE](https://www.cameolight.com/en/solutions/rental/moving-lights/profile-moving-heads/20663/opus-x-profile),
+  [OPUS SP5 FC](https://www.cameolight.com/en/solutions/rental/moving-lights/profile-moving-heads/19892/opus-sp5-fc),
+  [OPUS SP5](https://www.cameolight.com/en/solutions/rental/moving-lights/profile-moving-heads/29239/opus-sp5),
+  [OPUS SP6 FC](https://www.cameolight.com/en/solutions/rental/moving-lights/profile-moving-heads/32179/opus-sp6-fc),
+  [OPUS SP6 IP](https://www.cameolight.com/en/solutions/rental/moving-lights/profile-moving-heads/32180/opus-sp6-ip),
+  [OPUS S5](https://www.cameolight.com/en/solutions/rental/moving-lights/spot-moving-heads/19890/opus-s5),
+  [OPUS X WASH](https://www.cameolight.com/en/solutions/rental/moving-lights/wash-moving-heads/25498/opus-x-wash),
+  and [OPUS W5](https://www.cameolight.com/en/solutions/rental/moving-lights/wash-moving-heads/25590/opus-w5).
+- OTOS outdoor range: [OTOS W12](https://www.cameolight.com/en/solutions/rental/moving-lights/wash-moving-heads/30744/otos-w12),
+  [OTOS W3](https://www.cameolight.com/en/solutions/rental/moving-lights/wash-moving-heads/30745/otos-w3),
+  [OTOS W6](https://www.cameolight.com/en/solutions/rental/moving-lights/wash-moving-heads/30746/otos-w6),
+  [OTOS B5](https://www.cameolight.com/en/solutions/rental/moving-lights/beam-moving-heads/29085/otos-b5),
+  [OTOS H5](https://www.cameolight.com/en/solutions/rental/moving-lights/beam-moving-heads/26039/otos-h5),
+  and [OTOS SP6](https://www.cameolight.com/en/solutions/rental/moving-lights/profile-moving-heads/29049/otos-sp6).
+- Other professional/rental candidates with official product links include [ZENIT W600](https://www.cameolight.com/en/solutions/rental/outdoor-lighting/outdoor-lights/18383/zenit-w600),
+  [ZENIT W600 G2](https://www.cameolight.com/en/solutions/rental/outdoor-lighting/outdoor-lights/31963/zenit-w600-g2),
+  [ZENIT W300](https://www.cameolight.com/en/solutions/rental/outdoor-lighting/outdoor-lights/19856/zenit-w300),
+  [ZENIT W1200 G2](https://www.cameolight.com/en/series/zenit-series/32161/zenit-w1200-g2),
+  and [PIXBAR 600 IP G2](https://www.cameolight.com/en/solutions/dj-musicians/outdoor-lighting/outdoor-lights/29370/pixbar-600-ip-g2).
 - Catalog candidates are listed for follow-up; only the two acquired records above have
   full source-backed specs in this batch.
 
