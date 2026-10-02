@@ -231,8 +231,11 @@ Official site: [PR Lighting](https://www.pr-lighting.com/).
   product listings: XLED 1037, XLED 1037 PR-8157, XLED 2007 BE, XLED 3007, XR 1000
   BWS, XR 1000 Framing, Aqua 480 BWS, Aqua 580 BWS, XR 330 BWS, and XR 440 BWS.
 - Official legacy story [XLED 1037 in touring use](https://www.pr-lighting.com/case/index121.html)
-  confirms an RGBW zoom wash model. Current model pages, exact manual revisions and images
-  were not verified in this checkpoint; legacy/current status needs follow-up.
+  confirms an RGBW zoom wash model. A bounded primary-source pass could not retrieve the
+  PR Lighting site or a working manufacturer-hosted manual/image for the Aqua candidates.
+  Secondary distributor/catalog copies expose Aqua 480/580 specs, but they were not treated
+  as acquisition evidence and no PR records are included. Exact model-specific official
+  manuals, product image URLs, current/legacy status, and dimensions remain a stated gap.
 
 ### PROLIGHTS
 
