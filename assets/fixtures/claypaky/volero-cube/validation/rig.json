@@ -1,0 +1,17 @@
+{
+  "id": "claypaky/volero-cube",
+  "passed": true,
+  "source_usdz_sha256": "f99fc1ce77b0e5a30180090f4b8d96eb0235e8833b6f67e663a02d16face8e3e",
+  "joints": 2,
+  "moving_meshes": 27,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

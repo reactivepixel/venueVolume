@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "c913dcc30201f6e68e40b34228f5d6196589f43c81f71a4e4c536c623112e7cb",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "adj/saber-spot-dtw",
+    "name": "Saber Spot DTW",
+    "manufacturer": "ADJ",
+    "family": "par",
+    "resource": "FixtureAssets/Catalog/adj/saber-spot-dtw/fixture.usdz",
+    "sha256": "c913dcc30201f6e68e40b34228f5d6196589f43c81f71a4e4c536c623112e7cb",
+    "boundsMin": [
+      -0.08500000089406967,
+      0.0,
+      -0.04399999976158142
+    ],
+    "boundsMax": [
+      0.08500000089406967,
+      0.08699999697273597,
+      0.04400000034365803
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.05201311409473419,
+          0.000347395078279078
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.05201311409473419,
+          -0.05050200596451759
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

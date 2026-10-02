@@ -1,0 +1,77 @@
+{
+  "mesh_count": 74,
+  "triangle_count": 12584,
+  "geometry_sha256": "0c6d628adfc9c0d08f4a581f2bd2db1642a418d328398b15a9403ae02b2e63d2",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.39582234621047974,
+      -0.12945695221424103
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.000518946151714772
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.0762895867228508,
+        0.000518946151714772
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.39582234621047974,
+        0.000518946151714772
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.39582234621047974,
+        -0.1137230172753334
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    1.0379056930541992,
+    1.0017014741897583
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.claypaky.it/products/volero-cube/",
+    "https://www.claypaky.it/wp-content/uploads/2025/06/Claypaky_VoleroCube_featured.jpg"
+  ]
+}

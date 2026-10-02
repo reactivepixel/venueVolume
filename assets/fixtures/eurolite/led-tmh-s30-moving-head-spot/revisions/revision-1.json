@@ -1,0 +1,182 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "eurolite/led-tmh-s30-moving-head-spot",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Eurolite",
+      "model": "LED TMH-S30 Moving-Head Spot",
+      "variant": "51786070",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.steinigke.de/mpn51786070-eurolite-led-tmh-s30-moving-head-spot.html",
+        "title": "Eurolite LED TMH-S30 official product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Technical specifications: control/modes, 45 W, W/H/D, 3.03 kg; image gallery; DMX support files",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.steinigke.de/download/Move-Magazine-2-2020-E_00131465.pdf",
+        "title": "Steinigke MOVE Magazine 2/2020",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Page 60: model technical specification and 10/12-channel DMX",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://media.steinigke.de/images/7640p/86/51786070a.webp",
+        "title": "LED TMH-S30 Moving-Head Spot product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.webp",
+        "sha256": "7d920f43f355626e2b94156d0e37ed88e29567d29c1e93fe41735b881f7ab388"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.17,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Steinigke product specification explicitly gives width 17.0 cm, height 24.0 cm, depth 15.0 cm."
+      },
+      "height": {
+        "value": 0.24,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Steinigke product specification explicitly gives width 17.0 cm, height 24.0 cm, depth 15.0 cm."
+      },
+      "depth": {
+        "value": 0.15,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Steinigke product specification explicitly gives width 17.0 cm, height 24.0 cm, depth 15.0 cm."
+      },
+      "reference_pose": "Compact head and base assembled; main product pose, base level."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "30 W COB white LED, 8° beam, rotating 7-gobo wheel, 540° pan / 170° tilt; optional CRMX, W-DMX or QuickDMX via USB.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "45 W",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "3.03 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "10-channel mode",
+        "footprint": 10,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "12-channel mode",
+        "footprint": 12,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Compact head and base assembled; main product pose, base level.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Steinigke product specification explicitly gives width 17.0 cm, height 24.0 cm, depth 15.0 cm.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "0b623335155a83afe9cb415f308cd1728139e72f4fbcaf6d84dee4008416a9cb"
+  },
+  "git_commit": "57d1c4f4b986e095c19ed7af915f82f46f817f9c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

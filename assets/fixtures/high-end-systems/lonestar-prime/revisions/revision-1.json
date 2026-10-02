@@ -1,0 +1,163 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "high-end-systems/lonestar-prime",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "High End Systems",
+      "model": "Lonestar Prime",
+      "variant": "Lonestar Prime",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.etcconnect.com/Lonestar-Prime/",
+        "title": "Lonestar Prime product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Features: 17,000 lm, IP54, CMY/CTO, framing, patterns and effect package",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737520529",
+        "title": "Lonestar Prime Datasheet, revision C, 2026-05",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Product Dimensions table; physical, optical, control sections; 584 × 350 × 230 mm, 23.1 kg; 52-channel mode",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Live_Events/Lighting_Fixtures/Lonestar_Prime/LonestarPrime_547x400.jpg",
+        "title": "Lonestar Prime product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "72a6c71d5b18cd26c44e9d7b981fb65f44c729c95e516a4d93fe895cbd9ab5c2"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.35,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer datasheet explicitly lists height 584 mm, width 350 mm and depth 230 mm; fixture excluding mounting hardware."
+      },
+      "height": {
+        "value": 0.584,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer datasheet explicitly lists height 584 mm, width 350 mm and depth 230 mm; fixture excluding mounting hardware."
+      },
+      "depth": {
+        "value": 0.23,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer datasheet explicitly lists height 584 mm, width 350 mm and depth 230 mm; fixture excluding mounting hardware."
+      },
+      "reference_pose": "Manufacturer overall envelope; moving head orientation not separately specified."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "17,000 lm Bright White LED; 3.8°–55° zoom; full-curtain framing, 9 rotating and 10 fixed gobos, animation wheel, dual frost/prism; IP54.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {},
+      "mechanical": {
+        "weight": {
+          "value": "23.1 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "52-channel mode",
+        "footprint": 52,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Manufacturer overall envelope; moving head orientation not separately specified.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer datasheet explicitly lists height 584 mm, width 350 mm and depth 230 mm; fixture excluding mounting hardware.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "c34344bbc4a5b379e5bcaef1e02df3a5513cdd4c6d3014109eb8bcd53f7294b0"
+  },
+  "git_commit": "cde57148359c6fba452466258e6762e851414b92",
+  "note": "Initial research record before any generated model artifacts existed."
+}

@@ -24,6 +24,10 @@ def save(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + '\n')
 
+def eligible_records():
+    return [p for p in sorted(LIB.glob('*/*/fixture.json'))
+            if json.loads(p.read_text())['model']['status'] == 'validated']
+
 def build(record_path):
     record = json.loads(record_path.read_text())
     model = record['model']; profile = model['profile']; family = profile['family']
@@ -63,23 +67,34 @@ def build(record_path):
         joint('tilt', 'Tilt', moving_head, p(head), [1, 0, 0], 5, 120, 'pan')
         head_aim = bool(model.get('emitters'))
         for e in model.get('emitters', []): emitter(e['position_m'], 'tilt')
+    elif profile.get('dual_movers'):
+        for i in range(1,3):
+            yoke=f'Yoke_{i:02d}';head=f'Head_{i:02d}';pan=f'pan_{i}';tilt=f'tilt_{i}'
+            joint(pan,f'Head {i} pan',[path(yoke)],p(yoke),[0,1,0],7+(i-1)*2,270)
+            joint(tilt,f'Head {i} tilt',[path(head)],p(head),[1,0,0],8+(i-1)*2,120,pan)
+            lens=next(q for q in stage.Traverse() if str(q.GetPath()).startswith(path(head)+'/Lens/Independent_spot_glass'))
+            box=UsdGeom.BBoxCache(0,['default']).ComputeWorldBound(lens).ComputeAlignedBox()
+            center=list(box.GetMidpoint());center[2]=box.GetMin()[2]-.002
+            emitter(center,tilt)
     elif profile.get('multi_heads'):
         for i, name in enumerate(sorted(n for n in parts if n.startswith('Head_'))):
             moving_head = [str(q.GetPath()) for q in stage.GetPrimAtPath(path(name)).GetChildren()
                            if not q.GetName().startswith(('Head_support_cheek', 'Head_pivot_cap'))]
-            joint(name, f'Head {i+1} tilt', moving_head, p(name), [1, 0, 0], 7+i, 120)
+            mode=profile.get('head_mode','motor')
+            joint(name, f'Head {i+1} tilt'+(' (manual)' if mode=='manual' else ''), moving_head, p(name), [1, 0, 0], 7+i, 120, mode=mode)
             # Each modeled optical module has its own beam, placed at its front optic.
             lens = next(q for q in stage.Traverse() if str(q.GetPath()).startswith(path(name)+'/Independent_beam_optic'))
             box = UsdGeom.BBoxCache(0, ['default']).ComputeWorldBound(lens).ComputeAlignedBox()
             center = list(box.GetMidpoint()); center[2] = box.GetMin()[2] - 0.002
             emitter(center, name)
-    elif profile.get('tilting'):
+    elif profile.get('tilting') or profile.get('manual_tilt'):
         # The authored Body combines the motor base and moving housing. Resolve
         # exact mesh paths so the base and supporting brackets stay at rest.
         fixed = ('Floor_bracket', 'Bracket_arm', 'Motor_base')
         members = [str(q.GetPath()) for q in stage.GetPrimAtPath(path('Body')).GetChildren()
                    if q.IsA(UsdGeom.Mesh) and not q.GetName().startswith(fixed)] + [path('Lens')]
-        joint('tilt', 'Tilt', members, p('Yoke'), [1, 0, 0], 5, 120)
+        manual=profile.get('manual_tilt',False)
+        joint('tilt', 'Bracket tilt (manual)' if manual else 'Tilt', members, p('Yoke'), [1, 0, 0], 5, 120, mode='manual' if manual else 'motor')
         for e in model.get('emitters', []): emitter(e['position_m'], 'tilt')
     elif family == 'scanner':
         joint('pan', 'Mirror pan', [], p('Mirror'), [0, 1, 0], 4, 60)
@@ -108,6 +123,9 @@ def build(record_path):
                       family=family, resource=resource, sha256=runtime['sha256'], boundsMin=model['bounds_m']['min'],
                       boundsMax=model['bounds_m']['max'], joints=joints, emitters=emitters, headAim=head_aim,
                       notes='VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative.' if joints or emitters else 'Static equipment model.')
+    review_file=ROOT/'research/fixtures/expansion-v2/visual-review-issues.json'
+    review=json.loads(review_file.read_text()) if review_file.exists() else {}
+    if record['id'] in review:descriptor['notes']+=' Visual correction pending: '+review[record['id']]+'.'
     rig_path = folder / 'models/rig.json'
     save(rig_path, dict(schema_version=1, state='runtime_integrated_native_validation_pending', source_usdz_sha256=runtime['sha256'],
                         native_validation='pending', descriptor=descriptor))
@@ -120,14 +138,21 @@ def main():
     parser = argparse.ArgumentParser(); parser.add_argument('--check', action='store_true'); args = parser.parse_args()
     if args.check:
         catalog = json.loads((LIB/'runtime-catalog.json').read_text())
-        records = sorted(p.parent.relative_to(LIB).as_posix() for p in LIB.glob('*/*/fixture.json'))
+        records = sorted(p.parent.relative_to(LIB).as_posix() for p in eligible_records())
         assert sorted(a['id'] for a in catalog) == records
         for item in catalog:
             assert digest(APP/'VenueVolume'/item['resource']) == item['sha256']
             assert digest(LIB/item['id']/'models/fixture.usdz') == item['sha256']
             assert json.loads((LIB/item['id']/'models/rig.json').read_text())['descriptor'] == item
         print(f'PASS: {len(catalog)} bundled assets and rig records match the library.'); return
-    catalog = [build(p) for p in sorted(LIB.glob('*/*/fixture.json'))]
+    catalog = []; failures = {}
+    for path in eligible_records():
+        try: catalog.append(build(path))
+        except Exception as error:
+            failures[path.parent.relative_to(LIB).as_posix()] = str(error)
+    save(LIB/'research/rig-build-errors.json', failures)
+    if failures:
+        raise RuntimeError(f'{len(failures)} rig builds failed; previous runtime catalog preserved. See rig-build-errors.json.')
     save(LIB/'runtime-catalog.json', catalog)
     generated = APP/'Core/Sources/VenueVolumeCore/GeneratedFixtureCatalog.swift'
     generated.write_text('// Generated by research/fixtures/build_runtime_catalog.py. Do not edit.\n'

@@ -1,0 +1,17 @@
+{
+  "id": "adj/focus-wash-400",
+  "passed": true,
+  "source_usdz_sha256": "ea2485837c1d452d830b178936bfed0db2695d9e311126c26813b15a54fe957e",
+  "joints": 2,
+  "moving_meshes": 26,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

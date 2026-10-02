@@ -1,0 +1,138 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "chauvet-professional/rogue-r3-beam",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "CHAUVET Professional",
+      "model": "Rogue R3 Beam",
+      "variant": "Rogue R3 Beam",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://chauvetprofessional.com/product/rogue-r3-beam/",
+        "title": "Rogue R3 Beam product specifications",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications: Optical, Dynamic Effects, Construction/Physical; 325 × 220 × 550 mm and 15.6 kg",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://chauvetprofessional.com/wp-content/uploads/2025/10/ROGUE_R3_BEAM-FRONT-FEAT.png",
+        "title": "Rogue R3 Beam product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "5781b7c60ee2de264c7fbac327f8cb610bd2f5efa008e7ca0e0a9eb0a3a9c299"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.325,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Product specifications state 325 × 220 × 550 mm without named axes; mapped as width × height × depth for a candidate envelope. Confirm mapping against linked CAD before scale modeling."
+      },
+      "height": {
+        "value": 0.22,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Product specifications state 325 × 220 × 550 mm without named axes; mapped as width × height × depth for a candidate envelope. Confirm mapping against linked CAD before scale modeling."
+      },
+      "depth": {
+        "value": 0.55,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Product specifications state 325 × 220 × 550 mm without named axes; mapped as width × height × depth for a candidate envelope. Confirm mapping against linked CAD before scale modeling."
+      },
+      "reference_pose": "Base level; head at neutral vertical orientation."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "300 W Ushio NSL lamp; 0.8° beam; 14-color wheel, 17 static gobos, dual prisms and frost.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {},
+      "mechanical": {
+        "weight": {
+          "value": "15.6 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base level; head at neutral vertical orientation.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Product specifications state 325 × 220 × 550 mm without named axes; mapped as width × height × depth for a candidate envelope. Confirm mapping against linked CAD before scale modeling.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ]
+  },
+  "git_commit": "2bf730f9a3fe86c6b7c383bd6ce00e98e4969329",
+  "note": "Initial research record before any generated model artifacts existed."
+}

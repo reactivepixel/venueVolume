@@ -1,0 +1,343 @@
+{
+  "schema_version": 1,
+  "id": "high-end-systems/lonestar-prime",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "High End Systems",
+    "model": "Lonestar Prime",
+    "variant": "Lonestar Prime",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.etcconnect.com/Lonestar-Prime/",
+      "title": "Lonestar Prime product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Features: 17,000 lm, IP54, CMY/CTO, framing, patterns and effect package",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737520529",
+      "title": "Lonestar Prime Datasheet, revision C, 2026-05",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Product Dimensions table; physical, optical, control sections; 584 × 350 × 230 mm, 23.1 kg; 52-channel mode",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Live_Events/Lighting_Fixtures/Lonestar_Prime/LonestarPrime_547x400.jpg",
+      "title": "Lonestar Prime product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "72a6c71d5b18cd26c44e9d7b981fb65f44c729c95e516a4d93fe895cbd9ab5c2"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.35,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer datasheet explicitly lists height 584 mm, width 350 mm and depth 230 mm; fixture excluding mounting hardware."
+    },
+    "height": {
+      "value": 0.584,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer datasheet explicitly lists height 584 mm, width 350 mm and depth 230 mm; fixture excluding mounting hardware."
+    },
+    "depth": {
+      "value": 0.23,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer datasheet explicitly lists height 584 mm, width 350 mm and depth 230 mm; fixture excluding mounting hardware."
+    },
+    "reference_pose": "Manufacturer overall envelope; moving head orientation not separately specified."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "17,000 lm Bright White LED; 3.8°–55° zoom; full-curtain framing, 9 rotating and 10 fixed gobos, animation wheel, dual frost/prism; IP54.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {},
+    "mechanical": {
+      "weight": {
+        "value": "23.1 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "52-channel mode",
+      "footprint": 52,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Manufacturer overall envelope; moving head orientation not separately specified.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.17499999701976776,
+        0.0,
+        -0.1150000027846545
+      ],
+      "max": [
+        0.17499999701976776,
+        0.5839999914169312,
+        0.11500000138767064
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0022026218939572573
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.09344000369310379,
+          0.0022026218939572573
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.4684999883174896,
+          0.0022026218939572573
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.4684999883174896,
+          -0.0969838872551918
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.09344000369310379,
+          0.0022026218939572573
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.4684999883174896,
+          0.0022026218939572573
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.4684999883174896,
+          -0.10074545443058014
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer datasheet explicitly lists height 584 mm, width 350 mm and depth 230 mm; fixture excluding mounting hardware.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "3544c4cdb17db78abdb6a98157f6f3209f770ca782180c110a6476fd0ee0cf9a"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "4a937f11a2e6c726ac20295c7c01763101b02c7aea3e46764f35d1ba4fc7605b"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "db3b136a1b90da157e995da3e7afb889560f74d8a45c625a5b0b0485f39c6d9e"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "ca92857803f1cadfc0fd2a48061d3b598553d82d83802e4ec0ae7350c1ea034f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "76248b44e22fd699ac9cb54665adacf7f8f389f2bb407af03402598f73b5cb81"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "b7f66e480f913b6c67166236a3f26d1081e829763605ed18cfed1a13f27808bd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "d624b6da1d3c20bf6d1890112d16a8ce8109e58db679140e31435404ec528575"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "4dddf83f7061997e6ec7eae096d03fafb2e5e5843a91a05b60f9daef2ac85c20"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "5c3687a9363601de6c68446d1874af3648c9eb38e8a50a43a6c216a52c078087"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "40c179bfb3e098cfa86926175db571ce396ad6bfe404f4c7da3a7939ecfc8e5b"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "0dbf04679967abc15e28818ab7535de470b1771f626023cec924408fa1071cdc",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "shell": "faceted",
+      "lens_ratio": 0.6,
+      "head_depth": 0.86,
+      "notes": "Compact automated profile with four-plane framing module and full-curtain shutters."
+    },
+    "mesh_count": 85,
+    "triangle_count": 17996,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "c34344bbc4a5b379e5bcaef1e02df3a5513cdd4c6d3014109eb8bcd53f7294b0",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.profile",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Framing profile"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

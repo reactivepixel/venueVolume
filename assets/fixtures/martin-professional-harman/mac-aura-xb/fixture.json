@@ -1,0 +1,358 @@
+{
+  "schema_version": 1,
+  "id": "martin-professional-harman/mac-aura-xb",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Martin Professional (HARMAN)",
+    "model": "MAC Aura XB",
+    "variant": "MAC Aura XB",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.martin.com/en-US/products/mac-aura-xb",
+      "title": "MAC Aura XB product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Technical source details: 19 RGBW LEDs and Aura effect; physical dimensions, power, protocols and DMX mode channel counts",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://adn.harmanpro.com/productattachment/4821/product_attachment/x_large-c3352fc68c412cf3ff940047dbe67d37.webp",
+      "title": "MAC Aura XB product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.webp",
+      "sha256": "17e6149a3aba34037c6d6869f5fdbec352ff4dba9f0a9ab32a9d2655ade412a8"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.222,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer physical specs: base width 222 mm, maximum height 390 mm, base depth 138 mm; across-yoke width is 302 mm."
+    },
+    "height": {
+      "value": 0.39,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer physical specs: base width 222 mm, maximum height 390 mm, base depth 138 mm; across-yoke width is 302 mm."
+    },
+    "depth": {
+      "value": 0.138,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer physical specs: base width 222 mm, maximum height 390 mm, base depth 138 mm; across-yoke width is 302 mm."
+    },
+    "reference_pose": "Head maximum height; base level."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "19 individually controlled RGBW 15 W LEDs; front Aura pixel effect; 4°–50° zoom; 19,500 lm fixture output.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "400 W maximum; 359 W typical",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "6.5 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "14-channel mode",
+      "footprint": 14,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "25-channel mode",
+      "footprint": 25,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Head maximum height; base level.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.11100000143051147,
+        0.0,
+        -0.06900000112364069
+      ],
+      "max": [
+        0.11100000143051147,
+        0.38999998569488525,
+        0.06899999541928992
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0004864753573201597
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.07399077713489532,
+          0.0004864753573201597
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.3001784384250641,
+          0.0004864753573201597
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.3001784384250641,
+          -0.03314764052629471
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.07399077713489532,
+          0.0004864753573201597
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.3001784384250641,
+          0.0004864753573201597
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.3001784384250641,
+          -0.034423187375068665
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer physical specs: base width 222 mm, maximum height 390 mm, base depth 138 mm; across-yoke width is 302 mm.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "36372f6dd48c7d182f776239a02224df22b45167965e4d434316361c8e48313f"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "f2ada563df56cad8ceb9d937586fbf08a6f81d65824c2a6b27669dbf830d6fcb"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "c9b5591df4a4aa83b0cb7c080c87de9adeb9b8a09da406ab15f0f7a76531f1ce"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "bbcf341fefae555f6b96eaabd8d11f834ae9d1cb911ff640e140699921eaccf4"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "605998b321c12ce073b974e9b58f2178452b0bef7d463908d5b69b88ca54def0"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "adad00f740b7ad5130080d8d2e1678b05faf0e45826d73c03f06ec3b575f2ce1"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "178efd694e51c46f21e873f2eb84a029ebe71560b215c013ffbf932660289fa3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "f3c97ebdba20ae259762a35fe2da0e98beca6278f4299231de2b1210e7c317e9"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "d5605079db8b4563daa095639ad8eab0fbc6d11af2014dd32c77689db402ec2f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "086c9c70c2e6880f997c87664460e8552ea4eda55a491313d4a796fcf61a41f7"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "34d509bf2729753ff28d0d4e7ed16dde8a99101e0ca6ff0fb83e444818b7219c",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 19,
+      "body_style": "compact yoke-mounted Aura fixture",
+      "notes": "19 front wash lenses plus the forward Aura pixel effect; do not model like larger automated MAC Aura moving-head bodies.",
+      "generator": "catalog",
+      "aura": true,
+      "yoke_compression": 0.25
+    },
+    "mesh_count": 164,
+    "triangle_count": 39700,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "695308708373eb3942098145c2cd9762cd47770027ff0b18b27cf1a954c46d51",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [
+      "pixel control"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

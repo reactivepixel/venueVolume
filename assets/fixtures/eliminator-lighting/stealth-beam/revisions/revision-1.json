@@ -1,0 +1,163 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "eliminator-lighting/stealth-beam",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Eliminator Lighting",
+      "model": "Stealth Beam",
+      "variant": "STEALTH BEAM",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.eliminatorlighting.com/products/stealth-beam",
+        "title": "Stealth Beam product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications: DMX modes, power, movement, dimensions and weight",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.eliminatorlighting.com/cdn/shop/files/91dafeb75bae3b7b779e484c06ea673d6786cbc9_STEALTH_BEAM__IMG__001__432d0839d573.jpg?v=1777055739&width=2048",
+        "title": "Stealth Beam product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "d40895fe24138884bccb157e8f6afbacd4807f6a6088a55e04a4b003fc1bcc08"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.239,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer lists 158 x 239 x 285 mm as L x W x H."
+      },
+      "height": {
+        "value": 0.285,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer lists 158 x 239 x 285 mm as L x W x H."
+      },
+      "depth": {
+        "value": 0.158,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer lists 158 x 239 x 285 mm as L x W x H."
+      },
+      "reference_pose": "Base level, head vertical; listed assembled dimensions."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "60 W RGBW LED and ACL optic; continuous pan, 270° tilt, 11° beam.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "75 W",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "3.8 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "5-channel mode",
+        "footprint": 5,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "17-channel mode",
+        "footprint": 17,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base level, head vertical; listed assembled dimensions.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer lists 158 x 239 x 285 mm as L x W x H.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "2e9a0eb3d9e2d04548b85702eeaf785544e173da5252725dad4295383d65c0a1"
+  },
+  "git_commit": "5936d1b4203b742d39ea46e55705b09d5988a0fb",
+  "note": "Initial research record before any generated model artifacts existed."
+}

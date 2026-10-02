@@ -1,0 +1,192 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "high-end-systems/lonestar",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "High End Systems",
+      "model": "Lonestar",
+      "variant": "Lonestar",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.etcconnect.com/lonestar/",
+        "title": "High End Systems Lonestar",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Official product overview and image",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737513380",
+        "title": "Lonestar Datasheet Rev H, June 2025",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Product Dimensions table: H600 × W368 × D221 mm; 23 kg; source, optics, power and modes",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-3",
+        "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737514372",
+        "title": "Lonestar DMX Channel Map",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Standard and Trifusion modes; 48-channel footprint",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Live_Events/Lighting_Fixtures/Lonestar/Lonestar_Prod_Left_Red_547x400.jpg",
+        "title": "Lonestar product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "e9f70d3f65a957ef24330f3ff207f8c05acec83589196b9bf14e014e8e581029"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.368,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "unit": "m",
+        "note": "Manufacturer Datasheet Rev H gives W368 × H600 × D221 mm for fixture envelope."
+      },
+      "height": {
+        "value": 0.6,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "unit": "m",
+        "note": "Manufacturer Datasheet Rev H gives W368 × H600 × D221 mm for fixture envelope."
+      },
+      "depth": {
+        "value": 0.221,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "unit": "m",
+        "note": "Manufacturer Datasheet Rev H gives W368 × H600 × D221 mm for fixture envelope."
+      },
+      "reference_pose": "Assembled moving head, upright base and head orientation as manufacturer drawing."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "290 W white LED engine, 15,400 lm, 3.8°–55° zoom, framing shutters; Standard and Trifusion modes, 48 channels.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2",
+            "official-3"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "615 W max",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2",
+            "official-3"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "23 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2",
+            "official-3"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "Art-Net",
+            "sACN"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2",
+            "official-3"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "48-channel mode",
+        "footprint": 48,
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Assembled moving head, upright base and head orientation as manufacturer drawing.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer Datasheet Rev H gives W368 × H600 × D221 mm for fixture envelope.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "01ca8d99812a01c832e2e5eb345dadf4180f58e328cc87c8dea7b713cf6ae746"
+  },
+  "git_commit": "529393313efc84b984528b9491e9f5e230df9fd1",
+  "note": "Initial research record before any generated model artifacts existed."
+}

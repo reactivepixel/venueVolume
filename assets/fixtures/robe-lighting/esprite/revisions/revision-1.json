@@ -1,0 +1,137 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "robe-lighting/esprite",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "ROBE Lighting",
+      "model": "ESPRITE",
+      "variant": "ESPRITE",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.robe.cz/esprite",
+        "title": "ESPRITE product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Technical specifications: width, depth, height, weight and power; first product gallery image URL extracted from page markup",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://cdn.aws.robe.cz/v1/image/resize/e2bc84495f13fc1251b5151cbc3313c6145b2d23",
+        "title": "ESPRITE product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "74f2525a30cd85f004e6e12909a46e378867fb2992125858d8c214d1f991546f"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.443,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Product page dimensions; width and depth specified with head vertical."
+      },
+      "height": {
+        "value": 0.733,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Product page dimensions; width and depth specified with head vertical."
+      },
+      "depth": {
+        "value": 0.264,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Product page dimensions; width and depth specified with head vertical."
+      },
+      "reference_pose": "Head vertical; base level."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "870 W max (standard mode, at 230 V / 50 Hz)",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "28.2 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Head vertical; base level.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Product page dimensions; width and depth specified with head vertical.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "75721ea8c9adcdbf0b707e3cd68d52afd29f32003d86857ce61f2fad9f2042a3"
+  },
+  "git_commit": "5d864d3f93fd8d6b0bfac3473118bdda1bb36d03",
+  "note": "Initial research record before any generated model artifacts existed."
+}

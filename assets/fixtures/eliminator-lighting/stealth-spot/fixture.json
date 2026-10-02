@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "id": "eliminator-lighting/stealth-spot",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Eliminator Lighting",
+    "model": "Stealth Spot",
+    "variant": "Stealth Spot",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.eliminatorlighting.com/products/stealth-spot",
+      "title": "Stealth Spot product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Specifications: 5/15 DMX channels, source, effects, dimensions and weight",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.eliminatorlighting.com/cdn/shop/files/e9cc2f1941b7f92d0f54e5119f2fa3af2a1ff5df_STEALTH_SPOT__IMG__001__bdb2c102a9b5.jpg?v=1777055789&width=2048",
+      "title": "Stealth Spot product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "e193c223c3e6d11f64df6096292ff65e46568cbe6e973ea57245035a32a0e168"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.17,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer lists 239 x 170 x 355 mm, L x W x H."
+    },
+    "height": {
+      "value": 0.355,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer lists 239 x 170 x 355 mm, L x W x H."
+    },
+    "depth": {
+      "value": 0.239,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer lists 239 x 170 x 355 mm, L x W x H."
+    },
+    "reference_pose": "Assembled head upright; base level."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "60 W white LED; 13° beam, motorized focus, rotating gobos, 3-facet prism; 540° pan / 210° tilt.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "90 W",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "4.6 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "5-channel mode",
+      "footprint": 5,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "15-channel mode",
+      "footprint": 15,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Assembled head upright; base level.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.08500000089406967,
+        0.0,
+        -0.11950000538490713
+      ],
+      "max": [
+        0.08500000089406967,
+        0.35499998927116394,
+        0.11949999467469752
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0014877228531986475
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.0568000003695488,
+          0.0014877228531986475
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.2989000082015991,
+          0.0014877228531986475
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.2989000082015991,
+          -0.10131822526454926
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.0568000003695488,
+          0.0014877228531986475
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.2989000082015991,
+          0.0014877228531986475
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.2989000082015991,
+          -0.10521705448627472
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer lists 239 x 170 x 355 mm, L x W x H.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "b990e0a1dece2d8eb00582ddc8fc4d6fcd0b0c466fba28a3aa614ffca0905a65"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "3460dac6e54d5ed89a38938c018aa56ef87360ce08635d8564f8fdaed5f7c3a1"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "9fa2272386428c6c333365dbbc0376c1906be28babc1472dce03b86bebcaefac"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "5cc0da50bb52c85d3e1af2372ec068e145d637836ba7793fbea148596f8ea652"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "42ce310f1832868ac386820aef56c3b2eb07d34b388a30262bdd5e383bd2f3a8"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "2e685182ffe2766091059113caccedf16cef829614ff5b53d242e7851dd1b276"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "a570cedeb32a421e56c2514e50924108d84e23ec121b0ed3420129da0560740d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "6203af675d8889ce57a6c4771c20878cd394d7b199c267e27f731cfdfbf6f408"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "97802dcfd6484d63de2c6cab3f3599dbeb9faca27170b2109e93016ba5489adc"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "2fd68fa9f6407ca7576eb04eea289c2b7d7bfd8cf5c1b1213eb1ba545c5daafa"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "3c71f97a18f2437ddc03da9cd9a375cfdefe0d6ac84e916d570c6a862d0eb540",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "small LED spot mover with indexed gobo wheel and yoke",
+      "notes": "Manufacturer page links cut sheet and user manual."
+    },
+    "mesh_count": 85,
+    "triangle_count": 18580,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "cd3d67fa0ba19e25ced83374f37a39b34587fef13fa4fb0ef3bbf5685c32d971",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.spot",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Spot / gobo projector"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "mesh_count": 92,
+  "triangle_count": 25540,
+  "geometry_sha256": "af35717199be722aaaf80f5ad45ac2a48ddd1999d1729724aa8826a5e2d3de8e",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.26437515020370483,
+      -0.045906923711299896
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0004985520499758422
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.05539477989077568,
+        0.0004985520499758422
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.26437515020370483,
+        0.0004985520499758422
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.26437515020370483,
+        -0.04421134293079376
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    0.9971095323562622,
+    0.9920268654823303
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/products/focus-flex-l7",
+    "https://www.adj.com/cdn/shop/files/d33775b549cb16578938a380735e1b6d7f7f5094_FOC734__IMG__003__c7174f800104.jpg?v=1776712415&width=2048",
+    "https://www.adj.com/cdn/shop/files/d33775b549cb16578938a380735e1b6d7f7f5094_FOC734__IMG__003__c7174f800104.jpg?v=1776712415&width=2048"
+  ]
+}

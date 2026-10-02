@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "f99fc1ce77b0e5a30180090f4b8d96eb0235e8833b6f67e663a02d16face8e3e",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "claypaky/volero-cube",
+    "name": "Volero Cube",
+    "manufacturer": "Claypaky",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/claypaky/volero-cube/fixture.usdz",
+    "sha256": "f99fc1ce77b0e5a30180090f4b8d96eb0235e8833b6f67e663a02d16face8e3e",
+    "boundsMin": [
+      -0.12250000238418579,
+      0.0,
+      -0.16900001635076478
+    ],
+    "boundsMax": [
+      0.12250000238418579,
+      0.476000040769577,
+      0.16899999807355925
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.0762895867228508,
+          0.000518946151714772
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.39582234621047974,
+          0.000518946151714772
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.39582234621047974,
+          -0.12945695221424103
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "0af20f211906214ee41264aeaa73fbb72f5a5b4c252917d5bb8159b07c234401",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "sgm/g-4-wash",
+    "name": "G-4 Wash",
+    "manufacturer": "SGM",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/sgm/g-4-wash/fixture.usdz",
+    "sha256": "0af20f211906214ee41264aeaa73fbb72f5a5b4c252917d5bb8159b07c234401",
+    "boundsMin": [
+      -0.12749998271465302,
+      0.0,
+      -0.10949999466538429
+    ],
+    "boundsMax": [
+      0.12749998271465302,
+      0.4650000035762787,
+      0.1094999872148037
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.09593914449214935,
+          0.009425099939107895
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.35279878973960876,
+          0.009425099939107895
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.35279878973960876,
+          -0.09677682816982269
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

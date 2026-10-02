@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "32c324200c78f2b16acc9e1f4f8b2e8585341661fe2df93e9a967805f64a3bb0",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "cameo/opus-x4-ip",
+    "name": "OPUS X4 IP",
+    "manufacturer": "Cameo",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/cameo/opus-x4-ip/fixture.usdz",
+    "sha256": "32c324200c78f2b16acc9e1f4f8b2e8585341661fe2df93e9a967805f64a3bb0",
+    "boundsMin": [
+      -0.23749998211860657,
+      0.0,
+      -0.17500001055304892
+    ],
+    "boundsMax": [
+      0.23749998211860657,
+      0.8600000143051147,
+      0.1749999834864866
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.13760000467300415,
+          0.00032448905403725803
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.703249990940094,
+          0.00032448905403725803
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.703249990940094,
+          -0.1546449512243271
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

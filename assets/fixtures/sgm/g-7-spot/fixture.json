@@ -1,0 +1,358 @@
+{
+  "schema_version": 1,
+  "id": "sgm/g-7-spot",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "SGM",
+    "model": "G-7 Spot",
+    "variant": "G-7 Spot",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.sgmlighting.com/products/architecture/g%C2%B77-spot",
+      "title": "SGM G-7 Spot specifications",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Mechanical / electrical specifications and control; exact-model product gallery",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.sgmlighting.com/files/images/perfion/G7Spot_STD_Discontinued%20Products.png",
+      "title": "G-7 Spot product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "6872425f3efee7f5c3b6b91dc2bad61fc80d4b9fb43e81c795ca0b5029277775"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.37,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+    },
+    "height": {
+      "value": 0.622,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+    },
+    "depth": {
+      "value": 0.433,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+    },
+    "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Legacy standard touring-base variant, not POI; manufacturer physical table 433 L × 622 H × 370 W mm. 22/29 channel modes; optics and output remain illustrative.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "480 W max",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "27 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512-A",
+          "RDM",
+          "CRMX",
+          "W-DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "22-channel mode",
+      "footprint": 22,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "29-channel mode",
+      "footprint": 29,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.1850000023841858,
+        0.0,
+        -0.21649998892098665
+      ],
+      "max": [
+        0.1850000023841858,
+        0.621999979019165,
+        0.2165000094100833
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.006135116331279278
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.12846167385578156,
+          0.006135116331279278
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.4643917679786682,
+          0.006135116331279278
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.4643917679786682,
+          -0.2031424641609192
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.12846167385578156,
+          0.006135116331279278
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.4643917679786682,
+          0.006135116331279278
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.4643917679786682,
+          -0.21107913553714752
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "ba567a66f7c7fb6df6d5c9aed0070238e855583bc87e8f1d0163860f37d03187"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "7de559fe0ab6cf13635db2846e9d964ecbd290bb1b630e27c4211f2facaac842"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "aa46c25c131205a602e3600e09385703f0872100e38b40cbc3e7f17f7fbd7d88"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "446a4a0b3dcc7c9f924a24d6443ab160331cb68017f7a6c915cb0c032ef3c355"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "fd41b80582a943e90660dc8d8b2e45473ad0924784ce2db457f4c7e7b42c7345"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "5c13c582348645f385e9d4ca7238137ca270b48cc13b194f5a2d806e0039f7f6"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "e8e430c8efa2e829372d202dd71760eba258845b0ef733d3c91520f1f16c1673"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "ad32c222158eb054cdcdfe1c8c79ac2ebea8100f52ae423894dc816fd1554947"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "af249082e3c3a6914fadc00435cde15f558b65331779f4542accf34a606eb65d"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "8ae13b33c8a32ea64fad2d975130dd4121ea5d7c8f00e16fad5414df711bb17c"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "8c556502119abdc143d981a04da1391a0092bdb35beae79a31b8b71b75b50709",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "shell": "faceted",
+      "lens_count": 1,
+      "lens_ratio": 0.65,
+      "head_depth": 1.3,
+      "generator": "catalog",
+      "yoke_compression": 0.35
+    },
+    "mesh_count": 85,
+    "triangle_count": 18124,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "ec2a49ccc1793c26ec427a173cf59a2aedc3289ab3dac39e39865fb984913bf2",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.profile",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Framing profile"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

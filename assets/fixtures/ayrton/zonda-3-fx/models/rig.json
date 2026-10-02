@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "743a6fe0c459fe74813b63ef2d82e0eb5bcb836bcb5db7e26167bb4dfaa69400",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "ayrton/zonda-3-fx",
+    "name": "Zonda 3 FX",
+    "manufacturer": "Ayrton",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/ayrton/zonda-3-fx/fixture.usdz",
+    "sha256": "743a6fe0c459fe74813b63ef2d82e0eb5bcb836bcb5db7e26167bb4dfaa69400",
+    "boundsMin": [
+      -0.18250000476837158,
+      0.0,
+      -0.11649999092333019
+    ],
+    "boundsMax": [
+      0.18250000476837158,
+      0.4039999842643738,
+      0.11649998952634633
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.0640735924243927,
+          0.0005083971191197634
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.29634034633636475,
+          0.0005083971191197634
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.29634034633636475,
+          -0.06108933314681053
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

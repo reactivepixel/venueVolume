@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "id": "ayrton/eurus-profile-tc",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Ayrton",
+    "model": "Eurus Profile TC",
+    "variant": "011545",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.ayrton.eu/produit/eurus/",
+      "title": "Eurus Profile product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "S/TC versions and codes; source output; CONTROL channel modes; power, dimensions and weight",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.ayrton.eu/wp-content/uploads/2020/11/Product-Eurus-04.png",
+      "title": "Eurus Profile TC product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "4332dffd851a28305be3dac85086d9da8bdc5e94c4c48d2c183b17c5281a455c"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.445,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official product page: 445 x 743 x 273 mm (length x height x depth)."
+    },
+    "height": {
+      "value": 0.743,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official product page: 445 x 743 x 273 mm (length x height x depth)."
+    },
+    "depth": {
+      "value": 0.273,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official product page: 445 x 743 x 273 mm (length x height x depth)."
+    },
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "32,000 lm 7000 K LED engine; 25,000 lm fixture output; native CRI >90; 4.5°–50° zoom; 170 mm lens; IP20.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "1000 W maximum",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "32.9 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "Art-Net",
+          "sACN",
+          "CRMX wireless DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "39-channel mode",
+      "footprint": 39,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "62-channel mode",
+      "footprint": 62,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.2224999964237213,
+        0.0,
+        -0.13649998791515827
+      ],
+      "max": [
+        0.2224999964237213,
+        0.7429999709129333,
+        0.13649999909102917
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.006257159635424614
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.13442246615886688,
+          0.006257159635424614
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.57695072889328,
+          0.006257159635424614
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.57695072889328,
+          -0.12239104509353638
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.13442246615886688,
+          0.006257159635424614
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.57695072889328,
+          0.006257159635424614
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.57695072889328,
+          -0.12726990878582
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Official product page: 445 x 743 x 273 mm (length x height x depth).",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "daebfc6375abfb2f0926e6c4e1a64242917db1a070609091aa3cf1cbfd6ed522"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "39d08780325f74184dea3647707456affe31eba47fa68cb24c987eb77ed57999"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "e7eb185847b9cebdc12b804e556a098d4ccf29f5642b664512b6de79fa918413"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "4ad51ccf9cfbdd747a998e001739a7aebce88c8bb329f09881dff05e07431b79"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "cbf66c15a1036589fc6199328fb1c60591866adea0ec2ffb8c00b348513bde09"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "030412f0274932437fbbac6222eefa53ba9614b674d610ebb3477c5623c99e12"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "87b9e64bd3752d9bdb8a29f869a9f17bde3062ae1821bb606bdce97e95c69c59"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "74642893a0d87701bea6869c9b3f59b8aa87f500d2074203a928d08cedaf1585"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "f57299602b6eeda25bff9c427180859c97a5a03d3c2fce04c55afd2e28ae88fd"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "4597cab36b6523d780f90754e596064e0f8600c85a79fa3bbf839dde8f5744de"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "89f32b39b4acd95b4c76d004d1d2c11c547689c340e5001b9cc08ede2fb6a725",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "high-CRI profile moving head",
+      "notes": "Official product code 011545 identifies Eurus Profile TC.",
+      "generator": "catalog",
+      "shell": "faceted",
+      "head_depth": 1.2,
+      "yoke_compression": 0.18
+    },
+    "mesh_count": 85,
+    "triangle_count": 17996,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "dc1bdb3f03cf34de10fc011fdbf3b503af6e2ec7a056457e8db03031e88ab41b",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.profile",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Framing profile"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

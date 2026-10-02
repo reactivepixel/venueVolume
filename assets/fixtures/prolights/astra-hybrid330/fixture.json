@@ -1,0 +1,341 @@
+{
+  "schema_version": 1,
+  "id": "prolights/astra-hybrid330",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "PROLIGHTS",
+    "model": "Astra Hybrid330",
+    "variant": "ASTRAHYB330",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://prolights.it/en/product/ASTRAHYB330",
+      "title": "Astra Hybrid330 product specifications",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Specifications: source, optics, control, movement, electrical, physical; dimensions 411 × 638 × 244 mm, 21.6 kg, max 517 W",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.prolights.it/images/tmp/1200x630ASTRAHYB330_32760.webp?20250103160054",
+      "title": "Astra Hybrid330 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.webp",
+      "sha256": "a401330344eb4dda9457cd395d01b7f8af8b2aa5503aa66dd20e51162037b3bc"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.411,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer product page explicitly lists WxHxD 411 × 638 × 244 mm."
+    },
+    "height": {
+      "value": 0.638,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer product page explicitly lists WxHxD 411 × 638 × 244 mm."
+    },
+    "depth": {
+      "value": 0.244,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer product page explicitly lists WxHxD 411 × 638 × 244 mm."
+    },
+    "reference_pose": "Overall assembled fixture; head position not separately specified."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "330 W white LED hybrid; 3°–50° linear zoom; CMY, three color wheels, two gobo wheels, animation, overlapping prisms and frost.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "517 W max at 230 V",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "21.6 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "Art-Net",
+          "sACN",
+          "CRMX",
+          "W-DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "29-channel mode",
+      "footprint": 29,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Overall assembled fixture; head position not separately specified.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.20550000667572021,
+        0.0,
+        -0.12199999834410846
+      ],
+      "max": [
+        0.20550000667572021,
+        0.6380000114440918,
+        0.1220000043977052
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0004817501176148653
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.10208000242710114,
+          0.0004817501176148653
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.5023699998855591,
+          0.0004817501176148653
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.5023699998855591,
+          -0.10172053426504135
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.10208000242710114,
+          0.0004817501176148653
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.5023699998855591,
+          0.0004817501176148653
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.5023699998855591,
+          -0.10559646785259247
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer product page explicitly lists WxHxD 411 × 638 × 244 mm.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "5585c3fd715893cc820282c028fa2f225063ff9f9761dd4fbab6124ae6da320d"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "40dc5dc5a50406fdac848190791908919a3b977b3984c8c14c4e4b3ca5121243"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "33cfeb54b0dc1096c107e83ea4eb42f68bc9ec8bfaa676695c781e348b1bdf31"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "f00fb87dddd21fff75c7ce8be68538810e4657e1bc47b0fbbfe1ee0da90ed519"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "1973e41e9af167fe681053c081e035cee68cf9ab74802769c6751d96dd41e13c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "a6e6e353dccbd43f3c0e9e22a06e4715db11cd47b5c9a9e47d5e73b79f5f65ec"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "aa65df1103a12bc7475987780ce5656cf842724aab86b4027445ec7b95eb1b7a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "60931af17af49cba4d38da3204ddf5ad0aa55773eefe1c9a40dadd58b0d74c7a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "d886638c45307f978d8043c8c85399c4b1e31e4c6060db122ef6148535365de9"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "2622f08a9559714b61e1c4621cb891a13a18b8b7ded970ff4a6a7bc3363b5499"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "13d463519395c07ba89c43a45bff3ff9500923e1ae1d6bfa3d15ec265423a24a",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "shell": "faceted",
+      "lens_ratio": 0.64,
+      "head_depth": 0.82,
+      "notes": "Hybrid optics with large 140 mm front lens; effects package and substantial head depth distinguish the body from a conventional spot."
+    },
+    "mesh_count": 85,
+    "triangle_count": 17996,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "614a7cfb0ae9a362d45689a8a26add5240e8adfbdb9e5d7e8adbe9604ce2ca13",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.hybrid",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Beam / spot / wash hybrid"
+    ],
+    "use_tags": [
+      "multi-role optics"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

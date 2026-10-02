@@ -1,0 +1,17 @@
+{
+  "id": "eliminator-lighting/stealth-spot",
+  "passed": true,
+  "source_usdz_sha256": "3460dac6e54d5ed89a38938c018aa56ef87360ce08635d8564f8fdaed5f7c3a1",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

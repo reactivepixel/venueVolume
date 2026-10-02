@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "3bce3e263f09ac1570cfba4496da3f795e1f1c9e8d81c724de10ac7eaa4ce0ed",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "chauvet-dj/intimidator-spot-375zx",
+    "name": "Intimidator Spot 375ZX",
+    "manufacturer": "CHAUVET DJ",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/chauvet-dj/intimidator-spot-375zx/fixture.usdz",
+    "sha256": "3bce3e263f09ac1570cfba4496da3f795e1f1c9e8d81c724de10ac7eaa4ce0ed",
+    "boundsMin": [
+      -0.16099999845027924,
+      0.0,
+      -0.11000000382773578
+    ],
+    "boundsMax": [
+      0.16099999845027924,
+      0.4659999907016754,
+      0.10999999498017132
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.0745600014925003,
+          0.002869214164093137
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.3597399890422821,
+          0.002869214164093137
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.3597399890422821,
+          -0.09576551616191864
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

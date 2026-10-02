@@ -1,0 +1,17 @@
+{
+  "id": "cameo/opus-x4-ip",
+  "passed": true,
+  "source_usdz_sha256": "32c324200c78f2b16acc9e1f4f8b2e8585341661fe2df93e9a967805f64a3bb0",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

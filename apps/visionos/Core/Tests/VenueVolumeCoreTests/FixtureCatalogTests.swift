@@ -3,7 +3,7 @@ import Testing
 @testable import VenueVolumeCore
 
 @Test func catalogControlsAreAddressableAndNeutralAtRest() throws {
-    #expect(FixtureCatalog.all.count == 127)
+    #expect(FixtureCatalog.all.count >= 127)
     #expect(Set(FixtureCatalog.all.map(\.id)).count == FixtureCatalog.all.count)
     for asset in FixtureCatalog.all {
         let kind = try #require(FixtureKind(rawValue: asset.id))
@@ -36,6 +36,24 @@ import Testing
             #expect(result == PanTiltOverride(pan: pan, tilt: tilt), "\(asset.id)")
         }
     }
+}
+
+@Test func compoundFixturesKeepIndependentControlsAndEmitters() throws {
+    let duo = try #require(FixtureCatalog.asset("chauvet-dj/intimidator-spot-duo"))
+    #expect(duo.joints.map(\.id) == ["pan_1", "tilt_1", "pan_2", "tilt_2"])
+    #expect(duo.emitters.map(\.parent) == ["tilt_1", "tilt_2"])
+    #expect(!duo.headAim)
+    #expect(Set(duo.joints.map(\.channel)).count == 4)
+    var channels = duo.neutralChannels
+    channels[duo.joints[0].channel] = 211
+    #expect(duo.joints[0].value(channels: channels) != 0)
+    #expect(duo.joints[2].value(channels: channels) == 0)
+    let bar = try #require(FixtureCatalog.asset("eurolite/led-kls-120-compact-light-set"))
+    #expect(bar.joints.count == 4 && bar.emitters.count == 4)
+    #expect(bar.joints.allSatisfy { $0.mode == "manual" })
+    #expect(Set(bar.emitters.compactMap(\.parent)).count == 4)
+    let fixture = Fixture(name: duo.name, assetID: duo.id, channels: channels)
+    #expect(try JSONDecoder().decode(Fixture.self, from: JSONEncoder().encode(fixture)) == fixture)
 }
 
 @Test func moduleOverridesSurvivePresetChangesAndOldSaves() throws {

@@ -1,0 +1,361 @@
+{
+  "schema_version": 1,
+  "id": "eurolite/led-tmh-s30-moving-head-spot",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Eurolite",
+    "model": "LED TMH-S30 Moving-Head Spot",
+    "variant": "51786070",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.steinigke.de/mpn51786070-eurolite-led-tmh-s30-moving-head-spot.html",
+      "title": "Eurolite LED TMH-S30 official product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Technical specifications: control/modes, 45 W, W/H/D, 3.03 kg; image gallery; DMX support files",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.steinigke.de/download/Move-Magazine-2-2020-E_00131465.pdf",
+      "title": "Steinigke MOVE Magazine 2/2020",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Page 60: model technical specification and 10/12-channel DMX",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://media.steinigke.de/images/7640p/86/51786070a.webp",
+      "title": "LED TMH-S30 Moving-Head Spot product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.webp",
+      "sha256": "7d920f43f355626e2b94156d0e37ed88e29567d29c1e93fe41735b881f7ab388"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.17,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Steinigke product specification explicitly gives width 17.0 cm, height 24.0 cm, depth 15.0 cm."
+    },
+    "height": {
+      "value": 0.24,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Steinigke product specification explicitly gives width 17.0 cm, height 24.0 cm, depth 15.0 cm."
+    },
+    "depth": {
+      "value": 0.15,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Steinigke product specification explicitly gives width 17.0 cm, height 24.0 cm, depth 15.0 cm."
+    },
+    "reference_pose": "Compact head and base assembled; main product pose, base level."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "30 W COB white LED, 8° beam, rotating 7-gobo wheel, 540° pan / 170° tilt; optional CRMX, W-DMX or QuickDMX via USB.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "45 W",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "3.03 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "10-channel mode",
+      "footprint": 10,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "12-channel mode",
+      "footprint": 12,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Compact head and base assembled; main product pose, base level.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.08500000089406967,
+        0.0,
+        -0.07500000344589353
+      ],
+      "max": [
+        0.08500000089406967,
+        0.23999999463558197,
+        0.07499999878928065
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0028253900818526745
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.03840000182390213,
+          0.0028253900818526745
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.18389999866485596,
+          0.0028253900818526745
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.18389999866485596,
+          -0.05789082124829292
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.03840000182390213,
+          0.0028253900818526745
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.18389999866485596,
+          0.0028253900818526745
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.18389999866485596,
+          -0.06019343063235283
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Steinigke product specification explicitly gives width 17.0 cm, height 24.0 cm, depth 15.0 cm.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "cf9ca341106a36502d1eb0e75498a31c2e897bc81959860dee458cf6eee22947"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "b6a8eda0d035e3257753caa60ad72046c71a1795d2a7bdfda6d8884a135954cb"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "b00c0d7e759b35976983ec6ffafb2935b43fd935f944909790ef3fc4c0d6f981"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "d334e35f409a5a7176f8ac0f5d9b4a16f777d159a83506700897fc7531c3f894"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "678e692e1f03fcca7036a4cc9bd882d12746702cc116c5178b41b0bcbbdaf3fd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "71d3f36618279cf0a87c9125211d7a7127b3d4dbda237dbbfccfb152850281dd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "f6e015488b14d876f43217202f043a2915170337528680a0cbb9ca9971fc4fa1"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "29907962d12a1d352748ea3ff7b4ecad88afccccfdbdc6e53f2fc2595721a970"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "a73b0002a1125e48cbe5ea76e1cfab7a933677af68ec9e0222cb34fa28488667"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "63b14859b00ab1fc619509c292a5c296f608dfb3c9cde0f9baaeef1f02bc069a"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "003d50f9d2733023848c81da481d35e8eb4530f3e5cf15c7254cc9392062623c",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "small LED spot mover with compact yoke and replaceable rotating gobo wheel",
+      "notes": "Steinigke product page is the EUROLITE brand owner's official store and provides source details, image gallery, DMX profile and dimensions."
+    },
+    "mesh_count": 85,
+    "triangle_count": 18580,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "0b623335155a83afe9cb415f308cd1728139e72f4fbcaf6d84dee4008416a9cb",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.spot",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Spot / gobo projector"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -1,0 +1,510 @@
+[
+  {
+    "name": "Sparx 12",
+    "model_number": "Sparx 12",
+    "manufacturer": "JB-Lighting",
+    "type": "moving light",
+    "subtype": "pixel wash",
+    "url": "https://www.jb-lighting.de/en/Sparx12",
+    "images": [
+      "https://www.jb-lighting.de/images/products/Sparx12/Sparx12_seitlich_min_Zoom.png",
+      "https://www.jb-lighting.de/images/products/Sparx12/Sparx12_nach_oben_geschwenkt.png",
+      "https://www.jb-lighting.de/images/products/Sparx12/Sparx12_Anschlusspanel.png"
+    ],
+    "data": {
+      "protocols": [
+        "DMX512",
+        "RDM",
+        "Art-Net",
+        "sACN",
+        "Kling-Net",
+        "CRMX"
+      ],
+      "dmx_channels": [],
+      "power": "750 VA max; 100–240 V 50/60 Hz",
+      "weight": "15.5 kg",
+      "notable": "19 RGBW 40 W LEDs; independently controlled inner/outer TwinZoom optics. Internal zoom mechanism and beam-shape accessory are not modeled.",
+      "source_urls": [
+        "https://www.jb-lighting.de/en/Sparx12"
+      ]
+    },
+    "dimensions": {
+      "width_m": 0.404,
+      "height_m": 0.491,
+      "depth_m": 0.265,
+      "axis_status": "documented",
+      "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+      "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+    },
+    "modeling": {
+      "family": "moving_wash",
+      "shell": "round",
+      "lens_count": 19,
+      "lens_ratio": 0.9,
+      "head_depth": 0.55
+    },
+    "evidence": [
+      {
+        "url": "https://www.jb-lighting.de/en/Sparx12",
+        "title": "JB-Lighting Sparx 12 specifications",
+        "locator": "Mechanical / electrical specifications and control; exact-model product gallery",
+        "accessed_at": "2026-10-02",
+        "source_kind": "manufacturer_product"
+      }
+    ]
+  },
+  {
+    "name": "Sparx 18",
+    "model_number": "Sparx 18",
+    "manufacturer": "JB-Lighting",
+    "type": "moving light",
+    "subtype": "pixel wash",
+    "url": "https://www.jb-lighting.de/en/Sparx18",
+    "images": [
+      "https://www.jb-lighting.de/images/products/Sparx18/Sparx18_seitlich.png",
+      "https://www.jb-lighting.de/images/products/Sparx18/Sparx18_Kopf_oben.png",
+      "https://www.jb-lighting.de/images/products/Sparx18/Sparx18_von_hinten.png"
+    ],
+    "data": {
+      "protocols": [
+        "DMX512",
+        "RDM",
+        "Art-Net",
+        "sACN",
+        "Kling-Net",
+        "CRMX"
+      ],
+      "dmx_channels": [],
+      "power": "1300 VA max; 100–240 V 50/60 Hz",
+      "weight": "22 kg",
+      "notable": "37 RGBW 40 W LEDs; independently controlled inner/outer TwinZoom optics. Internal zoom mechanism and beam-shape accessory are not modeled.",
+      "source_urls": [
+        "https://www.jb-lighting.de/en/Sparx18"
+      ]
+    },
+    "dimensions": {
+      "width_m": 0.481,
+      "height_m": 0.58,
+      "depth_m": 0.308,
+      "axis_status": "documented",
+      "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+      "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+    },
+    "modeling": {
+      "family": "moving_wash",
+      "shell": "round",
+      "lens_count": 37,
+      "lens_ratio": 0.9,
+      "head_depth": 0.55
+    },
+    "evidence": [
+      {
+        "url": "https://www.jb-lighting.de/en/Sparx18",
+        "title": "JB-Lighting Sparx 18 specifications",
+        "locator": "Mechanical / electrical specifications and control; exact-model product gallery",
+        "accessed_at": "2026-10-02",
+        "source_kind": "manufacturer_product"
+      }
+    ]
+  },
+  {
+    "name": "Sparx 30",
+    "model_number": "Sparx 30",
+    "manufacturer": "JB-Lighting",
+    "type": "moving light",
+    "subtype": "pixel wash",
+    "url": "https://www.jb-lighting.de/en/Sparx30",
+    "images": [
+      "https://www.jb-lighting.de/images/products/Sparx30/Sparx30_seitlich.png",
+      "https://www.jb-lighting.de/images/products/Sparx30/Sparx30_nach_oben.png",
+      "https://www.jb-lighting.de/images/products/Sparx30/Sparx30_Backside.png"
+    ],
+    "data": {
+      "protocols": [
+        "DMX512",
+        "RDM",
+        "Art-Net",
+        "sACN",
+        "Kling-Net",
+        "CRMX"
+      ],
+      "dmx_channels": [],
+      "power": "2200 VA max; 100–240 V 50/60 Hz",
+      "weight": "28.4 kg",
+      "notable": "61 RGBW 40 W LEDs; independently controlled inner/outer TwinZoom optics. Internal zoom mechanism and beam-shape accessory are not modeled.",
+      "source_urls": [
+        "https://www.jb-lighting.de/en/Sparx30"
+      ]
+    },
+    "dimensions": {
+      "width_m": 0.53,
+      "height_m": 0.628,
+      "depth_m": 0.308,
+      "axis_status": "documented",
+      "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+      "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+    },
+    "modeling": {
+      "family": "moving_wash",
+      "shell": "round",
+      "lens_count": 61,
+      "lens_ratio": 0.9,
+      "head_depth": 0.55
+    },
+    "evidence": [
+      {
+        "url": "https://www.jb-lighting.de/en/Sparx30",
+        "title": "JB-Lighting Sparx 30 specifications",
+        "locator": "Mechanical / electrical specifications and control; exact-model product gallery",
+        "accessed_at": "2026-10-02",
+        "source_kind": "manufacturer_product"
+      }
+    ]
+  },
+  {
+    "name": "P18 Profile MK2 HP",
+    "model_number": "P18 Profile MK2 HP",
+    "manufacturer": "JB-Lighting",
+    "type": "moving light",
+    "subtype": "framing profile",
+    "url": "https://www.jb-lighting.de/en/P18Profile",
+    "images": [
+      "https://www.jb-lighting.de/images/products/P18/P18_seitlich_MK2.png",
+      "https://www.jb-lighting.de/images/products/P18/P18_backside_MK2.png",
+      "https://www.jb-lighting.de/images/products/P18/P18_frontal_MK2.png"
+    ],
+    "data": {
+      "protocols": [
+        "DMX512",
+        "RDM",
+        "Art-Net",
+        "sACN",
+        "CRMX"
+      ],
+      "dmx_channels": [],
+      "power": "1500 VA max; 100–240 V 50/60 Hz",
+      "weight": "32 kg",
+      "notable": "HP variant: 1100 W white LED module, 6800 K, CRI >=70, 40000 lm output; framing system. HC source variant is not conflated with HP.",
+      "source_urls": [
+        "https://www.jb-lighting.de/en/P18Profile"
+      ]
+    },
+    "dimensions": {
+      "width_m": 0.475,
+      "height_m": 0.755,
+      "depth_m": 0.307,
+      "axis_status": "documented",
+      "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+      "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+    },
+    "modeling": {
+      "family": "moving_spot",
+      "shell": "faceted",
+      "lens_ratio": 0.65,
+      "head_depth": 0.88
+    },
+    "evidence": [
+      {
+        "url": "https://www.jb-lighting.de/en/P18Profile",
+        "title": "JB-Lighting P18 Profile MK2 HP specifications",
+        "locator": "Mechanical / electrical specifications and control; exact-model product gallery",
+        "accessed_at": "2026-10-02",
+        "source_kind": "manufacturer_product"
+      }
+    ]
+  },
+  {
+    "name": "Color Force II 12",
+    "model_number": "CHCF212RGBA",
+    "manufacturer": "Chroma-Q",
+    "type": "LED wash",
+    "subtype": "cyc / wash batten",
+    "url": "https://chroma-q.com/products/color-force-ii-12",
+    "images": [
+      "https://chroma-q.com/media/cache/app_top_hero/72/d9/2051c3ed2e2fb2fd36db9cf034a1.jpeg"
+    ],
+    "data": {
+      "protocols": [
+        "DMX512-A"
+      ],
+      "dmx_channels": [],
+      "power": "133 W at 120/240 V; 100–240 V input",
+      "weight": "5 kg",
+      "notable": "Legacy black wired-DMX RGBA variant; IP20; separately controllable 76 mm color cells. Manual bracket focus only; optional diffusion and wireless variants not included.",
+      "source_urls": [
+        "https://chroma-q.com/products/color-force-ii-12"
+      ]
+    },
+    "dimensions": {
+      "width_m": 0.335,
+      "height_m": 0.218,
+      "depth_m": 0.19,
+      "axis_status": "estimated",
+      "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+      "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+    },
+    "modeling": {
+      "family": "batten",
+      "lens_count": 4,
+      "diffuser": true,
+      "manual_tilt": true
+    },
+    "evidence": [
+      {
+        "url": "https://chroma-q.com/products/color-force-ii-12",
+        "title": "Chroma-Q Color Force II 12 specifications",
+        "locator": "Mechanical / electrical specifications and control; exact-model product gallery",
+        "accessed_at": "2026-10-02",
+        "source_kind": "manufacturer_product"
+      }
+    ]
+  },
+  {
+    "name": "Color Force II 48",
+    "model_number": "CHCF248RGBA",
+    "manufacturer": "Chroma-Q",
+    "type": "LED wash",
+    "subtype": "cyc / wash batten",
+    "url": "https://chroma-q.com/products/color-force-ii-48",
+    "images": [
+      "https://chroma-q.com/media/cache/app_top_hero/12/cd/6788b53503465a4bbdbf64bb60ab.jpeg"
+    ],
+    "data": {
+      "protocols": [
+        "DMX512-A"
+      ],
+      "dmx_channels": [],
+      "power": "533 W at 120/240 V; 100–240 V input",
+      "weight": "18 kg",
+      "notable": "Legacy black wired-DMX RGBA variant; IP20; separately controllable 76 mm color cells. Manual bracket focus only; optional diffusion and wireless variants not included.",
+      "source_urls": [
+        "https://chroma-q.com/products/color-force-ii-48"
+      ]
+    },
+    "dimensions": {
+      "width_m": 1.181,
+      "height_m": 0.191,
+      "depth_m": 0.165,
+      "axis_status": "estimated",
+      "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+      "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+    },
+    "modeling": {
+      "family": "batten",
+      "lens_count": 16,
+      "diffuser": true,
+      "manual_tilt": true
+    },
+    "evidence": [
+      {
+        "url": "https://chroma-q.com/products/color-force-ii-48",
+        "title": "Chroma-Q Color Force II 48 specifications",
+        "locator": "Mechanical / electrical specifications and control; exact-model product gallery",
+        "accessed_at": "2026-10-02",
+        "source_kind": "manufacturer_product"
+      }
+    ]
+  },
+  {
+    "name": "Color Force II 72",
+    "model_number": "CHCF272RGBA",
+    "manufacturer": "Chroma-Q",
+    "type": "LED wash",
+    "subtype": "cyc / wash batten",
+    "url": "https://chroma-q.com/products/color-force-ii-72",
+    "images": [
+      "https://chroma-q.com/media/cache/app_top_hero/3c/3b/783a4f1fc7d01481a9a4fd10c7b6.jpeg"
+    ],
+    "data": {
+      "protocols": [
+        "DMX512-A"
+      ],
+      "dmx_channels": [],
+      "power": "800 W at 120/240 V; 100–240 V input",
+      "weight": "24 kg",
+      "notable": "Legacy black wired-DMX RGBA variant; IP20; separately controllable 76 mm color cells. Manual bracket focus only; optional diffusion and wireless variants not included.",
+      "source_urls": [
+        "https://chroma-q.com/products/color-force-ii-72"
+      ]
+    },
+    "dimensions": {
+      "width_m": 1.759,
+      "height_m": 0.191,
+      "depth_m": 0.165,
+      "axis_status": "estimated",
+      "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+      "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+    },
+    "modeling": {
+      "family": "batten",
+      "lens_count": 24,
+      "diffuser": true,
+      "manual_tilt": true
+    },
+    "evidence": [
+      {
+        "url": "https://chroma-q.com/products/color-force-ii-72",
+        "title": "Chroma-Q Color Force II 72 specifications",
+        "locator": "Mechanical / electrical specifications and control; exact-model product gallery",
+        "accessed_at": "2026-10-02",
+        "source_kind": "manufacturer_product"
+      }
+    ]
+  },
+  {
+    "name": "Color Force 3 72",
+    "model_number": "CQ1530-7200",
+    "manufacturer": "Chroma-Q",
+    "type": "LED wash",
+    "subtype": "cyc / wash batten",
+    "url": "https://chroma-q.com/products/color-force-3-72",
+    "images": [
+      "https://chroma-q.com/media/cache/app_top_hero/1b/63/541e6aee1d2fc564aed8e47ae239.jpeg"
+    ],
+    "data": {
+      "protocols": [
+        "DMX512-A",
+        "Art-Net",
+        "sACN",
+        "RDM"
+      ],
+      "dmx_channels": [],
+      "power": "1100 W; 100–240 V 50/60 Hz",
+      "weight": "35 kg",
+      "notable": "Black wired variant; 24 RGBA cells plus 48 SparQle LEDs; IP65; manual ±120° focus. Rectangular cells and two accent-pixel banks have separate geometry; detail proportions and pivot are estimated.",
+      "source_urls": [
+        "https://chroma-q.com/products/color-force-3-72"
+      ]
+    },
+    "dimensions": {
+      "width_m": 1.785,
+      "height_m": 0.215,
+      "depth_m": 0.18,
+      "axis_status": "estimated",
+      "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+      "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+    },
+    "modeling": {
+      "family": "batten",
+      "generator": "catalog",
+      "lens_count": 24,
+      "diffuser": true,
+      "sparkle_pixels": 48,
+      "manual_tilt": true
+    },
+    "evidence": [
+      {
+        "url": "https://chroma-q.com/products/color-force-3-72",
+        "title": "Chroma-Q Color Force 3 72 specifications",
+        "locator": "Mechanical / electrical specifications and control; exact-model product gallery",
+        "accessed_at": "2026-10-02",
+        "source_kind": "manufacturer_product"
+      }
+    ]
+  },
+  {
+    "name": "G-4 Wash",
+    "model_number": "G-4 Wash",
+    "manufacturer": "SGM",
+    "type": "moving light",
+    "subtype": "pixel wash",
+    "url": "https://www.sgmlighting.com/products/g%C2%B74-wash",
+    "images": [
+      "https://www.sgmlighting.com/files/images/perfion/G4%20Wash_STD-Discontinued%20Products.png"
+    ],
+    "data": {
+      "protocols": [
+        "DMX512-A",
+        "RDM",
+        "CRMX",
+        "W-DMX"
+      ],
+      "dmx_channels": [
+        18
+      ],
+      "power": "250 W max; 100–240 V 50/60 Hz",
+      "weight": "10 kg",
+      "notable": "Legacy IP65 RGBAM Fresnel wash; 220° tilt and endless pan; physical 219 L × 465 H × 255 W mm. Preview uses illustrative travel, not a manufacturer control personality.",
+      "source_urls": [
+        "https://www.sgmlighting.com/products/g%C2%B74-wash"
+      ]
+    },
+    "dimensions": {
+      "width_m": 0.255,
+      "height_m": 0.465,
+      "depth_m": 0.219,
+      "axis_status": "documented",
+      "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+      "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+    },
+    "modeling": {
+      "family": "moving_wash",
+      "shell": "round",
+      "lens_count": 1,
+      "fresnel": true,
+      "head_depth": 0.6
+    },
+    "evidence": [
+      {
+        "url": "https://www.sgmlighting.com/products/g%C2%B74-wash",
+        "title": "SGM G-4 Wash specifications",
+        "locator": "Mechanical / electrical specifications and control; exact-model product gallery",
+        "accessed_at": "2026-10-02",
+        "source_kind": "manufacturer_product"
+      }
+    ]
+  },
+  {
+    "name": "G-7 Spot",
+    "model_number": "G-7 Spot",
+    "manufacturer": "SGM",
+    "type": "moving light",
+    "subtype": "framing profile",
+    "url": "https://www.sgmlighting.com/products/architecture/g%C2%B77-spot",
+    "images": [
+      "https://www.sgmlighting.com/files/images/perfion/G7Spot_STD_Discontinued%20Products.png"
+    ],
+    "data": {
+      "protocols": [
+        "DMX512-A",
+        "RDM",
+        "CRMX",
+        "W-DMX"
+      ],
+      "dmx_channels": [
+        22,
+        29
+      ],
+      "power": "480 W max",
+      "weight": "27 kg",
+      "notable": "Legacy standard touring-base variant, not POI; manufacturer physical table 433 L × 622 H × 370 W mm. 22/29 channel modes; optics and output remain illustrative.",
+      "source_urls": [
+        "https://www.sgmlighting.com/products/architecture/g%C2%B77-spot"
+      ]
+    },
+    "dimensions": {
+      "width_m": 0.37,
+      "height_m": 0.622,
+      "depth_m": 0.433,
+      "axis_status": "documented",
+      "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+      "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+    },
+    "modeling": {
+      "family": "moving_spot",
+      "shell": "faceted",
+      "lens_count": 1,
+      "lens_ratio": 0.65,
+      "head_depth": 0.86
+    },
+    "evidence": [
+      {
+        "url": "https://www.sgmlighting.com/products/architecture/g%C2%B77-spot",
+        "title": "SGM G-7 Spot specifications",
+        "locator": "Mechanical / electrical specifications and control; exact-model product gallery",
+        "accessed_at": "2026-10-02",
+        "source_kind": "manufacturer_product"
+      }
+    ]
+  }
+]

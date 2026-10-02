@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "5e0ff5404887f6735bd572c7d475968898f5c43e8ae7a2544e4d56b82fb617de",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "robe-lighting/painte",
+    "name": "PAINTE",
+    "manufacturer": "ROBE Lighting",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/robe-lighting/painte/fixture.usdz",
+    "sha256": "5e0ff5404887f6735bd572c7d475968898f5c43e8ae7a2544e4d56b82fb617de",
+    "boundsMin": [
+      -0.1834999918937683,
+      0.0,
+      -0.10949999140575528
+    ],
+    "boundsMax": [
+      0.1834999918937683,
+      0.6190000772476196,
+      0.1094999904744327
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.1136913076043129,
+          0.006011157762259245
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.47997385263442993,
+          0.006011157762259245
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.47997385263442993,
+          -0.09946122020483017
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

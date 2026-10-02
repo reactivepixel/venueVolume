@@ -1,8 +1,28 @@
-# Temporary Mac handoff: catalog articulation rollout
+# Temporary Mac handoff: expanded catalog validation
 
 Status: Catalog rollout awaits native validation. The earlier pilot and interaction results are preserved below; they do not validate the new catalog integration.
 
-## Current pickup — all existing assets, 2026-10-02
+## Current pickup — touring, mid-market and DJ expansion, 2026-10-02
+
+Pull the latest `dev` and follow `AGENTS.md` in a fresh assigned worktree. The expanded release packages **220 models, 162 articulated assets and 302 preview joints**, including 93 new models. The complete CSV has 259 items from 47 manufacturers; 39 research-only items intentionally have no model. Read `assets/fixtures/research/pipeline-status.json` for the authoritative current totals and each row's `pipelineErrors`.
+
+Run the Core tests, `./scripts/test-session.sh`, `python3 Tests/verify-assets.py`, and both unsigned Xcode builds listed below. Run `./scripts/run-demo.sh --catalog-smoke`; require the native catalog smoke to import every packaged model and verify every joint member path. Record the actual count and log marker, not the older 127-model expectation. Then test room placement, mount targeting, per-instance joint overrides, save/reopen and Undo/Redo on representative models:
+
+- CHAUVET DJ Intimidator Spot Duo: independently move pan/tilt for each of the two heads. Both emitters must follow their own head; one head's control must not move the other. Single-head target solving is intentionally unavailable for this compound model.
+- Eurolite KLS-120: four manually aimable cans below a fixed crossbar, each with a matching emitter. The controls must say manual, not imply physical motors.
+- Claypaky Volero Cube, Martin MAC Aura Raven XIP and MAC One Beam: verify custom optics survive RealityKit import and the yoke/head rotate without detached lens meshes.
+- Chroma-Q Color Force 3 72 and ACME LIGHTNING: bracket tilt moves the housing/optics while supports remain fixed.
+- ETC ColorSource PAR jr / Spot jr and Astera AX5: verify the revised visible optics and manual mounting orientation. Astera tubes remain static models with instance placement.
+
+Run a mixed 64-object scene and check the existing eight-beam budget, selection priority, loading time and memory. Do not infer headset performance from the Linux suite or simulator. Room scanning, World Sensing, physical gestures and live setup reopen require the headset.
+
+Two packaged models remain explicitly `visual_review_pending`: ETC ColorSource PAR jr and Astera AX5 TriplePAR. Their lens counts, reflector cups and mount topology are corrected, but normalizing the sourced assembled envelope leaves the round optical housing vertically stretched in the front view. Resolve neutral-pose proportions from the drawings before clearing these two findings in `research/fixtures/expansion-v2/visual-review-issues.json`. Do not treat a native import pass as approval of their shape.
+
+`models/rig.json` companions—not baked USDZ animation clips—drive the existing `FixtureRig`. Preview channels use synthetic VV Preview 16; manufacturer DMX, unlimited physical rotation, individual RGB pixel programming, gobos, smoke particles and safety/effect firing are not implemented by this asset expansion. Models and pivots are image-informed approximations. Native validation is explicitly pending for this release; the earlier Mac pilot result does not validate these 93 additions.
+
+Use this temporary file as the return channel: append dated results, Xcode/visionOS versions, commands, pass/fail counts, screenshots/logs, fixes and unresolved device-only gaps. Preserve the historical results below. Update the per-item native validation only for assets actually tested, republish CSV status, and integrate/version/tag/push under `AGENTS.md`; do not touch `master`.
+
+## Previous pickup — 127 existing assets
 
 Pull `dev`, read `AGENTS.md`, and create an isolated task worktree. This rollout starts from the Mac's v0.1.22 scene inspector and spatial controls. It bundles 127 existing USDZ models and adds 128 preview joints across 72 assets, with the remaining 55 static. Search/filter, model dimensions, selection, extra joint controls, saved per-instance overrides, and head/mount targeting now use the generated catalog. Eight simultaneous beam previews prioritize the selected fixture; all placed geometry and joints remain active. The new direct controls affect individual moving parts; the Mac's spatial mount controls remain in place.
 

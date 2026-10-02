@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "5f6e31cc477d3b23092d4bfd8e6cb7593ff4cb9e4081c3148e36669f7748b4c5",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "astera/ax5-triplepar",
+    "name": "AX5 TriplePAR",
+    "manufacturer": "Astera",
+    "family": "par",
+    "resource": "FixtureAssets/Catalog/astera/ax5-triplepar/fixture.usdz",
+    "sha256": "5f6e31cc477d3b23092d4bfd8e6cb7593ff4cb9e4081c3148e36669f7748b4c5",
+    "boundsMin": [
+      -0.09679999947547913,
+      0.0,
+      -0.07405000180006027
+    ],
+    "boundsMax": [
+      0.09679999947547913,
+      0.21349999570520595,
+      0.07404999958816916
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.12764137983322144,
+          0.0011280156904831529
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.12764137983322144,
+          -0.08135808259248734
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative. Visual correction pending: Visual review found a vertically stretched optical housing despite the correct three reflector cups and floor yoke; the source envelope needs a neutral-pose proportion correction."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "martin-professional-harman/mac-aura-pxl",
+  "passed": true,
+  "source_usdz_sha256": "44392fe9c9d80c97b88080718fa6a0d4465c21db2052a30dbe7fbcc7eb11c4ad",
+  "joints": 2,
+  "moving_meshes": 222,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

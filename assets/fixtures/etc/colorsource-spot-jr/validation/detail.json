@@ -1,0 +1,70 @@
+{
+  "mesh_count": 46,
+  "triangle_count": 16720,
+  "geometry_sha256": "c98bd74a8f6ba31531c0c2ca0bab16fce397041f372b5628958f195acdd9d3f7",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.10682477056980133,
+      -0.23707693815231323
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.06155140697956085,
+        0.006773628294467926
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.10682477056980133,
+        0.006773628294467926
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        0.0,
+        0.10682477056980133,
+        -0.21180221438407898
+      ]
+    }
+  ],
+  "family": "profile",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0050251483917236,
+    1.0109890699386597,
+    1.1829984188079834
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.etcconnect.com/products/entertainment-fixtures/colorsource-spot-jr/documentation.aspx",
+    "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737502586",
+    "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737502608",
+    "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Lighting_Fixtures/ColorSource/ColorSource_Spot_jr_Right.jpg"
+  ]
+}

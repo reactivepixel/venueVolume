@@ -1,0 +1,68 @@
+{
+  "mesh_count": 54,
+  "triangle_count": 10168,
+  "geometry_sha256": "85996f44472bf7e7ff8d8276422b67c76ec1d37a8833ce3efca3d5356d98e3f8",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.12649005651474,
+      -0.07791358232498169
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.002040163381025195,
+        -0.006365397945046425
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.12649005651474,
+        -0.006365397945046425
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        0.0,
+        0.12649005651474,
+        -0.07607901841402054
+      ]
+    }
+  ],
+  "family": "batten",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9705705046653748,
+    1.111859917640686,
+    1.0681477785110474
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://chroma-q.com/products/color-force-ii-48",
+    "https://chroma-q.com/media/cache/app_top_hero/12/cd/6788b53503465a4bbdbf64bb60ab.jpeg"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "ayrton/khamsin-tc",
+  "passed": true,
+  "source_usdz_sha256": "f59d8e458c88fc544ab3d714e2c19061191ce7ca3244a8eb9c71b2ebed1701cf",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

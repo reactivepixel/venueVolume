@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "a0a827177efd09b614752257981f99076a03a4336cd00babd0b210f36ef8b689",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "ayrton/perseo-profile-s",
+    "name": "Perseo Profile S",
+    "manufacturer": "Ayrton",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/ayrton/perseo-profile-s/fixture.usdz",
+    "sha256": "a0a827177efd09b614752257981f99076a03a4336cd00babd0b210f36ef8b689",
+    "boundsMin": [
+      -0.24500000476837158,
+      0.0,
+      -0.16500001167878509
+    ],
+    "boundsMax": [
+      0.24500000476837158,
+      0.7099999785423279,
+      0.16499998653307557
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.1136000007390976,
+          0.00028469646349549294
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.54830002784729,
+          0.00028469646349549294
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.54830002784729,
+          -0.15072187781333923
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

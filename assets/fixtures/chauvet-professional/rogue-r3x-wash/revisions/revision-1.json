@@ -1,0 +1,213 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "chauvet-professional/rogue-r3x-wash",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "CHAUVET Professional",
+      "model": "Rogue R3X Wash",
+      "variant": "Rogue R3X Wash",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://chauvetprofessional.com/product/rogue-r3x-wash/",
+        "title": "Rogue R3X Wash product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Construction/Physical and Control: 394 × 298 × 470 mm, 17.46 kg, 650–661 W, 21/27/62/71/107 channels; optical specifications",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://chauvetprofessional.com/wp-content/uploads/2019/10/Rogue_R3X_Wash_UM_Rev8.pdf",
+        "title": "Rogue R3X Wash User Manual Rev. 8",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "p. 5 Product Dimensions drawing; p. 10 DMX Personalities; pp. 22–23 Technical Specifications",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://chauvetprofessional.com/wp-content/uploads/2025/10/ROGUE_R3X_WASH-FRONT-FEAT.png",
+        "title": "Rogue R3X Wash product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "585187343023ab61223ea9c61030b28e9a4680fce70928fbb3327055e90368b7"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.394,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "User Manual Rev. 8, Product Dimensions drawing (p. 5): 394 mm front width × 470 mm maximum height × 298 mm depth, assembled neutral pose."
+      },
+      "height": {
+        "value": 0.47,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "User Manual Rev. 8, Product Dimensions drawing (p. 5): 394 mm front width × 470 mm maximum height × 298 mm depth, assembled neutral pose."
+      },
+      "depth": {
+        "value": 0.298,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "User Manual Rev. 8, Product Dimensions drawing (p. 5): 394 mm front width × 470 mm maximum height × 298 mm depth, assembled neutral pose."
+      },
+      "reference_pose": "Assembled fixture in manual's dimensional drawing pose; yoke level."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "37 RGBW LED array (25 W each); zoom 8°–30°; pixel-mappable wash; five DMX personalities.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "650–670 W depending on line voltage",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "17.5 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "21-channel mode",
+        "footprint": 21,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "27-channel mode",
+        "footprint": 27,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "62-channel mode",
+        "footprint": 62,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "71-channel mode",
+        "footprint": 71,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "107-channel mode",
+        "footprint": 107,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Assembled fixture in manual's dimensional drawing pose; yoke level.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "User Manual Rev. 8, Product Dimensions drawing (p. 5): 394 mm front width × 470 mm maximum height × 298 mm depth, assembled neutral pose.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "bd1fb9b96f752db58da0548db0d1d6d0f151681671674dbc2014d6a76403bdfb"
+  },
+  "git_commit": "529393313efc84b984528b9491e9f5e230df9fd1",
+  "note": "Initial research record before any generated model artifacts existed."
+}

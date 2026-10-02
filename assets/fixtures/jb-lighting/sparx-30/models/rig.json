@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "33b694e73c8d341d1ff3d4af41133a378cc5a54d9eafd8e4f81839d9e33352b3",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "jb-lighting/sparx-30",
+    "name": "Sparx 30",
+    "manufacturer": "JB-Lighting",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/jb-lighting/sparx-30/fixture.usdz",
+    "sha256": "33b694e73c8d341d1ff3d4af41133a378cc5a54d9eafd8e4f81839d9e33352b3",
+    "boundsMin": [
+      -0.26500001549720764,
+      0.0,
+      -0.15400001699163113
+    ],
+    "boundsMax": [
+      0.26500001549720764,
+      0.628000020980835,
+      0.1539999962406
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.09959954023361206,
+          0.00018042033480014652
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.4606478810310364,
+          0.00018042033480014652
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.4606478810310364,
+          -0.09064021706581116
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

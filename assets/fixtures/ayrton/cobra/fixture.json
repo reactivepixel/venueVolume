@@ -1,0 +1,367 @@
+{
+  "schema_version": 1,
+  "id": "ayrton/cobra",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Ayrton",
+    "model": "Cobra²",
+    "variant": "014175",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.ayrton.eu/produit/cobra2/",
+      "title": "Cobra² product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Optics, source, movement, control modes and protocols, power, dimensions and product code 014175",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.ayrton.eu/wp-content/uploads/2024/01/COBRA2-Specification-Sheet-V9.pdf",
+      "title": "Cobra² Specification Sheet V9",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "DMX/network/wireless control compatibility and fixture physical dimensions",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.ayrton.eu/wp-content/uploads/2024/01/Cobra2-3.png",
+      "title": "Cobra² product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "693f835e489eadc6330a9f542dbc1ba1d68f83f9ce86aa4e37a23d598e63e13b"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.36,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Ayrton product page dimensions: 360 x 674 x 319 mm (length x height x depth)."
+    },
+    "height": {
+      "value": 0.674,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Ayrton product page dimensions: 360 x 674 x 319 mm (length x height x depth)."
+    },
+    "depth": {
+      "value": 0.319,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Ayrton product page dimensions: 360 x 674 x 319 mm (length x height x depth)."
+    },
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Laser-phosphor engine; 1,544,000 lx at 10 m; 0.9°–23° zoom; 170 mm lens; 13-element optic; continuous pan and tilt; IP65.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "480 W maximum",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "30.7 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "Art-Net",
+          "sACN",
+          "CRMX wireless DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "35-channel mode",
+      "footprint": 35,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "45-channel mode",
+      "footprint": 45,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.18000000715255737,
+        0.0,
+        -0.15950000105658546
+      ],
+      "max": [
+        0.18000000715255737,
+        0.6740000247955322,
+        0.15949998976429924
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0005175340338610113
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.10784000158309937,
+          0.0005175340338610113
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.5551999807357788,
+          0.0005175340338610113
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.5551999807357788,
+          -0.14009220898151398
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.10784000158309937,
+          0.0005175340338610113
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.5551999807357788,
+          0.0005175340338610113
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.5551999807357788,
+          -0.1454247087240219
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Ayrton product page dimensions: 360 x 674 x 319 mm (length x height x depth).",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "d6477bf612271bd2938d4e956064d1a8f7190396e92d51f68c083d82cd7dec77"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "206242bc5c4c3d9ed134332be613100d5146fa96d3e1af94b4a6dc65727041da"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "f4fb2215194074735e3c9c6148a6fb933b83ca9c95eb05ac0854b7b2a2e801f1"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "51c65a02e0448b0ca1b17a0e05bd1c20196e5bcc8dbf3e2b87e17e32e3fa3ca8"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "3300e383e805525fa774223b5666d3f9c09492c1c21f2e018b64c3a4c03b7875"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "9ffbd3ab6343bfd8a4a33ac0c181441e0608d09f21597a3236c773ba6f7305e2"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "56f5cfed3ca3d2076cacb34200509f73275adffe3600427ed4ccd4cce63b4e11"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "fe730274ba1abf8ff9c5e6f3fbc1aeafbbd8ee76dc4881e759f111099ad63995"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "6967db4f9df0013dca61efe6298c008601c15aa909a398fbc802f02bbeef82ea"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "cef1472cd42cb7536b863143d6e3862b9512fbe8848d30167345431c96bb716b"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "b33759bd59de5f3da9e95749a4f5a591417adefe5164eae0cab148be362e7dec",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "IP65 laser-phosphor beam moving head",
+      "notes": "Single front aperture; 13 internal optical elements. Continuous pan/tilt mechanism requires unlimited-axis support."
+    },
+    "mesh_count": 85,
+    "triangle_count": 18516,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "6b0f7e27d625c94db8a1f9e3f73a70a34f0bf5d6126a8ed586cc16bd1dd3b1f9",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.beam",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Beam"
+    ],
+    "use_tags": [
+      "weather-rated variant"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

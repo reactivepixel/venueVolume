@@ -787,5 +787,755 @@
     "body_style": "zinc-plated oval steel quick link with threaded closure sleeve",
     "generator": "equipment",
     "output_kind": "none"
+  },
+  "chauvet-professional/rogue-r3-beam": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.72,
+    "head_depth": 0.8,
+    "notes": "Discharge beam fixture with compact front aperture and long optical barrel."
+  },
+  "elation-professional/proteus-maximus": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.55,
+    "head_depth": 0.86,
+    "notes": "Large weather-sealed framing profile with 180 mm front aperture."
+  },
+  "cameo/opus-x4": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.65,
+    "head_depth": 0.82,
+    "notes": "Large spot-profile optical head with 182 mm front lens and rotating framing module."
+  },
+  "prolights/astra-hybrid330": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.64,
+    "head_depth": 0.82,
+    "notes": "Hybrid optics with large 140 mm front lens; effects package and substantial head depth distinguish the body from a conventional spot."
+  },
+  "jb-lighting/sparx-12": {
+    "family": "moving_wash",
+    "shell": "round",
+    "lens_count": 19,
+    "lens_ratio": 0.9,
+    "head_depth": 0.55
+  },
+  "jb-lighting/sparx-18": {
+    "family": "moving_wash",
+    "shell": "round",
+    "lens_count": 37,
+    "lens_ratio": 0.9,
+    "head_depth": 0.55
+  },
+  "jb-lighting/sparx-30": {
+    "family": "moving_wash",
+    "shell": "round",
+    "lens_count": 61,
+    "lens_ratio": 0.9,
+    "head_depth": 0.55
+  },
+  "jb-lighting/p18-profile-mk2-hp": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.65,
+    "head_depth": 0.88
+  },
+  "chroma-q/color-force-ii-12": {
+    "family": "batten",
+    "lens_count": 4,
+    "diffuser": true,
+    "manual_tilt": true
+  },
+  "chroma-q/color-force-ii-48": {
+    "family": "batten",
+    "lens_count": 16,
+    "diffuser": true,
+    "manual_tilt": true
+  },
+  "chroma-q/color-force-ii-72": {
+    "family": "batten",
+    "lens_count": 24,
+    "diffuser": true,
+    "manual_tilt": true
+  },
+  "acme/lightning": {
+    "family": "strobe",
+    "strip": true,
+    "cells": 30,
+    "body_style": "IP66 pixel strobe/wash panel with side and top camlock joinery",
+    "notes": "One cool-white beam emitter centered in each of 30 RGBW sections; housing has integrated yoke and matrix-joining hardware.",
+    "generator": "catalog",
+    "matrix_cells": true,
+    "overhead_yoke": true,
+    "manual_tilt": true
+  },
+  "high-end-systems/lonestar-prime": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.6,
+    "head_depth": 0.86,
+    "notes": "Compact automated profile with four-plane framing module and full-curtain shutters."
+  },
+  "ayrton/rivale-profile": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "sealed profile moving head",
+    "notes": "Continuous pan and tilt rotation requires nonstandard unlimited-axis support; do not fabricate mechanical stops. Exact digital geometry beyond envelope awaits modeling.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.1,
+    "yoke_compression": 0.18
+  },
+  "martin-professional-harman/mac-one-beam": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact beam head with rear lens light-guide array",
+    "notes": "Light guides are individually addressable; nonstandard optic details need dedicated model research.",
+    "generator": "catalog",
+    "shell": "round",
+    "head_depth": 0.55,
+    "light_guide_rings": true,
+    "lens_ratio": 0.45
+  },
+  "vari-lite/vl10-beamwash": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "hybrid beam/wash effect head with 180 mm lens",
+    "notes": "Uses a discharge lamp and layered optical effects; source-driven outer silhouette still requires model construction and image review."
+  },
+  "glp/mad-maxx": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "body_style": "oversized yoke-mounted multisource fat-beam fixture",
+    "notes": "Nonstandard 19-beam array and extraordinary scale. Current moving_wash geometry is not an exact oversized fat-beam profile; preserve individual large front emitters, high yoke and alternate head-up envelope, and expect custom dimensions/modeling. Mass conflict between page and datasheet remains explicit.",
+    "generator": "catalog",
+    "head_depth": 0.78,
+    "base_height": 0.12,
+    "large_head": true
+  },
+  "chroma-q/color-force-3-72": {
+    "family": "batten",
+    "generator": "catalog",
+    "lens_count": 24,
+    "diffuser": true,
+    "sparkle_pixels": 48,
+    "manual_tilt": true
+  },
+  "chauvet-dj/intimidator-spot-375zx": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact moving spot head with yoke",
+    "notes": "Source states 7 + open colors, 7 + open rotating gobos and two prisms.",
+    "shell": "faceted",
+    "head_depth": 0.87
+  },
+  "chauvet-dj/intimidator-wash-zoom-450-irc": {
+    "family": "moving_wash",
+    "lens_count": 12,
+    "body_style": "compact moving wash with circular multi-LED aperture",
+    "notes": "LED count and RGBW emitters documented."
+  },
+  "chauvet-dj/hurricane-haze-2d": {
+    "family": "hazer",
+    "generator": "equipment",
+    "output_kind": "haze",
+    "lens_count": 0,
+    "body_style": "rectangular haze machine with top handle, fluid window and adjustable nozzle",
+    "notes": "No light source; distinct from a fog machine used for dense plume effects."
+  },
+  "eliminator-lighting/stealth-spot": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "small LED spot mover with indexed gobo wheel and yoke",
+    "notes": "Manufacturer page links cut sheet and user manual."
+  },
+  "shehds/led-beam-spot-moving-head-150w": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "LED beam/spot moving head with large lens and yoke",
+    "notes": "Exact SKU and official page gallery image verified. Product page includes manual-library link."
+  },
+  "chauvet-dj/intimidator-spot-360x": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact LED moving spot with lens and dual-prism optics",
+    "notes": "Common mobile event fixture with wide manual zoom and dual rotating prisms.",
+    "shell": "faceted",
+    "head_depth": 0.87
+  },
+  "chauvet-dj/intimidator-spot-475zx": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "mid-size LED spot mover with dual prism and moving yoke",
+    "notes": "Manufacturer manual gives full dimensions, weight and mode footprint.",
+    "shell": "faceted",
+    "head_depth": 0.87
+  },
+  "chauvet-dj/sentinel-wash-q120": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "miniature RGBW Fresnel wash head with yoke",
+    "notes": "New-generation unit; do not conflate with similarly named Sentinel Wash Q7Z ILS.",
+    "fresnel": true,
+    "head_depth": 0.75
+  },
+  "eurolite/led-tmh-s30-moving-head-spot": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "small LED spot mover with compact yoke and replaceable rotating gobo wheel",
+    "notes": "Steinigke product page is the EUROLITE brand owner's official store and provides source details, image gallery, DMX profile and dimensions."
+  },
+  "sgm/g-4-wash": {
+    "family": "moving_wash",
+    "shell": "faceted",
+    "lens_count": 1,
+    "fresnel": true,
+    "head_depth": 1.15,
+    "generator": "catalog",
+    "yoke_compression": 0.35
+  },
+  "sgm/g-7-spot": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_count": 1,
+    "lens_ratio": 0.65,
+    "head_depth": 1.3,
+    "generator": "catalog",
+    "yoke_compression": 0.35
+  },
+  "eliminator-lighting/stealth-beam": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact RGBW beam head with single ACL lens and yoke",
+    "notes": "Continuous pan is listed; no assumed finite pan limit. Product page contains core control and geometry specs; manual not transcribed."
+  },
+  "eurolite/led-kls-120-compact-light-set": {
+    "family": "batten",
+    "lens_count": 4,
+    "body_style": "four-head RGBW spot bar with central control/mounting crossbar",
+    "notes": "Four spots are individually controllable; no derby or laser is part of this model. Manual not transcribed in this pass; product page provides core DMX modes, dimensions and control behavior.",
+    "generator": "catalog",
+    "multi_heads": true,
+    "spot_bar": true,
+    "head_mode": "manual"
+  },
+  "adj/saber-spot-dtw": {
+    "family": "par",
+    "lens_count": 1,
+    "body_style": "compact pinspot housing with ACL lens and scissor bracket",
+    "notes": "Small pinspot rather than moving head.",
+    "floor_yoke": true,
+    "category_id": "lighting.static.beam"
+  },
+  "adj/focus-spot-6z": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact LED spot mover with dual gobo/color wheels, prisms and yoke",
+    "notes": "The single optical axis remains one moving spot despite rich beam shaping.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.55,
+    "lens_ratio": 0.62,
+    "yoke_compression": 0.23
+  },
+  "adj/focus-flex-l7": {
+    "family": "moving_wash",
+    "lens_count": 7,
+    "body_style": "compact moving head with a linear seven-engine RGBL array and zoom optics",
+    "notes": "Seven independent RGBL engines create pixel effects; model all optical apertures rather than a single emitter if supported."
+  },
+  "showtec/phantom-100-spot": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact 100 W LED spot moving head with yoke",
+    "notes": "Official model page links current product manual and provides source-backed assembled envelope.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.45,
+    "lens_ratio": 0.48,
+    "yoke_compression": 0.23
+  },
+  "martin-professional-harman/mac-encore-performance-wrm": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "LED profile moving head",
+    "notes": "WRM warm-white variant; keep distinct from CLD and Encore Two.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.25,
+    "yoke_compression": 0.22
+  },
+  "martin-professional-harman/mac-encore-performance-cld": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "LED profile moving head",
+    "notes": "CLD color temperature variant; do not merge with WRM.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.25,
+    "yoke_compression": 0.22
+  },
+  "martin-professional-harman/mac-encore-wash-cld": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "soft-edge moving head",
+    "notes": "CLD variant; verify front optic assembly from exact-model imagery before modeling.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.2,
+    "fresnel": true,
+    "yoke_compression": 0.22
+  },
+  "martin-professional-harman/mac-encore-wash-wrm": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "soft-edge moving head",
+    "notes": "WRM variant; verify front optic assembly from exact-model imagery before modeling.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.2,
+    "fresnel": true,
+    "yoke_compression": 0.22
+  },
+  "martin-professional-harman/mac-aura-pxl": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "body_style": "medium pixel wash head with secondary Aura ring",
+    "notes": "19 beam lenses and 141 individually controlled Aura pixels; retain beam and Aura zones separately.",
+    "generator": "catalog",
+    "aura_pixels": 141,
+    "yoke_compression": 0.2
+  },
+  "martin-professional-harman/mac-aura-raven-xip": {
+    "family": "moving_wash",
+    "lens_count": 37,
+    "body_style": "large outdoor Aura wash head with forward beam and Aura pixel arrays",
+    "notes": "Model 37 main beam emitters across the forward face plus a separate 234-element RGB Aura backlight array; no rear video display is specified.",
+    "generator": "catalog",
+    "aura_pixels": 234,
+    "yoke_compression": 0.18
+  },
+  "martin-professional-harman/mac-aura-xb": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "body_style": "compact yoke-mounted Aura fixture",
+    "notes": "19 front wash lenses plus the forward Aura pixel effect; do not model like larger automated MAC Aura moving-head bodies.",
+    "generator": "catalog",
+    "aura": true,
+    "yoke_compression": 0.25
+  },
+  "ayrton/rivale-wash": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "sealed Fresnel wash moving head",
+    "notes": "Continuous pan and tilt rotation requires unlimited-axis support; don't fabricate mechanical end stops.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.05,
+    "fresnel": true,
+    "yoke_compression": 0.18
+  },
+  "ayrton/stradale-profile": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact sealed profile moving head",
+    "notes": "Continuous pan and tilt rotation; do not invent mechanical stops. Moving profile uses moving_spot family.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.1,
+    "yoke_compression": 0.18
+  },
+  "ayrton/zonda-3-fx": {
+    "family": "moving_wash",
+    "lens_count": 7,
+    "body_style": "seven optic RGBW cluster with central LiquidEffect element",
+    "notes": "Nonstandard seven-source optic cluster and central LiquidEffect require custom geometry; continuous pan and tilt rotation has no mechanical end stops."
+  },
+  "ayrton/nando-502-wash": {
+    "family": "moving_wash",
+    "lens_count": 12,
+    "body_style": "compact multi-source optical cluster wash",
+    "notes": "Twelve discrete 70 mm truncated lens elements in a 210 mm cluster; use a clustered optic layout rather than one lens."
+  },
+  "robe-lighting/esprite": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "white-source moving head",
+    "notes": "Product page exposes dimensions and image asset; profile-like moving-head geometry maps to moving_spot, not static profile.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.25,
+    "yoke_compression": 0.2
+  },
+  "robe-lighting/ledpointe": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact multi-purpose moving head with 155 mm front lens",
+    "notes": "Moving-head profile/beam hybrid; exact front and barrel silhouette should follow image references.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.3,
+    "yoke_compression": 0.2
+  },
+  "robe-lighting/painte": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact moving head",
+    "notes": "White-source moving profile/beam; verify product generation and options before model production.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.2,
+    "yoke_compression": 0.2
+  },
+  "robe-lighting/cuete": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact profile moving head",
+    "notes": "Use moving_spot family for articulated profile heads; source shows compact housing.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.15,
+    "yoke_compression": 0.2
+  },
+  "robe-lighting/tetra1": {
+    "family": "batten",
+    "lens_count": 9,
+    "tilting": true,
+    "body_style": "linear multisource moving luminaire",
+    "notes": "Nine discrete RGBW emitters on a single tilting linear bar; 191° tilt from official specification."
+  },
+  "robe-lighting/ledbeam-150": {
+    "family": "moving_wash",
+    "lens_count": 7,
+    "body_style": "compact multisource wash/beam head",
+    "notes": "Seven discrete RGBW source/lens channels arranged in compact head."
+  },
+  "chauvet-dj/intimidator-spot-duo": {
+    "family": "batten",
+    "lens_count": 2,
+    "body_style": "two compact moving spot heads mounted to one crossbar",
+    "notes": "Requires paired moving yokes and head subassemblies rather than a single conventional moving-head shell.",
+    "generator": "catalog",
+    "dual_movers": true
+  },
+  "showtec/phantom-65": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact LED spot head with yoke",
+    "notes": "Manufacturer documentation is Highlite manual; product identity is Showtec Phantom 65, order code 40070."
+  },
+  "adj/focus-wash-400": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "medium Fresnel wash head with large circular lens and yoke",
+    "notes": "Source uses both 9–42°, 9–43° and 10–41° zoom descriptions; record retains detailed spec's 9–43° range."
+  },
+  "chauvet-professional/rogue-r3x-wash": {
+    "family": "moving_wash",
+    "lens_count": 37,
+    "shell": "round",
+    "notes": "37-cell RGBW lens array."
+  },
+  "elation-professional/proteus-lucius": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.58,
+    "head_depth": 0.85,
+    "notes": "Weather-sealed profile with internal framing."
+  },
+  "cameo/opus-x4-ip": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.65,
+    "head_depth": 0.82,
+    "notes": "Sealed outdoor profile fixture; enclosure may differ from indoor variant."
+  },
+  "astera/titan-tube": {
+    "family": "tube",
+    "body_style": "sealed cylindrical RGB pixel tube with end caps and battery/control end",
+    "notes": "16 individually addressable light pixels distributed along the linear tube; mounting holders are accessories and excluded from envelope.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "astera/helios-tube": {
+    "family": "tube",
+    "body_style": "sealed cylindrical pixel tube with end caps and integrated battery/control end",
+    "notes": "Eight addressable pixels; 550 mm body length.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "astera/ax5-triplepar": {
+    "family": "par",
+    "shell": "round",
+    "lens_count": 3,
+    "notes": "Compact three-emitter battery PAR with yoke/bracket; body-only and bracketed envelopes differ.",
+    "generator": "catalog",
+    "floor_yoke": true,
+    "reflector_cups": 3
+  },
+  "etc/colorsource-spot-jr": {
+    "family": "profile",
+    "barrel_ratio": 0.36,
+    "body_style": "compact LED ellipsoidal with integral zoom optics and yoke",
+    "notes": "ETC junior-format profile; dimensional drawing is authoritative for outer envelope.",
+    "generator": "catalog",
+    "round_front": true
+  },
+  "etc/colorsource-par-jr": {
+    "family": "par",
+    "shell": "round",
+    "lens_count": 4,
+    "notes": "Compact convection-cooled LED PAR with four visible optical cups; manufacturer specifies 16 LED emitters distributed among the four optics.",
+    "generator": "catalog",
+    "reflector_cups": 4
+  },
+  "acme/mana-profile": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.54,
+    "head_depth": 0.76,
+    "notes": "Weather-sealed LED framing profile with internal shutters and rotating optical effects."
+  },
+  "high-end-systems/lonestar": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.56,
+    "head_depth": 0.78,
+    "notes": "Compact white-LED framing profile; preserve yoke, pan/tilt base and internal framing module."
+  },
+  "claypaky/b-eye-7": {
+    "family": "moving_wash",
+    "lens_count": 7,
+    "body_style": "compact seven optic wash head",
+    "notes": "Endless pan and tilt behavior is unusual; document axis mechanism separately."
+  },
+  "claypaky/arolla-aqua": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "weather-rated profile head",
+    "notes": "This CL3027 is the standard Marine-shield-free model; MG variant CL3047 is separately identified in official product copy.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.4,
+    "yoke_compression": 0.15
+  },
+  "claypaky/b-eye-k30": {
+    "family": "moving_wash",
+    "lens_count": 37,
+    "body_style": "large-format RGBL multi-optic wash/effect head",
+    "notes": "37 individually addressable emitters; bi-directional rotating front lenses, endless pan and 230° tilt/safety brake require nonstandard effect/motion treatment."
+  },
+  "martin-professional-harman/mac-encore-two": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "LED profile moving head",
+    "notes": "Asymmetric across-yoke width/depth use Martin's listed fixture envelope axes; preserve official CAD silhouette.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.2,
+    "yoke_compression": 0.22
+  },
+  "ayrton/karif-lt": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "long-throw beam/spot moving head",
+    "notes": "Infinite pan rotation is an unsupported axis convention for ordinary finite-pan spot previews; preserve as an unlimited-pan capability.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.1,
+    "yoke_compression": 0.18
+  },
+  "ayrton/mistral-s": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact white-source profile moving head",
+    "notes": "Official product code 011240 identifies Mistral S.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.1,
+    "yoke_compression": 0.18
+  },
+  "ayrton/mistral-tc": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact high-CRI profile moving head",
+    "notes": "Official product code 011250 identifies Mistral TC.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.1,
+    "yoke_compression": 0.18
+  },
+  "ayrton/diablo-profile-s": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact white-source profile moving head",
+    "notes": "Exact product code 011340 is Diablo Profile S; profile category is represented by moving_spot family.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.05,
+    "yoke_compression": 0.18
+  },
+  "ayrton/diablo-profile-tc": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact high-CRI profile moving head",
+    "notes": "Exact product code 011350 is Diablo Profile TC; profile category is represented by moving_spot family.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.05,
+    "yoke_compression": 0.18
+  },
+  "ayrton/levante-s": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "wash with framing shutters and spherical front lens",
+    "notes": "Official product code 010240 identifies Levante S; dedicated shutters and their rotating module should be modeled.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.0,
+    "yoke_compression": 0.18
+  },
+  "ayrton/levante-tc": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "high-CRI wash with framing shutters and spherical front lens",
+    "notes": "Official product code 010250 identifies Levante TC; dedicated shutters and their rotating module should be modeled.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.0,
+    "yoke_compression": 0.18
+  },
+  "ayrton/zonda-3-wash": {
+    "family": "moving_wash",
+    "lens_count": 7,
+    "body_style": "compact RGBW multi-source moving head with truncated lenses in a 170 mm cluster",
+    "notes": "Seven discrete light guides; use 7 emitters rather than one circular optic."
+  },
+  "ayrton/rawbeam-350": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact laser-phosphor beam moving head",
+    "notes": "Continuous pan and tilt rotation requires unlimited-axis support; retain as a source-backed motion capability.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.15,
+    "yoke_compression": 0.18
+  },
+  "ayrton/eurus-profile-s": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "large white-source profile moving head",
+    "notes": "Official product code 011540 identifies Eurus Profile S.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.2,
+    "yoke_compression": 0.18
+  },
+  "ayrton/eurus-profile-tc": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "high-CRI profile moving head",
+    "notes": "Official product code 011545 identifies Eurus Profile TC.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.2,
+    "yoke_compression": 0.18
+  },
+  "ayrton/bora-s": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "large spherical-lens wash with framing shutters",
+    "notes": "Official product code 010640 identifies Bora S.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.1,
+    "yoke_compression": 0.18
+  },
+  "ayrton/bora-tc": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "large spherical-lens high-CRI wash with framing shutters",
+    "notes": "Official product code 010650 identifies Bora TC.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.1,
+    "yoke_compression": 0.18
+  },
+  "ayrton/veloce-wash": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "large sealed Fresnel wash with framing and effects",
+    "notes": "Unlimited pan/tilt rotation is documented; physical axes must support the continuous-rotation mechanism.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.2,
+    "fresnel": true,
+    "yoke_compression": 0.18
+  },
+  "ayrton/argo-6-fx": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "body_style": "compact 19-emitter RGBW effect head with LiquidEffect optical system",
+    "notes": "19 discrete 50 mm truncated lenses and glass light guides in 280 mm cluster; individual pixel control; unlimited pan/tilt."
+  },
+  "ayrton/argo-6-wash": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "body_style": "compact 19-emitter RGBW wash head with 280 mm cluster",
+    "notes": "19 discrete truncated lenses and glass light guides; independent pixel effects; unlimited pan/tilt."
+  },
+  "claypaky/volero-cube": {
+    "family": "moving_wash",
+    "lens_count": 4,
+    "body_style": "compact square multi-optic head with crossing strobe strips",
+    "notes": "Nonstandard square optics and crossed strip effects require geometry flags beyond current circular-head defaults; preserve explicit limitation.",
+    "generator": "catalog",
+    "square_optics": true,
+    "head_depth": 0.65
+  },
+  "ayrton/cobra": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "IP65 laser-phosphor beam moving head",
+    "notes": "Single front aperture; 13 internal optical elements. Continuous pan/tilt mechanism requires unlimited-axis support."
+  },
+  "ayrton/khamsin-s": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "profile moving head",
+    "notes": "Single front aperture; 13-element zoom optic. Pan 540°, tilt 262°."
+  },
+  "ayrton/khamsin-tc": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "high-CRI profile moving head",
+    "notes": "Single front aperture; 13-element zoom optic. Pan 540°, tilt 262°."
+  },
+  "ayrton/perseo-beam": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "IP65 profile/beam moving head",
+    "notes": "Single front aperture with 13-element zoom optic; 540° pan and 263° tilt."
+  },
+  "ayrton/perseo-profile-s": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "IP65 profile moving head",
+    "notes": "Single front aperture; 13-element 8:1 zoom optic. Four individually positionable shutter blades; pan 540°, tilt 263°."
+  },
+  "ayrton/perseo-profile-tc": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "high-CRI IP65 profile moving head",
+    "notes": "Single front aperture; 13-element 8:1 zoom optic. Four individually positionable shutter blades; pan 540°, tilt 263°."
+  },
+  "ayrton/veloce-profile": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "large IP65 profile moving head",
+    "notes": "13-element zoom optics and four-blade framing; continuous pan and tilt rotation require unlimited-axis support."
   }
 }

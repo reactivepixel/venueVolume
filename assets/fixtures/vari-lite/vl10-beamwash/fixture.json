@@ -1,0 +1,353 @@
+{
+  "schema_version": 1,
+  "id": "vari-lite/vl10-beamwash",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Vari-Lite",
+    "model": "VL10 BeamWash",
+    "variant": "VL10 BeamWash",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.vari-lite.com/global/products/vl10-beamwash",
+      "title": "VL10 BeamWash product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Features and product summary: 28,000 lm, 33 kg, dimensions, lamp and optics",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.vari-lite.com/b-dam/vari-lite/products/vl10-beamwash/guides-and-manuals/VariLite_VL10_BeamWash_UserManual.pd-revised.pdf-%28final%29.pdf",
+      "title": "VL10 BeamWash User Manual",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Specification table: 41 DMX channels, 33.01 kg, power consumption by input voltage",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.vari-lite.com/b-dam/vari-lite/products/vl10-beamwash/VLS_PRODUCTS_VL10FRONT_700x410px.jpg",
+      "title": "VL10 BeamWash product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "5f938610cfd5ec68b8ca734bdab06f81b96f203ab8e5837021a6401508bfcdab"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.704,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer product page gives an unlabelled compact envelope of 704 x 501 x 320 mm; axis mapping to width, height and depth follows its product rendering and is an estimate."
+    },
+    "height": {
+      "value": 0.501,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer product page gives an unlabelled compact envelope of 704 x 501 x 320 mm; axis mapping to width, height and depth follows its product rendering and is an estimate."
+    },
+    "depth": {
+      "value": 0.32,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer product page gives an unlabelled compact envelope of 704 x 501 x 320 mm; axis mapping to width, height and depth follows its product rendering and is an estimate."
+    },
+    "reference_pose": "Assembled fixture; manufacturer product summary dimensions."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "28,000 lm; 2.2°–48° zoom, reduction to 0.7°; 180 mm front lens; 550 W 25R lamp; dual prisms, gobos and VL*FX animation wheel.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "752.4 W at 90 V / 60 Hz; 703.7 W at 230 V / 50 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "33 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "41-channel mode",
+      "footprint": 41,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Assembled fixture; manufacturer product summary dimensions.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.35199999809265137,
+        0.0,
+        -0.16000001423526555
+      ],
+      "max": [
+        0.35199999809265137,
+        0.5009999871253967,
+        0.16000000841449946
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.007483326364308596,
+          -0.00026783638168126345
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.08644599467515945,
+          -0.00026783638168126345
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.37268567085266113,
+          -0.00026783638168126345
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.37268567085266113,
+          -0.14064951241016388
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.08644599467515945,
+          -0.00026783638168126345
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.37268567085266113,
+          -0.00026783638168126345
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.37268567085266113,
+          -0.14597336947917938
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer product page gives an unlabelled compact envelope of 704 x 501 x 320 mm; axis mapping to width, height and depth follows its product rendering and is an estimate.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "794660101f4b0e347d16a889007f48ab0c95fadeffd114fc2d9fc0295b851ac2"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "ba757acb95fc1e92ea66ff0fe6b1635353b4c7df8425e3e839762b153bd2c337"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "34d6786a817f0ceac6e96a7507a40ef6569becf0bea60ed4358098c5ae32d52e"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "7d8526e8ed293938e8eb4b0c2022f55d82eb5382e3ad059b030f466cdf5cc33f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "944e5cabc7687dfb7f943c136c19528c014527dcdac7bccc3130aea62a23a4af"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "9e8fc5bf6a7828b9b406eed3955b87a041f09064c9278c1474fc19485b193e7e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "07469d17978901aaa4c4fb346be300c462706ad6b237d5cf3a71d50e67fc0107"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "2fced64b1ac5a42b40c2ed312a48c4a6d4480647dddbccd2f03bc2e4a0839844"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "9d88b6cbf575c4b07c38945dcdeecb2a13d095520e4f453270a3b86d4df73081"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "68dc41ce192c5c29f0e2aaeebb680d7725d55940354b9d71839d77a9ce4fb775"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "31dea777ee0c750621bd713e78630c28990fd2b5e327a8331e49ff715a74772a",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "hybrid beam/wash effect head with 180 mm lens",
+      "notes": "Uses a discharge lamp and layered optical effects; source-driven outer silhouette still requires model construction and image review."
+    },
+    "mesh_count": 85,
+    "triangle_count": 18580,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "5ad22098b2cc56a2507a5a01d918d8ae569a0918a4fd40b87cf08844aa0b9da9",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

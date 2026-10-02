@@ -1,0 +1,78 @@
+{
+  "mesh_count": 182,
+  "triangle_count": 57044,
+  "geometry_sha256": "563a919298169fb0e23d4f1786c241349de44312da91734a875569dc4fc3487f",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.34475237131118774,
+      -0.07940704375505447
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0005157574196346104
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.07454105466604233,
+        0.0005157574196346104
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.34475237131118774,
+        0.0005157574196346104
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.34475237131118774,
+        -0.07648678123950958
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216243743896,
+    1.031528115272522,
+    0.991237461566925
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://chauvetprofessional.com/product/rogue-r3x-wash/",
+    "https://chauvetprofessional.com/wp-content/uploads/2019/10/Rogue_R3X_Wash_UM_Rev8.pdf",
+    "https://chauvetprofessional.com/wp-content/uploads/2025/10/ROGUE_R3X_WASH-FRONT-FEAT.png"
+  ]
+}

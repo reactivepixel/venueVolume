@@ -1,6 +1,6 @@
 # Show equipment hierarchy
 
-127 modeled products from 31 manufacturers. 59 of 65 terminal categories have packaged representative assets; 6 remain open. This is not an exhaustive model/manufacturer catalog.
+220 modeled products from 42 manufacturers. 59 of 66 terminal categories have packaged representative assets; 7 remain open. This is not an exhaustive model/manufacturer catalog.
 
 [Browse hierarchy, gaps and renders](../../assets/fixtures/research/show-equipment.html) · [Hierarchy CSV](../../assets/fixtures/research/show-equipment-hierarchy.csv) · [Complete product CSV, including research-only rows](../../assets/fixtures/research/show-equipment-catalog.csv) · [Machine-readable taxonomy](../../assets/fixtures/research/show-equipment-taxonomy.json)
 
@@ -14,33 +14,34 @@ The taxonomy uses practitioner vocabulary, not a claimed industry standard. Foru
 
 | Category | Representative assets | Coverage |
 | --- | ---: | --- |
-| Lighting fixtures → Static and manually focused → Profile / ellipsoidal (ERS) | 3 | [etc/colorsource-spot-v](entries/etc/colorsource-spot-v.md), [etc/source-four-led-series-3-lustr-x8](entries/etc/source-four-led-series-3-lustr-x8.md), [martin-professional-harman/elp-cl](entries/martin-professional-harman/elp-cl.md) |
+| Lighting fixtures → Static and manually focused → Profile / ellipsoidal (ERS) | 4 | [etc/colorsource-spot-v](entries/etc/colorsource-spot-v.md), [etc/source-four-led-series-3-lustr-x8](entries/etc/source-four-led-series-3-lustr-x8.md), [martin-professional-harman/elp-cl](entries/martin-professional-harman/elp-cl.md) (+1 more in explorer) |
 | Lighting fixtures → Static and manually focused → Fresnel wash | 4 | [elation-professional/kl-fresnel-8](entries/elation-professional/kl-fresnel-8.md), [etc/colorsource-fresnel-v](entries/etc/colorsource-fresnel-v.md), [etc/fos-4-fresnel](entries/etc/fos-4-fresnel.md) (+1 more in explorer) |
 | Lighting fixtures → Static and manually focused → Plano-convex / pebble-convex (PC) | 1 | [robert-juliat/lutin-306lpc](entries/robert-juliat/lutin-306lpc.md) |
-| Lighting fixtures → Static and manually focused → PAR and compact wash | 8 | [adj/7p-hex-ip](entries/adj/7p-hex-ip.md), [etc/desire-d60](entries/etc/desire-d60.md), [adj/encore-lp12z-ip](entries/adj/encore-lp12z-ip.md) (+5 more in explorer) |
+| Lighting fixtures → Static and manually focused → PAR and compact wash | 10 | [adj/7p-hex-ip](entries/adj/7p-hex-ip.md), [etc/desire-d60](entries/etc/desire-d60.md), [adj/encore-lp12z-ip](entries/adj/encore-lp12z-ip.md) (+7 more in explorer) |
 | Lighting fixtures → Static and manually focused → Cyclorama / asymmetric wall wash | 1 | [etc/colorsource-cyc-floor](entries/etc/colorsource-cyc-floor.md) |
 | Lighting fixtures → Static and manually focused → Flood / scoop / area light | 1 | [altman-lighting/altman-scoop-153](entries/altman-lighting/altman-scoop-153.md) |
-| Lighting fixtures → Static and manually focused → Pinspot / fixed beam / ACL | 1 | [adj/adj-pinspot-led-ii](entries/adj/adj-pinspot-led-ii.md) |
-| Lighting fixtures → Static and manually focused → Linear batten / striplight | 6 | [adj/led-bar](entries/adj/led-bar.md), [chauvet-professional/colorado-solo-batten](entries/chauvet-professional/colorado-solo-batten.md), [chauvet-professional/colordash-batten-quad-6](entries/chauvet-professional/colordash-batten-quad-6.md) (+3 more in explorer) |
-| Lighting fixtures → Static and manually focused → Luminous tube | 1 | [adj/led-pixel-tube-360](entries/adj/led-pixel-tube-360.md) |
+| Lighting fixtures → Static and manually focused → Pinspot / fixed beam / ACL | 2 | [adj/adj-pinspot-led-ii](entries/adj/adj-pinspot-led-ii.md), [adj/saber-spot-dtw](entries/adj/saber-spot-dtw.md) |
+| Lighting fixtures → Static and manually focused → Linear batten / striplight | 11 | [adj/led-bar](entries/adj/led-bar.md), [chauvet-professional/colorado-solo-batten](entries/chauvet-professional/colorado-solo-batten.md), [chauvet-professional/colordash-batten-quad-6](entries/chauvet-professional/colordash-batten-quad-6.md) (+8 more in explorer) |
+| Lighting fixtures → Static and manually focused → Luminous tube | 3 | [adj/led-pixel-tube-360](entries/adj/led-pixel-tube-360.md), [astera/titan-tube](entries/astera/titan-tube.md), [astera/helios-tube](entries/astera/helios-tube.md) |
 | Lighting fixtures → Static and manually focused → Flexible pixel tape / scenic pixels | 1 | [elation-professional/pixel-tape-16ip](entries/elation-professional/pixel-tape-16ip.md) |
 | Lighting fixtures → Static and manually focused → Practical / decorative / handheld | 1 | [astera/nyx-bulb](entries/astera/nyx-bulb.md) |
 | Lighting fixtures → Static and manually focused → Dedicated UV / blacklight | 1 | [adj/uv-flood-36](entries/adj/uv-flood-36.md) |
-| Lighting fixtures → Automated lighting → Framing profile | 13 | [claypaky/arolla-profile-mp](entries/claypaky/arolla-profile-mp.md), [high-end-systems/solaframe-3000](entries/high-end-systems/solaframe-3000.md), [martin-professional-harman/mac-ultra-performance](entries/martin-professional-harman/mac-ultra-performance.md) (+10 more in explorer) |
-| Lighting fixtures → Automated lighting → Spot / gobo projector | 5 | [adj/focus-spot-4z](entries/adj/focus-spot-4z.md), [chauvet-professional/rogue-r1x-spot](entries/chauvet-professional/rogue-r1x-spot.md), [claypaky/arolla-spot-mp](entries/claypaky/arolla-spot-mp.md) (+2 more in explorer) |
-| Lighting fixtures → Automated lighting → Wash | 18 | [adj/stryker-wash](entries/adj/stryker-wash.md), [chauvet-professional/maverick-mk2-wash](entries/chauvet-professional/maverick-mk2-wash.md), [chauvet-professional/rogue-r2-wash](entries/chauvet-professional/rogue-r2-wash.md) (+15 more in explorer) |
-| Lighting fixtures → Automated lighting → Beam | 3 | [adj/hydro-beam-x1](entries/adj/hydro-beam-x1.md), [claypaky/sharpy](entries/claypaky/sharpy.md), [elation-professional/dartz-360](entries/elation-professional/dartz-360.md) |
-| Lighting fixtures → Automated lighting → Beam / spot / wash hybrid | 7 | [chauvet-professional/rogue-rh1-hybrid](entries/chauvet-professional/rogue-rh1-hybrid.md), [claypaky/sharpy-plus](entries/claypaky/sharpy-plus.md), [claypaky/sharpy-plus-aqua](entries/claypaky/sharpy-plus-aqua.md) (+4 more in explorer) |
-| Lighting fixtures → Automated lighting → Moving batten / multi-head bar | 3 | [glp/impression-x4-bar-20](entries/glp/impression-x4-bar-20.md), [glp/impression-x5-bar-1000](entries/glp/impression-x5-bar-1000.md), [claypaky/volero-wave](entries/claypaky/volero-wave.md) |
+| Lighting fixtures → Automated lighting → Framing profile | 43 | [claypaky/arolla-profile-mp](entries/claypaky/arolla-profile-mp.md), [high-end-systems/solaframe-3000](entries/high-end-systems/solaframe-3000.md), [martin-professional-harman/mac-ultra-performance](entries/martin-professional-harman/mac-ultra-performance.md) (+40 more in explorer) |
+| Lighting fixtures → Automated lighting → Spot / gobo projector | 14 | [adj/focus-spot-4z](entries/adj/focus-spot-4z.md), [chauvet-professional/rogue-r1x-spot](entries/chauvet-professional/rogue-r1x-spot.md), [claypaky/arolla-spot-mp](entries/claypaky/arolla-spot-mp.md) (+11 more in explorer) |
+| Lighting fixtures → Automated lighting → Wash | 47 | [adj/stryker-wash](entries/adj/stryker-wash.md), [chauvet-professional/maverick-mk2-wash](entries/chauvet-professional/maverick-mk2-wash.md), [chauvet-professional/rogue-r2-wash](entries/chauvet-professional/rogue-r2-wash.md) (+44 more in explorer) |
+| Lighting fixtures → Automated lighting → Beam | 11 | [adj/hydro-beam-x1](entries/adj/hydro-beam-x1.md), [claypaky/sharpy](entries/claypaky/sharpy.md), [elation-professional/dartz-360](entries/elation-professional/dartz-360.md) (+8 more in explorer) |
+| Lighting fixtures → Automated lighting → Beam / spot / wash hybrid | 9 | [chauvet-professional/rogue-rh1-hybrid](entries/chauvet-professional/rogue-rh1-hybrid.md), [claypaky/sharpy-plus](entries/claypaky/sharpy-plus.md), [claypaky/sharpy-plus-aqua](entries/claypaky/sharpy-plus-aqua.md) (+6 more in explorer) |
+| Lighting fixtures → Automated lighting → Moving batten / multi-head bar | 5 | [glp/impression-x4-bar-20](entries/glp/impression-x4-bar-20.md), [glp/impression-x5-bar-1000](entries/glp/impression-x5-bar-1000.md), [claypaky/volero-wave](entries/claypaky/volero-wave.md) (+2 more in explorer) |
 | Lighting fixtures → Automated lighting → Moving-mirror scanner | 1 | [adj/dynasty-scan-dmx](entries/adj/dynasty-scan-dmx.md) |
 | Lighting fixtures → Manually operated followspot | 1 | [robert-juliat/roxie2-1166-2-ww](entries/robert-juliat/roxie2-1166-2-ww.md) |
-| Lighting fixtures → Visible and audience effects → Strobe | 8 | [adj/jolt-bar-fx](entries/adj/jolt-bar-fx.md), [glp/jdc-line-500](entries/glp/jdc-line-500.md), [glp/jdc1](entries/glp/jdc1.md) (+5 more in explorer) |
+| Lighting fixtures → Visible and audience effects → Integrated multi-effect assembly | 0 | research_pending |
+| Lighting fixtures → Visible and audience effects → Strobe | 9 | [adj/jolt-bar-fx](entries/adj/jolt-bar-fx.md), [glp/jdc-line-500](entries/glp/jdc-line-500.md), [glp/jdc1](entries/glp/jdc1.md) (+6 more in explorer) |
 | Lighting fixtures → Visible and audience effects → Audience blinder | 1 | [chauvet-professional/strike-4](entries/chauvet-professional/strike-4.md) |
 | Lighting fixtures → Visible and audience effects → Mirror ball / reflective effect | 1 | [adj/m-2020-mirror-ball](entries/adj/m-2020-mirror-ball.md) |
 | Lighting fixtures → Visible and audience effects → Mirror-ball motor | 1 | [eliminator-lighting-adj-group/mbmhd3-mirror-ball-motor](entries/eliminator-lighting-adj-group/mbmhd3-mirror-ball-motor.md) |
 | Lighting fixtures → Visible and audience effects → Show laser projector | 1 | [laserworld/ds-1000rgb-mk5](entries/laserworld/ds-1000rgb-mk5.md) |
 | Atmosphere and air movement → Fog / smoke-look generator | 1 | [antari/z-1000iii-fog-machine](entries/antari/z-1000iii-fog-machine.md) |
-| Atmosphere and air movement → Water-based hazer / fazer | 1 | [chauvet-dj/hurricane-haze-1dx](entries/chauvet-dj/hurricane-haze-1dx.md) |
+| Atmosphere and air movement → Water-based hazer / fazer | 2 | [chauvet-dj/hurricane-haze-1dx](entries/chauvet-dj/hurricane-haze-1dx.md), [chauvet-dj/hurricane-haze-2d](entries/chauvet-dj/hurricane-haze-2d.md) |
 | Atmosphere and air movement → Oil-based / atomizing hazer | 1 | [mdg/atmosphere-aps-haze-generator](entries/mdg/atmosphere-aps-haze-generator.md) |
 | Atmosphere and air movement → Low-lying fog | 1 | [chauvet-dj/cumulus-hp-low-lying-fog-machine](entries/chauvet-dj/cumulus-hp-low-lying-fog-machine.md) |
 | Atmosphere and air movement → Fog-fluid jet / geyser | 1 | [antari/m-9-jet-fog-machine](entries/antari/m-9-jet-fog-machine.md) |
@@ -84,6 +85,7 @@ The taxonomy uses practitioner vocabulary, not a claimed industry standard. Foru
 
 Missing categories are deliberately visible. A downloaded image, a named candidate, an embedded accessory shape, or a generic proxy does not count as an exact product asset. Custom scenery additionally needs production-specific dimensions.
 
+- Lighting fixtures → Visible and audience effects → Integrated multi-effect assembly: A sourced assembled width, height and depth have not all been established; An exact-model product reference image is unavailable; The model needs a supported geometry profile; Exact image URL and physical dimensions/weight/power are not present in the captured official specs; highly unusual dual-face form needs a dedicated geometry family; An exact-model product reference image is unavailable; The model needs a supported geometry profile; DMX channel counts conflict between the technical block (6/19/302) and product feature text (6/16/146); technical block is retained provisionally. The page also has contradictory electrical power fields; official product still URL remains unverified; The model needs a supported geometry profile; The visible optical module count has not been established; The laser safety classification is not included in the reviewed official summary; preserve as a distinct laser emitter and source its classification before any operational/safety modeling
 - Special-effects appliances → Water jet / fountain / rain effect: Missing or conflicting dimensional envelope
 - Scenic and stage elements → Custom scenery / set piece: Exact documented representative and model still required.
 - Fixture accessories and consumables → Lens tube / optic / beam shaping: Missing or conflicting dimensional envelope

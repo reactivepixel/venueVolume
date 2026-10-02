@@ -1,0 +1,163 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "chauvet-dj/intimidator-wash-zoom-450-irc",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "CHAUVET DJ",
+      "model": "Intimidator Wash Zoom 450 IRC",
+      "variant": "Intimidator Wash Zoom 450 IRC",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.chauvetdj.com/products/intimidator-wash-zoom-450-irc/",
+        "title": "Intimidator Wash Zoom 450 IRC product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications: DMX, source, zoom, power, dimensions and weight",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.chauvetdj.com/wp-content/uploads/2016/01/cat-Intimidator-Wash-Zoom-450-IRC.jpg",
+        "title": "Intimidator Wash Zoom 450 IRC product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "d9d6fa8ddb30a30f639fdc4182359212cccf033e3c54be52c95b3bb80f21fb8c"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.194,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer size 194 x 277 x 363 mm; mapped width x depth x height."
+      },
+      "height": {
+        "value": 0.363,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer size 194 x 277 x 363 mm; mapped width x depth x height."
+      },
+      "depth": {
+        "value": 0.277,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer size 194 x 277 x 363 mm; mapped width x depth x height."
+      },
+      "reference_pose": "Base level, head vertical; assembled fixture."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "12 x 20 W RGBW emitters, 7–34° motorized zoom, Totem floor mode; optional IRC-6 remote is non-DMX.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "219 W at 120 V; 207 W at 230 V",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "7.2 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "14-channel mode",
+        "footprint": 14,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "29-channel mode",
+        "footprint": 29,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base level, head vertical; assembled fixture.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer size 194 x 277 x 363 mm; mapped width x depth x height.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "6d9cf420386223f73cf4c0ccc3cef881cfeb7a3058cd44765ea15502c1918884"
+  },
+  "git_commit": "57d1c4f4b986e095c19ed7af915f82f46f817f9c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

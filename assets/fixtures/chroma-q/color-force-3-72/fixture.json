@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "id": "chroma-q/color-force-3-72",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Chroma-Q",
+    "model": "Color Force 3 72",
+    "variant": "CQ1530-7200",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://chroma-q.com/products/color-force-3-72",
+      "title": "Chroma-Q Color Force 3 72 specifications",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Mechanical / electrical specifications and control; exact-model product gallery",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://chroma-q.com/media/cache/app_top_hero/1b/63/541e6aee1d2fc564aed8e47ae239.jpeg",
+      "title": "Color Force 3 72 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpeg",
+      "sha256": "3ffe81891c8b67c922a6ee528812f7a59eb9790b35c186b9b0d73b2bd755c2bb"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 1.785,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+    },
+    "height": {
+      "value": 0.215,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+    },
+    "depth": {
+      "value": 0.18,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+    },
+    "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Black wired variant; 24 RGBA cells plus 48 SparQle LEDs; IP65; manual ±120° focus. Rectangular cells and two accent-pixel banks have separate geometry; detail proportions and pivot are estimated.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "1100 W; 100–240 V 50/60 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "35 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512-A",
+          "Art-Net",
+          "sACN",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.8924999833106995,
+        0.0,
+        -0.08999999705702066
+      ],
+      "max": [
+        0.8924999833106995,
+        0.21499999822117388,
+        0.09000000264495611
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.002296516904607415,
+          -0.006639801897108555
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.1423841118812561,
+          -0.006639801897108555
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.1423841118812561,
+          -0.08296962827444077
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.1423841118812561,
+          -0.08497830480337143
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "e4ba64162a329d6615d984bf5f5efcbfdf128cf5693413a555ea1d4ba3e0bad6"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "f1431902f4144da97e2d3c851bd9477ce3bacd49bfe025ccddbf59fe820555bc"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "9cb888846afbb687a7954c5d767e81a315869b358de2a8f821740483b6c7c2d0"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "a2f41bafa2e1ae1e03279dc981ad07c1e801b49537c7732762e8471026ff712e"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "be48ec13415eac1cfa437aa66302b08b1fbdbe2d4f51f173bf3d1a074c3bbeb1"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "7fc97abb16a42b94345e4f51c6c201d3ff8f9fee0330a2f54f1172371d3f9541"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "023e49292fbc5607368cfbd2eac34e7cb55c66f70f4d77f66293acf414feebda"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "273a9ab29a02ad71d14885e91af42d2ba04db8c0abbc908eac1cc3e1345a9f9b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "347d1f985dd7380328f014cc2590eaa97591617840578e59ad0366d4119ea714"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "23d4842173b13d5da1fe872fc4a72a2d20c8e8e9e3de8640d5c9f8f7a259eb67"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "3035ee54a95372330755c50d25a62887aca97384504cbf787bd0d5146398d645",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "batten",
+      "generator": "catalog",
+      "lens_count": 24,
+      "diffuser": true,
+      "sparkle_pixels": 48,
+      "manual_tilt": true
+    },
+    "mesh_count": 110,
+    "triangle_count": 14552,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed batten geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "13ce4abace5a57545883f18f370f72ea58989b2a3c3791117df66869f442c9a8",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.static.batten",
+    "category_path": [
+      "Lighting fixtures",
+      "Static and manually focused",
+      "Linear batten / striplight"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

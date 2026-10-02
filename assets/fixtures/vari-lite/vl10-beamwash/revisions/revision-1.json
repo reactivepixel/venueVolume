@@ -1,0 +1,174 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "vari-lite/vl10-beamwash",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Vari-Lite",
+      "model": "VL10 BeamWash",
+      "variant": "VL10 BeamWash",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.vari-lite.com/global/products/vl10-beamwash",
+        "title": "VL10 BeamWash product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Features and product summary: 28,000 lm, 33 kg, dimensions, lamp and optics",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.vari-lite.com/b-dam/vari-lite/products/vl10-beamwash/guides-and-manuals/VariLite_VL10_BeamWash_UserManual.pd-revised.pdf-%28final%29.pdf",
+        "title": "VL10 BeamWash User Manual",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specification table: 41 DMX channels, 33.01 kg, power consumption by input voltage",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.vari-lite.com/b-dam/vari-lite/products/vl10-beamwash/VLS_PRODUCTS_VL10FRONT_700x410px.jpg",
+        "title": "VL10 BeamWash product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "5f938610cfd5ec68b8ca734bdab06f81b96f203ab8e5837021a6401508bfcdab"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.704,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer product page gives an unlabelled compact envelope of 704 x 501 x 320 mm; axis mapping to width, height and depth follows its product rendering and is an estimate."
+      },
+      "height": {
+        "value": 0.501,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer product page gives an unlabelled compact envelope of 704 x 501 x 320 mm; axis mapping to width, height and depth follows its product rendering and is an estimate."
+      },
+      "depth": {
+        "value": 0.32,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer product page gives an unlabelled compact envelope of 704 x 501 x 320 mm; axis mapping to width, height and depth follows its product rendering and is an estimate."
+      },
+      "reference_pose": "Assembled fixture; manufacturer product summary dimensions."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "28,000 lm; 2.2°–48° zoom, reduction to 0.7°; 180 mm front lens; 550 W 25R lamp; dual prisms, gobos and VL*FX animation wheel.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "752.4 W at 90 V / 60 Hz; 703.7 W at 230 V / 50 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "33 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "41-channel mode",
+        "footprint": 41,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Assembled fixture; manufacturer product summary dimensions.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer product page gives an unlabelled compact envelope of 704 x 501 x 320 mm; axis mapping to width, height and depth follows its product rendering and is an estimate.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "5ad22098b2cc56a2507a5a01d918d8ae569a0918a4fd40b87cf08844aa0b9da9"
+  },
+  "git_commit": "cde57148359c6fba452466258e6762e851414b92",
+  "note": "Initial research record before any generated model artifacts existed."
+}

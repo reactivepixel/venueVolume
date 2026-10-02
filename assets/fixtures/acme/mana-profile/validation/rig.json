@@ -1,0 +1,17 @@
+{
+  "id": "acme/mana-profile",
+  "passed": true,
+  "source_usdz_sha256": "b51935270b77e8c1189eb53371cf81125788ce6188f68864713b043053481381",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

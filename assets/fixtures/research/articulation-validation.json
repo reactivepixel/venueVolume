@@ -1,7 +1,41 @@
 {
   "passed": true,
-  "assets": 127,
+  "assets": 220,
   "reports": [
+    {
+      "id": "acme/lightning",
+      "passed": true,
+      "source_usdz_sha256": "0603ce3d9e04fe129bbad1cb9c655fcc1a32e4ff92aabf3dcfeecf1f69daaaa3",
+      "joints": 1,
+      "moving_meshes": 337,
+      "fixed_meshes": 4,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "acme/mana-profile",
+      "passed": true,
+      "source_usdz_sha256": "b51935270b77e8c1189eb53371cf81125788ce6188f68864713b043053481381",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
     {
       "id": "adj/7p-hex-ip",
       "passed": true,
@@ -105,11 +139,62 @@
       "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
     },
     {
+      "id": "adj/focus-flex-l7",
+      "passed": true,
+      "source_usdz_sha256": "3587a62fc408c80f5960efa22d5d94f4b1857dcf47a62f250ccb8e8b1ece6400",
+      "joints": 2,
+      "moving_meshes": 45,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
       "id": "adj/focus-spot-4z",
       "passed": true,
       "source_usdz_sha256": "6980b4baa059236a071f8a05d2cb3cfa75521f29f53577309025bd5981513b0b",
       "joints": 2,
       "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "adj/focus-spot-6z",
+      "passed": true,
+      "source_usdz_sha256": "28ab647950e32c8d3dbebf0a496d30446b657ec019c8e66215a12a527ae775c0",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "adj/focus-wash-400",
+      "passed": true,
+      "source_usdz_sha256": "ea2485837c1d452d830b178936bfed0db2695d9e311126c26813b15a54fe957e",
+      "joints": 2,
+      "moving_meshes": 26,
       "fixed_meshes": 47,
       "checks": [
         "meter-scale rig paths",
@@ -230,6 +315,23 @@
       "joints": 1,
       "moving_meshes": 33,
       "fixed_meshes": 0,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "adj/saber-spot-dtw",
+      "passed": true,
+      "source_usdz_sha256": "c913dcc30201f6e68e40b34228f5d6196589f43c81f71a4e4c536c623112e7cb",
+      "joints": 1,
+      "moving_meshes": 37,
+      "fixed_meshes": 8,
       "checks": [
         "meter-scale rig paths",
         "unique moving-part ownership",
@@ -377,6 +479,40 @@
       "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
     },
     {
+      "id": "astera/ax5-triplepar",
+      "passed": true,
+      "source_usdz_sha256": "5f6e31cc477d3b23092d4bfd8e6cb7593ff4cb9e4081c3148e36669f7748b4c5",
+      "joints": 1,
+      "moving_meshes": 43,
+      "fixed_meshes": 8,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "astera/helios-tube",
+      "passed": true,
+      "source_usdz_sha256": "e77066a924d68da303d46696358f9ee2bf8ca9b88662749cd917d5e969d664a2",
+      "joints": 0,
+      "moving_meshes": 0,
+      "fixed_meshes": 3,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
       "id": "astera/nyx-bulb",
       "passed": true,
       "source_usdz_sha256": "7f2db92665d52c7c393947b9b4623c420ea8c755ce938ed33f077219bf0eb4e5",
@@ -394,12 +530,539 @@
       "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
     },
     {
+      "id": "astera/titan-tube",
+      "passed": true,
+      "source_usdz_sha256": "7ae281ec30e84f412967d38fc294472a370024287c99310d411ecac61e8556ff",
+      "joints": 0,
+      "moving_meshes": 0,
+      "fixed_meshes": 3,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/argo-6-fx",
+      "passed": true,
+      "source_usdz_sha256": "678692934647bd2b1644282703a85d986e8bd11c9764171b662be99cf8972ab8",
+      "joints": 2,
+      "moving_meshes": 81,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/argo-6-wash",
+      "passed": true,
+      "source_usdz_sha256": "678692934647bd2b1644282703a85d986e8bd11c9764171b662be99cf8972ab8",
+      "joints": 2,
+      "moving_meshes": 81,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/bora-s",
+      "passed": true,
+      "source_usdz_sha256": "53fb336aacc01c34f64f95e654a3eb17a3bcfb2208bae8a1de0169cf6b45d633",
+      "joints": 2,
+      "moving_meshes": 26,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/bora-tc",
+      "passed": true,
+      "source_usdz_sha256": "53fb336aacc01c34f64f95e654a3eb17a3bcfb2208bae8a1de0169cf6b45d633",
+      "joints": 2,
+      "moving_meshes": 26,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/cobra",
+      "passed": true,
+      "source_usdz_sha256": "206242bc5c4c3d9ed134332be613100d5146fa96d3e1af94b4a6dc65727041da",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/diablo-profile-s",
+      "passed": true,
+      "source_usdz_sha256": "64d96f3b250d5635901696a5a7924e5863fa003b915bc54285941f1f88a50598",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/diablo-profile-tc",
+      "passed": true,
+      "source_usdz_sha256": "64d96f3b250d5635901696a5a7924e5863fa003b915bc54285941f1f88a50598",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/eurus-profile-s",
+      "passed": true,
+      "source_usdz_sha256": "ca55024b8491af1362f4f30cef393678f352c0070ddec077b356f67ca2694541",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/eurus-profile-tc",
+      "passed": true,
+      "source_usdz_sha256": "39d08780325f74184dea3647707456affe31eba47fa68cb24c987eb77ed57999",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/karif-lt",
+      "passed": true,
+      "source_usdz_sha256": "f07f4efa0f2b4102528bc51f735a91bda5ed8b602e98312ec237632357721408",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/khamsin-s",
+      "passed": true,
+      "source_usdz_sha256": "f59d8e458c88fc544ab3d714e2c19061191ce7ca3244a8eb9c71b2ebed1701cf",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/khamsin-tc",
+      "passed": true,
+      "source_usdz_sha256": "f59d8e458c88fc544ab3d714e2c19061191ce7ca3244a8eb9c71b2ebed1701cf",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/levante-s",
+      "passed": true,
+      "source_usdz_sha256": "01b7b1752369fe150659136d1a2862acca69f00b94992285778886af3949b4a4",
+      "joints": 2,
+      "moving_meshes": 26,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/levante-tc",
+      "passed": true,
+      "source_usdz_sha256": "01b7b1752369fe150659136d1a2862acca69f00b94992285778886af3949b4a4",
+      "joints": 2,
+      "moving_meshes": 26,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/mistral-s",
+      "passed": true,
+      "source_usdz_sha256": "7cc9a0c9c5bd958d4a70cbc1687ebdace14e7c37efc9dea9c5bde982d118d700",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/mistral-tc",
+      "passed": true,
+      "source_usdz_sha256": "7cc9a0c9c5bd958d4a70cbc1687ebdace14e7c37efc9dea9c5bde982d118d700",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/nando-502-wash",
+      "passed": true,
+      "source_usdz_sha256": "58cfd2d2517b58e8572d416f0dd07e17b3dfd0ad44df42fb13326919813c5fdd",
+      "joints": 2,
+      "moving_meshes": 60,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/perseo-beam",
+      "passed": true,
+      "source_usdz_sha256": "a0a827177efd09b614752257981f99076a03a4336cd00babd0b210f36ef8b689",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/perseo-profile-s",
+      "passed": true,
+      "source_usdz_sha256": "a0a827177efd09b614752257981f99076a03a4336cd00babd0b210f36ef8b689",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/perseo-profile-tc",
+      "passed": true,
+      "source_usdz_sha256": "a0a827177efd09b614752257981f99076a03a4336cd00babd0b210f36ef8b689",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/rawbeam-350",
+      "passed": true,
+      "source_usdz_sha256": "6a3282dfa45cc56135038d87da573f3442b71024fd289ce1f08ed8be62df3cbd",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/rivale-profile",
+      "passed": true,
+      "source_usdz_sha256": "1d36fa18d1a54930d2ace39c9355fd8c9c6d91f92d88182fb26dee9be112879e",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/rivale-wash",
+      "passed": true,
+      "source_usdz_sha256": "e83a2c79cbabeb6385bf75c2a5a79b389545af408ffea2fef19d14845c327da9",
+      "joints": 2,
+      "moving_meshes": 35,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/stradale-profile",
+      "passed": true,
+      "source_usdz_sha256": "190e8f6a9e029590ac4403cbe162755ca75c864c8e71de5a68ea627545de50c0",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/veloce-profile",
+      "passed": true,
+      "source_usdz_sha256": "f0c9ee23ba00a81728b40be9c10e0e6e43de4664721bf89e22404dc7314fbb11",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/veloce-wash",
+      "passed": true,
+      "source_usdz_sha256": "479f31cd1bc223b6e9071d4c8a604a861baefdc871bea8e793273c8625c092ea",
+      "joints": 2,
+      "moving_meshes": 35,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/zonda-3-fx",
+      "passed": true,
+      "source_usdz_sha256": "743a6fe0c459fe74813b63ef2d82e0eb5bcb836bcb5db7e26167bb4dfaa69400",
+      "joints": 2,
+      "moving_meshes": 45,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "ayrton/zonda-3-wash",
+      "passed": true,
+      "source_usdz_sha256": "82baed43a651eda480050e44dc2c7fe8f33e7d8ff5261b631331c0e9f21fbfc1",
+      "joints": 2,
+      "moving_meshes": 45,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
       "id": "brompton-technology/tessera-sx40",
       "passed": true,
       "source_usdz_sha256": "9973978766c1b845b81b75e421fa9c2b3bfefe90dbfe810bcf473baa5f72cfa4",
       "joints": 0,
       "moving_meshes": 0,
       "fixed_meshes": 33,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "cameo/opus-x4",
+      "passed": true,
+      "source_usdz_sha256": "500c7e044d819b04f18ec24809795309449d185241d58efdd8b7904a6d81ad7a",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "cameo/opus-x4-ip",
+      "passed": true,
+      "source_usdz_sha256": "32c324200c78f2b16acc9e1f4f8b2e8585341661fe2df93e9a967805f64a3bb0",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
       "checks": [
         "meter-scale rig paths",
         "unique moving-part ownership",
@@ -451,6 +1114,125 @@
       "joints": 0,
       "moving_meshes": 0,
       "fixed_meshes": 62,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "chauvet-dj/hurricane-haze-2d",
+      "passed": true,
+      "source_usdz_sha256": "519881541dd72679f67bcd86f3649bc6d838ca3d6dee8f95135285f1ac0562b4",
+      "joints": 0,
+      "moving_meshes": 0,
+      "fixed_meshes": 62,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "chauvet-dj/intimidator-spot-360x",
+      "passed": true,
+      "source_usdz_sha256": "ea18aa9f397ae4ab1caa4e0c51478ea836e372672bb1cb8a164c1a7e9cbb2551",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "chauvet-dj/intimidator-spot-375zx",
+      "passed": true,
+      "source_usdz_sha256": "3bce3e263f09ac1570cfba4496da3f795e1f1c9e8d81c724de10ac7eaa4ce0ed",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "chauvet-dj/intimidator-spot-475zx",
+      "passed": true,
+      "source_usdz_sha256": "ef7a943d0558bc9e445cc21b360bb1d990f6e11ac299b298ae1ceda7a2bd0ea3",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "chauvet-dj/intimidator-spot-duo",
+      "passed": true,
+      "source_usdz_sha256": "203356e0be1de41b0fb62179b56a8038b2ff5c287130445e1a6ffead8caf04b4",
+      "joints": 4,
+      "moving_meshes": 40,
+      "fixed_meshes": 31,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "chauvet-dj/intimidator-wash-zoom-450-irc",
+      "passed": true,
+      "source_usdz_sha256": "57daac618829cea017253c9b5b14bbf0723e35ad470bb86f2789ac716b61a93b",
+      "joints": 2,
+      "moving_meshes": 60,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "chauvet-dj/sentinel-wash-q120",
+      "passed": true,
+      "source_usdz_sha256": "0da2f4f410dfd9ef0ce811cf7e6cbd4a6001effb4b49f981f0619dfe53fdc184",
+      "joints": 2,
+      "moving_meshes": 35,
+      "fixed_meshes": 47,
       "checks": [
         "meter-scale rig paths",
         "unique moving-part ownership",
@@ -598,6 +1380,40 @@
       "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
     },
     {
+      "id": "chauvet-professional/rogue-r3-beam",
+      "passed": true,
+      "source_usdz_sha256": "dff4d851d28ba76d4ed6e03b1776724317bcebf8004a324a2919aa17b88862b5",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "chauvet-professional/rogue-r3x-wash",
+      "passed": true,
+      "source_usdz_sha256": "474b3305cf5f8777b389cf8540bf0086a6ce5da5fad56a1f89d5d303f0033fd4",
+      "joints": 2,
+      "moving_meshes": 135,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
       "id": "chauvet-professional/rogue-rh1-hybrid",
       "passed": true,
       "source_usdz_sha256": "42b29a71e443302f4007851e5a3a5ca40bb27846e4f38c614cd2c49ca6b03e63",
@@ -632,6 +1448,91 @@
       "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
     },
     {
+      "id": "chroma-q/color-force-3-72",
+      "passed": true,
+      "source_usdz_sha256": "f1431902f4144da97e2d3c851bd9477ce3bacd49bfe025ccddbf59fe820555bc",
+      "joints": 1,
+      "moving_meshes": 106,
+      "fixed_meshes": 4,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "chroma-q/color-force-ii-12",
+      "passed": true,
+      "source_usdz_sha256": "94cf6c19b0283556b9f96f36dcb397ad80837b3a3a4b09c2ae58dbaa8c3a54d3",
+      "joints": 1,
+      "moving_meshes": 38,
+      "fixed_meshes": 4,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "chroma-q/color-force-ii-48",
+      "passed": true,
+      "source_usdz_sha256": "9615d52ec16f4a92160d36c6963f32df0ee43e1aab8a5a1c487ce0336320a125",
+      "joints": 1,
+      "moving_meshes": 50,
+      "fixed_meshes": 4,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "chroma-q/color-force-ii-72",
+      "passed": true,
+      "source_usdz_sha256": "4b45289ada29a3830598aaf7ed5c7b95656b3eb6c6ac628f33580aae43560665",
+      "joints": 1,
+      "moving_meshes": 58,
+      "fixed_meshes": 4,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "claypaky/arolla-aqua",
+      "passed": true,
+      "source_usdz_sha256": "7b7d9945e52a687ab3bc37ee4cafd917663d9590b2657894b6a65339567990a0",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
       "id": "claypaky/arolla-profile-mp",
       "passed": true,
       "source_usdz_sha256": "ec4eccabc73f5203f70962585dad096eb46ea1bd2e9dfedd910cb7589aeeae5a",
@@ -654,6 +1555,40 @@
       "source_usdz_sha256": "ec4eccabc73f5203f70962585dad096eb46ea1bd2e9dfedd910cb7589aeeae5a",
       "joints": 2,
       "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "claypaky/b-eye-7",
+      "passed": true,
+      "source_usdz_sha256": "07fe945dfb62cead388ecd269f6e9c8bbf719f74a43c1e08a69475a1177d7674",
+      "joints": 2,
+      "moving_meshes": 45,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "claypaky/b-eye-k30",
+      "passed": true,
+      "source_usdz_sha256": "f0e3f26f2b9e534092b76b87545d5ebc07957ab3acfd5ddb1e06fab9fcaa7cc0",
+      "joints": 2,
+      "moving_meshes": 135,
       "fixed_meshes": 47,
       "checks": [
         "meter-scale rig paths",
@@ -774,6 +1709,23 @@
       "joints": 0,
       "moving_meshes": 0,
       "fixed_meshes": 48,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "claypaky/volero-cube",
+      "passed": true,
+      "source_usdz_sha256": "f99fc1ce77b0e5a30180090f4b8d96eb0235e8833b6f67e663a02d16face8e3e",
+      "joints": 2,
+      "moving_meshes": 27,
+      "fixed_meshes": 47,
       "checks": [
         "meter-scale rig paths",
         "unique moving-part ownership",
@@ -972,6 +1924,40 @@
       "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
     },
     {
+      "id": "elation-professional/proteus-lucius",
+      "passed": true,
+      "source_usdz_sha256": "4ede12875f1fbb8a4ebe9c45e5d3f86bdca7535f20b34d86651b14f794b622fb",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "elation-professional/proteus-maximus",
+      "passed": true,
+      "source_usdz_sha256": "b3f07b49113fd7260c7017a4dd94d3af434277eb7e140e09f15100af977fe646",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
       "id": "elation-professional/proteus-radius",
       "passed": true,
       "source_usdz_sha256": "2ba699da940e62985dfd09ca558da1e83e2205a10d978f5fde505f4aa7a7d85c",
@@ -1029,6 +2015,40 @@
       "joints": 0,
       "moving_meshes": 0,
       "fixed_meshes": 311,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "eliminator-lighting/stealth-beam",
+      "passed": true,
+      "source_usdz_sha256": "821bfcb7064da1106ff5acec92aa7f878a9005932fb648b4dd623294de6a9a24",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "eliminator-lighting/stealth-spot",
+      "passed": true,
+      "source_usdz_sha256": "3460dac6e54d5ed89a38938c018aa56ef87360ce08635d8564f8fdaed5f7c3a1",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
       "checks": [
         "meter-scale rig paths",
         "unique moving-part ownership",
@@ -1176,6 +2196,40 @@
       "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
     },
     {
+      "id": "etc/colorsource-par-jr",
+      "passed": true,
+      "source_usdz_sha256": "e21d6dde1406a8a3d685f7b24615807370243d807b816c3ae34ec07f4b647e6a",
+      "joints": 1,
+      "moving_meshes": 46,
+      "fixed_meshes": 6,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "etc/colorsource-spot-jr",
+      "passed": true,
+      "source_usdz_sha256": "6b25774e87f7cd41848e66c0f514530c3cd75cd055fd15f6a4e2abf0c6b35799",
+      "joints": 1,
+      "moving_meshes": 40,
+      "fixed_meshes": 6,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
       "id": "etc/colorsource-spot-v",
       "passed": true,
       "source_usdz_sha256": "2dbbfa69906de9c570b88cda4a366a48607db8fa031a26b41ec0fe3eb5d03c59",
@@ -1250,6 +2304,40 @@
       "joints": 1,
       "moving_meshes": 41,
       "fixed_meshes": 6,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "eurolite/led-kls-120-compact-light-set",
+      "passed": true,
+      "source_usdz_sha256": "98eebb2b74ad32ae9bdc8a5c7335ae918b64a6c06e8a636690bf69976f4771d4",
+      "joints": 4,
+      "moving_meshes": 48,
+      "fixed_meshes": 42,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "eurolite/led-tmh-s30-moving-head-spot",
+      "passed": true,
+      "source_usdz_sha256": "b6a8eda0d035e3257753caa60ad72046c71a1795d2a7bdfda6d8884a135954cb",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
       "checks": [
         "meter-scale rig paths",
         "unique moving-part ownership",
@@ -1448,6 +2536,57 @@
       "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
     },
     {
+      "id": "glp/mad-maxx",
+      "passed": true,
+      "source_usdz_sha256": "19238fe57d70894c2e75183e19b98d6cf5158fad5b67a5508ebbeaa4ba41c969",
+      "joints": 2,
+      "moving_meshes": 81,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "high-end-systems/lonestar",
+      "passed": true,
+      "source_usdz_sha256": "85c9baed5b58d45d12de5ab8e21631b5ca1a26aba700f803937abfd0ed0fbda4",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "high-end-systems/lonestar-prime",
+      "passed": true,
+      "source_usdz_sha256": "4a937f11a2e6c726ac20295c7c01763101b02c7aea3e46764f35d1ba4fc7605b",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
       "id": "high-end-systems/solaframe-1000",
       "passed": true,
       "source_usdz_sha256": "64e2c1d5d05e2a490bf1490e91bb74671bf4405dfe8455f88ed1a076398f13c3",
@@ -1504,6 +2643,74 @@
       "source_usdz_sha256": "350e5588de05978eae7da8c4ac7f9851a914e32c186ce740bd3f1510f9ac31c9",
       "joints": 2,
       "moving_meshes": 47,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "jb-lighting/p18-profile-mk2-hp",
+      "passed": true,
+      "source_usdz_sha256": "04b2231183087939b080129a01013811d4ee10c93b8d7fbc183b22259b48fb00",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "jb-lighting/sparx-12",
+      "passed": true,
+      "source_usdz_sha256": "38de460fdf309fa74b65da872fb52d32e99753eb9447db1a3d16387e6edec389",
+      "joints": 2,
+      "moving_meshes": 81,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "jb-lighting/sparx-18",
+      "passed": true,
+      "source_usdz_sha256": "01f6b122a98c59b1d58ac6299d1731ff764705aa589119c5528bd5bca24fcbea",
+      "joints": 2,
+      "moving_meshes": 135,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "jb-lighting/sparx-30",
+      "passed": true,
+      "source_usdz_sha256": "33b694e73c8d341d1ff3d4af41133a378cc5a54d9eafd8e4f81839d9e33352b3",
+      "joints": 2,
+      "moving_meshes": 207,
       "fixed_meshes": 47,
       "checks": [
         "meter-scale rig paths",
@@ -1686,6 +2893,57 @@
       "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
     },
     {
+      "id": "martin-professional-harman/mac-aura-pxl",
+      "passed": true,
+      "source_usdz_sha256": "44392fe9c9d80c97b88080718fa6a0d4465c21db2052a30dbe7fbcc7eb11c4ad",
+      "joints": 2,
+      "moving_meshes": 222,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "martin-professional-harman/mac-aura-raven-xip",
+      "passed": true,
+      "source_usdz_sha256": "5fee03e0219e07b28fe671ddad0671c94d3aa4b4dc261c9f3e68c98831ccccd0",
+      "joints": 2,
+      "moving_meshes": 369,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "martin-professional-harman/mac-aura-xb",
+      "passed": true,
+      "source_usdz_sha256": "f2ada563df56cad8ceb9d937586fbf08a6f81d65824c2a6b27669dbf830d6fcb",
+      "joints": 2,
+      "moving_meshes": 117,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
       "id": "martin-professional-harman/mac-aura-xip",
       "passed": true,
       "source_usdz_sha256": "ac4778b56b7ae3326faabf7592b048f4e67fb1d1e5085ced6dbed897814b5ec8",
@@ -1703,11 +2961,113 @@
       "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
     },
     {
+      "id": "martin-professional-harman/mac-encore-performance-cld",
+      "passed": true,
+      "source_usdz_sha256": "33bf7c7748961364c875180f66076114a7d55a284dcb57048fd60dc55465a01b",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "martin-professional-harman/mac-encore-performance-wrm",
+      "passed": true,
+      "source_usdz_sha256": "33bf7c7748961364c875180f66076114a7d55a284dcb57048fd60dc55465a01b",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "martin-professional-harman/mac-encore-two",
+      "passed": true,
+      "source_usdz_sha256": "1cacedda80fb7315a96f710c4b265c140317423301708c67ba7200e97979a4fb",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "martin-professional-harman/mac-encore-wash-cld",
+      "passed": true,
+      "source_usdz_sha256": "2d6bffa60a3ca58632239461fcf74afa5e6ed1df1909aada8f630d6d975f4efb",
+      "joints": 2,
+      "moving_meshes": 35,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "martin-professional-harman/mac-encore-wash-wrm",
+      "passed": true,
+      "source_usdz_sha256": "2d6bffa60a3ca58632239461fcf74afa5e6ed1df1909aada8f630d6d975f4efb",
+      "joints": 2,
+      "moving_meshes": 35,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
       "id": "martin-professional-harman/mac-one",
       "passed": true,
       "source_usdz_sha256": "becc0ac2f64c0702afb2c3e3df2f345e61313c2c46afd53f0ff9a5b584fab804",
       "joints": 2,
       "moving_meshes": 62,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "martin-professional-harman/mac-one-beam",
+      "passed": true,
+      "source_usdz_sha256": "d97e15dc87f87e5b71c0c8072ca96b239e2c59d396a6c26e3cbbda95d1cd4323",
+      "joints": 2,
+      "moving_meshes": 86,
       "fixed_meshes": 47,
       "checks": [
         "meter-scale rig paths",
@@ -1873,6 +3233,57 @@
       "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
     },
     {
+      "id": "prolights/astra-hybrid330",
+      "passed": true,
+      "source_usdz_sha256": "40dc5dc5a50406fdac848190791908919a3b977b3984c8c14c4e4b3ca5121243",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "robe-lighting/cuete",
+      "passed": true,
+      "source_usdz_sha256": "34f5d5a071c5ef81ae87475520e8c01e4ecbf883e7457bbc57d69ad8581732d5",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "robe-lighting/esprite",
+      "passed": true,
+      "source_usdz_sha256": "814786c0a0585db6387226b8d022f538e7ab5a1a162682ea1517699b5bf8ea31",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
       "id": "robe-lighting/forte",
       "passed": true,
       "source_usdz_sha256": "5e3f98980cca8612acd8697180945144b17e26d1786a1babf8698c075485c8f5",
@@ -1907,6 +3318,23 @@
       "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
     },
     {
+      "id": "robe-lighting/ledbeam-150",
+      "passed": true,
+      "source_usdz_sha256": "c7c50c699eb1d229c5e768d8bf6372d24187bb14081ce1ff1f0c80946827bbb5",
+      "joints": 2,
+      "moving_meshes": 45,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
       "id": "robe-lighting/ledbeam-350",
       "passed": true,
       "source_usdz_sha256": "8a61df777c5141960ff0a72a788b5263676ef3c10c77a6c099923b59e0bfe37f",
@@ -1924,9 +3352,43 @@
       "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
     },
     {
+      "id": "robe-lighting/ledpointe",
+      "passed": true,
+      "source_usdz_sha256": "5d6d3615f7537a1a3e67a296339b2a3121150529dd107030032ff6703e97af2e",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
       "id": "robe-lighting/megapointe",
       "passed": true,
       "source_usdz_sha256": "26368dd0cb0ad2d988749c269aef45ece294f3a0e96c7d941008fc370e762de4",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "robe-lighting/painte",
+      "passed": true,
+      "source_usdz_sha256": "5e0ff5404887f6735bd572c7d475968898f5c43e8ae7a2544e4d56b82fb617de",
       "joints": 2,
       "moving_meshes": 38,
       "fixed_meshes": 47,
@@ -2026,6 +3488,23 @@
       "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
     },
     {
+      "id": "robe-lighting/tetra1",
+      "passed": true,
+      "source_usdz_sha256": "5738bd16be7c748243f1d1abe01d4ea51a96529731ea1f782192974e1a0b57cd",
+      "joints": 1,
+      "moving_meshes": 52,
+      "fixed_meshes": 5,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
       "id": "robert-juliat/lutin-306lpc",
       "passed": true,
       "source_usdz_sha256": "697f4ef83307213bda75637157722e2a0b827f8897b7ecb8fc8cd7b58500a737",
@@ -2066,6 +3545,108 @@
       "joints": 0,
       "moving_meshes": 0,
       "fixed_meshes": 9,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "sgm/g-4-wash",
+      "passed": true,
+      "source_usdz_sha256": "0af20f211906214ee41264aeaa73fbb72f5a5b4c252917d5bb8159b07c234401",
+      "joints": 2,
+      "moving_meshes": 35,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "sgm/g-7-spot",
+      "passed": true,
+      "source_usdz_sha256": "7de559fe0ab6cf13635db2846e9d964ecbd290bb1b630e27c4211f2facaac842",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "shehds/led-beam-spot-moving-head-150w",
+      "passed": true,
+      "source_usdz_sha256": "a8385c1ff7c90d1527f2015cc804d9a93a1e404d6ed2d7953ecc4988e70de85b",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "showtec/phantom-100-spot",
+      "passed": true,
+      "source_usdz_sha256": "3f175915c931167656cc2d9b04ceb368748785e7f6f45f464795f38cd483ca45",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "showtec/phantom-65",
+      "passed": true,
+      "source_usdz_sha256": "b40326b82118e07d77f2a8eb90d78411d69d8b39ce40f0aa3c772253473bd3d8",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
+      "checks": [
+        "meter-scale rig paths",
+        "unique moving-part ownership",
+        "neutral pose preserved",
+        "rigid geometry at four non-neutral poses",
+        "emitter parent references"
+      ],
+      "realitykit": "not_run",
+      "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+    },
+    {
+      "id": "vari-lite/vl10-beamwash",
+      "passed": true,
+      "source_usdz_sha256": "ba757acb95fc1e92ea66ff0fe6b1635353b4c7df8425e3e839762b153bd2c337",
+      "joints": 2,
+      "moving_meshes": 38,
+      "fixed_meshes": 47,
       "checks": [
         "meter-scale rig paths",
         "unique moving-part ownership",

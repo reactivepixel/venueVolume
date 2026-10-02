@@ -1,0 +1,77 @@
+{
+  "mesh_count": 107,
+  "triangle_count": 30908,
+  "geometry_sha256": "f58027d18f488b906c71742501d9471dc64c4032ade13ac4553885feccdaa7bd",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.2971979081630707,
+      -0.07348563522100449
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0005137351690791547
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.05773380771279335,
+        0.0005137351690791547
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.2971979081630707,
+        0.0005137351690791547
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.2971979081630707,
+        -0.07078181207180023
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852217435836792,
+    1.027483582496643,
+    0.9940394163131714
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.chauvetdj.com/products/intimidator-wash-zoom-450-irc/",
+    "https://www.chauvetdj.com/wp-content/uploads/2016/01/cat-Intimidator-Wash-Zoom-450-IRC.jpg"
+  ]
+}

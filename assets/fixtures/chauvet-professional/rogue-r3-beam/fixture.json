@@ -1,0 +1,319 @@
+{
+  "schema_version": 1,
+  "id": "chauvet-professional/rogue-r3-beam",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "CHAUVET Professional",
+    "model": "Rogue R3 Beam",
+    "variant": "Rogue R3 Beam",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://chauvetprofessional.com/product/rogue-r3-beam/",
+      "title": "Rogue R3 Beam product specifications",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Specifications: Optical, Dynamic Effects, Construction/Physical; 325 × 220 × 550 mm and 15.6 kg",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://chauvetprofessional.com/wp-content/uploads/2025/10/ROGUE_R3_BEAM-FRONT-FEAT.png",
+      "title": "Rogue R3 Beam product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "5781b7c60ee2de264c7fbac327f8cb610bd2f5efa008e7ca0e0a9eb0a3a9c299"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.325,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Product specifications state 325 × 220 × 550 mm without named axes. In the official upright product pose, the 550 mm axis is vertical and 220 mm is front-to-back; mapped as width × height × depth = 325 × 550 × 220 mm. Treat as an image-informed estimate pending a dimensioned CAD drawing."
+    },
+    "height": {
+      "value": 0.55,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Product specifications state 325 × 220 × 550 mm without named axes. In the official upright product pose, the 550 mm axis is vertical and 220 mm is front-to-back; mapped as width × height × depth = 325 × 550 × 220 mm. Treat as an image-informed estimate pending a dimensioned CAD drawing."
+    },
+    "depth": {
+      "value": 0.22,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Product specifications state 325 × 220 × 550 mm without named axes. In the official upright product pose, the 550 mm axis is vertical and 220 mm is front-to-back; mapped as width × height × depth = 325 × 550 × 220 mm. Treat as an image-informed estimate pending a dimensioned CAD drawing."
+    },
+    "reference_pose": "Base level; head at neutral vertical orientation."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "300 W Ushio NSL lamp; 0.8° beam; 14-color wheel, 17 static gobos, dual prisms and frost.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {},
+    "mechanical": {
+      "weight": {
+        "value": "15.6 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Base level; head at neutral vertical orientation.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.16249999403953552,
+        0.0,
+        -0.10999999946216121
+      ],
+      "max": [
+        0.16249999403953552,
+        0.550000011920929,
+        0.10999999934574589
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0005064382567070425
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.08799999952316284,
+          0.0005064382567070425
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.4427500069141388,
+          0.0005064382567070425
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.4427500069141388,
+          -0.08880544453859329
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.08799999952316284,
+          0.0005064382567070425
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.4427500069141388,
+          0.0005064382567070425
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.4427500069141388,
+          -0.09219251573085785
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Product specifications state 325 × 220 × 550 mm without named axes; mapped as width × height × depth for a candidate envelope. Confirm mapping against linked CAD before scale modeling.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "f5f78782e199a5a4438b0898c6a0c50daf4c606cc7dde52e02e6b2416735f75d"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "dff4d851d28ba76d4ed6e03b1776724317bcebf8004a324a2919aa17b88862b5"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "1c32673b6fd8561a300cfacf87775c68a7ec7dd26527670131723cc03d444e3c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "7c99078fdccacfa1a7cbbc550a5c96482c8750a2c1fae7e236ba3d40a2a4acc3"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "4b90d74ac57d110145d476e03a2bdf00174173a4b2234cbf226b0dfe3f48db91"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "6ce4aecadeaa37cd651efbd8155af5718e1411ac9b8864c415f5f4405b99aad3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "50e587d239218ea7c9561b6bbea2453ad1aaa3bfa2719b56fdde46f0b0a99010"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "bc3b795c01901a7635b8665db39c498cd0f4bd95db471b7a0b09aeca3d94ee06"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "2852bf6dd7f8c6599e3926b25ea4724a1a8cff8c528ccb3bf7bf76fc56078c27"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "d85ef33672619f6e61f20e5b433be496c84ae54d35d0274b2352547783478217"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "d39d7479a92a09d4efb75a86880f1180cc887773f3e3c9219875becc70ffa5ad",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "shell": "faceted",
+      "lens_ratio": 0.72,
+      "head_depth": 0.8,
+      "notes": "Discharge beam fixture with compact front aperture and long optical barrel."
+    },
+    "mesh_count": 85,
+    "triangle_count": 17996,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "c8705196ce41acc03cc9d624190c6fcb3b7f814bf1764aafbc725e4dcf74254b",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.beam",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Beam"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

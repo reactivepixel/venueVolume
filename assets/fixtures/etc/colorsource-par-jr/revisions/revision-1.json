@@ -1,0 +1,162 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "etc/colorsource-par-jr",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "ETC",
+      "model": "ColorSource PAR jr",
+      "variant": "CSPARJR",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.etcconnect.com/products/entertainment-fixtures/colorsource-par-jr/documentation.aspx",
+        "title": "ColorSource PAR jr documentation",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Official product page and image",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737516212",
+        "title": "ColorSource PAR jr Datasheet",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Product specifications and physical table: 16 emitters, 72 W, 2.54 kg, H282 × W213 × D251 mm",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/ColorSource/ColorSource_PAR_jr_Right_Black.jpg",
+        "title": "ColorSource PAR jr product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "a7ee6c0079fad94a9f901b9e1d8abb8ee773a42e28673b23a6e241f4f5b9efe8"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.213,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer table labels H282 × W213 × D251 mm, including yoke envelope."
+      },
+      "height": {
+        "value": 0.282,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer table labels H282 × W213 × D251 mm, including yoke envelope."
+      },
+      "depth": {
+        "value": 0.251,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer table labels H282 × W213 × D251 mm, including yoke envelope."
+      },
+      "reference_pose": "Upright PAR with included yoke attached; C-clamp excluded."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "16 RGB-L LED emitters, 2,290 lm standard / 2,061 lm Deep Blue, 15.3° beam; four DMX modes spanning 1–6 channels.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "72 W typical",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "2.54 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Upright PAR with included yoke attached; C-clamp excluded.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer table labels H282 × W213 × D251 mm, including yoke envelope.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "9b1b0fbcd307d983a5648c1e63507298e99eaabada56c49f24cad0657b8a0e9f"
+  },
+  "git_commit": "529393313efc84b984528b9491e9f5e230df9fd1",
+  "note": "Initial research record before any generated model artifacts existed."
+}

@@ -1,0 +1,17 @@
+{
+  "id": "glp/mad-maxx",
+  "passed": true,
+  "source_usdz_sha256": "19238fe57d70894c2e75183e19b98d6cf5158fad5b67a5508ebbeaa4ba41c969",
+  "joints": 2,
+  "moving_meshes": 81,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

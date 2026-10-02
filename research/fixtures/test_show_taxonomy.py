@@ -6,6 +6,7 @@ from build_show_taxonomy import classify,ROOT
 class ShowEquipmentTests(unittest.TestCase):
     def test_roles_are_not_source_or_transport(self):
         cases=[('pixel_controller','Pixelator Mini','control.pixel'),
+               ('multi_effect','GigBAR Move + ILS','lighting.effects.multi_effect'),
                ('pixel_driver','PIXEL DRIVER 170','control.pixel'),
                ('power_supply','LRS-350-24','power.distribution'),
                ('mirror_motor','MBMHD3','lighting.effects.mirror_motor'),

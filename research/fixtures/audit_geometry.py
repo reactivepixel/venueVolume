@@ -45,7 +45,22 @@ def audit(path):
     print(record['id'],report['passed'],max_error,flush=True)
     return report
 
-reports=[audit(p) for p in sorted((ROOT/'assets/fixtures').glob('*/*/fixture.json'))]
-summary={'fixture_count':len(reports),'passed':all(r['passed'] for r in reports),'mesh_count':sum(r['mesh_count'] for r in reports),'triangle_count':sum(r['triangle_count'] for r in reports),'max_vertex_deviation_m':max(r['max_vertex_deviation_m'] for r in reports),'fixtures':reports}
+reports=[]
+for path in sorted((ROOT/'assets/fixtures').glob('*/*/fixture.json')):
+    record=json.loads(path.read_text())
+    if record['model']['status'] != 'validated': continue
+    cached=path.parent/'validation/parity.json'
+    # Cache only reports whose tracked hash and both independently tested inputs match.
+    artifacts={a['file']:a['sha256'] for a in record['model']['artifacts']}
+    reusable=cached.exists() and all(
+        (path.parent/name).exists() and hashlib.sha256((path.parent/name).read_bytes()).hexdigest()==artifacts.get(name)
+        for name in ('models/fixture.blend','models/fixture.usdz','validation/parity.json'))
+    if '--new-only' in sys.argv and reusable:
+        reports.append(json.loads(cached.read_text()));continue
+    try: reports.append(audit(path))
+    except Exception as error:
+        reports.append(dict(fixture_id=record['id'],passed=False,mesh_count=0,triangle_count=0,
+                            max_vertex_deviation_m=0,errors=[str(error)]))
+summary={'fixture_count':len(reports),'passed':all(r['passed'] for r in reports),'mesh_count':sum(r['mesh_count'] for r in reports),'triangle_count':sum(r['triangle_count'] for r in reports),'max_vertex_deviation_m':max((r['max_vertex_deviation_m'] for r in reports),default=0),'fixtures':reports}
 (ROOT/'assets/fixtures/research/geometry-audit.json').write_text(json.dumps(summary,indent=2)+'\n')
 sys.stdout.flush();os._exit(0 if summary['passed'] else 1)

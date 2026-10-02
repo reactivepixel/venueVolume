@@ -1,0 +1,78 @@
+{
+  "mesh_count": 82,
+  "triangle_count": 25552,
+  "geometry_sha256": "f45201ce5a1a09ba4be3d275521f25380e5b244b01a446d6b374f18cf7496c6d",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.6011271476745605,
+      -0.17304016649723053
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.010267640464007854
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.13661453127861023,
+        0.010267640464007854
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.6011271476745605,
+        0.010267640464007854
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.6011271476745605,
+        -0.1663423776626587
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    0.802629828453064,
+    1.1279270648956299
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.ayrton.eu/produit/veloce-wash/",
+    "https://www.ayrton.eu/wp-content/uploads/2024/09/VeloceWashS-Specification-Sheet-V4.pdf",
+    "https://www.ayrton.eu/wp-content/uploads/2025/02/VeloceW.png"
+  ]
+}

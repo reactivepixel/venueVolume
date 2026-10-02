@@ -11,6 +11,7 @@ OUT=ROOT/'assets/fixtures/research'
 FAMILY_CATEGORY={'followspot':'lighting.followspot','pc':'lighting.static.pc','par_can':'lighting.static.par','cyc':'lighting.static.cyc','uv':'lighting.static.uv','practical':'lighting.static.practical','tube':'lighting.static.tube','pixel_strip':'lighting.static.pixel_tape','scanner':'lighting.moving.scanner','mirror_ball':'lighting.effects.mirror_ball','laser':'lighting.effects.laser','pinspot':'lighting.static.beam','flood':'lighting.static.flood','blinder':'lighting.effects.blinder','fogger':'atmosphere.fog','low_fog':'atmosphere.low_fog','jet':'atmosphere.fog_jet','fan':'atmosphere.fan','bubble':'effects.bubble','snow':'effects.snow','confetti':'effects.confetti','co2_jet':'effects.co2','spark':'effects.spark','flame':'effects.flame','console':'control.console','node':'control.node','dimmer':'power.dimmer','power':'power.distribution','truss':'rigging.truss','stand':'rigging.stand','clamp':'rigging.clamp','led_panel':'video.panel','projector':'video.projector','screen':'video.screen','media_server':'video.processor','deck':'scenic.deck'}
 
 def classify(row,profile):
+    if profile.get('category_id'):return profile['category_id']
     f=ALIASES.get(profile['family'],profile['family']);name=row['name'].lower();text=(row['type']+' '+row['subtype']).lower()
     if f=='splitter':return 'control.distribution'
     if f in ('pixel_controller','pixel_driver'):return 'control.pixel'
@@ -34,10 +35,12 @@ def classify(row,profile):
     if f=='hazer':return 'atmosphere.haze_oil' if row['manufacturer']=='MDG' or 'oil' in text else 'atmosphere.haze_water'
     if f in FAMILY_CATEGORY:return FAMILY_CATEGORY[f]
     if f=='batten':
-        if profile.get('tilting') or profile.get('multi_heads') or name in ('impression x4 bar 20','impression x5 bar 1000'):return 'lighting.moving.batten'
+        if profile.get('spot_bar'):return 'lighting.static.batten'
+        if profile.get('tilting') or profile.get('multi_heads') or profile.get('dual_movers') or name in ('impression x4 bar 20','impression x5 bar 1000'):return 'lighting.moving.batten'
         if 'strobe' in text:return 'lighting.effects.strobe'
         return 'lighting.static.batten'
     if f=='strobe':return 'lighting.effects.strobe'
+    if f=='multi_effect':return 'lighting.effects.multi_effect'
     if f=='fresnel':return 'lighting.static.fresnel'
     if f=='profile':return 'lighting.static.profile'
     if f=='par':return 'lighting.static.par'
@@ -83,9 +86,19 @@ def main():
     pending=json.loads((ROOT/'research/fixtures/taxonomy/import-backlog.json').read_text()) if (ROOT/'research/fixtures/taxonomy/import-backlog.json').exists() else []
     all_candidates=read_candidates()
     candidates={fid(r):r for r in all_candidates}
+    from expand_catalog import candidates as expansion_candidates, issues, LEDGER
+    expansion=expansion_candidates(); candidates.update(expansion)
+    ledger=json.loads(LEDGER.read_text()) if LEDGER.exists() else {}
+    packaged={fid(row) for row in rows}
+    for ident,candidate in expansion.items():
+        if ident in packaged:continue
+        reasons=ledger.get(ident,{}).get('errors') or issues(candidate) or ['Asset pipeline has not completed for this model']
+        pending.append(dict(id=ident,reason='; '.join(reasons),category_id='lighting.moving.spot',stage=ledger.get(ident,{}).get('stage','research')))
     for p in pending:
         if p['id'] in candidates:
-            candidate=candidates[p['id']];p['category_id']=classify(candidate,candidate['modeling']);p['official_url']=candidate['url']
+            candidate=candidates[p['id']]
+            p['category_id']=classify(candidate,candidate['modeling'])
+            p['official_url']=candidate['url']
             p.update(name=candidate['name'],manufacturer=candidate['manufacturer'],source_images=candidate['images'])
             reference=candidate.get('reference_image_file') or candidate.get('image_file') or (cached_reference(candidate['images'][0]) if candidate['images'] else None)
             p['reference_asset']=reference if reference and (ROOT/reference).is_file() else ''
@@ -104,7 +117,7 @@ def main():
     combined=[dict(row) for row in rows]
     for p in pending:
         candidate=candidates[p['id']];category=p['category_id']
-        combined.append({k:candidate[k] for k in ('name','model_number','manufacturer','type','subtype','url')}|{'data':json.dumps({'specifications':candidate['data'],'dimensions':candidate['dimensions'],'evidence':candidate['evidence'],'blocking_issue':p},ensure_ascii=False),'images':json.dumps(candidate['images']),'asset_state':'research_only','model_state':'not_built','category_id':category,'category_path':' > '.join(path(category)),'control_path':candidate['data'].get('control_path','See acquisition record'),'expansion_batch':'taxonomy','asset_blocker':p['reason']})
+        combined.append({k:candidate[k] for k in ('name','model_number','manufacturer','type','subtype','url')}|{'data':json.dumps({'specifications':candidate['data'],'dimensions':candidate['dimensions'],'evidence':candidate['evidence'],'blocking_issue':p},ensure_ascii=False),'images':json.dumps(candidate['images']),'asset_state':'research_only','model_state':'not_built','category_id':category,'category_path':' > '.join(path(category)),'control_path':candidate['data'].get('control_path','See acquisition record'),'expansion_batch':'touring-dj-2026-10' if p['id'] in expansion else 'taxonomy','asset_blocker':p['reason']})
     for row in combined:
         candidate=candidates.get(fid(row),{})
         reference=candidate.get('reference_image_file') or candidate.get('image_file')

@@ -1,0 +1,372 @@
+{
+  "schema_version": 1,
+  "id": "high-end-systems/lonestar",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "High End Systems",
+    "model": "Lonestar",
+    "variant": "Lonestar",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.etcconnect.com/lonestar/",
+      "title": "High End Systems Lonestar",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Official product overview and image",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737513380",
+      "title": "Lonestar Datasheet Rev H, June 2025",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Product Dimensions table: H600 × W368 × D221 mm; 23 kg; source, optics, power and modes",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737514372",
+      "title": "Lonestar DMX Channel Map",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Standard and Trifusion modes; 48-channel footprint",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Live_Events/Lighting_Fixtures/Lonestar/Lonestar_Prod_Left_Red_547x400.jpg",
+      "title": "Lonestar product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "e9f70d3f65a957ef24330f3ff207f8c05acec83589196b9bf14e014e8e581029"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.368,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer Datasheet Rev H gives W368 × H600 × D221 mm for fixture envelope."
+    },
+    "height": {
+      "value": 0.6,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer Datasheet Rev H gives W368 × H600 × D221 mm for fixture envelope."
+    },
+    "depth": {
+      "value": 0.221,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer Datasheet Rev H gives W368 × H600 × D221 mm for fixture envelope."
+    },
+    "reference_pose": "Assembled moving head, upright base and head orientation as manufacturer drawing."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "290 W white LED engine, 15,400 lm, 3.8°–55° zoom, framing shutters; Standard and Trifusion modes, 48 channels.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "615 W max",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "23 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "Art-Net",
+          "sACN"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "48-channel mode",
+      "footprint": 48,
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Assembled moving head, upright base and head orientation as manufacturer drawing.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.18400000035762787,
+        0.0,
+        -0.11049999861279503
+      ],
+      "max": [
+        0.18400000035762787,
+        0.6000000238418579,
+        0.1104999947710894
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0005065965815447271
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.09600000083446503,
+          0.0005065965815447271
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.4785600006580353,
+          0.0005065965815447271
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.4785600006580353,
+          -0.08699564635753632
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.09600000083446503,
+          0.0005065965815447271
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.4785600006580353,
+          0.0005065965815447271
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.4785600006580353,
+          -0.0903140977025032
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer Datasheet Rev H gives W368 × H600 × D221 mm for fixture envelope.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "905d20f70e46eadeba5caa5f4e7d405669745e803608e77f14af4738a37634c5"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "85c9baed5b58d45d12de5ab8e21631b5ca1a26aba700f803937abfd0ed0fbda4"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "f74a8f98146bc3ff4c8c91940c9556fe2a292f695364cd1bbc514dc2f83f4e17"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "e1fab86ae8c8829101cd867071a34c4fc75d67da8331cccaf8e1b8a2ed54f8ae"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "7dc7a1ceaf3dc53ccd2fd2fa93cf998aed8257f686894f433aa1be1bc917201b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "a177fcb96e955f912caed32890cd57f22e89aaa2e56ad253b02d2d852617b330"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "c50f621644720aa1b4ef84e549cfdcf692770b6c15dc6b54661b85b6c40d56f9"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "73d1085ca5625dfceca4563749981cd7775b149c2f870169b72a9f49dc30e712"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "c209b41370f33735fb8eff62030343720f170c8515691b3e85511a73a622ef33"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "17899e04d5490b6bbae9b81d69716f5d540c46cacfa9cd5f6ee36c3cc0ba7ba6"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "1f98d22a508c8cf325c84123d30a6b4fbe5edaf9207db98e1b024e1d4822d1b9",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "shell": "faceted",
+      "lens_ratio": 0.56,
+      "head_depth": 0.78,
+      "notes": "Compact white-LED framing profile; preserve yoke, pan/tilt base and internal framing module."
+    },
+    "mesh_count": 85,
+    "triangle_count": 17996,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "01ca8d99812a01c832e2e5eb345dadf4180f58e328cc87c8dea7b713cf6ae746",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.profile",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Framing profile"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

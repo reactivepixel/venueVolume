@@ -1,0 +1,17 @@
+{
+  "id": "ayrton/zonda-3-wash",
+  "passed": true,
+  "source_usdz_sha256": "82baed43a651eda480050e44dc2c7fe8f33e7d8ff5261b631331c0e9f21fbfc1",
+  "joints": 2,
+  "moving_meshes": 45,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

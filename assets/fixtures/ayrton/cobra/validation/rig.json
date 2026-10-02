@@ -1,0 +1,17 @@
+{
+  "id": "ayrton/cobra",
+  "passed": true,
+  "source_usdz_sha256": "206242bc5c4c3d9ed134332be613100d5146fa96d3e1af94b4a6dc65727041da",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

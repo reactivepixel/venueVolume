@@ -1,0 +1,19 @@
+{
+  "fixture_id": "prolights/astra-hybrid330",
+  "passed": true,
+  "mesh_count": 85,
+  "triangle_count": 17996,
+  "max_vertex_deviation_m": 1.4917523115539316e-08,
+  "tolerance_m": 1e-06,
+  "tests": [
+    "Saved Blender and USDZ reopened independently",
+    "World-space positions after unit/axis conversion",
+    "Exact ordered triangle topology",
+    "Material bindings and diffuse color",
+    "No missing or extra physical meshes",
+    "Finite coordinates",
+    "Outward closed-solid winding"
+  ],
+  "errors": [],
+  "realitykit_device_test": "not_run"
+}

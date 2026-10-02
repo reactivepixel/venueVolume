@@ -1,0 +1,186 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "martin-professional-harman/mac-aura-raven-xip",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Aura Raven XIP",
+      "variant": "MAC Aura Raven XIP",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.martin.com/en-US/products/mac-aura-raven-xip",
+        "title": "MAC Aura Raven XIP product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Physical dimensions, power, protocols and DMX modes/channel counts",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://adn.harmanpro.com/productattachment/12797/product_attachment/x_large-c5fd37cb61ca8d844c5298005092457a.webp",
+        "title": "MAC Aura Raven XIP product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.webp",
+        "sha256": "501f2f6c336c9e2bd022418faf9d2c52ecdc5e3f8f26c14ce141ef32cdb8c30f"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.429,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer physical specs: base width 429 mm, maximum height 603 mm, base depth 285 mm; across-yoke width is 528 mm."
+      },
+      "height": {
+        "value": 0.603,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer physical specs: base width 429 mm, maximum height 603 mm, base depth 285 mm; across-yoke width is 528 mm."
+      },
+      "depth": {
+        "value": 0.285,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer physical specs: base width 429 mm, maximum height 603 mm, base depth 285 mm; across-yoke width is 528 mm."
+      },
+      "reference_pose": "Head maximum height; base level."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Outdoor Aura wash with video backdrop features; DMX channel modes vary substantially by pixel mapping mode.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "1120 W maximum; 1020 W typical",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "28.8 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM",
+            "Art-Net",
+            "RDM over Art-Net",
+            "sACN",
+            "Martin P3"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "22-channel mode",
+        "footprint": 22,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "38-channel mode",
+        "footprint": 38,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "149-channel mode",
+        "footprint": 149,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "266-channel mode",
+        "footprint": 266,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Head maximum height; base level.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer physical specs: base width 429 mm, maximum height 603 mm, base depth 285 mm; across-yoke width is 528 mm.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "7c8f111e4543917b0cd523a5661af12da043adc43c8f09159f7cbedf1af3d9fd"
+  },
+  "git_commit": "529393313efc84b984528b9491e9f5e230df9fd1",
+  "note": "Initial research record before any generated model artifacts existed."
+}

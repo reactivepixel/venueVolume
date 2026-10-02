@@ -1,0 +1,17 @@
+{
+  "id": "ayrton/argo-6-wash",
+  "passed": true,
+  "source_usdz_sha256": "678692934647bd2b1644282703a85d986e8bd11c9764171b662be99cf8972ab8",
+  "joints": 2,
+  "moving_meshes": 81,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

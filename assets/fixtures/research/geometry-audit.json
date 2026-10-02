@@ -1,10 +1,48 @@
 {
-  "fixture_count": 127,
+  "fixture_count": 220,
   "passed": true,
-  "mesh_count": 9013,
-  "triangle_count": 2165924,
+  "mesh_count": 17996,
+  "triangle_count": 4267500,
   "max_vertex_deviation_m": 8.218921720981598e-08,
   "fixtures": [
+    {
+      "fixture_id": "acme/lightning",
+      "passed": true,
+      "mesh_count": 341,
+      "triangle_count": 22364,
+      "max_vertex_deviation_m": 3.259629011154175e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "acme/mana-profile",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 1.4906730808017335e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
     {
       "fixture_id": "adj/7p-hex-ip",
       "passed": true,
@@ -120,11 +158,68 @@
       "realitykit_device_test": "not_run"
     },
     {
+      "fixture_id": "adj/focus-flex-l7",
+      "passed": true,
+      "mesh_count": 92,
+      "triangle_count": 25540,
+      "max_vertex_deviation_m": 3.729380778884829e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
       "fixture_id": "adj/focus-spot-4z",
       "passed": true,
       "mesh_count": 85,
       "triangle_count": 18516,
       "max_vertex_deviation_m": 1.4930236657970956e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "adj/focus-spot-6z",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18124,
+      "max_vertex_deviation_m": 7.580416554631528e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "adj/focus-wash-400",
+      "passed": true,
+      "mesh_count": 73,
+      "triangle_count": 19160,
+      "max_vertex_deviation_m": 7.468975157688518e-09,
       "tolerance_m": 1e-06,
       "tests": [
         "Saved Blender and USDZ reopened independently",
@@ -258,6 +353,25 @@
       "mesh_count": 33,
       "triangle_count": 19664,
       "max_vertex_deviation_m": 7.450580596923828e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "adj/saber-spot-dtw",
+      "passed": true,
+      "mesh_count": 45,
+      "triangle_count": 16208,
+      "max_vertex_deviation_m": 1.951476397719259e-09,
       "tolerance_m": 1e-06,
       "tests": [
         "Saved Blender and USDZ reopened independently",
@@ -424,6 +538,44 @@
       "realitykit_device_test": "not_run"
     },
     {
+      "fixture_id": "astera/ax5-triplepar",
+      "passed": true,
+      "mesh_count": 51,
+      "triangle_count": 17736,
+      "max_vertex_deviation_m": 7.146990615022754e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "astera/helios-tube",
+      "passed": true,
+      "mesh_count": 3,
+      "triangle_count": 564,
+      "max_vertex_deviation_m": 4.656612873077393e-10,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
       "fixture_id": "astera/nyx-bulb",
       "passed": true,
       "mesh_count": 11,
@@ -443,11 +595,600 @@
       "realitykit_device_test": "not_run"
     },
     {
+      "fixture_id": "astera/titan-tube",
+      "passed": true,
+      "mesh_count": 3,
+      "triangle_count": 564,
+      "max_vertex_deviation_m": 2.3283064365386963e-10,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/argo-6-fx",
+      "passed": true,
+      "mesh_count": 128,
+      "triangle_count": 38116,
+      "max_vertex_deviation_m": 7.672875927506591e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/argo-6-wash",
+      "passed": true,
+      "mesh_count": 128,
+      "triangle_count": 38116,
+      "max_vertex_deviation_m": 7.672875927506591e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/bora-s",
+      "passed": true,
+      "mesh_count": 73,
+      "triangle_count": 18640,
+      "max_vertex_deviation_m": 5.587935447692871e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/bora-tc",
+      "passed": true,
+      "mesh_count": 73,
+      "triangle_count": 18640,
+      "max_vertex_deviation_m": 5.587935447692871e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/cobra",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18516,
+      "max_vertex_deviation_m": 1.8044374883174896e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/diablo-profile-s",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 3.259629011154175e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/diablo-profile-tc",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 3.259629011154175e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/eurus-profile-s",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 1.501712528671799e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/eurus-profile-tc",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 1.501712528671799e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/karif-lt",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 7.465118328985478e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/khamsin-s",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18516,
+      "max_vertex_deviation_m": 7.614532113363983e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/khamsin-tc",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18516,
+      "max_vertex_deviation_m": 7.614532113363983e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/levante-s",
+      "passed": true,
+      "mesh_count": 73,
+      "triangle_count": 18640,
+      "max_vertex_deviation_m": 1.4930236657970956e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/levante-tc",
+      "passed": true,
+      "mesh_count": 73,
+      "triangle_count": 18640,
+      "max_vertex_deviation_m": 1.4930236657970956e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/mistral-s",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 3.259629011154175e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/mistral-tc",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 3.259629011154175e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/nando-502-wash",
+      "passed": true,
+      "mesh_count": 107,
+      "triangle_count": 30780,
+      "max_vertex_deviation_m": 1.6880221664905548e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/perseo-beam",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18516,
+      "max_vertex_deviation_m": 1.508196326038022e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/perseo-profile-s",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18516,
+      "max_vertex_deviation_m": 1.508196326038022e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/perseo-profile-tc",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18516,
+      "max_vertex_deviation_m": 1.508196326038022e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/rawbeam-350",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 1.4908435375971833e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/rivale-profile",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 1.4966501556325887e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/rivale-wash",
+      "passed": true,
+      "mesh_count": 82,
+      "triangle_count": 25552,
+      "max_vertex_deviation_m": 7.508562643358995e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/stradale-profile",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 7.580416554631528e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/veloce-profile",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18516,
+      "max_vertex_deviation_m": 2.2368788316175047e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/veloce-wash",
+      "passed": true,
+      "mesh_count": 82,
+      "triangle_count": 25552,
+      "max_vertex_deviation_m": 2.9816870751943665e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/zonda-3-fx",
+      "passed": true,
+      "mesh_count": 92,
+      "triangle_count": 25540,
+      "max_vertex_deviation_m": 6.984919309616089e-10,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "ayrton/zonda-3-wash",
+      "passed": true,
+      "mesh_count": 92,
+      "triangle_count": 25540,
+      "max_vertex_deviation_m": 6.984919309616089e-10,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
       "fixture_id": "brompton-technology/tessera-sx40",
       "passed": true,
       "mesh_count": 33,
       "triangle_count": 5820,
       "max_vertex_deviation_m": 3.550667315721512e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "cameo/opus-x4",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 1.4946566750951143e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "cameo/opus-x4-ip",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 1.367880031466484e-09,
       "tolerance_m": 1e-06,
       "tests": [
         "Saved Blender and USDZ reopened independently",
@@ -505,6 +1246,139 @@
       "mesh_count": 62,
       "triangle_count": 10648,
       "max_vertex_deviation_m": 7.450580596923828e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "chauvet-dj/hurricane-haze-2d",
+      "passed": true,
+      "mesh_count": 62,
+      "triangle_count": 10648,
+      "max_vertex_deviation_m": 7.450580596923828e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "chauvet-dj/intimidator-spot-360x",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 3.026798367500305e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "chauvet-dj/intimidator-spot-375zx",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 1.4917523115539316e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "chauvet-dj/intimidator-spot-475zx",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 1.490298007224245e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "chauvet-dj/intimidator-spot-duo",
+      "passed": true,
+      "mesh_count": 71,
+      "triangle_count": 20468,
+      "max_vertex_deviation_m": 1.57160684466362e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "chauvet-dj/intimidator-wash-zoom-450-irc",
+      "passed": true,
+      "mesh_count": 107,
+      "triangle_count": 30908,
+      "max_vertex_deviation_m": 3.8544724535065015e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "chauvet-dj/sentinel-wash-q120",
+      "passed": true,
+      "mesh_count": 82,
+      "triangle_count": 26072,
+      "max_vertex_deviation_m": 3.727108843992958e-09,
       "tolerance_m": 1e-06,
       "tests": [
         "Saved Blender and USDZ reopened independently",
@@ -671,6 +1545,44 @@
       "realitykit_device_test": "not_run"
     },
     {
+      "fixture_id": "chauvet-professional/rogue-r3-beam",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 5.820766091346741e-11,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "chauvet-professional/rogue-r3x-wash",
+      "passed": true,
+      "mesh_count": 182,
+      "triangle_count": 57044,
+      "max_vertex_deviation_m": 7.614532113363983e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
       "fixture_id": "chauvet-professional/rogue-rh1-hybrid",
       "passed": true,
       "mesh_count": 85,
@@ -709,6 +1621,101 @@
       "realitykit_device_test": "not_run"
     },
     {
+      "fixture_id": "chroma-q/color-force-3-72",
+      "passed": true,
+      "mesh_count": 110,
+      "triangle_count": 14552,
+      "max_vertex_deviation_m": 5.4354861052375064e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "chroma-q/color-force-ii-12",
+      "passed": true,
+      "mesh_count": 42,
+      "triangle_count": 7912,
+      "max_vertex_deviation_m": 3.902952795438518e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "chroma-q/color-force-ii-48",
+      "passed": true,
+      "mesh_count": 54,
+      "triangle_count": 10168,
+      "max_vertex_deviation_m": 1.9893058914033534e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "chroma-q/color-force-ii-72",
+      "passed": true,
+      "mesh_count": 62,
+      "triangle_count": 11672,
+      "max_vertex_deviation_m": 1.9893058914033534e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "claypaky/arolla-aqua",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18060,
+      "max_vertex_deviation_m": 1.4908435375971833e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
       "fixture_id": "claypaky/arolla-profile-mp",
       "passed": true,
       "mesh_count": 85,
@@ -733,6 +1740,44 @@
       "mesh_count": 85,
       "triangle_count": 17996,
       "max_vertex_deviation_m": 1.4966501556325887e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "claypaky/b-eye-7",
+      "passed": true,
+      "mesh_count": 92,
+      "triangle_count": 25540,
+      "max_vertex_deviation_m": 7.516004345281062e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "claypaky/b-eye-k30",
+      "passed": true,
+      "mesh_count": 182,
+      "triangle_count": 57044,
+      "max_vertex_deviation_m": 1.523509774735166e-08,
       "tolerance_m": 1e-06,
       "tests": [
         "Saved Blender and USDZ reopened independently",
@@ -866,6 +1911,25 @@
       "mesh_count": 48,
       "triangle_count": 11360,
       "max_vertex_deviation_m": 2.654677781041567e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "claypaky/volero-cube",
+      "passed": true,
+      "mesh_count": 74,
+      "triangle_count": 12584,
+      "max_vertex_deviation_m": 7.63940901286358e-09,
       "tolerance_m": 1e-06,
       "tests": [
         "Saved Blender and USDZ reopened independently",
@@ -1089,6 +2153,44 @@
       "realitykit_device_test": "not_run"
     },
     {
+      "fixture_id": "elation-professional/proteus-lucius",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18060,
+      "max_vertex_deviation_m": 1.5266061872911043e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "elation-professional/proteus-maximus",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 2.984665592317409e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
       "fixture_id": "elation-professional/proteus-radius",
       "passed": true,
       "mesh_count": 85,
@@ -1151,6 +2253,44 @@
       "mesh_count": 311,
       "triangle_count": 23924,
       "max_vertex_deviation_m": 3.0734526883913403e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "eliminator-lighting/stealth-beam",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18516,
+      "max_vertex_deviation_m": 3.839941346661803e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "eliminator-lighting/stealth-spot",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18580,
+      "max_vertex_deviation_m": 7.626758587620779e-09,
       "tolerance_m": 1e-06,
       "tests": [
         "Saved Blender and USDZ reopened independently",
@@ -1317,6 +2457,44 @@
       "realitykit_device_test": "not_run"
     },
     {
+      "fixture_id": "etc/colorsource-par-jr",
+      "passed": true,
+      "mesh_count": 52,
+      "triangle_count": 18444,
+      "max_vertex_deviation_m": 8.132424762739324e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "etc/colorsource-spot-jr",
+      "passed": true,
+      "mesh_count": 46,
+      "triangle_count": 16720,
+      "max_vertex_deviation_m": 1.666000468656264e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
       "fixture_id": "etc/colorsource-spot-v",
       "passed": true,
       "mesh_count": 47,
@@ -1398,6 +2576,44 @@
       "mesh_count": 47,
       "triangle_count": 16908,
       "max_vertex_deviation_m": 1.7572159193561605e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "eurolite/led-kls-120-compact-light-set",
+      "passed": true,
+      "mesh_count": 90,
+      "triangle_count": 32408,
+      "max_vertex_deviation_m": 5.288895541616039e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "eurolite/led-tmh-s30-moving-head-spot",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18580,
+      "max_vertex_deviation_m": 7.465118328985478e-09,
       "tolerance_m": 1e-06,
       "tests": [
         "Saved Blender and USDZ reopened independently",
@@ -1621,6 +2837,63 @@
       "realitykit_device_test": "not_run"
     },
     {
+      "fixture_id": "glp/mad-maxx",
+      "passed": true,
+      "mesh_count": 128,
+      "triangle_count": 38244,
+      "max_vertex_deviation_m": 1.66082685794597e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "high-end-systems/lonestar",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 1.5010016641372416e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "high-end-systems/lonestar-prime",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 7.483250778162943e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
       "fixture_id": "high-end-systems/solaframe-1000",
       "passed": true,
       "mesh_count": 85,
@@ -1683,6 +2956,82 @@
       "mesh_count": 94,
       "triangle_count": 24908,
       "max_vertex_deviation_m": 1.4930236657970956e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "jb-lighting/p18-profile-mk2-hp",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 1.4990026692692072e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "jb-lighting/sparx-12",
+      "passed": true,
+      "mesh_count": 128,
+      "triangle_count": 38116,
+      "max_vertex_deviation_m": 4.132743924856186e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "jb-lighting/sparx-18",
+      "passed": true,
+      "mesh_count": 182,
+      "triangle_count": 56980,
+      "max_vertex_deviation_m": 4.045432433485985e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "jb-lighting/sparx-30",
+      "passed": true,
+      "mesh_count": 254,
+      "triangle_count": 82132,
+      "max_vertex_deviation_m": 2.9249349609017372e-09,
       "tolerance_m": 1e-06,
       "tests": [
         "Saved Blender and USDZ reopened independently",
@@ -1887,6 +3236,63 @@
       "realitykit_device_test": "not_run"
     },
     {
+      "fixture_id": "martin-professional-harman/mac-aura-pxl",
+      "passed": true,
+      "mesh_count": 269,
+      "triangle_count": 43192,
+      "max_vertex_deviation_m": 3.14321368932724e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "martin-professional-harman/mac-aura-raven-xip",
+      "passed": true,
+      "mesh_count": 416,
+      "triangle_count": 65404,
+      "max_vertex_deviation_m": 7.659174944339049e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "martin-professional-harman/mac-aura-xb",
+      "passed": true,
+      "mesh_count": 164,
+      "triangle_count": 39700,
+      "max_vertex_deviation_m": 1.49012748802517e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
       "fixture_id": "martin-professional-harman/mac-aura-xip",
       "passed": true,
       "mesh_count": 128,
@@ -1906,11 +3312,125 @@
       "realitykit_device_test": "not_run"
     },
     {
+      "fixture_id": "martin-professional-harman/mac-encore-performance-cld",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18124,
+      "max_vertex_deviation_m": 2.3283064365386963e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "martin-professional-harman/mac-encore-performance-wrm",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18124,
+      "max_vertex_deviation_m": 2.3283064365386963e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "martin-professional-harman/mac-encore-two",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18124,
+      "max_vertex_deviation_m": 1.5253517175241558e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "martin-professional-harman/mac-encore-wash-cld",
+      "passed": true,
+      "mesh_count": 82,
+      "triangle_count": 25680,
+      "max_vertex_deviation_m": 6.51925802230835e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "martin-professional-harman/mac-encore-wash-wrm",
+      "passed": true,
+      "mesh_count": 82,
+      "triangle_count": 25680,
+      "max_vertex_deviation_m": 6.51925802230835e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
       "fixture_id": "martin-professional-harman/mac-one",
       "passed": true,
       "mesh_count": 109,
       "triangle_count": 20808,
       "max_vertex_deviation_m": 7.45080796712993e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "martin-professional-harman/mac-one-beam",
+      "passed": true,
+      "mesh_count": 133,
+      "triangle_count": 27604,
+      "max_vertex_deviation_m": 7.483250778162943e-09,
       "tolerance_m": 1e-06,
       "tests": [
         "Saved Blender and USDZ reopened independently",
@@ -2096,6 +3616,63 @@
       "realitykit_device_test": "not_run"
     },
     {
+      "fixture_id": "prolights/astra-hybrid330",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 1.4917523115539316e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "robe-lighting/cuete",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 7.508562643358995e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "robe-lighting/esprite",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 4.190951585769653e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
       "fixture_id": "robe-lighting/forte",
       "passed": true,
       "mesh_count": 85,
@@ -2134,6 +3711,25 @@
       "realitykit_device_test": "not_run"
     },
     {
+      "fixture_id": "robe-lighting/ledbeam-150",
+      "passed": true,
+      "mesh_count": 92,
+      "triangle_count": 25540,
+      "max_vertex_deviation_m": 3.801365817723725e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
       "fixture_id": "robe-lighting/ledbeam-350",
       "passed": true,
       "mesh_count": 107,
@@ -2153,11 +3749,49 @@
       "realitykit_device_test": "not_run"
     },
     {
+      "fixture_id": "robe-lighting/ledpointe",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 2.3283064365386963e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
       "fixture_id": "robe-lighting/megapointe",
       "passed": true,
       "mesh_count": 85,
       "triangle_count": 17996,
       "max_vertex_deviation_m": 7.614532113363983e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "robe-lighting/painte",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 17996,
+      "max_vertex_deviation_m": 7.465118328985478e-09,
       "tolerance_m": 1e-06,
       "tests": [
         "Saved Blender and USDZ reopened independently",
@@ -2267,6 +3901,25 @@
       "realitykit_device_test": "not_run"
     },
     {
+      "fixture_id": "robe-lighting/tetra1",
+      "passed": true,
+      "mesh_count": 57,
+      "triangle_count": 15952,
+      "max_vertex_deviation_m": 9.781658434122803e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
       "fixture_id": "robert-juliat/lutin-306lpc",
       "passed": true,
       "mesh_count": 36,
@@ -2310,6 +3963,120 @@
       "mesh_count": 9,
       "triangle_count": 1692,
       "max_vertex_deviation_m": 1.3969838619232178e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "sgm/g-4-wash",
+      "passed": true,
+      "mesh_count": 82,
+      "triangle_count": 25680,
+      "max_vertex_deviation_m": 1.4901161193847656e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "sgm/g-7-spot",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18124,
+      "max_vertex_deviation_m": 1.5160833109263057e-08,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "shehds/led-beam-spot-moving-head-150w",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18516,
+      "max_vertex_deviation_m": 7.626758587620779e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "showtec/phantom-100-spot",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18060,
+      "max_vertex_deviation_m": 7.465118328985478e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "showtec/phantom-65",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18516,
+      "max_vertex_deviation_m": 3.790208277315764e-09,
+      "tolerance_m": 1e-06,
+      "tests": [
+        "Saved Blender and USDZ reopened independently",
+        "World-space positions after unit/axis conversion",
+        "Exact ordered triangle topology",
+        "Material bindings and diffuse color",
+        "No missing or extra physical meshes",
+        "Finite coordinates",
+        "Outward closed-solid winding"
+      ],
+      "errors": [],
+      "realitykit_device_test": "not_run"
+    },
+    {
+      "fixture_id": "vari-lite/vl10-beamwash",
+      "passed": true,
+      "mesh_count": 85,
+      "triangle_count": 18580,
+      "max_vertex_deviation_m": 7.998842460243909e-09,
       "tolerance_m": 1e-06,
       "tests": [
         "Saved Blender and USDZ reopened independently",

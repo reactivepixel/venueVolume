@@ -1,0 +1,78 @@
+{
+  "mesh_count": 128,
+  "triangle_count": 38116,
+  "geometry_sha256": "fe84b6572cb4de25da948b97be156b165d71d74af3dbd4a7a260e73d2f2f6036",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.3931644558906555,
+      -0.07437475025653839
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0004212390922475606
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.08500852435827255,
+        0.0004212390922475606
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.3931644558906555,
+        0.0004212390922475606
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.3931644558906555,
+        -0.07164181023836136
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216243743896,
+    1.0274174213409424,
+    0.9912375211715698
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.ayrton.eu/produit/argo-6-wash/",
+    "https://www.ayrton.eu/wp-content/uploads/2023/04/Argo-6-WASH-V103-DMX.pdf",
+    "https://www.ayrton.eu/wp-content/uploads/2023/04/Argo6FX-2-1.jpg"
+  ]
+}

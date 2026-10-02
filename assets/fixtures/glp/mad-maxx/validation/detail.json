@@ -1,0 +1,79 @@
+{
+  "mesh_count": 128,
+  "triangle_count": 38244,
+  "geometry_sha256": "cbe49fd129394167a2620d7662f79e841dc8a1c4cdb876f3c0e7a5b66e8479e4",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.7491728663444519,
+      -0.34083059430122375
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.006695186253637075,
+        -0.001175440731458366
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.1270969659090042,
+        -0.001175440731458366
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.7491728663444519,
+        -0.001175440731458366
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.7491728663444519,
+        -0.32842010259628296
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216243743896,
+    1.061361312866211,
+    0.9492413997650146
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://glp.de/en/products/entertainment-lighting/moving-lights/mad-maxx-en",
+    "https://glp.de/en/component/content/article/mad-maxx-cw-product-data",
+    "https://glp.de/files/products/mad-maxx-cw-product-data/Mad-Maxx_Datasheet-Rev20251128.pdf",
+    "https://glp.de/images/products/MadMaxx/MadMaxx_Header.png"
+  ]
+}

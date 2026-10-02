@@ -1,0 +1,79 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 18060,
+  "geometry_sha256": "2ba00ae535e22749fa8813565284b0f9cf11e71d1a9da244740c3ec03532bfee",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.5598999857902527,
+      -0.21695391833782196
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0005256798467598855
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.10911999642848969,
+        0.0005256798467598855
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.5598999857902527,
+        0.0005256798467598855
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.5598999857902527,
+        -0.20900756120681763
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    1.0513575077056885,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.elationlighting.com/products/proteus-lucius",
+    "https://assets.centryngroup.com/dl/files/PRL546__DL__006.pdf",
+    "https://assets.centryngroup.com/dl/files/PRL546__DL__008.pdf",
+    "https://www.elationlighting.com/cdn/shop/files/e852a97433e35b21e3ea37860247754dbf5e272c_PRL546__IMG__001__e7dc0c89c4f6.jpg?v=1776815027&width=2048"
+  ]
+}

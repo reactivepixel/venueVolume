@@ -1,0 +1,370 @@
+{
+  "schema_version": 1,
+  "id": "martin-professional-harman/mac-encore-two",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Martin Professional (HARMAN)",
+    "model": "MAC Encore Two",
+    "variant": "MAC Encore Two",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.martin.com/en-US/products/mac-encore-two",
+      "title": "MAC Encore Two product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Specifications > Physical: across-yoke/base widths, maximum/head-up height, head length and weight; Control modes; power",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://adn.harmanpro.com/productattachment/13804/product_attachment/x_large-f4b421de0df9f555d4e46bcbff7105cd.webp",
+      "title": "MAC Encore Two product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.webp",
+      "sha256": "b53c5f5f434aeac815062c7d7a9be679d845f6a5622eb507a0b45b0bfff06bf7"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.479,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Martin physical specifications: base width 429 mm, across-yoke width 479 mm, head length 596 mm, maximum height 776 mm (head straight up 758 mm), base depth 275 mm. Width uses across-yoke envelope; depth uses head length."
+    },
+    "height": {
+      "value": 0.776,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Martin physical specifications: base width 429 mm, across-yoke width 479 mm, head length 596 mm, maximum height 776 mm (head straight up 758 mm), base depth 275 mm. Width uses across-yoke envelope; depth uses head length."
+    },
+    "depth": {
+      "value": 0.596,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Martin physical specifications: base width 429 mm, across-yoke width 479 mm, head length 596 mm, maximum height 776 mm (head straight up 758 mm), base depth 275 mm. Width uses across-yoke envelope; depth uses head length."
+    },
+    "reference_pose": "Maximum height; base level; head tilted to maximum envelope."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Current LED profile with CMY mixing, 7 rotating gobos, animation wheel and framing system.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "1040 W maximum; 945 W typical",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "36.8 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "Art-Net",
+          "RDM over Art-Net",
+          "sACN",
+          "Martin P3"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "52-channel mode",
+      "footprint": 52,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "62-channel mode",
+      "footprint": 62,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "68-channel mode",
+      "footprint": 68,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Maximum height; base level; head tilted to maximum envelope.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.2394999861717224,
+        0.0,
+        -0.2979999748058617
+      ],
+      "max": [
+        0.2394999861717224,
+        0.7760000228881836,
+        0.2980000111274421
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.006515357177704573
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.14436979591846466,
+          0.006515357177704573
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.5922005772590637,
+          0.006515357177704573
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.5922005772590637,
+          -0.28343436121940613
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.14436979591846466,
+          0.006515357177704573
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.5922005772590637,
+          0.006515357177704573
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.5922005772590637,
+          -0.2944304347038269
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Martin physical specifications: base width 429 mm, across-yoke width 479 mm, head length 596 mm, maximum height 776 mm (head straight up 758 mm), base depth 275 mm. Width uses across-yoke envelope; depth uses head length.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "212977e8e2a41a7ac3b1b848a85f9ee7ac2adba2ca9e6e69ca0e6eb894fe12af"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "1cacedda80fb7315a96f710c4b265c140317423301708c67ba7200e97979a4fb"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "d9e0d32b831881ba724681f567db086824a336a40f578812a23998132c75c1e5"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "93ee7cd350ee265f84d74ac88c244818ee09b7dfc776e0549f09e2b1fd49c2f3"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "4bfff298bbbad3a1fcea3c195cfb7c6890dbdcb9925edaaf7db2f381b76907f4"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "d3fccfd1f8097327da41b9ff1f6283f23fd909fff7c9cf29b5f6c4d26d3fca0c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "6d0086456fa30a6a07c73f36a0bc312d274169c0fbba4493e6a9cfb15611925f"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "d5db5e54b4e5063014c1d33110251a3f435c0cd9139c16a7edb86750a5286bb8"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "f498b1af69348e2a2bd1f43c72b420a28b22e53c622a8080de5012c18a8f675b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "24f1bd16fc9c2fe204d6d39d04fff6399441b9b9b2566d5533eac632ad705b14"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "faa68d1bd4eea4bdd9afa1afeba038182143af3851514b66a22e7d4225106907",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "LED profile moving head",
+      "notes": "Asymmetric across-yoke width/depth use Martin's listed fixture envelope axes; preserve official CAD silhouette.",
+      "generator": "catalog",
+      "shell": "faceted",
+      "head_depth": 1.2,
+      "yoke_compression": 0.22
+    },
+    "mesh_count": 85,
+    "triangle_count": 18124,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "8574b63365b9a8feb6aa06c21e75e6f5a04f718be75f9fe6ba1f212bf703ba7d",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.profile",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Framing profile"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

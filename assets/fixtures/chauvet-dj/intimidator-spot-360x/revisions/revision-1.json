@@ -1,0 +1,182 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "chauvet-dj/intimidator-spot-360x",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "CHAUVET DJ",
+      "model": "Intimidator Spot 360X",
+      "variant": "Intimidator Spot 360X",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.chauvetdj.com/products/intimidator-spot-360x/",
+        "title": "Intimidator Spot 360X product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications: 8/14 DMX, source, optical system, power, weight and dimensions",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.chauvetdj.com/wp-content/uploads/2022/10/Intimidator-Spot-360X_UM_Rev1.pdf",
+        "title": "Intimidator Spot 360X User Manual Rev. 1",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Product Dimensions figure; technical specifications",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.chauvetdj.com/wp-content/uploads/2022/10/INTIMIDATOR-360X-FRONT-OFF.jpg",
+        "title": "Intimidator Spot 360X product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "c6fbdfa1a57ba648cd8f956571de8b67d441f662a2f96c142d0e8544540c7848"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.322,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Official listing gives 322 x 220 x 423 mm; manual drawing dimensions were also checked and show compatible head-up envelope."
+      },
+      "height": {
+        "value": 0.423,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Official listing gives 322 x 220 x 423 mm; manual drawing dimensions were also checked and show compatible head-up envelope."
+      },
+      "depth": {
+        "value": 0.22,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Official listing gives 322 x 220 x 423 mm; manual drawing dimensions were also checked and show compatible head-up envelope."
+      },
+      "reference_pose": "Base level, head upright; manual dimension figure indicates head upright."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "100 W LED, manual zoom 12–17°, dual rotating prisms, rotating gobos, Totem mode.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "217 W at 120 V; 211 W at 230 V",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "11.4 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "8-channel mode",
+        "footprint": 8,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "14-channel mode",
+        "footprint": 14,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base level, head upright; manual dimension figure indicates head upright.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Official listing gives 322 x 220 x 423 mm; manual drawing dimensions were also checked and show compatible head-up envelope.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "19baa174caeccb86522444e40162470c9e72bdbc772829b9f4c01ea222a6bf1f"
+  },
+  "git_commit": "57d1c4f4b986e095c19ed7af915f82f46f817f9c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

@@ -1,0 +1,367 @@
+{
+  "schema_version": 1,
+  "id": "ayrton/veloce-profile",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Ayrton",
+    "model": "Veloce Profile",
+    "variant": "012521",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.ayrton.eu/produit/veloce-profile/",
+      "title": "Veloce Profile product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Optics, movement, control protocols and channel range, power, product size, weight and code 012521",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.ayrton.eu/wp-content/uploads/2024/09/VeloceProfileS-Specification-Sheet-V9.pdf",
+      "title": "Veloce Profile Specification Sheet V9",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Physical dimensions/weight and IP65/IP66 options",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.ayrton.eu/wp-content/uploads/2024/08/VeloceP-3.png",
+      "title": "Veloce Profile product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "6f53e91e4399fa8c5a3451aba9a4b3bd37b8a432fd6936035a044ba833a895a8"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.404,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Product page lists 404 x 757 x 366 mm; 2024 sheet rounds length to 405 mm. Page value retained."
+    },
+    "height": {
+      "value": 0.757,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Product page lists 404 x 757 x 366 mm; 2024 sheet rounds length to 405 mm. Page value retained."
+    },
+    "depth": {
+      "value": 0.366,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Product page lists 404 x 757 x 366 mm; 2024 sheet rounds length to 405 mm. Page value retained."
+    },
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "850 W sealed LED module; 58,000 lm engine / 43,000 lm fixture output; 4°–52° zoom; 180 mm front lens; continuous pan and tilt; IP65.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "1300 W maximum",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "40.5 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "Art-Net",
+          "sACN",
+          "CRMX wireless DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "44-channel mode",
+      "footprint": 44,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "67-channel mode",
+      "footprint": 67,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.20200000703334808,
+        0.0,
+        -0.18300001038005576
+      ],
+      "max": [
+        0.20200000703334808,
+        0.7570000290870667,
+        0.18300000118324533
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0005103378207422793
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.12111999839544296,
+          0.0005103378207422793
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.6236799955368042,
+          0.0005103378207422793
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.6236799955368042,
+          -0.16182158887386322
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.12111999839544296,
+          0.0005103378207422793
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.6236799955368042,
+          0.0005103378207422793
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.6236799955368042,
+          -0.16797789931297302
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Product page lists 404 x 757 x 366 mm; 2024 sheet rounds length to 405 mm. Page value retained.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "d845e97e2787a588d376151f070b01bfaeaac7f3d470ad409b95d340549be10f"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "f0c9ee23ba00a81728b40be9c10e0e6e43de4664721bf89e22404dc7314fbb11"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "c272409d2ac665acab7a60d197ccb65b4602d433410429e4ed20c58c87e68cbb"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "6e9d6e9949ad3a90a7eecc3c879fc3f06b5202902d9c5381359d8530cb23e82f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "39dfb525de5f04fa9b86c4fea5e6b39d5405b2d136360497da061547639e5934"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "cbf1c8237da9b41f41a8aaa5d51a41fbf701a69e4aa45bd74a2c01bed4d5a61e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "f833c1c95d7b85e7ca525f45b83bfa67e45ae4c5e202ea0bf2284d029bef0301"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "cf33f3317a3f22a5fcde7aaa2fde93dd0638d3546b4be537e5dc86a95caedd06"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "8aa2aae13a490d9f9d1e5bab1a68d050257ee05507e58cc635d06949d864737f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "bf01fc4cd6916abb3e01606b20db1f518284d2a53654c294467f4c686835cf08"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "1223bec4efb05a954d871de8e4a5614a81ef7dfb4fe39fcc51312f4c08daf790",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "large IP65 profile moving head",
+      "notes": "13-element zoom optics and four-blade framing; continuous pan and tilt rotation require unlimited-axis support."
+    },
+    "mesh_count": 85,
+    "triangle_count": 18516,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "b0103fc9fd581731f370dee26113c51c05a03b6b586d9e9f420f6da2f0f6e85a",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.profile",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Framing profile"
+    ],
+    "use_tags": [
+      "weather-rated variant"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "b51935270b77e8c1189eb53371cf81125788ce6188f68864713b043053481381",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "acme/mana-profile",
+    "name": "MANA PROFILE",
+    "manufacturer": "ACME",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/acme/mana-profile/fixture.usdz",
+    "sha256": "b51935270b77e8c1189eb53371cf81125788ce6188f68864713b043053481381",
+    "boundsMin": [
+      -0.1899999976158142,
+      0.0,
+      -0.14200001169228926
+    ],
+    "boundsMax": [
+      0.1899999976158142,
+      0.6579999923706055,
+      0.14199999760603532
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.10527999699115753,
+          0.000514440645929426
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5325999855995178,
+          0.000514440645929426
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5325999855995178,
+          -0.11496538668870926
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

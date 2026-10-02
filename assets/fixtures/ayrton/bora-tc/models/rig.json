@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "53fb336aacc01c34f64f95e654a3eb17a3bcfb2208bae8a1de0169cf6b45d633",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "ayrton/bora-tc",
+    "name": "Bora TC",
+    "manufacturer": "Ayrton",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/ayrton/bora-tc/fixture.usdz",
+    "sha256": "53fb336aacc01c34f64f95e654a3eb17a3bcfb2208bae8a1de0169cf6b45d633",
+    "boundsMin": [
+      -0.24699997901916504,
+      0.0,
+      -0.1399999838322401
+    ],
+    "boundsMax": [
+      0.24699997901916504,
+      0.7369999885559082,
+      0.139999995008111
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.13158723711967468,
+          0.009631270542740822
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5489004850387573,
+          0.009631270542740822
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5489004850387573,
+          -0.12871921062469482
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

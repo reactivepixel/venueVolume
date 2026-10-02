@@ -1,0 +1,17 @@
+{
+  "id": "ayrton/veloce-wash",
+  "passed": true,
+  "source_usdz_sha256": "479f31cd1bc223b6e9071d4c8a604a861baefdc871bea8e793273c8625c092ea",
+  "joints": 2,
+  "moving_meshes": 35,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

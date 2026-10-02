@@ -1,0 +1,358 @@
+{
+  "schema_version": 1,
+  "id": "claypaky/b-eye-7",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Claypaky",
+    "model": "B-Eye 7",
+    "variant": "CL3046",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.claypaky.it/products/b-eye-7/",
+      "title": "B-Eye 7 product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Light source, output and zoom; CONTROL and CONNECTIONS: 30/47 DMX modes plus 28-channel pixel engine, DMX/Art-Net/RDM/sACN; WEIGHT-SIZE and power consumption",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.claypaky.it/wp-content/uploads/2026/08/Claypaky_B-Eye7_featured.jpg",
+      "title": "B-Eye 7 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "a5cd67ebf1164478f911dbe2a950db4116755e9f46483d9ec0e15a64f93a7c63"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.35,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer states 350 x 204.8 mm base and 460.9 mm vertical-head height; assignment of base axes to width/depth follows product views and is estimated."
+    },
+    "height": {
+      "value": 0.4609,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer states 350 x 204.8 mm base and 460.9 mm vertical-head height; assignment of base axes to width/depth follows product views and is estimated."
+    },
+    "depth": {
+      "value": 0.2048,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer states 350 x 204.8 mm base and 460.9 mm vertical-head height; assignment of base axes to width/depth follows product views and is estimated."
+    },
+    "reference_pose": "Head vertical; base level."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Seven individually controlled 55 W RGBL sources; 7,700 lm; 4.0°–45.4° zoom; endless pan and tilt; IP66. Standard/Extended modes: 30/47 channels; pixel engine: 28 channels.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "500 W at 100 V / 480 W at 240 V",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "12 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "Art-Net",
+          "RDM",
+          "sACN"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "30-channel mode",
+      "footprint": 30,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "47-channel mode",
+      "footprint": 47,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "28-channel mode",
+      "footprint": 28,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Head vertical; base level.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.17499999701976776,
+        0.0,
+        -0.10240000212797895
+      ],
+      "max": [
+        0.17499999701976776,
+        0.4609000086784363,
+        0.10239999269833788
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0005038556992076337
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.07312098890542984,
+          0.0005038556992076337
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.34248197078704834,
+          0.0005038556992076337
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.34248197078704834,
+          -0.051194436848163605
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.07312098890542984,
+          0.0005038556992076337
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.34248197078704834,
+          0.0005038556992076337
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.34248197078704834,
+          -0.05315505340695381
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer states 350 x 204.8 mm base and 460.9 mm vertical-head height; assignment of base axes to width/depth follows product views and is estimated.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "e8402afeb8cd000a3c58a3602153d3a28e1454c34edfd892b84e63e928a93c8f"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "07fe945dfb62cead388ecd269f6e9c8bbf719f74a43c1e08a69475a1177d7674"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "11935648ecfb4eb2f3fbc2fc3e695600231120721b6dbe46b7697fe56932518d"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "a312d2f948820289c1d28fc41ac2b6c51afad70670825aace21bd22687130b3c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "92f72841e1d76eb06bba0c4272a1dd7309a145f8539ede96df332c0237bbc192"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "0e8da36793bf974a1830716e8578c4d18b35e382dc66d3ba09ec3f6228491c7e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "1f85cba36cb1e3fc15ad48d9d9eb47f6289575a67073360fc52c9b3cf1947cac"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "f110a349074d8c554a05cd14d1c9608be1964d888996afe27ae10b4339f55a3d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "1b6962b05c4f69959e5923ab44f28fac03a9c8da1d57c2392430cd736b88f3df"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "78d3761402ad79e2981f228ddcc99133c4312de4ecccb485ea32018d0a83ca30"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "24ca14fb50d5e91aa0e301bb6d45494ed23918a6d868004f4edc3692a3d56811",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 7,
+      "body_style": "compact seven optic wash head",
+      "notes": "Endless pan and tilt behavior is unusual; document axis mechanism separately."
+    },
+    "mesh_count": 92,
+    "triangle_count": 25540,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "69d4a1d0754441d945aef60836cadccd04aad53f6ab893f14aeba94d7110984f",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [
+      "weather-rated variant"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "id": "chauvet-dj/intimidator-wash-zoom-450-irc",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "CHAUVET DJ",
+    "model": "Intimidator Wash Zoom 450 IRC",
+    "variant": "Intimidator Wash Zoom 450 IRC",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.chauvetdj.com/products/intimidator-wash-zoom-450-irc/",
+      "title": "Intimidator Wash Zoom 450 IRC product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Specifications: DMX, source, zoom, power, dimensions and weight",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.chauvetdj.com/wp-content/uploads/2016/01/cat-Intimidator-Wash-Zoom-450-IRC.jpg",
+      "title": "Intimidator Wash Zoom 450 IRC product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "d9d6fa8ddb30a30f639fdc4182359212cccf033e3c54be52c95b3bb80f21fb8c"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.194,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer size 194 x 277 x 363 mm; mapped width x depth x height."
+    },
+    "height": {
+      "value": 0.363,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer size 194 x 277 x 363 mm; mapped width x depth x height."
+    },
+    "depth": {
+      "value": 0.277,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer size 194 x 277 x 363 mm; mapped width x depth x height."
+    },
+    "reference_pose": "Base level, head vertical; assembled fixture."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "12 x 20 W RGBW emitters, 7–34° motorized zoom, Totem floor mode; optional IRC-6 remote is non-DMX.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "219 W at 120 V; 207 W at 230 V",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "7.2 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "14-channel mode",
+      "footprint": 14,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "29-channel mode",
+      "footprint": 29,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Base level, head vertical; assembled fixture.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.09700000286102295,
+        0.0,
+        -0.1385000171721913
+      ],
+      "max": [
+        0.09700000286102295,
+        0.3630000352859497,
+        0.13850000774255022
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0005137351690791547
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.05773380771279335,
+          0.0005137351690791547
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.2971979081630707,
+          0.0005137351690791547
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.2971979081630707,
+          -0.07078181207180023
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.05773380771279335,
+          0.0005137351690791547
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.2971979081630707,
+          0.0005137351690791547
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.2971979081630707,
+          -0.07348563522100449
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer size 194 x 277 x 363 mm; mapped width x depth x height.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "f18dddadf41ab0e06f905c7e2f4ca87eed03f057ad44cfdddc614cdbc75e4cd9"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "57daac618829cea017253c9b5b14bbf0723e35ad470bb86f2789ac716b61a93b"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "4c0348e391924fb7cf9577d7805698202a8656efdb75650e65017e6ee19e68d7"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "321f76b1200aed2f37a3613640ccdeef04eea4e617c02e02754ec8e13127ee5d"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "2097e198028d643581ace837a6d0630a406f9f405dfd37b1e7ce731ef78b915b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "3c44c455601516906f5954717484489b6889eae4792ac7f7be0f804d84558b4f"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "7416d77558fa9db283cf3f7b5483ca971a3fc0653b74080f0fa09c8cb2ca23ad"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "0e337528feb25d31dde0b49834ca338eb18858db2e3a538d7a94990ea334ca0c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "82a53c06c1bc43faa18d41a2188c4e378c257c79178d216332dc87ddac465fc3"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "0a881e38f965807a78cbb3c5eae5a867e5e1e9b67aa8ee4b3ba8bc51373b9d0f"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "42866e28eb4c1374ec7f25403f0e0fdc8035fdd5234fa276845cab27823904fa",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 12,
+      "body_style": "compact moving wash with circular multi-LED aperture",
+      "notes": "LED count and RGBW emitters documented."
+    },
+    "mesh_count": 107,
+    "triangle_count": 30908,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "6d9cf420386223f73cf4c0ccc3cef881cfeb7a3058cd44765ea15502c1918884",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "ayrton/karif-lt",
+  "passed": true,
+  "source_usdz_sha256": "f07f4efa0f2b4102528bc51f735a91bda5ed8b602e98312ec237632357721408",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

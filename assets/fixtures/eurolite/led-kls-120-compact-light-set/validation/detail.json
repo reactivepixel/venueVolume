@@ -1,0 +1,87 @@
+{
+  "mesh_count": 90,
+  "triangle_count": 32408,
+  "geometry_sha256": "050b47be36bea9e8af4a422feb3f737e149236cf8e2b0d10c1c537b7e50cd95e",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.06206832453608513,
+      -0.04615384340286255
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.006830488331615925,
+        0.005128203425556421
+      ]
+    },
+    {
+      "name": "head_01",
+      "prim_path": "/Fixture/Head_01",
+      "pivot_m": [
+        -0.1986600011587143,
+        0.06206832453608513,
+        0.005128203425556421
+      ]
+    },
+    {
+      "name": "head_02",
+      "prim_path": "/Fixture/Head_02",
+      "pivot_m": [
+        -0.0662200003862381,
+        0.06206832453608513,
+        0.005128203425556421
+      ]
+    },
+    {
+      "name": "head_03",
+      "prim_path": "/Fixture/Head_03",
+      "pivot_m": [
+        0.0662200003862381,
+        0.06206832453608513,
+        0.005128203425556421
+      ]
+    },
+    {
+      "name": "head_04",
+      "prim_path": "/Fixture/Head_04",
+      "pivot_m": [
+        0.1986600011587143,
+        0.06206832453608513,
+        0.005128203425556421
+      ]
+    }
+  ],
+  "family": "batten",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0,
+    1.2820512056350708,
+    1.05124831199646
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.steinigke.de/mpn42109606-eurolite-led-kls-120-kompakt-lichtset.html",
+    "https://media.steinigke.de/images/7640p/09/42109606a.webp",
+    "https://media.steinigke.de/images/7640p/09/42109606a.webp"
+  ]
+}

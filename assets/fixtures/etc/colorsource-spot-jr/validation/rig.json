@@ -1,0 +1,17 @@
+{
+  "id": "etc/colorsource-spot-jr",
+  "passed": true,
+  "source_usdz_sha256": "6b25774e87f7cd41848e66c0f514530c3cd75cd055fd15f6a4e2abf0c6b35799",
+  "joints": 1,
+  "moving_meshes": 40,
+  "fixed_meshes": 6,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

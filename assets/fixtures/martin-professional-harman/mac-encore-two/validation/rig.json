@@ -1,0 +1,17 @@
+{
+  "id": "martin-professional-harman/mac-encore-two",
+  "passed": true,
+  "source_usdz_sha256": "1cacedda80fb7315a96f710c4b265c140317423301708c67ba7200e97979a4fb",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

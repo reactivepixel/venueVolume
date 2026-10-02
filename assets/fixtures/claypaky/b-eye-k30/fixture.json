@@ -1,0 +1,357 @@
+{
+  "schema_version": 1,
+  "id": "claypaky/b-eye-k30",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Claypaky",
+    "model": "B-Eye K30",
+    "variant": "CL3044",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.claypaky.it/products/b-eye-k30/",
+      "title": "B-Eye K30 product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "CL3044; light sources/output/zoom; CONTROL and CONNECTIONS protocols and 30/47 + 148-channel modes; dynamic effects and motion; max power; WEIGHT-SIZE",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.claypaky.it/wp-content/uploads/2026/08/Claypaky_B-EyeK30.jpg",
+      "title": "B-Eye K30 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "81b3a4ee63eb36acb5dfc3e2b9bd069efffeb27cb4b956a183f0e637860adc07"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.43,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Claypaky lists 430 x 400 mm base dimensions and 609 mm with vertical head but does not label the two base axes; width/depth mapping is estimated from the product view."
+    },
+    "height": {
+      "value": 0.609,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Claypaky lists 430 x 400 mm base dimensions and 609 mm with vertical head but does not label the two base axes; width/depth mapping is estimated from the product view."
+    },
+    "depth": {
+      "value": 0.4,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Claypaky lists 430 x 400 mm base dimensions and 609 mm with vertical head but does not label the two base axes; width/depth mapping is estimated from the product view."
+    },
+    "reference_pose": "Head vertical; base level."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "37 individually controlled 55 W RGBL LEDs; up to 28,000 lm; 3.7°–54.5° zoom; 330 mm front lens; IP66; endless pan and 230° tilt with safety brake. Standard/Extended modes: 30/47 channels; pixel engine: 148 channels.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "1700 W max",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "37.6 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "Art-Net",
+          "RDM",
+          "sACN",
+          "CRMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "30-channel mode",
+      "footprint": 30,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "47-channel mode",
+      "footprint": 47,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "148-channel mode",
+      "footprint": 148,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Head vertical; base level.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.2150000035762787,
+        0.0,
+        -0.20000001360313036
+      ],
+      "max": [
+        0.2150000035762787,
+        0.6089999675750732,
+        0.20000000725849532
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.00044410358532331884
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.0966741293668747,
+          0.00044410358532331884
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.46342864632606506,
+          0.00044410358532331884
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.46342864632606506,
+          -0.10426082462072372
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.0966741293668747,
+          0.00044410358532331884
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.46342864632606506,
+          0.00044410358532331884
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.46342864632606506,
+          -0.10823167860507965
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Claypaky lists 430 x 400 mm base dimensions and 609 mm with vertical head but does not label the two base axes; width/depth mapping is estimated from the product view.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "140a712f9e19967c0bbf412cfcec72cde0492cd97f38af0496f06f7bdf0207c3"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "f0e3f26f2b9e534092b76b87545d5ebc07957ab3acfd5ddb1e06fab9fcaa7cc0"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "bb0ecb27cd87ce19c6ea361bfddd88a099b5d7be066f9cee95e21a02d42a2670"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "cc7d94ba4167f426b37fdd884d33c86ae8ef24bb1f2d0ed96b879e1419ff9d7e"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "0a43bd104fed25929aa78fedd782eddd05c5f588c2d745abbf79d28b4a8b7be4"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "362b360915d4f0b735fdd06e78abde04f0ba291bbaf611014caa8ae387cd3616"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "edc9ba180b6144094d6dd381067733e994a8ec6cdbed5db51bc69104ab60346e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "7ba69ad95a3967b8c198f8a64da062c0d45f46f732031d5bda16d8f87823f4c4"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "69c32996637cad8ae22456832a89761dd2bc768f67c9083a18e979acaa397842"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "a9159372bcd7db235bf6973d8ebcad65ce6775a980aaeb81e410730fb6dcb8a2"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "873d021ebef752b10cef572cf050619a333a75ac784c7ac6122791aa134c9e11",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 37,
+      "body_style": "large-format RGBL multi-optic wash/effect head",
+      "notes": "37 individually addressable emitters; bi-directional rotating front lenses, endless pan and 230° tilt/safety brake require nonstandard effect/motion treatment."
+    },
+    "mesh_count": 182,
+    "triangle_count": 57044,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "fbbbc736a5a20eda75b5274a70f6fbec6a500916c837fd44a2f19c34e7660810",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

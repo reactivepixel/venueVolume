@@ -2,6 +2,26 @@
   "schema_version": 1,
   "fixtures": [
     {
+      "id": "acme/lightning",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "ACME",
+      "model": "LIGHTNING",
+      "record": "assets/fixtures/acme/lightning/fixture.json",
+      "record_sha256": "19f94f017602ac0805c902b796dade0d386a45b892c8340d01fde4bf17385b6a",
+      "note": "docs/08 Fixture Library/entries/acme/lightning.md"
+    },
+    {
+      "id": "acme/mana-profile",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "ACME",
+      "model": "MANA PROFILE",
+      "record": "assets/fixtures/acme/mana-profile/fixture.json",
+      "record_sha256": "dbeda862ac03cdee5cbf3bd6d1b095d33d7d864e7e029cfffa3858c3e512c761",
+      "note": "docs/08 Fixture Library/entries/acme/mana-profile.md"
+    },
+    {
       "id": "adj/7p-hex-ip",
       "revision": 2,
       "status": "ready_for_visualization",
@@ -62,6 +82,16 @@
       "note": "docs/08 Fixture Library/entries/adj/entour-cyclone.md"
     },
     {
+      "id": "adj/focus-flex-l7",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "ADJ",
+      "model": "Focus Flex L7",
+      "record": "assets/fixtures/adj/focus-flex-l7/fixture.json",
+      "record_sha256": "1793e48fe4e3112b7ac31b0990358c76f3bbf9240d2d8e74c6692696f8e1e52a",
+      "note": "docs/08 Fixture Library/entries/adj/focus-flex-l7.md"
+    },
+    {
       "id": "adj/focus-spot-4z",
       "revision": 5,
       "status": "ready_for_visualization",
@@ -70,6 +100,26 @@
       "record": "assets/fixtures/adj/focus-spot-4z/fixture.json",
       "record_sha256": "1aace84824180361c4326475382b3227b2239aa55d73e50ccb9f27de5bcd5f6f",
       "note": "docs/08 Fixture Library/entries/adj/focus-spot-4z.md"
+    },
+    {
+      "id": "adj/focus-spot-6z",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "ADJ",
+      "model": "Focus Spot 6Z",
+      "record": "assets/fixtures/adj/focus-spot-6z/fixture.json",
+      "record_sha256": "92fecf6c27805141358491c000af163c35ee87fabafcb7ca68fe8f1fe917c2ed",
+      "note": "docs/08 Fixture Library/entries/adj/focus-spot-6z.md"
+    },
+    {
+      "id": "adj/focus-wash-400",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "ADJ",
+      "model": "Focus Wash 400",
+      "record": "assets/fixtures/adj/focus-wash-400/fixture.json",
+      "record_sha256": "ff294bb0119e94a3d75d126843168314ff6eea760e6333b259718ffb79b15da3",
+      "note": "docs/08 Fixture Library/entries/adj/focus-wash-400.md"
     },
     {
       "id": "adj/hydro-beam-x1",
@@ -140,6 +190,16 @@
       "record": "assets/fixtures/adj/m-2020-mirror-ball/fixture.json",
       "record_sha256": "ac546485ac07a3fccfcecc31a176c636478d26ab8ff8658ae10c1f7b703f4def",
       "note": "docs/08 Fixture Library/entries/adj/m-2020-mirror-ball.md"
+    },
+    {
+      "id": "adj/saber-spot-dtw",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "ADJ",
+      "model": "Saber Spot DTW",
+      "record": "assets/fixtures/adj/saber-spot-dtw/fixture.json",
+      "record_sha256": "bcf4572b0fe4f2c2bb84dacb9dedc6946069f2059c27d7caba2c43b065b372f2",
+      "note": "docs/08 Fixture Library/entries/adj/saber-spot-dtw.md"
     },
     {
       "id": "adj/stryker-wash",
@@ -222,6 +282,26 @@
       "note": "docs/08 Fixture Library/entries/antari/z-1000iii-fog-machine.md"
     },
     {
+      "id": "astera/ax5-triplepar",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Astera",
+      "model": "AX5 TriplePAR",
+      "record": "assets/fixtures/astera/ax5-triplepar/fixture.json",
+      "record_sha256": "f438ae24b5c82f06748406674e8f71af464ac79e143ae3218a57b060c8f02724",
+      "note": "docs/08 Fixture Library/entries/astera/ax5-triplepar.md"
+    },
+    {
+      "id": "astera/helios-tube",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Astera",
+      "model": "Helios Tube",
+      "record": "assets/fixtures/astera/helios-tube/fixture.json",
+      "record_sha256": "cb35c5af70660ca66838a34eb2801d8bec9534dfcf310c80a76875c542c78cea",
+      "note": "docs/08 Fixture Library/entries/astera/helios-tube.md"
+    },
+    {
       "id": "astera/nyx-bulb",
       "revision": 2,
       "status": "ready_for_visualization",
@@ -232,6 +312,296 @@
       "note": "docs/08 Fixture Library/entries/astera/nyx-bulb.md"
     },
     {
+      "id": "astera/titan-tube",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Astera",
+      "model": "Titan Tube",
+      "record": "assets/fixtures/astera/titan-tube/fixture.json",
+      "record_sha256": "a7e6dbe9de68786281eb124f30ebd0036fbae1b7d8bd1be9eac6e22f7fbe7825",
+      "note": "docs/08 Fixture Library/entries/astera/titan-tube.md"
+    },
+    {
+      "id": "ayrton/argo-6-fx",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Ayrton",
+      "model": "Argo 6 FX",
+      "record": "assets/fixtures/ayrton/argo-6-fx/fixture.json",
+      "record_sha256": "c5e9ad390fb31a7bff9b3b83782a060ef0452ca1105be0c8455663ab68293fba",
+      "note": "docs/08 Fixture Library/entries/ayrton/argo-6-fx.md"
+    },
+    {
+      "id": "ayrton/argo-6-wash",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Ayrton",
+      "model": "Argo 6 Wash",
+      "record": "assets/fixtures/ayrton/argo-6-wash/fixture.json",
+      "record_sha256": "9e89ac63f3df867cc4e58c4208b53d0c09f42bed19a3c391f433895342a818fb",
+      "note": "docs/08 Fixture Library/entries/ayrton/argo-6-wash.md"
+    },
+    {
+      "id": "ayrton/bora-s",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Ayrton",
+      "model": "Bora S",
+      "record": "assets/fixtures/ayrton/bora-s/fixture.json",
+      "record_sha256": "dc9ba43955996738dfdf00be5fcd41b0d690f1e15e881d69fafe570811791a21",
+      "note": "docs/08 Fixture Library/entries/ayrton/bora-s.md"
+    },
+    {
+      "id": "ayrton/bora-tc",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Ayrton",
+      "model": "Bora TC",
+      "record": "assets/fixtures/ayrton/bora-tc/fixture.json",
+      "record_sha256": "504efe0376a241a6e346f068c8c9b16bdf266de45cd751ab499960187ee9258e",
+      "note": "docs/08 Fixture Library/entries/ayrton/bora-tc.md"
+    },
+    {
+      "id": "ayrton/cobra",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Ayrton",
+      "model": "Cobra\u00b2",
+      "record": "assets/fixtures/ayrton/cobra/fixture.json",
+      "record_sha256": "ca49f22d9c1a7c9490489b252df306abbfc6dfdd8359a37821223c8bb7529079",
+      "note": "docs/08 Fixture Library/entries/ayrton/cobra.md"
+    },
+    {
+      "id": "ayrton/diablo-profile-s",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Ayrton",
+      "model": "Diablo Profile S",
+      "record": "assets/fixtures/ayrton/diablo-profile-s/fixture.json",
+      "record_sha256": "1b8bc87b9b4e9e02ca7854ae324e3c4ed9517477ee1d53924c64853458c80916",
+      "note": "docs/08 Fixture Library/entries/ayrton/diablo-profile-s.md"
+    },
+    {
+      "id": "ayrton/diablo-profile-tc",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Ayrton",
+      "model": "Diablo Profile TC",
+      "record": "assets/fixtures/ayrton/diablo-profile-tc/fixture.json",
+      "record_sha256": "56936986593b197632a2a641852984a963983a853a468f9faf18144092e15244",
+      "note": "docs/08 Fixture Library/entries/ayrton/diablo-profile-tc.md"
+    },
+    {
+      "id": "ayrton/eurus-profile-s",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Ayrton",
+      "model": "Eurus Profile S",
+      "record": "assets/fixtures/ayrton/eurus-profile-s/fixture.json",
+      "record_sha256": "16d213f31e672317064219eba2e95678bdc6affe7fcd70bf54cb04e8acc44704",
+      "note": "docs/08 Fixture Library/entries/ayrton/eurus-profile-s.md"
+    },
+    {
+      "id": "ayrton/eurus-profile-tc",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Ayrton",
+      "model": "Eurus Profile TC",
+      "record": "assets/fixtures/ayrton/eurus-profile-tc/fixture.json",
+      "record_sha256": "21a766673762ae8a598e6d4c05bd5bc5039159c9a4d94cfa32127f108aa1e544",
+      "note": "docs/08 Fixture Library/entries/ayrton/eurus-profile-tc.md"
+    },
+    {
+      "id": "ayrton/karif-lt",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Ayrton",
+      "model": "Karif LT",
+      "record": "assets/fixtures/ayrton/karif-lt/fixture.json",
+      "record_sha256": "4b9b8edb765fc17f93dbed717a30ad1477d36d453aa06f7c57c82361ad95796c",
+      "note": "docs/08 Fixture Library/entries/ayrton/karif-lt.md"
+    },
+    {
+      "id": "ayrton/khamsin-s",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Ayrton",
+      "model": "Khamsin S",
+      "record": "assets/fixtures/ayrton/khamsin-s/fixture.json",
+      "record_sha256": "ee9581fb4d326288e56134368724bc94ca1958e00eba1b587969d0c01b20be5f",
+      "note": "docs/08 Fixture Library/entries/ayrton/khamsin-s.md"
+    },
+    {
+      "id": "ayrton/khamsin-tc",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Ayrton",
+      "model": "Khamsin TC",
+      "record": "assets/fixtures/ayrton/khamsin-tc/fixture.json",
+      "record_sha256": "841b6801ca58c7a816a56f640f4aff7db131bcffe8a707852fa2d7181925a32d",
+      "note": "docs/08 Fixture Library/entries/ayrton/khamsin-tc.md"
+    },
+    {
+      "id": "ayrton/levante-s",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Ayrton",
+      "model": "Levante S",
+      "record": "assets/fixtures/ayrton/levante-s/fixture.json",
+      "record_sha256": "0c61259b61d5f53158842be76761e52ecf8cb2c89e7a184884466fb6943b3cde",
+      "note": "docs/08 Fixture Library/entries/ayrton/levante-s.md"
+    },
+    {
+      "id": "ayrton/levante-tc",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Ayrton",
+      "model": "Levante TC",
+      "record": "assets/fixtures/ayrton/levante-tc/fixture.json",
+      "record_sha256": "7edae449148023579a730bcb2cf2924002304f7b7882b29b2bd7fbce35ea4bd4",
+      "note": "docs/08 Fixture Library/entries/ayrton/levante-tc.md"
+    },
+    {
+      "id": "ayrton/mistral-s",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Ayrton",
+      "model": "Mistral S",
+      "record": "assets/fixtures/ayrton/mistral-s/fixture.json",
+      "record_sha256": "60f747c998409a06be8b11b1afc5f2bbc6f7c83adbcb42b61f9cbc2122472618",
+      "note": "docs/08 Fixture Library/entries/ayrton/mistral-s.md"
+    },
+    {
+      "id": "ayrton/mistral-tc",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Ayrton",
+      "model": "Mistral TC",
+      "record": "assets/fixtures/ayrton/mistral-tc/fixture.json",
+      "record_sha256": "5e073b5918eccd19ec305e3ddecbf2fd9745bbca943483dbf0c44ea388234a54",
+      "note": "docs/08 Fixture Library/entries/ayrton/mistral-tc.md"
+    },
+    {
+      "id": "ayrton/nando-502-wash",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Ayrton",
+      "model": "Nando 502 Wash",
+      "record": "assets/fixtures/ayrton/nando-502-wash/fixture.json",
+      "record_sha256": "8d62d5d6e69ddb2152dd2402b05d9fa9bc3541ccb506225540f1a46d85a59cd8",
+      "note": "docs/08 Fixture Library/entries/ayrton/nando-502-wash.md"
+    },
+    {
+      "id": "ayrton/perseo-beam",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Ayrton",
+      "model": "Perseo Beam",
+      "record": "assets/fixtures/ayrton/perseo-beam/fixture.json",
+      "record_sha256": "9508e4486297b42fe58c8e81934afb06f62dab8fd9a8255b42ad1256fb95ca90",
+      "note": "docs/08 Fixture Library/entries/ayrton/perseo-beam.md"
+    },
+    {
+      "id": "ayrton/perseo-profile-s",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Ayrton",
+      "model": "Perseo Profile S",
+      "record": "assets/fixtures/ayrton/perseo-profile-s/fixture.json",
+      "record_sha256": "910cf3115eba30fac0e7b2d9e7774127ca3f28145a87ce5645b77b958cef3b7e",
+      "note": "docs/08 Fixture Library/entries/ayrton/perseo-profile-s.md"
+    },
+    {
+      "id": "ayrton/perseo-profile-tc",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Ayrton",
+      "model": "Perseo Profile TC",
+      "record": "assets/fixtures/ayrton/perseo-profile-tc/fixture.json",
+      "record_sha256": "c5d3744b124f0646114ec819db19e86da5366fa64276133ba26d250da857a58c",
+      "note": "docs/08 Fixture Library/entries/ayrton/perseo-profile-tc.md"
+    },
+    {
+      "id": "ayrton/rawbeam-350",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Ayrton",
+      "model": "Rawbeam 350",
+      "record": "assets/fixtures/ayrton/rawbeam-350/fixture.json",
+      "record_sha256": "552915e7897f8abaef689ff49ea76618fd0e8b4b9e271142946cad1b59382581",
+      "note": "docs/08 Fixture Library/entries/ayrton/rawbeam-350.md"
+    },
+    {
+      "id": "ayrton/rivale-profile",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Ayrton",
+      "model": "Rivale Profile",
+      "record": "assets/fixtures/ayrton/rivale-profile/fixture.json",
+      "record_sha256": "1e93910a9dd96c3a82aa80e581b0836b14607d9984e2db567a5e4ea60027b866",
+      "note": "docs/08 Fixture Library/entries/ayrton/rivale-profile.md"
+    },
+    {
+      "id": "ayrton/rivale-wash",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Ayrton",
+      "model": "Rivale Wash",
+      "record": "assets/fixtures/ayrton/rivale-wash/fixture.json",
+      "record_sha256": "a37cfab6408bc5a4c4daaa2e284c4ceb66e268692d7aa502c31c2cc9bf0ddcb9",
+      "note": "docs/08 Fixture Library/entries/ayrton/rivale-wash.md"
+    },
+    {
+      "id": "ayrton/stradale-profile",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Ayrton",
+      "model": "Stradale Profile",
+      "record": "assets/fixtures/ayrton/stradale-profile/fixture.json",
+      "record_sha256": "ceed1c557470991ad34765f6e4c59888ab8ed3905b7e5cc22a0d14c51d5176ed",
+      "note": "docs/08 Fixture Library/entries/ayrton/stradale-profile.md"
+    },
+    {
+      "id": "ayrton/veloce-profile",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Ayrton",
+      "model": "Veloce Profile",
+      "record": "assets/fixtures/ayrton/veloce-profile/fixture.json",
+      "record_sha256": "53a7f9ac85f247415f90b11f734cec76bd7a59b12601fadc240192888593b046",
+      "note": "docs/08 Fixture Library/entries/ayrton/veloce-profile.md"
+    },
+    {
+      "id": "ayrton/veloce-wash",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Ayrton",
+      "model": "Veloce Wash",
+      "record": "assets/fixtures/ayrton/veloce-wash/fixture.json",
+      "record_sha256": "7e6908f15d7256c5f458671c3d845c15fa3c4ff89611e87ac66118517e2e2234",
+      "note": "docs/08 Fixture Library/entries/ayrton/veloce-wash.md"
+    },
+    {
+      "id": "ayrton/zonda-3-fx",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Ayrton",
+      "model": "Zonda 3 FX",
+      "record": "assets/fixtures/ayrton/zonda-3-fx/fixture.json",
+      "record_sha256": "1e2c3776f7973c89dbfd2d7b85fdbd92fdf687a4660fcb3205ab00d75fee2f1b",
+      "note": "docs/08 Fixture Library/entries/ayrton/zonda-3-fx.md"
+    },
+    {
+      "id": "ayrton/zonda-3-wash",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Ayrton",
+      "model": "Zonda 3 Wash",
+      "record": "assets/fixtures/ayrton/zonda-3-wash/fixture.json",
+      "record_sha256": "6e6575c7fedfa127b19ec62d7f9fe97ccace2d638d8244dd183828e94c3ad681",
+      "note": "docs/08 Fixture Library/entries/ayrton/zonda-3-wash.md"
+    },
+    {
       "id": "brompton-technology/tessera-sx40",
       "revision": 2,
       "status": "ready_for_visualization",
@@ -240,6 +610,26 @@
       "record": "assets/fixtures/brompton-technology/tessera-sx40/fixture.json",
       "record_sha256": "6294e41de4229bc7e63f5a22d4524c297b5f0b07c77dda95eae4a5714bdeb082",
       "note": "docs/08 Fixture Library/entries/brompton-technology/tessera-sx40.md"
+    },
+    {
+      "id": "cameo/opus-x4",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Cameo",
+      "model": "OPUS X4",
+      "record": "assets/fixtures/cameo/opus-x4/fixture.json",
+      "record_sha256": "3516d317c4d59b9e4dcb2f5ea97735b4d00453397db04ae8beec3feff12fdc89",
+      "note": "docs/08 Fixture Library/entries/cameo/opus-x4.md"
+    },
+    {
+      "id": "cameo/opus-x4-ip",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Cameo",
+      "model": "OPUS X4 IP",
+      "record": "assets/fixtures/cameo/opus-x4-ip/fixture.json",
+      "record_sha256": "dbc762c68d35cefcdfe685497a1ee1ff430ef98067076c15c3da042ca25f5455",
+      "note": "docs/08 Fixture Library/entries/cameo/opus-x4-ip.md"
     },
     {
       "id": "chauvet-dj/cumulus-hp-low-lying-fog-machine",
@@ -270,6 +660,76 @@
       "record": "assets/fixtures/chauvet-dj/hurricane-haze-1dx/fixture.json",
       "record_sha256": "11d31ef42109276922d439fe74ee8e41f30df1d8293796b59f457af248f054ef",
       "note": "docs/08 Fixture Library/entries/chauvet-dj/hurricane-haze-1dx.md"
+    },
+    {
+      "id": "chauvet-dj/hurricane-haze-2d",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "CHAUVET DJ",
+      "model": "Hurricane Haze 2D",
+      "record": "assets/fixtures/chauvet-dj/hurricane-haze-2d/fixture.json",
+      "record_sha256": "daeb62a83483313beebda8cd1ffcc8532031c2080eb432df10c4328df2eaffaf",
+      "note": "docs/08 Fixture Library/entries/chauvet-dj/hurricane-haze-2d.md"
+    },
+    {
+      "id": "chauvet-dj/intimidator-spot-360x",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "CHAUVET DJ",
+      "model": "Intimidator Spot 360X",
+      "record": "assets/fixtures/chauvet-dj/intimidator-spot-360x/fixture.json",
+      "record_sha256": "44cc65b7373ccc2ef36ee4fc470e75447d38996ca4c4e8bec7ca8940ecb6e267",
+      "note": "docs/08 Fixture Library/entries/chauvet-dj/intimidator-spot-360x.md"
+    },
+    {
+      "id": "chauvet-dj/intimidator-spot-375zx",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "CHAUVET DJ",
+      "model": "Intimidator Spot 375ZX",
+      "record": "assets/fixtures/chauvet-dj/intimidator-spot-375zx/fixture.json",
+      "record_sha256": "202fba5b255d03a7f0ac4d230581faa15dc0648f181ff54b5d3e54cdd98041a4",
+      "note": "docs/08 Fixture Library/entries/chauvet-dj/intimidator-spot-375zx.md"
+    },
+    {
+      "id": "chauvet-dj/intimidator-spot-475zx",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "CHAUVET DJ",
+      "model": "Intimidator Spot 475ZX",
+      "record": "assets/fixtures/chauvet-dj/intimidator-spot-475zx/fixture.json",
+      "record_sha256": "592f35b759550fb48d88af06f7c74f6d4544b30a858dd7a1ee0016d897be7a00",
+      "note": "docs/08 Fixture Library/entries/chauvet-dj/intimidator-spot-475zx.md"
+    },
+    {
+      "id": "chauvet-dj/intimidator-spot-duo",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "CHAUVET DJ",
+      "model": "Intimidator Spot Duo",
+      "record": "assets/fixtures/chauvet-dj/intimidator-spot-duo/fixture.json",
+      "record_sha256": "53bb5dd26950df650dd6bf1ed776ce3c05859974ed2a7169ac3b6334b7bf787b",
+      "note": "docs/08 Fixture Library/entries/chauvet-dj/intimidator-spot-duo.md"
+    },
+    {
+      "id": "chauvet-dj/intimidator-wash-zoom-450-irc",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "CHAUVET DJ",
+      "model": "Intimidator Wash Zoom 450 IRC",
+      "record": "assets/fixtures/chauvet-dj/intimidator-wash-zoom-450-irc/fixture.json",
+      "record_sha256": "676e67c56bd2a5f1f3280005e6cbc7d9510ec9bae5281f246eee7b954821cf94",
+      "note": "docs/08 Fixture Library/entries/chauvet-dj/intimidator-wash-zoom-450-irc.md"
+    },
+    {
+      "id": "chauvet-dj/sentinel-wash-q120",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "CHAUVET DJ",
+      "model": "Sentinel Wash Q120",
+      "record": "assets/fixtures/chauvet-dj/sentinel-wash-q120/fixture.json",
+      "record_sha256": "4c916fa07547a3cbebb211c0bef94bd779af0064b83346ec97e993f27e24d97f",
+      "note": "docs/08 Fixture Library/entries/chauvet-dj/sentinel-wash-q120.md"
     },
     {
       "id": "chauvet-professional/colorado-solo-batten",
@@ -352,6 +812,26 @@
       "note": "docs/08 Fixture Library/entries/chauvet-professional/rogue-r2-wash.md"
     },
     {
+      "id": "chauvet-professional/rogue-r3-beam",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "CHAUVET Professional",
+      "model": "Rogue R3 Beam",
+      "record": "assets/fixtures/chauvet-professional/rogue-r3-beam/fixture.json",
+      "record_sha256": "38ee42aa0c6fb2bad42ca3ee472ab2d9265913ea6c415e6669d8d005a1e84fd1",
+      "note": "docs/08 Fixture Library/entries/chauvet-professional/rogue-r3-beam.md"
+    },
+    {
+      "id": "chauvet-professional/rogue-r3x-wash",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "CHAUVET Professional",
+      "model": "Rogue R3X Wash",
+      "record": "assets/fixtures/chauvet-professional/rogue-r3x-wash/fixture.json",
+      "record_sha256": "732e1cf736e2bd74859d11e63d76272abd0ea60ad0c29ba10d0e4cfcf89bc351",
+      "note": "docs/08 Fixture Library/entries/chauvet-professional/rogue-r3x-wash.md"
+    },
+    {
       "id": "chauvet-professional/rogue-rh1-hybrid",
       "revision": 2,
       "status": "researched",
@@ -372,6 +852,56 @@
       "note": "docs/08 Fixture Library/entries/chauvet-professional/strike-4.md"
     },
     {
+      "id": "chroma-q/color-force-3-72",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Chroma-Q",
+      "model": "Color Force 3 72",
+      "record": "assets/fixtures/chroma-q/color-force-3-72/fixture.json",
+      "record_sha256": "7df515bf996108512912bca151424efd134f75bad5ab16d613c5d4629f0b4b4b",
+      "note": "docs/08 Fixture Library/entries/chroma-q/color-force-3-72.md"
+    },
+    {
+      "id": "chroma-q/color-force-ii-12",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Chroma-Q",
+      "model": "Color Force II 12",
+      "record": "assets/fixtures/chroma-q/color-force-ii-12/fixture.json",
+      "record_sha256": "53fb75d6d08c639f9bcaacdfc43bb1a74a8724f5d58dcba24945ccc62bbfaddd",
+      "note": "docs/08 Fixture Library/entries/chroma-q/color-force-ii-12.md"
+    },
+    {
+      "id": "chroma-q/color-force-ii-48",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Chroma-Q",
+      "model": "Color Force II 48",
+      "record": "assets/fixtures/chroma-q/color-force-ii-48/fixture.json",
+      "record_sha256": "aa6ac76cd9fe5667bfc79a4bd7c3c7b71dc41132177881c2822793d9e9a8648d",
+      "note": "docs/08 Fixture Library/entries/chroma-q/color-force-ii-48.md"
+    },
+    {
+      "id": "chroma-q/color-force-ii-72",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Chroma-Q",
+      "model": "Color Force II 72",
+      "record": "assets/fixtures/chroma-q/color-force-ii-72/fixture.json",
+      "record_sha256": "03efd10923e6ae7ee5be9103c948dee3618bfefb0f3c69f7c57dd2a54022c65c",
+      "note": "docs/08 Fixture Library/entries/chroma-q/color-force-ii-72.md"
+    },
+    {
+      "id": "claypaky/arolla-aqua",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Claypaky",
+      "model": "Arolla Aqua",
+      "record": "assets/fixtures/claypaky/arolla-aqua/fixture.json",
+      "record_sha256": "a7dd16f9ec4826b82b4295488e9c55699eaaf6320fa80dca16272cf8bed93c4c",
+      "note": "docs/08 Fixture Library/entries/claypaky/arolla-aqua.md"
+    },
+    {
       "id": "claypaky/arolla-profile-mp",
       "revision": 2,
       "status": "researched",
@@ -390,6 +920,26 @@
       "record": "assets/fixtures/claypaky/arolla-spot-mp/fixture.json",
       "record_sha256": "8739e1110ad4fbe0c15358b83a29812858fb40ea82762c5ced3eca14b947b35c",
       "note": "docs/08 Fixture Library/entries/claypaky/arolla-spot-mp.md"
+    },
+    {
+      "id": "claypaky/b-eye-7",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Claypaky",
+      "model": "B-Eye 7",
+      "record": "assets/fixtures/claypaky/b-eye-7/fixture.json",
+      "record_sha256": "069ab3b44bc7cea39de4745c90f148b3a0d278a96257f9d979dd9c476631a600",
+      "note": "docs/08 Fixture Library/entries/claypaky/b-eye-7.md"
+    },
+    {
+      "id": "claypaky/b-eye-k30",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Claypaky",
+      "model": "B-Eye K30",
+      "record": "assets/fixtures/claypaky/b-eye-k30/fixture.json",
+      "record_sha256": "7fd7dde29b85551fd98cbd923f0f5060b974d4bd5a57f5e53e493cd0aadc20e4",
+      "note": "docs/08 Fixture Library/entries/claypaky/b-eye-k30.md"
     },
     {
       "id": "claypaky/hy-b-eye-k25",
@@ -460,6 +1010,16 @@
       "record": "assets/fixtures/claypaky/tambora-flash/fixture.json",
       "record_sha256": "7580220f9ce370f4532e0e7d35f5b2491cb2f61fbdefadd95db9404cd2b9f300",
       "note": "docs/08 Fixture Library/entries/claypaky/tambora-flash.md"
+    },
+    {
+      "id": "claypaky/volero-cube",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Claypaky",
+      "model": "Volero Cube",
+      "record": "assets/fixtures/claypaky/volero-cube/fixture.json",
+      "record_sha256": "f418544c2ec73683a6bb64e31fb5452ffe30df4b7ce5ac0d82b47b996afdd9e0",
+      "note": "docs/08 Fixture Library/entries/claypaky/volero-cube.md"
     },
     {
       "id": "claypaky/volero-wave",
@@ -572,6 +1132,26 @@
       "note": "docs/08 Fixture Library/entries/elation-professional/pixel-tape-16ip.md"
     },
     {
+      "id": "elation-professional/proteus-lucius",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Elation Professional",
+      "model": "PROTEUS LUCIUS",
+      "record": "assets/fixtures/elation-professional/proteus-lucius/fixture.json",
+      "record_sha256": "6f2939ed942d846f33b24888c1d907bc0d1bf7dbe14208b2c311a720c0f193c4",
+      "note": "docs/08 Fixture Library/entries/elation-professional/proteus-lucius.md"
+    },
+    {
+      "id": "elation-professional/proteus-maximus",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Elation Professional",
+      "model": "PROTEUS MAXIMUS",
+      "record": "assets/fixtures/elation-professional/proteus-maximus/fixture.json",
+      "record_sha256": "d343e43eae659797e5c2f7ea5be8baa3f2b64151bbf8abdf9cd7fef684f310c7",
+      "note": "docs/08 Fixture Library/entries/elation-professional/proteus-maximus.md"
+    },
+    {
       "id": "elation-professional/proteus-radius",
       "revision": 2,
       "status": "ready_for_visualization",
@@ -610,6 +1190,26 @@
       "record": "assets/fixtures/elation-professional/vbar-270/fixture.json",
       "record_sha256": "3c042a4e06fc66ada083cebd4e6283168bdb22265e6dd67a0bdea23811183ae6",
       "note": "docs/08 Fixture Library/entries/elation-professional/vbar-270.md"
+    },
+    {
+      "id": "eliminator-lighting/stealth-beam",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Eliminator Lighting",
+      "model": "Stealth Beam",
+      "record": "assets/fixtures/eliminator-lighting/stealth-beam/fixture.json",
+      "record_sha256": "621728e02d379d229f166406c26aebe404f7317e7d7f92cdb1e25ca66a34573d",
+      "note": "docs/08 Fixture Library/entries/eliminator-lighting/stealth-beam.md"
+    },
+    {
+      "id": "eliminator-lighting/stealth-spot",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Eliminator Lighting",
+      "model": "Stealth Spot",
+      "record": "assets/fixtures/eliminator-lighting/stealth-spot/fixture.json",
+      "record_sha256": "647c86dc372b2f664a8b3e6eccf64dec30200c3acba93af9c21a3c33bde940c5",
+      "note": "docs/08 Fixture Library/entries/eliminator-lighting/stealth-spot.md"
     },
     {
       "id": "eliminator-lighting-adj-group/mbmhd3-mirror-ball-motor",
@@ -692,6 +1292,26 @@
       "note": "docs/08 Fixture Library/entries/etc/colorsource-par.md"
     },
     {
+      "id": "etc/colorsource-par-jr",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "ETC",
+      "model": "ColorSource PAR jr",
+      "record": "assets/fixtures/etc/colorsource-par-jr/fixture.json",
+      "record_sha256": "c4658b9030ac916d53a1272436b3a1c9ceeb64a8ebb0d623788dcedb30f112d5",
+      "note": "docs/08 Fixture Library/entries/etc/colorsource-par-jr.md"
+    },
+    {
+      "id": "etc/colorsource-spot-jr",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "ETC",
+      "model": "ColorSource Spot jr",
+      "record": "assets/fixtures/etc/colorsource-spot-jr/fixture.json",
+      "record_sha256": "30bfce6386dff779124795898837f5f90e923c28576ae2d635620b23f3c577b2",
+      "note": "docs/08 Fixture Library/entries/etc/colorsource-spot-jr.md"
+    },
+    {
       "id": "etc/colorsource-spot-v",
       "revision": 4,
       "status": "researched",
@@ -740,6 +1360,26 @@
       "record": "assets/fixtures/etc/source-four-led-series-3-lustr-x8/fixture.json",
       "record_sha256": "19d6c69d372d32e8a315bced2d5f0ffe48aad4af71e0229f7ab2a356e0803e8d",
       "note": "docs/08 Fixture Library/entries/etc/source-four-led-series-3-lustr-x8.md"
+    },
+    {
+      "id": "eurolite/led-kls-120-compact-light-set",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Eurolite",
+      "model": "LED KLS-120 Compact Light Set",
+      "record": "assets/fixtures/eurolite/led-kls-120-compact-light-set/fixture.json",
+      "record_sha256": "96f8be4d8e26f2e5cf4c24f999499ec2921a9f22dcbe7161957eed443ee3920a",
+      "note": "docs/08 Fixture Library/entries/eurolite/led-kls-120-compact-light-set.md"
+    },
+    {
+      "id": "eurolite/led-tmh-s30-moving-head-spot",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Eurolite",
+      "model": "LED TMH-S30 Moving-Head Spot",
+      "record": "assets/fixtures/eurolite/led-tmh-s30-moving-head-spot/fixture.json",
+      "record_sha256": "f3ddd53d39f82fe12444bc211bc3a0b6c7b3bb4ce3c1bd822b494f0454d4782a",
+      "note": "docs/08 Fixture Library/entries/eurolite/led-tmh-s30-moving-head-spot.md"
     },
     {
       "id": "georgia-stage/prestige-velour-border-curtain-black-sku-7676",
@@ -852,6 +1492,36 @@
       "note": "docs/08 Fixture Library/entries/glp/jdc1.md"
     },
     {
+      "id": "glp/mad-maxx",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "GLP",
+      "model": "MAD MAXX",
+      "record": "assets/fixtures/glp/mad-maxx/fixture.json",
+      "record_sha256": "50078e40dda822d5363a4b696450a55134787fa9d32c7499411866d68e2c4bf8",
+      "note": "docs/08 Fixture Library/entries/glp/mad-maxx.md"
+    },
+    {
+      "id": "high-end-systems/lonestar",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "High End Systems",
+      "model": "Lonestar",
+      "record": "assets/fixtures/high-end-systems/lonestar/fixture.json",
+      "record_sha256": "7376bc9517143ccb45854c0f62839cd7e77e26e8eb4ab687aee629f5627d89d3",
+      "note": "docs/08 Fixture Library/entries/high-end-systems/lonestar.md"
+    },
+    {
+      "id": "high-end-systems/lonestar-prime",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "High End Systems",
+      "model": "Lonestar Prime",
+      "record": "assets/fixtures/high-end-systems/lonestar-prime/fixture.json",
+      "record_sha256": "601ba243508ab1e996fa60f699e387234bf029f4c10b5e6216a877df88f55155",
+      "note": "docs/08 Fixture Library/entries/high-end-systems/lonestar-prime.md"
+    },
+    {
       "id": "high-end-systems/solaframe-1000",
       "revision": 2,
       "status": "researched",
@@ -890,6 +1560,46 @@
       "record": "assets/fixtures/high-end-systems/solawash-2000/fixture.json",
       "record_sha256": "c580c70f663a0a2ce55d0515850fb7d781b21734981f056f269da3b1897b95b8",
       "note": "docs/08 Fixture Library/entries/high-end-systems/solawash-2000.md"
+    },
+    {
+      "id": "jb-lighting/p18-profile-mk2-hp",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "JB-Lighting",
+      "model": "P18 Profile MK2 HP",
+      "record": "assets/fixtures/jb-lighting/p18-profile-mk2-hp/fixture.json",
+      "record_sha256": "3a87cacf6070c6d1672fd3c83d70a66042ad5482cf2d8b7d14983373dc0c3db0",
+      "note": "docs/08 Fixture Library/entries/jb-lighting/p18-profile-mk2-hp.md"
+    },
+    {
+      "id": "jb-lighting/sparx-12",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "JB-Lighting",
+      "model": "Sparx 12",
+      "record": "assets/fixtures/jb-lighting/sparx-12/fixture.json",
+      "record_sha256": "860b9c2dca3133fa6cf32629c3a662dc541e927ff5bc547f7e5a4e342c0ba066",
+      "note": "docs/08 Fixture Library/entries/jb-lighting/sparx-12.md"
+    },
+    {
+      "id": "jb-lighting/sparx-18",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "JB-Lighting",
+      "model": "Sparx 18",
+      "record": "assets/fixtures/jb-lighting/sparx-18/fixture.json",
+      "record_sha256": "57889c6a669e36b6af46464b65da221ddece9baee73e59b3eb36e9e858e7a1c5",
+      "note": "docs/08 Fixture Library/entries/jb-lighting/sparx-18.md"
+    },
+    {
+      "id": "jb-lighting/sparx-30",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "JB-Lighting",
+      "model": "Sparx 30",
+      "record": "assets/fixtures/jb-lighting/sparx-30/fixture.json",
+      "record_sha256": "5ecf902441a5c64c525d3b9b7dcf56458d30a1f1e69009c10199d22f3ae496bd",
+      "note": "docs/08 Fixture Library/entries/jb-lighting/sparx-30.md"
     },
     {
       "id": "laserworld/ds-1000rgb-mk5",
@@ -992,6 +1702,36 @@
       "note": "docs/08 Fixture Library/entries/martin-professional-harman/mac-aura.md"
     },
     {
+      "id": "martin-professional-harman/mac-aura-pxl",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Aura PXL",
+      "record": "assets/fixtures/martin-professional-harman/mac-aura-pxl/fixture.json",
+      "record_sha256": "0a41956cb29b2b16e589885cc4a9ab9ddfdf82141924519e4b07ae079f90e477",
+      "note": "docs/08 Fixture Library/entries/martin-professional-harman/mac-aura-pxl.md"
+    },
+    {
+      "id": "martin-professional-harman/mac-aura-raven-xip",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Aura Raven XIP",
+      "record": "assets/fixtures/martin-professional-harman/mac-aura-raven-xip/fixture.json",
+      "record_sha256": "5f55666d2d853bed5781375014c42ac029a78f0e7eb918ca82972c5d38ae97b4",
+      "note": "docs/08 Fixture Library/entries/martin-professional-harman/mac-aura-raven-xip.md"
+    },
+    {
+      "id": "martin-professional-harman/mac-aura-xb",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Aura XB",
+      "record": "assets/fixtures/martin-professional-harman/mac-aura-xb/fixture.json",
+      "record_sha256": "8c56f6a6f48306e7a5ec4a088a33163790083649785c4f64bea40924a697786e",
+      "note": "docs/08 Fixture Library/entries/martin-professional-harman/mac-aura-xb.md"
+    },
+    {
       "id": "martin-professional-harman/mac-aura-xip",
       "revision": 2,
       "status": "researched",
@@ -1002,6 +1742,56 @@
       "note": "docs/08 Fixture Library/entries/martin-professional-harman/mac-aura-xip.md"
     },
     {
+      "id": "martin-professional-harman/mac-encore-performance-cld",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Encore Performance CLD",
+      "record": "assets/fixtures/martin-professional-harman/mac-encore-performance-cld/fixture.json",
+      "record_sha256": "9fc3f4e93f8f6125309f4cd17b0be31292bc3030d1ef8e586dc2a294f86c359f",
+      "note": "docs/08 Fixture Library/entries/martin-professional-harman/mac-encore-performance-cld.md"
+    },
+    {
+      "id": "martin-professional-harman/mac-encore-performance-wrm",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Encore Performance WRM",
+      "record": "assets/fixtures/martin-professional-harman/mac-encore-performance-wrm/fixture.json",
+      "record_sha256": "c79df1585a060164f4bd5c226ff1bdc3336315e7de721a838f888e143b35f7cb",
+      "note": "docs/08 Fixture Library/entries/martin-professional-harman/mac-encore-performance-wrm.md"
+    },
+    {
+      "id": "martin-professional-harman/mac-encore-two",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Encore Two",
+      "record": "assets/fixtures/martin-professional-harman/mac-encore-two/fixture.json",
+      "record_sha256": "c86dcb94244ab430691f9daa4a40dcb59e32013ba14c699880a6a098870de727",
+      "note": "docs/08 Fixture Library/entries/martin-professional-harman/mac-encore-two.md"
+    },
+    {
+      "id": "martin-professional-harman/mac-encore-wash-cld",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Encore Wash CLD",
+      "record": "assets/fixtures/martin-professional-harman/mac-encore-wash-cld/fixture.json",
+      "record_sha256": "812bf15bcf87e486f064979d464fb688eaa0fd75730c7953598c74de11ca9f79",
+      "note": "docs/08 Fixture Library/entries/martin-professional-harman/mac-encore-wash-cld.md"
+    },
+    {
+      "id": "martin-professional-harman/mac-encore-wash-wrm",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Encore Wash WRM",
+      "record": "assets/fixtures/martin-professional-harman/mac-encore-wash-wrm/fixture.json",
+      "record_sha256": "de66a7b2d5f2f49db828f779580fe1061f1f44a311b3b297be7f146a51a1c3dc",
+      "note": "docs/08 Fixture Library/entries/martin-professional-harman/mac-encore-wash-wrm.md"
+    },
+    {
       "id": "martin-professional-harman/mac-one",
       "revision": 2,
       "status": "researched",
@@ -1010,6 +1800,16 @@
       "record": "assets/fixtures/martin-professional-harman/mac-one/fixture.json",
       "record_sha256": "06ee21de757d687622f4cad4b37f9dcde8c8b808de4d65f9419259c125cf2e0f",
       "note": "docs/08 Fixture Library/entries/martin-professional-harman/mac-one.md"
+    },
+    {
+      "id": "martin-professional-harman/mac-one-beam",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC One Beam",
+      "record": "assets/fixtures/martin-professional-harman/mac-one-beam/fixture.json",
+      "record_sha256": "56fc6af96f6d0df7c3caa69875c3adf45e17ff57681cab5c3a21a1dc978b8226",
+      "note": "docs/08 Fixture Library/entries/martin-professional-harman/mac-one-beam.md"
     },
     {
       "id": "martin-professional-harman/mac-ultra-performance",
@@ -1102,6 +1902,36 @@
       "note": "docs/08 Fixture Library/entries/panasonic/pt-rz660b-with-supplied-et-dle170-lens.md"
     },
     {
+      "id": "prolights/astra-hybrid330",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "PROLIGHTS",
+      "model": "Astra Hybrid330",
+      "record": "assets/fixtures/prolights/astra-hybrid330/fixture.json",
+      "record_sha256": "e078f3e9bcae2a820b5180a9ca76c43939174eedb8e02a6f97d800b525c12778",
+      "note": "docs/08 Fixture Library/entries/prolights/astra-hybrid330.md"
+    },
+    {
+      "id": "robe-lighting/cuete",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "ROBE Lighting",
+      "model": "CUETE",
+      "record": "assets/fixtures/robe-lighting/cuete/fixture.json",
+      "record_sha256": "b9a368939f0dff139eb9b9cddfd8d7212d29e24f19755eb7a1aeb63c5425af01",
+      "note": "docs/08 Fixture Library/entries/robe-lighting/cuete.md"
+    },
+    {
+      "id": "robe-lighting/esprite",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "ROBE Lighting",
+      "model": "ESPRITE",
+      "record": "assets/fixtures/robe-lighting/esprite/fixture.json",
+      "record_sha256": "87cdbd59cb44072eb8b7bc5a679e7b1a625a1752453cda4f45aba58285407f0f",
+      "note": "docs/08 Fixture Library/entries/robe-lighting/esprite.md"
+    },
+    {
       "id": "robe-lighting/forte",
       "revision": 3,
       "status": "ready_for_visualization",
@@ -1122,6 +1952,16 @@
       "note": "docs/08 Fixture Library/entries/robe-lighting/iforte.md"
     },
     {
+      "id": "robe-lighting/ledbeam-150",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "ROBE Lighting",
+      "model": "LEDBeam 150",
+      "record": "assets/fixtures/robe-lighting/ledbeam-150/fixture.json",
+      "record_sha256": "ca686eb3779cc9c51628314770310bcaa8f07c4a928f7418d049cafc0aa30d7f",
+      "note": "docs/08 Fixture Library/entries/robe-lighting/ledbeam-150.md"
+    },
+    {
       "id": "robe-lighting/ledbeam-350",
       "revision": 2,
       "status": "ready_for_visualization",
@@ -1132,6 +1972,16 @@
       "note": "docs/08 Fixture Library/entries/robe-lighting/ledbeam-350.md"
     },
     {
+      "id": "robe-lighting/ledpointe",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "ROBE Lighting",
+      "model": "LedPOINTE",
+      "record": "assets/fixtures/robe-lighting/ledpointe/fixture.json",
+      "record_sha256": "e0bd18dc8290f8824bea23d17f9dea52b462872944bfa14755a13603111b565a",
+      "note": "docs/08 Fixture Library/entries/robe-lighting/ledpointe.md"
+    },
+    {
       "id": "robe-lighting/megapointe",
       "revision": 2,
       "status": "ready_for_visualization",
@@ -1140,6 +1990,16 @@
       "record": "assets/fixtures/robe-lighting/megapointe/fixture.json",
       "record_sha256": "5b07098043620ccdc12aa7849e403f007a92b137c5f7fcf775679ca058be0d88",
       "note": "docs/08 Fixture Library/entries/robe-lighting/megapointe.md"
+    },
+    {
+      "id": "robe-lighting/painte",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "ROBE Lighting",
+      "model": "PAINTE",
+      "record": "assets/fixtures/robe-lighting/painte/fixture.json",
+      "record_sha256": "7018e7ef9f971308a93c6d9a253dbfd652bcbf7ac8a73ecba9ff5b7ca04f9102",
+      "note": "docs/08 Fixture Library/entries/robe-lighting/painte.md"
     },
     {
       "id": "robe-lighting/pointe",
@@ -1192,6 +2052,16 @@
       "note": "docs/08 Fixture Library/entries/robe-lighting/tarrantula.md"
     },
     {
+      "id": "robe-lighting/tetra1",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "ROBE Lighting",
+      "model": "Tetra1",
+      "record": "assets/fixtures/robe-lighting/tetra1/fixture.json",
+      "record_sha256": "8c2089cd71f4359679e8bba42e393aa937c1a29db304dd5be08be347acefe9ef",
+      "note": "docs/08 Fixture Library/entries/robe-lighting/tetra1.md"
+    },
+    {
       "id": "robert-juliat/lutin-306lpc",
       "revision": 2,
       "status": "ready_for_visualization",
@@ -1220,6 +2090,66 @@
       "record": "assets/fixtures/roe-visual/black-pearl-bp2v2/fixture.json",
       "record_sha256": "7cb4abd2203cf728b9833b1f05afa28276bb00671f3d4589dab96cebeb7194ee",
       "note": "docs/08 Fixture Library/entries/roe-visual/black-pearl-bp2v2.md"
+    },
+    {
+      "id": "sgm/g-4-wash",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "SGM",
+      "model": "G-4 Wash",
+      "record": "assets/fixtures/sgm/g-4-wash/fixture.json",
+      "record_sha256": "dd41ea90ae78ecf396f2bde32c039e730dd6016880abc036bef4dea70150c7a6",
+      "note": "docs/08 Fixture Library/entries/sgm/g-4-wash.md"
+    },
+    {
+      "id": "sgm/g-7-spot",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "SGM",
+      "model": "G-7 Spot",
+      "record": "assets/fixtures/sgm/g-7-spot/fixture.json",
+      "record_sha256": "88907df0f135e3fb5706c6f750f67d0d2a17ea130a8fea692548facbb87d3e62",
+      "note": "docs/08 Fixture Library/entries/sgm/g-7-spot.md"
+    },
+    {
+      "id": "shehds/led-beam-spot-moving-head-150w",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "SHEHDS",
+      "model": "LED Beam & Spot Moving Head 150W",
+      "record": "assets/fixtures/shehds/led-beam-spot-moving-head-150w/fixture.json",
+      "record_sha256": "febec3efdbdb338c1ff94e93585bd7f97222f88315e105797dd914cac15b2a2f",
+      "note": "docs/08 Fixture Library/entries/shehds/led-beam-spot-moving-head-150w.md"
+    },
+    {
+      "id": "showtec/phantom-100-spot",
+      "revision": 2,
+      "status": "ready_for_visualization",
+      "manufacturer": "Showtec",
+      "model": "Phantom 100 Spot",
+      "record": "assets/fixtures/showtec/phantom-100-spot/fixture.json",
+      "record_sha256": "eed4ba849e7c941ccd0307d1a46bf518fad05d34083db0e365aed95067d3b072",
+      "note": "docs/08 Fixture Library/entries/showtec/phantom-100-spot.md"
+    },
+    {
+      "id": "showtec/phantom-65",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Showtec",
+      "model": "Phantom 65",
+      "record": "assets/fixtures/showtec/phantom-65/fixture.json",
+      "record_sha256": "bdf33ebb783f36e6084d636bd29c4677a8f39336797ea17214f4b771d3678e1f",
+      "note": "docs/08 Fixture Library/entries/showtec/phantom-65.md"
+    },
+    {
+      "id": "vari-lite/vl10-beamwash",
+      "revision": 2,
+      "status": "researched",
+      "manufacturer": "Vari-Lite",
+      "model": "VL10 BeamWash",
+      "record": "assets/fixtures/vari-lite/vl10-beamwash/fixture.json",
+      "record_sha256": "a1ba1495e7577818c8300671e1a559a3a782f29227fe06fabae350db69d55023",
+      "note": "docs/08 Fixture Library/entries/vari-lite/vl10-beamwash.md"
     },
     {
       "id": "vari-lite/vl2600-se-wash",

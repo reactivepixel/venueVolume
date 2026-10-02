@@ -1,0 +1,330 @@
+{
+  "schema_version": 1,
+  "id": "astera/ax5-triplepar",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Astera",
+    "model": "AX5 TriplePAR",
+    "variant": "AX5-BTB",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://astera-led.com/fr/products/ax5-triplepar/specs/",
+      "title": "AX5 TriplePAR official specifications",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "AX5/AX5-BTB comparison, output/control and physical tables",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://astera-led.com/wp-content/uploads/Datasheet_AX5_TriplePar_V4.pdf",
+      "title": "AX5 TriplePAR Datasheet V4, 20 July 2025",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Specifications: output/control, 3.4 kg mass and with-/without-bracket dimensions",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://astera-led.com/wp-content/uploads/AX5_TriplePAR_Manual_EN_DE_IT_ES_FR_CN.pdf",
+      "title": "AX5 TriplePAR Manual",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Operating, technical and wireless-control details",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://media.astera-led.com/wp-content/uploads/AX5_TriplePAR_V1.png",
+      "title": "AX5 TriplePAR product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "652d21c9ab9f10cdb46005854599a4bf3a071e26b7c59f26619f56abec0d702a"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.1936,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer dimensions with bracket: L148.1 × W193.6 × H213.5 mm; mapped to depth × width × height in the bracketed pose. Body without bracket is Ø153.2 × H140.5 mm."
+    },
+    "height": {
+      "value": 0.2135,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer dimensions with bracket: L148.1 × W193.6 × H213.5 mm; mapped to depth × width × height in the bracketed pose. Body without bracket is Ø153.2 × H140.5 mm."
+    },
+    "depth": {
+      "value": 0.1481,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer dimensions with bracket: L148.1 × W193.6 × H213.5 mm; mapped to depth × width × height in the bracketed pose. Body without bracket is Ø153.2 × H140.5 mm."
+    },
+    "reference_pose": "Upright PAR with included yoke/bracket attached, as specified in manufacturer with-bracket dimensions."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Three 15 W RGBAW LEDs; 13° beam, 26° field; 1080 lm at 3200 K / 1413 lm at 5500 K; built-in CRMX, rechargeable battery up to 20 h, IP65.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "45 W LED; 90–264 VAC input",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "3.4 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "CRMX",
+          "UHF",
+          "Bluetooth",
+          "Wi-Fi"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Upright PAR with included yoke/bracket attached, as specified in manufacturer with-bracket dimensions.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.09679999947547913,
+        0.0,
+        -0.07405000180006027
+      ],
+      "max": [
+        0.09679999947547913,
+        0.21349999570520595,
+        0.07404999958816916
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.0007464412483386695,
+          0.0011280156904831529
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.12764137983322144,
+          0.0011280156904831529
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.12764137983322144,
+          -0.04799380898475647
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.12764137983322144,
+          -0.08135808259248734
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer dimensions with bracket: L148.1 × W193.6 × H213.5 mm; mapped to depth × width × height in the bracketed pose. Body without bracket is Ø153.2 × H140.5 mm.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "75e9d04a5752dc86980016ccf7e09e18a1cb2b30bf79023aa4175cda50128e86"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "5f6e31cc477d3b23092d4bfd8e6cb7593ff4cb9e4081c3148e36669f7748b4c5"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "d0ef1004130df6d7eb395fd464f13a255c7c5e107f57a2d891c938327ad7c2d9"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "f0df9d695bc4baff1fae82f0638e8258b574fd5b4daf8b0f709832082e563ab5"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "0f841949c7e50ef2cd7a8a6fb7fe2a06056ce5c794bb4a969bab44b8f19079f2"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "a941d565f7ca7ccd7886b797b34f393a7ae498987c1dcff4f6d2a38162a9cbd1"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "c1d9d17358fc98e12f4132c5a68bd366bf3ae089ab972b5344b408da00259d22"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "51eff93dbd7dce384b4305657ff6b4ba0c8e85ccbabd28f2ca8ec702556c0fb5"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "9ea39e247e861face034565ad5ee30720f3a791bf7c4fdf35e005ab17f67b281"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "4b15eaddab802708205888fa16097f34115faa61ff2c36722275859f22c2ea71"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "7292532b57e10c1cbe53d10b65f5431ebab3c94dbd70494a4f6bd669d9b4c2d9",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "par",
+      "shell": "round",
+      "lens_count": 3,
+      "notes": "Compact three-emitter battery PAR with yoke/bracket; body-only and bracketed envelopes differ.",
+      "generator": "catalog",
+      "floor_yoke": true,
+      "reflector_cups": 3
+    },
+    "mesh_count": 51,
+    "triangle_count": 17736,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed par geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "df46468fb8032ffc07c10b56b716d1dc8566c90a49741666fdadb3cfba5c8e7e",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.static.par",
+    "category_path": [
+      "Lighting fixtures",
+      "Static and manually focused",
+      "PAR and compact wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}
