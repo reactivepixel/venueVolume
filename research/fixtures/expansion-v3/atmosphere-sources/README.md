@@ -14,8 +14,10 @@ Downloaded 2026-10-02 from exact manufacturer product image URLs. These files ar
 | `antari-b-200.jpg` | Antari B-200 | `2b2631e46f78be00742697035de7ccf840cc0b1f7605e65cc1e082d093f3a278` | Official model image |
 | `look-unique-21-side.jpg` | Look Solutions Unique 2.1 | `b57106f9ccd114521081a9bf08ec2b75e421934a04f47cdb307424420865d931` | Manufacturer side view |
 | `look-tiny-s.jpg` | Look Solutions Tiny S | `05af3d2c7e717116abb9e80b365e76db91ff0cf772a050a5f8401f7ae9cbe116` | Manufacturer product view |
-| `mdg-atmosphere-thumb.png` | MDG ATMOSPHERE APS | `9f8308e64e47ac5c7ba9dcf0de9c7ad9d1de0c7e9c5d266bded4ff9d8b03a616` | Manufacturer gallery thumbnail; low resolution |
-| `mdg-mse1-thumb.png` | MDG MSe1 | `422439dfd5b0ad1e62f69a08e6cc31b8145bf4373ba0cd140767cd40aac8ea16` | Manufacturer gallery thumbnail; low resolution |
+| `mdg-atmosphere-thumb.png` | MDG ATMOSPHERE APS | `9f8308e64e47ac5c7ba9dcf0de9c7ad9d1de0c7e9c5d266bded4ff9d8b03a616` | Manufacturer image path labelled `img-tiny`; resolved file is 3741×2551 and usable as the high-resolution product still |
+| `mdg-atmosphere.png` | MDG ATMOSPHERE APS | `173f0c5ba1347c0556ee4f2eaaa4c141c4665dc45c0bb3d0cb9d57b494210a98` | Manufacturer gallery product still, 960×680 |
+| `mdg-mse1-thumb.png` | MDG MSe1 | `422439dfd5b0ad1e62f69a08e6cc31b8145bf4373ba0cd140767cd40aac8ea16` | Manufacturer image path labelled `img-tiny`; resolved file is 700×700 and usable as the exact product still |
+| `mdg-mse1.png` | MDG MSe1 | `fe6dda77ff3a4ea2ce31141f78575d0068e2875becd8d5a70dff3643856cb02a` | Manufacturer gallery still, 700×700 |
 | `adj-entour-chill.jpg` | ADJ Entour Chill (ENT791) | `b368800b67732b34b9212294480a3fe4d427ee442609faa928ca8cffce5f1467` | Exact SKU-tagged manufacturer image |
 | `adj-entour-venue.jpg` | ADJ Entour Venue (ENT610) | `6888eeaa43ff37434048f932af321d04536c72612756ee1290983cc21d94f4e8` | Exact SKU-tagged manufacturer image |
 | `antari-hz-350.jpg` | Antari HZ-350 | `df280c45a303bea57aa129df45d98e4caa30b8ac4af8958e017e3a6d15533616` | Official model image |
@@ -24,3 +26,5 @@ Downloaded 2026-10-02 from exact manufacturer product image URLs. These files ar
 | `antari-sw-300.jpg` | Antari SW-300 | `9f87ba820da649c318013403384c22b3dc8bdeb3321de97cae0f9b42a9f6b0d4` | Official model image |
 | `antari-f-1.jpg` | Antari F-1 | `40e9f3508d8e87355379a6829a61a67bbebd7d79b54cd70d5366ca4b1f1d477c` | Official model image |
 | `antari-z-3000iii.jpg` | Antari Z-3000III | `fa27a91299659cd72de4a696037e1a49769c0ede9312f835572fa17852af1387` | Official model image |
+| `antari-z-1200iii-manual.pdf` | Antari Z-1200III | `75dd7db84faddd418999945875d22489b2ceac10f910eacd6079aef86379cc43` | Official user manual Rev.05; confirms dimensions and included hanging bracket; reuse status unknown |
+| `antari-s-100x-manual.pdf` | Antari S-100X / S-200X | `d05842198041623feb4c4c49df427089c6c1d96906b4de33db5b026ca2a67ca2` | Official shared user manual Rev.05; confirms one-channel DMX512 over 3-pin XLR; reuse status unknown |
