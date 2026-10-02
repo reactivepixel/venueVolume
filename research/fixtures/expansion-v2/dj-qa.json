@@ -11,7 +11,7 @@
     "built_assets_reviewed": 16,
     "documented_dimensions_match_exported_bounds": "All 16 reviewed fixtures match each documented outer axis within approximately 0.000001 m.",
     "articulated_moving_heads": "Intimidator Spot Duo runtime sidecar defines separate pan/tilt chains and emitters for both heads. KLS-120 runtime sidecar defines four individual head pivots and emitters; these are manually aimable fixed spots, not moving-head joints. Other previously reviewed moving heads retain their prior QA status.",
-    "material_findings": 2,
+    "material_findings": 1,
     "high_severity_blockers": 0
   },
   "reviewed_fixture_ids": [
@@ -36,28 +36,30 @@
     {
       "finding_id": "DJ-QA-01",
       "fixture_id": "adj/focus-spot-6z",
+      "status": "resolved",
       "severity": "medium",
       "category": "head silhouette / model identity",
-      "observation": "The official reference shows a noticeably long, tapered/faceted spot housing with substantial side and top profile. The rendered head reads as the same short rounded shell used by several compact movers, so the overall dimensions are right but the housing proportions do not convey this model's distinctive optical body.",
+      "observation": "The updated preview now shows a longer angular/tapered housing that follows the product reference's overall shell silhouette and dimensions. It remains a procedural approximation and omits finer shell transitions, ventilation detail and exact surface contours, but the previous material silhouette mismatch is resolved.",
       "evidence_paths": [
         "assets/fixtures/adj/focus-spot-6z/sources/product-reference-0.jpg",
         "assets/fixtures/adj/focus-spot-6z/previews/three-quarter.png",
         "assets/fixtures/adj/focus-spot-6z/fixture.json"
       ],
-      "concrete_fix": "Reshape the head within its existing documented 0.360 x 0.234 x 0.562 m envelope into the elongated wedge/cylinder profile visible in the product image, preserving the large front optic and broad shoulder transition. Re-render the three-quarter and side previews."
+      "concrete_fix": "No further material correction requested; optional refinement could add source-visible venting and shell transitions without changing the documented envelope."
     },
     {
       "finding_id": "DJ-QA-02",
       "fixture_id": "showtec/phantom-100-spot",
+      "status": "improved; residual issue remains",
       "severity": "medium",
       "category": "head silhouette / model identity",
-      "observation": "The product reference has a compact tapered head with a visibly faceted, angular shell and a small projecting lens hood. The preview uses a largely spherical smooth head with a large planar lens ring, making the head silhouette materially rounder than the referenced model despite correctly matching the overall bounding box.",
+      "observation": "The updated preview replaces the earlier smooth spherical head with a short angular/tapered shell, substantially improving the match. The front optic and ring still occupy a much larger share of the face than in the reference, and the lens hood is more dominant; overall envelope remains correct.",
       "evidence_paths": [
         "assets/fixtures/showtec/phantom-100-spot/sources/product-reference-0.png",
         "assets/fixtures/showtec/phantom-100-spot/previews/three-quarter.png",
         "assets/fixtures/showtec/phantom-100-spot/fixture.json"
       ],
-      "concrete_fix": "Replace the round head primitive with a short tapered/faceted housing and smaller protruding lens hood, keeping the existing documented 0.325 x 0.210 x 0.420 m assembled envelope; verify against the source's three-quarter silhouette."
+      "concrete_fix": "If another pass is warranted, reduce the visible lens/ring diameter and projecting hood relative to the shell while retaining the current angular housing and documented 0.325 x 0.210 x 0.420 m assembled envelope. Remaining contour/detail differences are procedural approximations rather than manufacturer CAD."
     }
   ],
   "no_material_issue_observed": [
