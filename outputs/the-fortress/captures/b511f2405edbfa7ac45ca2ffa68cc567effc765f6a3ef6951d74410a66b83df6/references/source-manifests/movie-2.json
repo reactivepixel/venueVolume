@@ -1,0 +1,132 @@
+{
+  "source": "2.MOV",
+  "sha256": "72d99543f0e6f4ebe17b0d3c91bcfaf0307ab4dfd6c312aa81c609850938e91c",
+  "duration_seconds": 67.405,
+  "creation_time": "2026-09-26T17:09:27.000000Z",
+  "source_size_bytes": 282952283,
+  "source_transfer": "arib-std-b67",
+  "output_color": "SDR sRGB-compatible BT.709",
+  "hdr_tone_mapped": true,
+  "selection": "Best Laplacian sharpness of 3 local candidates, preferring clean decodes; manually review every selection.",
+  "timestamp_note": "Requested seek positions, not calibrated exposure timestamps; damaged sections may skip frames.",
+  "sampling": {
+    "target_seconds": [
+      2.10640625,
+      6.31921875,
+      10.53203125,
+      14.744843750000001,
+      18.95765625,
+      23.17046875,
+      27.38328125,
+      31.59609375,
+      35.80890625,
+      40.02171875,
+      44.23453125,
+      48.44734375,
+      52.66015625,
+      56.87296875,
+      61.085781250000004,
+      65.29859375
+    ],
+    "candidate_offset_seconds": 0.6,
+    "filter": "scale=w='min(1600,iw)':h=-2,zscale=t=linear:npl=100,format=gbrpf32le,tonemap=tonemap=hable:desat=0,zscale=p=bt709:t=bt709:m=bt709:r=full,format=yuvj420p"
+  },
+  "references": [
+    {
+      "file": "reference_01_0002.1s.jpg",
+      "requested_seek_seconds": 2.10640625,
+      "sharpness_score": 164.46,
+      "decoder_error_lines": 0
+    },
+    {
+      "file": "reference_02_0006.3s.jpg",
+      "requested_seek_seconds": 5.7192187500000005,
+      "sharpness_score": 149.71,
+      "decoder_error_lines": 0
+    },
+    {
+      "file": "reference_03_0010.5s.jpg",
+      "requested_seek_seconds": 9.93203125,
+      "sharpness_score": 287.4,
+      "decoder_error_lines": 0
+    },
+    {
+      "file": "reference_04_0014.7s.jpg",
+      "requested_seek_seconds": 14.144843750000001,
+      "sharpness_score": 207.79,
+      "decoder_error_lines": 0
+    },
+    {
+      "file": "reference_05_0019.0s.jpg",
+      "requested_seek_seconds": 18.357656249999998,
+      "sharpness_score": 231.76,
+      "decoder_error_lines": 0
+    },
+    {
+      "file": "reference_06_0023.2s.jpg",
+      "requested_seek_seconds": 23.17046875,
+      "sharpness_score": 290.98,
+      "decoder_error_lines": 0
+    },
+    {
+      "file": "reference_07_0027.4s.jpg",
+      "requested_seek_seconds": 27.98328125,
+      "sharpness_score": 358.11,
+      "decoder_error_lines": 0
+    },
+    {
+      "file": "reference_08_0031.6s.jpg",
+      "requested_seek_seconds": 32.19609375,
+      "sharpness_score": 378.44,
+      "decoder_error_lines": 0
+    },
+    {
+      "file": "reference_09_0035.8s.jpg",
+      "requested_seek_seconds": 35.20890625,
+      "sharpness_score": 238.98,
+      "decoder_error_lines": 0
+    },
+    {
+      "file": "reference_10_0040.0s.jpg",
+      "requested_seek_seconds": 40.62171875,
+      "sharpness_score": 232.75,
+      "decoder_error_lines": 0
+    },
+    {
+      "file": "reference_11_0044.2s.jpg",
+      "requested_seek_seconds": 43.63453125,
+      "sharpness_score": 442.98,
+      "decoder_error_lines": 0
+    },
+    {
+      "file": "reference_12_0048.4s.jpg",
+      "requested_seek_seconds": 48.44734375,
+      "sharpness_score": 274.49,
+      "decoder_error_lines": 0
+    },
+    {
+      "file": "reference_13_0052.7s.jpg",
+      "requested_seek_seconds": 53.26015625,
+      "sharpness_score": 164.3,
+      "decoder_error_lines": 0
+    },
+    {
+      "file": "reference_14_0056.9s.jpg",
+      "requested_seek_seconds": 56.87296875,
+      "sharpness_score": 265.8,
+      "decoder_error_lines": 0
+    },
+    {
+      "file": "reference_15_0061.1s.jpg",
+      "requested_seek_seconds": 61.085781250000004,
+      "sharpness_score": 325.85,
+      "decoder_error_lines": 0
+    },
+    {
+      "file": "reference_16_0065.3s.jpg",
+      "requested_seek_seconds": 65.89859374999999,
+      "sharpness_score": 130.55,
+      "decoder_error_lines": 0
+    }
+  ]
+}
