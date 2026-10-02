@@ -4,6 +4,21 @@ import Testing
 
 private func point(_ v: SIMD3<Float>) -> Position3D { .init(x: v.x, y: v.y, z: v.z) }
 
+@Test func gizmoWorldAxesComposeMountRotation() {
+    let original = FixtureAiming.euler(yaw: 37, pitch: -22, roll: 18)
+    for axis in FixtureAxis.allCases {
+        let rotated = FixtureAiming.rotatedMount(original, around: axis, radians: .pi/2)
+        let delta = FixtureAiming.rotatedMount(.init(), around: axis, radians: .pi/2)
+        for basis: SIMD3<Float> in [[1,0,0],[0,1,0],[0,0,1]] {
+            let expected = FixtureAiming.rotate(delta, FixtureAiming.rotate(original, basis))
+            #expect(FixtureAiming.length(FixtureAiming.rotate(rotated, basis)-expected) < 0.00001)
+        }
+        #expect(axis.angle(at: .zero, about: .zero) == nil)
+    }
+    #expect(abs(FixtureAiming.angleDelta(from: 179 * .pi/180, to: -179 * .pi/180)-2 * .pi/180) < 0.00001)
+    #expect(abs(FixtureAiming.angleDelta(from: -179 * .pi/180, to: 179 * .pi/180)+2 * .pi/180) < 0.00001)
+}
+
 @Test func pilotHeadSliderAnglesEncodeToPreviewValues() {
     for value in [0, 1, 64, 128, 192, 254, 255] {
         let pan = LightingPreview(channels: [0, 0, 0, 0, value, 128]).panDegrees

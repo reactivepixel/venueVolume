@@ -33,6 +33,7 @@ import VenueVolumeCore
         check(model.applyPreset(model.presets[0].id, to: fixture.id), "Apply a preset")
         model.beginRetarget(fixture.id, method: .head)
         check(model.acceptTarget(.init(x: 2.9,y: 1.8,z: -7.67)), "Retarget")
+        check(model.saveTarget(), "Save retarget")
         let aimed = model.auditState!
         model.resetAim(fixture.id); model.undo()
         check(model.auditState == aimed, "Undo restores pan/tilt override")

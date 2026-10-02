@@ -106,7 +106,9 @@ struct SessionSmoke {
         check(model.isRetargeting && model.fixtures[0] == beforeAim, "Failed aim preserves object and allows retry")
         let aimPoint = Position3D(x: 2, y: 1.5, z: -7)
         check(model.acceptTarget(aimPoint), "Retarget reachable point")
-        check(!model.isPickingRoom && model.lastTarget == aimPoint, "One-shot targeting ends with a marker")
+        check(model.isPickingRoom && model.pendingTarget == aimPoint && model.fixtures[0] == beforeAim, "Target remains an unsaved preview")
+        check(model.saveTarget(), "Save commits target")
+        check(!model.isPickingRoom && model.lastTarget == aimPoint, "Saving ends targeting with a marker")
         let aimed = model.fixtures[0]
         check(aimed.aimOverride != nil && aimed.channels[4] != beforeAim.channels[4], "Head aim writes resolved DMX")
         check(aimed.position == beforeAim.position && aimed.orientation == beforeAim.orientation, "Head aim keeps mount transform")
@@ -118,6 +120,7 @@ struct SessionSmoke {
         check(aimRestored.fixtures == model.fixtures, "Aim override survives relaunch")
         model.beginRetarget(fixtureID, method: .mount)
         check(model.acceptTarget(.init(x: 4, y: 2, z: -2)), "Mount can aim behind the original heading")
+        check(model.saveTarget(), "Save mount aim")
         check(model.fixtures[0].orientation != aimed.orientation && model.fixtures[0].channels == aimed.channels, "Mount aim preserves DMX")
         let mount = model.fixtures[0]
         model.beginReposition(fixtureID)
@@ -185,5 +188,6 @@ struct SessionSmoke {
         check(relaunched.saveSetup(asNew: true), "Named setup save remains available when working autosave is blocked")
         print("Room session checks passed: fixture drop, named save/save-as, blank setup, load, preset isolation and relaunch.")
         try await AuditSmoke.run(environment: environment)
+        try InteractionSmoke.run(environment: environment)
     }
 }

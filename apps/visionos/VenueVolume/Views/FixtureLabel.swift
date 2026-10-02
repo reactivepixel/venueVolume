@@ -3,7 +3,6 @@ import VenueVolumeCore
 
 /// One attachment grows upward, keeping the object and its label together.
 struct FixtureLabel: View {
-    @Environment(\.openWindow) private var openWindow
     @Environment(VenueModel.self) private var model
     let fixture: Fixture
     private var selected: Bool { model.selectedID == fixture.id }
@@ -25,8 +24,8 @@ struct FixtureLabel: View {
                 }.buttonStyle(.plain)
                 if selected {
                     Spacer()
-                    Button { withAnimation(.smooth(duration: 0.2)) { model.select(fixture.id, expand: true) } } label: {
-                        Image(systemName: model.expandedID == fixture.id ? "info.circle.fill" : "info.circle")
+                    Button { withAnimation(.smooth(duration: 0.2)) { model.select(fixture.id) } } label: {
+                        Image(systemName: "info.circle")
                     }.accessibilityLabel("Info for \(fixture.name)")
                     Button(role: .destructive) { model.remove(fixture.id) } label: { Image(systemName: "trash") }
                         .accessibilityLabel("Delete \(fixture.name)")
@@ -40,7 +39,7 @@ struct FixtureLabel: View {
                         Button("Aim head (preview)") { model.beginRetarget(fixture.id, method: .head) }
                         Button("Aim mount") { model.beginRetarget(fixture.id, method: .mount) }
                     }.disabled(!model.canPlace || fixture.assetID == nil)
-                    Button("Transform", systemImage: "rotate.3d") { model.controlsTab = 1; openWindow(id: "presets") }
+                    Button("Transform", systemImage: "rotate.3d") { model.beginTransform(fixture.id) }
                 }.font(.caption)
                 if let aim = fixture.aimOverride {
                     HStack {
@@ -49,10 +48,6 @@ struct FixtureLabel: View {
                         Button("Reset") { model.resetAim(fixture.id) }.font(.caption2)
                     }
                 }
-            }
-            if selected && model.expandedID == fixture.id {
-                Divider()
-                FixturePanel(fixture: fixture)
             }
         }
         .padding(18)
@@ -69,13 +64,31 @@ struct FixtureLabel: View {
 struct TargetingPrompt: View {
     @Environment(VenueModel.self) private var model
     var body: some View {
+        @Bindable var model = model
         VStack(alignment: .leading, spacing: 10) {
+            if !model.isPickingRoom && model.gizmoVisible {
+                HStack {
+                    Label("Transform selected fixture", systemImage: "rotate.3d").font(.headline)
+                    Spacer()
+                    Button("Done") { model.endTransformDrag(); model.gizmoVisible = false }
+                }
+                Picker("Transform mode", selection: $model.transformMode) {
+                    ForEach(FixtureTransformMode.allCases) { mode in Text(mode.rawValue).tag(mode) }
+                }.pickerStyle(.segmented).disabled(model.isTransformDragging)
+                Text(model.transformMode == .rotate ? "Hold and drag a ring: X red · Y green · Z blue." : "Hold and drag an arrow along its axis: X red · Y green · Z blue.")
+                    .font(.callout)
+            } else {
             HStack {
                 Label(model.isRetargeting ? "Retarget fixture" : "Position fixture", systemImage: "scope").font(.headline)
                 Spacer()
                 Button("Cancel") { model.cancelPicking() }
+                if model.isRetargeting {
+                    Button("Save target") { model.saveTarget() }.disabled(!model.canSaveTarget)
+                        .buttonStyle(.borderedProminent)
+                }
             }
             Text(model.message ?? model.pickingInstruction).font(.callout)
+            }
         }.padding(20).frame(width: 560).glassBackgroundEffect()
     }
 }

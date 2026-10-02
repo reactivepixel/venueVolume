@@ -45,7 +45,9 @@ import VenueVolumeCore
             model.fixtureKind = .movingHead; model.beginPlacement(); model.placeOnMesh(at: .init(x: 0,y: 0,z: -2))
             guard model.scannedMesh != nil, model.fixtures.count == 1 else { throw EnvironmentError.invalid("mesh replay placement failed") }
             _ = model.applyPreset(model.presets[1].id, to: model.fixtures[0].id)
-            model.setHeadAim(model.fixtures[0].id, panDegrees: 35, tiltDegrees: -20)
+            model.beginRetarget(model.fixtures[0].id, method: .head)
+            guard model.acceptTarget(.init(x: 1,y: 1.5,z: -4)), model.fixtures[0].aimOverride == nil,
+                  model.saveTarget() else { throw EnvironmentError.invalid("mesh target preview/save failed") }
             guard model.fixtures[0].aimOverride != nil else { throw EnvironmentError.invalid("moving head pilot did not aim in the mesh room") }
             model.setupName = "Mesh replay · test light"
             guard model.saveSetup(), let meshSetup = model.savedSetups.first(where: { $0.id == model.activeSetupID }) else {
@@ -62,11 +64,14 @@ import VenueVolumeCore
             guard model.scannedMesh != nil, model.fixtures == [savedMeshFixture], model.activeSetupID == meshSetup.id else {
                 throw EnvironmentError.invalid("saved mesh setup or pilot pose did not reopen")
             }
-            model.beginHistoryAction("Aim pilot in mesh replay")
-            model.setHeadAim(savedMeshFixture.id, panDegrees: -25, tiltDegrees: 15)
-            model.endHistoryAction()
+            model.beginTransform(savedMeshFixture.id)
+            let center = FixtureAiming.vector(savedMeshFixture.position) + [0,LightingPreview.height/2,0]
+            model.beginTransformDrag(axis: .y, mode: .rotate, at: center+[0,0,0.42])
+            model.updateTransformDrag(to: center+[0.42,0,0]); model.endTransformDrag()
             let changedMeshFixture = model.fixtures[0]
-            guard changedMeshFixture != savedMeshFixture else { throw EnvironmentError.invalid("mesh pilot aim did not change") }
+            guard changedMeshFixture.orientation != savedMeshFixture.orientation, changedMeshFixture.channels == savedMeshFixture.channels else {
+                throw EnvironmentError.invalid("mesh axis rotation did not preserve DMX")
+            }
             model.undo()
             guard model.fixtures == [savedMeshFixture] else { throw EnvironmentError.invalid("mesh pilot aim undo failed") }
             model.redo()
@@ -75,7 +80,7 @@ import VenueVolumeCore
             try await ready(model, room: bundled)
             guard model.fixtures == savedFixtures else { throw EnvironmentError.invalid("classroom did not reopen after mesh replay") }
             model.toolboxTab = 1
-            model.libraryMessage = "Runtime check passed · mesh pilot pose, save/reopen, aim Undo/Redo and classroom restore."
+            model.libraryMessage = "Runtime check passed · mesh target preview/save, pose reopen, axis Undo/Redo and classroom restore."
             print("ROOM_LIBRARY_SMOKE_PASS")
             if arguments.contains("--history-smoke") {
                 let before = model.auditState

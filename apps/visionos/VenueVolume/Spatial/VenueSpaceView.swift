@@ -7,6 +7,11 @@ struct VenueSpaceView: View {
     @Environment(\.openWindow) private var openWindow
     @Environment(\.scenePhase) private var scenePhase
     @State private var scene = VenueScene()
+    @State private var lastSpatialDragEnd = Date.distantPast
+    @State private var handledDrag = false
+    @State private var dragFixtureID: UUID?
+    @State private var cancelledDrag = false
+    @GestureState private var spatialDragActive = false
 
     var body: some View {
         RealityView { content, attachments in
@@ -36,9 +41,43 @@ struct VenueSpaceView: View {
             }
         }
         .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded { value in
+            guard Date().timeIntervalSince(lastSpatialDragEnd) > 0.25, !handledDrag else { return }
             let position = value.convert(value.location3D, from: .local, to: scene.root)
             scene.handleTap(entity: value.entity, position: position, model: model)
         })
+        .simultaneousGesture(DragGesture(minimumDistance: 0).targetedToAnyEntity()
+            .updating($spatialDragActive) { _, active, _ in active = true }
+            .onChanged { value in
+                guard !cancelledDrag, !handledDrag || dragFixtureID == model.selectedID else { return }
+                let start = value.convert(value.startLocation3D, from: .local, to: scene.root)
+                let point = value.convert(value.location3D, from: .local, to: scene.root)
+                if scene.handleDrag(entity: value.entity, position: point, start: start, model: model) {
+                    if !handledDrag { dragFixtureID = model.selectedID }
+                    handledDrag = true
+                }
+            }
+            .onEnded { value in
+                if handledDrag && !cancelledDrag && dragFixtureID == model.selectedID {
+                    let point = value.convert(value.location3D, from: .local, to: scene.root)
+                    let start = value.convert(value.startLocation3D, from: .local, to: scene.root)
+                    _ = scene.handleDrag(entity: value.entity, position: point, start: start, model: model)
+                    model.endTransformDrag(); lastSpatialDragEnd = Date()
+                }
+                handledDrag = false; dragFixtureID = nil; cancelledDrag = false
+            })
+        .onChange(of: spatialDragActive) { _, active in
+            if !active && handledDrag {
+                model.endTransformDrag(); lastSpatialDragEnd = Date(); handledDrag = false
+            }
+            if !active { dragFixtureID = nil; cancelledDrag = false }
+        }
+        .onChange(of: model.selectedID) { _, selected in
+            if handledDrag { cancelledDrag = true; lastSpatialDragEnd = Date() }
+            handledDrag = false; dragFixtureID = nil
+            if selected == nil {
+                dismissWindow(id: "fixture-editor")
+            }
+        }
         .task(id: model.roomLoadToken) {
             model.canPlace = false
             let loaded = await scene.load(model: model)
@@ -48,10 +87,21 @@ struct VenueSpaceView: View {
         }
         .task {
             let arguments = ProcessInfo.processInfo.arguments
-            if model.isDemoMode && (arguments.contains("--show-preset-editor") || arguments.contains("--position-tab")) {
+            if model.isDemoMode && arguments.contains("--transform-gizmo") {
+                while !model.canPlace {
+                    do { try await Task.sleep(for: .milliseconds(100)) } catch { return }
+                }
+                if let id = model.selectedID { model.beginTransform(id); model.transformMode = .rotate }
+            }
+            if model.isDemoMode && (arguments.contains("--show-preset-editor") || arguments.contains("--position-tab") || arguments.contains("--show-item-editor")) {
                 try? await Task.sleep(for: .seconds(3))
                 guard !Task.isCancelled else { return }
-                if !model.presetWindowVisible { openWindow(id: "presets") }
+                if arguments.contains("--position-tab") {
+                    if let id = model.selectedID { model.beginTransform(id) }
+                    openWindow(id: "fixture-editor")
+                } else if arguments.contains("--show-item-editor") {
+                    openWindow(id: "fixture-editor")
+                } else if !model.presetWindowVisible { openWindow(id: "presets") }
             }
         }
         .task {
@@ -77,6 +127,9 @@ struct VenueSpaceView: View {
             if model.isDemoMode && !arguments.contains("--show-preset-editor") && !arguments.contains("--position-tab") {
                 dismissWindow(id: "presets")
             }
+            if model.isDemoMode && !arguments.contains("--position-tab") && !arguments.contains("--show-item-editor") {
+                dismissWindow(id: "fixture-editor")
+            }
         }
         .task {
             #if DEBUG
@@ -90,6 +143,8 @@ struct VenueSpaceView: View {
             model.cancelPicking()
             model.canPlace = false
             model.expandedID = nil
+            model.gizmoVisible = false
+            dismissWindow(id: "fixture-editor")
             model.toolboxVisible = false
             model.endPresetDrag()
             model.previewDraft = false

@@ -1,5 +1,20 @@
 import Foundation
 
+public enum FixtureAxis: String, CaseIterable, Identifiable, Sendable {
+    case x, y, z
+    public var id: String { rawValue }
+    public var index: Int { self == .x ? 0 : self == .y ? 1 : 2 }
+    public var vector: SIMD3<Float> {
+        var result = SIMD3<Float>.zero; result[index] = 1; return result
+    }
+    /// Angle in the right-handed plane perpendicular to this room axis.
+    public func angle(at point: SIMD3<Float>, about center: SIMD3<Float>) -> Float? {
+        let delta = point-center, a = delta[(index+1)%3], b = delta[(index+2)%3]
+        guard a.isFinite, b.isFinite, a*a+b*b > 0.0001 else { return nil }
+        return atan2(b, a)
+    }
+}
+
 public struct PanTiltOverride: Codable, Equatable, Sendable {
     public var pan: Int
     public var tilt: Int
@@ -8,6 +23,15 @@ public struct PanTiltOverride: Codable, Equatable, Sendable {
 
 /// Geometry uses the catalog's authored meter-scale pivots and -Z optical axis.
 public enum FixtureAiming {
+    public static func rotatedMount(_ orientation: Quaternion3D, around axis: FixtureAxis, radians: Float) -> Quaternion3D {
+        guard radians.isFinite else { return orientation }
+        let v = axis.vector * sin(radians/2)
+        return multiply(.init(x: v.x, y: v.y, z: v.z, w: cos(radians/2)), orientation)
+    }
+
+    public static func angleDelta(from previous: Float, to next: Float) -> Float {
+        atan2(sin(next-previous), cos(next-previous))
+    }
     public static let headPivot = SIMD3<Float>(0, 0.33078, 0.00051424245)
     public static let emitterOffset = SIMD3<Float>(0, 0, -0.10858966)
     public static let panRange: ClosedRange<Float> = (-128 * 270 / 255)...(127 * 270 / 255)

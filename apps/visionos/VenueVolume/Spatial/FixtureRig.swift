@@ -53,12 +53,12 @@ import VenueVolumeCore
         entity.addChild(selection)
     }
 
-    func update(fixture: Fixture, channels: [Int], selected: Bool, blackout: Bool, placing: Bool) {
+    func update(fixture: Fixture, channels: [Int], selected: Bool, blackout: Bool, placing: Bool, interactive: Bool = false) {
         let base = Transform(scale: [fixture.scale.x, fixture.scale.y, fixture.scale.z],
                              rotation: simd_quatf(ix: fixture.orientation.x, iy: fixture.orientation.y, iz: fixture.orientation.z, r: fixture.orientation.w),
                              translation: [fixture.position.x, fixture.position.y, fixture.position.z])
         if lastBase != base {
-            if lastBase == nil { entity.transform = base }
+            if lastBase == nil || interactive { entity.transform = base }
             else { entity.move(to: base, relativeTo: entity.parent, duration: duration, timingFunction: .easeInOut) }
             lastBase = base
         }
