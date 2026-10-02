@@ -1,0 +1,17 @@
+{
+  "id": "showven/sparkular-cyclone-ii",
+  "passed": true,
+  "source_usdz_sha256": "173b755b564df7f8a3a8ddd9bd17e6a0e6d40939b015e55ec11312d359e235c9",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 208,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

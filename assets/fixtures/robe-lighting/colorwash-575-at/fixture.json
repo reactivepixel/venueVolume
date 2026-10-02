@@ -1,0 +1,364 @@
+{
+  "schema_version": 1,
+  "id": "robe-lighting/colorwash-575-at",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "ROBE Lighting",
+    "model": "ColorWash 575 AT",
+    "variant": "ColorWash 575 AT",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.robe.cz/colorwash-575-at-tm",
+      "title": "ColorWash 575 AT product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Mechanical, electrical, control, effects and optical specifications; official still image linked as Image 36",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://cdn.aws.robe.cz/v1/image/resize/9066aa8c0abcd3415b1f41a321d6bafd6bc0ddda?fit=contain&height=800&width=800&withoutEnlargement=false",
+      "title": "ColorWash 575 AT product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "fd9519c60c9127bcdbc63835ea1e7a8318139adf28386e01416a6fc33d375f7a"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.47,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Robe mechanical specification: width 470 mm, height 588 mm with head horizontal, depth 446 mm."
+    },
+    "height": {
+      "value": 0.588,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Robe mechanical specification: width 470 mm, height 588 mm with head horizontal, depth 446 mm."
+    },
+    "depth": {
+      "value": 0.446,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Robe mechanical specification: width 470 mm, height 588 mm with head horizontal, depth 446 mm."
+    },
+    "reference_pose": "Assembled, head horizontal; base level."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "575 W CMY wash with variable CTO, five-color wheel, beam shaper and 12°–34° standard zoom; optional optics extend to 60° or 87°.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "720 VA at 230 V / 50 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "30.5 kg EU model; 34.5 kg US model",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "USITT DMX-512",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "18-channel mode",
+      "footprint": 18,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "20-channel mode",
+      "footprint": 20,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "22-channel mode",
+      "footprint": 22,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "24-channel mode",
+      "footprint": 24,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Assembled, head horizontal; base level.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.23500001430511475,
+        0.0,
+        -0.22300000168615952
+      ],
+      "max": [
+        0.23500001430511475,
+        0.5879999399185181,
+        0.22299999318784103
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0003408374614082277
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.12822647392749786,
+          0.0003408374614082277
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.43130719661712646,
+          0.0003408374614082277
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.43130719661712646,
+          -0.16838307678699493
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.12822647392749786,
+          0.0003408374614082277
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.43130719661712646,
+          0.0003408374614082277
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.43130719661712646,
+          -0.17478178441524506
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Robe mechanical specification: width 470 mm, height 588 mm with head horizontal, depth 446 mm.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "4f6bd3383449e7406563ee395066c9d1bd89c46e22f2a4c0f4d397d422fa5523"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "08711a75da08b6ad3d8f4fe3103202a96832f38610d0746ce847f3fc8a25b1c7"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "d08c72db3dce13203a7db411936fab66a0cf309a100b4cd7d8d7e517cdfa0c95"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "6085ce8f5f4491d766331ea935042cf802aed1e5e0843c4cd6b42a799b38782b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "d006b9fc014040510770d166425009e9f511ee7f89273f602ea235c820a7b841"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "566f5b5d131c624dd028f2af6c53c57bed24f5031e784739943a5dcbbaddfc1c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "74c89ffb7cdef9f187d466d44f9ee34ebbb0974fd6215a0cba93b6e78e31ba75"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "f9e2a7fe94033d3058498cb933a9bae9f323b94ed3c26eaafb34af4ddd7a5e85"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "3f26080994ef04063c32d9a0a6ebfef840acfb8c5878874b667ba6fe17475ae7"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "db3a08f10795ccb4e0367c6c7999364bd75601ed610dd9f660fc96343e441425"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "9c575181162892ed8440cec46b76112c3286e127303fb10ad15b32baae4dd6b6",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 1,
+      "body_style": "575 W discharge wash moving head",
+      "notes": "Keep optional wide-angle lens modules separate from standard body envelope.",
+      "fresnel": true,
+      "head_depth": 0.72,
+      "base_height": 0.22
+    },
+    "mesh_count": 82,
+    "triangle_count": 26200,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "024a2e7ff6801ec55da74a343e9baf0405f595439ab9c70aaa6229efa79c6e28",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

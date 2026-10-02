@@ -502,6 +502,51 @@
     "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
   },
   {
+    "id": "adj/entour-venue",
+    "name": "Entour Venue",
+    "manufacturer": "ADJ",
+    "family": "hazer",
+    "resource": "FixtureAssets/Catalog/adj/entour-venue/fixture.usdz",
+    "sha256": "5faddd237fdac85f73fe2a7a70a75d082ebfe14b8d4b5987a9659bff5fe8feb7",
+    "boundsMin": [
+      -0.19699999690055847,
+      0.0,
+      -0.2170000015757978
+    ],
+    "boundsMax": [
+      0.19699999690055847,
+      0.2529999911785126,
+      0.21699999878183007
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body"
+        ],
+        "pivot": [
+          0.0,
+          0.16271783411502838,
+          0.007409936282783747
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative. Visual correction pending: The exposed fluid-canister bay and lower outlet assembly are not sufficiently faithful to the product photograph; these components need revision."
+  },
+  {
     "id": "adj/focus-flex-l7",
     "name": "Focus Flex L7",
     "manufacturer": "ADJ",
@@ -1341,6 +1386,73 @@
     "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
   },
   {
+    "id": "adj/x-move-laser",
+    "name": "X-Move Laser",
+    "manufacturer": "ADJ",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/adj/x-move-laser/fixture.usdz",
+    "sha256": "862b5c05d4be0e079200b9d0128645c5bd4591977d3caf904e46945b13381175",
+    "boundsMin": [
+      -0.0949999988079071,
+      0.0,
+      -0.10250000096857548
+    ],
+    "boundsMax": [
+      0.0949999988079071,
+      0.2849999964237213,
+      0.10249999724328518
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.04560000076889992,
+          0.0020308177918195724
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.2222999930381775,
+          0.0020308177918195724
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
     "id": "altman-lighting/altman-par64-al",
     "name": "Altman PAR64-AL",
     "manufacturer": "Altman Lighting",
@@ -1459,6 +1571,161 @@
     "notes": "Static equipment model."
   },
   {
+    "id": "antari/b-200-bubble-machine",
+    "name": "B-200 Bubble Machine",
+    "manufacturer": "Antari",
+    "family": "bubble",
+    "resource": "FixtureAssets/Catalog/antari/b-200-bubble-machine/fixture.usdz",
+    "sha256": "ceb2806675bcf81b0364faca0ec3e6e2b03b7d2fa5641c081d02f7bd46f15ef6",
+    "boundsMin": [
+      -0.2540000081062317,
+      0.0,
+      -0.12549998686881736
+    ],
+    "boundsMax": [
+      0.2540000081062317,
+      0.39100003242492676,
+      0.12549997790483758
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body"
+        ],
+        "pivot": [
+          0.0,
+          0.15734407305717468,
+          0.0007875777664594352
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      },
+      {
+        "id": "rotor",
+        "label": "Bubble wheel speed",
+        "parent": "tilt",
+        "members": [
+          "/Fixture/Rotor"
+        ],
+        "pivot": [
+          0.0,
+          0.15734407305717468,
+          -0.02574697695672512
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 7,
+        "travel": 360,
+        "continuous": true,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "antari/f-1-fazer",
+    "name": "F-1 Fazer",
+    "manufacturer": "Antari",
+    "family": "hazer",
+    "resource": "FixtureAssets/Catalog/antari/f-1-fazer/fixture.usdz",
+    "sha256": "427dba31aa9aeafb299786913df798be57afa6cdc593d1bc4c850f50ebd33415",
+    "boundsMin": [
+      -0.13750000298023224,
+      0.0,
+      -0.3089999947696924
+    ],
+    "boundsMax": [
+      0.13750000298023224,
+      0.38200002908706665,
+      0.30899997614324093
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model. Visual correction pending: The prominent wedge-shaped housing and projecting outlet remain too box-like; the enclosure needs a model-specific silhouette revision."
+  },
+  {
+    "id": "antari/hz-1000-hazer",
+    "name": "HZ-1000 Hazer",
+    "manufacturer": "Antari",
+    "family": "hazer",
+    "resource": "FixtureAssets/Catalog/antari/hz-1000-hazer/fixture.usdz",
+    "sha256": "6a3eef08660ca2621759790ccdcc6df1b4a63e1f49b446cf8a4c7de5f0837837",
+    "boundsMin": [
+      -0.2549999952316284,
+      0.0,
+      -0.34499997925013304
+    ],
+    "boundsMax": [
+      0.2549999952316284,
+      0.6100000143051147,
+      0.34500001836568117
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model. Visual correction pending: The open upper assembly, sloped controls deck and caster base need a model-specific revision; the current closed-case approximation is not visually approved."
+  },
+  {
+    "id": "antari/hz-400-hazer",
+    "name": "HZ-400 Hazer",
+    "manufacturer": "Antari",
+    "family": "hazer",
+    "resource": "FixtureAssets/Catalog/antari/hz-400-hazer/fixture.usdz",
+    "sha256": "52f7aa6d5abdfc4e0311ca11a000f866834bd3efb02451efe62ad6143b3d7b4d",
+    "boundsMin": [
+      -0.1599999964237213,
+      0.0,
+      -0.2549999812617898
+    ],
+    "boundsMax": [
+      0.1599999964237213,
+      0.32499998807907104,
+      0.25499999430030584
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "antari/hz-500-hazer",
+    "name": "HZ-500 Hazer",
+    "manufacturer": "Antari",
+    "family": "hazer",
+    "resource": "FixtureAssets/Catalog/antari/hz-500-hazer/fixture.usdz",
+    "sha256": "45990c5e38c9b3ce4937aa5cf79ff5bbf9101c821879a83c547e083db3fc5673",
+    "boundsMin": [
+      -0.1875,
+      0.0,
+      -0.25749997422099113
+    ],
+    "boundsMax": [
+      0.1875,
+      0.35499998927116394,
+      0.2575000114738941
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
     "id": "antari/m-9-jet-fog-machine",
     "name": "M-9 Jet Fog Machine",
     "manufacturer": "Antari",
@@ -1479,6 +1746,98 @@
     "emitters": [],
     "headAim": false,
     "notes": "Static equipment model."
+  },
+  {
+    "id": "antari/s-100x-snow-machine",
+    "name": "S-100X Snow Machine",
+    "manufacturer": "Antari",
+    "family": "snow",
+    "resource": "FixtureAssets/Catalog/antari/s-100x-snow-machine/fixture.usdz",
+    "sha256": "7eba88c45d6acfe374e5746960513ae2875df1b1415cf1b50a192a1edb1e8b0c",
+    "boundsMin": [
+      -0.18250000476837158,
+      0.0,
+      -0.2524999976158142
+    ],
+    "boundsMax": [
+      0.18250000476837158,
+      0.4090000092983246,
+      0.25249999947845936
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Output"
+        ],
+        "pivot": [
+          0.0,
+          0.1728169173002243,
+          0.024563686922192574
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "antari/s-200x-snow-machine",
+    "name": "S-200X Snow Machine",
+    "manufacturer": "Antari",
+    "family": "snow",
+    "resource": "FixtureAssets/Catalog/antari/s-200x-snow-machine/fixture.usdz",
+    "sha256": "4a0a2837faa250d9b9c0375a43659a87054a51c1b6735bb10c97043533058e52",
+    "boundsMin": [
+      -0.18250000476837158,
+      0.0,
+      -0.2524999976158142
+    ],
+    "boundsMax": [
+      0.18250000476837158,
+      0.4090000092983246,
+      0.25249999947845936
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Output"
+        ],
+        "pivot": [
+          0.0,
+          0.1728169173002243,
+          0.024563686922192574
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
   },
   {
     "id": "antari/s-500-snow-machine",
@@ -1503,6 +1862,74 @@
     "notes": "Static equipment model."
   },
   {
+    "id": "antari/sw-250-snow-machine",
+    "name": "SW-250 Snow Machine",
+    "manufacturer": "Antari",
+    "family": "snow",
+    "resource": "FixtureAssets/Catalog/antari/sw-250-snow-machine/fixture.usdz",
+    "sha256": "cf52dde5913e1410add93cebd328c41f74b3063e3e4b1ed2f54758691a408231",
+    "boundsMin": [
+      -0.18250000476837158,
+      0.0,
+      -0.2694999873638153
+    ],
+    "boundsMax": [
+      0.18250000476837158,
+      0.4090000092983246,
+      0.2694999948143959
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Output"
+        ],
+        "pivot": [
+          0.0,
+          0.1728169173002243,
+          0.026454098522663116
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "antari/w-101-wireless-bubble-machine",
+    "name": "W-101 Wireless Bubble Machine",
+    "manufacturer": "Antari",
+    "family": "bubble",
+    "resource": "FixtureAssets/Catalog/antari/w-101-wireless-bubble-machine/fixture.usdz",
+    "sha256": "d59c88f19b737d2b58e694a73fd9d6c866e5fcd5d7d02c787af9822f033fe717",
+    "boundsMin": [
+      -0.13199999928474426,
+      0.0,
+      -0.17500000447034836
+    ],
+    "boundsMax": [
+      0.13199999928474426,
+      0.28999999165534973,
+      0.17500001937150955
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
     "id": "antari/z-1000iii-fog-machine",
     "name": "Z-1000III Fog Machine",
     "manufacturer": "Antari",
@@ -1518,6 +1945,96 @@
       0.1404999941587448,
       0.265999972820282,
       0.21649999916553497
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "antari/z-1200iii-fog-machine",
+    "name": "Z-1200III Fog Machine",
+    "manufacturer": "Antari",
+    "family": "fogger",
+    "resource": "FixtureAssets/Catalog/antari/z-1200iii-fog-machine/fixture.usdz",
+    "sha256": "101fd59a9fe3dfee9f7fce756589dd8b2e163584b37a955465c32d7f0c8b80f6",
+    "boundsMin": [
+      -0.1599999964237213,
+      0.0,
+      -0.2290000021457672
+    ],
+    "boundsMax": [
+      0.1599999964237213,
+      0.32600003480911255,
+      0.22900001145899296
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Output"
+        ],
+        "pivot": [
+          0.0,
+          0.13774649798870087,
+          0.003331640735268593
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "antari/z-1500iii-fog-machine",
+    "name": "Z-1500III Fog Machine",
+    "manufacturer": "Antari",
+    "family": "fogger",
+    "resource": "FixtureAssets/Catalog/antari/z-1500iii-fog-machine/fixture.usdz",
+    "sha256": "3f4ae94101d65674ddb41aaf22848340d93282d732b9ad1a24cf0141a7aace75",
+    "boundsMin": [
+      -0.11750000715255737,
+      0.0,
+      -0.3369999825954437
+    ],
+    "boundsMax": [
+      0.11750000715255737,
+      0.27799999713897705,
+      0.3369999984279275
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "antari/z-3000iii-fog-machine",
+    "name": "Z-3000III Fog Machine",
+    "manufacturer": "Antari",
+    "family": "fogger",
+    "resource": "FixtureAssets/Catalog/antari/z-3000iii-fog-machine/fixture.usdz",
+    "sha256": "ff8cdbe67ee1a46116dfc0b9eda51e9a4d6f1deec73f00130e7860e6387eb720",
+    "boundsMin": [
+      -0.13750000298023224,
+      0.0,
+      -0.35600000619888306
+    ],
+    "boundsMax": [
+      0.13750000298023224,
+      0.27799999713897705,
+      0.35600001690909266
     ],
     "joints": [],
     "emitters": [],
@@ -4692,6 +5209,51 @@
       }
     ],
     "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "chauvet-dj/scorpion-dual-rgb",
+    "name": "Scorpion Dual RGB",
+    "manufacturer": "CHAUVET DJ",
+    "family": "laser",
+    "resource": "FixtureAssets/Catalog/chauvet-dj/scorpion-dual-rgb/fixture.usdz",
+    "sha256": "f4776a7c93e222e17fe63a2bc02361301a3ef70e280d7fb40fef9325c113bdba",
+    "boundsMin": [
+      -0.10799999535083771,
+      0.0,
+      -0.0804999977699481
+    ],
+    "boundsMax": [
+      0.10799999535083771,
+      0.17949999868869781,
+      0.08049999322975054
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body"
+        ],
+        "pivot": [
+          0.0,
+          0.1300201267004013,
+          0.0005360111244954169
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
     "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
   },
   {
@@ -10831,6 +11393,94 @@
     "notes": "Static equipment model."
   },
   {
+    "id": "le-maitre/g300",
+    "name": "G300",
+    "manufacturer": "Le Maitre",
+    "family": "fogger",
+    "resource": "FixtureAssets/Catalog/le-maitre/g300/fixture.usdz",
+    "sha256": "065a00dccdfe294bb1add34fa21906fdcd937af7bca8ee6fb36848109dcd87b7",
+    "boundsMin": [
+      -0.3050000071525574,
+      0.0,
+      -0.14499999582767487
+    ],
+    "boundsMax": [
+      0.3050000071525574,
+      0.25999999046325684,
+      0.14499999303370714
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model. Visual correction pending: The available reference is an operating-effects photograph and the current silver enclosure/bracket approximation does not match the black product housing; a clearer product still and model-specific shell are needed."
+  },
+  {
+    "id": "le-maitre/gforce-3",
+    "name": "GForce 3",
+    "manufacturer": "Le Maitre",
+    "family": "fogger",
+    "resource": "FixtureAssets/Catalog/le-maitre/gforce-3/fixture.usdz",
+    "sha256": "59175dcf04250a38be49f24e03dea932e221293769ec2c95940ef704c1d59414",
+    "boundsMin": [
+      -0.13500000536441803,
+      0.0,
+      -0.2749999761581421
+    ],
+    "boundsMax": [
+      0.13500000536441803,
+      0.4300000071525574,
+      0.2750000022351742
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model. Visual correction pending: The available reference is an operating-effects photograph and the current silver enclosure/bracket approximation does not match the black product housing; a clearer product still and model-specific shell are needed."
+  },
+  {
+    "id": "look-solutions/tiny-s",
+    "name": "Tiny S",
+    "manufacturer": "Look Solutions",
+    "family": "fogger",
+    "resource": "FixtureAssets/Catalog/look-solutions/tiny-s/fixture.usdz",
+    "sha256": "4a7b32d0d888d143a62dd8644eeb92fcaebee52764803aa709b25c88addc01c7",
+    "boundsMin": [
+      -0.02550000138580799,
+      0.0,
+      -0.0514999961014837
+    ],
+    "boundsMax": [
+      0.02550000138580799,
+      0.03499999869382009,
+      0.05150000029243529
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "look-solutions/unique-2-1",
+    "name": "Unique 2.1",
+    "manufacturer": "Look Solutions",
+    "family": "hazer",
+    "resource": "FixtureAssets/Catalog/look-solutions/unique-2-1/fixture.usdz",
+    "sha256": "835fdb59425a96cc6cbd29e561af29f02b0a71a927a8fa19d331c523f7cb4baf",
+    "boundsMin": [
+      -0.1250000149011612,
+      0.0,
+      -0.23500001057982445
+    ],
+    "boundsMax": [
+      0.1250000149011612,
+      0.25,
+      0.23499998822808266
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
     "id": "magic-fx/co2-bottle-to-hose-connector",
     "name": "CO2 Bottle To Hose Connector",
     "manufacturer": "MAGIC FX",
@@ -11057,6 +11707,168 @@
     ],
     "headAim": false,
     "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "martin-professional-harman/mac-2000-profile",
+    "name": "MAC 2000 Profile",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/mac-2000-profile/fixture.usdz",
+    "sha256": "90eecb75e1e6dd4521254bdda942523d9ea48f8942c7cfd0121fd5dde02db313",
+    "boundsMin": [
+      -0.24500000476837158,
+      0.0,
+      -0.20400000584777445
+    ],
+    "boundsMax": [
+      0.24500000476837158,
+      0.7429999709129333,
+      0.20400000142399222
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.1188800036907196,
+          0.0002873592311516404
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5813000202178955,
+          0.0002873592311516404
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5813000202178955,
+          -0.18815788626670837
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative. Visual correction pending: The sourced head-up envelope is currently represented by a forward-facing neutral head; exact neutral-pose proportions need verification against the dimensional drawing."
+  },
+  {
+    "id": "martin-professional-harman/mac-2000-wash",
+    "name": "MAC 2000 Wash",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/mac-2000-wash/fixture.usdz",
+    "sha256": "eee654d39878cfc5e7948a5bbef8259ebc08fbc3c7a786c8564e46fcf4a12b6e",
+    "boundsMin": [
+      -0.24500000476837158,
+      0.0,
+      -0.20400000584777445
+    ],
+    "boundsMax": [
+      0.24500000476837158,
+      0.75,
+      0.20400000142399222
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.11912675201892853,
+          0.0002873592311516404
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.584018886089325,
+          0.0002873592311516404
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.584018886089325,
+          -0.11056278645992279
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative. Visual correction pending: The sourced head-up envelope is currently represented by a forward-facing neutral head; exact neutral-pose proportions need verification against the dimensional drawing."
   },
   {
     "id": "martin-professional-harman/mac-aura",
@@ -12355,6 +13167,28 @@
     "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
   },
   {
+    "id": "mdg/atmosphere-aps",
+    "name": "ATMOSPHERE APS",
+    "manufacturer": "MDG",
+    "family": "hazer",
+    "resource": "FixtureAssets/Catalog/mdg/atmosphere-aps/fixture.usdz",
+    "sha256": "a08f5467a1f0701a41d86e92d0d6b7ce49dfe833f9aa740a83ba045192b5f84f",
+    "boundsMin": [
+      -0.08999999612569809,
+      0.0,
+      -0.3424999862909317
+    ],
+    "boundsMax": [
+      0.08999999612569809,
+      0.3000000147148967,
+      0.3425000160932541
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
     "id": "mdg/atmosphere-aps-haze-generator",
     "name": "ATMOSPHERE APS Haze Generator",
     "manufacturer": "MDG",
@@ -12370,6 +13204,28 @@
       0.08999999612569809,
       0.3000000147148967,
       0.3425000160932541
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "mdg/mse1",
+    "name": "MSe1",
+    "manufacturer": "MDG",
+    "family": "fogger",
+    "resource": "FixtureAssets/Catalog/mdg/mse1/fixture.usdz",
+    "sha256": "8904fc26ab3981a155cadfb9b6d81066fe6993528eb25de1abaa33164422e8ed",
+    "boundsMin": [
+      -0.1525000035762787,
+      0.0,
+      -0.11450000433251262
+    ],
+    "boundsMax": [
+      0.1525000035762787,
+      0.3560000021243468,
+      0.11450000526383519
     ],
     "joints": [],
     "emitters": [],
@@ -12534,6 +13390,249 @@
           0.0,
           0.5023699998855591,
           -0.10559646785259247
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "robe-lighting/colorspot-250-at",
+    "name": "ColorSpot 250 AT",
+    "manufacturer": "ROBE Lighting",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/robe-lighting/colorspot-250-at/fixture.usdz",
+    "sha256": "90cf08d1c72f6f648e0a2bc74f863711aed699163fdcff6a7c403e1a92089953",
+    "boundsMin": [
+      -0.2095000147819519,
+      0.0,
+      -0.2190000223054085
+    ],
+    "boundsMax": [
+      0.2095000147819519,
+      0.49399998784065247,
+      0.21900001596077345
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.10868000239133835,
+          0.00047453175648115575
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.36555999517440796,
+          0.00047453175648115575
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.36555999517440796,
+          -0.20254920423030853
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "robe-lighting/colorwash-250-at",
+    "name": "ColorWash 250 AT",
+    "manufacturer": "ROBE Lighting",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/robe-lighting/colorwash-250-at/fixture.usdz",
+    "sha256": "161bf5727dccffd70231cbdb540bd6752382a7b0b497bcf7270243ce17915859",
+    "boundsMin": [
+      -0.2095000147819519,
+      0.0,
+      -0.2190000223054085
+    ],
+    "boundsMax": [
+      0.2095000147819519,
+      0.5130000114440918,
+      0.21900001596077345
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.11187107115983963,
+          0.00047453175648115575
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.3762935698032379,
+          0.00047453175648115575
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.3762935698032379,
+          -0.17149852216243744
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "robe-lighting/colorwash-575-at",
+    "name": "ColorWash 575 AT",
+    "manufacturer": "ROBE Lighting",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/robe-lighting/colorwash-575-at/fixture.usdz",
+    "sha256": "08711a75da08b6ad3d8f4fe3103202a96832f38610d0746ce847f3fc8a25b1c7",
+    "boundsMin": [
+      -0.23500001430511475,
+      0.0,
+      -0.22300000168615952
+    ],
+    "boundsMax": [
+      0.23500001430511475,
+      0.5879999399185181,
+      0.22299999318784103
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.12822647392749786,
+          0.0003408374614082277
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.43130719661712646,
+          0.0003408374614082277
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.43130719661712646,
+          -0.17478178441524506
         ],
         "axis": [
           0,
@@ -14306,6 +15405,138 @@
     ],
     "headAim": true,
     "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "showven/sparkular",
+    "name": "SPARKULAR",
+    "manufacturer": "SHOWVEN",
+    "family": "spark",
+    "resource": "FixtureAssets/Catalog/showven/sparkular/fixture.usdz",
+    "sha256": "bcbe4870b53da3aac399c80bc76b8965acdcea52c0370c496d9f6311762bad56",
+    "boundsMin": [
+      -0.10899999737739563,
+      0.0,
+      -0.09999999403953552
+    ],
+    "boundsMax": [
+      0.10899999737739563,
+      0.30500003695487976,
+      0.09999999403953552
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "showven/sparkular-cyclone-ii",
+    "name": "SPARKULAR Cyclone II",
+    "manufacturer": "SHOWVEN",
+    "family": "spark",
+    "resource": "FixtureAssets/Catalog/showven/sparkular-cyclone-ii/fixture.usdz",
+    "sha256": "173b755b564df7f8a3a8ddd9bd17e6a0e6d40939b015e55ec11312d359e235c9",
+    "boundsMin": [
+      -0.17399999499320984,
+      0.0,
+      -0.15800000727176666
+    ],
+    "boundsMax": [
+      0.17399999499320984,
+      0.28999999165534973,
+      0.15800000727176666
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "showven/sparkular-jet-ii",
+    "name": "SPARKULAR JET II",
+    "manufacturer": "SHOWVEN",
+    "family": "spark",
+    "resource": "FixtureAssets/Catalog/showven/sparkular-jet-ii/fixture.usdz",
+    "sha256": "cb35dc15b79e11b778ec0dbde125881ba856c6a4f49bb450c11ef42b7a46e21b",
+    "boundsMin": [
+      -0.17399999499320984,
+      0.0,
+      -0.17399999499320984
+    ],
+    "boundsMax": [
+      0.17399999499320984,
+      0.28999999165534973,
+      0.17399999499320984
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "showven/sparkular-max",
+    "name": "SPARKULAR MAX",
+    "manufacturer": "SHOWVEN",
+    "family": "spark",
+    "resource": "FixtureAssets/Catalog/showven/sparkular-max/fixture.usdz",
+    "sha256": "78c98b9bab09b621a1ee8dbc31ca82c848312a561d04afe3d4d0a880094e4544",
+    "boundsMin": [
+      -0.21000000834465027,
+      0.0,
+      -0.22999998927116394
+    ],
+    "boundsMax": [
+      0.21000000834465027,
+      0.33000001311302185,
+      0.22999998927116394
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "showven/sparkular-mini",
+    "name": "SPARKULAR mini",
+    "manufacturer": "SHOWVEN",
+    "family": "spark",
+    "resource": "FixtureAssets/Catalog/showven/sparkular-mini/fixture.usdz",
+    "sha256": "5cd6e5badda5ac1bb4bfcc5b582e954a33063c008f06b89c009e632c4da8325f",
+    "boundsMin": [
+      -0.09000000357627869,
+      0.0,
+      -0.08399999886751175
+    ],
+    "boundsMax": [
+      0.09000000357627869,
+      0.22800001502037048,
+      0.08399999886751175
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "showven/sparkular-wp",
+    "name": "SPARKULAR WP",
+    "manufacturer": "SHOWVEN",
+    "family": "spark",
+    "resource": "FixtureAssets/Catalog/showven/sparkular-wp/fixture.usdz",
+    "sha256": "ec3ce197e019b40ab890550fd835f76e136f6a186cf366639266320d4cffa98d",
+    "boundsMin": [
+      -0.15850001573562622,
+      0.0,
+      -0.14350000023841858
+    ],
+    "boundsMax": [
+      0.15850001573562622,
+      0.29500001668930054,
+      0.14350000023841858
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
   },
   {
     "id": "vari-lite/vl10-beamwash",

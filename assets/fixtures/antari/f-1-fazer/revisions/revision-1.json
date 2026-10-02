@@ -1,0 +1,158 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "antari/f-1-fazer",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Antari",
+      "model": "F-1 Fazer",
+      "variant": "F-1",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://antari.com/products/f-1/",
+        "title": "F-1 Fazer product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": "current page; manual Rev.01",
+        "locator": "Specifications: dimensions, power, mass, output/control modes and 2.4 L capacity",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://antari.com/wp-content/uploads/F-1_01.jpg",
+        "title": "F-1 Fazer product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "40e9f3508d8e87355379a6829a61a67bbebd7d79b54cd70d5366ca4b1f1d477c"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.275,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 618/275/382 mm mapped to depth/width/height."
+      },
+      "height": {
+        "value": 0.382,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 618/275/382 mm mapped to depth/width/height."
+      },
+      "depth": {
+        "value": 0.618,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 618/275/382 mm mapped to depth/width/height."
+      },
+      "reference_pose": "Machine resting on feet, nozzle forward; optional wireless accessories excluded."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Dual purpose fog/faze with built-in air pump and self-cleaning feature; 2.4 L reservoir; 2-channel DMX; current successor/overhaul of X-310.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "800 W",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "14.1 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "manual",
+            "timer",
+            "optional wireless",
+            "optional W-DMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "2-channel mode",
+        "footprint": 2,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Machine resting on feet, nozzle forward; optional wireless accessories excluded.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer L/W/H = 618/275/382 mm mapped to depth/width/height.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "97b61df09e8ea5c948b5ca00c0c93ee34506c20bcad206ed75d972337bfff977"
+  },
+  "git_commit": "b54cf066890555aa4729a81cee9400883a874af3",
+  "note": "Initial research record before any generated model artifacts existed."
+}

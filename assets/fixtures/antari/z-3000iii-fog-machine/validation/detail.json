@@ -1,0 +1,60 @@
+{
+  "mesh_count": 62,
+  "triangle_count": 10712,
+  "geometry_sha256": "e48acb59268585014472be1dd9c2df40386bfe6a677db8f00af2b01021ab46af",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.09623076766729355,
+      -0.37563270330429077
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.11226923763751984,
+        0.004685442429035902
+      ]
+    },
+    {
+      "name": "output",
+      "prim_path": "/Fixture/Output",
+      "pivot_m": [
+        0.0,
+        0.09623076766729355,
+        -0.3469294607639313
+      ]
+    }
+  ],
+  "family": "fogger",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.163774847984314,
+    1.0078390836715698,
+    0.9615384936332703
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://antari.com/products/z-3000iii/",
+    "https://www.antari.com/ProductGuide/2026/2026ProductGuide.pdf",
+    "https://antari.com/wp-content/uploads/Z-3000III_01.jpg"
+  ]
+}

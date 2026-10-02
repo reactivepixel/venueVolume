@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "cf52dde5913e1410add93cebd328c41f74b3063e3e4b1ed2f54758691a408231",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "antari/sw-250-snow-machine",
+    "name": "SW-250 Snow Machine",
+    "manufacturer": "Antari",
+    "family": "snow",
+    "resource": "FixtureAssets/Catalog/antari/sw-250-snow-machine/fixture.usdz",
+    "sha256": "cf52dde5913e1410add93cebd328c41f74b3063e3e4b1ed2f54758691a408231",
+    "boundsMin": [
+      -0.18250000476837158,
+      0.0,
+      -0.2694999873638153
+    ],
+    "boundsMax": [
+      0.18250000476837158,
+      0.4090000092983246,
+      0.2694999948143959
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Output"
+        ],
+        "pivot": [
+          0.0,
+          0.1728169173002243,
+          0.026454098522663116
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

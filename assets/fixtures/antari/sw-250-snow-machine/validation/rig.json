@@ -1,0 +1,17 @@
+{
+  "id": "antari/sw-250-snow-machine",
+  "passed": true,
+  "source_usdz_sha256": "cf52dde5913e1410add93cebd328c41f74b3063e3e4b1ed2f54758691a408231",
+  "joints": 1,
+  "moving_meshes": 62,
+  "fixed_meshes": 9,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

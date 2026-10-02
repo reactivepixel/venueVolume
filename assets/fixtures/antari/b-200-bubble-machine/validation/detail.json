@@ -1,0 +1,69 @@
+{
+  "mesh_count": 95,
+  "triangle_count": 62588,
+  "geometry_sha256": "dc11d6792b6d57e6d037f69acc3754bf2beb85718ff928cedf25fb5f2e100a18",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.1652112901210785,
+      -0.1292317509651184
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.15734407305717468,
+        0.0007875777664594352
+      ]
+    },
+    {
+      "name": "rotor",
+      "prim_path": "/Fixture/Rotor",
+      "pivot_m": [
+        0.0,
+        0.15734407305717468,
+        -0.02574697695672512
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.15734407305717468,
+        0.0007875777664594352
+      ]
+    }
+  ],
+  "family": "bubble",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9813543558120728,
+    1.057153582572937,
+    1.0060362815856934
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://antari.com/products/b-200/",
+    "https://www.antari.com/DM/B/B-200/B-200.pdf",
+    "https://antari.com/wp-content/uploads/B-200-01.jpg"
+  ]
+}

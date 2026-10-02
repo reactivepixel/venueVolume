@@ -1,0 +1,51 @@
+{
+  "mesh_count": 33,
+  "triangle_count": 6204,
+  "geometry_sha256": "738035d062f4b7309683a001009581625ad761ebbd1014aeaaf176743ca7ba07",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.013489583507180214,
+      -0.050014059990644455
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.0007291674264706671,
+        0.002044432098045945
+      ]
+    }
+  ],
+  "family": "fogger",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9944234490394592,
+    1.0108444690704346,
+    1.0416667461395264
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.looksolutions.com/products/tiny_s/8.html",
+    "https://www.looksolutions.com/uploads/pdf/en_fr/bed_tinys_1e.pdf",
+    "https://www.looksolutions.com/uploads/produkte/191110-TinyS-007.jpg"
+  ]
+}

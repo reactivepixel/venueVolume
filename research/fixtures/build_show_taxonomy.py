@@ -86,9 +86,9 @@ def main():
     pending=json.loads((ROOT/'research/fixtures/taxonomy/import-backlog.json').read_text()) if (ROOT/'research/fixtures/taxonomy/import-backlog.json').exists() else []
     all_candidates=read_candidates()
     candidates={fid(r):r for r in all_candidates}
-    from expand_catalog import candidates as expansion_candidates, issues, LEDGER
+    from expand_catalog import candidates as expansion_candidates, issues, load_ledger
     expansion=expansion_candidates(); candidates.update(expansion)
-    ledger=json.loads(LEDGER.read_text()) if LEDGER.exists() else {}
+    ledger=load_ledger()
     packaged={fid(row) for row in rows}
     for ident,candidate in expansion.items():
         if ident in packaged:continue
@@ -117,7 +117,7 @@ def main():
     combined=[dict(row) for row in rows]
     for p in pending:
         candidate=candidates[p['id']];category=p['category_id']
-        combined.append({k:candidate[k] for k in ('name','model_number','manufacturer','type','subtype','url')}|{'data':json.dumps({'specifications':candidate['data'],'dimensions':candidate['dimensions'],'evidence':candidate['evidence'],'blocking_issue':p},ensure_ascii=False),'images':json.dumps(candidate['images']),'asset_state':'research_only','model_state':'not_built','category_id':category,'category_path':' > '.join(path(category)),'control_path':candidate['data'].get('control_path','See acquisition record'),'expansion_batch':'touring-dj-2026-10' if p['id'] in expansion else 'taxonomy','asset_blocker':p['reason']})
+        combined.append({k:candidate[k] for k in ('name','model_number','manufacturer','type','subtype','url')}|{'data':json.dumps({'specifications':candidate['data'],'dimensions':candidate['dimensions'],'evidence':candidate['evidence'],'blocking_issue':p},ensure_ascii=False),'images':json.dumps(candidate['images']),'asset_state':'research_only','model_state':'not_built','category_id':category,'category_path':' > '.join(path(category)),'control_path':candidate['data'].get('control_path','See acquisition record'),'expansion_batch':candidate.get('_batch','taxonomy'),'asset_blocker':p['reason']})
     for row in combined:
         candidate=candidates.get(fid(row),{})
         reference=candidate.get('reference_image_file') or candidate.get('image_file')

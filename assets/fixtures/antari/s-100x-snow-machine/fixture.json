@@ -1,0 +1,337 @@
+{
+  "schema_version": 1,
+  "id": "antari/s-100x-snow-machine",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Antari",
+    "model": "S-100X Snow Machine",
+    "variant": "S-100X",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://antari.com/products/s-100x/",
+      "title": "S-100X Snow Machine product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": "current product page",
+      "locator": "Current page: rated power, control/DMX, 5 L reservoir, dimensions and weight",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.antari.com/usermanual/S/S-100X/S-100X.pdf",
+      "title": "S-100X/S-200X User Manual",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": "Rev.05",
+      "locator": "English specifications and DMX sections: supported DMX512, one channel, 3-pin XLR; model-specific size and mass",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://www.antari.com/ProductGuide/2026/2026ProductGuide.pdf",
+      "title": "Antari 2026 Product Guide",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": "2026",
+      "locator": "S-100X panel identifies manual operation and a 3-pin interface; 3-pin specifies connector, not absence of DMX",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://antari.com/wp-content/uploads/S-100X_01.jpg",
+      "title": "S-100X Snow Machine product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "8b3551540247b14b246609c2a2ff4a3574cc6ea48e9fe95c1451b47a63854a9d"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.365,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 505/365/409 mm mapped to depth/width/height."
+    },
+    "height": {
+      "value": 0.409,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 505/365/409 mm mapped to depth/width/height."
+    },
+    "depth": {
+      "value": 0.505,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 505/365/409 mm mapped to depth/width/height."
+    },
+    "reference_pose": "Machine upright on body feet with snow outlet forward; optional floor bracket and hose excluded."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "5 L reservoir; SC-2 cable remote and hanging bracket included; current page lists a 1-channel DMX interface.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "880 W",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "11.0 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "manual",
+          "optional cable remote"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "1-channel mode",
+      "footprint": 1,
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Machine upright on body feet with snow outlet forward; optional floor bracket and hose excluded.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.18250000476837158,
+        0.0,
+        -0.2524999976158142
+      ],
+      "max": [
+        0.18250000476837158,
+        0.4090000092983246,
+        0.25249999947845936
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.1728169173002243,
+          0.024563686922192574
+        ]
+      },
+      {
+        "name": "output",
+        "prim_path": "/Fixture/Output",
+        "pivot_m": [
+          0.0,
+          0.14812877774238586,
+          -0.2017049789428711
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.1728169173002243,
+          0.024563686922192574
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer L/W/H = 505/365/409 mm mapped to depth/width/height.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "e1e1a162730f2bcf27824a419212ee1b14c8704c06aaf70548725685488287f7"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "7eba88c45d6acfe374e5746960513ae2875df1b1415cf1b50a192a1edb1e8b0c"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "e89b34a532eb309cdd95fbb95399698bfa8f252878accbabc25e97d788f4115b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "a996d518d798a0bfd4fd5aa3bcced83cf73fa01cb75066403ae0fb994b883002"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "217ffbfe5d3fda7358f569959ee418dd1ccc7ad39323c6a16f7ea00cb08ed68c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "4ddc9cb32758385a585608b8cda761da4f657965fe7d93e9b4f051d24bce02cc"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "48c6726b089e66e6c45a72d91a2dd363cc81c7da7595e0f604cfe30afa4231c9"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "4d5a8dbf6c26c25a266b38b235e9642095831ba3de19c4ffc7792f37354658fe"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "1a811ab383b73011b76c86ffcfea67a0ffad080fbe9dc5e3af341e452dbcc8ae"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "560299f247438cf41850626c15e74f2a77be5e05e4fa3b9cd1c8e6e8981d4813"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.14812877774238586,
+          -0.22017590701580048
+        ],
+        "kind": "snow",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "a1e8c90f0da9a0fe2b585d0482f5b01e99c6e10cce2bf6fc640e2c789f77c1aa",
+    "generator_dependency": {
+      "file": "../../_shared/effects_fixture.py",
+      "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+    },
+    "profile": {
+      "family": "snow",
+      "body_style": "compact rectangular snow machine with front outlet, top controls and hanging bracket",
+      "notes": "Distinguish current S-100X from legacy S-100II; dimensions and fluid/control data match current X-series page.",
+      "generator": "effects",
+      "enclosure": "silver_machine",
+      "hanging_bracket": true,
+      "manual_equipment_tilt": true,
+      "output_kind": "snow"
+    },
+    "mesh_count": 71,
+    "triangle_count": 12276,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/effects_fixture.py",
+        "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      },
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed snow geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "90f19c1a45f2407f972617fe31c249de22a8c1a7b3a453239ee2619ad599a065",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "effects.snow",
+    "category_path": [
+      "Special-effects appliances",
+      "Snow / foam-look machine"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

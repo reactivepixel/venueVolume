@@ -1,0 +1,128 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "robe-lighting/colorwash-250-at",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Robe Lighting",
+      "model": "ColorWash 250 AT",
+      "variant": "ColorWash 250 AT",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.robe.cz/res/downloads/catalogues/ColorWash_250_AT_leaflet.pdf",
+        "title": "ColorWash 250 AT leaflet",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Technical diagram dimensions; product overview and optical/control features; official product still linked from manufacturer product page",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://cdn.aws.robe.cz/v1/image/resize/e6c804d7a25ab0d1bd33dbd3974a44d1ccbb1b0f?fit=cover&height=452&width=452&withoutEnlargement=false",
+        "title": "ColorWash 250 AT product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "7d911eaa90b62415b81c66293b4992f6a32b97d80c12f3bd3f05357381be1ff7"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.419,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Official manufacturer leaflet drawing gives front width 419 mm and height 513 mm head horizontal / 502 mm in alternate pose; side depth 438 mm. Used the maximum stated height."
+      },
+      "height": {
+        "value": 0.513,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Official manufacturer leaflet drawing gives front width 419 mm and height 513 mm head horizontal / 502 mm in alternate pose; side depth 438 mm. Used the maximum stated height."
+      },
+      "depth": {
+        "value": 0.438,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Official manufacturer leaflet drawing gives front width 419 mm and height 513 mm head horizontal / 502 mm in alternate pose; side depth 438 mm. Used the maximum stated height."
+      },
+      "reference_pose": "Assembled; maximum 513 mm head-horizontal envelope; base level."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "MSD 250/2 wash; motorized zoom 8°–32°; CMY color mixing, six-color wheel, frost and beam shaper.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "USITT DMX-512"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Assembled; maximum 513 mm head-horizontal envelope; base level.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Official manufacturer leaflet drawing gives front width 419 mm and height 513 mm head horizontal / 502 mm in alternate pose; side depth 438 mm. Used the maximum stated height.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "564cdae413e08a4670e53ebf500925b3eb8ac506e57905d008b981fd9d7806da"
+  },
+  "git_commit": "5fd02c096c4e99645d94ef35db1a87b3ec29f23e",
+  "note": "Initial research record before any generated model artifacts existed."
+}

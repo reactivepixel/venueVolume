@@ -2,6 +2,21 @@ import Foundation
 import Testing
 @testable import VenueVolumeCore
 
+@Test func effectsUseVisualMechanismsWithoutSpotlightEmission() throws {
+    let bubble = try #require(FixtureCatalog.asset("antari/b-200-bubble-machine"))
+    #expect(bubble.joints.map(\.id) == ["tilt", "rotor"])
+    #expect(bubble.joints[0].mode == "manual")
+    #expect(bubble.joints[1].parent == "tilt" && bubble.joints[1].continuous)
+    #expect(bubble.emitters.isEmpty && !bubble.headAim)
+    let laser = try #require(FixtureCatalog.asset("adj/x-move-laser"))
+    #expect(laser.joints.map(\.id) == ["pan", "tilt"])
+    #expect(laser.emitters.isEmpty && !laser.headAim)
+    for id in ["showven/sparkular-mini", "showven/sparkular", "chauvet-dj/scorpion-dual-rgb"] {
+        let effect = try #require(FixtureCatalog.asset(id))
+        #expect(effect.emitters.isEmpty && !effect.headAim)
+    }
+}
+
 @Test func catalogControlsAreAddressableAndNeutralAtRest() throws {
     #expect(FixtureCatalog.all.count >= 127)
     #expect(Set(FixtureCatalog.all.map(\.id)).count == FixtureCatalog.all.count)

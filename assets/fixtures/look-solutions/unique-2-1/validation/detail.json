@@ -1,0 +1,51 @@
+{
+  "mesh_count": 48,
+  "triangle_count": 8640,
+  "geometry_sha256": "cffb518edb0c6cd947179259d3a10b0771b37aafcf0940a59810ebbde680c733",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.15228426456451416,
+      -0.2480762004852295
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.025666985660791397
+      ]
+    }
+  ],
+  "family": "hazer",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0373444557189941,
+    1.142024040222168,
+    1.0152283906936646
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.looksolutions.com/products/unique_2_1/8.html",
+    "https://www.looksolutions.com/uploads/pdf/en_fr/info_unique21_e.pdf",
+    "https://www.looksolutions.com/uploads/produkte/Unique2-1-Side.jpg"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "f4776a7c93e222e17fe63a2bc02361301a3ef70e280d7fb40fef9325c113bdba",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "chauvet-dj/scorpion-dual-rgb",
+    "name": "Scorpion Dual RGB",
+    "manufacturer": "CHAUVET DJ",
+    "family": "laser",
+    "resource": "FixtureAssets/Catalog/chauvet-dj/scorpion-dual-rgb/fixture.usdz",
+    "sha256": "f4776a7c93e222e17fe63a2bc02361301a3ef70e280d7fb40fef9325c113bdba",
+    "boundsMin": [
+      -0.10799999535083771,
+      0.0,
+      -0.0804999977699481
+    ],
+    "boundsMax": [
+      0.10799999535083771,
+      0.17949999868869781,
+      0.08049999322975054
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body"
+        ],
+        "pivot": [
+          0.0,
+          0.1300201267004013,
+          0.0005360111244954169
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

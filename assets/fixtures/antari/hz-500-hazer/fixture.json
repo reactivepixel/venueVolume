@@ -1,0 +1,293 @@
+{
+  "schema_version": 1,
+  "id": "antari/hz-500-hazer",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Antari",
+    "model": "HZ-500 Hazer",
+    "variant": "HZ-500",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://antari.com/products/hz-500/",
+      "title": "HZ-500 Hazer product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": "current web product page; manual Rev.06",
+      "locator": "Specifications: L515 W375 H355 mm, mass, power, reservoir, fluid family and DMX",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://antari.com/wp-content/uploads/HZ-500_01.jpg",
+      "title": "HZ-500 Hazer product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "287ddb3c8dfd634395f68498f6e044bba13014344ea982433567f719ae6e69d1"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.375,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 515/375/355 mm, mapped to depth/width/height for the integrated case in its normal upright pose. Listed envelope is interpreted as the closed case; image shows the access hatch open and may make the pictured assembly taller."
+    },
+    "height": {
+      "value": 0.355,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 515/375/355 mm, mapped to depth/width/height for the integrated case in its normal upright pose. Listed envelope is interpreted as the closed case; image shows the access hatch open and may make the pictured assembly taller."
+    },
+    "depth": {
+      "value": 0.515,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 515/375/355 mm, mapped to depth/width/height for the integrated case in its normal upright pose. Listed envelope is interpreted as the closed case; image shows the access hatch open and may make the pictured assembly taller."
+    },
+    "reference_pose": "Integrated case upright with front access hatch open as shown in the official still; external shipping carton excluded."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Hazer integrated in flight case; dual haze nozzles; 2.5 L reservoir; 1.1 ml/min listed fluid consumption at full output; compatible HZL/HZL-W fluids.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "400 W at 120 V; 480 W at 240 V",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "31.5 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "manual",
+          "timer"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "1-channel mode",
+      "footprint": 1,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Integrated case upright with front access hatch open as shown in the official still; external shipping carton excluded.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.1875,
+        0.0,
+        -0.25749997422099113
+      ],
+      "max": [
+        0.1875,
+        0.35499998927116394,
+        0.2575000114738941
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0004958300851285458,
+          0.006007988005876541
+        ]
+      },
+      {
+        "name": "output",
+        "prim_path": "/Fixture/Output",
+        "pivot_m": [
+          0.0,
+          0.3310489356517792,
+          0.006007988005876541
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer L/W/H = 515/375/355 mm, mapped to depth/width/height for the integrated case in its normal upright pose.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "ebaaabf285454b5027a6d81aef61fffe769d91eb42b188f65de20179ffc21f5c"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "45990c5e38c9b3ce4937aa5cf79ff5bbf9101c821879a83c547e083db3fc5673"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "3b104ca82997a6109ca6dc073e7a9df6c60c4e422f91d17e08bb6249384315f8"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "4715a793761586a23c49be7ba1e044c422ce2ffc19517d22de5d26a7f62ca873"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "ed28f5a8b91132ae5d7a44a8b8b4f29a7c808eb958840063778562c6fd0ef26c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "d981e6aac695dbec4cfb5575cc229a36d139d6debe1eb65e8923f9a6daffba11"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "59937fc019a2cbc22610e97d57cce51709e75d64a9dff729866132ccba33fc16"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "da1cf75437996d73baed400daf93a1f21bd5d24383570b43f8d4680cfbdbdfdc"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "242d520c103c51a9801fee1342436579af1226c0c00b563ea26f429b56f5081c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "f54338bfee9257e2d849cbdd44bb78741dacc9e6da3ba49a9c510714b1342554"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.3310489356517792,
+          0.006007988005876541
+        ],
+        "kind": "haze",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "624bd1d3d31b66b151d4e650474b2b0bbdf938c8e945b7d5f95091a1521aaae9",
+    "generator_dependency": {
+      "file": "../../_shared/effects_fixture.py",
+      "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+    },
+    "profile": {
+      "family": "hazer",
+      "body_style": "black flight-case hazer with dual outlets and case latches",
+      "notes": "The built-in case is part of the machine enclosure, distinct from shipping case dimensions. Product image shows the small square access hatch open; preserve this visual detail while using the closed-case listed envelope.",
+      "generator": "effects",
+      "enclosure": "road_case",
+      "outlet_count": 2,
+      "output_kind": "haze"
+    },
+    "mesh_count": 37,
+    "triangle_count": 6956,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/effects_fixture.py",
+        "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      },
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed hazer geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "3b399cbe2dafbe1d0e3e0310b58fd0d926f4968acd06b5f9d3d2c20d3ae21d62",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "atmosphere.haze_oil",
+    "category_path": [
+      "Atmosphere and air movement",
+      "Oil-based / atomizing hazer"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

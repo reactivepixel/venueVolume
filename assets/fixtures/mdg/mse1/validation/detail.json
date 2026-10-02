@@ -1,0 +1,50 @@
+{
+  "mesh_count": 11,
+  "triangle_count": 1652,
+  "geometry_sha256": "776af7efab179e5d3fbffe587b77d0e667ec84eac3f444a94a781bdde36db69b",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.08765828609466553,
+      0.11901387572288513
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.0017889480805024505,
+        0.006167147774249315
+      ]
+    }
+  ],
+  "family": "fogger",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0526316165924072,
+    0.9855608940124512,
+    1.0050251483917236
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.mdgfog.com/en/mse1-mse2",
+    "https://mdgfog.s3.ca-central-1.amazonaws.com/uploads/img/MSe1_Face.png"
+  ]
+}

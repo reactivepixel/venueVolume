@@ -1,0 +1,77 @@
+{
+  "mesh_count": 82,
+  "triangle_count": 26200,
+  "geometry_sha256": "87539ebe3807b42db2e277017b59418690bd48e81c04ddd047c0f23096128e95",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.3762935698032379,
+      -0.17149852216243744
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.00047453175648115575
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.11187107115983963,
+        0.00047453175648115575
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.3762935698032379,
+        0.00047453175648115575
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.3762935698032379,
+        -0.1652148813009262
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852217435836792,
+    1.0486979484558105,
+    0.9912375211715698
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.robe.cz/res/downloads/catalogues/ColorWash_250_AT_leaflet.pdf",
+    "https://cdn.aws.robe.cz/v1/image/resize/e6c804d7a25ab0d1bd33dbd3974a44d1ccbb1b0f?fit=contain&height=800&width=800&withoutEnlargement=false"
+  ]
+}

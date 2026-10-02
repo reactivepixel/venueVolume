@@ -1,0 +1,59 @@
+{
+  "mesh_count": 37,
+  "triangle_count": 6956,
+  "geometry_sha256": "3a5781030ccdf2fe80dd42e870f2c30904bfce1e918c751fe68082bcbca7e4dd",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.3310489356517792,
+      0.006007988005876541
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0004958300851285458,
+        0.006007988005876541
+      ]
+    },
+    {
+      "name": "output",
+      "prim_path": "/Fixture/Output",
+      "pivot_m": [
+        0.0,
+        0.3310489356517792,
+        0.006007988005876541
+      ]
+    }
+  ],
+  "family": "hazer",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.967117965221405,
+    0.9865332841873169,
+    0.9311355352401733
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://antari.com/products/hz-500/",
+    "https://antari.com/wp-content/uploads/HZ-500_01.jpg"
+  ]
+}

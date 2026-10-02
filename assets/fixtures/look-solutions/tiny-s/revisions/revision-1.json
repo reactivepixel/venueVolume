@@ -1,0 +1,163 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "look-solutions/tiny-s",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Look Solutions",
+      "model": "Tiny S",
+      "variant": "Tiny S",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.looksolutions.com/products/tiny_s/8.html",
+        "title": "Tiny S product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": "current Tiny S product page",
+        "locator": "Technical data: assembled dimensions, weight, battery, 5 ml reservoir and control",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.looksolutions.com/uploads/pdf/en_fr/bed_tinys_1e.pdf",
+        "title": "Tiny S Operating Manual",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": "manual rev 1",
+        "locator": "Technical table: 10.3 × 5.0 × 3.5 cm assembled dimensions",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.looksolutions.com/uploads/produkte/191110-TinyS-007.jpg",
+        "title": "Tiny S product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "05af3d2c7e717116abb9e80b365e76db91ff0cf772a050a5f8401f7ae9cbe116"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.051,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 103/51/35 mm for single-component current Tiny S including battery and reservoir."
+      },
+      "height": {
+        "value": 0.035,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 103/51/35 mm for single-component current Tiny S including battery and reservoir."
+      },
+      "depth": {
+        "value": 0.103,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 103/51/35 mm for single-component current Tiny S including battery and reservoir."
+      },
+      "reference_pose": "Handheld body with battery and fluid reservoir attached; transport case, remote and accessories excluded."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Handheld vaporizing fog generator; 5 ml integrated reservoir; tool-free detachable reservoir and battery; no DMX listed.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "30 W; 3.7 V/1500 mAh Li-ion battery",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "0.25 kg including battery and tank",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "manual button",
+            "cabled remote",
+            "radio remote"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Handheld body with battery and fluid reservoir attached; transport case, remote and accessories excluded.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer L/W/H = 103/51/35 mm for single-component current Tiny S including battery and reservoir.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "ffd1dff15f2dbff76d818d07a28feacd23ff7d5429f584760c8799d7b5ead96c"
+  },
+  "git_commit": "b54cf066890555aa4729a81cee9400883a874af3",
+  "note": "Initial research record before any generated model artifacts existed."
+}

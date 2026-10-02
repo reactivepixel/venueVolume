@@ -1,0 +1,59 @@
+{
+  "mesh_count": 208,
+  "triangle_count": 38144,
+  "geometry_sha256": "7fd58531f51dc8e1afe8aec81e005efe7daacf73ea7a13fd1f4dbfda727a62d6",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.058483973145484924,
+      0.29606884717941284,
+      -0.05621649697422981
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        -0.0
+      ]
+    },
+    {
+      "name": "output",
+      "prim_path": "/Fixture/Output",
+      "pivot_m": [
+        0.058483973145484924,
+        0.29310816526412964,
+        -0.05621649697422981
+      ]
+    }
+  ],
+  "family": "spark",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9710106253623962,
+    1.0309278964996338,
+    1.0036232471466064
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.showven.cn/product/sparkular-wp/",
+    "https://www.showven.cn/wp-content/uploads/2025/02/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260427154257_1569_1952-500x500.png"
+  ]
+}

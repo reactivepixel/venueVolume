@@ -1,0 +1,175 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "chauvet-dj/scorpion-dual-rgb",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "CHAUVET DJ",
+      "model": "Scorpion Dual RGB",
+      "variant": "Scorpion Dual RGB",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.chauvetdj.com/products/scorpion-dual-rgb/",
+        "title": "Scorpion Dual RGB product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications: DMX, power, mass, dimensions, laser sources, mount",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.chauvetdj.com/wp-content/uploads/2019/01/Scorpion_Dual_RGB_UM_Rev5_ML3.pdf",
+        "title": "Scorpion Dual RGB User Manual Rev. 5",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Product dimensions drawing, p. 6; product overview, p. 5",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.chauvetdj.com/wp-content/uploads/2018/12/Scorpion-Dual-RGB-Effect-1.jpg",
+        "title": "Scorpion Dual RGB product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "5c1e9e691c4288b70efd059c8e94842d01b77598dbda11b3ea3c8ff145a924ee"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.216,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manual product dimension drawing: 216 mm wide, 179.5 mm high, 161 mm deep; assembled housing on support feet."
+      },
+      "height": {
+        "value": 0.1795,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manual product dimension drawing: 216 mm wide, 179.5 mm high, 161 mm deep; assembled housing on support feet."
+      },
+      "depth": {
+        "value": 0.161,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manual product dimension drawing: 216 mm wide, 179.5 mm high, 161 mm deep; assembled housing on support feet."
+      },
+      "reference_pose": "Base resting on feet; laser apertures forward."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Dual mirror output; RGB diode wavelengths/powers 638 nm/30 mW, 520 nm/20 mW, 450 nm/50 mW; M12 bracket mounting; no ILDA input documented.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "19 W at 230 V; 20 W at 120 V",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "1.7 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX (10-channel mode)",
+            "IR remote (optional IRC-6)",
+            "standalone",
+            "master/slave"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "10-channel mode",
+        "footprint": 10,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base resting on feet; laser apertures forward.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manual product dimension drawing: 216 mm wide, 179.5 mm high, 161 mm deep; assembled housing on support feet.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "d10d117cecf24f06ba4cb368a0bb8044eb3eb8f0f092f8c7c098e0b1f269b43b"
+  },
+  "git_commit": "e38251487abca51f9e65385abff756975f2e448d",
+  "note": "Initial research record before any generated model artifacts existed."
+}

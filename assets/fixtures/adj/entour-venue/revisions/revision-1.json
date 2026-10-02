@@ -1,0 +1,174 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "adj/entour-venue",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "ADJ",
+      "model": "Entour Venue",
+      "variant": "ENT610",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.adj.com/products/entour-venue",
+        "title": "Entour Venue product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": "current product page",
+        "locator": "Specifications: SKU family, DMX personalities, dimensions, mass, power and external reservoir",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.adj.com/cdn/shop/files/8240dffd98db7012ef4f30d6239ba76cd5f16666_ENT610__IMG__001__e3470b1106c0.jpg?v=1776712354&width=850",
+        "title": "Entour Venue product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "6888eeaa43ff37434048f932af321d04536c72612756ee1290983cc21d94f4e8"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.394,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "ADJ lists L × W × H = 434 × 394 × 253 mm; external anti-spill fluid reservoir and bracket are not separately dimensioned."
+      },
+      "height": {
+        "value": 0.253,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "ADJ lists L × W × H = 434 × 394 × 253 mm; external anti-spill fluid reservoir and bracket are not separately dimensioned."
+      },
+      "depth": {
+        "value": 0.434,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "ADJ lists L × W × H = 434 × 394 × 253 mm; external anti-spill fluid reservoir and bracket are not separately dimensioned."
+      },
+      "reference_pose": "Machine resting on feet, adjustable nozzle facing forward, loose remote/fluid container excluded."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Mobile water-based faze machine; three DMX personalities; 5.6 L external anti-spill fluid tank; adjustable metal outlet nozzle and hanging bracket.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "1500 W",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "10.6 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "manual",
+            "timer"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "1-channel mode",
+        "footprint": 1,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "2-channel mode",
+        "footprint": 2,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "4-channel mode",
+        "footprint": 4,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Machine resting on feet, adjustable nozzle facing forward, loose remote/fluid container excluded.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "ADJ lists L × W × H = 434 × 394 × 253 mm; external anti-spill fluid reservoir and bracket are not separately dimensioned.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "bff12fa5a4a038b1a65df786abbf9f5a5d67f3643c62a522b7b2e8d2ef36fdad"
+  },
+  "git_commit": "b54cf066890555aa4729a81cee9400883a874af3",
+  "note": "Initial research record before any generated model artifacts existed."
+}

@@ -1,0 +1,17 @@
+{
+  "id": "robe-lighting/colorspot-250-at",
+  "passed": true,
+  "source_usdz_sha256": "90cf08d1c72f6f648e0a2bc74f863711aed699163fdcff6a7c403e1a92089953",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

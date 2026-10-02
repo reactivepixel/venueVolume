@@ -1,0 +1,17 @@
+{
+  "id": "showven/sparkular-mini",
+  "passed": true,
+  "source_usdz_sha256": "5cd6e5badda5ac1bb4bfcc5b582e954a33063c008f06b89c009e632c4da8325f",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 208,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

@@ -1,0 +1,174 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "mdg/atmosphere-aps",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "MDG",
+      "model": "ATMOSPHERE APS",
+      "variant": "ATMOSPHERE APS",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.mdgfog.com/en/atmosphereaps",
+        "title": "ATMOSPHERE APS product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": "current manufacturer product page",
+        "locator": "Specifications: machine dimensions and mass, electrical demand, reservoir, CO2-dependent consumption and APS features",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.mdgfog.com/en/atmosphereaps-support",
+        "title": "ATMOSPHERE APS Support",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": "current support downloads",
+        "locator": "Linked user guide, DMX interface and product data sheet",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://mdgfog.s3.amazonaws.com/uploads/img/atmosphere-aps-2.png",
+        "title": "ATMOSPHERE APS product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "173f0c5ba1347c0556ee4f2eaaa4c141c4665dc45c0bb3d0cb9d57b494210a98"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.18,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "MDG labels length 68.5 cm, width 18 cm and height 30 cm; separate shipping weight explicitly includes flight case, while product dimensions identify the machine."
+      },
+      "height": {
+        "value": 0.3,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "MDG labels length 68.5 cm, width 18 cm and height 30 cm; separate shipping weight explicitly includes flight case, while product dimensions identify the machine."
+      },
+      "depth": {
+        "value": 0.685,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "MDG labels length 68.5 cm, width 18 cm and height 30 cm; separate shipping weight explicitly includes flight case, while product dimensions identify the machine."
+      },
+      "reference_pose": "Machine enclosure upright, haze outlets toward front; case, gas cylinder and optional DMX module excluded."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "2.5 L MDG Neutral reservoir; APS automatic purging; 0.5–0.7 micron haze; consumption figures specified at 1.38 bar / 20 psi and require CO2 supply; DMX is via optional accessory.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "715 W",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "19 kg; shipping weight 34 kg with optional flight case",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "remote control",
+            "optional 2-channel DMX interface",
+            "optional remote timer"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "2-channel mode",
+        "footprint": 2,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Machine enclosure upright, haze outlets toward front; case, gas cylinder and optional DMX module excluded.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "MDG labels length 68.5 cm, width 18 cm and height 30 cm; separate shipping weight explicitly includes flight case, while product dimensions identify the machine.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "69ab71fa621bb767a3a80d933825905c54013228c9d359900bf503723de46530"
+  },
+  "git_commit": "bb21fc5b9dbed5ef07e9e56ce3e6be4e1c679285",
+  "note": "Initial research record before any generated model artifacts existed."
+}

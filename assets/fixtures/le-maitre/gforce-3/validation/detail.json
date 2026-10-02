@@ -1,0 +1,68 @@
+{
+  "mesh_count": 26,
+  "triangle_count": 2568,
+  "geometry_sha256": "84110ee4492399c5a6aed52affea33910d90194965f8d4213d967a711ee873f8",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.18105262517929077,
+      -0.2732555568218231
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.01731988415122032
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.18536341190338135,
+        0.01731988415122032
+      ]
+    },
+    {
+      "name": "output",
+      "prim_path": "/Fixture/Output",
+      "pivot_m": [
+        0.0,
+        0.18105262517929077,
+        -0.27051424980163574
+      ]
+    }
+  ],
+  "family": "fogger",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9756097793579102,
+    0.9968282580375671,
+    1.0025062561035156
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/gforce-3/le-maitre-smoke-machine-comparison-breakdown/",
+    "https://lemaitreltd.com/sites/lemaitreltd/cache/file/AD75D031-C865-4286-9E7926ADFF25C3DB.jpg"
+  ]
+}

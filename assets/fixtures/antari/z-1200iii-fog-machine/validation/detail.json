@@ -1,0 +1,70 @@
+{
+  "mesh_count": 71,
+  "triangle_count": 12276,
+  "geometry_sha256": "214500270fdfb02c9e1627a4308156abd933d60293eeb106b5766c2cc5fa3b1e",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.11806841939687729,
+      -0.23827655613422394
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.13774649798870087,
+        0.003331640735268593
+      ]
+    },
+    {
+      "name": "output",
+      "prim_path": "/Fixture/Output",
+      "pivot_m": [
+        0.0,
+        0.11806841939687729,
+        -0.22004196047782898
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.13774649798870087,
+        0.003331640735268593
+      ]
+    }
+  ],
+  "family": "fogger",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9813542366027832,
+    0.9953373670578003,
+    1.0060362815856934
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://antari.com/products/z-1200iii/",
+    "https://www.antari.com/usermanual/Z/Z-1200III/Z-1200III.pdf",
+    "https://antari.com/wp-content/uploads/2024-Antari-Product-Guide.pdf",
+    "https://antari.com/wp-content/uploads/Z-1200III_01.jpg"
+  ]
+}

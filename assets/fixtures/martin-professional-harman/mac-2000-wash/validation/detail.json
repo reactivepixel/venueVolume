@@ -1,0 +1,78 @@
+{
+  "mesh_count": 73,
+  "triangle_count": 19160,
+  "geometry_sha256": "863399c423a07ce2089b8053d79f702a351b487382ec4919dbb1aa9ea5903b06",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.584018886089325,
+      -0.11056278645992279
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0002873592311516404
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.11912675201892853,
+        0.0002873592311516404
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.584018886089325,
+        0.0002873592311516404
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.584018886089325,
+        -0.10651248693466187
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    1.0449674129486084,
+    0.9927229285240173
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.martin.com/en-US/products/mac-2000-wash",
+    "https://adn.harmanpro.com/product_attachments/product_attachments/6139_1728120883/mac-2000-wash_x_large.webp",
+    "https://adn.harmanpro.com/product_attachments/product_attachments/6139_1728120883/mac-2000-wash_x_large.webp"
+  ]
+}

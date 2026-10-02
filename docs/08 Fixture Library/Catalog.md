@@ -12,6 +12,7 @@ Generated from validated records by the fixture skill. Do not edit this index by
 | [ADJ Dynasty Scan DMX](entries/adj/dynasty-scan-dmx.md) | 2 | researched |
 | [ADJ Encore LP12Z IP](entries/adj/encore-lp12z-ip.md) | 2 | researched |
 | [ADJ Entour Cyclone](entries/adj/entour-cyclone.md) | 2 | ready_for_visualization |
+| [ADJ Entour Venue](entries/adj/entour-venue.md) | 2 | ready_for_visualization |
 | [ADJ Focus Flex L7](entries/adj/focus-flex-l7.md) | 2 | researched |
 | [ADJ Focus Spot 4Z](entries/adj/focus-spot-4z.md) | 5 | ready_for_visualization |
 | [ADJ Focus Spot 6Z](entries/adj/focus-spot-6z.md) | 2 | ready_for_visualization |
@@ -26,12 +27,25 @@ Generated from validated records by the fixture skill. Do not edit this index by
 | [ADJ Saber Spot DTW](entries/adj/saber-spot-dtw.md) | 2 | researched |
 | [ADJ STRYKER WASH](entries/adj/stryker-wash.md) | 2 | ready_for_visualization |
 | [ADJ UV Flood 36](entries/adj/uv-flood-36.md) | 2 | researched |
+| [ADJ X-Move Laser](entries/adj/x-move-laser.md) | 2 | researched |
 | [Altman Lighting Altman PAR64-AL](entries/altman-lighting/altman-par64-al.md) | 2 | researched |
 | [Altman Lighting Altman Scoop 153](entries/altman-lighting/altman-scoop-153.md) | 2 | researched |
 | [Antari B-100 Bubble Machine](entries/antari/b-100-bubble-machine.md) | 2 | ready_for_visualization |
+| [Antari B-200 Bubble Machine](entries/antari/b-200-bubble-machine.md) | 2 | researched |
+| [Antari F-1 Fazer](entries/antari/f-1-fazer.md) | 2 | ready_for_visualization |
+| [Antari HZ-1000 Hazer](entries/antari/hz-1000-hazer.md) | 2 | ready_for_visualization |
+| [Antari HZ-400 Hazer](entries/antari/hz-400-hazer.md) | 2 | ready_for_visualization |
+| [Antari HZ-500 Hazer](entries/antari/hz-500-hazer.md) | 2 | researched |
 | [Antari M-9 Jet Fog Machine](entries/antari/m-9-jet-fog-machine.md) | 2 | ready_for_visualization |
+| [Antari S-100X Snow Machine](entries/antari/s-100x-snow-machine.md) | 2 | ready_for_visualization |
+| [Antari S-200X Snow Machine](entries/antari/s-200x-snow-machine.md) | 2 | ready_for_visualization |
 | [Antari S-500 Snow Machine](entries/antari/s-500-snow-machine.md) | 2 | researched |
+| [Antari SW-250 Snow Machine](entries/antari/sw-250-snow-machine.md) | 2 | ready_for_visualization |
+| [Antari W-101 Wireless Bubble Machine](entries/antari/w-101-wireless-bubble-machine.md) | 2 | researched |
 | [Antari Z-1000III Fog Machine](entries/antari/z-1000iii-fog-machine.md) | 2 | ready_for_visualization |
+| [Antari Z-1200III Fog Machine](entries/antari/z-1200iii-fog-machine.md) | 2 | ready_for_visualization |
+| [Antari Z-1500III Fog Machine](entries/antari/z-1500iii-fog-machine.md) | 2 | ready_for_visualization |
+| [Antari Z-3000III Fog Machine](entries/antari/z-3000iii-fog-machine.md) | 2 | ready_for_visualization |
 | [Astera AX5 TriplePAR](entries/astera/ax5-triplepar.md) | 2 | ready_for_visualization |
 | [Astera Helios Tube](entries/astera/helios-tube.md) | 2 | researched |
 | [Astera NYX Bulb](entries/astera/nyx-bulb.md) | 2 | ready_for_visualization |
@@ -76,6 +90,7 @@ Generated from validated records by the fixture skill. Do not edit this index by
 | [CHAUVET DJ Intimidator Spot 475ZX](entries/chauvet-dj/intimidator-spot-475zx.md) | 2 | researched |
 | [CHAUVET DJ Intimidator Spot Duo](entries/chauvet-dj/intimidator-spot-duo.md) | 2 | ready_for_visualization |
 | [CHAUVET DJ Intimidator Wash Zoom 450 IRC](entries/chauvet-dj/intimidator-wash-zoom-450-irc.md) | 2 | researched |
+| [CHAUVET DJ Scorpion Dual RGB](entries/chauvet-dj/scorpion-dual-rgb.md) | 2 | ready_for_visualization |
 | [CHAUVET DJ Sentinel Wash Q120](entries/chauvet-dj/sentinel-wash-q120.md) | 2 | researched |
 | [CHAUVET Professional COLORado Solo Batten](entries/chauvet-professional/colorado-solo-batten.md) | 3 | researched |
 | [CHAUVET Professional COLORdash Batten-Quad 6](entries/chauvet-professional/colordash-batten-quad-6.md) | 2 | researched |
@@ -165,6 +180,10 @@ Generated from validated records by the fixture skill. Do not edit this index by
 | [JB-Lighting Sparx 18](entries/jb-lighting/sparx-18.md) | 2 | researched |
 | [JB-Lighting Sparx 30](entries/jb-lighting/sparx-30.md) | 2 | researched |
 | [Laserworld DS-1000RGB MK5](entries/laserworld/ds-1000rgb-mk5.md) | 2 | ready_for_visualization |
+| [Le Maitre G300](entries/le-maitre/g300.md) | 2 | ready_for_visualization |
+| [Le Maitre GForce 3](entries/le-maitre/gforce-3.md) | 2 | researched |
+| [Look Solutions Tiny S](entries/look-solutions/tiny-s.md) | 2 | ready_for_visualization |
+| [Look Solutions Unique 2.1](entries/look-solutions/unique-2-1.md) | 2 | ready_for_visualization |
 | [MAGIC FX CO2 Bottle To Hose Connector](entries/magic-fx/co2-bottle-to-hose-connector.md) | 2 | ready_for_visualization |
 | [MAGIC FX CO2 JET II](entries/magic-fx/co2-jet-ii.md) | 2 | researched |
 | [MAGIC FX Flameblazer](entries/magic-fx/flameblazer.md) | 2 | ready_for_visualization |
@@ -173,6 +192,8 @@ Generated from validated records by the fixture skill. Do not edit this index by
 | [Manfrotto Heavy Duty Stand, Black, Air-Cushioned, Black Steel](entries/manfrotto/heavy-duty-stand-black-air-cushioned-black-steel.md) | 2 | researched |
 | [Martin Professional (HARMAN) Atomic 3000 LED](entries/martin-professional-harman/atomic-3000-led.md) | 2 | researched |
 | [Martin Professional (HARMAN) ELP CL](entries/martin-professional-harman/elp-cl.md) | 2 | researched |
+| [Martin Professional (HARMAN) MAC 2000 Profile](entries/martin-professional-harman/mac-2000-profile.md) | 2 | researched |
+| [Martin Professional (HARMAN) MAC 2000 Wash](entries/martin-professional-harman/mac-2000-wash.md) | 2 | researched |
 | [Martin Professional (HARMAN) MAC Aura](entries/martin-professional-harman/mac-aura.md) | 2 | researched |
 | [Martin Professional (HARMAN) MAC Aura PXL](entries/martin-professional-harman/mac-aura-pxl.md) | 2 | ready_for_visualization |
 | [Martin Professional (HARMAN) MAC Aura Raven XIP](entries/martin-professional-harman/mac-aura-raven-xip.md) | 2 | ready_for_visualization |
@@ -189,12 +210,17 @@ Generated from validated records by the fixture skill. Do not edit this index by
 | [Martin Professional (HARMAN) MAC Ultra Wash](entries/martin-professional-harman/mac-ultra-wash.md) | 2 | researched |
 | [Martin Professional (HARMAN) MAC Viper Performance](entries/martin-professional-harman/mac-viper-performance.md) | 2 | researched |
 | [Martin Professional (HARMAN) MAC Viper XIP](entries/martin-professional-harman/mac-viper-xip.md) | 2 | researched |
+| [MDG ATMOSPHERE APS](entries/mdg/atmosphere-aps.md) | 2 | ready_for_visualization |
 | [MDG ATMOSPHERE APS Haze Generator](entries/mdg/atmosphere-aps-haze-generator.md) | 2 | ready_for_visualization |
+| [MDG MSe1](entries/mdg/mse1.md) | 2 | ready_for_visualization |
 | [Mean Well LRS-350-24](entries/mean-well/lrs-350-24.md) | 2 | researched |
 | [Neutrik NC5MXX 5-pole male XLR cable connector](entries/neutrik/nc5mxx-5-pole-male-xlr-cable-connector.md) | 2 | ready_for_visualization |
 | [Neutrik powerCON TRUE1 TOP NAC3FX-W-TOP cable connector (Power-In, EU/US ratings)](entries/neutrik/powercon-true1-top-nac3fx-w-top-cable-connector-power-in-eu-us-ratings.md) | 2 | researched |
 | [Panasonic PT-RZ660B with supplied ET-DLE170 lens](entries/panasonic/pt-rz660b-with-supplied-et-dle170-lens.md) | 2 | ready_for_visualization |
 | [PROLIGHTS Astra Hybrid330](entries/prolights/astra-hybrid330.md) | 2 | researched |
+| [ROBE Lighting ColorSpot 250 AT](entries/robe-lighting/colorspot-250-at.md) | 2 | researched |
+| [ROBE Lighting ColorWash 250 AT](entries/robe-lighting/colorwash-250-at.md) | 2 | researched |
+| [ROBE Lighting ColorWash 575 AT](entries/robe-lighting/colorwash-575-at.md) | 2 | researched |
 | [ROBE Lighting CUETE](entries/robe-lighting/cuete.md) | 2 | ready_for_visualization |
 | [ROBE Lighting ESPRITE](entries/robe-lighting/esprite.md) | 2 | ready_for_visualization |
 | [ROBE Lighting FORTE](entries/robe-lighting/forte.md) | 3 | ready_for_visualization |
@@ -218,6 +244,12 @@ Generated from validated records by the fixture skill. Do not edit this index by
 | [SHEHDS LED Beam & Spot Moving Head 150W](entries/shehds/led-beam-spot-moving-head-150w.md) | 2 | researched |
 | [Showtec Phantom 100 Spot](entries/showtec/phantom-100-spot.md) | 2 | ready_for_visualization |
 | [Showtec Phantom 65](entries/showtec/phantom-65.md) | 2 | researched |
+| [SHOWVEN SPARKULAR](entries/showven/sparkular.md) | 2 | ready_for_visualization |
+| [SHOWVEN SPARKULAR Cyclone II](entries/showven/sparkular-cyclone-ii.md) | 2 | ready_for_visualization |
+| [SHOWVEN SPARKULAR JET II](entries/showven/sparkular-jet-ii.md) | 2 | ready_for_visualization |
+| [SHOWVEN SPARKULAR MAX](entries/showven/sparkular-max.md) | 2 | ready_for_visualization |
+| [SHOWVEN SPARKULAR mini](entries/showven/sparkular-mini.md) | 2 | ready_for_visualization |
+| [SHOWVEN SPARKULAR WP](entries/showven/sparkular-wp.md) | 2 | ready_for_visualization |
 | [Vari-Lite VL10 BeamWash](entries/vari-lite/vl10-beamwash.md) | 2 | researched |
 | [Vari-Lite VL2600 SE WASH](entries/vari-lite/vl2600-se-wash.md) | 2 | ready_for_visualization |
 | [Vari-Lite VL2600 SPOT](entries/vari-lite/vl2600-spot.md) | 2 | researched |

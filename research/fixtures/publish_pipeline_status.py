@@ -15,8 +15,10 @@ from build_detailed_catalog import ROOT, fid, dump
 OUT=ROOT/'assets/fixtures/research'
 
 def visual_issues():
-    path=ROOT/'research/fixtures/expansion-v2/visual-review-issues.json'
-    return json.loads(path.read_text()) if path.exists() else {}
+    result={}
+    for path in sorted((ROOT/'research/fixtures').glob('expansion-v*/visual-review-issues.json')):
+        result.update(json.loads(path.read_text()))
+    return result
 
 def read(path):
     with path.open(newline='') as stream:return list(csv.DictReader(stream))
@@ -45,6 +47,8 @@ def inspect(row):
     try:
         record=json.loads(path.read_text());model=record['model']
         if model['status']!='validated':errors.append('The model has not passed exported-asset validation')
+        if model.get('reference_pose')!=record.get('dimensions',{}).get('reference_pose'):
+            errors.append('The generated model has not been rebuilt for the current dimensional reference pose')
         for artifact in model['artifacts']:
             source=folder/artifact['file']
             if not source.is_file():errors.append('Missing artifact '+artifact['file'])
@@ -91,7 +95,7 @@ def main():
                 items=[dict(id=fid(r),status=r['pipelineStatus'],pipelineErrors=r['pipelineErrors']) for r in rows])
     dump(OUT/'pipeline-status.json',report)
     payload=json.dumps([dict(id=fid(r),name=r['name'],manufacturer=r['manufacturer'],type=r['type'],subtype=r['subtype'],
-                            category=r.get('category_path',''),status=r['pipelineStatus'],error=r['pipelineErrors'],
+                            category=r.get('category_path',''),batch=r.get('expansion_batch') or 'original',status=r['pipelineStatus'],error=r['pipelineErrors'],
                             url=r['url'],root=r.get('asset_root',''),image=r.get('preview_asset',''),
                             joints=r.get('rig_joint_count',''),record=r.get('fixture_record','')) for r in rows],ensure_ascii=False).replace('</','<\\/')
     template=(ROOT/'research/fixtures/pipeline-review-template.html').read_text()

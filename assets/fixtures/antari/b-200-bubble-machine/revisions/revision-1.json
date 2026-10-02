@@ -1,0 +1,176 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "antari/b-200-bubble-machine",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Antari",
+      "model": "B-200 Bubble Machine",
+      "variant": "B-200",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://antari.com/products/b-200/",
+        "title": "B-200 Bubble Machine product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": "current web product page; manual Rev.06",
+        "locator": "Specifications: power, 2 L tank, dimensions, weight and one-channel DMX",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.antari.com/DM/B/B-200/B-200.pdf",
+        "title": "B-200 Bubble Machine product flyer",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": "Ver.02, 2023",
+        "locator": "Ver.02 technical specifications and dimensions L508 W251 H391 mm",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://antari.com/wp-content/uploads/B-200-01.jpg",
+        "title": "B-200 Bubble Machine product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "2b2631e46f78be00742697035de7ccf840cc0b1f7605e65cc1e082d093f3a278"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.251,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 508/251/391 mm mapped to depth/width/height."
+      },
+      "height": {
+        "value": 0.391,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 508/251/391 mm mapped to depth/width/height."
+      },
+      "depth": {
+        "value": 0.508,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 508/251/391 mm mapped to depth/width/height."
+      },
+      "reference_pose": "Machine resting upright, bubble wheels/outlet face forward; detachable accessories excluded."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Three double-bubble wheels, 2 L reservoir and 1-channel DMX; optional wireless controller.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "120 W",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "11.0 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "manual",
+            "optional timer",
+            "optional wireless",
+            "optional cable remote"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "1-channel mode",
+        "footprint": 1,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Machine resting upright, bubble wheels/outlet face forward; detachable accessories excluded.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer L/W/H = 508/251/391 mm mapped to depth/width/height.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "93cd185755b45aaf10b3fd2a5de11fbf25589915ef0c8b228cdc455d4f65656b"
+  },
+  "git_commit": "b54cf066890555aa4729a81cee9400883a874af3",
+  "note": "Initial research record before any generated model artifacts existed."
+}

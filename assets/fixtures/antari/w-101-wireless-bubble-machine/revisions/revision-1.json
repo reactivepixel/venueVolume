@@ -1,0 +1,162 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "antari/w-101-wireless-bubble-machine",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Antari",
+      "model": "W-101 Wireless Bubble Machine",
+      "variant": "W-101",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://antari.com/products/w-101/",
+        "title": "W-101 Wireless Bubble Machine product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": "current web product page; manual Rev.04",
+        "locator": "Specifications: 32 W, dimensions, weight, tank, control and included transmitter",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.antari.com/ProductGuide/2026/2026ProductGuide.pdf",
+        "title": "Antari 2026 Product Guide",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": "2026",
+        "locator": "W-101 product panel: dimensions and weight",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://antari.com/wp-content/uploads/W-101_01.jpg",
+        "title": "W-101 Wireless Bubble Machine product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "0779e70ff9611524c46bf6a8856592b42a35f469b3e1a556e07ffd0fb8c17704"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.264,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 350/264/290 mm mapped to depth/width/height."
+      },
+      "height": {
+        "value": 0.29,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 350/264/290 mm mapped to depth/width/height."
+      },
+      "depth": {
+        "value": 0.35,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 350/264/290 mm mapped to depth/width/height."
+      },
+      "reference_pose": "Machine resting on feet, bubble wheel/outlet forward; supplied transmitter excluded from enclosure bounds."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Compact bubble machine with supplied W-1 transmitter and hanging bracket; 0.7 L reservoir; no DMX interface listed.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "32 W",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "4.8 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "manual",
+            "wireless"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Machine resting on feet, bubble wheel/outlet forward; supplied transmitter excluded from enclosure bounds.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer L/W/H = 350/264/290 mm mapped to depth/width/height.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "a5d372fb2a12df84e9c1d708740e3d03741c4529f772d63a129150b816930034"
+  },
+  "git_commit": "b54cf066890555aa4729a81cee9400883a874af3",
+  "note": "Initial research record before any generated model artifacts existed."
+}

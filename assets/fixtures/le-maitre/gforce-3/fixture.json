@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "id": "le-maitre/gforce-3",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Le Maitre",
+    "model": "GForce 3",
+    "variant": "GForce 3",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/gforce-3/le-maitre-smoke-machine-comparison-breakdown/",
+      "title": "Le Maitre smoke-machine comparison",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "GForce 3 dimensions, mass and DMX",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://lemaitreltd.com/sites/lemaitreltd/cache/file/AD75D031-C865-4286-9E7926ADFF25C3DB.jpg",
+      "title": "GForce 3 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "c75893ce495682b7800266da1d6a3be4f06123e77aafa21b149f9e04257da0fd"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.27,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer gives 270 x 290 x 430 mm, with length 550 mm including bottle carrier; mapped W x H x overall D as 270 x 430 x 550 mm."
+    },
+    "height": {
+      "value": 0.43,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer gives 270 x 290 x 430 mm, with length 550 mm including bottle carrier; mapped W x H x overall D as 270 x 430 x 550 mm."
+    },
+    "depth": {
+      "value": 0.55,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer gives 270 x 290 x 430 mm, with length 550 mm including bottle carrier; mapped W x H x overall D as 270 x 430 x 550 mm."
+    },
+    "reference_pose": "Base level with bottle carrier fitted; outlet forward."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Bottle carrier adds to overall length; manufacturer comparison dimensions 270 x 290 x 430 mm, or 550 mm long with carrier.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "2200 W at 230 V",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "15.9 kg (35 lb)",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512 (2 channels)",
+          "manual/timer remote"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Base level with bottle carrier fitted; outlet forward.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.13500000536441803,
+        0.0,
+        -0.2749999761581421
+      ],
+      "max": [
+        0.13500000536441803,
+        0.4300000071525574,
+        0.2750000022351742
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.01731988415122032
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.18536341190338135,
+          0.01731988415122032
+        ]
+      },
+      {
+        "name": "output",
+        "prim_path": "/Fixture/Output",
+        "pivot_m": [
+          0.0,
+          0.18105262517929077,
+          -0.27051424980163574
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer gives 270 x 290 x 430 mm, with length 550 mm including bottle carrier; mapped W x H x overall D as 270 x 430 x 550 mm.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "95615a3d2c5fb0c6410aca78680bc91699ced03b9281ead3a887b58ec0ca487c"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "59175dcf04250a38be49f24e03dea932e221293769ec2c95940ef704c1d59414"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "45570aa6c238af813c595c597cb2c2c7cb1fbc98ae1d9eecab0ba8645e281b54"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "eeaf2cf18e6de9906fc9e2545310d21344f3885f245f7e3f21034b71253c5aaf"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "526aecab6dbc0f2cecd6498e7a36b55764b3214b0c0484dc5eb57bf6b8342b4e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "24627831a617fdcfc9bca894d3a82067c4c69fa38a09b1f0c34d41248981869d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "1d0785586b7fa760ad72f8e6c7a8e54742cb53300fc29e3968061f8514fa7930"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "349092ac71a44aff03b9f74b32e187e7fd7a42041a176dedee8b140c7c6237d7"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "861c384e4996b157f44c046b5e13ed3173a3b592a7aba1d5595722eaad6ed912"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "51beab1156ffee97037e8d8be3e7e61097d07027dcd5af8fce4f74ca72e5b74c"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.18105262517929077,
+          -0.2732555568218231
+        ],
+        "kind": "fog",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "e073012cdae1ca51355b9285c203574af3e2d486849e2477261d149b167cdef2",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "fogger",
+      "lens_count": 0,
+      "body_style": "rectangular fogger with rear bottle carrier",
+      "notes": "Do not add optical emission. Carrier-equipped overall envelope used.",
+      "generator": "equipment",
+      "output_kind": "fog"
+    },
+    "mesh_count": 26,
+    "triangle_count": 2568,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed fogger geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "c29188bf8ce07b2400d54d3c15975190980d6a31cc56832d7b366c1147c643f4",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "atmosphere.fog",
+    "category_path": [
+      "Atmosphere and air movement",
+      "Fog / smoke-look generator"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

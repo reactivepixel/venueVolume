@@ -2,7 +2,26 @@
 
 Status: Catalog rollout awaits native validation. The earlier pilot and interaction results are preserved below; they do not validate the new catalog integration.
 
-## Current pickup — touring, mid-market and DJ expansion, 2026-10-02
+## Current pickup — legacy lighting and effects expansion, 2026-10-02
+
+Pull current `dev` and follow `AGENTS.md` in a fresh worktree. Current totals are **252 packaged models, 175 articulated models and 322 preview joints**. The complete CSV has **323 rows from 52 manufacturers**. This batch adds 64 rows and 32 models to the previous 220-model release; 32 new research-only rows remain blocked. The canonical per-item explanations are in `assets/fixtures/research/show-equipment-catalog.csv`, column `pipelineErrors`.
+
+Run the Core suite (45 tests passed on Linux), session checks, bundle verifier, both unsigned Xcode builds and the catalog smoke below. Expect `CATALOG_SMOKE_PASS assets=252`; record actual native results rather than inheriting the pilot pass. Recheck the room scanning/placement/targeting workflows without altering the newer Fortress reference project.
+
+Prioritize these new mechanisms in Simulator and on headset:
+
+- Antari B-200: six visible wheels rotate around the shared axle; manual bracket tilt carries the rotating assembly while the support stays fixed. No particles or light appear.
+- Antari Z-1200III, S-100X, S-200X and SW-250: manual bracket tilt, never a claim that the real machine is motorized.
+- ADJ X-Move Laser: two motor-preview joints but zero ordinary light emitters; head targeting is intentionally unavailable. No laser ray or firing controls are implemented.
+- Scorpion Dual RGB: manual bracket tilt; no light emitter or simulated scanning pattern.
+- Robe ColorSpot/ColorWash AT and MAC 2000: pan/tilt with optics attached; old-model source dimensions remain documented with pose caveats.
+- SHOWVEN SPARKULAR variants, MDG, Look Solutions and Le Maitre: stable placed equipment with no unintended spotlight output.
+
+Nine packaged models remain `visual_review_pending`, including seven in this batch: F-1, HZ-1000, Entour Venue, G300, GForce 3, MAC 2000 Profile and MAC 2000 Wash. The two previous ETC/Astera findings remain. See both `research/fixtures/expansion-v*/visual-review-issues.json` registries and the independent atmosphere QA report. A RealityKit import pass does not resolve these source/shape findings. All 252 assets still await native validation for this release; 243 have no additional local visual flag.
+
+Append dated Xcode/visionOS/device results and evidence to this file. Update `native_validation` only for tested assets and republish pipeline status. Keep synthetic VV Preview 16 separate from manufacturer DMX, ILDA, external/manual control and safety-critical effect control. Retain the historical handoff below.
+
+## Previous pickup — touring, mid-market and DJ expansion, 2026-10-02
 
 Pull the latest `dev` and follow `AGENTS.md` in a fresh assigned worktree. The expanded release packages **220 models, 162 articulated assets and 302 preview joints**, including 93 new models. The complete CSV has 259 items from 47 manufacturers; 39 research-only items intentionally have no model. Read `assets/fixtures/research/pipeline-status.json` for the authoritative current totals and each row's `pipelineErrors`.
 

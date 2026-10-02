@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "id": "antari/z-1200iii-fog-machine",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Antari",
+    "model": "Z-1200III Fog Machine",
+    "variant": "Z-1200III",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://antari.com/products/z-1200iii/",
+      "title": "Z-1200III Fog Machine product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": "current web product page; manual Rev.05",
+      "locator": "Specification block: dimensions, mass, rated power, tank, DMX and controls; hanging bracket listed as included accessory",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.antari.com/usermanual/Z/Z-1200III/Z-1200III.pdf",
+      "title": "Z-1200III User Manual",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": "Rev.05",
+      "locator": "English specifications: included accessories list names Hanging Bracket; dimension tuple L458 W320 H326 mm",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://antari.com/wp-content/uploads/2024-Antari-Product-Guide.pdf",
+      "title": "Antari 2024 Product Guide",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": "2024",
+      "locator": "Fog machine product panel: model identity, L/W/H and weight",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://antari.com/wp-content/uploads/Z-1200III_01.jpg",
+      "title": "Z-1200III Fog Machine product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "c0688635512685e726032641e367378a0dcd1dd78a6722dfd4064c3d58a06ca2"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.32,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer labels L/W/H = 458/320/326 mm, mapped length to front-to-back depth and width to lateral axis; supplied hanging bracket is included in the product configuration."
+    },
+    "height": {
+      "value": 0.326,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer labels L/W/H = 458/320/326 mm, mapped length to front-to-back depth and width to lateral axis; supplied hanging bracket is included in the product configuration."
+    },
+    "depth": {
+      "value": 0.458,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer labels L/W/H = 458/320/326 mm, mapped length to front-to-back depth and width to lateral axis; supplied hanging bracket is included in the product configuration."
+    },
+    "reference_pose": "Machine upright on its feet, front output forward, with included hanging bracket attached; external accessories excluded."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "2.5 L onboard reservoir; 1-channel DMX; LCD heater/status display; current III generation.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "1200 W",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "11.0 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "manual",
+          "timer",
+          "optional wireless",
+          "optional cable remote"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "1-channel mode",
+      "footprint": 1,
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Machine upright on its feet, front output forward, with included hanging bracket attached; external accessories excluded.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.1599999964237213,
+        0.0,
+        -0.2290000021457672
+      ],
+      "max": [
+        0.1599999964237213,
+        0.32600003480911255,
+        0.22900001145899296
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.13774649798870087,
+          0.003331640735268593
+        ]
+      },
+      {
+        "name": "output",
+        "prim_path": "/Fixture/Output",
+        "pivot_m": [
+          0.0,
+          0.11806841939687729,
+          -0.22004196047782898
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.13774649798870087,
+          0.003331640735268593
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer labels L/W/H = 458/320/326 mm, mapped length to front-to-back depth and width to lateral axis.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "8e921ad28576f20962a0e7bec851f08c6e15e2533b72b98d749f97d584b0cecc"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "101fd59a9fe3dfee9f7fce756589dd8b2e163584b37a955465c32d7f0c8b80f6"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "48526ecbbde3b75c52ca7ef2fe610994b8873af96d4afdf549c71d9bb12e8d62"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "ac398e57117d29de7a6bbbd6f76da9a91934f22d06095d33d476e658bc4af464"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "bf8c27d00cd4c124994eb5e01c80d518be3a4f54f4e97fdb8062974bb6d4a460"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "8668692af53fd8dac041c615f9bce44690a6c61f70398d604647342989f823de"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "28b7f7e7ceeca9214dd552a7b5a99e012cf2dfe4580549ac028c27d5bbc82069"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "b340740337eee1e790aee52239f8dabc468c762175d73ca5da43017ab23e6306"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "98189a43c961c49657833313912186b6b9ae7caa52e428d1d1e7a42b3bf51f98"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "b5f264a8f540198df7bcac05b38a8bce3b23889762cd0efe37821817f632cff1"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.11806841939687729,
+          -0.23827655613422394
+        ],
+        "kind": "fog",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "fca3bc7b690276667ec9d30de4a3b580d1ecf17541e804f853ccdae3c1b55e72",
+    "generator_dependency": {
+      "file": "../../_shared/effects_fixture.py",
+      "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+    },
+    "profile": {
+      "family": "fogger",
+      "body_style": "compact convex metal fogger with top reservoir, carry handle and front nozzle",
+      "notes": "Current embossed III-series shell; do not reuse Z-1000III dimensions or geometry blindly.",
+      "generator": "effects",
+      "enclosure": "silver_machine",
+      "hanging_bracket": true,
+      "manual_equipment_tilt": true,
+      "output_kind": "fog"
+    },
+    "mesh_count": 71,
+    "triangle_count": 12276,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/effects_fixture.py",
+        "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      },
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed fogger geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "b54b0952dea0d60e0d01b63b500f4880327bfe432e16c3168dc5c01d3e03152d",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "atmosphere.fog",
+    "category_path": [
+      "Atmosphere and air movement",
+      "Fog / smoke-look generator"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

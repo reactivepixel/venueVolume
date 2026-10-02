@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "id": "look-solutions/tiny-s",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Look Solutions",
+    "model": "Tiny S",
+    "variant": "Tiny S",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.looksolutions.com/products/tiny_s/8.html",
+      "title": "Tiny S product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": "current Tiny S product page",
+      "locator": "Technical data: assembled dimensions, weight, battery, 5 ml reservoir and control",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.looksolutions.com/uploads/pdf/en_fr/bed_tinys_1e.pdf",
+      "title": "Tiny S Operating Manual",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": "manual rev 1",
+      "locator": "Technical table: 10.3 × 5.0 × 3.5 cm assembled dimensions",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.looksolutions.com/uploads/produkte/191110-TinyS-007.jpg",
+      "title": "Tiny S product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "05af3d2c7e717116abb9e80b365e76db91ff0cf772a050a5f8401f7ae9cbe116"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.051,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 103/51/35 mm for single-component current Tiny S including battery and reservoir."
+    },
+    "height": {
+      "value": 0.035,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 103/51/35 mm for single-component current Tiny S including battery and reservoir."
+    },
+    "depth": {
+      "value": 0.103,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 103/51/35 mm for single-component current Tiny S including battery and reservoir."
+    },
+    "reference_pose": "Handheld body with battery and fluid reservoir attached; transport case, remote and accessories excluded."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Handheld vaporizing fog generator; 5 ml integrated reservoir; tool-free detachable reservoir and battery; no DMX listed.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "30 W; 3.7 V/1500 mAh Li-ion battery",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "0.25 kg including battery and tank",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "manual button",
+          "cabled remote",
+          "radio remote"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Handheld body with battery and fluid reservoir attached; transport case, remote and accessories excluded.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.02550000138580799,
+        0.0,
+        -0.0514999961014837
+      ],
+      "max": [
+        0.02550000138580799,
+        0.03499999869382009,
+        0.05150000029243529
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.0007291674264706671,
+          0.002044432098045945
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer L/W/H = 103/51/35 mm for single-component current Tiny S including battery and reservoir.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "e8a483c2c8ff0a75bde790f5de35990735e29a454013d71fcac9f90a152803bb"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "4a7b32d0d888d143a62dd8644eeb92fcaebee52764803aa709b25c88addc01c7"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "2d6f68c744f2f0dd9530eb3b7e09d42d31603a7d9d39029974aa91365aeab866"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "c2236be9443ec40844cb12b786f21149fcd9d336d8ce7eedcd21390ef4ca4358"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "d7fa68837e6f616d2b6a6de3b1172f6d6f0aca014b3daaecbeae068000b7a606"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "34979a2af004bfe33a091c4b732627b334c5d3479da604fdbc4a9074b6dcd88c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "f8c23d64104b8e7b1750045b561c00bdfde89ed139ffc136d2ae119f253b2181"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "0df2698b60cd833d646fc925c493b20e5773e7ee505fd3f40a2c21853c46915c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "edeb906683be748aa72d88a1cce22e84ff1d146287928273062a9659460573d4"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "372cd5b539b619ecbc3e88069aefb649f862dd2d2b051491c8d02f7330fc8ee5"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.013489583507180214,
+          -0.050014059990644455
+        ],
+        "kind": "fog",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "75b27d5b48690a83e6f5798c9af27215724192641bc172b67105c46114bf8333",
+    "generator_dependency": {
+      "file": "../../_shared/effects_fixture.py",
+      "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+    },
+    "profile": {
+      "family": "fogger",
+      "body_style": "small cylindrical handheld fogger with screw-on battery and transparent fluid reservoir",
+      "notes": "Miniature scale; battery and reservoir contribute to modeled body. Exact current product still URL was located and captured locally.",
+      "generator": "effects",
+      "enclosure": "tiny_fogger",
+      "output_kind": "fog"
+    },
+    "mesh_count": 33,
+    "triangle_count": 6204,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/effects_fixture.py",
+        "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      },
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed fogger geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "4ae4bfb3a3c6af81eee04ee6f5514b668659677c11ed0a32ac129426635b0128",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "atmosphere.fog",
+    "category_path": [
+      "Atmosphere and air movement",
+      "Fog / smoke-look generator"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

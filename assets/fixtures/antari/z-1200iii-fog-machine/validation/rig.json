@@ -1,0 +1,17 @@
+{
+  "id": "antari/z-1200iii-fog-machine",
+  "passed": true,
+  "source_usdz_sha256": "101fd59a9fe3dfee9f7fce756589dd8b2e163584b37a955465c32d7f0c8b80f6",
+  "joints": 1,
+  "moving_meshes": 62,
+  "fixed_meshes": 9,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

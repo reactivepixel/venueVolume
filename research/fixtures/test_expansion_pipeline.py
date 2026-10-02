@@ -18,6 +18,29 @@ class AcquisitionTests(unittest.TestCase):
 
     def test_complete_acquisition_can_build(self):self.assertEqual(acquisition.issues(self.item),[])
 
+    def test_visual_only_equipment_requires_explicit_control_path(self):
+        self.item['modeling']['family']='laser'
+        self.item['data']={'protocols':['ILDA']}
+        self.assertTrue(acquisition.issues(self.item))
+        self.item['data']['visual_inventory_only']=True
+        self.assertTrue(acquisition.issues(self.item))
+        self.item['data']['control_path']='External ILDA controller; visual inventory only.'
+        self.assertEqual(acquisition.issues(self.item),[])
+        self.item['modeling']['family']='moving_spot'
+        self.assertTrue(acquisition.issues(self.item))
+
+    def test_new_batch_identity_is_preserved(self):
+        self.item['_batch']='legacy-effects-2026-10'
+        self.assertEqual(acquisition.as_row(self.item)['expansion_batch'],'legacy-effects-2026-10')
+
+    def test_visual_findings_survive_multiple_batches(self):
+        with tempfile.TemporaryDirectory() as folder,patch.object(status,'ROOT',Path(folder)):
+            for batch,ident in [('expansion-v2','old/model'),('expansion-v3','new/model')]:
+                path=Path(folder)/'research/fixtures'/batch/'visual-review-issues.json'
+                path.parent.mkdir(parents=True)
+                path.write_text(json.dumps({ident:'Needs visual correction'}))
+            self.assertEqual(set(status.visual_issues()),{'old/model','new/model'})
+
     def test_no_shipping_size_or_infinite_geometry(self):
         for value in (None,0,float('inf'),float('nan')):
             item=copy.deepcopy(self.item);item['dimensions']['width_m']=value
@@ -55,6 +78,14 @@ class AcquisitionTests(unittest.TestCase):
             (root/'fixture.json').write_text(json.dumps({'model':{'status':'not_built'}}))
             row=acquisition.as_row(self.item);row['usdz_asset']='assets/fixtures/test/sample/models/fixture.usdz'
             self.assertEqual(status.inspect(row)[0],'failed')
+
+    def test_changed_dimensional_pose_requires_rebuild(self):
+        with tempfile.TemporaryDirectory() as folder,patch.object(status,'ROOT',Path(folder)):
+            root=Path(folder)/'assets/fixtures/test/sample';root.mkdir(parents=True)
+            (root/'fixture.json').write_text(json.dumps({'dimensions':{'reference_pose':'Bracket attached'},'model':{'status':'validated','reference_pose':'Bracket removed','artifacts':[]}}))
+            row=acquisition.as_row(self.item);row['usdz_asset']='assets/fixtures/test/sample/models/fixture.usdz'
+            state,error=status.inspect(row)
+            self.assertEqual(state,'failed');self.assertIn('reference pose',error)
 
     def test_visual_failure_is_not_hidden_by_structural_pass(self):
         with tempfile.TemporaryDirectory() as folder,patch.object(status,'ROOT',Path(folder)),patch.object(status,'visual_issues',return_value={'test/sample':'Housing proportions require correction'}):

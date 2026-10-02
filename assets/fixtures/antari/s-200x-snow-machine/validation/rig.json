@@ -1,0 +1,17 @@
+{
+  "id": "antari/s-200x-snow-machine",
+  "passed": true,
+  "source_usdz_sha256": "4a0a2837faa250d9b9c0375a43659a87054a51c1b6735bb10c97043533058e52",
+  "joints": 1,
+  "moving_meshes": 62,
+  "fixed_meshes": 9,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}
