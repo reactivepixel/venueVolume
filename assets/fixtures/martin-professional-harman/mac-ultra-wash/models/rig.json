@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "bf672f4c0a47e3282e6d172713f040f17761090927ae5e6b82ff64b183454ab6",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "martin-professional-harman/mac-ultra-wash",
+    "name": "MAC Ultra Wash",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/mac-ultra-wash/fixture.usdz",
+    "sha256": "bf672f4c0a47e3282e6d172713f040f17761090927ae5e6b82ff64b183454ab6",
+    "boundsMin": [
+      -0.25999999046325684,
+      0.0,
+      -0.32100000377977267
+    ],
+    "boundsMax": [
+      0.25999999046325684,
+      0.8669999837875366,
+      0.3210000157705508
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.13872000575065613,
+          0.0007039368501864374
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.6953999996185303,
+          0.0007039368501864374
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.6953999996185303,
+          -0.3102235496044159
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

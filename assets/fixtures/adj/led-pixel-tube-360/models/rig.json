@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "00c8a44091220768dad899044a55ffabd641bef78fcc576a1c9dedfd06cd972a",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "adj/led-pixel-tube-360",
+    "name": "LED Pixel Tube 360",
+    "manufacturer": "ADJ",
+    "family": "tube",
+    "resource": "FixtureAssets/Catalog/adj/led-pixel-tube-360/fixture.usdz",
+    "sha256": "00c8a44091220768dad899044a55ffabd641bef78fcc576a1c9dedfd06cd972a",
+    "boundsMin": [
+      -0.5,
+      1.862645149230957e-09,
+      -0.02499999850988388
+    ],
+    "boundsMax": [
+      0.5,
+      0.04999999841675162,
+      0.02499999850988388
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.02500000037252903,
+          -0.0264660082757473
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

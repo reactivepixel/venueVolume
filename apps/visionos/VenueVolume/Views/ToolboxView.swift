@@ -5,6 +5,17 @@ struct ToolboxView: View {
     @Environment(VenueModel.self) private var model
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismissImmersiveSpace) private var dismissSpace
+    @State private var fixtureSearch = ""
+    @State private var fixtureFamily = "all"
+
+    private var visibleFixtures: [FixtureKind] {
+        FixtureKind.allCases.filter { kind in
+            let asset = kind.asset
+            let text = [kind.name, asset?.manufacturer ?? "", asset?.family ?? ""].joined(separator: " ")
+            return (fixtureFamily == "all" || asset?.family == fixtureFamily) &&
+                (fixtureSearch.isEmpty || text.localizedCaseInsensitiveContains(fixtureSearch))
+        }
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 18) {
@@ -36,6 +47,13 @@ struct ToolboxView: View {
             HStack(alignment: .top, spacing: 22) {
                 VStack(alignment: .leading, spacing: 10) {
                     Text("LIBRARY").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
+                    TextField("Search \(FixtureCatalog.all.count) assets", text: $fixtureSearch)
+                    Picker("Category", selection: $fixtureFamily) {
+                        Text("All categories").tag("all")
+                        ForEach(Array(Set(FixtureCatalog.all.map(\.family))).sorted(), id: \.self) { family in
+                            Text(family.replacingOccurrences(of: "_", with: " ").capitalized).tag(family)
+                        }
+                    }
                     ScrollView {
                         VStack(alignment: .leading, spacing: 8) {
                             section("Actions")
@@ -43,9 +61,9 @@ struct ToolboxView: View {
                             item(.presets)
                             item(.sync)
                             section("Fixtures · drag into the room")
-                            ForEach(FixtureKind.allCases) { kind in
+                            ForEach(visibleFixtures) { kind in
                                 Button { model.fixtureKind = kind; model.beginPlacement() } label: {
-                                    row(kind.name, subtitle: "Drag onto a floor or tabletop", icon: kind == .movingHead ? "light.beacon.max" : "cube.transparent")
+                                    row(kind.name, subtitle: [kind.asset?.manufacturer, kind.asset?.motionLabel].compactMap { $0 }.joined(separator: " · "), icon: kind.asset?.joints.isEmpty == false ? "light.beacon.max" : "cube.transparent")
                                 }.buttonStyle(.plain).disabled(!model.canPlace)
                                     .onDrag { model.beginFixtureDrag(kind); return NSItemProvider(object: kind.dragToken as NSString) }
                             }
@@ -72,7 +90,7 @@ struct ToolboxView: View {
                     if editing { model.beginHistoryAction("Adjust room light") } else { model.endHistoryAction() }
                 }).frame(width: 150).accessibilityLabel("Room light")
                 Spacer()
-                Text("VV Preview 16").font(.caption).foregroundStyle(.secondary)
+                Text("8 beam previews · selection first").font(.caption).foregroundStyle(.secondary)
             }
             HStack {
                 Text(model.historyMessage ?? model.message ?? model.handTrackingStatus).lineLimit(2)
@@ -121,8 +139,8 @@ struct ToolboxView: View {
                 }.buttonStyle(.plain)
             }
         case .addFixture:
-            Button { model.fixtureKind = .movingHead; model.beginPlacement() } label: {
-                row(model.isPlacing ? "Cancel placement" : "Add moving head pilot", subtitle: "Rogue R1X Spot · VV Preview 16", icon: "plus")
+            Button { model.beginPlacement() } label: {
+                row(model.isPlacing ? "Cancel placement" : "Add selected model", subtitle: model.fixtureKind.name, icon: "plus")
             }.buttonStyle(.plain).disabled(!model.canPlace && !model.isPlacing)
         case .presets:
             Button { model.record(.presets); openWindow(id: "presets") } label: {

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "6863bbb2d149700654ad5a37ded88fd49ba51c3808689d12bd36485d6c4efa6c",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "elation-professional/fuze-sfx",
+    "name": "Fuze SFX",
+    "manufacturer": "Elation Professional",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/elation-professional/fuze-sfx/fixture.usdz",
+    "sha256": "6863bbb2d149700654ad5a37ded88fd49ba51c3808689d12bd36485d6c4efa6c",
+    "boundsMin": [
+      -0.11649999022483826,
+      0.0,
+      -0.18100000079721212
+    ],
+    "boundsMax": [
+      0.11649999022483826,
+      0.5950000286102295,
+      0.18099998775869608
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.09520000219345093,
+          0.0005205357447266579
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5181099772453308,
+          0.0005205357447266579
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5181099772453308,
+          -0.16017797589302063
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

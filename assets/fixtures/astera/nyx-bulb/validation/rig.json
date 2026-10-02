@@ -1,0 +1,17 @@
+{
+  "id": "astera/nyx-bulb",
+  "passed": true,
+  "source_usdz_sha256": "7f2db92665d52c7c393947b9b4623c420ea8c755ce938ed33f077219bf0eb4e5",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 11,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

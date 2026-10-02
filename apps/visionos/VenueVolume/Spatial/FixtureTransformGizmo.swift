@@ -42,7 +42,7 @@ import VenueVolumeCore
     func update(fixture: Fixture?, visible: Bool, mode: FixtureTransformMode) {
         entity.isEnabled = visible && fixture != nil
         guard let fixture else { return }
-        entity.position = FixtureAiming.vector(fixture.position) + [0, fixture.assetID == nil ? 0 : LightingPreview.height/2, 0]
+        entity.position = FixtureAiming.vector(fixture.position) + [0, fixture.assetID == nil ? 0 : fixture.visualHeight/2, 0]
         rotation.isEnabled = mode == .rotate
         movement.isEnabled = mode == .move
     }

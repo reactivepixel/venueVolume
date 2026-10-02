@@ -1,0 +1,17 @@
+{
+  "id": "claypaky/sharpy",
+  "passed": true,
+  "source_usdz_sha256": "91745c26b66d053b467c6ddaa463f0448aef1e0287d6535e53d20fae12d2b5f0",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

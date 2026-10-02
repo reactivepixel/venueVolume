@@ -153,7 +153,8 @@ struct PresetEditorView: View {
     private func channel(_ index: Int) -> some View {
         VStack(spacing: 5) {
             HStack {
-                Text(index < LightingPreview.channelNames.count ? "\(index + 1) · \(LightingPreview.channelNames[index])" : "\(index + 1) · Unmapped").font(.caption.weight(.semibold))
+                let asset = model.selectedID.flatMap { model.fixture($0)?.asset }
+                Text("\(index + 1) · \(asset?.channelName(index) ?? (index < LightingPreview.channelNames.count ? LightingPreview.channelNames[index] : "Unused"))").font(.caption.weight(.semibold))
                 Spacer()
                 Text("\(model.presetDraft.channels[index])").font(.body.monospacedDigit()).foregroundStyle(.cyan)
             }

@@ -1,0 +1,17 @@
+{
+  "id": "claypaky/arolla-spot-mp",
+  "passed": true,
+  "source_usdz_sha256": "ec4eccabc73f5203f70962585dad096eb46ea1bd2e9dfedd910cb7589aeeae5a",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

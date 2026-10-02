@@ -1,10 +1,35 @@
 #if DEBUG
 import Foundation
+import RealityKit
 import VenueVolumeCore
 
 /// Opt-in runtime integration check. Uses the real import, save and room-switch
 /// paths in Simulator; its synthetic mesh is explicitly not a headset scan.
 @MainActor enum RoomLibrarySmoke {
+    static func catalog(model: VenueModel) async {
+        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--catalog-smoke") else { return }
+        do {
+            guard let resources = Bundle.main.resourceURL else { throw EnvironmentError.invalid("Missing resources") }
+            for asset in FixtureCatalog.all {
+                try Task.checkCancellation()
+                let template = try await Entity(contentsOf: resources.appendingPathComponent(asset.resource))
+                let fixture = Fixture(name: asset.name, assetID: asset.id, channels: asset.neutralChannels, position: .init(x: 0,y: 0,z: 0))
+                let rig = try FixtureRig(template: template, id: fixture.id, descriptor: asset)
+                for byte in [128, 0, 255, 128] {
+                    var channels = asset.neutralChannels
+                    for joint in asset.joints { channels[joint.channel] = byte }
+                    rig.update(fixture: fixture, channels: channels, selected: false, blackout: false, placing: false)
+                    rig.tick(deltaTime: 1)
+                    try rig.checkEmitterPose(channels: channels)
+                }
+                print("CATALOG_RIG_PASS \(asset.id)")
+            }
+            print("CATALOG_SMOKE_PASS assets=\(FixtureCatalog.all.count)")
+        } catch {
+            model.message = "Catalog smoke failed: \(error.localizedDescription)"
+            print("CATALOG_SMOKE_FAIL \(error)")
+        }
+    }
     static func run(model: VenueModel) async {
         let arguments = ProcessInfo.processInfo.arguments
         guard model.isDemoMode, arguments.contains("--library-smoke") || arguments.contains("--history-smoke") else { return }

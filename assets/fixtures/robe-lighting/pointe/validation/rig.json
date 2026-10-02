@@ -1,0 +1,17 @@
+{
+  "id": "robe-lighting/pointe",
+  "passed": true,
+  "source_usdz_sha256": "1164b3ce2858fde76b7f181d99967cb6e66c9049049d7a0dfc2d6616245af18d",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

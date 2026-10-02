@@ -1,0 +1,17 @@
+{
+  "id": "claypaky/hy-b-eye-k25",
+  "passed": true,
+  "source_usdz_sha256": "2a7afbc98e03b6287eeb8e866bbbeae553d6a3580f4fe53e5e77b198e6838e08",
+  "joints": 2,
+  "moving_meshes": 135,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

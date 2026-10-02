@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "565d2e6ae93dd75a998e82e5004b3d54b986867e7a93e35307d3f792dafa43c0",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "etc/source-four-led-series-3-lustr-x8",
+    "name": "Source Four LED Series 3 Lustr X8",
+    "manufacturer": "ETC",
+    "family": "profile",
+    "resource": "FixtureAssets/Catalog/etc/source-four-led-series-3-lustr-x8/fixture.usdz",
+    "sha256": "565d2e6ae93dd75a998e82e5004b3d54b986867e7a93e35307d3f792dafa43c0",
+    "boundsMin": [
+      -0.17000000178813934,
+      0.0,
+      -0.3605000078678131
+    ],
+    "boundsMax": [
+      0.17000000178813934,
+      0.3400000035762787,
+      0.36050001718103886
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.1116715669631958,
+          0.005533525720238686
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.1116715669631958,
+          -0.36767977476119995
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

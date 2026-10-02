@@ -1,0 +1,17 @@
+{
+  "id": "magic-fx/co2-bottle-to-hose-connector",
+  "passed": true,
+  "source_usdz_sha256": "6f5a68722246619db10ec9dd3961bb9f568928ba3b55500460ab342ce86565f3",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 21,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

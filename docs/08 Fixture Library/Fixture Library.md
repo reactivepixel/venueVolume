@@ -16,6 +16,7 @@ pin both its stable ID and revision.
 
 - [Fixture catalog](Catalog.md) — all entries and their research/model status.
 - [Machine catalog](../../assets/fixtures/catalog.json) — metadata for future library tooling.
+- [visionOS articulation rollout](Articulation.md) — runtime rigs, animation coverage, file locations and validation.
 - [Create Venue Fixture skill](skill/create-venue-fixture/SKILL.md) — canonical copy of the skill.
 - [Record contract](skill/create-venue-fixture/references/record-contract.md).
 - [Modeling and validation guide](skill/create-venue-fixture/references/modeling.md).

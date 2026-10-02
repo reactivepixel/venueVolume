@@ -1,0 +1,17 @@
+{
+  "id": "glp/impression-x5-bar-1000",
+  "passed": true,
+  "source_usdz_sha256": "87fc7af87e0ede99d8655c3a1ae68fcfd32dbaaae7595a9889e07c229e7a51e0",
+  "joints": 1,
+  "moving_meshes": 70,
+  "fixed_meshes": 5,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

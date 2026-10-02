@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "e6286a5b27d177e94728a75d87f5ddcc552cbef897a7a0118436be093a37c1f9",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "adj/jolt-bar-fx",
+    "name": "Jolt Bar FX",
+    "manufacturer": "ADJ",
+    "family": "strobe",
+    "resource": "FixtureAssets/Catalog/adj/jolt-bar-fx/fixture.usdz",
+    "sha256": "e6286a5b27d177e94728a75d87f5ddcc552cbef897a7a0118436be093a37c1f9",
+    "boundsMin": [
+      -0.4999999701976776,
+      0.0,
+      -0.05350000038743019
+    ],
+    "boundsMax": [
+      0.4999999701976776,
+      0.1230000073555857,
+      0.05350000225007534
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.07724879682064056,
+          -0.04773605614900589
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "martin-professional-harman/mac-viper-performance",
+  "passed": true,
+  "source_usdz_sha256": "e2d64e7d7e21fa342fb2879665f36893dd375feb825f467e11343f5731a79cf9",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

@@ -1,0 +1,17 @@
+{
+  "id": "chauvet-professional/colordash-par-h12x-ip",
+  "passed": true,
+  "source_usdz_sha256": "41afb2410c1461ef9512fd4c4a0348d8ab220b805dcc51aa8498d0986ea7bcc1",
+  "joints": 1,
+  "moving_meshes": 71,
+  "fixed_meshes": 6,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

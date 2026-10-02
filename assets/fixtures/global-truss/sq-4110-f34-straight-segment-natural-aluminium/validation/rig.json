@@ -1,0 +1,17 @@
+{
+  "id": "global-truss/sq-4110-f34-straight-segment-natural-aluminium",
+  "passed": true,
+  "source_usdz_sha256": "9958f87bc38fdea577ae0deaf8f3a15c4d5b153db846a6a548a456d5e8f5f2ad",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 20,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

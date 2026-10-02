@@ -1,0 +1,17 @@
+{
+  "id": "chauvet-dj/high-performance-fog-fluid-fju-gallon-jug",
+  "passed": true,
+  "source_usdz_sha256": "abe21f5f2df5c4060956fa3df8703bf863de0f4fa9ef3622af829826c445284d",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 30,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

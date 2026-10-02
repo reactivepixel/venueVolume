@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "e2d64e7d7e21fa342fb2879665f36893dd375feb825f467e11343f5731a79cf9",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "martin-professional-harman/mac-viper-performance",
+    "name": "MAC Viper Performance",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/mac-viper-performance/fixture.usdz",
+    "sha256": "e2d64e7d7e21fa342fb2879665f36893dd375feb825f467e11343f5731a79cf9",
+    "boundsMin": [
+      -0.23600000143051147,
+      0.0,
+      -0.2829999911482446
+    ],
+    "boundsMax": [
+      0.23600000143051147,
+      0.7310000061988831,
+      0.28299999359296635
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.11695999652147293,
+          0.0003381681744940579
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5752400159835815,
+          0.0003381681744940579
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5752400159835815,
+          -0.264047771692276
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

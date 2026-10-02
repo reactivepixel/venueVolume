@@ -1,0 +1,17 @@
+{
+  "id": "adj/7p-hex-ip",
+  "passed": true,
+  "source_usdz_sha256": "306b211e7dbe473b749a0ff1a0898d45d45cd7abc6b729f666f069ea06994c29",
+  "joints": 1,
+  "moving_meshes": 56,
+  "fixed_meshes": 8,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

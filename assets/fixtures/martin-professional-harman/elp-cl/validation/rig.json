@@ -1,0 +1,17 @@
+{
+  "id": "martin-professional-harman/elp-cl",
+  "passed": true,
+  "source_usdz_sha256": "e4dc3aba2336f66128dbc151aab4fc8793e88dc275d080963430f5cb7e732b12",
+  "joints": 1,
+  "moving_meshes": 41,
+  "fixed_meshes": 6,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

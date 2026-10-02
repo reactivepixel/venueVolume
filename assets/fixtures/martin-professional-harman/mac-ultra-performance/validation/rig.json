@@ -1,0 +1,17 @@
+{
+  "id": "martin-professional-harman/mac-ultra-performance",
+  "passed": true,
+  "source_usdz_sha256": "548fa8133951be970f951b773193b194cc74c6f2b542bfcd3c5998b6ce47f301",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

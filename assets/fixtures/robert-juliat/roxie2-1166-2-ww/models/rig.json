@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "3c3c7ae46b7cf607729733aaebdd29123fead03fb52b5748dd8349cd608315e0",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "robert-juliat/roxie2-1166-2-ww",
+    "name": "Roxie2 1166-2 WW",
+    "manufacturer": "Robert Juliat",
+    "family": "followspot",
+    "resource": "FixtureAssets/Catalog/robert-juliat/roxie2-1166-2-ww/fixture.usdz",
+    "sha256": "3c3c7ae46b7cf607729733aaebdd29123fead03fb52b5748dd8349cd608315e0",
+    "boundsMin": [
+      -0.16050001978874207,
+      0.0,
+      -0.5224999785423279
+    ],
+    "boundsMax": [
+      0.16050001978874207,
+      0.3869999945163727,
+      0.5224999841302633
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.016209520399570465,
+          0.015017574653029442
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.23233646154403687,
+          -0.525561511516571
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

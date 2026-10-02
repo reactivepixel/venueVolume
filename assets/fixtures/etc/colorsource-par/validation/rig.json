@@ -1,0 +1,17 @@
+{
+  "id": "etc/colorsource-par",
+  "passed": true,
+  "source_usdz_sha256": "44204b1bc15defee915b82a6553ec4a632fcf612f2240e6082fd19a7fe7c140e",
+  "joints": 1,
+  "moving_meshes": 56,
+  "fixed_meshes": 6,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

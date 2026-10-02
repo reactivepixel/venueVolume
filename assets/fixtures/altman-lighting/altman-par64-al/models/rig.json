@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "dca34a5274bc3fdde7429f2364853fdab821416b11cdae4920181a55bc903ab3",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "altman-lighting/altman-par64-al",
+    "name": "Altman PAR64-AL",
+    "manufacturer": "Altman Lighting",
+    "family": "par_can",
+    "resource": "FixtureAssets/Catalog/altman-lighting/altman-par64-al/fixture.usdz",
+    "sha256": "dca34a5274bc3fdde7429f2364853fdab821416b11cdae4920181a55bc903ab3",
+    "boundsMin": [
+      -0.13950000703334808,
+      7.450580596923828e-09,
+      -0.2029999941587448
+    ],
+    "boundsMax": [
+      0.13950000703334808,
+      0.38999997824430466,
+      0.20300000824499875
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.12198620289564133,
+          0.0406000055372715
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.12198620289564133,
+          -0.2000851333141327
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

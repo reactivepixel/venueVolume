@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "52d1a190b5507fa8d1c386ea9602ee4d5b2dd2e28685aa5f9681d3480264c442",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "vari-lite/vl3600-profile-ip",
+    "name": "VL3600 PROFILE IP",
+    "manufacturer": "Vari-Lite",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/vari-lite/vl3600-profile-ip/fixture.usdz",
+    "sha256": "52d1a190b5507fa8d1c386ea9602ee4d5b2dd2e28685aa5f9681d3480264c442",
+    "boundsMin": [
+      -0.2799999713897705,
+      0.0,
+      -0.17000000511325197
+    ],
+    "boundsMax": [
+      0.2799999713897705,
+      0.7990000247955322,
+      0.1699999984630267
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.12783999741077423,
+          0.00010355974518461153
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.6141999959945679,
+          0.00010355974518461153
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.6141999959945679,
+          -0.15553498268127441
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

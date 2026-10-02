@@ -1,0 +1,17 @@
+{
+  "id": "glp/impression-x5-compact",
+  "passed": true,
+  "source_usdz_sha256": "a39bf0d47e2e8d27f866953b33ac2725a9a6d1c99e9afd51593cb3b03f09fec6",
+  "joints": 2,
+  "moving_meshes": 45,
+  "fixed_meshes": 4,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

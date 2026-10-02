@@ -1,0 +1,17 @@
+{
+  "id": "chauvet-professional/colorado-solo-batten",
+  "passed": true,
+  "source_usdz_sha256": "445fff6f34281035e9d44a7774cd9eacdc5157a7e136d2f7e092a73b17b15c03",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 50,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

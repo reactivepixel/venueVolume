@@ -1,6 +1,6 @@
 # Venue Volume for visionOS
 
-A runnable RealityKit lighting proof of concept for Simulator and Vision Pro (visionOS 2+). Start in the white classroom, import another room, or capture a local mesh on Vision Pro. The clearly labeled **Moving head pilot** uses the CHAUVET Professional Rogue R1X Spot library model; place and aim it in any supported room, preview its beam, and save setups for each environment.
+A runnable RealityKit lighting proof of concept for Simulator and Vision Pro (visionOS 2+). Start in the white classroom, import another room, or capture a local mesh on Vision Pro. The fixture library contains all 127 existing models, with 128 preview joints across 72 articulated assets. Search by model or manufacturer, filter by category, place models, preview supported motion and light, and save setups for each environment.
 
 ## Run
 
@@ -19,7 +19,7 @@ The left-wrist Toolbox header shows the app's `CFBundleShortVersionString`, sour
 ## Use
 
 1. Raise your **left palm** toward you to reveal **Toolbox**. Simulator supplies a **Left palm facing me** toggle. The trigger uses hand pose and head direction, not raw eye gaze.
-2. In **Fixtures & presets**, drag **Rogue R1X moving head pilot** or **DMX cube** onto a highlighted floor/table surface. Alternatively select the fixture row, then pinch a clear surface. **Add moving head pilot** selects the Rogue R1X visualization. Initial output is zero. The proof of concept allows four moving-head lights and 64 total fixtures. The toolbox follows above the left wrist and holds its position during a drag.
+2. In **Fixtures & presets**, search the catalog or choose a category, then drag a model onto a highlighted floor/table surface. Alternatively select its row and pinch a clear surface. **Add selected model** repeats that model. Initial light output and continuous motion are zero, with angular joints centered. Setups support 64 objects. Eight simultaneous beam previews are allocated to lit fixtures, with the selected fixture first; all placed models remain visible and articulated. The toolbox follows above the left wrist and holds its position during a drag.
 3. Drag a preset from the library onto the fixture or label. This commits the saved preset and lights the scene. The right toolbox column shows a scene breakdown with each fixture's patch and preset, individual delete buttons, and **Clear all**. Clearing is undoable; room geometry and named setups remain available. Empty scenes show a placement guide.
 4. Select a fixture for **Info**, **Delete**, **Move**, **Retarget**, and **Transform**. The right toolbox column becomes its info pane. **Pop out item editor** opens the full selected-item window, including name/patch editing and a Transform tab. Both panes follow the current selection. Click an unoccupied room surface/background, or the pane's deselect button, to clear selection, close the item window and return to the scene breakdown. **Move** arms a floor/table pick while preserving orientation, patch, and DMX values.
 5. In **DMX preset**, edit channels and enable **Preview draft on selected fixture** to see edits immediately without changing saved values. Disable preview or close the window to restore the committed look. **Save preset** updates all assigned fixtures. **Save as new** makes an independent preset; **Apply saved** assigns it.
@@ -74,7 +74,11 @@ The shipped classroom has 18,744 triangles, 68 mesh chunks, 96 collision boxes, 
 
 **White model** is a reversible runtime material override of that classroom geometry. The source USDZ is unchanged. Turn it off to see the original materials. The intended room assumption is the reconstructed classroom; there is no separately named white-room asset in the fetched repository.
 
-The fixture comes from `assets/fixtures/chauvet-professional/rogue-r1x-spot`, revision 2. The bundled USDZ and metadata are byte-identical copies. It is an original procedural visualization proxy, not manufacturer CAD. The runtime reparents Head beneath Yoke while preserving its rest transform, then adds `SpotLightComponent` and `SpotLightComponent.Shadow` at the authored emitter. The fixture's own meshes do not cast shadows, avoiding lens self-occlusion; room meshes do. Imported opaque surfaces naturally hide fixtures behind them; room collider targets block placement taps through walls. The toolbox, floating fixture label, Info panel, and position controls all mark this asset as the moving-head pilot and identify its preview profile.
+Each bundled USDZ is an exact copy of its existing library model. `assets/fixtures/runtime-catalog.json` and each model's `models/rig.json` describe its parts, pivots, control channels, bounds, emitter anchors and bundle location. `FixtureRig` inserts transform nodes at those pivots and reparents the specified geometry while preserving the rest pose. It handles pan/tilt, linear fixture tilt, independent Volero Wave modules, scanner mirror motion, manual brackets, the tracking camera, fan rotor and mirror-ball components. Motion is interpolated in degrees over 0.6 seconds; continuous controls integrate rotational speed. These are original procedural approximations with estimated joints and synthetic travel. Existing Blender/USDZ geometry remains unchanged.
+
+The item editor's **Transform → Moving parts** controls are specific to the selected model. A gesture makes one Undo step and stores a per-instance override. **Use preset motion** restores its preset values or neutral pose. Preset application preserves those overrides. Static equipment has placement and mount transforms. Atmosphere and effects equipment use their existing models and outlet metadata; particle effects and operational firing are not simulated.
+
+Assets load on demand and their bytes are checked against the catalog hash. Selection targets use each model's bounds. Spot lights follow the rig's emitter transforms and share the eight-beam budget; each multi-head model divides its illustrative intensity across its emitters. Light fixture meshes do not cast shadows, avoiding lens self-occlusion; room meshes do. The original Rogue R1X pilot remains available and old saved setups retain their stable asset IDs.
 
 ## Preview personality
 
@@ -89,7 +93,10 @@ The pilot limits head travel to roughly 270° pan and 120° tilt so its one-shot
 | 5 | Pan | roughly −135° to +134°, 128 centered |
 | 6 | Tilt | roughly −60° to +60°, 128 centered |
 | 7 | Beam outer half-angle | 10–60°; inner angle is 70% |
-| 8–16 | Unmapped/reserved | Stored and synced, no visual effect |
+| 8–15 | Model-specific additional motion | Volero Wave heads 1–8 tilt; channel 8 is speed for fan/mirror components |
+| 16 | Reserved | Stored and synced |
+
+The table describes the general moving-head preview. Model-specific channel labels appear in the editor: scanners use a smaller synthetic mirror range; manual tilt uses channel 6; stationary models omit pan/tilt; passive equipment has no light output. Manufacturer motor travel and calibrated mirror reflection remain outside this preview. Head targeting is enabled for the 46 moving light heads; other emitting models support mount targeting using their first emitter.
 
 Lumens, RGB, beam, and material response are not photometrically calibrated. This is direct lighting without baked indirect bounce or volumetric haze. No manufacturer gobos, physical strobe, safety/reset channels, Art-Net, sACN, or hardware control are implemented. Room placement is bounded by floor/ceiling/walls; axis movement can intersect furniture and are not a rigging/physics solver. A person can physically walk through virtual geometry; colliders do not constrain wearer movement.
 

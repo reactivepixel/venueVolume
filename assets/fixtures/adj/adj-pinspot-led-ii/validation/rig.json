@@ -1,0 +1,17 @@
+{
+  "id": "adj/adj-pinspot-led-ii",
+  "passed": true,
+  "source_usdz_sha256": "2941fd580767761f85a3b5d84352b3e127857e3afd56507d849625a9f771fdbe",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 8,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

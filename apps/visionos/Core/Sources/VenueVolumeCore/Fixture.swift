@@ -26,6 +26,8 @@ public struct Quaternion3D: Codable, Equatable, Sendable {
 public struct Fixture: Identifiable, Codable, Equatable, Sendable {
     public let id: UUID
     public var aimOverride: PanTiltOverride?
+    /// Per-instance extra joints (module tilt, fan/shaft speed); optional for old saves.
+    public var jointOverrides: [String: Int]?
     public var assetID: String?
     public var presetID: UUID?
     public var name: String
@@ -60,11 +62,22 @@ public struct Fixture: Identifiable, Codable, Equatable, Sendable {
         if let aimOverride, channels.count >= 6 {
             channels[4] = aimOverride.pan; channels[5] = aimOverride.tilt
         }
+        for joint in asset?.joints ?? [] {
+            if let value = jointOverrides?[joint.id], channels.indices.contains(joint.channel) {
+                channels[joint.channel] = value
+            }
+        }
     }
 
     public var endAddress: Int { startAddress + channels.count - 1 }
 
     public func validationIssue(among fixtures: [Fixture]) -> String? {
+        for (id, value) in jointOverrides ?? [:] {
+            guard let joint = asset?.joints.first(where: { $0.id == id }),
+                  channels.indices.contains(joint.channel), (0...255).contains(value), channels[joint.channel] == value else {
+                return "Joint overrides must match a catalog control and its resolved channel."
+            }
+        }
         if let aim = aimOverride {
             if channels.count < 6 || !(0...255).contains(aim.pan) || !(0...255).contains(aim.tilt) {
                 return "Retargeting needs valid pan/tilt values and at least six channels. Clear the aim override first."

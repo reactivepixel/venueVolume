@@ -1,0 +1,17 @@
+{
+  "id": "adj/dynasty-scan-dmx",
+  "passed": true,
+  "source_usdz_sha256": "5fda7f494b11152e55f77eca9b0811e526a738fd35d22fd7e91e53614c822328",
+  "joints": 2,
+  "moving_meshes": 2,
+  "fixed_meshes": 14,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

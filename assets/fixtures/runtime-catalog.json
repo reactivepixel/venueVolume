@@ -1,0 +1,7237 @@
+[
+  {
+    "id": "adj/7p-hex-ip",
+    "name": "7P HEX IP",
+    "manufacturer": "ADJ",
+    "family": "par",
+    "resource": "FixtureAssets/Catalog/adj/7p-hex-ip/fixture.usdz",
+    "sha256": "306b211e7dbe473b749a0ff1a0898d45d45cd7abc6b729f666f069ea06994c29",
+    "boundsMin": [
+      -0.12800000607967377,
+      0.0,
+      -0.0851999968290329
+    ],
+    "boundsMax": [
+      0.12800000607967377,
+      0.23480000568088144,
+      0.08519999263808131
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.14037564396858215,
+          -0.0030578416772186756
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.14037564396858215,
+          -0.08938051760196686
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "adj/adj-pinspot-led-ii",
+    "name": "ADJ Pinspot LED II",
+    "manufacturer": "ADJ",
+    "family": "pinspot",
+    "resource": "FixtureAssets/Catalog/adj/adj-pinspot-led-ii/fixture.usdz",
+    "sha256": "2941fd580767761f85a3b5d84352b3e127857e3afd56507d849625a9f771fdbe",
+    "boundsMin": [
+      -0.0494999997317791,
+      0.0,
+      -0.09200000017881393
+    ],
+    "boundsMax": [
+      0.0494999997317791,
+      0.060999996960163116,
+      0.09199999590055086
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.018711548298597336,
+          -0.09043492376804352
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "adj/dp-415r",
+    "name": "DP-415R",
+    "manufacturer": "ADJ",
+    "family": "dimmer",
+    "resource": "FixtureAssets/Catalog/adj/dp-415r/fixture.usdz",
+    "sha256": "6da98eec4b35cee8c0cea02074e28d38fd94a8d736c51d1c21b76694439927c5",
+    "boundsMin": [
+      -0.12999999523162842,
+      0.0,
+      -0.10450000315904617
+    ],
+    "boundsMax": [
+      0.12999999523162842,
+      0.07599999755620956,
+      0.10450000315904617
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "adj/dynasty-scan-dmx",
+    "name": "Dynasty Scan DMX",
+    "manufacturer": "ADJ",
+    "family": "scanner",
+    "resource": "FixtureAssets/Catalog/adj/dynasty-scan-dmx/fixture.usdz",
+    "sha256": "5fda7f494b11152e55f77eca9b0811e526a738fd35d22fd7e91e53614c822328",
+    "boundsMin": [
+      -0.0925000011920929,
+      7.450580596923828e-09,
+      -0.23000000417232513
+    ],
+    "boundsMax": [
+      0.0925000011920929,
+      0.19499999284744263,
+      0.23000000533647835
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Mirror pan",
+        "parent": null,
+        "members": [],
+        "pivot": [
+          0.0,
+          0.1451132446527481,
+          -0.20364932715892792
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 60,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Mirror tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Mirror"
+        ],
+        "pivot": [
+          0.0,
+          0.1451132446527481,
+          -0.20364932715892792
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 60,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.1451132446527481,
+          -0.21779005229473114
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "adj/encore-lp12z-ip",
+    "name": "Encore LP12Z IP",
+    "manufacturer": "ADJ",
+    "family": "par",
+    "resource": "FixtureAssets/Catalog/adj/encore-lp12z-ip/fixture.usdz",
+    "sha256": "c4fe9fab2d213ad9b5322497c82909dbb59830f2c6a4d953876bf898413bd2b0",
+    "boundsMin": [
+      -0.15800000727176666,
+      0.0,
+      -0.18549999594688416
+    ],
+    "boundsMax": [
+      0.15800000727176666,
+      0.34599997312761843,
+      0.18550000712275505
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.20685675740242004,
+          -0.01683320477604866
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.20685675740242004,
+          -0.19010843336582184
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "adj/entour-cyclone",
+    "name": "Entour Cyclone",
+    "manufacturer": "ADJ",
+    "family": "fan",
+    "resource": "FixtureAssets/Catalog/adj/entour-cyclone/fixture.usdz",
+    "sha256": "c2f066a00355883ffb1443d801611549762e185c511c406b52ae9018a33decd8",
+    "boundsMin": [
+      -0.17499999701976776,
+      0.0,
+      -0.06549999862909317
+    ],
+    "boundsMax": [
+      0.17499999701976776,
+      0.4220000207424164,
+      0.06549999862909317
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Guard"
+        ],
+        "pivot": [
+          0.0,
+          0.240364208817482,
+          -0.0
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      },
+      {
+        "id": "rotor",
+        "label": "Fan speed",
+        "parent": "tilt",
+        "members": [
+          "/Fixture/Rotor"
+        ],
+        "pivot": [
+          0.0,
+          0.240364208817482,
+          -0.0
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ],
+        "channel": 7,
+        "travel": 720,
+        "continuous": true,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "adj/focus-spot-4z",
+    "name": "Focus Spot 4Z",
+    "manufacturer": "ADJ",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/adj/focus-spot-4z/fixture.usdz",
+    "sha256": "6980b4baa059236a071f8a05d2cb3cfa75521f29f53577309025bd5981513b0b",
+    "boundsMin": [
+      -0.13930001854896545,
+      0.0,
+      -0.09075000043958426
+    ],
+    "boundsMax": [
+      0.13930001854896545,
+      0.45739999413490295,
+      0.0907500023022294
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.07318399846553802,
+          0.0004991302266716957
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.3654620051383972,
+          0.0004991302266716957
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.3654620051383972,
+          -0.06545180827379227
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "adj/hydro-beam-x1",
+    "name": "Hydro Beam X1",
+    "manufacturer": "ADJ",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/adj/hydro-beam-x1/fixture.usdz",
+    "sha256": "86907d4bfa12366107b38e9048b6f85a531aff3d2a280eddf612512f56c19915",
+    "boundsMin": [
+      -0.10499999672174454,
+      0.0,
+      -0.1679999998304993
+    ],
+    "boundsMax": [
+      0.10499999672174454,
+      0.4300000071525574,
+      0.1679999956395477
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.06880000233650208,
+          0.000518811633810401
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.36070001125335693,
+          0.000518811633810401
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.36070001125335693,
+          -0.12638640403747559
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "adj/jolt-300",
+    "name": "JOLT 300",
+    "manufacturer": "ADJ",
+    "family": "strobe",
+    "resource": "FixtureAssets/Catalog/adj/jolt-300/fixture.usdz",
+    "sha256": "eeb38ef3a4b408dc2411d52618e589c090b7709c5a7387491221bd78efe2f09d",
+    "boundsMin": [
+      -0.19449999928474426,
+      3.725290298461914e-09,
+      -0.07149999588727951
+    ],
+    "boundsMax": [
+      0.19449999928474426,
+      0.21300000231713057,
+      0.07149999821558595
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.14105959236621857,
+          -0.06367030739784241
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "adj/jolt-bar-fx",
+    "name": "Jolt Bar FX",
+    "manufacturer": "ADJ",
+    "family": "strobe",
+    "resource": "FixtureAssets/Catalog/adj/jolt-bar-fx/fixture.usdz",
+    "sha256": "e6286a5b27d177e94728a75d87f5ddcc552cbef897a7a0118436be093a37c1f9",
+    "boundsMin": [
+      -0.4999999701976776,
+      0.0,
+      -0.05350000038743019
+    ],
+    "boundsMax": [
+      0.4999999701976776,
+      0.1230000073555857,
+      0.05350000225007534
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.07724879682064056,
+          -0.04773605614900589
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "adj/jolt-bar-fx2",
+    "name": "Jolt Bar FX2",
+    "manufacturer": "ADJ",
+    "family": "strobe",
+    "resource": "FixtureAssets/Catalog/adj/jolt-bar-fx2/fixture.usdz",
+    "sha256": "61281eb5db539deb77ec1daed161357b5384864190456e1c76fda01724d80f61",
+    "boundsMin": [
+      -0.4999999701976776,
+      0.0,
+      -0.051750004291534424
+    ],
+    "boundsMax": [
+      0.4999999701976776,
+      0.10100000677630305,
+      0.051750003825873137
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.0646001473069191,
+          -0.046186670660972595
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "adj/led-bar",
+    "name": "LED Bar",
+    "manufacturer": "ADJ",
+    "family": "batten",
+    "resource": "FixtureAssets/Catalog/adj/led-bar/fixture.usdz",
+    "sha256": "2dff691bf30da4def7a970cd44045ebfe317bf7d55d89a9162e71a9c70f27cfa",
+    "boundsMin": [
+      -0.2500000298023224,
+      0.0,
+      -0.044999998062849045
+    ],
+    "boundsMax": [
+      0.2500000298023224,
+      0.1319999925326556,
+      0.04500000807456672
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.08741722255945206,
+          -0.03597520664334297
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "adj/led-pixel-tube-360",
+    "name": "LED Pixel Tube 360",
+    "manufacturer": "ADJ",
+    "family": "tube",
+    "resource": "FixtureAssets/Catalog/adj/led-pixel-tube-360/fixture.usdz",
+    "sha256": "00c8a44091220768dad899044a55ffabd641bef78fcc576a1c9dedfd06cd972a",
+    "boundsMin": [
+      -0.5,
+      1.862645149230957e-09,
+      -0.02499999850988388
+    ],
+    "boundsMax": [
+      0.5,
+      0.04999999841675162,
+      0.02499999850988388
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.02500000037252903,
+          -0.0264660082757473
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "adj/m-2020-mirror-ball",
+    "name": "M-2020 Mirror Ball",
+    "manufacturer": "ADJ",
+    "family": "mirror_ball",
+    "resource": "FixtureAssets/Catalog/adj/m-2020-mirror-ball/fixture.usdz",
+    "sha256": "13278609cd720c50c4a84aad2f81c90217adc5286d5635bf6e0c7c7c82d815aa",
+    "boundsMin": [
+      -0.2540000081062317,
+      0.0,
+      -0.2540000081062317
+    ],
+    "boundsMax": [
+      0.2540000081062317,
+      0.5079999566078186,
+      0.2540000081062317
+    ],
+    "joints": [
+      {
+        "id": "ball",
+        "label": "Ball speed",
+        "parent": null,
+        "members": [
+          "/Fixture/Body/Sphere_beneath_mirror_mosaic_0",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_0_1",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_1_2",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_2_3",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_3_4",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_4_5",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_5_6",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_6_7",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_7_8",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_8_9",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_9_10",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_10_11",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_11_12",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_12_13",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_13_14",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_14_15",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_15_16",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_16_17",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_17_18",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_18_19",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_19_20",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_20_21",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_21_22",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_22_23",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_23_24",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_24_25",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_25_26",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_26_27",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_27_28",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_28_29",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_29_30",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_30_31",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_31_32"
+        ],
+        "pivot": [
+          0,
+          0.2539999783039093,
+          0
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 7,
+        "travel": 36,
+        "continuous": true,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "adj/stryker-wash",
+    "name": "STRYKER WASH",
+    "manufacturer": "ADJ",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/adj/stryker-wash/fixture.usdz",
+    "sha256": "c9cd630b1739aed98c555b6fa6598f19f8ed613bfc72137f43959e6cef9cd0af",
+    "boundsMin": [
+      -0.16200000047683716,
+      0.0,
+      -0.11099999531870708
+    ],
+    "boundsMax": [
+      0.16200000047683716,
+      0.39899998903274536,
+      0.11100000009173527
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.06328059732913971,
+          0.0005067573511041701
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.2926727533340454,
+          0.0005067573511041701
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.2926727533340454,
+          -0.057993192225694656
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "adj/uv-flood-36",
+    "name": "UV Flood 36",
+    "manufacturer": "ADJ",
+    "family": "uv",
+    "resource": "FixtureAssets/Catalog/adj/uv-flood-36/fixture.usdz",
+    "sha256": "e4eb91189e3a6b62c2e672f8f551bc1add2f2d554436848b82cede8289acf758",
+    "boundsMin": [
+      -0.15000000596046448,
+      0.0,
+      -0.05750000150874257
+    ],
+    "boundsMax": [
+      0.15000000596046448,
+      0.23500001360662282,
+      0.057500000577419996
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.12932266294956207,
+          -0.05440777540206909
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "altman-lighting/altman-par64-al",
+    "name": "Altman PAR64-AL",
+    "manufacturer": "Altman Lighting",
+    "family": "par_can",
+    "resource": "FixtureAssets/Catalog/altman-lighting/altman-par64-al/fixture.usdz",
+    "sha256": "dca34a5274bc3fdde7429f2364853fdab821416b11cdae4920181a55bc903ab3",
+    "boundsMin": [
+      -0.13950000703334808,
+      7.450580596923828e-09,
+      -0.2029999941587448
+    ],
+    "boundsMax": [
+      0.13950000703334808,
+      0.38999997824430466,
+      0.20300000824499875
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.12198620289564133,
+          0.0406000055372715
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.12198620289564133,
+          -0.2000851333141327
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "altman-lighting/altman-scoop-153",
+    "name": "Altman Scoop 153",
+    "manufacturer": "Altman Lighting",
+    "family": "flood",
+    "resource": "FixtureAssets/Catalog/altman-lighting/altman-scoop-153/fixture.usdz",
+    "sha256": "04f33fa47c8b7bb66fdb092c0bb3f8ea9a56ed6e4cd39f75af7bc0a272182f28",
+    "boundsMin": [
+      -0.13650000095367432,
+      -1.4901161193847656e-08,
+      -0.10149999801069498
+    ],
+    "boundsMax": [
+      0.13650000095367432,
+      0.35899999737739563,
+      0.10150000359863043
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.13554079830646515,
+          -0.09870148450136185
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "antari/b-100-bubble-machine",
+    "name": "B-100 Bubble Machine",
+    "manufacturer": "Antari",
+    "family": "bubble",
+    "resource": "FixtureAssets/Catalog/antari/b-100-bubble-machine/fixture.usdz",
+    "sha256": "d8e5d71231664da88612886b26c00f28bcff95e5b906d292c4b73d0674fd8e64",
+    "boundsMin": [
+      -0.13249999284744263,
+      0.0,
+      -0.17049998324364424
+    ],
+    "boundsMax": [
+      0.13249999284744263,
+      0.28999999165534973,
+      0.17049999255686998
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "antari/m-9-jet-fog-machine",
+    "name": "M-9 Jet Fog Machine",
+    "manufacturer": "Antari",
+    "family": "jet",
+    "resource": "FixtureAssets/Catalog/antari/m-9-jet-fog-machine/fixture.usdz",
+    "sha256": "96587ec86c42f991cde545313f98261315a3f51ffdf9b4631d9902b653d5f6d1",
+    "boundsMin": [
+      -0.16050000488758087,
+      0.0,
+      -0.19650002475827932
+    ],
+    "boundsMax": [
+      0.16050000488758087,
+      0.41999998688697815,
+      0.19650001171976328
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "antari/s-500-snow-machine",
+    "name": "S-500 Snow Machine",
+    "manufacturer": "Antari",
+    "family": "snow",
+    "resource": "FixtureAssets/Catalog/antari/s-500-snow-machine/fixture.usdz",
+    "sha256": "32d078d3eddfd4c7b32aceff1cca6ec0373fa4a8901c4ab4c835233cf98bda61",
+    "boundsMin": [
+      -0.27550002932548523,
+      0.0,
+      -0.29600000381469727
+    ],
+    "boundsMax": [
+      0.27550002932548523,
+      0.6510000177659094,
+      0.29600000381469727
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "antari/z-1000iii-fog-machine",
+    "name": "Z-1000III Fog Machine",
+    "manufacturer": "Antari",
+    "family": "fogger",
+    "resource": "FixtureAssets/Catalog/antari/z-1000iii-fog-machine/fixture.usdz",
+    "sha256": "8cae9f56e3ba1a0a0a0a192f14fd63f0111c021fe2b69f0b391b73e929764dc3",
+    "boundsMin": [
+      -0.1404999941587448,
+      0.0,
+      -0.21649999916553497
+    ],
+    "boundsMax": [
+      0.1404999941587448,
+      0.265999972820282,
+      0.21649999916553497
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "astera/nyx-bulb",
+    "name": "NYX Bulb",
+    "manufacturer": "Astera",
+    "family": "practical",
+    "resource": "FixtureAssets/Catalog/astera/nyx-bulb/fixture.usdz",
+    "sha256": "7f2db92665d52c7c393947b9b4623c420ea8c755ce938ed33f077219bf0eb4e5",
+    "boundsMin": [
+      -0.034999998286375344,
+      -9.313225746154785e-10,
+      -0.035000000149019606
+    ],
+    "boundsMax": [
+      0.03499999828635758,
+      0.12999999930616468,
+      0.03500000014900362
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          1.3038507162832502e-08,
+          0.10373737663030624,
+          7.450572603318051e-09
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "brompton-technology/tessera-sx40",
+    "name": "Tessera SX40",
+    "manufacturer": "Brompton Technology",
+    "family": "media_server",
+    "resource": "FixtureAssets/Catalog/brompton-technology/tessera-sx40/fixture.usdz",
+    "sha256": "9973978766c1b845b81b75e421fa9c2b3bfefe90dbfe810bcf473baa5f72cfa4",
+    "boundsMin": [
+      -0.24130000174045563,
+      0.0,
+      -0.20319999399362132
+    ],
+    "boundsMax": [
+      0.24130000174045563,
+      0.08889999985694885,
+      0.20320000109495595
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "chauvet-dj/cumulus-hp-low-lying-fog-machine",
+    "name": "Cumulus HP Low-Lying Fog Machine",
+    "manufacturer": "CHAUVET DJ",
+    "family": "low_fog",
+    "resource": "FixtureAssets/Catalog/chauvet-dj/cumulus-hp-low-lying-fog-machine/fixture.usdz",
+    "sha256": "af1acba5d1bac9e845db1c46e35f6d94afbebe887661e9e4e9b009cdef2381fb",
+    "boundsMin": [
+      -0.15200001001358032,
+      0.0,
+      -0.23200000822544098
+    ],
+    "boundsMax": [
+      0.15200001001358032,
+      0.34700000286102295,
+      0.2319999998435378
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "chauvet-dj/high-performance-fog-fluid-fju-gallon-jug",
+    "name": "High Performance Fog Fluid (FJU) Gallon Jug",
+    "manufacturer": "CHAUVET DJ",
+    "family": "fluid_container",
+    "resource": "FixtureAssets/Catalog/chauvet-dj/high-performance-fog-fluid-fju-gallon-jug/fixture.usdz",
+    "sha256": "abe21f5f2df5c4060956fa3df8703bf863de0f4fa9ef3622af829826c445284d",
+    "boundsMin": [
+      -0.07750000804662704,
+      0.0,
+      -0.07750000804662704
+    ],
+    "boundsMax": [
+      0.07750000804662704,
+      0.3000000352039933,
+      0.07750000804662704
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "chauvet-dj/hurricane-haze-1dx",
+    "name": "Hurricane Haze 1DX",
+    "manufacturer": "CHAUVET DJ",
+    "family": "hazer",
+    "resource": "FixtureAssets/Catalog/chauvet-dj/hurricane-haze-1dx/fixture.usdz",
+    "sha256": "6bb1a65a56f9bfa4773618b788e80722e2349f4da1d9c0086de0bd96930675c6",
+    "boundsMin": [
+      -0.07500000298023224,
+      0.0,
+      -0.13899999856948853
+    ],
+    "boundsMax": [
+      0.07500000298023224,
+      0.22300000488758087,
+      0.1389999978709966
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "chauvet-professional/colorado-solo-batten",
+    "name": "COLORado Solo Batten",
+    "manufacturer": "CHAUVET Professional",
+    "family": "batten",
+    "resource": "FixtureAssets/Catalog/chauvet-professional/colorado-solo-batten/fixture.usdz",
+    "sha256": "445fff6f34281035e9d44a7774cd9eacdc5157a7e136d2f7e092a73b17b15c03",
+    "boundsMin": [
+      -0.5062500238418579,
+      0.0,
+      -0.11500000348314643
+    ],
+    "boundsMax": [
+      0.5062500238418579,
+      0.24979996914044023,
+      0.1150000081397593
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.1654304414987564,
+          -0.10852667689323425
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "chauvet-professional/colordash-batten-quad-6",
+    "name": "COLORdash Batten-Quad 6",
+    "manufacturer": "CHAUVET Professional",
+    "family": "batten",
+    "resource": "FixtureAssets/Catalog/chauvet-professional/colordash-batten-quad-6/fixture.usdz",
+    "sha256": "e12590c60a2f581317d4684a017b1ef38258a4536111b3e0241a76c38e0afa60",
+    "boundsMin": [
+      -0.2800000309944153,
+      0.0,
+      -0.032499998807907104
+    ],
+    "boundsMax": [
+      0.2800000309944153,
+      0.1639999857870862,
+      0.03249999834224582
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.10860926657915115,
+          -0.028627656400203705
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "chauvet-professional/colordash-par-h12x-ip",
+    "name": "COLORdash PAR H12X IP",
+    "manufacturer": "CHAUVET Professional",
+    "family": "par",
+    "resource": "FixtureAssets/Catalog/chauvet-professional/colordash-par-h12x-ip/fixture.usdz",
+    "sha256": "41afb2410c1461ef9512fd4c4a0348d8ab220b805dcc51aa8498d0986ea7bcc1",
+    "boundsMin": [
+      -0.1527000069618225,
+      0.0,
+      -0.11599999666213989
+    ],
+    "boundsMax": [
+      0.1527000069618225,
+      0.24789999425411224,
+      0.11599999852478504
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.08288505673408508,
+          -0.007133236154913902
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.08288505673408508,
+          -0.12038025259971619
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "chauvet-professional/colordash-par-h7x",
+    "name": "COLORdash PAR H7X",
+    "manufacturer": "CHAUVET Professional",
+    "family": "par",
+    "resource": "FixtureAssets/Catalog/chauvet-professional/colordash-par-h7x/fixture.usdz",
+    "sha256": "c6bd3c67dcb37c685876a9d432c011326d72282779836f5fc0235ca21789700f",
+    "boundsMin": [
+      -0.1290000081062317,
+      0.0,
+      -0.057999998331069946
+    ],
+    "boundsMax": [
+      0.1290000081062317,
+      0.24000000953674316,
+      0.058000000077299774
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.08024370670318604,
+          0.00023503776174038649
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.08024370670318604,
+          -0.061868924647569656
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "chauvet-professional/colordash-par-quad-18",
+    "name": "COLORdash Par-Quad 18",
+    "manufacturer": "CHAUVET Professional",
+    "family": "par",
+    "resource": "FixtureAssets/Catalog/chauvet-professional/colordash-par-quad-18/fixture.usdz",
+    "sha256": "d3fc7d2440f4cdba30c3c80e7dae9da5601af1fa5777f75d1b033ee27e1be135",
+    "boundsMin": [
+      -0.1615000069141388,
+      -7.450580596923828e-09,
+      -0.05300000309944153
+    ],
+    "boundsMax": [
+      0.1615000069141388,
+      0.2979999706149101,
+      0.05300000333227217
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.09963592141866684,
+          0.000781242037191987
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.09963592141866684,
+          -0.056785546243190765
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "chauvet-professional/maverick-mk2-wash",
+    "name": "Maverick MK2 Wash",
+    "manufacturer": "CHAUVET Professional",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/chauvet-professional/maverick-mk2-wash/fixture.usdz",
+    "sha256": "4e0e6e462d916447bcc964454d4bda2c40c54be0accbc7b20bf6f13b24d3feda",
+    "boundsMin": [
+      -0.11649999022483826,
+      0.0,
+      -0.1615000136080198
+    ],
+    "boundsMax": [
+      0.11649999022483826,
+      0.47099998593330383,
+      0.1615000002202578
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.07494402676820755,
+          0.0005178384599275887
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.3919345736503601,
+          0.0005178384599275887
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.3919345736503601,
+          -0.0864594355225563
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "chauvet-professional/rogue-r1x-spot",
+    "name": "Rogue R1X Spot",
+    "manufacturer": "CHAUVET Professional",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/RogueR1X/fixture.usdz",
+    "sha256": "f0bc6d4bfebed8d093199d0d27ef32129701278296c7b5e32aaa66f478ca9fff",
+    "boundsMin": [
+      -0.18000000715255737,
+      0.0,
+      -0.14099999924656004
+    ],
+    "boundsMax": [
+      0.18000000715255737,
+      0.44699999690055847,
+      0.1409999910974875
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.07152000069618225,
+          0.0005142424488440156
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.3307799994945526,
+          0.0005142424488440156
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.3307799994945526,
+          -0.10807541757822037
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "chauvet-professional/rogue-r2-wash",
+    "name": "Rogue R2 Wash",
+    "manufacturer": "CHAUVET Professional",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/chauvet-professional/rogue-r2-wash/fixture.usdz",
+    "sha256": "eb830156e57c0efb5ccc88a6d6359545d19ebe3c897a9a96495412b4aa1ea625",
+    "boundsMin": [
+      -0.15299999713897705,
+      0.0,
+      -0.10900000139372423
+    ],
+    "boundsMax": [
+      0.15299999713897705,
+      0.39799997210502625,
+      0.10900000081164762
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.06313536316156387,
+          0.0005061213742010295
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.2944796681404114,
+          0.0005061213742010295
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.2944796681404114,
+          -0.056867681443691254
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "chauvet-professional/rogue-rh1-hybrid",
+    "name": "Rogue RH1 Hybrid",
+    "manufacturer": "CHAUVET Professional",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/chauvet-professional/rogue-rh1-hybrid/fixture.usdz",
+    "sha256": "42b29a71e443302f4007851e5a3a5ca40bb27846e4f38c614cd2c49ca6b03e63",
+    "boundsMin": [
+      -0.16350001096725464,
+      0.0,
+      -0.2045000028447248
+    ],
+    "boundsMax": [
+      0.16350001096725464,
+      0.6380000114440918,
+      0.2044999915524386
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.10208000242710114,
+          0.000523136870469898
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5300899744033813,
+          0.000523136870469898
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5300899744033813,
+          -0.16636765003204346
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "chauvet-professional/strike-4",
+    "name": "STRIKE 4",
+    "manufacturer": "CHAUVET Professional",
+    "family": "blinder",
+    "resource": "FixtureAssets/Catalog/chauvet-professional/strike-4/fixture.usdz",
+    "sha256": "50c350a18c1d25532027683121f59dda9baa97082368471eb53a8c5e36be144a",
+    "boundsMin": [
+      -0.1809999942779541,
+      0.0,
+      -0.08150000311434269
+    ],
+    "boundsMax": [
+      0.1809999942779541,
+      0.3619999885559082,
+      0.08150001429021358
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.1809999942779541,
+          -0.07880669832229614
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "claypaky/arolla-profile-mp",
+    "name": "Arolla Profile MP",
+    "manufacturer": "Claypaky",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/claypaky/arolla-profile-mp/fixture.usdz",
+    "sha256": "ec4eccabc73f5203f70962585dad096eb46ea1bd2e9dfedd910cb7589aeeae5a",
+    "boundsMin": [
+      -0.18000000715255737,
+      0.0,
+      -0.12499999022111297
+    ],
+    "boundsMax": [
+      0.18000000715255737,
+      0.5929999947547913,
+      0.12499999487772584
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.09487999975681305,
+          0.003164889756590128
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.4742000102996826,
+          0.003164889756590128
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.4742000102996826,
+          -0.1111859381198883
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "claypaky/arolla-spot-mp",
+    "name": "Arolla Spot MP",
+    "manufacturer": "Claypaky",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/claypaky/arolla-spot-mp/fixture.usdz",
+    "sha256": "ec4eccabc73f5203f70962585dad096eb46ea1bd2e9dfedd910cb7589aeeae5a",
+    "boundsMin": [
+      -0.18000000715255737,
+      0.0,
+      -0.12499999022111297
+    ],
+    "boundsMax": [
+      0.18000000715255737,
+      0.5929999947547913,
+      0.12499999487772584
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.09487999975681305,
+          0.003164889756590128
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.4742000102996826,
+          0.003164889756590128
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.4742000102996826,
+          -0.1111859381198883
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "claypaky/hy-b-eye-k25",
+    "name": "HY B-EYE K25",
+    "manufacturer": "Claypaky",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/claypaky/hy-b-eye-k25/fixture.usdz",
+    "sha256": "2a7afbc98e03b6287eeb8e866bbbeae553d6a3580f4fe53e5e77b198e6838e08",
+    "boundsMin": [
+      -0.19349999725818634,
+      0.0,
+      -0.16449999721953645
+    ],
+    "boundsMax": [
+      0.19349999725818634,
+      0.5899999737739563,
+      0.1644999840646051
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.09371033310890198,
+          0.0005182930617593229
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.45891258120536804,
+          0.0005182930617593229
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.45891258120536804,
+          -0.08815242350101471
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "claypaky/mini-b",
+    "name": "Mini-B",
+    "manufacturer": "Claypaky",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/claypaky/mini-b/fixture.usdz",
+    "sha256": "cdc1bea2d6fd848ebdd82969cbc9b9900c5c793948e184e8a6375b579139c2f2",
+    "boundsMin": [
+      -0.10999999940395355,
+      0.0,
+      -0.09300000144867226
+    ],
+    "boundsMax": [
+      0.10999999940395355,
+      0.34599998593330383,
+      0.09299999551149085
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.05496785044670105,
+          0.0005001284298487008
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.2714633345603943,
+          0.0005001284298487008
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.2714633345603943,
+          -0.04787220060825348
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "claypaky/sharpy",
+    "name": "Sharpy",
+    "manufacturer": "Claypaky",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/claypaky/sharpy/fixture.usdz",
+    "sha256": "91745c26b66d053b467c6ddaa463f0448aef1e0287d6535e53d20fae12d2b5f0",
+    "boundsMin": [
+      -0.20250000059604645,
+      0.0,
+      -0.16500001325039193
+    ],
+    "boundsMax": [
+      0.20250000059604645,
+      0.4749999940395355,
+      0.16499998496146873
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.07124999910593033,
+          0.0005053661880083382
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.351500004529953,
+          0.0005053661880083382
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.351500004529953,
+          -0.13825038075447083
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "claypaky/sharpy-plus",
+    "name": "Sharpy Plus",
+    "manufacturer": "Claypaky",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/claypaky/sharpy-plus/fixture.usdz",
+    "sha256": "ce0af2a5badc4df7265987ed676c561179df9a913fa6fc934dd96e231737b1a8",
+    "boundsMin": [
+      -0.1874999850988388,
+      0.0,
+      -0.15349999314639717
+    ],
+    "boundsMax": [
+      0.1874999850988388,
+      0.6349999904632568,
+      0.15350000315811485
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.10159999877214432,
+          0.0019093131413683295
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5112500190734863,
+          0.0019093131413683295
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5112500190734863,
+          -0.14026843011379242
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "claypaky/sharpy-plus-aqua",
+    "name": "Sharpy Plus Aqua",
+    "manufacturer": "Claypaky",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/claypaky/sharpy-plus-aqua/fixture.usdz",
+    "sha256": "388b54ecc5666294c051821f1fa05fb7cc32980e767a364331ff82712092999c",
+    "boundsMin": [
+      -0.20999999344348907,
+      0.0,
+      -0.16799999261274934
+    ],
+    "boundsMax": [
+      0.20999999344348907,
+      0.7310000061988831,
+      0.16799998795613647
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.11695999652147293,
+          0.0015170923434197903
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5924000144004822,
+          0.0015170923434197903
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5924000144004822,
+          -0.1551707684993744
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "claypaky/sinfonya-profile-600",
+    "name": "Sinfonya Profile 600",
+    "manufacturer": "Claypaky",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/claypaky/sinfonya-profile-600/fixture.usdz",
+    "sha256": "d547bdb1bd5a5f89faae58460d5e6e91a2ce758d01eddba9f2cedf742003b447",
+    "boundsMin": [
+      -0.21250000596046448,
+      0.0,
+      -0.2085000050428789
+    ],
+    "boundsMax": [
+      0.21250000596046448,
+      0.7960000038146973,
+      0.20850000556674786
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.127360001206398,
+          0.00045793529716320336
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.6557499766349792,
+          0.00045793529716320336
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.6557499766349792,
+          -0.19246606528759003
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "claypaky/tambora-flash",
+    "name": "Tambora Flash",
+    "manufacturer": "Claypaky",
+    "family": "strobe",
+    "resource": "FixtureAssets/Catalog/claypaky/tambora-flash/fixture.usdz",
+    "sha256": "c13bb89f1ef5b6590ffdeefda333460ee91032732da2c896298b09a26d41a69d",
+    "boundsMin": [
+      -0.2485000044107437,
+      0.0,
+      -0.09000001102685928
+    ],
+    "boundsMax": [
+      0.2485000044107437,
+      0.1860000176820904,
+      0.09000000567175448
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.12317881733179092,
+          -0.07680852711200714
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "claypaky/volero-wave",
+    "name": "Volero Wave",
+    "manufacturer": "Claypaky",
+    "family": "batten",
+    "resource": "FixtureAssets/Catalog/claypaky/volero-wave/fixture.usdz",
+    "sha256": "d13a5e89e12b479d263389e0f551bfe885fb5c4d15203bf1c99ec611c52dab8e",
+    "boundsMin": [
+      -0.4999999701976776,
+      -7.450580596923828e-09,
+      -0.09099999954923987
+    ],
+    "boundsMax": [
+      0.4999999701976776,
+      0.32899999618530273,
+      0.09100000420585275
+    ],
+    "joints": [
+      {
+        "id": "Head_01",
+        "label": "Head 1 tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Head_01/Independent_tilting_head_37",
+          "/Fixture/Head_01/Head_optic_collar_38",
+          "/Fixture/Head_01/Independent_beam_optic_39",
+          "/Fixture/Head_01/Module_cooling_rib_40",
+          "/Fixture/Head_01/Module_cooling_rib_001_41",
+          "/Fixture/Head_01/Module_cooling_rib_002_42",
+          "/Fixture/Head_01/Module_cooling_rib_003_43",
+          "/Fixture/Head_01/Module_cooling_rib_004_44",
+          "/Fixture/Head_01/Module_cooling_rib_005_45"
+        ],
+        "pivot": [
+          -0.3723404109477997,
+          0.2568768858909607,
+          0.004690824542194605
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 7,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "Head_02",
+        "label": "Head 2 tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Head_02/Independent_tilting_head_001_50",
+          "/Fixture/Head_02/Head_optic_collar_001_51",
+          "/Fixture/Head_02/Independent_beam_optic_001_52",
+          "/Fixture/Head_02/Module_cooling_rib_006_53",
+          "/Fixture/Head_02/Module_cooling_rib_007_54",
+          "/Fixture/Head_02/Module_cooling_rib_008_55",
+          "/Fixture/Head_02/Module_cooling_rib_009_56",
+          "/Fixture/Head_02/Module_cooling_rib_010_57",
+          "/Fixture/Head_02/Module_cooling_rib_011_58"
+        ],
+        "pivot": [
+          -0.26595744490623474,
+          0.2568768858909607,
+          0.004690824542194605
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 8,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "Head_03",
+        "label": "Head 3 tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Head_03/Independent_tilting_head_002_63",
+          "/Fixture/Head_03/Head_optic_collar_002_64",
+          "/Fixture/Head_03/Independent_beam_optic_002_65",
+          "/Fixture/Head_03/Module_cooling_rib_012_66",
+          "/Fixture/Head_03/Module_cooling_rib_013_67",
+          "/Fixture/Head_03/Module_cooling_rib_014_68",
+          "/Fixture/Head_03/Module_cooling_rib_015_69",
+          "/Fixture/Head_03/Module_cooling_rib_016_70",
+          "/Fixture/Head_03/Module_cooling_rib_017_71"
+        ],
+        "pivot": [
+          -0.1595744639635086,
+          0.2568768858909607,
+          0.004690824542194605
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 9,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "Head_04",
+        "label": "Head 4 tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Head_04/Independent_tilting_head_003_76",
+          "/Fixture/Head_04/Head_optic_collar_003_77",
+          "/Fixture/Head_04/Independent_beam_optic_003_78",
+          "/Fixture/Head_04/Module_cooling_rib_018_79",
+          "/Fixture/Head_04/Module_cooling_rib_019_80",
+          "/Fixture/Head_04/Module_cooling_rib_020_81",
+          "/Fixture/Head_04/Module_cooling_rib_021_82",
+          "/Fixture/Head_04/Module_cooling_rib_022_83",
+          "/Fixture/Head_04/Module_cooling_rib_023_84"
+        ],
+        "pivot": [
+          -0.05319148674607277,
+          0.2568768858909607,
+          0.004690824542194605
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 10,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "Head_05",
+        "label": "Head 5 tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Head_05/Independent_tilting_head_004_89",
+          "/Fixture/Head_05/Head_optic_collar_004_90",
+          "/Fixture/Head_05/Independent_beam_optic_004_91",
+          "/Fixture/Head_05/Module_cooling_rib_024_92",
+          "/Fixture/Head_05/Module_cooling_rib_025_93",
+          "/Fixture/Head_05/Module_cooling_rib_026_94",
+          "/Fixture/Head_05/Module_cooling_rib_027_95",
+          "/Fixture/Head_05/Module_cooling_rib_028_96",
+          "/Fixture/Head_05/Module_cooling_rib_029_97"
+        ],
+        "pivot": [
+          0.05319148674607277,
+          0.2568768858909607,
+          0.004690824542194605
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 11,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "Head_06",
+        "label": "Head 6 tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Head_06/Independent_tilting_head_005_102",
+          "/Fixture/Head_06/Head_optic_collar_005_103",
+          "/Fixture/Head_06/Independent_beam_optic_005_104",
+          "/Fixture/Head_06/Module_cooling_rib_030_105",
+          "/Fixture/Head_06/Module_cooling_rib_031_106",
+          "/Fixture/Head_06/Module_cooling_rib_032_107",
+          "/Fixture/Head_06/Module_cooling_rib_033_108",
+          "/Fixture/Head_06/Module_cooling_rib_034_109",
+          "/Fixture/Head_06/Module_cooling_rib_035_110"
+        ],
+        "pivot": [
+          0.1595744639635086,
+          0.2568768858909607,
+          0.004690824542194605
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 12,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "Head_07",
+        "label": "Head 7 tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Head_07/Independent_tilting_head_006_115",
+          "/Fixture/Head_07/Head_optic_collar_006_116",
+          "/Fixture/Head_07/Independent_beam_optic_006_117",
+          "/Fixture/Head_07/Module_cooling_rib_036_118",
+          "/Fixture/Head_07/Module_cooling_rib_037_119",
+          "/Fixture/Head_07/Module_cooling_rib_038_120",
+          "/Fixture/Head_07/Module_cooling_rib_039_121",
+          "/Fixture/Head_07/Module_cooling_rib_040_122",
+          "/Fixture/Head_07/Module_cooling_rib_041_123"
+        ],
+        "pivot": [
+          0.26595744490623474,
+          0.2568768858909607,
+          0.004690824542194605
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 13,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "Head_08",
+        "label": "Head 8 tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Head_08/Independent_tilting_head_007_128",
+          "/Fixture/Head_08/Head_optic_collar_007_129",
+          "/Fixture/Head_08/Independent_beam_optic_007_130",
+          "/Fixture/Head_08/Module_cooling_rib_042_131",
+          "/Fixture/Head_08/Module_cooling_rib_043_132",
+          "/Fixture/Head_08/Module_cooling_rib_044_133",
+          "/Fixture/Head_08/Module_cooling_rib_045_134",
+          "/Fixture/Head_08/Module_cooling_rib_046_135",
+          "/Fixture/Head_08/Module_cooling_rib_047_136"
+        ],
+        "pivot": [
+          0.3723404109477997,
+          0.2568768858909607,
+          0.004690824542194605
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 14,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "Head_01",
+        "position": [
+          -0.3723404109477997,
+          0.2568768858909607,
+          -0.09299999954923988
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      },
+      {
+        "parent": "Head_02",
+        "position": [
+          -0.26595744490623474,
+          0.2568768858909607,
+          -0.09299999954923988
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      },
+      {
+        "parent": "Head_03",
+        "position": [
+          -0.1595744602382183,
+          0.2568768858909607,
+          -0.09299999954923988
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      },
+      {
+        "parent": "Head_04",
+        "position": [
+          -0.05319148860871792,
+          0.2568768858909607,
+          -0.09299999954923988
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      },
+      {
+        "parent": "Head_05",
+        "position": [
+          0.05319148860871792,
+          0.2568768858909607,
+          -0.09299999954923988
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      },
+      {
+        "parent": "Head_06",
+        "position": [
+          0.1595744602382183,
+          0.2568768858909607,
+          -0.09299999954923988
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      },
+      {
+        "parent": "Head_07",
+        "position": [
+          0.26595744490623474,
+          0.2568768858909607,
+          -0.09299999954923988
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      },
+      {
+        "parent": "Head_08",
+        "position": [
+          0.3723404109477997,
+          0.2568768858909607,
+          -0.09299999954923988
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "cm-entertainment-technology-columbus-mckinnon/lodestar-d8-type-l-1-tonne",
+    "name": "Lodestar D8+ Type L, 1 tonne",
+    "manufacturer": "CM Entertainment Technology (Columbus McKinnon)",
+    "family": "hoist",
+    "resource": "FixtureAssets/Catalog/cm-entertainment-technology-columbus-mckinnon/lodestar-d8-type-l-1-tonne/fixture.usdz",
+    "sha256": "f01abd08697ddfeae65ab6145b0c8d81ba44209424fdb1063c0c1a3bbd5cc281",
+    "boundsMin": [
+      -0.29100001137703657,
+      0.0,
+      -0.16050000488758087
+    ],
+    "boundsMax": [
+      0.2910000057891011,
+      0.5320000336505473,
+      0.16050000488758087
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "da-lite-legrand-av/fast-fold-deluxe-screen-system-88692-frame-screen-only-legs-omitted",
+    "name": "Fast-Fold Deluxe Screen System, 88692 (frame/screen only; legs omitted)",
+    "manufacturer": "Da-Lite (Legrand AV)",
+    "family": "screen",
+    "resource": "FixtureAssets/Catalog/da-lite-legrand-av/fast-fold-deluxe-screen-system-88692-frame-screen-only-legs-omitted/fixture.usdz",
+    "sha256": "dba327f6068a84ca190109ccd579b1908b7fac62ae47839bb9b96d342d1cea45",
+    "boundsMin": [
+      -1.5240001678466797,
+      0.0,
+      -0.01587500050663948
+    ],
+    "boundsMax": [
+      1.5240001678466797,
+      1.7525999546051025,
+      0.015875000797677785
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "doughty-engineering/doughty-quick-link-10mm-550kg",
+    "name": "Doughty Quick Link-10mm-550Kg",
+    "manufacturer": "Doughty Engineering",
+    "family": "safety_hardware",
+    "resource": "FixtureAssets/Catalog/doughty-engineering/doughty-quick-link-10mm-550kg/fixture.usdz",
+    "sha256": "7133b41a6a18483c8f757cf1467c07055bd00c3bfcc7313a67f35dfb6cd04673",
+    "boundsMin": [
+      -0.04500000178813934,
+      0.0,
+      -0.00800000037997961
+    ],
+    "boundsMax": [
+      0.04500000178813934,
+      0.04399999976158142,
+      0.00800000037997961
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "doughty-engineering/twenty-clamp",
+    "name": "Twenty Clamp",
+    "manufacturer": "Doughty Engineering",
+    "family": "clamp",
+    "resource": "FixtureAssets/Catalog/doughty-engineering/twenty-clamp/fixture.usdz",
+    "sha256": "63677be7abbbdb54c7f2fc386fa212b057b836ba1e5d4a9c27e646828cd3b1d4",
+    "boundsMin": [
+      -0.05050000175833702,
+      0.0,
+      -0.014000000432133675
+    ],
+    "boundsMax": [
+      0.05050000362098217,
+      0.06150000263005495,
+      0.014000000432133675
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "elation-professional/dartz-360",
+    "name": "DARTZ 360",
+    "manufacturer": "Elation Professional",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/elation-professional/dartz-360/fixture.usdz",
+    "sha256": "3372fcf3700bc5d1e9216a227eab616596a24e9bedec1daa571f00ab4fb98540",
+    "boundsMin": [
+      -0.09798499941825867,
+      0.0,
+      -0.14207502425415441
+    ],
+    "boundsMax": [
+      0.09798499941825867,
+      0.4546999931335449,
+      0.14207500993506983
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.07275199890136719,
+          0.000514455430675298
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.3900299072265625,
+          0.000514455430675298
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.3900299072265625,
+          -0.11046873033046722
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "elation-professional/fuze-sfx",
+    "name": "Fuze SFX",
+    "manufacturer": "Elation Professional",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/elation-professional/fuze-sfx/fixture.usdz",
+    "sha256": "6863bbb2d149700654ad5a37ded88fd49ba51c3808689d12bd36485d6c4efa6c",
+    "boundsMin": [
+      -0.11649999022483826,
+      0.0,
+      -0.18100000079721212
+    ],
+    "boundsMax": [
+      0.11649999022483826,
+      0.5950000286102295,
+      0.18099998775869608
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.09520000219345093,
+          0.0005205357447266579
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5181099772453308,
+          0.0005205357447266579
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5181099772453308,
+          -0.16017797589302063
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "elation-professional/fuze-wash-500",
+    "name": "Fuze Wash 500",
+    "manufacturer": "Elation Professional",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/elation-professional/fuze-wash-500/fixture.usdz",
+    "sha256": "a944b4fee4e267ae9981e41e890ccfe02f1c9ae48c87d35d670d606e66e743fc",
+    "boundsMin": [
+      -0.20395001769065857,
+      0.0,
+      -0.1947500028181821
+    ],
+    "boundsMax": [
+      0.20395001769065857,
+      0.5505000352859497,
+      0.19474998931400478
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.08782230317592621,
+          0.0005014471244066954
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.4146762490272522,
+          0.0005014471244066954
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.4146762490272522,
+          -0.17502954602241516
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "elation-professional/kl-fresnel-8",
+    "name": "KL Fresnel 8",
+    "manufacturer": "Elation Professional",
+    "family": "fresnel",
+    "resource": "FixtureAssets/Catalog/elation-professional/kl-fresnel-8/fixture.usdz",
+    "sha256": "dd05c36d483c0c1aa041fc93aa625a9ffe4be1281097758be1b15035ee851f39",
+    "boundsMin": [
+      -0.16374999284744263,
+      0.0,
+      -0.3041999936103821
+    ],
+    "boundsMax": [
+      0.16374999284744263,
+      0.4559999704360962,
+      0.3041999861598015
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.17904731631278992,
+          -0.03126493841409683
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.17904731631278992,
+          -0.3018433749675751
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "elation-professional/pixel-driver-170",
+    "name": "PIXEL DRIVER 170",
+    "manufacturer": "Elation Professional",
+    "family": "pixel_driver",
+    "resource": "FixtureAssets/Catalog/elation-professional/pixel-driver-170/fixture.usdz",
+    "sha256": "dae000a3fc931c601b7d7a579b41810a85b806f597604875d3eada0bbf44147c",
+    "boundsMin": [
+      -0.05050000175833702,
+      0.0,
+      -0.013099999981932342
+    ],
+    "boundsMax": [
+      0.05050000175833702,
+      0.05000000074505806,
+      0.013100000214762986
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "elation-professional/pixel-tape-16ip",
+    "name": "PIXEL TAPE 16IP",
+    "manufacturer": "Elation Professional",
+    "family": "pixel_strip",
+    "resource": "FixtureAssets/Catalog/elation-professional/pixel-tape-16ip/fixture.usdz",
+    "sha256": "9b628f49ae5a7309f7b602779377e3a3113e34f3f6df059e408739a633339841",
+    "boundsMin": [
+      -1.3600000143051147,
+      0.0,
+      -0.006000000052154064
+    ],
+    "boundsMax": [
+      1.3600000143051147,
+      0.003000000026077032,
+      0.006000000052154064
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.001500000013038516,
+          -0.006120000034570694
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "elation-professional/proteus-radius",
+    "name": "Proteus Radius",
+    "manufacturer": "Elation Professional",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/elation-professional/proteus-radius/fixture.usdz",
+    "sha256": "2ba699da940e62985dfd09ca558da1e83e2205a10d978f5fde505f4aa7a7d85c",
+    "boundsMin": [
+      -0.19750000536441803,
+      0.0,
+      -0.13500001968350261
+    ],
+    "boundsMax": [
+      0.19750000536441803,
+      0.515999972820282,
+      0.13500000594649464
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.08256000280380249,
+          0.0005130028584972024
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.38565000891685486,
+          0.0005130028584972024
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.38565000891685486,
+          -0.11328721791505814
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "elation-professional/sixbar-1000",
+    "name": "SixBar 1000",
+    "manufacturer": "Elation Professional",
+    "family": "batten",
+    "resource": "FixtureAssets/Catalog/elation-professional/sixbar-1000/fixture.usdz",
+    "sha256": "5f902f2c4c3093bc344788adf2ad5070f0b75679ecea0344d18a5090d7d00282",
+    "boundsMin": [
+      -0.44999998807907104,
+      3.725290298461914e-09,
+      -0.1032000076957047
+    ],
+    "boundsMax": [
+      0.44999998807907104,
+      0.1550000071292743,
+      0.10320000676438212
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.10264900326728821,
+          -0.09741196036338806
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "elation-professional/sixbar-500",
+    "name": "SIXBAR 500",
+    "manufacturer": "Elation Professional",
+    "family": "batten",
+    "resource": "FixtureAssets/Catalog/elation-professional/sixbar-500/fixture.usdz",
+    "sha256": "71f68ae98e408687dff1f0ed07b77b466cfd709636b39bcf8c53070f4f964f71",
+    "boundsMin": [
+      -0.22499999403953552,
+      3.725290298461914e-09,
+      -0.1032000076957047
+    ],
+    "boundsMax": [
+      0.22499999403953552,
+      0.1550000071292743,
+      0.10320000676438212
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.10264900326728821,
+          -0.09741196036338806
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "elation-professional/vbar-270",
+    "name": "VBAR 270",
+    "manufacturer": "Elation Professional",
+    "family": "batten",
+    "resource": "FixtureAssets/Catalog/elation-professional/vbar-270/fixture.usdz",
+    "sha256": "1f8651405432c90e77f795c9b3f7098fbf8a52ec8f8a07c966aaf570e15f832c",
+    "boundsMin": [
+      -0.1250000149011612,
+      0.0,
+      -0.04649999737739563
+    ],
+    "boundsMax": [
+      0.1250000149011612,
+      0.21199999994132668,
+      0.04649999551475048
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.10953332483768463,
+          -0.04337098449468613
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "eliminator-lighting-adj-group/mbmhd3-mirror-ball-motor",
+    "name": "MBMHD3 mirror ball motor",
+    "manufacturer": "Eliminator Lighting (ADJ Group)",
+    "family": "mirror_motor",
+    "resource": "FixtureAssets/Catalog/eliminator-lighting-adj-group/mbmhd3-mirror-ball-motor/fixture.usdz",
+    "sha256": "0e339e80d87023aaccc0bc9bef48cba321ab06045844ca85d6af2d7aaa6f42de",
+    "boundsMin": [
+      -0.06800000369548798,
+      0.0,
+      -0.06800000369548798
+    ],
+    "boundsMax": [
+      0.06800000369548798,
+      0.07999999821186066,
+      0.06800000369548798
+    ],
+    "joints": [
+      {
+        "id": "shaft",
+        "label": "Shaft speed",
+        "parent": null,
+        "members": [
+          "/Fixture/Body/Output_shaft_3"
+        ],
+        "pivot": [
+          0,
+          0,
+          0
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 7,
+        "travel": 36,
+        "continuous": true,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "enttec/d-split",
+    "name": "D-SPLIT",
+    "manufacturer": "ENTTEC",
+    "family": "splitter",
+    "resource": "FixtureAssets/Catalog/enttec/d-split/fixture.usdz",
+    "sha256": "39987af982c418b598c82e0bcfee1a3b6a05bfffb2e0c14acf3f66e77cd3ace6",
+    "boundsMin": [
+      -0.05799999682130874,
+      0.0,
+      -0.04349999874830246
+    ],
+    "boundsMax": [
+      0.05799999984083115,
+      0.052000004798173904,
+      0.04349999874830246
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "enttec/ode-mk3",
+    "name": "ODE Mk3",
+    "manufacturer": "ENTTEC",
+    "family": "node",
+    "resource": "FixtureAssets/Catalog/enttec/ode-mk3/fixture.usdz",
+    "sha256": "ed2e4e50b8c17b7610c31b8777603fc179fdca8476d84fc6c7505be8759c2a31",
+    "boundsMin": [
+      -0.06440001202281564,
+      0.0,
+      -0.029000001028180122
+    ],
+    "boundsMax": [
+      0.06440000014845282,
+      0.03999999910593033,
+      0.029000001028180122
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "enttec/pixelator-mini",
+    "name": "Pixelator Mini",
+    "manufacturer": "ENTTEC",
+    "family": "pixel_controller",
+    "resource": "FixtureAssets/Catalog/enttec/pixelator-mini/fixture.usdz",
+    "sha256": "d3b49b087c10138005921d184f33a91e58f4794e99eb677c17cdd9f183517ed4",
+    "boundsMin": [
+      -0.10000000125728548,
+      0.0,
+      -0.05999999657069566
+    ],
+    "boundsMax": [
+      0.10000000172294676,
+      0.041999999433755875,
+      0.06000000074709533
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "etc/colorsource-20",
+    "name": "ColorSource 20",
+    "manufacturer": "ETC",
+    "family": "console",
+    "resource": "FixtureAssets/Catalog/etc/colorsource-20/fixture.usdz",
+    "sha256": "2831996d0597382b1414c8828ae6a2b7b61c18fa316fd2c1d321db14bc646b41",
+    "boundsMin": [
+      -0.23250001668930054,
+      0.0,
+      -0.13950000703334808
+    ],
+    "boundsMax": [
+      0.23250001668930054,
+      0.05999999865889549,
+      0.13950000703334808
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "etc/colorsource-cyc-floor",
+    "name": "ColorSource CYC Floor",
+    "manufacturer": "ETC",
+    "family": "cyc",
+    "resource": "FixtureAssets/Catalog/etc/colorsource-cyc-floor/fixture.usdz",
+    "sha256": "f462c8bd9d57a03745b70fa7972ced0a140b316c792a5f4c9dff6e0e7c6fc75f",
+    "boundsMin": [
+      -0.132999986410141,
+      0.0,
+      -0.11049999296665192
+    ],
+    "boundsMax": [
+      0.132999986410141,
+      0.1990000158548355,
+      0.11049999482929707
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.09453607350587845,
+          -0.09018059819936752
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "etc/colorsource-fresnel-v",
+    "name": "ColorSource Fresnel V",
+    "manufacturer": "ETC",
+    "family": "fresnel",
+    "resource": "FixtureAssets/Catalog/etc/colorsource-fresnel-v/fixture.usdz",
+    "sha256": "43fe1a112f3f4cd92b350827808498e8f47633d14efe31f77ecda1a990ed0ad5",
+    "boundsMin": [
+      -0.16050000488758087,
+      0.0,
+      -0.15549999475479126
+    ],
+    "boundsMax": [
+      0.16050000488758087,
+      0.3389999568462372,
+      0.15549999568611383
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.13948945701122284,
+          -0.01057854201644659
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.13948945701122284,
+          -0.15624675154685974
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "etc/colorsource-par",
+    "name": "ColorSource PAR",
+    "manufacturer": "ETC",
+    "family": "par",
+    "resource": "FixtureAssets/Catalog/etc/colorsource-par/fixture.usdz",
+    "sha256": "44204b1bc15defee915b82a6553ec4a632fcf612f2240e6082fd19a7fe7c140e",
+    "boundsMin": [
+      -0.1014999970793724,
+      -7.450580596923828e-09,
+      -0.11999998241662979
+    ],
+    "boundsMax": [
+      0.1014999970793724,
+      0.3100000023841858,
+      0.11999997869133949
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.09032057225704193,
+          -0.007677357643842697
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.09032057225704193,
+          -0.12439961731433868
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "etc/colorsource-spot-v",
+    "name": "ColorSource Spot V",
+    "manufacturer": "ETC",
+    "family": "profile",
+    "resource": "FixtureAssets/Catalog/etc/colorsource-spot-v/fixture.usdz",
+    "sha256": "2dbbfa69906de9c570b88cda4a366a48607db8fa031a26b41ec0fe3eb5d03c59",
+    "boundsMin": [
+      -0.1694999784231186,
+      0.0,
+      -0.335999995470047
+    ],
+    "boundsMax": [
+      0.1694999784231186,
+      0.593000054359436,
+      0.3359999842941761
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.15357547998428345,
+          0.005774039775133133
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.15357547998428345,
+          -0.3431663513183594
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "etc/desire-d60",
+    "name": "Desire D60",
+    "manufacturer": "ETC",
+    "family": "par",
+    "resource": "FixtureAssets/Catalog/etc/desire-d60/fixture.usdz",
+    "sha256": "7c22f47a7c0d7c0c5c246279e7f4df77ad72748f6bc4fc293a9706c957278bc0",
+    "boundsMin": [
+      -0.15449999272823334,
+      0.0,
+      -0.14499999582767487
+    ],
+    "boundsMax": [
+      0.15449999272823334,
+      0.3610000014305115,
+      0.14499999582767487
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.12069989740848541,
+          -0.01112702488899231
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.12069989740848541,
+          -0.14949916303157806
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "etc/desire-fresnel-7",
+    "name": "Desire Fresnel 7",
+    "manufacturer": "ETC",
+    "family": "fresnel",
+    "resource": "FixtureAssets/Catalog/etc/desire-fresnel-7/fixture.usdz",
+    "sha256": "21541c2c5e20ee7c487ca4b6d430406a9f15bc69bed09835c07133fca1d8a67c",
+    "boundsMin": [
+      -0.15199998021125793,
+      0.0,
+      -0.17799998819828033
+    ],
+    "boundsMax": [
+      0.15199998021125793,
+      0.45499999821186066,
+      0.17799998819828033
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.17320694029331207,
+          -0.012099608778953552
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.17320694029331207,
+          -0.17576350271701813
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "etc/fos-4-fresnel",
+    "name": "fos/4 Fresnel",
+    "manufacturer": "ETC",
+    "family": "fresnel",
+    "resource": "FixtureAssets/Catalog/etc/fos-4-fresnel/fixture.usdz",
+    "sha256": "2e5c19cd4ff695ccb09a39e6d1f6bd01e7ccf0255498e53cb602d61a9da29d50",
+    "boundsMin": [
+      -0.15650001168251038,
+      1.4901161193847656e-08,
+      -0.2524999976158142
+    ],
+    "boundsMax": [
+      0.15650001168251038,
+      0.4350000321865082,
+      0.2524999547749758
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.13536593317985535,
+          -0.027155322954058647
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.13536593317985535,
+          -0.25772514939308167
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "etc/source-four-led-series-3-lustr-x8",
+    "name": "Source Four LED Series 3 Lustr X8",
+    "manufacturer": "ETC",
+    "family": "profile",
+    "resource": "FixtureAssets/Catalog/etc/source-four-led-series-3-lustr-x8/fixture.usdz",
+    "sha256": "565d2e6ae93dd75a998e82e5004b3d54b986867e7a93e35307d3f792dafa43c0",
+    "boundsMin": [
+      -0.17000000178813934,
+      0.0,
+      -0.3605000078678131
+    ],
+    "boundsMax": [
+      0.17000000178813934,
+      0.3400000035762787,
+      0.36050001718103886
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.1116715669631958,
+          0.005533525720238686
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.1116715669631958,
+          -0.36767977476119995
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "georgia-stage/prestige-velour-border-curtain-black-sku-7676",
+    "name": "Prestige Velour Border Curtain, Black, SKU 7676",
+    "manufacturer": "Georgia Stage",
+    "family": "drape",
+    "resource": "FixtureAssets/Catalog/georgia-stage/prestige-velour-border-curtain-black-sku-7676/fixture.usdz",
+    "sha256": "a6fa7da62fcea7abc80d8f9f647387a50f6167f8f56bf3dfd8f8be38d4da5522",
+    "boundsMin": [
+      -5.715000152587891,
+      0.0,
+      -0.002500000293366611
+    ],
+    "boundsMax": [
+      5.715000152587891,
+      0.9398000240325928,
+      0.0024999999441206455
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "global-truss/gt-stage-adjust-1-x-2-m",
+    "name": "GT-Stage-Adjust 1 x 2 m",
+    "manufacturer": "Global Truss",
+    "family": "deck",
+    "resource": "FixtureAssets/Catalog/global-truss/gt-stage-adjust-1-x-2-m/fixture.usdz",
+    "sha256": "0ddd6dfa187edb9652424893ccfc48960c9c411a34240ec1bef3336ae6af0002",
+    "boundsMin": [
+      -1.0,
+      -1.862645149230957e-09,
+      -0.5
+    ],
+    "boundsMax": [
+      1.0,
+      0.9779000082053244,
+      0.5
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "global-truss/sq-4110-f34-straight-segment-natural-aluminium",
+    "name": "SQ-4110 F34 Straight Segment, Natural Aluminium",
+    "manufacturer": "Global Truss",
+    "family": "truss",
+    "resource": "FixtureAssets/Catalog/global-truss/sq-4110-f34-straight-segment-natural-aluminium/fixture.usdz",
+    "sha256": "9958f87bc38fdea577ae0deaf8f3a15c4d5b153db846a6a548a456d5e8f5f2ad",
+    "boundsMin": [
+      -0.5,
+      0.0,
+      -0.14499999582767487
+    ],
+    "boundsMax": [
+      0.5,
+      0.28999995390639555,
+      0.14499999582767487
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "glp/impression-x4-bar-20",
+    "name": "impression X4 Bar 20",
+    "manufacturer": "GLP",
+    "family": "batten",
+    "resource": "FixtureAssets/Catalog/glp/impression-x4-bar-20/fixture.usdz",
+    "sha256": "16f557a5e2aab6522260c0d3793ffa743deaafc6e5f506c608de9710fae4a491",
+    "boundsMin": [
+      -0.4999999701976776,
+      0.0,
+      -0.04999999515712261
+    ],
+    "boundsMax": [
+      0.4999999701976776,
+      0.2399999829940498,
+      0.04999999888241291
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Body/Extruded_fixture_housing_0",
+          "/Fixture/Body/Long_heatsink_rib_1",
+          "/Fixture/Body/Long_heatsink_rib_001_2",
+          "/Fixture/Body/Long_heatsink_rib_002_3",
+          "/Fixture/Body/Long_heatsink_rib_003_4",
+          "/Fixture/Body/Long_heatsink_rib_004_5",
+          "/Fixture/Body/Long_heatsink_rib_005_6",
+          "/Fixture/Body/Long_heatsink_rib_006_7",
+          "/Fixture/Body/Long_heatsink_rib_007_8",
+          "/Fixture/Body/Optic_surround_9",
+          "/Fixture/Body/End_cheek_10",
+          "/Fixture/Body/Tilt_knob_11",
+          "/Fixture/Body/End_cheek_001_14",
+          "/Fixture/Body/Tilt_knob_001_15",
+          "/Fixture/Body/DMX_power_socket_19",
+          "/Fixture/Body/Socket_rim_20",
+          "/Fixture/Body/Socket_pin_21",
+          "/Fixture/Body/Socket_pin_001_22",
+          "/Fixture/Body/Socket_pin_002_23",
+          "/Fixture/Body/DMX_power_socket_001_24",
+          "/Fixture/Body/Socket_rim_001_25",
+          "/Fixture/Body/Socket_pin_003_26",
+          "/Fixture/Body/Socket_pin_004_27",
+          "/Fixture/Body/Socket_pin_005_28",
+          "/Fixture/Body/DMX_power_socket_002_29",
+          "/Fixture/Body/Socket_rim_002_30",
+          "/Fixture/Body/Socket_pin_006_31",
+          "/Fixture/Body/Socket_pin_007_32",
+          "/Fixture/Body/Socket_pin_008_33",
+          "/Fixture/Body/DMX_power_socket_003_34",
+          "/Fixture/Body/Socket_rim_003_35",
+          "/Fixture/Body/Socket_pin_009_36",
+          "/Fixture/Body/Socket_pin_010_37",
+          "/Fixture/Body/Socket_pin_011_38",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.158940389752388,
+          -0.002849740907549858
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.158940389752388,
+          -0.043264247477054596
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "glp/impression-x5",
+    "name": "impression X5",
+    "manufacturer": "GLP",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/glp/impression-x5/fixture.usdz",
+    "sha256": "5b981fa8eeea8e9f5a02eb721582029706e7461680a28a3a720f91e51c8e5ed8",
+    "boundsMin": [
+      -0.20749998092651367,
+      0.0,
+      -0.14499999349936843
+    ],
+    "boundsMax": [
+      0.20749998092651367,
+      0.4339999854564667,
+      0.1449999981559813
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.030113793909549713,
+          0.005209075752645731
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.3183458149433136,
+          0.005209075752645731
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.3183458149433136,
+          -0.1157345399260521
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "glp/impression-x5-bar-1000",
+    "name": "impression X5 Bar 1000",
+    "manufacturer": "GLP",
+    "family": "batten",
+    "resource": "FixtureAssets/Catalog/glp/impression-x5-bar-1000/fixture.usdz",
+    "sha256": "87fc7af87e0ede99d8655c3a1ae68fcfd32dbaaae7595a9889e07c229e7a51e0",
+    "boundsMin": [
+      -0.4999999701976776,
+      7.450580596923828e-09,
+      -0.05500000016763806
+    ],
+    "boundsMax": [
+      0.4999999701976776,
+      0.2959999933373183,
+      0.05500000296160579
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Body/Extruded_fixture_housing_0",
+          "/Fixture/Body/Long_heatsink_rib_1",
+          "/Fixture/Body/Long_heatsink_rib_001_2",
+          "/Fixture/Body/Long_heatsink_rib_002_3",
+          "/Fixture/Body/Long_heatsink_rib_003_4",
+          "/Fixture/Body/Long_heatsink_rib_004_5",
+          "/Fixture/Body/Long_heatsink_rib_005_6",
+          "/Fixture/Body/Long_heatsink_rib_006_7",
+          "/Fixture/Body/Long_heatsink_rib_007_8",
+          "/Fixture/Body/Optic_surround_9",
+          "/Fixture/Body/End_cheek_10",
+          "/Fixture/Body/Tilt_knob_11",
+          "/Fixture/Body/End_cheek_001_14",
+          "/Fixture/Body/Tilt_knob_001_15",
+          "/Fixture/Body/DMX_power_socket_19",
+          "/Fixture/Body/Socket_rim_20",
+          "/Fixture/Body/Socket_pin_21",
+          "/Fixture/Body/Socket_pin_001_22",
+          "/Fixture/Body/Socket_pin_002_23",
+          "/Fixture/Body/DMX_power_socket_001_24",
+          "/Fixture/Body/Socket_rim_001_25",
+          "/Fixture/Body/Socket_pin_003_26",
+          "/Fixture/Body/Socket_pin_004_27",
+          "/Fixture/Body/Socket_pin_005_28",
+          "/Fixture/Body/DMX_power_socket_002_29",
+          "/Fixture/Body/Socket_rim_002_30",
+          "/Fixture/Body/Socket_pin_006_31",
+          "/Fixture/Body/Socket_pin_007_32",
+          "/Fixture/Body/Socket_pin_008_33",
+          "/Fixture/Body/DMX_power_socket_003_34",
+          "/Fixture/Body/Socket_rim_003_35",
+          "/Fixture/Body/Socket_pin_009_36",
+          "/Fixture/Body/Socket_pin_010_37",
+          "/Fixture/Body/Socket_pin_011_38",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.1960264891386032,
+          -0.002815165091305971
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.1960264891386032,
+          -0.04754502326250076
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "glp/impression-x5-compact",
+    "name": "impression X5 Compact",
+    "manufacturer": "GLP",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/glp/impression-x5-compact/fixture.usdz",
+    "sha256": "a39bf0d47e2e8d27f866953b33ac2725a9a6d1c99e9afd51593cb3b03f09fec6",
+    "boundsMin": [
+      -0.125,
+      0.0,
+      -0.09149999916553497
+    ],
+    "boundsMax": [
+      0.125,
+      0.3370000123977661,
+      0.09149999916553497
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.023395271971821785,
+          0.010995738208293915
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.25239917635917664,
+          0.010995738208293915
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.25239917635917664,
+          -0.06196413189172745
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "glp/impression-x5-ip-maxx",
+    "name": "impression X5 IP Maxx",
+    "manufacturer": "GLP",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/glp/impression-x5-ip-maxx/fixture.usdz",
+    "sha256": "3a17a04aee93ad9dccf71290c249b59c2e98a534b449c7473ea5814e2262c506",
+    "boundsMin": [
+      -0.24149999022483826,
+      0.0,
+      -0.1789999925531447
+    ],
+    "boundsMax": [
+      0.24149999022483826,
+      0.6399999856948853,
+      0.17900000279769301
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.04442383348941803,
+          0.007805285509675741
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.47657454013824463,
+          0.007805285509675741
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.47657454013824463,
+          -0.14929620921611786
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "glp/jdc-line-1000",
+    "name": "JDC Line 1000",
+    "manufacturer": "GLP",
+    "family": "batten",
+    "resource": "FixtureAssets/Catalog/glp/jdc-line-1000/fixture.usdz",
+    "sha256": "a87519fa60ca384f03a504a2323337086cefb947cf8dd9d2916c02156928e968",
+    "boundsMin": [
+      -0.4999999701976776,
+      1.862645149230957e-09,
+      -0.10075000114738941
+    ],
+    "boundsMax": [
+      0.4999999701976776,
+      0.07399999909102917,
+      0.10074999742209911
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.051766589283943176,
+          -0.09510420262813568
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "glp/jdc-line-500",
+    "name": "JDC Line 500",
+    "manufacturer": "GLP",
+    "family": "strobe",
+    "resource": "FixtureAssets/Catalog/glp/jdc-line-500/fixture.usdz",
+    "sha256": "085d4021eca000307462a1b5501be8fa870a6b13758e7f89f8a082988bb0a808",
+    "boundsMin": [
+      -0.2535000145435333,
+      0.0,
+      -0.10074999183416367
+    ],
+    "boundsMax": [
+      0.2535000145435333,
+      0.0740000014193356,
+      0.10074999183416367
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.04822919890284538,
+          -0.08955869823694229
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "glp/jdc1",
+    "name": "JDC1",
+    "manufacturer": "GLP",
+    "family": "strobe",
+    "resource": "FixtureAssets/Catalog/glp/jdc1/fixture.usdz",
+    "sha256": "f16f5fc592a256b6b3df5b6b75fbb6e0592b5f053138a200f27ed1cd67605119",
+    "boundsMin": [
+      -0.19499999284744263,
+      0.0,
+      -0.07500000577419996
+    ],
+    "boundsMax": [
+      0.19499999284744263,
+      0.2509999913163483,
+      0.07500000763684511
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Body/Extruded_fixture_housing_0",
+          "/Fixture/Body/Long_heatsink_rib_1",
+          "/Fixture/Body/Long_heatsink_rib_001_2",
+          "/Fixture/Body/Long_heatsink_rib_002_3",
+          "/Fixture/Body/Long_heatsink_rib_003_4",
+          "/Fixture/Body/Long_heatsink_rib_004_5",
+          "/Fixture/Body/Long_heatsink_rib_005_6",
+          "/Fixture/Body/Long_heatsink_rib_006_7",
+          "/Fixture/Body/Long_heatsink_rib_007_8",
+          "/Fixture/Body/Optic_surround_9",
+          "/Fixture/Body/End_cheek_10",
+          "/Fixture/Body/Tilt_knob_11",
+          "/Fixture/Body/End_cheek_001_14",
+          "/Fixture/Body/Tilt_knob_001_15",
+          "/Fixture/Body/DMX_power_socket_19",
+          "/Fixture/Body/Socket_rim_20",
+          "/Fixture/Body/Socket_pin_21",
+          "/Fixture/Body/Socket_pin_001_22",
+          "/Fixture/Body/Socket_pin_002_23",
+          "/Fixture/Body/DMX_power_socket_001_24",
+          "/Fixture/Body/Socket_rim_001_25",
+          "/Fixture/Body/Socket_pin_003_26",
+          "/Fixture/Body/Socket_pin_004_27",
+          "/Fixture/Body/Socket_pin_005_28",
+          "/Fixture/Body/DMX_power_socket_002_29",
+          "/Fixture/Body/Socket_rim_002_30",
+          "/Fixture/Body/Socket_pin_006_31",
+          "/Fixture/Body/Socket_pin_007_32",
+          "/Fixture/Body/Socket_pin_008_33",
+          "/Fixture/Body/DMX_power_socket_003_34",
+          "/Fixture/Body/Socket_rim_003_35",
+          "/Fixture/Body/Socket_pin_009_36",
+          "/Fixture/Body/Socket_pin_010_37",
+          "/Fixture/Body/Socket_pin_011_38",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.1662251502275467,
+          -0.0026501743122935295
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.1662251502275467,
+          -0.0646643117070198
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "high-end-systems/solaframe-1000",
+    "name": "SolaFrame 1000",
+    "manufacturer": "High End Systems",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/high-end-systems/solaframe-1000/fixture.usdz",
+    "sha256": "64e2c1d5d05e2a490bf1490e91bb74671bf4405dfe8455f88ed1a076398f13c3",
+    "boundsMin": [
+      -0.23000000417232513,
+      0.0,
+      -0.1620000065304339
+    ],
+    "boundsMax": [
+      0.23000000417232513,
+      0.7260000109672546,
+      0.16200000932440162
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.11615999788045883,
+          0.00036219647154212
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5741999745368958,
+          0.00036219647154212
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5741999745368958,
+          -0.1478368192911148
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "high-end-systems/solaframe-2000",
+    "name": "SolaFrame 2000",
+    "manufacturer": "High End Systems",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/high-end-systems/solaframe-2000/fixture.usdz",
+    "sha256": "d728ee9f3b7acadfe66c1ac7328e6cc3e1fce4d9cb0c2a4c6227676bc15248bd",
+    "boundsMin": [
+      -0.23749998211860657,
+      0.0,
+      -0.15999999819905497
+    ],
+    "boundsMax": [
+      0.23749998211860657,
+      0.8379999995231628,
+      0.15999997974722646
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.13407999277114868,
+          0.0003231150039937347
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.6812499761581421,
+          0.0003231150039937347
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.6812499761581421,
+          -0.1459214687347412
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "high-end-systems/solaframe-3000",
+    "name": "SolaFrame 3000",
+    "manufacturer": "High End Systems",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/high-end-systems/solaframe-3000/fixture.usdz",
+    "sha256": "b99e2873b6b3fd3d719c880f2b8eb82b6999cbdaf2edb6e08da42ef0f890592b",
+    "boundsMin": [
+      -0.24549999833106995,
+      0.0,
+      -0.1839999930234626
+    ],
+    "boundsMax": [
+      0.24549999833106995,
+      0.8209999799728394,
+      0.18400000769179314
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.1313599944114685,
+          0.0018948240904137492
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.6589699983596802,
+          0.0018948240904137492
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.6589699983596802,
+          -0.171781525015831
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "high-end-systems/solawash-2000",
+    "name": "SolaWash 2000",
+    "manufacturer": "High End Systems",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/high-end-systems/solawash-2000/fixture.usdz",
+    "sha256": "350e5588de05978eae7da8c4ac7f9851a914e32c186ce740bd3f1510f9ac31c9",
+    "boundsMin": [
+      -0.23749998211860657,
+      0.0,
+      -0.15999999549239874
+    ],
+    "boundsMax": [
+      0.23749998211860657,
+      0.8859999775886536,
+      0.1599999824538827
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.14176000654697418,
+          0.004528702236711979
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.7292500138282776,
+          0.004528702236711979
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.7292500138282776,
+          -0.1445649117231369
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "laserworld/ds-1000rgb-mk5",
+    "name": "DS-1000RGB MK5",
+    "manufacturer": "Laserworld",
+    "family": "laser",
+    "resource": "FixtureAssets/Catalog/laserworld/ds-1000rgb-mk5/fixture.usdz",
+    "sha256": "d59fb09b6ac7e671428d539550f676754f52357cb909f20cdd9e73a39e2ded0a",
+    "boundsMin": [
+      -0.10000000149011612,
+      0.0,
+      -0.09250000165775418
+    ],
+    "boundsMax": [
+      0.10000000149011612,
+      0.125,
+      0.09250000072643161
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "magic-fx/co2-bottle-to-hose-connector",
+    "name": "CO2 Bottle To Hose Connector",
+    "manufacturer": "MAGIC FX",
+    "family": "co2_supply",
+    "resource": "FixtureAssets/Catalog/magic-fx/co2-bottle-to-hose-connector/fixture.usdz",
+    "sha256": "6f5a68722246619db10ec9dd3961bb9f568928ba3b55500460ab342ce86565f3",
+    "boundsMin": [
+      -0.014999999664723873,
+      -9.313225746154785e-10,
+      -0.07500000228174031
+    ],
+    "boundsMax": [
+      0.014999999664723873,
+      0.02999999769963324,
+      0.07500000367872417
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "magic-fx/co2-jet-ii",
+    "name": "CO2 JET II",
+    "manufacturer": "MAGIC FX",
+    "family": "co2_jet",
+    "resource": "FixtureAssets/Catalog/magic-fx/co2-jet-ii/fixture.usdz",
+    "sha256": "3113a2e25a014b4828f5987163e8eb7447ef03b11170b980754694667a6f4f7b",
+    "boundsMin": [
+      -0.11599999666213989,
+      0.0,
+      -0.09799999371170998
+    ],
+    "boundsMax": [
+      0.11599999666213989,
+      0.12449999447562732,
+      0.09800000116229057
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "magic-fx/flameblazer",
+    "name": "Flameblazer",
+    "manufacturer": "MAGIC FX",
+    "family": "flame",
+    "resource": "FixtureAssets/Catalog/magic-fx/flameblazer/fixture.usdz",
+    "sha256": "970791c6e5943e8a430a181581993b4f0def0e264c64d607a840fbb5e8da6014",
+    "boundsMin": [
+      -0.15000000596046448,
+      0.0,
+      -0.2050000005401671
+    ],
+    "boundsMax": [
+      0.15000000596046448,
+      0.2800000011920929,
+      0.20499999588355422
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "magic-fx/powershot-ii",
+    "name": "Powershot II",
+    "manufacturer": "MAGIC FX",
+    "family": "confetti",
+    "resource": "FixtureAssets/Catalog/magic-fx/powershot-ii/fixture.usdz",
+    "sha256": "06313e4fb13e4cbd3b7a875c7ff5130e951fc78b679d8cd7865276a3cd0e2077",
+    "boundsMin": [
+      -0.06350000202655792,
+      0.0,
+      -0.04500000365078449
+    ],
+    "boundsMax": [
+      0.06350000202655792,
+      0.1900000013411045,
+      0.0450000015553087
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "magic-fx/sparxtar-ii",
+    "name": "Sparxtar II",
+    "manufacturer": "MAGIC FX",
+    "family": "spark",
+    "resource": "FixtureAssets/Catalog/magic-fx/sparxtar-ii/fixture.usdz",
+    "sha256": "3dbbc30156ac54ba95658516404ad4ca2f11b0664daf90991015db4b393be804",
+    "boundsMin": [
+      -0.12700000405311584,
+      0.0,
+      -0.1129999915137887
+    ],
+    "boundsMax": [
+      0.12700000405311584,
+      0.2540000081062317,
+      0.11299999710172415
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "manfrotto/heavy-duty-stand-black-air-cushioned-black-steel",
+    "name": "Heavy Duty Stand, Black, Air-Cushioned, Black Steel",
+    "manufacturer": "Manfrotto",
+    "family": "stand",
+    "resource": "FixtureAssets/Catalog/manfrotto/heavy-duty-stand-black-air-cushioned-black-steel/fixture.usdz",
+    "sha256": "03b4820934dce57a4a7a48cb7e3f8645dc16b98990ac518a5d8b4cfb4468250a",
+    "boundsMin": [
+      -0.625,
+      0.0,
+      -0.6249999552965164
+    ],
+    "boundsMax": [
+      0.625,
+      3.3300000799354166,
+      0.624999925494194
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "martin-professional-harman/atomic-3000-led",
+    "name": "Atomic 3000 LED",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "strobe",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/atomic-3000-led/fixture.usdz",
+    "sha256": "b80a7461b65ca4b0b46b7904d29352d21d7c6095ec87c7a6c3b77e0a71e29381",
+    "boundsMin": [
+      -0.21250002086162567,
+      0.0,
+      -0.11999999731779099
+    ],
+    "boundsMax": [
+      0.21250002086162567,
+      0.24500001082196832,
+      0.12000000663101673
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.16225166618824005,
+          -0.10659486800432205
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "martin-professional-harman/elp-cl",
+    "name": "ELP CL",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "profile",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/elp-cl/fixture.usdz",
+    "sha256": "e4dc3aba2336f66128dbc151aab4fc8793e88dc275d080963430f5cb7e732b12",
+    "boundsMin": [
+      -0.12950000166893005,
+      0.0,
+      -0.3240000009536743
+    ],
+    "boundsMax": [
+      0.12950000166893005,
+      0.4269999787211418,
+      0.32400000328198075
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.11550786346197128,
+          0.005890908185392618
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.11550786346197128,
+          -0.3311590850353241
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "martin-professional-harman/mac-aura",
+    "name": "MAC Aura",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/mac-aura/fixture.usdz",
+    "sha256": "f8834dc115cca72b12e3c0656c942ad22364db617eb34f7ea05f14d6daf2ff18",
+    "boundsMin": [
+      -0.1509999930858612,
+      0.0,
+      -0.15099998970981687
+    ],
+    "boundsMax": [
+      0.1509999930858612,
+      0.35999998450279236,
+      0.15099998156074435
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.057095274329185486,
+          0.0005161199951544404
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.2640656530857086,
+          0.0005161199951544404
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.2640656530857086,
+          -0.08053520321846008
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "martin-professional-harman/mac-aura-xip",
+    "name": "MAC Aura XIP",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/mac-aura-xip/fixture.usdz",
+    "sha256": "ac4778b56b7ae3326faabf7592b048f4e67fb1d1e5085ced6dbed897814b5ec8",
+    "boundsMin": [
+      -0.16899999976158142,
+      0.0,
+      -0.11300000286428258
+    ],
+    "boundsMax": [
+      0.16899999976158142,
+      0.42100000381469727,
+      0.11299999320181087
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.06676974892616272,
+          0.00050737225683406
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.30881011486053467,
+          0.00050737225683406
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.30881011486053467,
+          -0.05911889299750328
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "martin-professional-harman/mac-one",
+    "name": "MAC One",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/mac-one/fixture.usdz",
+    "sha256": "becc0ac2f64c0702afb2c3e3df2f345e61313c2c46afd53f0ff9a5b584fab804",
+    "boundsMin": [
+      -0.12700000405311584,
+      0.0,
+      -0.10999999946216121
+    ],
+    "boundsMax": [
+      0.12700000405311584,
+      0.3489999771118164,
+      0.10999999934574589
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.0553877130150795,
+          0.0005064382567070425
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.26303210854530334,
+          0.0005064382567070425
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.26303210854530334,
+          -0.057430412620306015
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "martin-professional-harman/mac-ultra-performance",
+    "name": "MAC Ultra Performance",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/mac-ultra-performance/fixture.usdz",
+    "sha256": "548fa8133951be970f951b773193b194cc74c6f2b542bfcd3c5998b6ce47f301",
+    "boundsMin": [
+      -0.25999999046325684,
+      0.0,
+      -0.33000000403262675
+    ],
+    "boundsMax": [
+      0.25999999046325684,
+      0.8759999871253967,
+      0.32999999239109457
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.1401599943637848,
+          0.0027325840201228857
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.7044000029563904,
+          0.0027325840201228857
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.7044000029563904,
+          -0.3224053382873535
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "martin-professional-harman/mac-ultra-wash",
+    "name": "MAC Ultra Wash",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/mac-ultra-wash/fixture.usdz",
+    "sha256": "bf672f4c0a47e3282e6d172713f040f17761090927ae5e6b82ff64b183454ab6",
+    "boundsMin": [
+      -0.25999999046325684,
+      0.0,
+      -0.32100000377977267
+    ],
+    "boundsMax": [
+      0.25999999046325684,
+      0.8669999837875366,
+      0.3210000157705508
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.13872000575065613,
+          0.0007039368501864374
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.6953999996185303,
+          0.0007039368501864374
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.6953999996185303,
+          -0.3102235496044159
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "martin-professional-harman/mac-viper-performance",
+    "name": "MAC Viper Performance",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/mac-viper-performance/fixture.usdz",
+    "sha256": "e2d64e7d7e21fa342fb2879665f36893dd375feb825f467e11343f5731a79cf9",
+    "boundsMin": [
+      -0.23600000143051147,
+      0.0,
+      -0.2829999911482446
+    ],
+    "boundsMax": [
+      0.23600000143051147,
+      0.7310000061988831,
+      0.28299999359296635
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.11695999652147293,
+          0.0003381681744940579
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5752400159835815,
+          0.0003381681744940579
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5752400159835815,
+          -0.264047771692276
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "martin-professional-harman/mac-viper-xip",
+    "name": "MAC Viper XIP",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/mac-viper-xip/fixture.usdz",
+    "sha256": "75e79d033a15cd2dcca2a15aeb324edfbb6f1dec91e4c43999d8c2d174af1c72",
+    "boundsMin": [
+      -0.2394999861717224,
+      0.0,
+      -0.2974999974248931
+    ],
+    "boundsMax": [
+      0.2394999861717224,
+      0.7760000228881836,
+      0.297500001383014
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.12415999919176102,
+          0.00032012362498790026
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.617929995059967,
+          0.00032012362498790026
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.617929995059967,
+          -0.2812579870223999
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "mdg/atmosphere-aps-haze-generator",
+    "name": "ATMOSPHERE APS Haze Generator",
+    "manufacturer": "MDG",
+    "family": "hazer",
+    "resource": "FixtureAssets/Catalog/mdg/atmosphere-aps-haze-generator/fixture.usdz",
+    "sha256": "e3613f2b3122ab01109a85d001b9c10c27e32325a7997508499f312f70a5de95",
+    "boundsMin": [
+      -0.08999999612569809,
+      0.0,
+      -0.3424999862909317
+    ],
+    "boundsMax": [
+      0.08999999612569809,
+      0.3000000147148967,
+      0.3425000160932541
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "mean-well/lrs-350-24",
+    "name": "LRS-350-24",
+    "manufacturer": "Mean Well",
+    "family": "power_supply",
+    "resource": "FixtureAssets/Catalog/mean-well/lrs-350-24/fixture.usdz",
+    "sha256": "c64992758c3d55c88acaa55f4c9c49fb7fbb3a96a6e0f2a8ff73de10697db939",
+    "boundsMin": [
+      -0.10750000621192157,
+      0.0,
+      -0.05749999897670932
+    ],
+    "boundsMax": [
+      0.10749999736435711,
+      0.02999999839812517,
+      0.05749999938416295
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "neutrik/nc5mxx-5-pole-male-xlr-cable-connector",
+    "name": "NC5MXX 5-pole male XLR cable connector",
+    "manufacturer": "Neutrik",
+    "family": "data_connector",
+    "resource": "FixtureAssets/Catalog/neutrik/nc5mxx-5-pole-male-xlr-cable-connector/fixture.usdz",
+    "sha256": "18c85148281bf7350ecbe03fef369bb7926b3430855d12f058ec9c454f4b61eb",
+    "boundsMin": [
+      -0.009499998763203621,
+      0.0,
+      -0.03504999912729545
+    ],
+    "boundsMax": [
+      0.009499998763203621,
+      0.018999997526407242,
+      0.03504999913820939
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "neutrik/powercon-true1-top-nac3fx-w-top-cable-connector-power-in-eu-us-ratings",
+    "name": "powerCON TRUE1 TOP NAC3FX-W-TOP cable connector (Power-In, EU/US ratings)",
+    "manufacturer": "Neutrik",
+    "family": "power_connector",
+    "resource": "FixtureAssets/Catalog/neutrik/powercon-true1-top-nac3fx-w-top-cable-connector-power-in-eu-us-ratings/fixture.usdz",
+    "sha256": "7c11509a00c3929da69d0e2af4a4c043ab7e7e75addf7fd6a93664e7cf2274c4",
+    "boundsMin": [
+      -0.01600000075995922,
+      0.0,
+      -0.04000000028099748
+    ],
+    "boundsMax": [
+      0.01600000075995922,
+      0.03200000524520874,
+      0.039999997930863174
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "panasonic/pt-rz660b-with-supplied-et-dle170-lens",
+    "name": "PT-RZ660B with supplied ET-DLE170 lens",
+    "manufacturer": "Panasonic",
+    "family": "projector",
+    "resource": "FixtureAssets/Catalog/panasonic/pt-rz660b-with-supplied-et-dle170-lens/fixture.usdz",
+    "sha256": "67ead76431cac91087927785c1fe8612260186652e27d3235820bc2df7f18195",
+    "boundsMin": [
+      -0.24899998307228088,
+      0.0,
+      -0.2903999984264374
+    ],
+    "boundsMax": [
+      0.24899998307228088,
+      0.19999998807907104,
+      0.2903999909758568
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "robe-lighting/forte",
+    "name": "FORTE",
+    "manufacturer": "ROBE Lighting",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/robe-lighting/forte/fixture.usdz",
+    "sha256": "5e3f98980cca8612acd8697180945144b17e26d1786a1babf8698c075485c8f5",
+    "boundsMin": [
+      -0.24175000190734863,
+      0.0,
+      -0.31225000019185245
+    ],
+    "boundsMax": [
+      0.24175000190734863,
+      0.6355000138282776,
+      0.3122500062454492
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.10168000310659409,
+          0.00108431582339108
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.47594499588012695,
+          0.00108431582339108
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.47594499588012695,
+          -0.30438676476478577
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "robe-lighting/iforte",
+    "name": "iFORTE",
+    "manufacturer": "ROBE Lighting",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/robe-lighting/iforte/fixture.usdz",
+    "sha256": "f1eb1d3598834e4e6711d9383d406086294886d4a49c6dff855b7a69b4bc1f54",
+    "boundsMin": [
+      -0.23999999463558197,
+      0.0,
+      -0.16750000152387656
+    ],
+    "boundsMax": [
+      0.23999999463558197,
+      0.8370000123977661,
+      0.1675000068207737
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.13391999900341034,
+          0.0003108557721134275
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.678600013256073,
+          0.0003108557721134275
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.678600013256073,
+          -0.15311840176582336
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "robe-lighting/ledbeam-350",
+    "name": "LEDBeam 350",
+    "manufacturer": "ROBE Lighting",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/robe-lighting/ledbeam-350/fixture.usdz",
+    "sha256": "8a61df777c5141960ff0a72a788b5263676ef3c10c77a6c099923b59e0bfe37f",
+    "boundsMin": [
+      -0.1599999964237213,
+      0.0,
+      -0.10999999946216121
+    ],
+    "boundsMax": [
+      0.1599999964237213,
+      0.4259999990463257,
+      0.10999999934574589
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.06759033352136612,
+          0.0005064382567070425
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.3177221715450287,
+          0.0005064382567070425
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.3177221715450287,
+          -0.057430412620306015
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "robe-lighting/megapointe",
+    "name": "MegaPointe",
+    "manufacturer": "ROBE Lighting",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/robe-lighting/megapointe/fixture.usdz",
+    "sha256": "26368dd0cb0ad2d988749c269aef45ece294f3a0e96c7d941008fc370e762de4",
+    "boundsMin": [
+      -0.1979999989271164,
+      0.0,
+      -0.11500000051455572
+    ],
+    "boundsMax": [
+      0.1979999989271164,
+      0.6399999856948853,
+      0.11499999620718881
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.10239999741315842,
+          0.0005079672555439174
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5093200206756592,
+          0.0005079672555439174
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5093200206756592,
+          -0.09791150689125061
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "robe-lighting/pointe",
+    "name": "Pointe",
+    "manufacturer": "ROBE Lighting",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/robe-lighting/pointe/fixture.usdz",
+    "sha256": "1164b3ce2858fde76b7f181d99967cb6e66c9049049d7a0dfc2d6616245af18d",
+    "boundsMin": [
+      -0.20000001788139343,
+      0.0,
+      -0.1400000043795444
+    ],
+    "boundsMax": [
+      0.20000001788139343,
+      0.5299999713897705,
+      0.1399999968125485
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.08479999750852585,
+          0.0005140415742062032
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.39800000190734863,
+          0.0005140415742062032
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.39800000190734863,
+          -0.11923863738775253
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "robe-lighting/robospot-motioncamera",
+    "name": "RoboSpot MotionCamera",
+    "manufacturer": "ROBE Lighting",
+    "family": "tracking_camera",
+    "resource": "FixtureAssets/Catalog/robe-lighting/robospot-motioncamera/fixture.usdz",
+    "sha256": "d6ce4f983e562d5e99fbfc4ac40ac537b3c147305c762121746616a0ff4a4670",
+    "boundsMin": [
+      -0.13850000500679016,
+      0.0,
+      -0.0734999985434115
+    ],
+    "boundsMax": [
+      0.13850000500679016,
+      0.38600000739097595,
+      0.07350000133737922
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.07943332940340042,
+          0.00076665123924613
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Camera/Upright_cylindrical_camera_housing_7",
+          "/Fixture/Camera/Camera_lens_surround_8",
+          "/Fixture/Camera/Upward_camera_optical_window_9"
+        ],
+        "pivot": [
+          0.0,
+          0.24798698723316193,
+          0.00076665123924613
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "robe-lighting/spiider",
+    "name": "Spiider",
+    "manufacturer": "ROBE Lighting",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/robe-lighting/spiider/fixture.usdz",
+    "sha256": "3d46a31eca7cde52908be9e548f73d75dbbc64fa07fc25fb1b7d7e08186a7466",
+    "boundsMin": [
+      -0.19499997794628143,
+      0.0,
+      -0.14300001901574433
+    ],
+    "boundsMax": [
+      0.19499997794628143,
+      0.47699999809265137,
+      0.1430000092368573
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.07565124332904816,
+          0.0005146439652889967
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.3498869836330414,
+          0.0005146439652889967
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.3498869836330414,
+          -0.07602304965257645
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "robe-lighting/t1-profile",
+    "name": "T1 Profile",
+    "manufacturer": "ROBE Lighting",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/robe-lighting/t1-profile/fixture.usdz",
+    "sha256": "6c9c79276153aa9bf8a6b41f243230b3bd9d4fa1290b1266ccf6db2aad4e8001",
+    "boundsMin": [
+      -0.24549999833106995,
+      0.0,
+      -0.17199999530566856
+    ],
+    "boundsMax": [
+      0.24549999833106995,
+      0.5419999957084656,
+      0.1720000163768418
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.08671999722719193,
+          0.0003502921317704022
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.40108001232147217,
+          0.0003502921317704022
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.40108001232147217,
+          -0.15916408598423004
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "robe-lighting/tarrantula",
+    "name": "Tarrantula",
+    "manufacturer": "ROBE Lighting",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/robe-lighting/tarrantula/fixture.usdz",
+    "sha256": "47a8f5af55f8e7ce915107be8ba2d86786fde705df1184da0ec0b230166ba08d",
+    "boundsMin": [
+      -0.2939999997615814,
+      0.0,
+      -0.2615000324076391
+    ],
+    "boundsMax": [
+      0.2939999997615814,
+      0.6050000190734863,
+      0.26149999930203194
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.09595178812742233,
+          3.158881008857861e-05
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.4437769949436188,
+          3.158881008857861e-05
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.4437769949436188,
+          -0.1431688666343689
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "robert-juliat/lutin-306lpc",
+    "name": "Lutin 306LPC",
+    "manufacturer": "Robert Juliat",
+    "family": "pc",
+    "resource": "FixtureAssets/Catalog/robert-juliat/lutin-306lpc/fixture.usdz",
+    "sha256": "697f4ef83307213bda75637157722e2a0b827f8897b7ecb8fc8cd7b58500a737",
+    "boundsMin": [
+      -0.15000000596046448,
+      0.0,
+      -0.2150000035762787
+    ],
+    "boundsMax": [
+      0.15000000596046448,
+      0.38499991595745087,
+      0.21500000543892384
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.1041126698255539,
+          0.041025593876838684
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.1041126698255539,
+          -0.2048582285642624
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "robert-juliat/roxie2-1166-2-ww",
+    "name": "Roxie2 1166-2 WW",
+    "manufacturer": "Robert Juliat",
+    "family": "followspot",
+    "resource": "FixtureAssets/Catalog/robert-juliat/roxie2-1166-2-ww/fixture.usdz",
+    "sha256": "3c3c7ae46b7cf607729733aaebdd29123fead03fb52b5748dd8349cd608315e0",
+    "boundsMin": [
+      -0.16050001978874207,
+      0.0,
+      -0.5224999785423279
+    ],
+    "boundsMax": [
+      0.16050001978874207,
+      0.3869999945163727,
+      0.5224999841302633
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.016209520399570465,
+          0.015017574653029442
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.23233646154403687,
+          -0.525561511516571
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "roe-visual/black-pearl-bp2v2",
+    "name": "Black Pearl BP2V2",
+    "manufacturer": "ROE Visual",
+    "family": "led_panel",
+    "resource": "FixtureAssets/Catalog/roe-visual/black-pearl-bp2v2/fixture.usdz",
+    "sha256": "679df6a7d09f646d41ce5b74fd1a431b46b32760b3d0dba16f3d68935a193f76",
+    "boundsMin": [
+      -0.25,
+      0.0,
+      -0.04500000178813934
+    ],
+    "boundsMax": [
+      0.25,
+      0.5,
+      0.045000001322478056
+    ],
+    "joints": [],
+    "emitters": [],
+    "headAim": false,
+    "notes": "Static equipment model."
+  },
+  {
+    "id": "vari-lite/vl2600-se-wash",
+    "name": "VL2600 SE WASH",
+    "manufacturer": "Vari-Lite",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/vari-lite/vl2600-se-wash/fixture.usdz",
+    "sha256": "39766d2887f5fc1ceecb331f2b2807148c2ccf267f37b38864d7578a3a96636d",
+    "boundsMin": [
+      -0.23200000822544098,
+      0.0,
+      -0.15000000409781933
+    ],
+    "boundsMax": [
+      0.23200000822544098,
+      0.7049999833106995,
+      0.14999999292194843
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.11197312921285629,
+          0.0003504473716020584
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5478345155715942,
+          0.0003504473716020584
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5478345155715942,
+          -0.08004811406135559
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "vari-lite/vl2600-spot",
+    "name": "VL2600 SPOT",
+    "manufacturer": "Vari-Lite",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/vari-lite/vl2600-spot/fixture.usdz",
+    "sha256": "2ec8d8e10bdd13c78f170499ea61b1ce945647117e6e31b2fcfb9cf8177103bb",
+    "boundsMin": [
+      -0.23200000822544098,
+      0.0,
+      -0.15000000409781933
+    ],
+    "boundsMax": [
+      0.23200000822544098,
+      0.7149999737739563,
+      0.14999999292194843
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.1143999993801117,
+          0.0003504473716020584
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5618799924850464,
+          0.0003504473716020584
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5618799924850464,
+          -0.1347191333770752
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "vari-lite/vl3600-profile-ip",
+    "name": "VL3600 PROFILE IP",
+    "manufacturer": "Vari-Lite",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/vari-lite/vl3600-profile-ip/fixture.usdz",
+    "sha256": "52d1a190b5507fa8d1c386ea9602ee4d5b2dd2e28685aa5f9681d3480264c442",
+    "boundsMin": [
+      -0.2799999713897705,
+      0.0,
+      -0.17000000511325197
+    ],
+    "boundsMax": [
+      0.2799999713897705,
+      0.7990000247955322,
+      0.1699999984630267
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.12783999741077423,
+          0.00010355974518461153
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.6141999959945679,
+          0.00010355974518461153
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.6141999959945679,
+          -0.15553498268127441
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "vari-lite/vl5led-wash",
+    "name": "VL5LED WASH",
+    "manufacturer": "Vari-Lite",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/vari-lite/vl5led-wash/fixture.usdz",
+    "sha256": "013313c2b12219698571508f3f940be579184857a7a8bfed4ebadbe6d22c028b",
+    "boundsMin": [
+      -0.1834999918937683,
+      0.0,
+      -0.18000001140171662
+    ],
+    "boundsMax": [
+      0.1834999918937683,
+      0.578000009059906,
+      0.18000000290339813
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.09182582050561905,
+          0.0005204188055358827
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.4536580741405487,
+          0.0005204188055358827
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.4536580741405487,
+          -0.0969017818570137
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  {
+    "id": "vari-lite/vl800-eventprofile",
+    "name": "VL800 EVENTPROFILE",
+    "manufacturer": "Vari-Lite",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/vari-lite/vl800-eventprofile/fixture.usdz",
+    "sha256": "3568722291c6a296ad795c75f5fe3fd6503c08fa96049b0aa1f07a81a905c2a9",
+    "boundsMin": [
+      -0.1874999850988388,
+      0.0,
+      -0.20399999181972817
+    ],
+    "boundsMax": [
+      0.1874999850988388,
+      0.6240000128746033,
+      0.2039999856497161
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.09984000027179718,
+          0.0005230798269622028
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.500249981880188,
+          0.0005230798269622028
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.500249981880188,
+          -0.18813958764076233
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+]

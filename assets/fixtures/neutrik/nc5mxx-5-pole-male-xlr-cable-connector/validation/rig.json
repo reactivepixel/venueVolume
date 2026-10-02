@@ -1,0 +1,17 @@
+{
+  "id": "neutrik/nc5mxx-5-pole-male-xlr-cable-connector",
+  "passed": true,
+  "source_usdz_sha256": "18c85148281bf7350ecbe03fef369bb7926b3430855d12f058ec9c454f4b61eb",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 17,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

@@ -38,6 +38,11 @@ public enum FixtureAiming {
     public static let tiltRange: ClosedRange<Float> = (-128 * 120 / 255)...(127 * 120 / 255)
 
     public static func articulated(_ fixture: Fixture, target: Position3D) throws -> PanTiltOverride {
+        let asset = fixture.asset
+        guard asset == nil || asset?.headAim == true else { throw PresetError("Use the joint controls or aim the mount for this model.") }
+        let headPivot = asset?.tilt.map { SIMD3<Float>($0.pivot[0], $0.pivot[1], $0.pivot[2]) } ?? Self.headPivot
+        let panRange = asset?.pan?.range ?? Self.panRange
+        let tiltRange = asset?.tilt?.range ?? Self.tiltRange
         let local = rotate(inverse(fixture.orientation), vector(target) - vector(fixture.position)) / vector(fixture.scale)
         let direction = local - headPivot
         guard finite(direction), length(direction) > 0.15 else { throw PresetError("Choose a target farther from the fixture head.") }
@@ -51,7 +56,7 @@ public enum FixtureAiming {
               tilt >= tiltRange.lowerBound-epsilon, tilt <= tiltRange.upperBound+epsilon else {
             throw PresetError("That point is outside the preview head's pan/tilt range. Rotate the mount or choose Aim mount.")
         }
-        return .init(pan: panByte(for: pan), tilt: tiltByte(for: tilt))
+        return .init(pan: asset?.pan?.byte(for: pan) ?? panByte(for: pan), tilt: asset?.tilt?.byte(for: tilt) ?? tiltByte(for: tilt))
     }
 
     /// Encode the pilot's preview angles, not the manufacturer's DMX personality.
@@ -72,7 +77,7 @@ public enum FixtureAiming {
     /// the emitter offset; aiming from the base alone produces parallax errors.
     public static func mounted(_ fixture: Fixture, target: Position3D) throws -> Quaternion3D {
         let displacement = vector(target) - vector(fixture.position)
-        let ray = localRay(channels: fixture.channels)
+        let ray = localRay(channels: fixture.channels, asset: fixture.asset)
         let origin = ray.origin * vector(fixture.scale)
         let forward = normalized(ray.direction * vector(fixture.scale))
         let projected = dot(origin, forward)
@@ -84,7 +89,21 @@ public enum FixtureAiming {
         return multiply(between(normalized(current), normalized(displacement)), fixture.orientation)
     }
 
-    public static func localRay(channels: [Int]) -> (origin: SIMD3<Float>, direction: SIMD3<Float>) {
+    public static func localRay(channels: [Int], asset: FixtureAsset? = nil) -> (origin: SIMD3<Float>, direction: SIMD3<Float>) {
+        if let asset, let emitter = asset.emitters.first {
+            var origin = SIMD3<Float>(emitter.position[0], emitter.position[1], emitter.position[2])
+            var direction = SIMD3<Float>(emitter.axis[0], emitter.axis[1], emitter.axis[2])
+            var parent = emitter.parent
+            while let id = parent, let joint = asset.joints.first(where: { $0.id == id }) {
+                let pivot = SIMD3<Float>(joint.pivot[0], joint.pivot[1], joint.pivot[2])
+                let half = (joint.continuous ? 0 : joint.value(channels: channels)) * .pi / 360
+                let axis = SIMD3<Float>(joint.axis[0], joint.axis[1], joint.axis[2]) * sin(half)
+                let q = Quaternion3D(x: axis.x, y: axis.y, z: axis.z, w: cos(half))
+                origin = pivot + rotate(q, origin-pivot); direction = rotate(q, direction)
+                parent = joint.parent
+            }
+            return (origin, direction)
+        }
         let look = LightingPreview(channels: channels)
         let articulation = euler(yaw: look.panDegrees, pitch: look.tiltDegrees, roll: 0)
         return (headPivot + rotate(articulation, emitterOffset), rotate(articulation, [0,0,-1]))

@@ -292,16 +292,14 @@ final class VenueModel {
         guard !libraryBusy else { return }
         beginHistoryAction("Place \(fixtureKind.name)"); defer { endHistoryAction() }
         guard fixtures.count < 64 else { message = "This setup supports up to 64 objects."; return }
-        guard fixtureKind != .movingHead || fixtures.filter({ $0.assetID != nil }).count < 4 else {
-            message = "This lighting proof of concept supports four fixtures."; return
-        }
         guard let patch = Fixture.nextAvailablePatch(in: fixtures, footprint: 16) else {
             message = "No free DMX patch is available."
             return
         }
-        let fixture = Fixture(name: String(format: fixtureKind == .movingHead ? "Rogue R1X %02d" : "DMX cube %02d", nextFixtureNumber), assetID: fixtureKind.assetID,
-                              universe: patch.universe, startAddress: patch.address, channels: Array(repeating: 0, count: 16),
+        let fixture = Fixture(name: fixtureKind.name + String(format: " %02d", nextFixtureNumber), assetID: fixtureKind.assetID,
+                              universe: patch.universe, startAddress: patch.address, channels: fixtureKind.asset?.neutralChannels ?? Array(repeating: 0, count: 16),
                               position: .init(x: base.x, y: base.y+(fixtureKind == .cube ? fixtureKind.radius : 0), z: base.z), surfaceID: surfaceID)
+        if let environment, let issue = fixture.placementIssue(in: environment) { message = issue; return }
         message = nil
         fixtures.append(fixture)
         recent.use(.addFixture)
@@ -480,14 +478,15 @@ final class VenueModel {
     /// Direct preview articulation belongs to this placed fixture, not its shared preset.
     func setHeadAim(_ id: UUID, panDegrees: Float? = nil, tiltDegrees: Float? = nil) {
         guard !libraryBusy else { return }
-        beginHistoryAction("Aim moving head"); defer { endHistoryAction() }
+        beginHistoryAction("Adjust fixture motion"); defer { endHistoryAction() }
         guard let index = fixtures.firstIndex(where: { $0.id == id }),
-              fixtures[index].assetID == LightingPreview.assetID,
+              let asset = fixtures[index].asset,
+              asset.pan != nil || asset.tilt != nil,
               fixtures[index].channels.count >= 6,
               [panDegrees, tiltDegrees].compactMap({ $0 }).allSatisfy(\.isFinite) else { return }
         var candidate = fixtures[index]
-        let pan = panDegrees.map(FixtureAiming.panByte(for:)) ?? candidate.channels[4]
-        let tilt = tiltDegrees.map(FixtureAiming.tiltByte(for:)) ?? candidate.channels[5]
+        let pan = panDegrees.flatMap { asset.pan?.byte(for: $0) } ?? candidate.channels[4]
+        let tilt = tiltDegrees.flatMap { asset.tilt?.byte(for: $0) } ?? candidate.channels[5]
         candidate.aimOverride = .init(pan: pan, tilt: tilt)
         candidate.preserveAimOverride()
         guard candidate != fixtures[index], candidate.validationIssue(among: fixtures) == nil else { return }
@@ -497,6 +496,22 @@ final class VenueModel {
         lastTarget = nil
         revision += 1
         persist()
+    }
+
+    func setJoint(_ id: UUID, jointID: String, value: Float) {
+        guard !libraryBusy, value.isFinite, let index = fixtures.firstIndex(where: { $0.id == id }),
+              let joint = fixtures[index].asset?.joints.first(where: { $0.id == jointID }),
+              fixtures[index].channels.indices.contains(joint.channel) else { return }
+        if jointID == "pan" { setHeadAim(id, panDegrees: value); return }
+        if jointID == "tilt" { setHeadAim(id, tiltDegrees: value); return }
+        beginHistoryAction("Adjust \(joint.label)"); defer { endHistoryAction() }
+        var candidate = fixtures[index]
+        if candidate.jointOverrides == nil { candidate.jointOverrides = [:] }
+        candidate.jointOverrides?[jointID] = joint.byte(for: value)
+        candidate.preserveAimOverride()
+        guard candidate != fixtures[index], candidate.validationIssue(among: fixtures) == nil else { return }
+        cancelPicking(); fixtures[index] = candidate; previewDraft = false; lastTarget = nil
+        revision += 1; persist()
     }
 
     func moveFixture(_ id: UUID, position: Position3D, yawDegrees: Float) {
@@ -509,11 +524,11 @@ final class VenueModel {
         guard !libraryBusy else { return }
         beginHistoryAction("Transform fixture"); defer { endHistoryAction() }
         guard let index = fixtures.firstIndex(where: { $0.id == id }), let environment else { return }
-        if let issue = LightingPreview.placementIssue(position, in: environment) { message = issue; return }
         guard [yaw,pitch,roll].allSatisfy(\.isFinite) else { return }
         var candidate = fixtures[index]
         candidate.position = position
         candidate.orientation = FixtureAiming.euler(yaw: yaw, pitch: pitch, roll: roll)
+        if let issue = candidate.placementIssue(in: environment) { message = issue; return }
         candidate.surfaceID = nil
         guard candidate != fixtures[index] else { return }
         cancelPicking()
@@ -525,7 +540,8 @@ final class VenueModel {
     func yawDegrees(for fixture: Fixture) -> Float { FixtureAiming.angles(fixture.orientation).yaw }
 
     func beginRetarget(_ id: UUID, method: AimMethod) {
-        guard canPlace, fixture(id)?.assetID == LightingPreview.assetID else { return }
+        guard canPlace, let asset = fixture(id)?.asset, !asset.emitters.isEmpty,
+              method == .mount || asset.headAim else { return }
         select(id)
         gizmoVisible = false
         previewDraft = false
@@ -608,7 +624,7 @@ final class VenueModel {
 
     func beginTransformDrag(axis: FixtureAxis, mode: FixtureTransformMode, at point: SIMD3<Float>) {
         guard canPlace, gizmoVisible, transformDrag == nil, let id = selectedID, let fixture = fixture(id) else { return }
-        let center = FixtureAiming.vector(fixture.position) + [0, fixture.assetID == nil ? 0 : LightingPreview.height/2, 0]
+        let center = FixtureAiming.vector(fixture.position) + [0, fixture.assetID == nil ? 0 : fixture.visualHeight/2, 0]
         let angle = axis.angle(at: point, about: center)
         guard mode == .move || angle != nil else { return }
         cancelPicking(); previewDraft = false
@@ -624,9 +640,9 @@ final class VenueModel {
             var position = FixtureAiming.vector(candidate.position)
             position[drag.axis.index] += point[drag.axis.index]-drag.start[drag.axis.index]
             candidate.position = .init(x: position.x, y: position.y, z: position.z)
-            if let issue = LightingPreview.placementIssue(candidate.position, in: environment) { message = issue; return }
+            if let issue = candidate.placementIssue(in: environment) { message = issue; return }
         } else {
-            let center = FixtureAiming.vector(candidate.position) + [0, candidate.assetID == nil ? 0 : LightingPreview.height/2, 0]
+            let center = FixtureAiming.vector(candidate.position) + [0, candidate.assetID == nil ? 0 : candidate.visualHeight/2, 0]
             guard let next = drag.axis.angle(at: point, about: center), let previous = drag.lastAngle else { return }
             drag.totalAngle += FixtureAiming.angleDelta(from: previous, to: next); drag.lastAngle = next
             candidate.orientation = FixtureAiming.rotatedMount(candidate.orientation, around: drag.axis, radians: drag.totalAngle)
@@ -647,7 +663,7 @@ final class VenueModel {
         guard canPlace, case .move(let id) = scenePick,
               let index = fixtures.firstIndex(where: { $0.id == id }),
               let surface = environment?.surfaces.first(where: { $0.id == surfaceID }) else { return }
-        let radius: Float = fixtures[index].assetID == nil ? 0.12 : LightingPreview.footprintRadius
+        let radius = fixtures[index].footprintRadius
         guard let center = surface.fixturePosition(hit: hit, halfSize: radius) else {
             message = "Choose a top surface with enough space for the fixture."; return
         }
@@ -661,7 +677,7 @@ final class VenueModel {
         guard !libraryBusy else { return }
         beginHistoryAction("Reposition fixture on mesh"); defer { endHistoryAction() }
         guard canPlace, case .move(let id) = scenePick, let i = fixtures.firstIndex(where: { $0.id == id }), let scannedMesh else { return }
-        let radius: Float = fixtures[i].assetID == nil ? 0.12 : LightingPreview.footprintRadius
+        let radius = fixtures[i].footprintRadius
         guard scannedMesh.supports(point, radius: radius) else { message = "Choose a scanned horizontal surface with enough space."; return }
         fixtures[i].position = .init(x: point.x, y: point.y+(fixtures[i].assetID == nil ? radius : 0), z: point.z)
         fixtures[i].surfaceID = nil; scenePick = nil; lastTarget = nil
@@ -671,15 +687,17 @@ final class VenueModel {
     func resetAim(_ id: UUID) {
         guard !libraryBusy else { return }
         beginHistoryAction("Reset fixture aim"); defer { endHistoryAction() }
-        guard let index = fixtures.firstIndex(where: { $0.id == id }), fixtures[index].aimOverride != nil else { return }
+        guard let index = fixtures.firstIndex(where: { $0.id == id }),
+              fixtures[index].aimOverride != nil || fixtures[index].jointOverrides != nil else { return }
         cancelPicking()
         let saved = presets.first(where: { $0.id == fixtures[index].presetID })
         fixtures[index].aimOverride = nil
-        for channel in 4...5 {
-            fixtures[index].channels[channel] = saved.flatMap { $0.channels.indices.contains(channel) ? $0.channels[channel] : nil } ?? 128
+        fixtures[index].jointOverrides = nil
+        for joint in fixtures[index].asset?.joints ?? [] where fixtures[index].channels.indices.contains(joint.channel) {
+            fixtures[index].channels[joint.channel] = saved.flatMap { $0.channels.indices.contains(joint.channel) ? $0.channels[joint.channel] : nil } ?? (joint.continuous ? 0 : 128)
         }
         previewDraft = false; lastTarget = nil
-        revision += 1; persist(); message = saved == nil ? "Head returned to neutral pan and tilt." : "Restored the preset's pan and tilt."
+        revision += 1; persist(); message = saved == nil ? "Returned moving parts to rest." : "Restored the preset's motion values."
     }
 
     func beginPresetDrag(_ id: UUID) {

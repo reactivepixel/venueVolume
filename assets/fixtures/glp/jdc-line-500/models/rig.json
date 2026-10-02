@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "085d4021eca000307462a1b5501be8fa870a6b13758e7f89f8a082988bb0a808",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "glp/jdc-line-500",
+    "name": "JDC Line 500",
+    "manufacturer": "GLP",
+    "family": "strobe",
+    "resource": "FixtureAssets/Catalog/glp/jdc-line-500/fixture.usdz",
+    "sha256": "085d4021eca000307462a1b5501be8fa870a6b13758e7f89f8a082988bb0a808",
+    "boundsMin": [
+      -0.2535000145435333,
+      0.0,
+      -0.10074999183416367
+    ],
+    "boundsMax": [
+      0.2535000145435333,
+      0.0740000014193356,
+      0.10074999183416367
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.04822919890284538,
+          -0.08955869823694229
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "manfrotto/heavy-duty-stand-black-air-cushioned-black-steel",
+  "passed": true,
+  "source_usdz_sha256": "03b4820934dce57a4a7a48cb7e3f8645dc16b98990ac518a5d8b4cfb4468250a",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 19,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

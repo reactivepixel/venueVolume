@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "39766d2887f5fc1ceecb331f2b2807148c2ccf267f37b38864d7578a3a96636d",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "vari-lite/vl2600-se-wash",
+    "name": "VL2600 SE WASH",
+    "manufacturer": "Vari-Lite",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/vari-lite/vl2600-se-wash/fixture.usdz",
+    "sha256": "39766d2887f5fc1ceecb331f2b2807148c2ccf267f37b38864d7578a3a96636d",
+    "boundsMin": [
+      -0.23200000822544098,
+      0.0,
+      -0.15000000409781933
+    ],
+    "boundsMax": [
+      0.23200000822544098,
+      0.7049999833106995,
+      0.14999999292194843
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.11197312921285629,
+          0.0003504473716020584
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5478345155715942,
+          0.0003504473716020584
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5478345155715942,
+          -0.08004811406135559
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

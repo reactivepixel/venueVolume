@@ -1,0 +1,17 @@
+{
+  "id": "magic-fx/co2-jet-ii",
+  "passed": true,
+  "source_usdz_sha256": "3113a2e25a014b4828f5987163e8eb7447ef03b11170b980754694667a6f4f7b",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 12,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

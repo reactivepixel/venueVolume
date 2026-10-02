@@ -1,6 +1,30 @@
-# Temporary Mac handoff: moving-head pilot
+# Temporary Mac handoff: catalog articulation rollout
 
-Status: Mac build and scripted Simulator validation passed on 2026-10-01; direct gesture and physical-device validation remain open. Keep this file until the Mac findings have been reviewed.
+Status: Catalog rollout awaits native validation. The earlier pilot and interaction results are preserved below; they do not validate the new catalog integration.
+
+## Current pickup — all existing assets, 2026-10-02
+
+Pull `dev`, read `AGENTS.md`, and create an isolated task worktree. This rollout starts from the Mac's v0.1.22 scene inspector and spatial controls. It bundles 127 existing USDZ models and adds 128 preview joints across 72 assets, with the remaining 55 static. Search/filter, model dimensions, selection, extra joint controls, saved per-instance overrides, and head/mount targeting now use the generated catalog. Eight simultaneous beam previews prioritize the selected fixture; all placed geometry and joints remain active. The new direct controls affect individual moving parts; the Mac's spatial mount controls remain in place.
+
+Run from `apps/visionos`:
+
+```sh
+swift test --package-path Core
+./scripts/test-session.sh
+python3 Tests/verify-assets.py
+xcodebuild -project VenueVolume.xcodeproj -scheme VenueVolume -destination 'generic/platform=visionOS Simulator' -derivedDataPath DerivedData CODE_SIGNING_ALLOWED=NO build
+xcodebuild -project VenueVolume.xcodeproj -scheme VenueVolume -destination 'generic/platform=visionOS' -derivedDataPath DerivedData-device CODE_SIGNING_ALLOWED=NO build
+./scripts/run-demo.sh --blue --catalog-smoke
+./scripts/run-demo.sh --blue --history-smoke
+```
+
+The new `--catalog-smoke` debug path imports every bundled model, resolves every rig member, exercises neutral/minimum/maximum poses and checks RealityKit emitter transforms against Core targeting math. Capture the Simulator console: expect 127 `CATALOG_RIG_PASS` lines followed by `CATALOG_SMOKE_PASS assets=127`. Treat `CATALOG_SMOKE_FAIL` as a failure even if the app continues running. The smoke constructs rigs without displaying every model; interactive visual review is still required. Existing Xcode folder resources include all new bundle assets, and generated Core source is discovered by Swift Package Manager.
+
+Visually inspect Rogue R1X plus another moving spot and moving wash; GLP JDC1 and both tilting bars; Volero Wave modules; Dynasty Scan mirror; Entour Cyclone fan; MotionCamera; mirror shaft/ball; and a manual PAR or Fresnel bracket. Confirm fixed bases/brackets stay fixed, optics follow the moving body, and no source meshes disappear. Test search/category filter, cold asset loading, selection while loading, room switching, restore of older Rogue setups, per-module sliders, shared-preset isolation, gesture Undo/Redo, reset, named setup save/reopen, and head versus mount targeting availability. Place static and atmosphere equipment and confirm there is no unintended light. With nine emitting models, confirm the selected model receives beam priority and the UI accurately explains the eight-beam limit. A multi-head fixture may consume all eight beams.
+
+Linux results: Swift 6.0.3 Core suite and session/audit/interaction checks passed in the existing `swift:6.0` container. OpenUSD checked all 127 rig paths, member ownership, rest poses, rigid transforms and hashes; those reports are under `assets/fixtures/*/*/validation/rig.json`. Catalog CSVs contain rig state and locations. Source Blender/USDZ geometry is unchanged; rig sidecars define the runtime animation. Native compilation, RealityKit imports and gestures of this rollout are pending. Record native results and any fixes here, then integrate and push under the repository version/tag rules. Retain any device-only gaps explicitly.
+
+The following sections are historical pilot context and validation reports.
 
 ## Pickup
 

@@ -1,0 +1,17 @@
+{
+  "id": "magic-fx/flameblazer",
+  "passed": true,
+  "source_usdz_sha256": "970791c6e5943e8a430a181581993b4f0def0e264c64d607a840fbb5e8da6014",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 57,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

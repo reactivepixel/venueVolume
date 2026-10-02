@@ -1,0 +1,17 @@
+{
+  "id": "martin-professional-harman/mac-one",
+  "passed": true,
+  "source_usdz_sha256": "becc0ac2f64c0702afb2c3e3df2f345e61313c2c46afd53f0ff9a5b584fab804",
+  "joints": 2,
+  "moving_meshes": 62,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

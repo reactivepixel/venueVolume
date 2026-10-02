@@ -1,0 +1,17 @@
+{
+  "id": "eliminator-lighting-adj-group/mbmhd3-mirror-ball-motor",
+  "passed": true,
+  "source_usdz_sha256": "0e339e80d87023aaccc0bc9bef48cba321ab06045844ca85d6af2d7aaa6f42de",
+  "joints": 1,
+  "moving_meshes": 1,
+  "fixed_meshes": 3,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

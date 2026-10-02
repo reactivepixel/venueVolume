@@ -1,0 +1,17 @@
+{
+  "id": "enttec/d-split",
+  "passed": true,
+  "source_usdz_sha256": "39987af982c418b598c82e0bcfee1a3b6a05bfffb2e0c14acf3f66e77cd3ace6",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 14,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

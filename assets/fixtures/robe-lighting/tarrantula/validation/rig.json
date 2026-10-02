@@ -1,0 +1,17 @@
+{
+  "id": "robe-lighting/tarrantula",
+  "passed": true,
+  "source_usdz_sha256": "47a8f5af55f8e7ce915107be8ba2d86786fde705df1184da0ec0b230166ba08d",
+  "joints": 2,
+  "moving_meshes": 135,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

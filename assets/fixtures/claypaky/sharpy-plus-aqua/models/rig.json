@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "388b54ecc5666294c051821f1fa05fb7cc32980e767a364331ff82712092999c",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "claypaky/sharpy-plus-aqua",
+    "name": "Sharpy Plus Aqua",
+    "manufacturer": "Claypaky",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/claypaky/sharpy-plus-aqua/fixture.usdz",
+    "sha256": "388b54ecc5666294c051821f1fa05fb7cc32980e767a364331ff82712092999c",
+    "boundsMin": [
+      -0.20999999344348907,
+      0.0,
+      -0.16799999261274934
+    ],
+    "boundsMax": [
+      0.20999999344348907,
+      0.7310000061988831,
+      0.16799998795613647
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.11695999652147293,
+          0.0015170923434197903
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5924000144004822,
+          0.0015170923434197903
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5924000144004822,
+          -0.1551707684993744
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

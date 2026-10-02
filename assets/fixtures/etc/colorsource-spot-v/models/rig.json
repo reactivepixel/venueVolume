@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "2dbbfa69906de9c570b88cda4a366a48607db8fa031a26b41ec0fe3eb5d03c59",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "etc/colorsource-spot-v",
+    "name": "ColorSource Spot V",
+    "manufacturer": "ETC",
+    "family": "profile",
+    "resource": "FixtureAssets/Catalog/etc/colorsource-spot-v/fixture.usdz",
+    "sha256": "2dbbfa69906de9c570b88cda4a366a48607db8fa031a26b41ec0fe3eb5d03c59",
+    "boundsMin": [
+      -0.1694999784231186,
+      0.0,
+      -0.335999995470047
+    ],
+    "boundsMax": [
+      0.1694999784231186,
+      0.593000054359436,
+      0.3359999842941761
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.15357547998428345,
+          0.005774039775133133
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.15357547998428345,
+          -0.3431663513183594
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

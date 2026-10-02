@@ -1,0 +1,17 @@
+{
+  "id": "etc/source-four-led-series-3-lustr-x8",
+  "passed": true,
+  "source_usdz_sha256": "565d2e6ae93dd75a998e82e5004b3d54b986867e7a93e35307d3f792dafa43c0",
+  "joints": 1,
+  "moving_meshes": 41,
+  "fixed_meshes": 6,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

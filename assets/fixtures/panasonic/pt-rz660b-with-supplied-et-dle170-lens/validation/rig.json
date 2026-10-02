@@ -1,0 +1,17 @@
+{
+  "id": "panasonic/pt-rz660b-with-supplied-et-dle170-lens",
+  "passed": true,
+  "source_usdz_sha256": "67ead76431cac91087927785c1fe8612260186652e27d3235820bc2df7f18195",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 62,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

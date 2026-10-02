@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "d6ce4f983e562d5e99fbfc4ac40ac537b3c147305c762121746616a0ff4a4670",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "robe-lighting/robospot-motioncamera",
+    "name": "RoboSpot MotionCamera",
+    "manufacturer": "ROBE Lighting",
+    "family": "tracking_camera",
+    "resource": "FixtureAssets/Catalog/robe-lighting/robospot-motioncamera/fixture.usdz",
+    "sha256": "d6ce4f983e562d5e99fbfc4ac40ac537b3c147305c762121746616a0ff4a4670",
+    "boundsMin": [
+      -0.13850000500679016,
+      0.0,
+      -0.0734999985434115
+    ],
+    "boundsMax": [
+      0.13850000500679016,
+      0.38600000739097595,
+      0.07350000133737922
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.07943332940340042,
+          0.00076665123924613
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Camera/Upright_cylindrical_camera_housing_7",
+          "/Fixture/Camera/Camera_lens_surround_8",
+          "/Fixture/Camera/Upward_camera_optical_window_9"
+        ],
+        "pivot": [
+          0.0,
+          0.24798698723316193,
+          0.00076665123924613
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

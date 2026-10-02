@@ -91,5 +91,31 @@ import VenueVolumeCore
         model.undo(); check(model.fixtures == fixtures, "Undo restores all scene items")
         model.redo(); check(model.fixtures.isEmpty, "Redo clears scene items")
         print("Interaction checks passed: target preview/save/cancel, held updates, selection, axis gestures, grouped history, scene clearing and persistence.")
+        let waveKind = FixtureKind(rawValue: "claypaky/volero-wave")!
+        check(model.dropFixture([waveKind.dragToken], at: .init(x: 2.66,y: 0,z: -2), surfaceID: "floor"), "Place eight-module bar")
+        let wave = model.fixtures[0], joint = wave.asset!.joints[0]
+        model.beginHistoryAction("Drag module tilt")
+        model.setJoint(wave.id, jointID: joint.id, value: 15)
+        model.setJoint(wave.id, jointID: joint.id, value: 30)
+        model.endHistoryAction()
+        let aimedWave = model.fixtures[0]
+        check(aimedWave.jointOverrides?[joint.id] != nil && aimedWave.channels[8] == 128, "Only selected module moves")
+        model.undo(); check(model.fixtures[0] == wave, "Undo module gesture")
+        model.redo(); check(model.fixtures[0] == aimedWave, "Redo module gesture")
+        let restored = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder)
+        restored.activate(environment: environment)
+        check(restored.fixtures[0] == aimedWave, "Module pose persists")
+        check(model.applyPreset(preset.id, to: wave.id), "Apply bar preset")
+        check(model.fixtures[0].channels[joint.channel] == aimedWave.channels[joint.channel], "Preset preserves module override")
+        model.resetAim(wave.id)
+        check(model.fixtures[0].jointOverrides == nil, "Reset clears module override")
+        let fanKind = FixtureKind(rawValue: "adj/entour-cyclone")!
+        check(model.dropFixture([fanKind.dragToken], at: .init(x: 5,y: 0,z: -2), surfaceID: "floor"), "Place fan")
+        let fan = model.fixtures[1]
+        model.setJoint(fan.id, jointID: "rotor", value: 360)
+        check(model.fixture(fan.id)!.channels[7] > 0 && fan.asset!.emitters.isEmpty, "Fan has speed and no light")
+        model.beginRetarget(fan.id, method: .head)
+        check(!model.isRetargeting, "Fan cannot enter light targeting")
+        print("Catalog session checks passed: module isolation, grouped undo/redo, saved poses, preset preservation and fan controls.")
     }
 }
