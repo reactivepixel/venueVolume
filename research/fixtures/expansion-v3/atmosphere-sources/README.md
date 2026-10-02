@@ -18,3 +18,9 @@ Downloaded 2026-10-02 from exact manufacturer product image URLs. These files ar
 | `mdg-mse1-thumb.png` | MDG MSe1 | `422439dfd5b0ad1e62f69a08e6cc31b8145bf4373ba0cd140767cd40aac8ea16` | Manufacturer gallery thumbnail; low resolution |
 | `adj-entour-chill.jpg` | ADJ Entour Chill (ENT791) | `b368800b67732b34b9212294480a3fe4d427ee442609faa928ca8cffce5f1467` | Exact SKU-tagged manufacturer image |
 | `adj-entour-venue.jpg` | ADJ Entour Venue (ENT610) | `6888eeaa43ff37434048f932af321d04536c72612756ee1290983cc21d94f4e8` | Exact SKU-tagged manufacturer image |
+| `antari-hz-350.jpg` | Antari HZ-350 | `df280c45a303bea57aa129df45d98e4caa30b8ac4af8958e017e3a6d15533616` | Official model image |
+| `antari-hz-400.jpg` | Antari HZ-400 | `b2886a2adcb644db0b9001dbee40a84a7c31c3d5532a209bf22f1a23f3702855` | Official model image |
+| `antari-s-100x.jpg` | Antari S-100X | `8b3551540247b14b246609c2a2ff4a3574cc6ea48e9fe95c1451b47a63854a9d` | Official model image |
+| `antari-sw-300.jpg` | Antari SW-300 | `9f87ba820da649c318013403384c22b3dc8bdeb3321de97cae0f9b42a9f6b0d4` | Official model image |
+| `antari-f-1.jpg` | Antari F-1 | `40e9f3508d8e87355379a6829a61a67bbebd7d79b54cd70d5366ca4b1f1d477c` | Official model image |
+| `antari-z-3000iii.jpg` | Antari Z-3000III | `fa27a91299659cd72de4a696037e1a49769c0ede9312f835572fa17852af1387` | Official model image |

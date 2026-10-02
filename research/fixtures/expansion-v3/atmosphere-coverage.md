@@ -1,6 +1,6 @@
 # Expansion v3 atmosphere research
 
-Research pass dated 2026-10-02. `atmosphere.json` currently has 15 candidate records across Antari (9), Look Solutions (2), MDG (2), and ADJ (2). Exact product identity and technical product pages are established for all 15; most have official stills. Not every candidate is ready for modeling: see the acquisition gaps below and per-record `acquisition_errors`.
+Research pass dated 2026-10-02. `atmosphere.json` currently has 21 candidate records across Antari (15), Look Solutions (2), MDG (2), and ADJ (2). Exact product identity and technical product pages are established for all 21; most have official stills. Not every candidate is ready for modeling: see the acquisition gaps below and per-record `acquisition_errors`.
 
 ## De-duplication performed
 
@@ -10,7 +10,7 @@ Checked `assets/fixtures/research/show-equipment-catalog.csv` and `research/fixt
 
 | Manufacturer | Exact models | Evidence / status |
 |---|---|---|
-| Antari | Z-1200III, Z-1500III, HZ-500, HZ-1000, S-200X, SW-250, S-600, B-200, W-101 | Official product pages/manuals and exact CDN stills for most. S-600 has conflict between current page and 2026 guide. S-200X current product guide says manual/3-pin rather than DMX; its DMX count stays empty. |
+| Antari | Z-1200III, Z-1500III, Z-3000III, HZ-350, HZ-400, HZ-500, HZ-1000, F-1, S-100X, S-200X, SW-250, SW-300, S-600, B-200, W-101 | Official product pages/manuals and exact CDN stills for all. Unresolved physical/control conflicts: S-600 dimensions; SW-300 dimensions; S-100X DMX presence. Current/legacy HZ-350 body generation must be matched before modeling. |
 | Look Solutions | Unique 2.1, Tiny S | Official product pages and manufacturer dimension data. Exact stills located on the manufacturer's `/uploads/produkte/` path and captured locally. |
 | MDG | ATMOSPHERE APS, MSe1 | Exact product pages, technical specs and official gallery image URLs. Resolved as tiny gallery renditions only so far; seek full-resolution images before detailed modeling. ATMOSPHERE requires external CO2 and optional external DMX interface; MSe1 uses external fluid and gas supply. |
 | ADJ | Entour Chill (ENT791), Entour Venue (ENT610) | Product pages, published dimensions, controls and exact SKU-matching official stills. Chill product page and older ADJ news post disagree on dimensions; follow linked dimensional drawing. Entour Venue has an external 5.6 L anti-spill fluid container, distinct from machine body. |
@@ -24,6 +24,12 @@ Checked `assets/fixtures/research/show-equipment-catalog.csv` and `research/fixt
 - MDG's 2-channel DMX accessory is optional for ATMOSPHERE APS. CO2 pressure-dependent consumption claims retain their stated pressure conditions. External gas cylinders are outside this task's scope.
 - Official reference images downloaded to `atmosphere-sources/` have SHA-256 hashes and reuse status recorded in its README. Rights to reuse are unknown unless separately established.
 - These are visual enclosure and technical metadata candidates only. No operation or effect firing procedures or fluid recipes are included.
+
+## Buildable versus blocked candidates
+
+- Source-complete physical starting points: Z-1200III, Z-1500III, Z-3000III, HZ-400, HZ-500, HZ-1000, F-1, SW-250, B-200, W-101, Unique 2.1, Tiny S, Entour Venue.
+- Keep blocked pending resolution or better primary imagery: current-generation HZ-350 identification (legacy generation differs), S-100X DMX claim (current page versus 2026 guide), S-600 dimensions (current page versus 2026 guide), SW-300 dimensions (page versus manual), Entour Chill dimensions (page versus older news post), ATMOSPHERE APS and MSe1 (only tiny product thumbnails located).
+- S-200X has known exact model still and dimensions; DMX remains unknown, so it is inventory-only with manual/remote control data.
 
 ## Next acquisition targets
 
