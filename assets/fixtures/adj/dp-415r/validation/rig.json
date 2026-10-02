@@ -1,0 +1,17 @@
+{
+  "id": "adj/dp-415r",
+  "passed": true,
+  "source_usdz_sha256": "6da98eec4b35cee8c0cea02074e28d38fd94a8d736c51d1c21b76694439927c5",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 39,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

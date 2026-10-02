@@ -1,0 +1,17 @@
+{
+  "id": "vari-lite/vl2600-spot",
+  "passed": true,
+  "source_usdz_sha256": "2ec8d8e10bdd13c78f170499ea61b1ce945647117e6e31b2fcfb9cf8177103bb",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

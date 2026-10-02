@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "f16f5fc592a256b6b3df5b6b75fbb6e0592b5f053138a200f27ed1cd67605119",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "glp/jdc1",
+    "name": "JDC1",
+    "manufacturer": "GLP",
+    "family": "strobe",
+    "resource": "FixtureAssets/Catalog/glp/jdc1/fixture.usdz",
+    "sha256": "f16f5fc592a256b6b3df5b6b75fbb6e0592b5f053138a200f27ed1cd67605119",
+    "boundsMin": [
+      -0.19499999284744263,
+      0.0,
+      -0.07500000577419996
+    ],
+    "boundsMax": [
+      0.19499999284744263,
+      0.2509999913163483,
+      0.07500000763684511
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Body/Extruded_fixture_housing_0",
+          "/Fixture/Body/Long_heatsink_rib_1",
+          "/Fixture/Body/Long_heatsink_rib_001_2",
+          "/Fixture/Body/Long_heatsink_rib_002_3",
+          "/Fixture/Body/Long_heatsink_rib_003_4",
+          "/Fixture/Body/Long_heatsink_rib_004_5",
+          "/Fixture/Body/Long_heatsink_rib_005_6",
+          "/Fixture/Body/Long_heatsink_rib_006_7",
+          "/Fixture/Body/Long_heatsink_rib_007_8",
+          "/Fixture/Body/Optic_surround_9",
+          "/Fixture/Body/End_cheek_10",
+          "/Fixture/Body/Tilt_knob_11",
+          "/Fixture/Body/End_cheek_001_14",
+          "/Fixture/Body/Tilt_knob_001_15",
+          "/Fixture/Body/DMX_power_socket_19",
+          "/Fixture/Body/Socket_rim_20",
+          "/Fixture/Body/Socket_pin_21",
+          "/Fixture/Body/Socket_pin_001_22",
+          "/Fixture/Body/Socket_pin_002_23",
+          "/Fixture/Body/DMX_power_socket_001_24",
+          "/Fixture/Body/Socket_rim_001_25",
+          "/Fixture/Body/Socket_pin_003_26",
+          "/Fixture/Body/Socket_pin_004_27",
+          "/Fixture/Body/Socket_pin_005_28",
+          "/Fixture/Body/DMX_power_socket_002_29",
+          "/Fixture/Body/Socket_rim_002_30",
+          "/Fixture/Body/Socket_pin_006_31",
+          "/Fixture/Body/Socket_pin_007_32",
+          "/Fixture/Body/Socket_pin_008_33",
+          "/Fixture/Body/DMX_power_socket_003_34",
+          "/Fixture/Body/Socket_rim_003_35",
+          "/Fixture/Body/Socket_pin_009_36",
+          "/Fixture/Body/Socket_pin_010_37",
+          "/Fixture/Body/Socket_pin_011_38",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.1662251502275467,
+          -0.0026501743122935295
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.1662251502275467,
+          -0.0646643117070198
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

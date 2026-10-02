@@ -1,0 +1,17 @@
+{
+  "id": "chauvet-professional/colordash-par-quad-18",
+  "passed": true,
+  "source_usdz_sha256": "d3fc7d2440f4cdba30c3c80e7dae9da5601af1fa5777f75d1b033ee27e1be135",
+  "joints": 1,
+  "moving_meshes": 89,
+  "fixed_meshes": 6,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

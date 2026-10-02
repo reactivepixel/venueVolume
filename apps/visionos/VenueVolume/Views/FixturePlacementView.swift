@@ -36,15 +36,35 @@ struct FixturePlacementView: View {
                         Button("Reposition on surface") { model.beginReposition(id) }
                         Button("Upright mount") { model.transformFixture(id, position: fixture.position, yaw: 0, pitch: 0, roll: 0) }
                     }.disabled(!model.canPlace)
-                    if fixture.assetID != nil {
+                    if let asset = fixture.asset, !asset.joints.isEmpty {
                         Divider()
-                        Text("Head aim").font(.headline)
-                        Text("Retarget previews this fixture's pan/tilt and beam. Save the target to keep it, or Cancel to restore the previous look.")
+                        Text("Moving parts").font(.headline)
+                        ForEach(asset.joints) { joint in
+                            VStack(alignment: .leading, spacing: 6) {
+                                let current = joint.value(channels: model.fixture(id)?.channels ?? fixture.channels)
+                                LabeledContent(joint.label, value: String(format: joint.continuous ? "%.0f°/s" : "%.0f°", current))
+                                Slider(value: Binding(get: {
+                                    Double(joint.value(channels: model.fixture(id)?.channels ?? fixture.channels))
+                                }, set: { model.setJoint(id, jointID: joint.id, value: Float($0)) }),
+                                    in: joint.continuous ? 0...Double(joint.travel) : Double(joint.range.lowerBound)...Double(joint.range.upperBound),
+                                    onEditingChanged: { editing in
+                                        if editing { model.beginHistoryAction("Adjust \(joint.label)") } else { model.endHistoryAction() }
+                                    }).accessibilityLabel(joint.label)
+                            }
+                        }
+                        Button("Use preset motion") { model.resetAim(id) }
+                            .disabled(fixture.aimOverride == nil && fixture.jointOverrides == nil)
+                    }
+                    if let asset = fixture.asset, !asset.emitters.isEmpty {
+                        Divider()
+                        Text("Light targeting").font(.headline)
+                        Text(asset.headAim
+                             ? "Preview a head or mount target. Save to keep it, or Cancel to restore the previous look."
+                             : "Aim the mount using this model's first emitter. Save to keep it, or Cancel to restore the previous look.")
                         Menu("Retarget", systemImage: "scope") {
-                            Button("Aim head (preview)") { model.beginRetarget(id, method: .head) }
+                            Button("Aim head (preview)") { model.beginRetarget(id, method: .head) }.disabled(!asset.headAim)
                             Button("Aim mount") { model.beginRetarget(id, method: .mount) }
                         }.disabled(!model.canPlace)
-                        Button("Use preset aim") { model.resetAim(id) }.disabled(fixture.aimOverride == nil)
                     }
                     if let message = model.message { Text(message).font(.caption).foregroundStyle(.orange) }
                 }.padding(.trailing, 4)

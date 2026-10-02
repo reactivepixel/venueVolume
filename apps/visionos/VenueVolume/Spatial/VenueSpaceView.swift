@@ -134,6 +134,7 @@ struct VenueSpaceView: View {
         .task {
             #if DEBUG
             await RoomLibrarySmoke.run(model: model)
+            await RoomLibrarySmoke.catalog(model: model)
             #endif
         }
         .onDisappear {

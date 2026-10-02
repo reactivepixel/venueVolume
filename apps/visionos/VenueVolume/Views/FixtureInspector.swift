@@ -71,9 +71,9 @@ struct FixtureActions: View {
     var body: some View {
         HStack {
             Menu("Retarget", systemImage: "scope") {
-                Button("Aim head (preview)") { model.beginRetarget(fixture.id, method: .head) }
+                Button("Aim head (preview)") { model.beginRetarget(fixture.id, method: .head) }.disabled(fixture.asset?.headAim != true)
                 Button("Aim mount") { model.beginRetarget(fixture.id, method: .mount) }
-            }.disabled(!model.canPlace || fixture.assetID == nil)
+            }.disabled(!model.canPlace || fixture.asset?.emitters.isEmpty != false)
             Button("Axes", systemImage: "rotate.3d") { model.beginTransform(fixture.id) }.disabled(!model.canPlace)
             Button(role: .destructive) { model.remove(fixture.id) } label: { Image(systemName: "trash") }
                 .accessibilityLabel("Delete \(fixture.name)")

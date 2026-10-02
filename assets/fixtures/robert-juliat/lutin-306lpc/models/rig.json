@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "697f4ef83307213bda75637157722e2a0b827f8897b7ecb8fc8cd7b58500a737",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "robert-juliat/lutin-306lpc",
+    "name": "Lutin 306LPC",
+    "manufacturer": "Robert Juliat",
+    "family": "pc",
+    "resource": "FixtureAssets/Catalog/robert-juliat/lutin-306lpc/fixture.usdz",
+    "sha256": "697f4ef83307213bda75637157722e2a0b827f8897b7ecb8fc8cd7b58500a737",
+    "boundsMin": [
+      -0.15000000596046448,
+      0.0,
+      -0.2150000035762787
+    ],
+    "boundsMax": [
+      0.15000000596046448,
+      0.38499991595745087,
+      0.21500000543892384
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.1041126698255539,
+          0.041025593876838684
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.1041126698255539,
+          -0.2048582285642624
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

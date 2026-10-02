@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "d13a5e89e12b479d263389e0f551bfe885fb5c4d15203bf1c99ec611c52dab8e",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "claypaky/volero-wave",
+    "name": "Volero Wave",
+    "manufacturer": "Claypaky",
+    "family": "batten",
+    "resource": "FixtureAssets/Catalog/claypaky/volero-wave/fixture.usdz",
+    "sha256": "d13a5e89e12b479d263389e0f551bfe885fb5c4d15203bf1c99ec611c52dab8e",
+    "boundsMin": [
+      -0.4999999701976776,
+      -7.450580596923828e-09,
+      -0.09099999954923987
+    ],
+    "boundsMax": [
+      0.4999999701976776,
+      0.32899999618530273,
+      0.09100000420585275
+    ],
+    "joints": [
+      {
+        "id": "Head_01",
+        "label": "Head 1 tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Head_01/Independent_tilting_head_37",
+          "/Fixture/Head_01/Head_optic_collar_38",
+          "/Fixture/Head_01/Independent_beam_optic_39",
+          "/Fixture/Head_01/Module_cooling_rib_40",
+          "/Fixture/Head_01/Module_cooling_rib_001_41",
+          "/Fixture/Head_01/Module_cooling_rib_002_42",
+          "/Fixture/Head_01/Module_cooling_rib_003_43",
+          "/Fixture/Head_01/Module_cooling_rib_004_44",
+          "/Fixture/Head_01/Module_cooling_rib_005_45"
+        ],
+        "pivot": [
+          -0.3723404109477997,
+          0.2568768858909607,
+          0.004690824542194605
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 7,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "Head_02",
+        "label": "Head 2 tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Head_02/Independent_tilting_head_001_50",
+          "/Fixture/Head_02/Head_optic_collar_001_51",
+          "/Fixture/Head_02/Independent_beam_optic_001_52",
+          "/Fixture/Head_02/Module_cooling_rib_006_53",
+          "/Fixture/Head_02/Module_cooling_rib_007_54",
+          "/Fixture/Head_02/Module_cooling_rib_008_55",
+          "/Fixture/Head_02/Module_cooling_rib_009_56",
+          "/Fixture/Head_02/Module_cooling_rib_010_57",
+          "/Fixture/Head_02/Module_cooling_rib_011_58"
+        ],
+        "pivot": [
+          -0.26595744490623474,
+          0.2568768858909607,
+          0.004690824542194605
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 8,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "Head_03",
+        "label": "Head 3 tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Head_03/Independent_tilting_head_002_63",
+          "/Fixture/Head_03/Head_optic_collar_002_64",
+          "/Fixture/Head_03/Independent_beam_optic_002_65",
+          "/Fixture/Head_03/Module_cooling_rib_012_66",
+          "/Fixture/Head_03/Module_cooling_rib_013_67",
+          "/Fixture/Head_03/Module_cooling_rib_014_68",
+          "/Fixture/Head_03/Module_cooling_rib_015_69",
+          "/Fixture/Head_03/Module_cooling_rib_016_70",
+          "/Fixture/Head_03/Module_cooling_rib_017_71"
+        ],
+        "pivot": [
+          -0.1595744639635086,
+          0.2568768858909607,
+          0.004690824542194605
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 9,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "Head_04",
+        "label": "Head 4 tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Head_04/Independent_tilting_head_003_76",
+          "/Fixture/Head_04/Head_optic_collar_003_77",
+          "/Fixture/Head_04/Independent_beam_optic_003_78",
+          "/Fixture/Head_04/Module_cooling_rib_018_79",
+          "/Fixture/Head_04/Module_cooling_rib_019_80",
+          "/Fixture/Head_04/Module_cooling_rib_020_81",
+          "/Fixture/Head_04/Module_cooling_rib_021_82",
+          "/Fixture/Head_04/Module_cooling_rib_022_83",
+          "/Fixture/Head_04/Module_cooling_rib_023_84"
+        ],
+        "pivot": [
+          -0.05319148674607277,
+          0.2568768858909607,
+          0.004690824542194605
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 10,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "Head_05",
+        "label": "Head 5 tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Head_05/Independent_tilting_head_004_89",
+          "/Fixture/Head_05/Head_optic_collar_004_90",
+          "/Fixture/Head_05/Independent_beam_optic_004_91",
+          "/Fixture/Head_05/Module_cooling_rib_024_92",
+          "/Fixture/Head_05/Module_cooling_rib_025_93",
+          "/Fixture/Head_05/Module_cooling_rib_026_94",
+          "/Fixture/Head_05/Module_cooling_rib_027_95",
+          "/Fixture/Head_05/Module_cooling_rib_028_96",
+          "/Fixture/Head_05/Module_cooling_rib_029_97"
+        ],
+        "pivot": [
+          0.05319148674607277,
+          0.2568768858909607,
+          0.004690824542194605
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 11,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "Head_06",
+        "label": "Head 6 tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Head_06/Independent_tilting_head_005_102",
+          "/Fixture/Head_06/Head_optic_collar_005_103",
+          "/Fixture/Head_06/Independent_beam_optic_005_104",
+          "/Fixture/Head_06/Module_cooling_rib_030_105",
+          "/Fixture/Head_06/Module_cooling_rib_031_106",
+          "/Fixture/Head_06/Module_cooling_rib_032_107",
+          "/Fixture/Head_06/Module_cooling_rib_033_108",
+          "/Fixture/Head_06/Module_cooling_rib_034_109",
+          "/Fixture/Head_06/Module_cooling_rib_035_110"
+        ],
+        "pivot": [
+          0.1595744639635086,
+          0.2568768858909607,
+          0.004690824542194605
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 12,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "Head_07",
+        "label": "Head 7 tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Head_07/Independent_tilting_head_006_115",
+          "/Fixture/Head_07/Head_optic_collar_006_116",
+          "/Fixture/Head_07/Independent_beam_optic_006_117",
+          "/Fixture/Head_07/Module_cooling_rib_036_118",
+          "/Fixture/Head_07/Module_cooling_rib_037_119",
+          "/Fixture/Head_07/Module_cooling_rib_038_120",
+          "/Fixture/Head_07/Module_cooling_rib_039_121",
+          "/Fixture/Head_07/Module_cooling_rib_040_122",
+          "/Fixture/Head_07/Module_cooling_rib_041_123"
+        ],
+        "pivot": [
+          0.26595744490623474,
+          0.2568768858909607,
+          0.004690824542194605
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 13,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "Head_08",
+        "label": "Head 8 tilt",
+        "parent": null,
+        "members": [
+          "/Fixture/Head_08/Independent_tilting_head_007_128",
+          "/Fixture/Head_08/Head_optic_collar_007_129",
+          "/Fixture/Head_08/Independent_beam_optic_007_130",
+          "/Fixture/Head_08/Module_cooling_rib_042_131",
+          "/Fixture/Head_08/Module_cooling_rib_043_132",
+          "/Fixture/Head_08/Module_cooling_rib_044_133",
+          "/Fixture/Head_08/Module_cooling_rib_045_134",
+          "/Fixture/Head_08/Module_cooling_rib_046_135",
+          "/Fixture/Head_08/Module_cooling_rib_047_136"
+        ],
+        "pivot": [
+          0.3723404109477997,
+          0.2568768858909607,
+          0.004690824542194605
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 14,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "Head_01",
+        "position": [
+          -0.3723404109477997,
+          0.2568768858909607,
+          -0.09299999954923988
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      },
+      {
+        "parent": "Head_02",
+        "position": [
+          -0.26595744490623474,
+          0.2568768858909607,
+          -0.09299999954923988
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      },
+      {
+        "parent": "Head_03",
+        "position": [
+          -0.1595744602382183,
+          0.2568768858909607,
+          -0.09299999954923988
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      },
+      {
+        "parent": "Head_04",
+        "position": [
+          -0.05319148860871792,
+          0.2568768858909607,
+          -0.09299999954923988
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      },
+      {
+        "parent": "Head_05",
+        "position": [
+          0.05319148860871792,
+          0.2568768858909607,
+          -0.09299999954923988
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      },
+      {
+        "parent": "Head_06",
+        "position": [
+          0.1595744602382183,
+          0.2568768858909607,
+          -0.09299999954923988
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      },
+      {
+        "parent": "Head_07",
+        "position": [
+          0.26595744490623474,
+          0.2568768858909607,
+          -0.09299999954923988
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      },
+      {
+        "parent": "Head_08",
+        "position": [
+          0.3723404109477997,
+          0.2568768858909607,
+          -0.09299999954923988
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

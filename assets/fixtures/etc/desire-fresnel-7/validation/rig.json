@@ -1,0 +1,17 @@
+{
+  "id": "etc/desire-fresnel-7",
+  "passed": true,
+  "source_usdz_sha256": "21541c2c5e20ee7c487ca4b6d430406a9f15bc69bed09835c07133fca1d8a67c",
+  "joints": 1,
+  "moving_meshes": 50,
+  "fixed_meshes": 6,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

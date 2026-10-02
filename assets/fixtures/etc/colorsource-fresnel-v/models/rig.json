@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "43fe1a112f3f4cd92b350827808498e8f47633d14efe31f77ecda1a990ed0ad5",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "etc/colorsource-fresnel-v",
+    "name": "ColorSource Fresnel V",
+    "manufacturer": "ETC",
+    "family": "fresnel",
+    "resource": "FixtureAssets/Catalog/etc/colorsource-fresnel-v/fixture.usdz",
+    "sha256": "43fe1a112f3f4cd92b350827808498e8f47633d14efe31f77ecda1a990ed0ad5",
+    "boundsMin": [
+      -0.16050000488758087,
+      0.0,
+      -0.15549999475479126
+    ],
+    "boundsMax": [
+      0.16050000488758087,
+      0.3389999568462372,
+      0.15549999568611383
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.13948945701122284,
+          -0.01057854201644659
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.13948945701122284,
+          -0.15624675154685974
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

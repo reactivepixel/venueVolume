@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "13278609cd720c50c4a84aad2f81c90217adc5286d5635bf6e0c7c7c82d815aa",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "adj/m-2020-mirror-ball",
+    "name": "M-2020 Mirror Ball",
+    "manufacturer": "ADJ",
+    "family": "mirror_ball",
+    "resource": "FixtureAssets/Catalog/adj/m-2020-mirror-ball/fixture.usdz",
+    "sha256": "13278609cd720c50c4a84aad2f81c90217adc5286d5635bf6e0c7c7c82d815aa",
+    "boundsMin": [
+      -0.2540000081062317,
+      0.0,
+      -0.2540000081062317
+    ],
+    "boundsMax": [
+      0.2540000081062317,
+      0.5079999566078186,
+      0.2540000081062317
+    ],
+    "joints": [
+      {
+        "id": "ball",
+        "label": "Ball speed",
+        "parent": null,
+        "members": [
+          "/Fixture/Body/Sphere_beneath_mirror_mosaic_0",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_0_1",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_1_2",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_2_3",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_3_4",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_4_5",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_5_6",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_6_7",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_7_8",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_8_9",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_9_10",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_10_11",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_11_12",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_12_13",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_13_14",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_14_15",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_15_16",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_16_17",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_17_18",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_18_19",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_19_20",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_20_21",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_21_22",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_22_23",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_23_24",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_24_25",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_25_26",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_26_27",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_27_28",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_28_29",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_29_30",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_30_31",
+          "/Fixture/Body/Individual_mirror_tiles_latitude_31_32"
+        ],
+        "pivot": [
+          0,
+          0.2539999783039093,
+          0
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 7,
+        "travel": 36,
+        "continuous": true,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

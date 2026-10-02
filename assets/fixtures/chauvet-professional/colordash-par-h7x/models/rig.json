@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "c6bd3c67dcb37c685876a9d432c011326d72282779836f5fc0235ca21789700f",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "chauvet-professional/colordash-par-h7x",
+    "name": "COLORdash PAR H7X",
+    "manufacturer": "CHAUVET Professional",
+    "family": "par",
+    "resource": "FixtureAssets/Catalog/chauvet-professional/colordash-par-h7x/fixture.usdz",
+    "sha256": "c6bd3c67dcb37c685876a9d432c011326d72282779836f5fc0235ca21789700f",
+    "boundsMin": [
+      -0.1290000081062317,
+      0.0,
+      -0.057999998331069946
+    ],
+    "boundsMax": [
+      0.1290000081062317,
+      0.24000000953674316,
+      0.058000000077299774
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.08024370670318604,
+          0.00023503776174038649
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.08024370670318604,
+          -0.061868924647569656
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "2e5c19cd4ff695ccb09a39e6d1f6bd01e7ccf0255498e53cb602d61a9da29d50",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "etc/fos-4-fresnel",
+    "name": "fos/4 Fresnel",
+    "manufacturer": "ETC",
+    "family": "fresnel",
+    "resource": "FixtureAssets/Catalog/etc/fos-4-fresnel/fixture.usdz",
+    "sha256": "2e5c19cd4ff695ccb09a39e6d1f6bd01e7ccf0255498e53cb602d61a9da29d50",
+    "boundsMin": [
+      -0.15650001168251038,
+      1.4901161193847656e-08,
+      -0.2524999976158142
+    ],
+    "boundsMax": [
+      0.15650001168251038,
+      0.4350000321865082,
+      0.2524999547749758
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.13536593317985535,
+          -0.027155322954058647
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.13536593317985535,
+          -0.25772514939308167
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

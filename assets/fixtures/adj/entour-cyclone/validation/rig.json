@@ -1,0 +1,17 @@
+{
+  "id": "adj/entour-cyclone",
+  "passed": true,
+  "source_usdz_sha256": "c2f066a00355883ffb1443d801611549762e185c511c406b52ae9018a33decd8",
+  "joints": 2,
+  "moving_meshes": 46,
+  "fixed_meshes": 4,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

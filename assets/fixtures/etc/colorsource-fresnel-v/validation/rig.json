@@ -1,0 +1,17 @@
+{
+  "id": "etc/colorsource-fresnel-v",
+  "passed": true,
+  "source_usdz_sha256": "43fe1a112f3f4cd92b350827808498e8f47633d14efe31f77ecda1a990ed0ad5",
+  "joints": 1,
+  "moving_meshes": 50,
+  "fixed_meshes": 6,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

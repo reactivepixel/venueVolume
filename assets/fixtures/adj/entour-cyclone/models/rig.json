@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "c2f066a00355883ffb1443d801611549762e185c511c406b52ae9018a33decd8",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "adj/entour-cyclone",
+    "name": "Entour Cyclone",
+    "manufacturer": "ADJ",
+    "family": "fan",
+    "resource": "FixtureAssets/Catalog/adj/entour-cyclone/fixture.usdz",
+    "sha256": "c2f066a00355883ffb1443d801611549762e185c511c406b52ae9018a33decd8",
+    "boundsMin": [
+      -0.17499999701976776,
+      0.0,
+      -0.06549999862909317
+    ],
+    "boundsMax": [
+      0.17499999701976776,
+      0.4220000207424164,
+      0.06549999862909317
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Guard"
+        ],
+        "pivot": [
+          0.0,
+          0.240364208817482,
+          -0.0
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      },
+      {
+        "id": "rotor",
+        "label": "Fan speed",
+        "parent": "tilt",
+        "members": [
+          "/Fixture/Rotor"
+        ],
+        "pivot": [
+          0.0,
+          0.240364208817482,
+          -0.0
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ],
+        "channel": 7,
+        "travel": 720,
+        "continuous": true,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

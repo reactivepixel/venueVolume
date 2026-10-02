@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "75e79d033a15cd2dcca2a15aeb324edfbb6f1dec91e4c43999d8c2d174af1c72",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "martin-professional-harman/mac-viper-xip",
+    "name": "MAC Viper XIP",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/mac-viper-xip/fixture.usdz",
+    "sha256": "75e79d033a15cd2dcca2a15aeb324edfbb6f1dec91e4c43999d8c2d174af1c72",
+    "boundsMin": [
+      -0.2394999861717224,
+      0.0,
+      -0.2974999974248931
+    ],
+    "boundsMax": [
+      0.2394999861717224,
+      0.7760000228881836,
+      0.297500001383014
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.12415999919176102,
+          0.00032012362498790026
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.617929995059967,
+          0.00032012362498790026
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.617929995059967,
+          -0.2812579870223999
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "high-end-systems/solaframe-1000",
+  "passed": true,
+  "source_usdz_sha256": "64e2c1d5d05e2a490bf1490e91bb74671bf4405dfe8455f88ed1a076398f13c3",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

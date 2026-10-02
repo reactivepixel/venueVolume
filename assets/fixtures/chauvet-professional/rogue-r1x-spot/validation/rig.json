@@ -1,0 +1,17 @@
+{
+  "id": "chauvet-professional/rogue-r1x-spot",
+  "passed": true,
+  "source_usdz_sha256": "f0bc6d4bfebed8d093199d0d27ef32129701278296c7b5e32aaa66f478ca9fff",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

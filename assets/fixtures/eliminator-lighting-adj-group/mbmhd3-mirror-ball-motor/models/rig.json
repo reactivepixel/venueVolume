@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "0e339e80d87023aaccc0bc9bef48cba321ab06045844ca85d6af2d7aaa6f42de",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "eliminator-lighting-adj-group/mbmhd3-mirror-ball-motor",
+    "name": "MBMHD3 mirror ball motor",
+    "manufacturer": "Eliminator Lighting (ADJ Group)",
+    "family": "mirror_motor",
+    "resource": "FixtureAssets/Catalog/eliminator-lighting-adj-group/mbmhd3-mirror-ball-motor/fixture.usdz",
+    "sha256": "0e339e80d87023aaccc0bc9bef48cba321ab06045844ca85d6af2d7aaa6f42de",
+    "boundsMin": [
+      -0.06800000369548798,
+      0.0,
+      -0.06800000369548798
+    ],
+    "boundsMax": [
+      0.06800000369548798,
+      0.07999999821186066,
+      0.06800000369548798
+    ],
+    "joints": [
+      {
+        "id": "shaft",
+        "label": "Shaft speed",
+        "parent": null,
+        "members": [
+          "/Fixture/Body/Output_shaft_3"
+        ],
+        "pivot": [
+          0,
+          0,
+          0
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 7,
+        "travel": 36,
+        "continuous": true,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "robe-lighting/forte",
+  "passed": true,
+  "source_usdz_sha256": "5e3f98980cca8612acd8697180945144b17e26d1786a1babf8698c075485c8f5",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

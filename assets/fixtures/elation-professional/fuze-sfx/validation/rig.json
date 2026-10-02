@@ -1,0 +1,17 @@
+{
+  "id": "elation-professional/fuze-sfx",
+  "passed": true,
+  "source_usdz_sha256": "6863bbb2d149700654ad5a37ded88fd49ba51c3808689d12bd36485d6c4efa6c",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

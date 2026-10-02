@@ -1,0 +1,17 @@
+{
+  "id": "claypaky/mini-b",
+  "passed": true,
+  "source_usdz_sha256": "cdc1bea2d6fd848ebdd82969cbc9b9900c5c793948e184e8a6375b579139c2f2",
+  "joints": 2,
+  "moving_meshes": 45,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

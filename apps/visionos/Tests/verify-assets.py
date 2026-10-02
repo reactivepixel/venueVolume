@@ -17,3 +17,18 @@ assert (fixture / 'fixture.usdz').read_bytes() == (repo / 'assets/fixtures/chauv
 assert {p['name'] for p in metadata['model']['parts']} >= {'base', 'yoke', 'head'}
 assert metadata['model']['emitters'][0]['optical_axis'] == [0, 0, -1]
 print('Asset checks passed: exact room and fixture copies, SHA-256, articulation and emitter metadata.')
+
+catalog = json.loads((repo / 'assets/fixtures/runtime-catalog.json').read_text())
+records = {p.parent.relative_to(repo / 'assets/fixtures').as_posix()
+           for p in (repo / 'assets/fixtures').glob('*/*/fixture.json')}
+assert {a['id'] for a in catalog} == records
+generated = (app / 'Core/Sources/VenueVolumeCore/GeneratedFixtureCatalog.swift').read_text()
+assert json.loads(generated.split('#"""\n', 1)[1].rsplit('\n"""#', 1)[0]) == catalog
+for asset in catalog:
+    source = repo / 'assets/fixtures' / asset['id']
+    bundled = app / 'VenueVolume' / asset['resource']
+    assert hashlib.sha256(bundled.read_bytes()).hexdigest() == asset['sha256'], asset['id']
+    assert bundled.read_bytes() == (source / 'models/fixture.usdz').read_bytes(), asset['id']
+    assert json.loads((source / 'models/rig.json').read_text())['descriptor'] == asset
+    assert json.loads((source / 'validation/rig.json').read_text())['passed']
+print(f'Catalog checks passed: {len(catalog)} exact bundled models, rig companions, generated Swift catalog and validation reports.')

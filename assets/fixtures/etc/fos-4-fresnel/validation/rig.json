@@ -1,0 +1,17 @@
+{
+  "id": "etc/fos-4-fresnel",
+  "passed": true,
+  "source_usdz_sha256": "2e5c19cd4ff695ccb09a39e6d1f6bd01e7ccf0255498e53cb602d61a9da29d50",
+  "joints": 1,
+  "moving_meshes": 46,
+  "fixed_meshes": 6,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

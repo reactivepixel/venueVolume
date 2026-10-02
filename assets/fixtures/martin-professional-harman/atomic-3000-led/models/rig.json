@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "b80a7461b65ca4b0b46b7904d29352d21d7c6095ec87c7a6c3b77e0a71e29381",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "martin-professional-harman/atomic-3000-led",
+    "name": "Atomic 3000 LED",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "strobe",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/atomic-3000-led/fixture.usdz",
+    "sha256": "b80a7461b65ca4b0b46b7904d29352d21d7c6095ec87c7a6c3b77e0a71e29381",
+    "boundsMin": [
+      -0.21250002086162567,
+      0.0,
+      -0.11999999731779099
+    ],
+    "boundsMax": [
+      0.21250002086162567,
+      0.24500001082196832,
+      0.12000000663101673
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.16225166618824005,
+          -0.10659486800432205
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

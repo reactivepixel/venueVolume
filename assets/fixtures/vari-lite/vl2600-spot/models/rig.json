@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "2ec8d8e10bdd13c78f170499ea61b1ce945647117e6e31b2fcfb9cf8177103bb",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "vari-lite/vl2600-spot",
+    "name": "VL2600 SPOT",
+    "manufacturer": "Vari-Lite",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/vari-lite/vl2600-spot/fixture.usdz",
+    "sha256": "2ec8d8e10bdd13c78f170499ea61b1ce945647117e6e31b2fcfb9cf8177103bb",
+    "boundsMin": [
+      -0.23200000822544098,
+      0.0,
+      -0.15000000409781933
+    ],
+    "boundsMax": [
+      0.23200000822544098,
+      0.7149999737739563,
+      0.14999999292194843
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.1143999993801117,
+          0.0003504473716020584
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5618799924850464,
+          0.0003504473716020584
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5618799924850464,
+          -0.1347191333770752
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "high-end-systems/solawash-2000",
+  "passed": true,
+  "source_usdz_sha256": "350e5588de05978eae7da8c4ac7f9851a914e32c186ce740bd3f1510f9ac31c9",
+  "joints": 2,
+  "moving_meshes": 47,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

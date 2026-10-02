@@ -50,12 +50,23 @@ public struct ScannedMesh: Codable, Equatable, Sendable {
     }
 }
 
-public enum FixtureKind: String, CaseIterable, Identifiable, Sendable {
-    case movingHead, cube
+public struct FixtureKind: RawRepresentable, CaseIterable, Identifiable, Equatable, Hashable, Sendable {
+    public let rawValue: String
+    public static let movingHead = FixtureKind(unchecked: "movingHead")
+    public static let cube = FixtureKind(unchecked: "cube")
+    private init(unchecked: String) { rawValue = unchecked }
+    public init?(rawValue: String) {
+        guard rawValue == "movingHead" || rawValue == "cube" || FixtureCatalog.asset(rawValue) != nil else { return nil }
+        self.rawValue = rawValue
+    }
+    public static var allCases: [FixtureKind] {
+        FixtureCatalog.all.map { $0.id == LightingPreview.assetID ? .movingHead : FixtureKind(unchecked: $0.id) } + [.cube]
+    }
     public var id: String { rawValue }
-    public var name: String { self == .movingHead ? "Rogue R1X moving head pilot" : "DMX cube" }
-    public var radius: Float { self == .movingHead ? LightingPreview.footprintRadius : 0.12 }
-    public var assetID: String? { self == .movingHead ? LightingPreview.assetID : nil }
+    public var asset: FixtureAsset? { FixtureCatalog.asset(assetID) }
+    public var name: String { asset?.name ?? "DMX cube" }
+    public var radius: Float { asset?.radius ?? 0.12 }
+    public var assetID: String? { self == .cube ? nil : self == .movingHead ? LightingPreview.assetID : rawValue }
     public var dragToken: String { "venue-volume:fixture-kind:" + rawValue }
     public init?(token: String) {
         let prefix = "venue-volume:fixture-kind:"

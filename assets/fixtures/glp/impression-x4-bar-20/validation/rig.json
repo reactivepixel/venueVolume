@@ -1,0 +1,17 @@
+{
+  "id": "glp/impression-x4-bar-20",
+  "passed": true,
+  "source_usdz_sha256": "16f557a5e2aab6522260c0d3793ffa743deaafc6e5f506c608de9710fae4a491",
+  "joints": 1,
+  "moving_meshes": 74,
+  "fixed_meshes": 5,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

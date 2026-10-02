@@ -1,0 +1,17 @@
+{
+  "id": "adj/uv-flood-36",
+  "passed": true,
+  "source_usdz_sha256": "e4eb91189e3a6b62c2e672f8f551bc1add2f2d554436848b82cede8289acf758",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 29,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

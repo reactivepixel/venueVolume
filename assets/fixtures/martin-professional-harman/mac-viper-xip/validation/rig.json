@@ -1,0 +1,17 @@
+{
+  "id": "martin-professional-harman/mac-viper-xip",
+  "passed": true,
+  "source_usdz_sha256": "75e79d033a15cd2dcca2a15aeb324edfbb6f1dec91e4c43999d8c2d174af1c72",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

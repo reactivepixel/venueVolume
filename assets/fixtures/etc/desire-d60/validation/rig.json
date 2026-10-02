@@ -1,0 +1,17 @@
+{
+  "id": "etc/desire-d60",
+  "passed": true,
+  "source_usdz_sha256": "7c22f47a7c0d7c0c5c246279e7f4df77ad72748f6bc4fc293a9706c957278bc0",
+  "joints": 1,
+  "moving_meshes": 215,
+  "fixed_meshes": 6,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

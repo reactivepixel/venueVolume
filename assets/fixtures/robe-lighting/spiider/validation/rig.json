@@ -1,0 +1,17 @@
+{
+  "id": "robe-lighting/spiider",
+  "passed": true,
+  "source_usdz_sha256": "3d46a31eca7cde52908be9e548f73d75dbbc64fa07fc25fb1b7d7e08186a7466",
+  "joints": 2,
+  "moving_meshes": 81,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

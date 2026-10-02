@@ -36,9 +36,9 @@ struct FixtureLabel: View {
                     Button("Move", systemImage: "arrow.up.and.down.and.arrow.left.and.right") { model.beginReposition(fixture.id) }
                         .disabled(!model.canPlace)
                     Menu("Retarget", systemImage: "scope") {
-                        Button("Aim head (preview)") { model.beginRetarget(fixture.id, method: .head) }
+                        Button("Aim head (preview)") { model.beginRetarget(fixture.id, method: .head) }.disabled(fixture.asset?.headAim != true)
                         Button("Aim mount") { model.beginRetarget(fixture.id, method: .mount) }
-                    }.disabled(!model.canPlace || fixture.assetID == nil)
+                    }.disabled(!model.canPlace || fixture.asset?.emitters.isEmpty != false)
                     Button("Transform", systemImage: "rotate.3d") { model.beginTransform(fixture.id) }
                 }.font(.caption)
                 if let aim = fixture.aimOverride {

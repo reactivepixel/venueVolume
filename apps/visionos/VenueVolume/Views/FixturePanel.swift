@@ -9,13 +9,11 @@ struct FixturePanel: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            LabeledContent("Object", value: fixture.assetID == nil ? "Legacy cube · 24 cm" : "CHAUVET Rogue R1X Spot")
-            if fixture.assetID == LightingPreview.assetID {
-                LabeledContent("Model", value: "Moving head pilot · visual proxy")
+            LabeledContent("Object", value: fixture.asset.map { $0.manufacturer + " " + $0.name } ?? "Legacy cube · 24 cm")
+            if let asset = fixture.asset {
+                LabeledContent("Motion", value: asset.motionLabel)
                 LabeledContent("Controls", value: LightingPreview.profileName)
-                Text("Head pan/tilt and the beam respond to preview values. This is not the manufacturer's DMX map or calibrated photometry.")
-                    .font(.caption).foregroundStyle(.secondary)
-                Text("Pilot travel: about 270° pan / 120° tilt. The physical Rogue R1X Spot is specified for up to 540° / 250°.")
+                Text(asset.notes)
                     .font(.caption).foregroundStyle(.secondary)
             }
             LabeledContent("Preview patch", value: "U\(fixture.universe) · \(fixture.startAddress)–\(fixture.endAddress)")
@@ -27,7 +25,7 @@ struct FixturePanel: View {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
                     ForEach(fixture.channels.indices, id: \.self) { index in
                         HStack {
-                            Text(String(format: "CH %02d", index + 1)).foregroundStyle(.secondary)
+                            Text("\(index + 1) · \(fixture.asset?.channelName(index) ?? "Channel")").foregroundStyle(.secondary)
                             Spacer()
                             Text("\(fixture.channels[index])").foregroundStyle(.cyan)
                         }.font(.caption.monospacedDigit())

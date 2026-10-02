@@ -1,0 +1,17 @@
+{
+  "id": "glp/jdc-line-1000",
+  "passed": true,
+  "source_usdz_sha256": "a87519fa60ca384f03a504a2323337086cefb947cf8dd9d2916c02156928e968",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 39,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

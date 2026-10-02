@@ -1,0 +1,17 @@
+{
+  "id": "chauvet-professional/colordash-batten-quad-6",
+  "passed": true,
+  "source_usdz_sha256": "e12590c60a2f581317d4684a017b1ef38258a4536111b3e0241a76c38e0afa60",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 50,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

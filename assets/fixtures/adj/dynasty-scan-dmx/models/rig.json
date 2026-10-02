@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "5fda7f494b11152e55f77eca9b0811e526a738fd35d22fd7e91e53614c822328",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "adj/dynasty-scan-dmx",
+    "name": "Dynasty Scan DMX",
+    "manufacturer": "ADJ",
+    "family": "scanner",
+    "resource": "FixtureAssets/Catalog/adj/dynasty-scan-dmx/fixture.usdz",
+    "sha256": "5fda7f494b11152e55f77eca9b0811e526a738fd35d22fd7e91e53614c822328",
+    "boundsMin": [
+      -0.0925000011920929,
+      7.450580596923828e-09,
+      -0.23000000417232513
+    ],
+    "boundsMax": [
+      0.0925000011920929,
+      0.19499999284744263,
+      0.23000000533647835
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Mirror pan",
+        "parent": null,
+        "members": [],
+        "pivot": [
+          0.0,
+          0.1451132446527481,
+          -0.20364932715892792
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 60,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Mirror tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Mirror"
+        ],
+        "pivot": [
+          0.0,
+          0.1451132446527481,
+          -0.20364932715892792
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 60,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.1451132446527481,
+          -0.21779005229473114
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

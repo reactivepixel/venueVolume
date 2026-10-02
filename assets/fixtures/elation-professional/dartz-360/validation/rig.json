@@ -1,0 +1,17 @@
+{
+  "id": "elation-professional/dartz-360",
+  "passed": true,
+  "source_usdz_sha256": "3372fcf3700bc5d1e9216a227eab616596a24e9bedec1daa571f00ab4fb98540",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "21541c2c5e20ee7c487ca4b6d430406a9f15bc69bed09835c07133fca1d8a67c",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "etc/desire-fresnel-7",
+    "name": "Desire Fresnel 7",
+    "manufacturer": "ETC",
+    "family": "fresnel",
+    "resource": "FixtureAssets/Catalog/etc/desire-fresnel-7/fixture.usdz",
+    "sha256": "21541c2c5e20ee7c487ca4b6d430406a9f15bc69bed09835c07133fca1d8a67c",
+    "boundsMin": [
+      -0.15199998021125793,
+      0.0,
+      -0.17799998819828033
+    ],
+    "boundsMax": [
+      0.15199998021125793,
+      0.45499999821186066,
+      0.17799998819828033
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.17320694029331207,
+          -0.012099608778953552
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.17320694029331207,
+          -0.17576350271701813
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "c9cd630b1739aed98c555b6fa6598f19f8ed613bfc72137f43959e6cef9cd0af",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "adj/stryker-wash",
+    "name": "STRYKER WASH",
+    "manufacturer": "ADJ",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/adj/stryker-wash/fixture.usdz",
+    "sha256": "c9cd630b1739aed98c555b6fa6598f19f8ed613bfc72137f43959e6cef9cd0af",
+    "boundsMin": [
+      -0.16200000047683716,
+      0.0,
+      -0.11099999531870708
+    ],
+    "boundsMax": [
+      0.16200000047683716,
+      0.39899998903274536,
+      0.11100000009173527
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.06328059732913971,
+          0.0005067573511041701
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.2926727533340454,
+          0.0005067573511041701
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.2926727533340454,
+          -0.057993192225694656
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

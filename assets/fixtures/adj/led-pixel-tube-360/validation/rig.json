@@ -1,0 +1,17 @@
+{
+  "id": "adj/led-pixel-tube-360",
+  "passed": true,
+  "source_usdz_sha256": "00c8a44091220768dad899044a55ffabd641bef78fcc576a1c9dedfd06cd972a",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 3,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

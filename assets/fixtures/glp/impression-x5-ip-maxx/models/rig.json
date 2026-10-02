@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "3a17a04aee93ad9dccf71290c249b59c2e98a534b449c7473ea5814e2262c506",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "glp/impression-x5-ip-maxx",
+    "name": "impression X5 IP Maxx",
+    "manufacturer": "GLP",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/glp/impression-x5-ip-maxx/fixture.usdz",
+    "sha256": "3a17a04aee93ad9dccf71290c249b59c2e98a534b449c7473ea5814e2262c506",
+    "boundsMin": [
+      -0.24149999022483826,
+      0.0,
+      -0.1789999925531447
+    ],
+    "boundsMax": [
+      0.24149999022483826,
+      0.6399999856948853,
+      0.17900000279769301
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.04442383348941803,
+          0.007805285509675741
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.47657454013824463,
+          0.007805285509675741
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.47657454013824463,
+          -0.14929620921611786
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

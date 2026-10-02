@@ -1,0 +1,17 @@
+{
+  "id": "vari-lite/vl3600-profile-ip",
+  "passed": true,
+  "source_usdz_sha256": "52d1a190b5507fa8d1c386ea9602ee4d5b2dd2e28685aa5f9681d3480264c442",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

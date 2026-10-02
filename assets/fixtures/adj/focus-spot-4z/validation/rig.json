@@ -1,0 +1,17 @@
+{
+  "id": "adj/focus-spot-4z",
+  "passed": true,
+  "source_usdz_sha256": "6980b4baa059236a071f8a05d2cb3cfa75521f29f53577309025bd5981513b0b",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

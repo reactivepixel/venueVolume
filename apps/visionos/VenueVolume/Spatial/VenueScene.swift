@@ -13,7 +13,10 @@ final class VenueScene {
     private let targetMarker = ModelEntity(mesh: .generateSphere(radius: 0.025), materials: [UnlitMaterial(color: .cyan)])
     private var roomMaterials: [(Entity, ModelComponent)] = []
     private var displayedWhiteRoom: Bool?
-    private var fixtureTemplate: Entity?
+    private var fixtureTemplates: [String: Entity] = [:]
+    private var fixtureLoads: [String: Task<Void, Never>] = [:]
+    private var fixtureFailures: Set<String> = []
+    private var fixtureLoadGeneration = UUID()
     private var rigs: [UUID: FixtureRig] = [:]
     private let transformGizmo = FixtureTransformGizmo()
     let headAnchor = AnchorEntity(.head, trackingMode: .continuous)
@@ -94,7 +97,7 @@ final class VenueScene {
             try Task.checkCancellation()
             // Fail visibly before accepting placements if the expected rig cannot be built.
             _ = try FixtureRig(template: template, id: UUID())
-            model.fixtureAssetStatus = "Moving head pilot · Rogue R1X Spot · VV Preview 16"
+            model.fixtureAssetStatus = "\(FixtureCatalog.all.count) catalog assets · VV Preview 16"
             var proxies: [Entity] = []
             for proxy in resolved.manifest.colliders {
                 let entity = Entity()
@@ -123,7 +126,10 @@ final class VenueScene {
             background.components.set(CollisionComponent(shapes: [.generateSphere(radius: 40)]))
             background.components.set(InputTargetComponent(allowedInputTypes: [.indirect]))
             root.addChild(background)
-            roomMaterials = newMaterials; displayedWhiteRoom = nil; fixtureTemplate = template
+            roomMaterials = newMaterials; displayedWhiteRoom = nil
+            fixtureLoadGeneration = UUID()
+            fixtureLoads.values.forEach { $0.cancel() }; fixtureLoads.removeAll(); fixtureFailures.removeAll()
+            fixtureTemplates = [LightingPreview.assetID: template]
             model.scannedMesh = scan
             // Imported opaque PBR meshes receive dynamic light and write depth.
             manifest = resolved.manifest
@@ -260,6 +266,10 @@ final class VenueScene {
         }
         root.components.set(EnvironmentLightingConfigurationComponent(environmentLightingWeight: model.houseLight))
         let ids = Set(model.fixtures.map(\.id))
+        let activeAssets = Set(model.fixtures.compactMap(\.assetID))
+        for id in Array(fixtureTemplates.keys) where id != LightingPreview.assetID && !activeAssets.contains(id) {
+            fixtureTemplates[id] = nil
+        }
         for id in Array(rigs.keys) where !ids.contains(id) {
             rigs.removeValue(forKey: id)?.entity.removeFromParent()
             labels.removeValue(forKey: id)?.removeFromParent()
@@ -270,20 +280,37 @@ final class VenueScene {
             labels.removeValue(forKey: id)?.removeFromParent()
             drops.removeValue(forKey: id)?.removeFromParent()
         }
+        // Bound expensive shadow lights; selected fixtures receive preview priority.
+        // Geometry and articulation continue for every placed asset.
+        var budgets: [UUID: Int] = [:], remaining = 8
+        let priority = model.fixtures.filter { $0.id == model.selectedID } + model.fixtures.filter { $0.id != model.selectedID }
+        for fixture in priority where !model.blackout {
+            guard LightingPreview(channels: model.renderedChannels(for: fixture)).intensity > 0 else { continue }
+            let count = min(remaining, fixture.asset?.emitters.count ?? 0)
+            budgets[fixture.id] = count; remaining -= count
+        }
         for fixture in model.fixtures {
             let displayed = model.renderedFixture(fixture)
             let position = FixtureAiming.vector(displayed.position)
             let selected = model.selectedID == fixture.id
-            if fixture.assetID == LightingPreview.assetID, let template = fixtureTemplate {
+            if let descriptor = fixture.asset {
+                if let template = fixtureTemplates[descriptor.id] {
+                cubes.removeValue(forKey: fixture.id)?.removeFromParent()
                 if rigs[fixture.id] == nil {
                     do {
-                        let rig = try FixtureRig(template: template, id: fixture.id)
+                        let rig = try FixtureRig(template: template, id: fixture.id, descriptor: descriptor)
                         rigs[fixture.id] = rig; root.addChild(rig.entity)
                     } catch { model.message = error.localizedDescription }
                 }
                 rigs[fixture.id]?.update(fixture: displayed, channels: model.renderedChannels(for: fixture),
                                          selected: selected, blackout: model.blackout, placing: model.isPickingRoom,
-                                         interactive: model.isTransformDragging)
+                                         interactive: model.isTransformDragging, lightBudget: budgets[fixture.id] ?? 0)
+                } else {
+                    requestFixture(descriptor, model: model)
+                    let placeholder = cubes[fixture.id] ?? Self.makeCube(id: fixture.id)
+                    if placeholder.parent == nil { root.addChild(placeholder); cubes[fixture.id] = placeholder }
+                    placeholder.position = position + [0,0.12,0]
+                }
             } else {
                 let cube = cubes[fixture.id] ?? Self.makeCube(id: fixture.id)
                 if cube.parent == nil { root.addChild(cube); cubes[fixture.id] = cube }
@@ -297,16 +324,48 @@ final class VenueScene {
                 if label.parent == nil { root.addChild(label) }
                 // Pin the lower edge above the cube so Info expands upward.
                 let height = label.visualBounds(relativeTo: label).extents.y
-                label.position = position + [0, (fixture.assetID == nil ? 0.18 : 0.55) + height / 2, 0.04]
+                label.position = position + [0, (fixture.assetID == nil ? 0.18 : fixture.visualHeight+0.10) + height / 2, 0.04]
                 label.components.set(BillboardComponent())
                 labels[fixture.id] = label
             }
             if let drop = attachments.entity(for: "drop-\(fixture.id)") {
                 if drop.parent == nil { root.addChild(drop) }
-                drop.position = position + [0, fixture.assetID == nil ? 0 : 0.22, 0.20]
+                drop.position = position + [0, fixture.assetID == nil ? 0 : fixture.visualHeight/2, 0.20]
                 drop.components.set(BillboardComponent())
                 drop.isEnabled = !model.isPickingRoom
                 drops[fixture.id] = drop
+            }
+        }
+    }
+
+    private func requestFixture(_ descriptor: FixtureAsset, model: VenueModel) {
+        guard fixtureLoads[descriptor.id] == nil, !fixtureFailures.contains(descriptor.id) else { return }
+        let generation = fixtureLoadGeneration
+        fixtureLoads[descriptor.id] = Task { @MainActor [weak self] in
+            guard let self else { return }
+            defer { if self.fixtureLoadGeneration == generation { self.fixtureLoads[descriptor.id] = nil } }
+            do {
+                guard let url = Bundle.main.resourceURL?.appendingPathComponent(descriptor.resource) else {
+                    throw EnvironmentError.invalid("Fixture resources are missing")
+                }
+                let hash = try await Task.detached {
+                    SHA256.hash(data: try Data(contentsOf: url, options: .mappedIfSafe)).map { String(format: "%02x", $0) }.joined()
+                }.value
+                guard hash == descriptor.sha256 else { throw EnvironmentError.invalid("\(descriptor.name) asset checksum mismatch") }
+                let template = try await Entity(contentsOf: url)
+                try Task.checkCancellation()
+                guard self.fixtureLoadGeneration == generation else { return }
+                guard model.fixtures.contains(where: { $0.assetID == descriptor.id }) else { return }
+                _ = try FixtureRig(template: template, id: UUID(), descriptor: descriptor)
+                self.fixtureTemplates[descriptor.id] = template
+                model.fixtureAssetStatus = "\(FixtureCatalog.all.count) catalog assets · loaded \(descriptor.name)"
+                model.revision += 1
+            } catch is CancellationError {
+            } catch {
+                guard self.fixtureLoadGeneration == generation, !Task.isCancelled else { return }
+                self.fixtureFailures.insert(descriptor.id)
+                model.message = "Could not load \(descriptor.name): \(error.localizedDescription). Re-enter the room to retry."
+                model.fixtureAssetStatus = model.message ?? "Fixture load failed"
             }
         }
     }
@@ -437,6 +496,8 @@ final class VenueScene {
     }
 
     func clearAttachments() {
+        fixtureLoadGeneration = UUID()
+        fixtureLoads.values.forEach { $0.cancel() }; fixtureLoads.removeAll()
         for entity in labels.values { entity.removeFromParent() }
         for entity in drops.values { entity.removeFromParent() }
         labels.removeAll()

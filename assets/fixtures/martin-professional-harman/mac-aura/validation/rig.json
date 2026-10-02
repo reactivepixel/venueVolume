@@ -1,0 +1,17 @@
+{
+  "id": "martin-professional-harman/mac-aura",
+  "passed": true,
+  "source_usdz_sha256": "f8834dc115cca72b12e3c0656c942ad22364db617eb34f7ea05f14d6daf2ff18",
+  "joints": 2,
+  "moving_meshes": 117,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

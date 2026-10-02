@@ -1,0 +1,17 @@
+{
+  "id": "vari-lite/vl800-eventprofile",
+  "passed": true,
+  "source_usdz_sha256": "3568722291c6a296ad795c75f5fe3fd6503c08fa96049b0aa1f07a81a905c2a9",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

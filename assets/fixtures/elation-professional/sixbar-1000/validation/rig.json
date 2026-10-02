@@ -1,0 +1,17 @@
+{
+  "id": "elation-professional/sixbar-1000",
+  "passed": true,
+  "source_usdz_sha256": "5f902f2c4c3093bc344788adf2ad5070f0b75679ecea0344d18a5090d7d00282",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 62,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

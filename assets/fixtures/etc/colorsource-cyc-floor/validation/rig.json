@@ -1,0 +1,17 @@
+{
+  "id": "etc/colorsource-cyc-floor",
+  "passed": true,
+  "source_usdz_sha256": "f462c8bd9d57a03745b70fa7972ced0a140b316c792a5f4c9dff6e0e7c6fc75f",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 24,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

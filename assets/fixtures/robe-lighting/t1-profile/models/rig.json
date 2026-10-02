@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "6c9c79276153aa9bf8a6b41f243230b3bd9d4fa1290b1266ccf6db2aad4e8001",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "robe-lighting/t1-profile",
+    "name": "T1 Profile",
+    "manufacturer": "ROBE Lighting",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/robe-lighting/t1-profile/fixture.usdz",
+    "sha256": "6c9c79276153aa9bf8a6b41f243230b3bd9d4fa1290b1266ccf6db2aad4e8001",
+    "boundsMin": [
+      -0.24549999833106995,
+      0.0,
+      -0.17199999530566856
+    ],
+    "boundsMax": [
+      0.24549999833106995,
+      0.5419999957084656,
+      0.1720000163768418
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.08671999722719193,
+          0.0003502921317704022
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.40108001232147217,
+          0.0003502921317704022
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.40108001232147217,
+          -0.15916408598423004
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}
