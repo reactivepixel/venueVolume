@@ -1,0 +1,148 @@
+[
+  {
+    "name": "Focus Spot 2X", "model_number": "FOC286", "manufacturer": "ADJ", "type": "moving light", "subtype": "LED spot", "url": "https://www.adj.com/products/focus-spot-2x",
+    "images": ["https://www.adj.com/cdn/shop/files/preview_images/hqdefault_87e9b9c4-f425-48d1-85d0-f3863eb96765.jpg?v=1774476311&width=480"],
+    "data": {"protocols": ["DMX512"], "dmx_channels": [16,18], "power": "180 W", "weight": "6.5 kg", "notable": "100 W cold-white LED plus 3 W UV LED; manual 16–19° zoom, motorized focus, two prisms, rotating/indexable gobos.", "source_urls": ["https://www.adj.com/products/focus-spot-2x"]},
+    "dimensions": {"width_m": 0.175, "height_m": 0.385, "depth_m": 0.237, "axis_status": "documented", "axis_note": "Manufacturer lists 237 x 175 x 385 mm as L x W x H; mapped to depth x width x height.", "reference_pose": "Assembled, base level, head vertical as product dimensional drawing."},
+    "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "compact yoke spot with circular lens", "notes": "Discontinued; retain as a common installed/mobile-DJ fixture. Image URL is an official product-page video thumbnail, not a clean product still."},
+    "evidence": [{"url": "https://www.adj.com/products/focus-spot-2x", "title": "Focus Spot 2X product page", "locator": "Specifications: control modes, 16/18-channel DMX, 180 W, dimensions, weight, optical features; page links to CAD, drawings, DMX traits and manual", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": "Official page's main image link resolves to a video thumbnail rather than a fixture still. Dimensions are published as L x W x H; horizontal optical-axis neutral pose still needs drawing review."
+  },
+  {
+    "name": "Intimidator Hybrid 251SR", "model_number": "Intimidator Hybrid 251SR", "manufacturer": "CHAUVET DJ", "type": "moving light", "subtype": "discharge beam / spot / wash hybrid", "url": "https://www.chauvetdj.com/products/intimidator-hybrid-251sr/",
+    "images": ["https://www.chauvetdj.com/wp-content/uploads/2024/11/INTIMIDATOR-HYBRID-251SR-FEAT.png"],
+    "data": {"protocols": ["DMX512"], "dmx_channels": [13,19], "power": "358 W at 120 V; 344 W at 230 V", "weight": "16.1 kg", "notable": "251 W discharge source; three optical personalities (beam, spot, wash), dual gobo wheels and overlapping prisms.", "source_urls": ["https://www.chauvetdj.com/products/intimidator-hybrid-251sr/"]},
+    "dimensions": {"width_m": 0.322, "height_m": 0.549, "depth_m": 0.220, "axis_status": "documented", "axis_note": "Manufacturer size 322 x 220 x 549 mm; mapped width x depth x height.", "reference_pose": "Base level; head upright, assembled as dimensional view."},
+    "modeling": {"family": "multi_effect", "lens_count": 1, "body_style": "discharge moving head with zoom lens and yoke", "notes": "Beam/spot/wash optical modes share one physical body; preserve their optical configuration as capability metadata, not separate geometries."},
+    "evidence": [{"url": "https://www.chauvetdj.com/products/intimidator-hybrid-251sr/", "title": "Intimidator Hybrid 251SR product page", "locator": "Specifications: DMX modes, source, weight, dimensions, and beam/spot/wash angles", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": "Official source gives dimensions but no dimensioned drawing pose is available in the public product-page view; verify orientation against its manual before scale modeling."
+  },
+  {
+    "name": "Intimidator Spot 375ZX", "model_number": "Intimidator Spot 375ZX", "manufacturer": "CHAUVET DJ", "type": "moving light", "subtype": "LED spot", "url": "https://www.chauvetdj.com/products/intimidator-spot-375zx/",
+    "images": ["https://www.chauvetdj.com/wp-content/uploads/2022/10/INTIMIDATOR-375ZX-FRONT-OFF.jpg"],
+    "data": {"protocols": ["DMX512"], "dmx_channels": [9,15], "power": "354 W at 120 V; 337 W at 230 V", "weight": "12.4 kg", "notable": "200 W LED, 10–23° motorized zoom, motorized focus, rotating gobos and dual prisms.", "source_urls": ["https://www.chauvetdj.com/products/intimidator-spot-375zx/"]},
+    "dimensions": {"width_m": 0.322, "height_m": 0.466, "depth_m": 0.220, "axis_status": "documented", "axis_note": "Manufacturer size 322 x 220 x 466 mm; mapped width x depth x height.", "reference_pose": "Base level, head vertical per product dimensional listing."},
+    "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "compact moving spot head with yoke", "notes": "Source states 7 + open colors, 7 + open rotating gobos and two prisms."},
+    "evidence": [{"url": "https://www.chauvetdj.com/products/intimidator-spot-375zx/", "title": "Intimidator Spot 375ZX product page", "locator": "Specifications and downloads; 9/15 DMX channels, electrical, dimensions, mass and optics", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": "Manufacturer manual and dimensional view are linked but email-gated; page specifications and exact product image are available."
+  },
+  {
+    "name": "Intimidator Wash Zoom 450 IRC", "model_number": "Intimidator Wash Zoom 450 IRC", "manufacturer": "CHAUVET DJ", "type": "moving light", "subtype": "RGBW zoom wash", "url": "https://www.chauvetdj.com/products/intimidator-wash-zoom-450-irc/",
+    "images": ["https://www.chauvetdj.com/wp-content/uploads/2016/01/cat-Intimidator-Wash-Zoom-450-IRC.jpg"],
+    "data": {"protocols": ["DMX512"], "dmx_channels": [14,29], "power": "219 W at 120 V; 207 W at 230 V", "weight": "7.2 kg", "notable": "12 x 20 W RGBW emitters, 7–34° motorized zoom, Totem floor mode; optional IRC-6 remote is non-DMX.", "source_urls": ["https://www.chauvetdj.com/products/intimidator-wash-zoom-450-irc/"]},
+    "dimensions": {"width_m": 0.194, "height_m": 0.363, "depth_m": 0.277, "axis_status": "documented", "axis_note": "Manufacturer size 194 x 277 x 363 mm; mapped width x depth x height.", "reference_pose": "Base level, head vertical; assembled fixture."},
+    "modeling": {"family": "moving_wash", "lens_count": 12, "body_style": "compact moving wash with circular multi-LED aperture", "notes": "LED count and RGBW emitters documented."},
+    "evidence": [{"url": "https://www.chauvetdj.com/products/intimidator-wash-zoom-450-irc/", "title": "Intimidator Wash Zoom 450 IRC product page", "locator": "Specifications: DMX, source, zoom, power, dimensions and weight", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": "Product-page specifications are complete; public manual download requires the manufacturer's email gate."
+  },
+  {
+    "name": "Intimidator Wash LED 150", "model_number": "Intimidator Wash LED 150", "manufacturer": "CHAUVET DJ", "type": "moving light", "subtype": "RGBW moving wash", "url": "https://www.chauvetdj.com/products/intimidator-wash-led-150/",
+    "images": ["https://www.chauvetdj.com/wp-content/uploads/2016/02/cat-Intimidator-Wash-LED-150.jpg"],
+    "data": {"protocols": ["DMX512"], "dmx_channels": [6,15], "power": null, "weight": null, "notable": "40 W RGBW LED moving head; current listing marks a next-generation product available.", "source_urls": ["https://www.chauvetdj.com/products/intimidator-wash-led-150/", "https://www.chauvetdj.com/wp-content/uploads/pdf/en/intimidator-wash-led-150.pdf"]},
+    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "No dimension/weight fields confirmed from accessible manufacturer page excerpt.", "reference_pose": null},
+    "modeling": {"family": "moving_wash", "lens_count": 1, "body_style": "compact RGBW moving wash", "notes": "Legacy model retained because manufacturer provides manual and it remains a common small-venue class."},
+    "evidence": [{"url": "https://www.chauvetdj.com/products/intimidator-wash-led-150/", "title": "Intimidator Wash LED 150 product page", "locator": "Highlights and product summary", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://www.chauvetdj.com/wp-content/uploads/pdf/en/intimidator-wash-led-150.pdf", "title": "Intimidator Wash LED 150 user manual", "locator": "Specification: 6 or 15 DMX channels", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": "Exact DMX channel counts are documented, but weight, assembled dimensions, power and image-link verification are incomplete; dimensions remain null."
+  },
+  {
+    "name": "Spotman", "model_number": "Spotman", "manufacturer": "Blizzard Lighting", "type": "moving light", "subtype": "LED spot", "url": "https://www.blizzardpro.com/products/spotman",
+    "images": [], "data": {"protocols": ["DMX512"], "dmx_channels": [9,11], "power": "45 W", "weight": "6.5 lb (2.95 kg)", "notable": "30 W white LED, 13° beam, 7-color wheel, 7 gobos, 540° pan / 270° tilt.", "source_urls": ["https://www.blizzardpro.com/products/spotman"]},
+    "dimensions": {"width_m": 0.282, "height_m": 0.178, "depth_m": 0.147, "axis_status": "documented", "axis_note": "Manufacturer lists 11.1 x 5.8 x 7 in without explicit axis labels; transcribed as length x width x height, retain uncertain axis assignment.", "reference_pose": "Product display pose; dimension convention not illustrated in source excerpt."},
+    "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "miniature moving spot with yoke", "notes": "Compact Mixtape series fixture."},
+    "evidence": [{"url": "https://www.blizzardpro.com/products/spotman", "title": "Spotman product page", "locator": "Optical, control, movement, power and dimension specifications", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": "The official page lists only unlabelled dimension order in the retrieved view and no direct still-image markup was captured; exact image remains empty."
+  },
+  {
+    "name": "Hypno Beam", "model_number": "Hypno Beam", "manufacturer": "Blizzard Lighting", "type": "moving light", "subtype": "RGBW beam with dual LED rings", "url": "https://www.blizzardpro.com/products/hypno-beam",
+    "images": [], "data": {"protocols": ["DMX512"], "dmx_channels": [14,23], "power": "106 W", "weight": "11 lb (4.99 kg)", "notable": "60 W RGBW center source with 8° beam and two independently controlled rings of 60 RGB LEDs.", "source_urls": ["https://www.blizzardpro.com/products/hypno-beam"]},
+    "dimensions": {"width_m": 0.302, "height_m": 0.267, "depth_m": 0.168, "axis_status": "estimated", "axis_note": "Page lists 11.9 x 6.6 x 10.5 in without axis names; nominal length x width x height assignment only.", "reference_pose": "Assembled head upright; product page does not show dimension drawing."},
+    "modeling": {"family": "moving_wash", "lens_count": 121, "body_style": "central beam aperture surrounded by two concentric LED rings on yoke", "notes": "Treat beam and ring LEDs as distinct emitter zones; not a conventional single-lens moving spot."},
+    "evidence": [{"url": "https://www.blizzardpro.com/products/hypno-beam", "title": "Hypno Beam product page", "locator": "Optical, control, movement, electrical and dimension specifications", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": "Exact image URL and dimensioned-drawing axis mapping have not been verified; dimensions are provisionally assigned from the page's unlabeled size string."
+  },
+  {
+    "name": "SwitchBlade Flip", "model_number": "124661", "manufacturer": "Blizzard Lighting", "type": "moving light", "subtype": "dual-faced hybrid beam / wash / pixel effect", "url": "https://www.blizzardpro.com/products/switchblade-flip",
+    "images": [], "data": {"protocols": ["DMX512"], "dmx_channels": [20,34,93], "power": null, "weight": null, "notable": "Dual-facing head; 4 RGBW zoom engines, 9 white beam LEDs, front and rear pixel fields; 540° pan / 270° tilt.", "source_urls": ["https://www.blizzardpro.com/products/switchblade-flip"]},
+    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "No dimensions found in official page excerpt.", "reference_pose": null},
+    "modeling": {"family": "multi_effect", "lens_count": 217, "body_style": "dual-sided moving head with distinct beam and pixel-array faces", "notes": "Requires a new dual-face procedural geometry and emitter layout; cannot be truthfully represented as a single-lens moving_spot."},
+    "evidence": [{"url": "https://www.blizzardpro.com/products/switchblade-flip", "title": "SwitchBlade Flip product page", "locator": "Tech specs: source arrays, DMX modes and pan/tilt; images linked in official gallery", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": "Exact image URL and physical dimensions/weight/power are not present in the captured official specs; highly unusual dual-face form needs a dedicated geometry family."
+  },
+  {
+    "name": "Phantom 65", "model_number": "40070", "manufacturer": "Showtec", "type": "moving light", "subtype": "LED spot", "url": "https://www.highlite.com/media/attachments/MANUAL/40070_MANUAL_GB_V1.pdf",
+    "images": [], "data": {"protocols": ["DMX512"], "dmx_channels": [8,13], "power": "125 W", "weight": "6.2 kg", "notable": "65 W white LED, 16° beam, 540° pan / 270° tilt, 8 colors and rotating gobos.", "source_urls": ["https://www.highlite.com/media/attachments/MANUAL/40070_MANUAL_GB_V1.pdf"]},
+    "dimensions": {"width_m": 0.230, "height_m": 0.365, "depth_m": 0.200, "axis_status": "documented", "axis_note": "Manual lists 230 x 200 x 365 mm, L x W x H.", "reference_pose": "Head vertical and base level per manual dimension figure."},
+    "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "compact LED spot head with yoke", "notes": "Manufacturer documentation is Highlite manual; product identity is Showtec Phantom 65, order code 40070."},
+    "evidence": [{"url": "https://www.highlite.com/media/attachments/MANUAL/40070_MANUAL_GB_V1.pdf", "title": "Showtec Phantom 65 user manual", "locator": "Technical specifications pp. 6 and 26; dimensions figure p. 27", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": "Product reference still image URL not obtained from official manufacturer markup; exact official manual is available and has dimensions plus DMX modes."
+  },
+  {
+    "name": "Compact Par 7 Tri", "model_number": "42580", "manufacturer": "Showtec", "type": "LED wash", "subtype": "RGB PAR", "url": "https://www.highlite.com/media/attachments/MANUAL/42580_MANUAL_GB_V2.pdf",
+    "images": [], "data": {"protocols": ["DMX512"], "dmx_channels": [3,4,8], "power": "50 W", "weight": "2.2 kg", "notable": "Seven 3-in-1 RGB LEDs, 40° beam, double bracket supports floor positioning.", "source_urls": ["https://www.highlite.com/media/attachments/MANUAL/42580_MANUAL_GB_V2.pdf"]},
+    "dimensions": {"width_m": 0.275, "height_m": 0.256, "depth_m": 0.095, "axis_status": "documented", "axis_note": "Manual lists 275 x 95 x 256 mm L x W x H; mapped width x depth x height.", "reference_pose": "Fixture assembled with double bracket; front perpendicular to bracket plane."},
+    "modeling": {"family": "par", "lens_count": 7, "body_style": "flat PAR can with seven RGB lens cells and double floor yoke", "notes": "Use exact product code 42580; 42579 is a similarly named predecessor with different dimensions/order code."},
+    "evidence": [{"url": "https://www.highlite.com/media/attachments/MANUAL/42580_MANUAL_GB_V2.pdf", "title": "Showtec Compact Par 7 Tri manual", "locator": "Product specifications p. 7; DMX documentation and channel footprints", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": "Official manual confirms dimensions and capabilities, but exact product image URL was not resolved; image array is empty."
+  },
+  {
+    "name": "LED TMH-13 Moving-Head Spot", "model_number": "51785972", "manufacturer": "Eurolite", "type": "moving light", "subtype": "LED spot", "url": "https://www.steinigke.de/mpn51785972-eurolite-led-tmh-13-moving-head-spot.html",
+    "images": ["https://media.steinigke.de/images/7640p/85/51785972a.webp"],
+    "data": {"protocols": ["DMX512"], "dmx_channels": [9,11], "power": null, "weight": null, "notable": "10 W LED compact spot; manufacturer/distributor product support page publishes an exact-model DMX protocol spreadsheet.", "source_urls": ["https://www.steinigke.de/mpn51785972-eurolite-led-tmh-13-moving-head-spot.html", "https://media.steinigke.de/documents_t/51785972-MANUAL-1.20-en-de_00107518.pdf"]},
+    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "Product page view confirms model identity and image, but no dimensions captured in accessible page text.", "reference_pose": null},
+    "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "compact yoke LED spot", "notes": "Discontinued; manufacturer listing offers alternatives LED TMH-17 and LED TMH-S30."},
+    "evidence": [{"url": "https://www.steinigke.de/mpn51785972-eurolite-led-tmh-13-moving-head-spot.html", "title": "Eurolite TMH-13 product and downloads page", "locator": "Item 51785972; official DMX protocol file version 1.0000; image gallery", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://media.steinigke.de/documents_t/51785972-MANUAL-1.20-en-de_00107518.pdf", "title": "Eurolite TMH-13 user manual", "locator": "Exact model manual, DMX protocol and technical specifications", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": "Exact-model DMX evidence and image are located, but dimensions, weight and power were not captured; do not scale until sourced."
+  },
+  {
+    "name": "LED KLS-120 Compact Light Set", "model_number": "42109606", "manufacturer": "Eurolite", "type": "multi-effect fixture", "subtype": "four-head wash / derby / laser / strobe bar", "url": "https://www.eurolite.de/en/LED-KLS-120/42109606",
+    "images": [], "data": {"protocols": ["DMX512"], "dmx_channels": [3,5,9,27], "power": null, "weight": null, "notable": "Integrated multi-effect system with wash heads, derby, laser and strobe; modes and DMX footprint documented in manual.", "source_urls": ["https://www.eurolite.de/en/LED-KLS-120/42109606"]},
+    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "No official dimensional drawing checked in this pass.", "reference_pose": null},
+    "modeling": {"family": "multi_effect", "lens_count": null, "body_style": "multi-head lighting bar on stand/truss mount", "notes": "Combination fixture contains distinct effect engines; requires multi-effect assembly geometry and laser emission safety metadata."},
+    "evidence": [{"url": "https://www.eurolite.de/en/LED-KLS-120/42109606", "title": "Eurolite LED KLS-120 product page", "locator": "Product identity and linked user manual", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://www.eurolite.de/en/LED-KLS-120/42109606", "title": "Eurolite KLS-120 user manual", "locator": "DMX operation: 3/5/9/27 channel modes; integrated effect engines", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": "Exact product image URL and dimensions/power/weight remain unverified. Geometry spans several distinct effect mechanisms, including a laser; dedicated multi-effect representation needed."
+  },
+  {
+    "name": "Beam 275W 10R Double Prisms", "model_number": "SHE-BB275W10RB-BPUS", "manufacturer": "SHEHDS", "type": "moving light", "subtype": "discharge beam", "url": "https://shehds.com/products/beam-275w-moving-head-lighting-14-gobos-professional-stage-performance-lights",
+    "images": ["https://shehds.com/cdn/shop/files/6_proc.png?v=1752916991&width=416"],
+    "data": {"protocols": ["DMX512"], "dmx_channels": [16], "power": "275 W", "weight": "13.15 kg", "notable": "10R discharge beam source; 2.8° beam, 14 colors plus white, dual prisms; manufacturer page lists 16-channel DMX.", "source_urls": ["https://shehds.com/products/beam-275w-moving-head-lighting-14-gobos-professional-stage-performance-lights"]},
+    "dimensions": {"width_m": 0.290, "height_m": 0.500, "depth_m": 0.230, "axis_status": "estimated", "axis_note": "Listing reports 29 x 23 x 50 cm without axis labels; mapped width x depth x height based on product-size image, verify against the original drawing.", "reference_pose": "Head vertical, base level; provisional axis mapping."},
+    "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "compact discharge beam moving head with circular lens and yoke", "notes": "Image URL is from official image markup; select a clean front still from the official gallery before modeling."},
+    "evidence": [{"url": "https://shehds.com/products/beam-275w-moving-head-lighting-14-gobos-professional-stage-performance-lights", "title": "SHEHDS Beam 275W 10R product page", "locator": "Technical Parameters: 16 DMX channels, 275 W, dimensions and mass; official gallery and size image", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": "Official page dimensions are not axis-labeled in text; axis assignment is provisional despite a listed product-size illustration. Verify image corresponds to exact US variant/SKU before modeling."
+  },
+  {
+    "name": "LED Moving Head Strobe Light Matrix Effect Wash", "model_number": "ShockCore200B-US", "manufacturer": "SHEHDS", "type": "moving light", "subtype": "moving strobe / pixel wash", "url": "https://shehds.com/products/led-200w-strobe-moving-head-lighting",
+    "images": [], "data": {"protocols": ["DMX512", "RDM"], "dmx_channels": [6,19,302], "power": "Page lists 250 W / 12 V and 162 W power-in (ambiguous fields)", "weight": "5.57 kg", "notable": "864-LED RGB and white matrix; page lists up to 302-channel pixel mode and 210° tilt.", "source_urls": ["https://shehds.com/products/led-200w-strobe-moving-head-lighting"]},
+    "dimensions": {"width_m": 0.500, "height_m": 0.265, "depth_m": 0.172, "axis_status": "estimated", "axis_note": "Listed 50 x 17.2 x 26.5 cm; assumed length x width x height by context, confirm with drawing.", "reference_pose": "Product body assembled; orientation provisional from page text."},
+    "modeling": {"family": "multi_effect", "lens_count": 864, "body_style": "rectangular moving head with dense LED matrix and broad strobe aperture", "notes": "Pixel-matrix/strobe geometry needs an explicit multi_effect family; do not place into one-emitter moving_wash proxy."},
+    "evidence": [{"url": "https://shehds.com/products/led-200w-strobe-moving-head-lighting", "title": "SHEHDS 200W LED moving-head strobe page", "locator": "Technical parameters: DMX/RDM, channel modes, LED count, dimensions and mass", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": "Product page's DMX text says 6/19/302 channels, but another later feature line conflicts (6/19/302 retained); electrical power fields contradict one another. Official image URL was not captured."
+  },
+  {
+    "name": "Entour Faze", "model_number": "ENT008", "manufacturer": "ADJ", "type": "equipment", "subtype": "haze generator / faze machine", "url": "https://www.adj.com/products/entour-faze",
+    "images": ["https://www.adj.com/cdn/shop/files/0af827718a179ec27b930debf66d5617a4583fab_ENT008__IMG__004__f9dac1cad084.jpg?v=1776712291&width=2048"],
+    "data": {"protocols": ["DMX512"], "dmx_channels": [1,2,4], "power": "465 W", "weight": "4.5 kg", "notable": "450 W rapid heater; water-based fluid, 4,000 cu ft/min output with fan full; 3 L tank; 40 s ready time.", "source_urls": ["https://www.adj.com/products/entour-faze"]},
+    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "ADJ product page's inch dimensions (15.5 x 17 x 10 in) conflict materially with its metric dimensions (202 x 414 x 303 mm); withheld pending dimensional drawing review.", "reference_pose": null},
+    "modeling": {"family": "equipment", "generator": "equipment", "output_kind": "haze", "lens_count": 0, "body_style": "portable rectangular faze machine with adjustable dual bracket and fluid tank", "notes": "Hybrid fog-fluid machine that disperses output with a fan to create haze-like atmosphere."},
+    "evidence": [{"url": "https://www.adj.com/products/entour-faze", "title": "Entour Faze product page", "locator": "Specifications: DMX modes, heater, haze output, fluid use, dimensions, weight and included bracket", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": "Official image URL and DMX modes verified. Metric and inch dimension strings disagree; dimensions remain null until drawing resolves which tuple is authoritative."
+  },
+  {
+    "name": "Hurricane Haze 2D", "model_number": "Hurricane Haze 2D", "manufacturer": "CHAUVET DJ", "type": "equipment", "subtype": "water-based haze machine", "url": "https://www.chauvetdj.com/wp-content/uploads/pdf/en/hurricane-haze-2d.pdf",
+    "images": ["https://www.chauvetdj.com/wp-content/uploads/2015/12/hurricane-haze-2d-cat.jpg"],
+    "data": {"protocols": ["DMX512"], "dmx_channels": [2], "power": "533 W at 120 V", "weight": "8.5 kg", "notable": "Water-based haze, 1,200 cfm output, 2.5 L tank, 5 min warm-up, user-adjustable outlet angle.", "source_urls": ["https://www.chauvetdj.com/wp-content/uploads/pdf/en/hurricane-haze-2d.pdf", "https://www.chauvetdj.com/wp-content/uploads/2015/12/Hurricane_Haze_2D_UM_Rev12_WO-1.pdf"]},
+    "dimensions": {"width_m": 0.285, "height_m": 0.350, "depth_m": 0.267, "axis_status": "documented", "axis_note": "Manufacturer size 285 x 267 x 350 mm; mapped width x depth x height.", "reference_pose": "Machine level on feet, output aimed horizontally."},
+    "modeling": {"family": "equipment", "generator": "equipment", "output_kind": "haze", "lens_count": 0, "body_style": "rectangular haze machine with top handle, fluid window and adjustable nozzle", "notes": "No light source; distinct from a fog machine used for dense plume effects."},
+    "evidence": [{"url": "https://www.chauvetdj.com/wp-content/uploads/pdf/en/hurricane-haze-2d.pdf", "title": "Hurricane Haze 2D official specification sheet", "locator": "Highlights and specifications: 2 DMX channels, output, dimensions, weight, power and tank", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": "Specifications are from the official manufacturer PDF; image is official page social preview still. Confirm body/nozzle geometry against manual illustration before asset modeling."
+  },
+  {
+    "name": "660W Haze Machine", "model_number": "FC1-SmoHZ660W-BMUS", "manufacturer": "SHEHDS", "type": "equipment", "subtype": "haze generator", "url": "https://shehds.com/products/660w-haze-machine-with-flight-case-dmx-stage-professional-fogger-equipment-remote-control-smoke-hazer-hall-music-concert-dj",
+    "images": ["https://shehds.com/cdn/shop/files/8282476a93178822eeb044a0785f909a.png?v=1748571216"],
+    "data": {"protocols": ["DMX512"], "dmx_channels": [2], "power": "660 W", "weight": null, "notable": "6000 cu ft/min smoke output, 1.5 L tank, wireless or wired control; listing's 29.45 kg is gross package weight and not fixture mass.", "source_urls": ["https://shehds.com/products/660w-haze-machine-with-flight-case-dmx-stage-professional-fogger-equipment-remote-control-smoke-hazer-hall-music-concert-dj"]},
+    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "Only package dimensions (51 x 37.5 x 44 cm) are published in captured specification; not used as assembled machine size.", "reference_pose": null},
+    "modeling": {"family": "equipment", "generator": "equipment", "output_kind": "haze", "lens_count": 0, "body_style": "flight-case style hazer", "notes": "Machine is marketed as hazer/fogger; model as an atmospheric generator with outlet geometry awaiting direct documentation."},
+    "evidence": [{"url": "https://shehds.com/products/660w-haze-machine-with-flight-case-dmx-stage-professional-fogger-equipment-remote-control-smoke-hazer-hall-music-concert-dj", "title": "SHEHDS 660W Haze Machine product page", "locator": "Technical Specification: power, output, tank, 2-channel DMX and package-only measures", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": "DMX capability and exact image URL are available, but product mass and assembled dimensions are absent; package dimensions and gross weight are not valid substitutes."
+  }
+]
