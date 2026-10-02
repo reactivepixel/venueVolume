@@ -11,7 +11,7 @@
     "built_assets_reviewed": 16,
     "documented_dimensions_match_exported_bounds": "All 16 reviewed fixtures match each documented outer axis within approximately 0.000001 m.",
     "articulated_moving_heads": "Intimidator Spot Duo runtime sidecar defines separate pan/tilt chains and emitters for both heads. KLS-120 runtime sidecar defines four individual head pivots and emitters; these are manually aimable fixed spots, not moving-head joints. Other previously reviewed moving heads retain their prior QA status.",
-    "material_findings": 1,
+    "material_findings": 0,
     "high_severity_blockers": 0
   },
   "reviewed_fixture_ids": [
@@ -50,16 +50,16 @@
     {
       "finding_id": "DJ-QA-02",
       "fixture_id": "showtec/phantom-100-spot",
-      "status": "improved; residual issue remains",
+      "status": "resolved",
       "severity": "medium",
       "category": "head silhouette / model identity",
-      "observation": "The updated preview replaces the earlier smooth spherical head with a short angular/tapered shell, substantially improving the match. The front optic and ring still occupy a much larger share of the face than in the reference, and the lens hood is more dominant; overall envelope remains correct.",
+      "observation": "The latest preview reduces the front ring/optic by approximately 23%; its angular shell, tapered profile and smaller face now read consistently with the official reference within the documented outer envelope. Fine housing transitions and connector/vent details remain approximations.",
       "evidence_paths": [
         "assets/fixtures/showtec/phantom-100-spot/sources/product-reference-0.png",
         "assets/fixtures/showtec/phantom-100-spot/previews/three-quarter.png",
         "assets/fixtures/showtec/phantom-100-spot/fixture.json"
       ],
-      "concrete_fix": "If another pass is warranted, reduce the visible lens/ring diameter and projecting hood relative to the shell while retaining the current angular housing and documented 0.325 x 0.210 x 0.420 m assembled envelope. Remaining contour/detail differences are procedural approximations rather than manufacturer CAD."
+      "concrete_fix": "No further substantive geometry correction requested. Preserve the documented envelope; remaining contour, lens treatment and surface details are procedural approximations, not manufacturer CAD."
     }
   ],
   "no_material_issue_observed": [
