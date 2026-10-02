@@ -26,6 +26,10 @@ pages or official range/documentation pages unless identified as a legacy archiv
 | Astera | Titan Tube FP1-BTB | `mid.json` | Official V3 datasheet, BTB manual, exact direct product image, 1035 × Ø43 mm envelope. |
 | Astera | Helios Tube FP2-BTB | `mid.json` | Official V4 datasheet, BTB manual, DMX profiles, exact image, 550 × Ø43 mm envelope. |
 | Astera | AX5 TriplePAR AX5-BTB | `mid.json` | Official V4 datasheet, manual, DMX profiles, exact image, bracketed and body-only dimensions. |
+| ETC | ColorSource Spot jr | `mid.json` | Official datasheet and physical drawing, exact image, dimensions/mass; four DMX modes reported but exact footprints are not in the accessed datasheet. |
+| ETC | ColorSource PAR jr | `mid.json` | Official datasheet and exact image; emitter count, beam, DMX mode span, dimensions and mass. |
+| High End Systems | Lonestar | `mid.json` | Official June 2025 datasheet, channel map, exact image, dimensions/mass and 48-channel footprint. |
+| ACME | MANA PROFILE | `mid.json` | Official 2026 leaflet and product page; output, dimensions/mass, five DMX footprints, protocols and image URL. |
 
 ## Official catalog inventory and candidate models
 
@@ -139,6 +143,7 @@ Official pages: [Entertainment Fixtures](https://www.etcconnect.com/Products/Lig
 - Legacy rental/theatre anchors for possible later inclusion: Source Four tungsten ERS,
   Source Four PAR, Source Four PARNel, Source Four Fresnel, Source Four HID.
 - [Source Four 36°](https://www.etcconnect.com/Products/Entertainment-Fixtures/Source-Four/) — acquired as a legacy rental anchor; exact physical drawing checked.
+- [ColorSource Spot jr](https://www.etcconnect.com/products/entertainment-fixtures/colorsource-spot-jr/documentation.aspx) and [ColorSource PAR jr](https://www.etcconnect.com/products/entertainment-fixtures/colorsource-par-jr/documentation.aspx) — acquired from official docs/specs.
 - Official Series 3 documentation index includes 2025/2026 datasheets, manuals, CAD
   blocks and physical drawings by lens-tube variant. It should be treated as a family
   of distinct outer envelopes where the tube materially changes depth.
@@ -211,6 +216,7 @@ line/blinder products appear in the navigation but their direct links were not r
 in this pass.
 - [TORNADO](https://en.acmelighting.com/item/TORNADO) — acquired.
 - [LIGHTNING](https://en.acmelighting.com/item/LIGHTNING) — acquired.
+- [MANA PROFILE](https://en.acmelighting.com/item/MANA-PROFILE) — acquired from July 2026 manufacturer leaflet and product page.
 - [PIXEL LINE IP](https://en.acmelighting.com/item/PIXEL-LINE-IP) and
   [LIGHTNING](https://en.acmelighting.com/item/LIGHTNING) are strong bar/strobe rental
   candidates. Image/drawing extraction and exact body dimensions not included yet.

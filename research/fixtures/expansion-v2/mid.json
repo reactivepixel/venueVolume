@@ -222,5 +222,61 @@
     "modeling": {"family": "profile", "barrel_ratio": 0.36, "body_style": "conventional ellipsoidal reflector spotlight with fixed 36-degree tube and yoke", "notes": "Classic ETC Source Four rental/theatre body; body and 36° lens tube are separately variant-dependent. Geometry should include lamp housing, barrel, lens tube, shutter/gobo gate, yoke, C-clamp and gel-frame holder."},
     "evidence": [{"url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/Source-Four/", "title": "ETC Source Four product page", "locator": "Entertainment fixtures overview and Source Four family navigation", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://www.etcconnect.com/workarea/DownloadAsset.aspx?id=10737460423", "title": "Source Four 36° Ellipsoidal Series physical drawing", "locator": "Physical dimension drawing; front and side orthographic dimensions; Source Four Weights table: 36° fixture 14 lb / 6.4 kg including 2.3 lb C-clamp", "accessed_at": "2026-10-02", "source_kind": "manufacturer_drawing"}],
     "acquisition_errors": ["Power, lamp type options, accessory kit and current/legacy availability were not resolved from a current model-specific specification sheet."]
+  },
+  {
+    "name": "ColorSource Spot jr",
+    "model_number": "CSSPOTJR2550",
+    "manufacturer": "ETC",
+    "type": "fixed light",
+    "subtype": "LED profile / ellipsoidal",
+    "url": "https://www.etcconnect.com/products/entertainment-fixtures/colorsource-spot-jr/documentation.aspx",
+    "images": ["https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Lighting_Fixtures/ColorSource/ColorSource_Spot_jr_Right.jpg"],
+    "data": {"protocols": ["DMX512", "RDM"], "dmx_channels": [], "power": "166 W typical at 120 V; 162 W at 240 V", "weight": "5.4 kg", "notable": "52 RGB-L LED emitters, 5,708 lm standard / 5,426 lm Deep Blue; built-in 25°–50° zoom; four DMX modes.", "source_urls": ["https://www.etcconnect.com/products/entertainment-fixtures/colorsource-spot-jr/documentation.aspx", "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737502586", "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737502608"]},
+    "dimensions": {"width_m": 0.258, "height_m": 0.331, "depth_m": 0.460, "axis_status": "documented", "axis_note": "Manufacturer physical drawing labels width 258 mm, height 331 mm and depth 460 mm for the assembled fixture.", "reference_pose": "Manufacturer physical drawing, yoke assembled; C-clamp not included."},
+    "modeling": {"family": "profile", "barrel_ratio": 0.36, "body_style": "compact LED ellipsoidal with integral zoom optics and yoke", "notes": "ETC junior-format profile; dimensional drawing is authoritative for outer envelope."},
+    "evidence": [{"url": "https://www.etcconnect.com/products/entertainment-fixtures/colorsource-spot-jr/documentation.aspx", "title": "ColorSource Spot jr documentation", "locator": "Official product documentation and product image", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737502586", "title": "ColorSource Spot jr Datasheet", "locator": "Source, output, zoom, protocol, electrical draw and mass", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}, {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737502608", "title": "ColorSource Spot jr Physical Drawing", "locator": "Drawing: W258 × H331 × D460 mm", "accessed_at": "2026-10-02", "source_kind": "manufacturer_drawing"}],
+    "acquisition_errors": []
+  },
+  {
+    "name": "ColorSource PAR jr",
+    "model_number": "CSPARJR",
+    "manufacturer": "ETC",
+    "type": "par",
+    "subtype": "LED PAR",
+    "url": "https://www.etcconnect.com/products/entertainment-fixtures/colorsource-par-jr/documentation.aspx",
+    "images": ["https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/ColorSource/ColorSource_PAR_jr_Right_Black.jpg"],
+    "data": {"protocols": ["DMX512", "RDM"], "dmx_channels": [], "power": "72 W typical", "weight": "2.54 kg", "notable": "16 RGB-L LED emitters, 2,290 lm standard / 2,061 lm Deep Blue, 15.3° beam; four DMX modes spanning 1–6 channels.", "source_urls": ["https://www.etcconnect.com/products/entertainment-fixtures/colorsource-par-jr/documentation.aspx", "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737516212"]},
+    "dimensions": {"width_m": 0.213, "height_m": 0.282, "depth_m": 0.251, "axis_status": "documented", "axis_note": "Manufacturer table labels H282 × W213 × D251 mm, including yoke envelope.", "reference_pose": "Upright PAR with included yoke attached; C-clamp excluded."},
+    "modeling": {"family": "par", "shell": "round", "lens_count": 16, "notes": "Compact convection-cooled LED PAR with yoke."},
+    "evidence": [{"url": "https://www.etcconnect.com/products/entertainment-fixtures/colorsource-par-jr/documentation.aspx", "title": "ColorSource PAR jr documentation", "locator": "Official product page and image", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737516212", "title": "ColorSource PAR jr Datasheet", "locator": "Product specifications and physical table: 16 emitters, 72 W, 2.54 kg, H282 × W213 × D251 mm", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": []
+  },
+  {
+    "name": "MANA PROFILE",
+    "model_number": "XA 600 BSWF IP",
+    "manufacturer": "ACME",
+    "type": "moving light",
+    "subtype": "LED framing profile / spot",
+    "url": "https://en.acmelighting.com/item/MANA-PROFILE",
+    "images": ["https://en.acmelighting.com/upload/image/20250109/f418501fcbdf3338a8a1164670990feb.png"],
+    "data": {"protocols": ["DMX512", "RDM", "Art-Net", "sACN"], "dmx_channels": [22, 30, 31, 40], "power": "910 W consumption", "weight": "32.5 kg", "notable": "600 W LED engine, 26,000 lm, 170 mm front lens, 3.5°–45° zoom, IP66; CMY/CTO, framing, iris, animation and dual prisms. Manufacturer lists five modes with footprints 22/30/31/31/40 channels.", "source_urls": ["https://en.acmelighting.com/item/MANA-PROFILE", "https://en.acmelighting.com/upload/other/20260722/aea9031a33652685164a03651b20b64d.pdf"]},
+    "dimensions": {"width_m": 0.380, "height_m": 0.658, "depth_m": 0.284, "axis_status": "documented", "axis_note": "Manufacturer 2026 leaflet physical information lists fixture dimensions 380 × 284 × 658 mm; mapped to W × D × H, corroborated by its dimension illustration.", "reference_pose": "Assembled fixture upright in manufacturer dimension illustration; flight-case dimensions excluded."},
+    "modeling": {"family": "moving_spot", "shell": "faceted", "lens_ratio": 0.54, "head_depth": 0.76, "notes": "Weather-sealed LED framing profile with internal shutters and rotating optical effects."},
+    "evidence": [{"url": "https://en.acmelighting.com/item/MANA-PROFILE", "title": "ACME MANA PROFILE", "locator": "Official product page: product image, control protocols, five channel modes and 910 W consumption", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://en.acmelighting.com/upload/other/20260722/aea9031a33652685164a03651b20b64d.pdf", "title": "MANA PROFILE leaflet, July 2026", "locator": "Specifications: XA 600 BSWF IP, 600 W LED, 26,000 lm, 32.5 kg, W380 × D284 × H658 mm; optics and effects", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": []
+  },
+  {
+    "name": "Lonestar",
+    "model_number": "Lonestar",
+    "manufacturer": "High End Systems",
+    "type": "moving light",
+    "subtype": "LED framing profile",
+    "url": "https://www.etcconnect.com/lonestar/",
+    "images": ["https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Live_Events/Lighting_Fixtures/Lonestar/Lonestar_Prod_Left_Red_547x400.jpg"],
+    "data": {"protocols": ["DMX512", "Art-Net", "sACN"], "dmx_channels": [48], "power": "615 W max", "weight": "23 kg", "notable": "290 W white LED engine, 15,400 lm, 3.8°–55° zoom, framing shutters; Standard and Trifusion modes, 48 channels.", "source_urls": ["https://www.etcconnect.com/lonestar/", "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737513380", "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737514372"]},
+    "dimensions": {"width_m": 0.368, "height_m": 0.600, "depth_m": 0.221, "axis_status": "documented", "axis_note": "Manufacturer Datasheet Rev H gives W368 × H600 × D221 mm for fixture envelope.", "reference_pose": "Assembled moving head, upright base and head orientation as manufacturer drawing."},
+    "modeling": {"family": "moving_spot", "shell": "faceted", "lens_ratio": 0.56, "head_depth": 0.78, "notes": "Compact white-LED framing profile; preserve yoke, pan/tilt base and internal framing module."},
+    "evidence": [{"url": "https://www.etcconnect.com/lonestar/", "title": "High End Systems Lonestar", "locator": "Official product overview and image", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737513380", "title": "Lonestar Datasheet Rev H, June 2025", "locator": "Product Dimensions table: H600 × W368 × D221 mm; 23 kg; source, optics, power and modes", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}, {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737514372", "title": "Lonestar DMX Channel Map", "locator": "Standard and Trifusion modes; 48-channel footprint", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": []
   }
 ]

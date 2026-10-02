@@ -19,6 +19,10 @@ Sources opened for the current acquisition rows (all accessed 2026-10-02):
 | Astera Titan Tube FP1-BTB | https://astera-led.com/wp-content/uploads/FP1_Titan-Tube_Datasheet_V3.pdf | Official V3 datasheet and BTB manual in `astera-titan/`; L1035 × Ø43 mm, 1.35 kg, 16 pixels; official image URL in `mid.json`. |
 | Astera Helios Tube FP2-BTB | https://astera-led.com/fr/products/helios-tube/specs/ | Official product specification page, V4 datasheet, BTB manual and DMX profiles in `astera-helios/`; L550 × Ø43 mm, 0.765 kg, 8 pixels. |
 | Astera AX5 TriplePAR AX5-BTB | https://astera-led.com/fr/products/ax5-triplepar/specs/ | Official product page, V4 datasheet, manual and DMX profiles in `astera-ax5/`; 3.4 kg and with-/without-bracket dimensions. |
+| ETC ColorSource Spot jr | https://www.etcconnect.com/products/entertainment-fixtures/colorsource-spot-jr/documentation.aspx | Datasheet id 10737502586 and physical drawing id 10737502608; local files in `etc-spot-jr/`; dimensions W258 × H331 × D460 mm, 5.4 kg. |
+| ETC ColorSource PAR jr | https://www.etcconnect.com/products/entertainment-fixtures/colorsource-par-jr/documentation.aspx | Datasheet id 10737516212, local in `etc-par-jr/`; dimensions H282 × W213 × D251 mm, 2.54 kg. |
+| High End Systems Lonestar | https://www.etcconnect.com/lonestar/ | Datasheet id 10737513380 and DMX map id 10737514372; local in `etc-lonestar/`; dimensions H600 × W368 × D221 mm, 23 kg, 48 channels. |
+| ACME MANA PROFILE | https://en.acmelighting.com/item/MANA-PROFILE | Official July 2026 leaflet https://en.acmelighting.com/upload/other/20260722/aea9031a33652685164a03651b20b64d.pdf; local in `acme-mana-profile/`; dimensions W380 × D284 × H658 mm, 32.5 kg, five DMX mode footprints. |
 
 Catalog and family pages used to discover ranges are linked in
 `../mid-coverage.md`. No local copy of manufacturer media is distributed here; online
