@@ -1,12 +1,12 @@
 [
   {
     "name": "Focus Spot 2X", "model_number": "FOC286", "manufacturer": "ADJ", "type": "moving light", "subtype": "LED spot", "url": "https://www.adj.com/products/focus-spot-2x",
-    "images": ["https://www.adj.com/cdn/shop/files/preview_images/hqdefault_87e9b9c4-f425-48d1-85d0-f3863eb96765.jpg?v=1774476311&width=480"],
+    "images": ["https://www.adj.com/cdn/shop/files/cffa87279540b47b2796892ec09160b02c81ac1b_FOC286__IMG__001__30ff922d16bc.jpg?v=1776712405"],
     "data": {"protocols": ["DMX512"], "dmx_channels": [16,18], "power": "180 W", "weight": "6.5 kg", "notable": "100 W cold-white LED plus 3 W UV LED; manual 16–19° zoom, motorized focus, two prisms, rotating/indexable gobos.", "source_urls": ["https://www.adj.com/products/focus-spot-2x"]},
     "dimensions": {"width_m": 0.175, "height_m": 0.385, "depth_m": 0.237, "axis_status": "documented", "axis_note": "Manufacturer lists 237 x 175 x 385 mm as L x W x H; mapped to depth x width x height.", "reference_pose": "Assembled, base level, head vertical as product dimensional drawing."},
-    "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "compact yoke spot with circular lens", "notes": "Discontinued; retain as a common installed/mobile-DJ fixture. Image URL is an official product-page video thumbnail, not a clean product still."},
+    "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "compact yoke spot with circular lens", "notes": "Discontinued; retain as a common installed/mobile-DJ fixture."},
     "evidence": [{"url": "https://www.adj.com/products/focus-spot-2x", "title": "Focus Spot 2X product page", "locator": "Specifications: control modes, 16/18-channel DMX, 180 W, dimensions, weight, optical features; page links to CAD, drawings, DMX traits and manual", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
-    "acquisition_errors": "Official page's main image link resolves to a video thumbnail rather than a fixture still. Dimensions are published as L x W x H; horizontal optical-axis neutral pose still needs drawing review."
+    "acquisition_errors": "Dimensions are published as L x W x H; horizontal optical-axis neutral pose still needs drawing review."
   },
   {
     "name": "Intimidator Hybrid 251SR", "model_number": "Intimidator Hybrid 251SR", "manufacturer": "CHAUVET DJ", "type": "moving light", "subtype": "discharge beam / spot / wash hybrid", "url": "https://www.chauvetdj.com/products/intimidator-hybrid-251sr/",
@@ -46,11 +46,11 @@
   },
   {
     "name": "Spotman", "model_number": "Spotman", "manufacturer": "Blizzard Lighting", "type": "moving light", "subtype": "LED spot", "url": "https://www.blizzardpro.com/products/spotman",
-    "images": [], "data": {"protocols": ["DMX512"], "dmx_channels": [9,11], "power": "45 W", "weight": "6.5 lb (2.95 kg)", "notable": "30 W white LED, 13° beam, 7-color wheel, 7 gobos, 540° pan / 270° tilt.", "source_urls": ["https://www.blizzardpro.com/products/spotman"]},
+    "images": ["https://cdn.prod.website-files.com/63c80568891bfe007679d3f3/65959c11bb6e93958d18d3d2_products%252F1978%252Fimages%252FSPOTMAN_USB_1440x1440.webp"], "data": {"protocols": ["DMX512"], "dmx_channels": [9,11], "power": "45 W", "weight": "6.5 lb (2.95 kg)", "notable": "30 W white LED, 13° beam, 7-color wheel, 7 gobos, 540° pan / 270° tilt.", "source_urls": ["https://www.blizzardpro.com/products/spotman"]},
     "dimensions": {"width_m": 0.282, "height_m": 0.178, "depth_m": 0.147, "axis_status": "documented", "axis_note": "Manufacturer lists 11.1 x 5.8 x 7 in without explicit axis labels; transcribed as length x width x height, retain uncertain axis assignment.", "reference_pose": "Product display pose; dimension convention not illustrated in source excerpt."},
     "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "miniature moving spot with yoke", "notes": "Compact Mixtape series fixture."},
     "evidence": [{"url": "https://www.blizzardpro.com/products/spotman", "title": "Spotman product page", "locator": "Optical, control, movement, power and dimension specifications", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
-    "acquisition_errors": "The official page lists only unlabelled dimension order in the retrieved view and no direct still-image markup was captured; exact image remains empty."
+    "acquisition_errors": "Official dimensions are an unlabelled three-value tuple; axis mapping remains unresolved."
   },
   {
     "name": "Hypno Beam", "model_number": "Hypno Beam", "manufacturer": "Blizzard Lighting", "type": "moving light", "subtype": "RGBW beam with dual LED rings", "url": "https://www.blizzardpro.com/products/hypno-beam",
@@ -70,11 +70,11 @@
   },
   {
     "name": "Phantom 65", "model_number": "40070", "manufacturer": "Showtec", "type": "moving light", "subtype": "LED spot", "url": "https://www.highlite.com/media/attachments/MANUAL/40070_MANUAL_GB_V1.pdf",
-    "images": [], "data": {"protocols": ["DMX512"], "dmx_channels": [8,13], "power": "125 W", "weight": "6.2 kg", "notable": "65 W white LED, 16° beam, 540° pan / 270° tilt, 8 colors and rotating gobos.", "source_urls": ["https://www.highlite.com/media/attachments/MANUAL/40070_MANUAL_GB_V1.pdf"]},
+    "images": ["https://www.showtec-lights.com/media/catalog/product/cache/87bb4254b6bb8fe881d0a120867e629d/4/0/40070_43.png"], "data": {"protocols": ["DMX512"], "dmx_channels": [8,13], "power": "125 W", "weight": "6.2 kg", "notable": "65 W white LED, 16° beam, 540° pan / 270° tilt, 8 colors and rotating gobos.", "source_urls": ["https://www.highlite.com/media/attachments/MANUAL/40070_MANUAL_GB_V1.pdf", "https://www.showtec-lights.com/en/products/entertainment-lighting/moving-lights/moving-lights-spot.html"]},
     "dimensions": {"width_m": 0.230, "height_m": 0.365, "depth_m": 0.200, "axis_status": "documented", "axis_note": "Manual lists 230 x 200 x 365 mm, L x W x H.", "reference_pose": "Head vertical and base level per manual dimension figure."},
     "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "compact LED spot head with yoke", "notes": "Manufacturer documentation is Highlite manual; product identity is Showtec Phantom 65, order code 40070."},
     "evidence": [{"url": "https://www.highlite.com/media/attachments/MANUAL/40070_MANUAL_GB_V1.pdf", "title": "Showtec Phantom 65 user manual", "locator": "Technical specifications pp. 6 and 26; dimensions figure p. 27", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
-    "acquisition_errors": "Product reference still image URL not obtained from official manufacturer markup; exact official manual is available and has dimensions plus DMX modes."
+    "acquisition_errors": null
   },
   {
     "name": "Compact Par 7 Tri", "model_number": "42580", "manufacturer": "Showtec", "type": "LED wash", "subtype": "RGB PAR", "url": "https://www.highlite.com/media/attachments/MANUAL/42580_MANUAL_GB_V2.pdf",
@@ -82,7 +82,7 @@
     "dimensions": {"width_m": 0.275, "height_m": 0.256, "depth_m": 0.095, "axis_status": "documented", "axis_note": "Manual lists 275 x 95 x 256 mm L x W x H; mapped width x depth x height.", "reference_pose": "Fixture assembled with double bracket; front perpendicular to bracket plane."},
     "modeling": {"family": "par", "lens_count": 7, "body_style": "flat PAR can with seven RGB lens cells and double floor yoke", "notes": "Use exact product code 42580; 42579 is a similarly named predecessor with different dimensions/order code."},
     "evidence": [{"url": "https://www.highlite.com/media/attachments/MANUAL/42580_MANUAL_GB_V2.pdf", "title": "Showtec Compact Par 7 Tri manual", "locator": "Product specifications p. 7; DMX documentation and channel footprints", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
-    "acquisition_errors": "Official manual confirms dimensions and capabilities, but exact product image URL was not resolved; image array is empty."
+    "acquisition_errors": "Highlite/Showtec product-page lookup for order code 42580 redirects to predecessor 42579 imagery; no exact 42580 fixture still was verified. Official manual confirms dimensions and capabilities."
   },
   {
     "name": "LED TMH-13 Moving-Head Spot", "model_number": "51785972", "manufacturer": "Eurolite", "type": "moving light", "subtype": "LED spot", "url": "https://www.steinigke.de/mpn51785972-eurolite-led-tmh-13-moving-head-spot.html",
@@ -146,11 +146,11 @@
   },
   {
     "name": "Focus Wash 400", "model_number": "FOC615", "manufacturer": "ADJ", "type": "moving light", "subtype": "RGBACL LED Fresnel wash", "url": "https://www.adj.com/products/focus-wash-400",
-    "images": [], "data": {"protocols": ["DMX512", "RDM"], "dmx_channels": [17,22,24,18,24], "power": "460 W at 120 V; 430 W at 240 V", "weight": "10.7 kg", "notable": "400 W RGBACL engine, 9–43° motorized zoom, tunable white and virtual CMY; 6-inch Fresnel lens.", "source_urls": ["https://www.adj.com/products/focus-wash-400"]},
+    "images": ["https://www.adj.com/cdn/shop/files/f47caca4f21ed796c0be8a2c5f4cd420206163b7_FOC615__IMG__001__aec75c6e5447.jpg?v=1776712595"], "data": {"protocols": ["DMX512", "RDM"], "dmx_channels": [17,22,24,18,24], "power": "460 W at 120 V; 430 W at 240 V", "weight": "10.7 kg", "notable": "400 W RGBACL engine, 9–43° motorized zoom, tunable white and virtual CMY; 6-inch Fresnel lens.", "source_urls": ["https://www.adj.com/products/focus-wash-400"]},
     "dimensions": {"width_m": 0.21333, "height_m": 0.4981, "depth_m": 0.27843, "axis_status": "documented", "axis_note": "ADJ lists width 213.33 mm, vertical height 498.1 mm without snoot, and length 278.43 mm.", "reference_pose": "Assembled fixture without optional snoot; head vertical as manufacturer dimensions specify."},
     "modeling": {"family": "moving_wash", "lens_count": 1, "body_style": "medium Fresnel wash head with large circular lens and yoke", "notes": "Source uses both 9–42°, 9–43° and 10–41° zoom descriptions; record retains detailed spec's 9–43° range."},
     "evidence": [{"url": "https://www.adj.com/products/focus-wash-400", "title": "Focus Wash 400 product page", "locator": "Technical specifications and Downloads list: product drawings, DMX traits and manual", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
-    "acquisition_errors": "The official OpenGraph thumbnail names a Focus Beam 400 image and is not used; exact product still image is not yet verified. Product page itself provides dimensions, DMX modes, power and weight."
+    "acquisition_errors": null
   },
   {
     "name": "Stealth Beam", "model_number": "STEALTH BEAM", "manufacturer": "Eliminator Lighting", "type": "moving light", "subtype": "RGBW ACL beam", "url": "https://www.eliminatorlighting.com/products/stealth-beam",
@@ -185,11 +185,11 @@
   },
   {
     "name": "Focus Profile", "model_number": "Focus Profile", "manufacturer": "ADJ", "type": "moving light", "subtype": "LED framing profile", "url": "https://www.adj.com/products/focus-profile",
-    "images": [], "data": {"protocols": ["DMX512"], "dmx_channels": null, "power": null, "weight": null, "notable": "Framing shutters; product page links to CAD, dimensional drawings, DMX traits and manual.", "source_urls": ["https://www.adj.com/products/focus-profile"]},
-    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "Exact drawing is linked but dimensions were not extracted in this pass.", "reference_pose": null},
-    "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "profile moving head with framing shutter barrel", "notes": "Physical family requires a shutter barrel and framing blades; exact geometry stills need retrieval."},
-    "evidence": [{"url": "https://www.adj.com/products/focus-profile", "title": "Focus Profile product page", "locator": "Page identifies moving profile with framing shutters; downloads include CAD, dimensional drawing, DMX traits and manual", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
-    "acquisition_errors": "Exact image URL and technical table values were not extracted; linked drawings/manual should provide dimensions and mode footprints before model build."
+    "images": ["https://www.adj.com/cdn/shop/files/95c87d869385c2223fa9dd5b36e2645fe9591eac_FOC858__IMG__001__1590fcba5b07.jpg?v=1776751351"], "data": {"protocols": ["DMX512", "RDM", "Art-Net"], "dmx_channels": [36,40,51], "power": "560 W", "weight": "27.75 kg", "notable": "400 W LED engine, 20,000 lm, 7–45° zoom, CMY + variable CTO, framing shutters, animation wheel, rotating gobos, prisms and frost.", "source_urls": ["https://www.adj.com/products/focus-profile"]},
+    "dimensions": {"width_m": 0.259, "height_m": 0.664, "depth_m": 0.400, "axis_status": "documented", "axis_note": "ADJ product specification labels width 259 mm, vertical height 664 mm, and length 400 mm.", "reference_pose": "Assembled, base level, head upright as shown in manufacturer product drawing."},
+    "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "profile moving head with framing shutter barrel", "notes": "Physical family requires a shutter barrel and framing blades; manual still needs review before build."},
+    "evidence": [{"url": "https://www.adj.com/products/focus-profile", "title": "Focus Profile product page", "locator": "Gallery IMG 001 and specifications: 36/40/51-channel modes, DMX/RDM/Art-Net, 560 W, 27.75 kg, W 259 x H 664 x L 400 mm, 400 W source, zoom, CMY/CTO and framing effects", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": "Manufacturer press materials list a slightly different overall height (651 mm); used current product-page labeled height of 664 mm pending drawing review."
   },
   {
     "name": "Typhon IP Kaleido", "model_number": "124694", "manufacturer": "Blizzard Lighting", "type": "moving light", "subtype": "IP66 multi-engine RGBW wash / pixel effect", "url": "https://www.blizzardpro.com/products/typhon-ip-kaleido",
@@ -209,11 +209,11 @@
   },
   {
     "name": "G-Max 200", "model_number": "G-Max 200", "manufacturer": "Blizzard Lighting", "type": "moving light", "subtype": "LED spot", "url": "https://www.blizzardpro.com/products/g-max-200",
-    "images": [], "data": {"protocols": ["DMX512"], "dmx_channels": [16,19], "power": "283 W", "weight": "35.1 lb (15.9 kg)", "notable": "200 W white LED with 13–27° motorized zoom, 8-color wheel and rotating/static gobo wheels.", "source_urls": ["https://www.blizzardpro.com/products/g-max-200"]},
+    "images": ["https://cdn.prod.website-files.com/63c80568891bfe007679d3f3/64594570f4752d055aff8cde_products%252F1962%252Fimages%252FG-Max-200-P1-Right---Blue--main_1440x1440.webp"], "data": {"protocols": ["DMX512"], "dmx_channels": [16,19], "power": "283 W", "weight": "35.1 lb (15.9 kg)", "notable": "200 W white LED with 13–27° motorized zoom, 8-color wheel and rotating/static gobo wheels.", "source_urls": ["https://www.blizzardpro.com/products/g-max-200"]},
     "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "Page size string 21.7 x 9.8 x 15 in was not mapped to axes in this pass.", "reference_pose": null},
     "modeling": {"family": "moving_spot", "lens_count": 1, "body_style": "medium spot mover with zoom optic and yoke", "notes": "Use exact product dimensions/drawing to confirm assembled size and pose."},
     "evidence": [{"url": "https://www.blizzardpro.com/products/g-max-200", "title": "G-Max 200 product page", "locator": "Official specifications: DMX modes, power, weight, optics and size string", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
-    "acquisition_errors": "Product is source-backed for DMX and major specifications; dimensions need drawing-based axis assignment and official still-image URL capture."
+    "acquisition_errors": "Official page dimensions are an unlabelled 21.7 x 9.8 x 15 in tuple; axis mapping remains unresolved."
   },
   {
     "name": "Intimidator Spot 360X", "model_number": "Intimidator Spot 360X", "manufacturer": "CHAUVET DJ", "type": "moving light", "subtype": "LED spot", "url": "https://www.chauvetdj.com/products/intimidator-spot-360x/",

@@ -4,13 +4,14 @@ Access date for this batch: 2026-10-02. Sources are linked online, not downloade
 
 ## Manufacturer product catalogs and evidence used
 
-- ADJ: https://www.adj.com/products/focus-spot-2x and https://www.adj.com/products/entour-faze
+- ADJ: https://www.adj.com/products/focus-spot-2x ; https://www.adj.com/products/focus-wash-400 ; https://www.adj.com/products/focus-profile ; https://www.adj.com/products/entour-faze
 - Additional ADJ: https://www.adj.com/products/saber-spot-dtw ; https://www.adj.com/products/dj-spot-led (legacy/discontinued) ; https://www.adj.com/products/focus-spot-6z ; https://www.adj.com/products/focus-flex-l7
 - CHAUVET DJ: https://www.chauvetdj.com/products/ ; https://www.chauvetdj.com/products/category/moving-heads-scanners/ ; https://www.chauvetdj.com/products/intimidator-hybrid-251sr/ ; https://www.chauvetdj.com/products/intimidator-spot-375zx/ ; https://www.chauvetdj.com/products/intimidator-wash-zoom-450-irc/ ; https://www.chauvetdj.com/products/intimidator-wash-led-150/
 - Additional CHAUVET DJ: https://www.chauvetdj.com/products/intimidator-spot-duo/ ; manufacturer product sheet: https://www.chauvetdj.com/wp-content/uploads/pdf/en/intimidator-spot-duo.pdf
-- Blizzard Lighting: https://www.blizzardpro.com/products/spotman ; https://www.blizzardpro.com/products/hypno-beam ; https://www.blizzardpro.com/products/switchblade-flip
+- Blizzard Lighting: https://www.blizzardpro.com/products/spotman ; https://www.blizzardpro.com/products/g-max-200 ; https://www.blizzardpro.com/products/hypno-beam ; https://www.blizzardpro.com/products/switchblade-flip
 - Additional Blizzard Lighting candidate researched: https://www.blizzardpro.com/products/typhon-ip-sharpshooter (DMX/RDM/Art-Net/sACN and 17/19-channel modes; official page currently publishes no assembled dimensions)
-- Showtec / Highlite manuals: https://www.highlite.com/media/attachments/MANUAL/40070_MANUAL_GB_V1.pdf ; https://www.highlite.com/media/attachments/MANUAL/42580_MANUAL_GB_V2.pdf
+- Showtec / Highlite Phantom 65 category image and manual: https://www.showtec-lights.com/en/products/entertainment-lighting/moving-lights/moving-lights-spot.html ; https://www.highlite.com/media/attachments/MANUAL/40070_MANUAL_GB_V1.pdf
+- Showtec / Highlite Compact Par 7 Tri manual and selected-SKU product page: https://www.highlite.com/media/attachments/MANUAL/42580_MANUAL_GB_V2.pdf ; https://www.showtec-lights.com/nl/425-compact-par-7-tri.html?selected=42580 (current page returns order-code 42579 images, not verified as 42580)
 - Showtec Phantom 100 Spot product page and manual: https://www.showtec-lights.com/en/40077-phantom-100-spot.html ; https://www.highlite.com/media/attachments/MANUAL/40077_MANUAL_GB_V2.pdf
 - Eurolite / Steinigke: https://www.steinigke.de/mpn51785972-eurolite-led-tmh-13-moving-head-spot.html ; model manual: https://media.steinigke.de/documents_t/51785972-MANUAL-1.20-en-de_00107518.pdf
 - Eurolite KLS-120: https://www.steinigke.de/mpn42109606-eurolite-led-kls-120-kompakt-lichtset.html (four RGBW spots; not the distinct KLS-120 FX model)
