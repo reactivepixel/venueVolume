@@ -1,0 +1,62 @@
+{
+  "review_date": "2026-10-02",
+  "reviewer": "catalog-mid-v2",
+  "purpose": "Visual comparison of generated fixture previews against official product-reference images; record substantive lens or silhouette mismatches only.",
+  "source_worktree": "/home/chapman/Projects/venueVolume/.worktree/catalog-expansion-v2",
+  "read_only_review": true,
+  "contact_sheet_suffix": "batchtouring-dj-2026-10.jpg",
+  "reviewed_count": 16,
+  "coverage_note": "The requested brand/model contact sheets contain 16 identifiable source/model pairs in this scope. No seventeenth requested mid-catalog pair was present in the listed ACME, Astera, Elation, ETC jr, HES, Cameo, PROLIGHTS, and Rogue R3/R3X sheets.",
+  "findings": [
+    {
+      "id": "etc-colorsource-par-jr-optic-count",
+      "fixture": "etc/colorsource-par-jr",
+      "severity": "substantive",
+      "source_image": "assets/fixtures/etc/colorsource-par-jr/sources/product-reference-0.jpg",
+      "model_preview": "assets/fixtures/etc/colorsource-par-jr/previews/three-quarter.png",
+      "observation": "The official reference has four large, recessed reflector/lens apertures. The model preview presents a 4-by-4 array of 16 small projecting lens discs, changing the primary face pattern and apparent optical layout.",
+      "recommended_focus": "Model the four visible optical cups/apertures shown in the product image; the 16 LED emitters are not 16 separate front lenses in this reference."
+    },
+    {
+      "id": "etc-colorsource-spot-jr-square-front-plate",
+      "fixture": "etc/colorsource-spot-jr",
+      "severity": "substantive",
+      "source_image": "assets/fixtures/etc/colorsource-spot-jr/sources/product-reference-0.jpg",
+      "model_preview": "assets/fixtures/etc/colorsource-spot-jr/previews/three-quarter.png",
+      "observation": "The generated model adds a broad square plate at the lens end. The official image instead shows a round, recessed lens inside the circular front rim of the cylindrical zoom barrel; no comparable square front plate is present.",
+      "recommended_focus": "Remove or substantially reduce the square front plate and expose the circular recessed lens/rim visible in the manufacturer image."
+    },
+    {
+      "id": "astera-ax5-reflector-cups",
+      "fixture": "astera/ax5-triplepar",
+      "severity": "notable",
+      "source_image": "assets/fixtures/astera/ax5-triplepar/sources/product-reference-0.png",
+      "model_preview": "assets/fixtures/astera/ax5-triplepar/previews/three-quarter.png",
+      "observation": "The product image shows three broad, bright reflector bowls recessed into the circular face. The preview reads as three much smaller, flat blue-green porthole discs, losing the characteristic large reflector-cup optics.",
+      "recommended_focus": "Increase the visible reflector/aperture area and give each of the three optics a concave reflective bowl rather than a small flat disc."
+    }
+  ],
+  "reviewed_fixtures": [
+    {"fixture":"acme/lightning","source":"assets/fixtures/acme/lightning/sources/product-reference-0.png","model":"assets/fixtures/acme/lightning/previews/front.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"acme/mana-profile","source":"assets/fixtures/acme/mana-profile/sources/product-reference-0.png","model":"assets/fixtures/acme/mana-profile/previews/three-quarter.png","result":"no specific blocking lens/silhouette discrepancy recorded"},
+    {"fixture":"astera/titan-tube","source":"assets/fixtures/astera/titan-tube/sources/product-reference-0.jpg","model":"assets/fixtures/astera/titan-tube/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"astera/helios-tube","source":"assets/fixtures/astera/helios-tube/sources/product-reference-0.png","model":"assets/fixtures/astera/helios-tube/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"astera/ax5-triplepar","source":"assets/fixtures/astera/ax5-triplepar/sources/product-reference-0.png","model":"assets/fixtures/astera/ax5-triplepar/previews/three-quarter.png","result":"see finding astera-ax5-reflector-cups"},
+    {"fixture":"elation-professional/proteus-lucius","source":"assets/fixtures/elation-professional/proteus-lucius/sources/product-reference-0.jpg","model":"assets/fixtures/elation-professional/proteus-lucius/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"elation-professional/proteus-maximus","source":"assets/fixtures/elation-professional/proteus-maximus/sources/product-reference-0.jpg","model":"assets/fixtures/elation-professional/proteus-maximus/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"etc/colorsource-spot-jr","source":"assets/fixtures/etc/colorsource-spot-jr/sources/product-reference-0.jpg","model":"assets/fixtures/etc/colorsource-spot-jr/previews/three-quarter.png","result":"see finding etc-colorsource-spot-jr-square-front-plate"},
+    {"fixture":"etc/colorsource-par-jr","source":"assets/fixtures/etc/colorsource-par-jr/sources/product-reference-0.jpg","model":"assets/fixtures/etc/colorsource-par-jr/previews/three-quarter.png","result":"see finding etc-colorsource-par-jr-optic-count"},
+    {"fixture":"high-end-systems/lonestar","source":"assets/fixtures/high-end-systems/lonestar/sources/product-reference-0.jpg","model":"assets/fixtures/high-end-systems/lonestar/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"high-end-systems/lonestar-prime","source":"assets/fixtures/high-end-systems/lonestar-prime/sources/product-reference-0.jpg","model":"assets/fixtures/high-end-systems/lonestar-prime/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"cameo/opus-x4","source":"assets/fixtures/cameo/opus-x4/sources/product-reference-0.jpg","model":"assets/fixtures/cameo/opus-x4/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"cameo/opus-x4-ip","source":"assets/fixtures/cameo/opus-x4-ip/sources/product-reference-0.jpg","model":"assets/fixtures/cameo/opus-x4-ip/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"prolights/astra-hybrid330","source":"assets/fixtures/prolights/astra-hybrid330/sources/product-reference-0.webp","model":"assets/fixtures/prolights/astra-hybrid330/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"chauvet-professional/rogue-r3-beam","source":"assets/fixtures/chauvet-professional/rogue-r3-beam/sources/product-reference-0.png","model":"assets/fixtures/chauvet-professional/rogue-r3-beam/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"chauvet-professional/rogue-r3x-wash","source":"assets/fixtures/chauvet-professional/rogue-r3x-wash/sources/product-reference-0.png","model":"assets/fixtures/chauvet-professional/rogue-r3x-wash/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted; multi-lens face arrangement is recognizably consistent"}
+  ],
+  "limitations": [
+    "Visual QA only; no changes were made to the parent worktree or generated models.",
+    "Review covered contact sheets and available front/three-quarter PNG previews, not Blender mesh inspection or in-app runtime viewing.",
+    "A blank model.joints field was not used as an articulation failure criterion."
+  ]
+}
