@@ -49,11 +49,11 @@
     "subtype": "wash",
     "url": "https://chauvetprofessional.com/product/rogue-r3x-wash/",
     "images": ["https://chauvetprofessional.com/wp-content/uploads/2025/10/ROGUE_R3X_WASH-FRONT-FEAT.png"],
-    "data": {"protocols": ["DMX512", "RDM"], "dmx_channels": [], "power": null, "weight": null, "notable": "37 RGBW LED array; zoom 9.3°–62.6°; pixel-mappable wash.", "source_urls": ["https://chauvetprofessional.com/product/rogue-r3x-wash/"]},
-    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "Overall assembled dimensions not confirmed in the sources checked.", "reference_pose": "Unknown."},
+    "data": {"protocols": ["DMX512", "RDM"], "dmx_channels": [21, 27, 62, 71, 107], "power": "650–670 W depending on line voltage", "weight": "17.5 kg", "notable": "37 RGBW LED array (25 W each); zoom 8°–30°; pixel-mappable wash; five DMX personalities.", "source_urls": ["https://chauvetprofessional.com/product/rogue-r3x-wash/", "https://chauvetprofessional.com/wp-content/uploads/2019/10/Rogue_R3X_Wash_UM_Rev8.pdf"]},
+    "dimensions": {"width_m": 0.394, "height_m": 0.470, "depth_m": 0.298, "axis_status": "documented", "axis_note": "User Manual Rev. 8, Product Dimensions drawing (p. 5): 394 mm front width × 470 mm maximum height × 298 mm depth, assembled neutral pose.", "reference_pose": "Assembled fixture in manual's dimensional drawing pose; yoke level."},
     "modeling": {"family": "moving_wash", "lens_count": 37, "shell": "round", "notes": "37-cell RGBW lens array."},
-    "evidence": [{"url": "https://chauvetprofessional.com/product/rogue-r3x-wash/", "title": "Rogue R3X Wash product page", "locator": "Specifications: Optical and Dynamic Effects; 37 RGBW LEDs and 9.3°–62.6° zoom", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
-    "acquisition_errors": ["Manufacturer product page inspected for source and effect details; assembled dimension drawing/manual was not retrieved, so scale dimensions and mass remain unresolved."]
+    "evidence": [{"url": "https://chauvetprofessional.com/product/rogue-r3x-wash/", "title": "Rogue R3X Wash product page", "locator": "Construction/Physical and Control: 394 × 298 × 470 mm, 17.46 kg, 650–661 W, 21/27/62/71/107 channels; optical specifications", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://chauvetprofessional.com/wp-content/uploads/2019/10/Rogue_R3X_Wash_UM_Rev8.pdf", "title": "Rogue R3X Wash User Manual Rev. 8", "locator": "p. 5 Product Dimensions drawing; p. 10 DMX Personalities; pp. 22–23 Technical Specifications", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": []
   },
   {
     "name": "PROTEUS MAXIMUS",
@@ -77,11 +77,11 @@
     "subtype": "profile / spot",
     "url": "https://www.elationlighting.com/products/proteus-lucius",
     "images": ["https://www.elationlighting.com/cdn/shop/files/e852a97433e35b21e3ea37860247754dbf5e272c_PRL546__IMG__001__e7dc0c89c4f6.jpg?v=1776815027&width=2048"],
-    "data": {"protocols": ["DMX", "RDM", "Art-Net", "sACN"], "dmx_channels": [], "power": "1000 W max", "weight": "40.8 kg", "notable": "IP65 profile; 33,500 lm, 580 W LED source; 5.5°–50° zoom, framing and CMY.", "source_urls": ["https://www.elationlighting.com/products/proteus-lucius", "https://www.elationlighting.com/media/certipro/articles/p/r/proteus_series-2022.pdf"]},
-    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "Manufacturer Proteus series brochure lists 445 × 499 × 715 mm L × W × H; current product comparison lists 18.4 × 14.6 × 26.8 in. The sources conflict and no exact drawing was resolved in this pass.", "reference_pose": "Unknown."},
+    "data": {"protocols": ["DMX", "RDM", "Art-Net", "sACN"], "dmx_channels": [43, 68], "power": "1000 W max", "weight": "40.8 kg", "notable": "IP65 profile; 33,500 lm, 580 W LED source; 5.5°–50° zoom, framing and CMY.", "source_urls": ["https://www.elationlighting.com/products/proteus-lucius", "https://assets.centryngroup.com/dl/files/PRL546__DL__006.pdf", "https://assets.centryngroup.com/dl/files/PRL546__DL__008.pdf", "https://assets.centryngroup.com/dl/files/ProteusLuciusUserManual.pdf"]},
+    "dimensions": {"width_m": 0.370, "height_m": 0.682, "depth_m": 0.468, "axis_status": "documented", "axis_note": "Current manufacturer specification sheet explicitly labels Length 468 mm, Width 370 mm, Height 682 mm; corroborated by the May 2023 dimensional drawing (base width 370 mm, base length 468 mm, max assembled height 682 mm). Older Proteus series brochure dimensions are superseded and do not match this model's current drawing.", "reference_pose": "Manufacturer dimensional drawing, assembled fixture with head in illustrated forward/down pose; width × height × depth mapped from sheet's width/height/length."},
     "modeling": {"family": "moving_spot", "shell": "faceted", "lens_ratio": 0.58, "head_depth": 0.85, "notes": "Weather-sealed profile with internal framing."},
-    "evidence": [{"url": "https://www.elationlighting.com/products/proteus-lucius", "title": "PROTEUS LUCIUS product page", "locator": "Product comparison and technical specifications; 33,500 lm, 580 W source, 89.9 lb and 18.4 × 14.6 × 26.8 in", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://www.elationlighting.com/media/certipro/articles/p/r/proteus_series-2022.pdf", "title": "Proteus Series brochure", "locator": "Product Overview / Proteus Lucius: 445 × 499 × 715 mm L × W × H", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
-    "acquisition_errors": ["Manufacturer web comparison and brochure dimensions differ; retrieve the exact current dimensional drawing and resolve the variant before assigning dimensions or scale."]
+    "evidence": [{"url": "https://www.elationlighting.com/products/proteus-lucius", "title": "PROTEUS LUCIUS product page", "locator": "Current product specifications and downloads; 33,500 lm, 580 W source, 89.9 lb; linked spec sheet and drawing", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://assets.centryngroup.com/dl/files/PRL546__DL__006.pdf", "title": "PROTEUS LUCIUS Dimensional Drawing, 10 May 2023", "locator": "Orthographic dimension sheet: base width 370 mm, base length 468 mm, max height 682 mm", "accessed_at": "2026-10-02", "source_kind": "manufacturer_drawing"}, {"url": "https://assets.centryngroup.com/dl/files/PRL546__DL__008.pdf", "title": "PROTEUS LUCIUS Specification Sheet, 16 May 2023", "locator": "Size/Weight and Electrical sections: L468 × W370 × H682 mm, 40.8 kg, max 1000 W, DMX modes 43/68", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": []
   },
   {
     "name": "OPUS X4",
@@ -105,11 +105,11 @@
     "subtype": "profile / spot, IP65",
     "url": "https://www.cameolight.com/en/solutions/rental/moving-lights/profile-moving-heads/31933/opus-x4-ip",
     "images": ["https://cdn-shop.adamhall.com/ORIGINAL/media/MARKEN/CAMEO/CLOX4PIP/CLOX4PIP_1.jpg"],
-    "data": {"protocols": ["DMX512", "RDM", "Art-Net", "sACN", "W-DMX", "CRMX"], "dmx_channels": [], "power": null, "weight": "44 kg", "notable": "IP65 version of OPUS X4 with 1400 W white LED engine, 50,000 lm, framing, dual gobo wheels and animation.", "source_urls": ["https://www.cameolight.com/en/solutions/rental/moving-lights/profile-moving-heads/31933/opus-x4-ip"]},
-    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "The product page states dimensions are nearly identical to OPUS X4 but this is not an exact dimension specification for the IP variant.", "reference_pose": "Unknown."},
+    "data": {"protocols": ["DMX512", "RDM", "Art-Net", "sACN", "W-DMX", "CRMX"], "dmx_channels": [], "power": "1780 W rated", "weight": "46 kg", "notable": "IP65 version; 1400 W white LED engine, 50,000 lm, 5°–50° zoom, framing, dual gobo wheels and animation; three DMX modes (footprints not stated on product page).", "source_urls": ["https://www.cameolight.com/en/solutions/rental/moving-lights/profile-moving-heads/31933/opus-x4-ip"]},
+    "dimensions": {"width_m": 0.475, "height_m": 0.860, "depth_m": 0.350, "axis_status": "documented", "axis_note": "Cameo product page labels width 475 mm, height 860 mm, depth 350 mm.", "reference_pose": "Overall assembled IP65 fixture; head pose not separately specified."},
     "modeling": {"family": "moving_spot", "shell": "faceted", "lens_ratio": 0.65, "head_depth": 0.82, "notes": "Sealed outdoor profile fixture; enclosure may differ from indoor variant."},
-    "evidence": [{"url": "https://www.cameolight.com/en/solutions/rental/moving-lights/profile-moving-heads/31933/opus-x4-ip", "title": "OPUS X4 IP product page", "locator": "Product description and specifications: IP65, 1400 W, 50,000 lm, 5°–50° zoom; page says nearly identical dimensions to OPUS X4", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
-    "acquisition_errors": ["Exact variant dimensional drawing and maximum power not acquired; do not reuse OPUS X4 exact dimensions for a scaled model."]
+    "evidence": [{"url": "https://www.cameolight.com/en/solutions/rental/moving-lights/profile-moving-heads/31933/opus-x4-ip", "title": "OPUS X4 IP product specifications", "locator": "Control, mains, construction, environmental and dimensions & weight sections: protocols, 1780 W, 475 × 860 × 350 mm, 46 kg; optical features", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": []
   },
   {
     "name": "Astra Hybrid330",
@@ -138,6 +138,48 @@
     "modeling": {"family": "moving_wash", "lens_count": 5, "body_style": "linear multi-head bar with independently articulating optical heads", "notes": "Atypical five-head geometry; do not approximate as a conventional single moving head or static batten."},
     "evidence": [{"url": "https://en.acmelighting.com/item/TORNADO", "title": "ACME TORNADO product specifications", "locator": "Overview; Technical Specification: light source, optical system, control, pan & tilt, electrical, physical; dimensions 1000 × 350 × 192 mm and weight 30 kg", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
     "acquisition_errors": ["Five individual head pivot coordinates and their swept clearance are not dimensioned in the page drawing; overall neutral envelope is known, articulation geometry needs a dimensioned CAD model/manual review."]
+  },
+  {
+    "name": "Titan Tube",
+    "model_number": "FP1-BTB",
+    "manufacturer": "Astera",
+    "type": "linear fixture",
+    "subtype": "wireless RGBMintAmber pixel tube",
+    "url": "https://astera-led.com/wp-content/uploads/FP1_Titan-Tube_Datasheet_V3.pdf",
+    "images": ["https://astera-led.com/wp-content/uploads/FP1.jpg"],
+    "data": {"protocols": ["DMX512 (via Astera interface)", "CRMX", "UHF", "Bluetooth", "Wi-Fi"], "dmx_channels": [], "power": "48 W LED power draw (72 W total LED power); 24 VDC, 2 A", "weight": "1.35 kg", "notable": "16-pixel battery-powered Titan LED Engine tube; RGBMintAmber; up to 20 h runtime; BTB revision adds integrated Bluetooth bridge; wired DMX requires a separate Astera interface.", "source_urls": ["https://astera-led.com/wp-content/uploads/FP1_Titan-Tube_Datasheet_V3.pdf", "https://astera-led.com/wp-content/uploads/FP1-BTB_TitanTubeBTB_Manual.pdf", "https://astera-led.com/fr/products/snapgrid-for-titan-tube-ax1-pixeltube/"]},
+    "dimensions": {"width_m": 1.035, "height_m": 0.043, "depth_m": 0.043, "axis_status": "documented", "axis_note": "Manufacturer datasheet specifies 1035 mm overall length × Ø43 mm; modeled horizontally as width × circular height/depth.", "reference_pose": "Tube horizontal; included end caps fitted, no brackets/accessories fitted."},
+    "modeling": {"family": "tube", "body_style": "sealed cylindrical RGB pixel tube with end caps and battery/control end", "notes": "16 individually addressable light pixels distributed along the linear tube; mounting holders are accessories and excluded from envelope."},
+    "evidence": [{"url": "https://astera-led.com/wp-content/uploads/FP1_Titan-Tube_Datasheet_V3.pdf", "title": "Titan Tube Datasheet V3, 20 February 2023", "locator": "Specifications: order codes FP1/FP1-BTB, output/control, weight 1.35 kg, dimensions 1035 mm × Ø43 mm", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}, {"url": "https://astera-led.com/wp-content/uploads/FP1-BTB_TitanTubeBTB_Manual.pdf", "title": "Titan Tube BTB manual", "locator": "Technical data and dimensions; FP1-BTB product identification", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": []
+  },
+  {
+    "name": "Helios Tube",
+    "model_number": "FP2-BTB",
+    "manufacturer": "Astera",
+    "type": "linear fixture",
+    "subtype": "wireless RGBMintAmber pixel tube",
+    "url": "https://astera-led.com/fr/products/helios-tube/specs/",
+    "images": ["https://media.astera-led.com/wp-content/uploads/Helios-Tube_V2.png"],
+    "data": {"protocols": ["DMX512 (via Astera interface)", "CRMX", "UHF", "Bluetooth", "Wi-Fi"], "dmx_channels": [], "power": "36 W max; 24 W LED power draw; 24 VDC, 1.25 A", "weight": "0.765 kg", "notable": "8-pixel battery-powered Titan LED Engine tube; RGBMintAmber; 1285 lm at 3200 K / 1340 lm at 4000 K; up to 20 h runtime; IP65 only with FP1-SP end cap.", "source_urls": ["https://astera-led.com/fr/products/helios-tube/specs/", "https://astera-led.com/wp-content/uploads/Datasheet_Helios_Tube_V4-1.pdf", "https://astera-led.com/wp-content/uploads/FP2-BTB_HeliosTube_BTB_Manual_EN_DE_IT_ES_FR_PT.pdf", "https://astera-led.com/wp-content/uploads/FP2_FP2-BTB_Helios_Tube_DMX_Profiles_V2.pdf"]},
+    "dimensions": {"width_m": 0.550, "height_m": 0.043, "depth_m": 0.043, "axis_status": "documented", "axis_note": "Manufacturer Datasheet V4 (3 July 2025): overall length 550 mm × Ø43 mm; horizontal tube orientation used for width.", "reference_pose": "Tube horizontal; end caps fitted, no mounting accessories."},
+    "modeling": {"family": "tube", "body_style": "sealed cylindrical pixel tube with end caps and integrated battery/control end", "notes": "Eight addressable pixels; 550 mm body length."},
+    "evidence": [{"url": "https://astera-led.com/fr/products/helios-tube/specs/", "title": "Helios Tube technical specifications", "locator": "FP2/FP2-BTB comparison: 36 W total LED power, 24 W draw, eight pixels, 0.765 kg, L550 × Ø43 mm", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://astera-led.com/wp-content/uploads/Datasheet_Helios_Tube_V4-1.pdf", "title": "Helios Datasheet V4, 3 July 2025", "locator": "Specifications: LED source/color/output, control and physical specification", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}, {"url": "https://astera-led.com/wp-content/uploads/FP2-BTB_HeliosTube_BTB_Manual_EN_DE_IT_ES_FR_PT.pdf", "title": "BTB Helios Tube Manual", "locator": "Technical data and dimensions table", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": []
+  },
+  {
+    "name": "AX5 TriplePAR",
+    "model_number": "AX5-BTB",
+    "manufacturer": "Astera",
+    "type": "par",
+    "subtype": "battery-powered RGBAW PAR",
+    "url": "https://astera-led.com/fr/products/ax5-triplepar/specs/",
+    "images": ["https://media.astera-led.com/wp-content/uploads/AX5_TriplePAR_V1.png"],
+    "data": {"protocols": ["DMX512", "CRMX", "UHF", "Bluetooth", "Wi-Fi"], "dmx_channels": [], "power": "45 W LED; 90–264 VAC input", "weight": "3.4 kg", "notable": "Three 15 W RGBAW LEDs; 13° beam, 26° field; 1080 lm at 3200 K / 1413 lm at 5500 K; built-in CRMX, rechargeable battery up to 20 h, IP65.", "source_urls": ["https://astera-led.com/fr/products/ax5-triplepar/specs/", "https://astera-led.com/wp-content/uploads/Datasheet_AX5_TriplePar_V4.pdf", "https://astera-led.com/wp-content/uploads/AX5_TriplePAR_Manual_EN_DE_IT_ES_FR_CN.pdf", "https://astera-led.com/wp-content/uploads/AX5_AX5-BTB_AX5_TriplePAR_DMX_Profiles_V5.pdf"]},
+    "dimensions": {"width_m": 0.1936, "height_m": 0.2135, "depth_m": 0.1481, "axis_status": "documented", "axis_note": "Manufacturer dimensions with bracket: L148.1 × W193.6 × H213.5 mm; mapped to depth × width × height in the bracketed pose. Body without bracket is Ø153.2 × H140.5 mm.", "reference_pose": "Upright PAR with included yoke/bracket attached, as specified in manufacturer with-bracket dimensions."},
+    "modeling": {"family": "par", "shell": "round", "lens_count": 3, "notes": "Compact three-emitter battery PAR with yoke/bracket; body-only and bracketed envelopes differ."},
+    "evidence": [{"url": "https://astera-led.com/fr/products/ax5-triplepar/specs/", "title": "AX5 TriplePAR official specifications", "locator": "AX5/AX5-BTB comparison, output/control and physical tables", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://astera-led.com/wp-content/uploads/Datasheet_AX5_TriplePar_V4.pdf", "title": "AX5 TriplePAR Datasheet V4, 20 July 2025", "locator": "Specifications: output/control, 3.4 kg mass and with-/without-bracket dimensions", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}, {"url": "https://astera-led.com/wp-content/uploads/AX5_TriplePAR_Manual_EN_DE_IT_ES_FR_CN.pdf", "title": "AX5 TriplePAR Manual", "locator": "Operating, technical and wireless-control details", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": []
   },
   {
     "name": "LIGHTNING",
@@ -180,5 +222,61 @@
     "modeling": {"family": "profile", "barrel_ratio": 0.36, "body_style": "conventional ellipsoidal reflector spotlight with fixed 36-degree tube and yoke", "notes": "Classic ETC Source Four rental/theatre body; body and 36° lens tube are separately variant-dependent. Geometry should include lamp housing, barrel, lens tube, shutter/gobo gate, yoke, C-clamp and gel-frame holder."},
     "evidence": [{"url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/Source-Four/", "title": "ETC Source Four product page", "locator": "Entertainment fixtures overview and Source Four family navigation", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://www.etcconnect.com/workarea/DownloadAsset.aspx?id=10737460423", "title": "Source Four 36° Ellipsoidal Series physical drawing", "locator": "Physical dimension drawing; front and side orthographic dimensions; Source Four Weights table: 36° fixture 14 lb / 6.4 kg including 2.3 lb C-clamp", "accessed_at": "2026-10-02", "source_kind": "manufacturer_drawing"}],
     "acquisition_errors": ["Power, lamp type options, accessory kit and current/legacy availability were not resolved from a current model-specific specification sheet."]
+  },
+  {
+    "name": "ColorSource Spot jr",
+    "model_number": "CSSPOTJR2550",
+    "manufacturer": "ETC",
+    "type": "fixed light",
+    "subtype": "LED profile / ellipsoidal",
+    "url": "https://www.etcconnect.com/products/entertainment-fixtures/colorsource-spot-jr/documentation.aspx",
+    "images": ["https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Lighting_Fixtures/ColorSource/ColorSource_Spot_jr_Right.jpg"],
+    "data": {"protocols": ["DMX512", "RDM"], "dmx_channels": [], "power": "166 W typical at 120 V; 162 W at 240 V", "weight": "5.4 kg", "notable": "52 RGB-L LED emitters, 5,708 lm standard / 5,426 lm Deep Blue; built-in 25°–50° zoom; four DMX modes.", "source_urls": ["https://www.etcconnect.com/products/entertainment-fixtures/colorsource-spot-jr/documentation.aspx", "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737502586", "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737502608"]},
+    "dimensions": {"width_m": 0.258, "height_m": 0.331, "depth_m": 0.460, "axis_status": "documented", "axis_note": "Manufacturer physical drawing labels width 258 mm, height 331 mm and depth 460 mm for the assembled fixture.", "reference_pose": "Manufacturer physical drawing, yoke assembled; C-clamp not included."},
+    "modeling": {"family": "profile", "barrel_ratio": 0.36, "body_style": "compact LED ellipsoidal with integral zoom optics and yoke", "notes": "ETC junior-format profile; dimensional drawing is authoritative for outer envelope."},
+    "evidence": [{"url": "https://www.etcconnect.com/products/entertainment-fixtures/colorsource-spot-jr/documentation.aspx", "title": "ColorSource Spot jr documentation", "locator": "Official product documentation and product image", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737502586", "title": "ColorSource Spot jr Datasheet", "locator": "Source, output, zoom, protocol, electrical draw and mass", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}, {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737502608", "title": "ColorSource Spot jr Physical Drawing", "locator": "Drawing: W258 × H331 × D460 mm", "accessed_at": "2026-10-02", "source_kind": "manufacturer_drawing"}],
+    "acquisition_errors": []
+  },
+  {
+    "name": "ColorSource PAR jr",
+    "model_number": "CSPARJR",
+    "manufacturer": "ETC",
+    "type": "par",
+    "subtype": "LED PAR",
+    "url": "https://www.etcconnect.com/products/entertainment-fixtures/colorsource-par-jr/documentation.aspx",
+    "images": ["https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/ColorSource/ColorSource_PAR_jr_Right_Black.jpg"],
+    "data": {"protocols": ["DMX512", "RDM"], "dmx_channels": [], "power": "72 W typical", "weight": "2.54 kg", "notable": "16 RGB-L LED emitters, 2,290 lm standard / 2,061 lm Deep Blue, 15.3° beam; four DMX modes spanning 1–6 channels.", "source_urls": ["https://www.etcconnect.com/products/entertainment-fixtures/colorsource-par-jr/documentation.aspx", "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737516212"]},
+    "dimensions": {"width_m": 0.213, "height_m": 0.282, "depth_m": 0.251, "axis_status": "documented", "axis_note": "Manufacturer table labels H282 × W213 × D251 mm, including yoke envelope.", "reference_pose": "Upright PAR with included yoke attached; C-clamp excluded."},
+    "modeling": {"family": "par", "shell": "round", "lens_count": 16, "notes": "Compact convection-cooled LED PAR with yoke."},
+    "evidence": [{"url": "https://www.etcconnect.com/products/entertainment-fixtures/colorsource-par-jr/documentation.aspx", "title": "ColorSource PAR jr documentation", "locator": "Official product page and image", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737516212", "title": "ColorSource PAR jr Datasheet", "locator": "Product specifications and physical table: 16 emitters, 72 W, 2.54 kg, H282 × W213 × D251 mm", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": []
+  },
+  {
+    "name": "MANA PROFILE",
+    "model_number": "XA 600 BSWF IP",
+    "manufacturer": "ACME",
+    "type": "moving light",
+    "subtype": "LED framing profile / spot",
+    "url": "https://en.acmelighting.com/item/MANA-PROFILE",
+    "images": ["https://en.acmelighting.com/upload/image/20250109/f418501fcbdf3338a8a1164670990feb.png"],
+    "data": {"protocols": ["DMX512", "RDM", "Art-Net", "sACN"], "dmx_channels": [22, 30, 31, 40], "power": "910 W consumption", "weight": "32.5 kg", "notable": "600 W LED engine, 26,000 lm, 170 mm front lens, 3.5°–45° zoom, IP66; CMY/CTO, framing, iris, animation and dual prisms. Manufacturer lists five modes with footprints 22/30/31/31/40 channels.", "source_urls": ["https://en.acmelighting.com/item/MANA-PROFILE", "https://en.acmelighting.com/upload/other/20260722/aea9031a33652685164a03651b20b64d.pdf"]},
+    "dimensions": {"width_m": 0.380, "height_m": 0.658, "depth_m": 0.284, "axis_status": "documented", "axis_note": "Manufacturer 2026 leaflet physical information lists fixture dimensions 380 × 284 × 658 mm; mapped to W × D × H, corroborated by its dimension illustration.", "reference_pose": "Assembled fixture upright in manufacturer dimension illustration; flight-case dimensions excluded."},
+    "modeling": {"family": "moving_spot", "shell": "faceted", "lens_ratio": 0.54, "head_depth": 0.76, "notes": "Weather-sealed LED framing profile with internal shutters and rotating optical effects."},
+    "evidence": [{"url": "https://en.acmelighting.com/item/MANA-PROFILE", "title": "ACME MANA PROFILE", "locator": "Official product page: product image, control protocols, five channel modes and 910 W consumption", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://en.acmelighting.com/upload/other/20260722/aea9031a33652685164a03651b20b64d.pdf", "title": "MANA PROFILE leaflet, July 2026", "locator": "Specifications: XA 600 BSWF IP, 600 W LED, 26,000 lm, 32.5 kg, W380 × D284 × H658 mm; optics and effects", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": []
+  },
+  {
+    "name": "Lonestar",
+    "model_number": "Lonestar",
+    "manufacturer": "High End Systems",
+    "type": "moving light",
+    "subtype": "LED framing profile",
+    "url": "https://www.etcconnect.com/lonestar/",
+    "images": ["https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Live_Events/Lighting_Fixtures/Lonestar/Lonestar_Prod_Left_Red_547x400.jpg"],
+    "data": {"protocols": ["DMX512", "Art-Net", "sACN"], "dmx_channels": [48], "power": "615 W max", "weight": "23 kg", "notable": "290 W white LED engine, 15,400 lm, 3.8°–55° zoom, framing shutters; Standard and Trifusion modes, 48 channels.", "source_urls": ["https://www.etcconnect.com/lonestar/", "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737513380", "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737514372"]},
+    "dimensions": {"width_m": 0.368, "height_m": 0.600, "depth_m": 0.221, "axis_status": "documented", "axis_note": "Manufacturer Datasheet Rev H gives W368 × H600 × D221 mm for fixture envelope.", "reference_pose": "Assembled moving head, upright base and head orientation as manufacturer drawing."},
+    "modeling": {"family": "moving_spot", "shell": "faceted", "lens_ratio": 0.56, "head_depth": 0.78, "notes": "Compact white-LED framing profile; preserve yoke, pan/tilt base and internal framing module."},
+    "evidence": [{"url": "https://www.etcconnect.com/lonestar/", "title": "High End Systems Lonestar", "locator": "Official product overview and image", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737513380", "title": "Lonestar Datasheet Rev H, June 2025", "locator": "Product Dimensions table: H600 × W368 × D221 mm; 23 kg; source, optics, power and modes", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}, {"url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737514372", "title": "Lonestar DMX Channel Map", "locator": "Standard and Trifusion modes; 48-channel footprint", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
+    "acquisition_errors": []
   }
 ]

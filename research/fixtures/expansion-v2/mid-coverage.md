@@ -13,16 +13,23 @@ pages or official range/documentation pages unless identified as a legacy archiv
 |---|---|---|---|
 | CHAUVET Professional | Rogue R1 FX-B | `mid.json` | Official image and product specs; five independently articulated optics make joint geometry a blocker. |
 | CHAUVET Professional | Rogue R3 Beam | `mid.json` | Official image, product specs, dimensions and mass. |
-| CHAUVET Professional | Rogue R3X Wash | `mid.json` | Official image and optics; exact assembled dimensions and mass unresolved. |
+| CHAUVET Professional | Rogue R3X Wash | `mid.json` | Official image, Rev. 8 manual, channel modes, 37-lens count, exact assembled dimensions and mass. |
 | Elation Professional | PROTEUS MAXIMUS | `mid.json` | Official image/specs/dimensions/mass; profile fixture. |
-| Elation Professional | PROTEUS LUCIUS | `mid.json` | Official image/specs; brochure and current product comparison dimension values conflict. |
+| Elation Professional | PROTEUS LUCIUS | `mid.json` | Official current 2023 dimension drawing/spec sheet; 370×682×468 mm, 40.8 kg, 43/68-channel modes. |
 | Cameo | OPUS X4 | `mid.json` | Official product image, full specs and dimensions. |
-| Cameo | OPUS X4 IP | `mid.json` | Official product image and key specs; exact IP variant dimensions not stated in retrieved material. |
+| Cameo | OPUS X4 IP | `mid.json` | Official product page/image and full physical specification table. |
 | PROLIGHTS | Astra Hybrid330 | `mid.json` | Official image, page specs, 29-channel footprint and physical dimensions. |
 | ACME | TORNADO | `mid.json` | Official image, specs and dimensions; head-pivot geometry remains to be checked. |
 | ACME | LIGHTNING | `mid.json` | Official image, exact dimensions, power, mass, effects and control modes. |
 | High End Systems | Lonestar Prime | `mid.json` | Official image and May 2026 datasheet; exact dimensions, mass and 52-channel footprint. |
 | ETC | Source Four 36° Ellipsoidal | `mid.json` | Official image and model-specific dimensional drawing; classic rental/theatre fixture. |
+| Astera | Titan Tube FP1-BTB | `mid.json` | Official V3 datasheet, BTB manual, exact direct product image, 1035 × Ø43 mm envelope. |
+| Astera | Helios Tube FP2-BTB | `mid.json` | Official V4 datasheet, BTB manual, DMX profiles, exact image, 550 × Ø43 mm envelope. |
+| Astera | AX5 TriplePAR AX5-BTB | `mid.json` | Official V4 datasheet, manual, DMX profiles, exact image, bracketed and body-only dimensions. |
+| ETC | ColorSource Spot jr | `mid.json` | Official datasheet and physical drawing, exact image, dimensions/mass; four DMX modes reported but exact footprints are not in the accessed datasheet. |
+| ETC | ColorSource PAR jr | `mid.json` | Official datasheet and exact image; emitter count, beam, DMX mode span, dimensions and mass. |
+| High End Systems | Lonestar | `mid.json` | Official June 2025 datasheet, channel map, exact image, dimensions/mass and 48-channel footprint. |
+| ACME | MANA PROFILE | `mid.json` | Official 2026 leaflet and product page; output, dimensions/mass, five DMX footprints, protocols and image URL. |
 
 ## Official catalog inventory and candidate models
 
@@ -136,6 +143,7 @@ Official pages: [Entertainment Fixtures](https://www.etcconnect.com/Products/Lig
 - Legacy rental/theatre anchors for possible later inclusion: Source Four tungsten ERS,
   Source Four PAR, Source Four PARNel, Source Four Fresnel, Source Four HID.
 - [Source Four 36°](https://www.etcconnect.com/Products/Entertainment-Fixtures/Source-Four/) — acquired as a legacy rental anchor; exact physical drawing checked.
+- [ColorSource Spot jr](https://www.etcconnect.com/products/entertainment-fixtures/colorsource-spot-jr/documentation.aspx) and [ColorSource PAR jr](https://www.etcconnect.com/products/entertainment-fixtures/colorsource-par-jr/documentation.aspx) — acquired from official docs/specs.
 - Official Series 3 documentation index includes 2025/2026 datasheets, manuals, CAD
   blocks and physical drawings by lens-tube variant. It should be treated as a family
   of distinct outer envelopes where the tube materially changes depth.
@@ -149,8 +157,10 @@ Product-specific manufacturer pages/resources verified in search results include
 [AX9 PowerPAR](https://astera-led.com/zh/products/ax9-powerpar/), and the
 [HydraPanel datasheet](https://astera-led.com/wp-content/uploads/FP6_HydraPanel_Datasheet_V1.pdf).
 The manufacturer also provides a [Titan Tube / AX1 PixelTube accessory page](https://astera-led.com/fr/products/snapgrid-for-titan-tube-ax1-pixeltube/).
-Automated retrieval of Astera's English product HTML was blocked during this pass, so exact
-current product pages and hero image URLs remain unconfirmed.
+Official product resources and image assets were retrieved and checked despite intermittent
+automated HTML blocking. Acquired current models: Titan Tube FP1-BTB, Helios Tube FP2-BTB,
+and AX5 TriplePAR AX5-BTB; their exact image URLs and primary datasheet/manual sources are
+recorded in `mid.json` and `mid-sources/`.
 
 - Core professional battery fixtures to cover: Titan Tube, Helios Tube, Hyperion Tube,
   AX1 PixelTube, AX5 TriplePAR, AX9 PowerPAR, AX3 Lightdrop, HydraPanel, QuikBeam,
@@ -206,6 +216,7 @@ line/blinder products appear in the navigation but their direct links were not r
 in this pass.
 - [TORNADO](https://en.acmelighting.com/item/TORNADO) — acquired.
 - [LIGHTNING](https://en.acmelighting.com/item/LIGHTNING) — acquired.
+- [MANA PROFILE](https://en.acmelighting.com/item/MANA-PROFILE) — acquired from July 2026 manufacturer leaflet and product page.
 - [PIXEL LINE IP](https://en.acmelighting.com/item/PIXEL-LINE-IP) and
   [LIGHTNING](https://en.acmelighting.com/item/LIGHTNING) are strong bar/strobe rental
   candidates. Image/drawing extraction and exact body dimensions not included yet.
