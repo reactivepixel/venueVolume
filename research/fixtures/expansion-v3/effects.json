@@ -7,12 +7,12 @@
     "type": "special effect",
     "subtype": "dual-aperture RGB laser projector",
     "url": "https://www.chauvetdj.com/products/scorpion-dual-rgb/",
-    "images": ["https://www.chauvetdj.com/wp-content/uploads/2018/12/Scorpion-Dual-RGB-Effect-1.jpg"],
+    "images": [],
     "data": {"protocols": ["DMX (10-channel mode)", "IR remote (optional IRC-6)", "standalone", "master/slave"], "dmx_channels": [10], "power": "19 W at 230 V; 20 W at 120 V", "weight": "1.7 kg", "notable": "Dual mirror output; RGB diode wavelengths/powers 638 nm/30 mW, 520 nm/20 mW, 450 nm/50 mW; M12 bracket mounting; no ILDA input documented.", "source_urls": ["https://www.chauvetdj.com/products/scorpion-dual-rgb/", "https://www.chauvetdj.com/wp-content/uploads/2019/01/Scorpion_Dual_RGB_UM_Rev5_ML3.pdf"]},
     "dimensions": {"width_m": 0.216, "height_m": 0.1795, "depth_m": 0.161, "axis_status": "documented", "axis_note": "Manual product dimension drawing: 216 mm wide, 179.5 mm high, 161 mm deep; assembled housing on support feet.", "reference_pose": "Base resting on feet; laser apertures forward."},
     "modeling": {"family": "laser", "lens_count": 2, "body_style": "compact rectangular dual-output laser projector", "notes": "Two mirror output apertures are explicitly identified by the manufacturer. Model as laser apparatus; do not add ordinary spotlight emission."},
     "evidence": [{"url": "https://www.chauvetdj.com/products/scorpion-dual-rgb/", "title": "Scorpion Dual RGB product page", "locator": "Specifications: DMX, power, mass, dimensions, laser sources, mount", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://www.chauvetdj.com/wp-content/uploads/2019/01/Scorpion_Dual_RGB_UM_Rev5_ML3.pdf", "title": "Scorpion Dual RGB User Manual Rev. 5", "locator": "Product dimensions drawing, p. 6; product overview, p. 5", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
-    "acquisition_errors": []
+    "acquisition_errors": ["Manufacturer gallery URL previously listed as a still resolves to an effect/pattern image rather than a product-body still; exact body image not confirmed, so image omitted."]
   },
   {
     "expansion_batch": 3,
@@ -187,7 +187,7 @@
     "images": ["https://www.adj.com/cdn/shop/files/e7333973f25e0385bc10441d2975406234e62f28_XMOVE_LASER__IMG__001__238d14f3295f.jpg?v=1776715879&width=350"],
     "data": {"protocols": ["DMX512 (6 channels)", "sound active", "primary/secondary"], "dmx_channels": [6], "power": null, "weight": "4.5 kg", "notable": "Discontinued manufacturer listing; 4.9 mW green source; 540° pan and 220° tilt; no ILDA input stated.", "source_urls": ["https://www.adj.com/products/x-move-laser"]},
     "dimensions": {"width_m": 0.19, "height_m": 0.285, "depth_m": 0.205, "axis_status": "documented", "axis_note": "Manufacturer L x W x H 205 x 190 x 285 mm; mapped to width 190, height 285, depth 205 mm.", "reference_pose": "Assembled moving head, base level."},
-    "modeling": {"family": "laser", "lens_count": 1, "body_style": "small yoke-mounted laser projector", "notes": "Laser apparatus with moving optical head; no spotlight emission."},
+    "modeling": {"family": "moving_spot", "lens_count": 1, "output_kind": "laser_aperture", "body_style": "small yoke-mounted laser projector", "notes": "Pan/tilt moving head (manufacturer lists 540° pan / 220° tilt and stepper motors). Retain dark/output-only laser_aperture semantics; do not create ordinary visible spotlight output."},
     "evidence": [{"url": "https://www.adj.com/products/x-move-laser", "title": "ADJ X-Move Laser product page", "locator": "Specifications: output class, DMX modes, travel, dimensions, mass", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
     "acquisition_errors": []
   },
@@ -290,11 +290,11 @@
     "subtype": "smoke machine",
     "url": "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/g300/g300-technical-specification/",
     "images": ["https://lemaitreltd.com/sites/lemaitreltd/cache/file/711CDFCB-1C44-456A-ABC242A5BC99DAC4.jpg"],
-    "data": {"protocols": ["optional DMX remote (2 channels)", "manual/timer remote"], "power": "2200 W at 230 V", "weight": "22.7 kg (50 lb)", "notable": "Manufacturer comparison states DMX is an optional external remote, not built-in; 610 x 210 x 295 mm dimensions. Product page indicates smoke/haze operation dependencies.", "source_urls": ["https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/g300/g300-technical-specification/", "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/g300/le-maitre-smoke-machine-comparison-breakdown1/"]},
-    "dimensions": {"width_m": 0.61, "height_m": 0.295, "depth_m": 0.21, "axis_status": "documented", "axis_note": "Manufacturer comparison: 610 x 210 x 295 mm (L x W x H).", "reference_pose": "Base level; outlet forward."},
+    "data": {"protocols": ["optional DMX remote (2 channels)", "manual/timer remote"], "power": "2200 W at 230 V", "weight": "22.7 kg (50 lb)", "notable": "Comparison confirms mass 50 lb (22.7 kg), optional external 2-channel DMX remote, and 10.5 x 11.5 x 24 in dimensions; these are consistent within rounding with the product page's 610 x 290 x 260 mm L x W x H.", "source_urls": ["https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/g300/", "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/g300/le-maitre-smoke-machine-comparison-breakdown1/"]},
+    "dimensions": {"width_m": 0.61, "height_m": 0.26, "depth_m": 0.29, "axis_status": "documented", "axis_note": "Manufacturer product page specifies 610 x 290 x 260 mm (L x W x H); comparison gives 10.5 x 11.5 x 24 in, consistent within inch/mm rounding. Mapped to width x height x depth: 610 x 260 x 290 mm.", "reference_pose": "Base level; outlet forward."},
     "modeling": {"family": "fogger", "lens_count": 0, "body_style": "large rectangular smoke machine", "notes": "No optical emitter. Distinguish from G300-Smart due to built-in network/DMX differences."},
-    "evidence": [{"url": "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/g300/g300-technical-specification/", "title": "Le Maitre G300 technical specification", "locator": "Product specifications", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/g300/le-maitre-smoke-machine-comparison-breakdown1/", "title": "Le Maitre smoke-machine comparison", "locator": "G300 control, dimensions and weight", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
-    "acquisition_errors": ["Primary-source standalone dimension drawing not extracted."]
+    "evidence": [{"url": "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/g300/", "title": "Le Maitre G300 product page", "locator": "Size 610 x 290 x 260 mm and product specifications", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/g300/le-maitre-smoke-machine-comparison-breakdown1/", "title": "Le Maitre smoke-machine comparison", "locator": "G300 control, dimensions and weight", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
+    "acquisition_errors": []
   },
   {
     "expansion_batch": 3,
