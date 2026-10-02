@@ -4,6 +4,15 @@ import VenueVolumeCore
 
 enum AimMethod: String, CaseIterable { case head = "Aim head (preview)", mount = "Aim mount" }
 enum ScenePick: Equatable { case move(UUID), aim(UUID, AimMethod) }
+enum FixtureTransformMode: String, CaseIterable, Identifiable { case move = "Move", rotate = "Rotate"; var id: String { rawValue } }
+private struct FixtureTransformDrag {
+    var fixture: Fixture
+    var axis: FixtureAxis
+    var mode: FixtureTransformMode
+    var start: SIMD3<Float>
+    var lastAngle: Float?
+    var totalAngle: Float = 0
+}
 struct RoomRequest { var room: LibraryRoom; var setup: VenueSetup?; var blank: Bool }
 
 @MainActor @Observable
@@ -62,13 +71,20 @@ final class VenueModel {
     var whiteRoom = true { didSet { queueHistoryEdit("Change room materials") } }
     var scenePick: ScenePick?
     var lastTarget: Position3D?
+    private(set) var pendingTarget: Position3D?
+    private(set) var targetPreview: Fixture?
+    var canSaveTarget: Bool { isRetargeting && targetPreview != nil && pendingTarget != nil }
+    var gizmoVisible = false
+    var transformMode = FixtureTransformMode.rotate
+    private var transformDrag: FixtureTransformDrag?
+    var isTransformDragging: Bool { transformDrag != nil }
     var isRetargeting: Bool { if case .aim = scenePick { true } else { false } }
     var isPickingRoom: Bool { isPlacing || scenePick != nil }
     var pickingInstruction: String {
         switch scenePick {
         case .move: "Look at a clear floor or tabletop, then pinch to reposition."
-        case .aim(_, .head): "Look at a point on the room, then pinch to aim the head."
-        case .aim(_, .mount): "Look at a point on the room, then pinch to aim the mount."
+        case .aim(_, .head): "Look and click to preview head aim. Hold the pinch/click and move your hand to adjust, then Save or Cancel."
+        case .aim(_, .mount): "Look and click to preview mount aim. Hold the pinch/click and move your hand to adjust, then Save or Cancel."
         case nil: "Look at a clear floor or tabletop, then pinch to place."
         }
     }
@@ -207,6 +223,7 @@ final class VenueModel {
             if arguments.contains("--fixture-near") { fixtures[0].position = .init(x: 2.66, y: 0, z: -2.3); fixtures[0].surfaceID = "floor" }
             if arguments.contains("--position-tab") { controlsTab = 1 }
             if arguments.contains("--rooms-tab") { toolboxTab = 1 }
+            if arguments.contains("--scene-overview") { selectedID = nil; expandedID = nil }
             if arguments.contains("--show-recents") {
                 record(.fixture(fixtures[0].id)); record(.preset(look.id))
             }
@@ -298,17 +315,29 @@ final class VenueModel {
 
     func select(_ id: UUID, expand: Bool = false) {
         guard !libraryBusy else { return }
+        endTransformDrag()
         beginHistoryAction(expand ? "Toggle fixture info" : "Select fixture"); defer { endHistoryAction() }
         guard fixture(id) != nil else { return }
         if selectedID != id { expandedID = nil; lastTarget = nil }
-        scenePick = nil
+        cancelPicking()
         selectedID = id
+        toolboxTab = 0
         recent.use(.fixture(id))
         isPlacing = false
         if expand { expandedID = expandedID == id ? nil : id }
     }
 
+    func deselect() {
+        guard !libraryBusy else { return }
+        endTransformDrag()
+        beginHistoryAction("Deselect fixture"); defer { endHistoryAction() }
+        cancelPicking(); selectedID = nil; expandedID = nil; lastTarget = nil
+        gizmoVisible = false; previewDraft = false
+    }
+
     func beginPlacement() {
+        endTransformDrag(); gizmoVisible = false
+        targetPreview = nil; pendingTarget = nil
         scenePick = nil
         isPlacing.toggle()
         expandedID = nil
@@ -317,6 +346,7 @@ final class VenueModel {
     }
 
     func beginFixtureDrag(_ kind: FixtureKind) {
+        endTransformDrag(); gizmoVisible = false; cancelPicking()
         fixtureKind = kind; draggingFixture = kind; isPlacing = true; scenePick = nil
         dragLease?.cancel()
         dragLease = Task { [weak self] in
@@ -435,7 +465,16 @@ final class VenueModel {
     }
 
     func renderedChannels(for fixture: Fixture) -> [Int] {
-        previewDraft && selectedID == fixture.id ? presetDraft.channels : fixture.channels
+        if targetPreview?.id == fixture.id { return renderedFixture(fixture).channels }
+        return previewDraft && selectedID == fixture.id ? presetDraft.channels : fixture.channels
+    }
+
+    func renderedFixture(_ fixture: Fixture) -> Fixture {
+        guard let preview = targetPreview, preview.id == fixture.id, case .aim(_, let method) = scenePick else { return fixture }
+        var current = fixture
+        if method == .head { current.aimOverride = preview.aimOverride; current.preserveAimOverride() }
+        else { current.orientation = preview.orientation; current.surfaceID = nil }
+        return current
     }
 
     /// Direct preview articulation belongs to this placed fixture, not its shared preset.
@@ -452,6 +491,7 @@ final class VenueModel {
         candidate.aimOverride = .init(pan: pan, tilt: tilt)
         candidate.preserveAimOverride()
         guard candidate != fixtures[index], candidate.validationIssue(among: fixtures) == nil else { return }
+        cancelPicking()
         fixtures[index] = candidate
         previewDraft = false
         lastTarget = nil
@@ -476,6 +516,7 @@ final class VenueModel {
         candidate.orientation = FixtureAiming.euler(yaw: yaw, pitch: pitch, roll: roll)
         candidate.surfaceID = nil
         guard candidate != fixtures[index] else { return }
+        cancelPicking()
         fixtures[index] = candidate
         lastTarget = nil
         revision += 1; persist(); message = nil
@@ -486,6 +527,7 @@ final class VenueModel {
     func beginRetarget(_ id: UUID, method: AimMethod) {
         guard canPlace, fixture(id)?.assetID == LightingPreview.assetID else { return }
         select(id)
+        gizmoVisible = false
         previewDraft = false
         scenePick = .aim(id, method)
         lastTarget = nil
@@ -495,17 +537,20 @@ final class VenueModel {
     func beginReposition(_ id: UUID) {
         guard canPlace, fixture(id) != nil else { return }
         select(id)
+        gizmoVisible = false
         scenePick = .move(id)
         previewDraft = false
         lastTarget = nil
         message = nil
     }
 
-    func cancelPicking() { scenePick = nil; isPlacing = false; draggingFixture = nil; message = nil }
+    func cancelPicking() {
+        scenePick = nil; targetPreview = nil; pendingTarget = nil
+        isPlacing = false; draggingFixture = nil; message = nil
+    }
 
     @discardableResult func acceptTarget(_ target: Position3D) -> Bool {
         guard !libraryBusy else { return false }
-        beginHistoryAction("Retarget fixture"); defer { endHistoryAction() }
         guard canPlace, case .aim(let id, let method) = scenePick,
               let index = fixtures.firstIndex(where: { $0.id == id }) else { return false }
         var candidate = fixtures[index]
@@ -520,13 +565,80 @@ final class VenueModel {
                 candidate.surfaceID = nil
             }
             if let issue = candidate.validationIssue(among: fixtures) { throw PresetError(issue) }
-            fixtures[index] = candidate
-            lastTarget = target
-            scenePick = nil
-            revision += 1; persist()
-            message = method == .head ? "Head retargeted · pan/tilt override saved for this fixture." : "Mount retargeted · DMX values unchanged."
+            targetPreview = candidate; pendingTarget = target
+            message = "Previewing \(method == .head ? "head" : "mount") aim · Save to keep this target, or Cancel to restore."
             return true
-        } catch { message = error.localizedDescription; return false }
+        } catch {
+            targetPreview = nil; pendingTarget = nil
+            message = error.localizedDescription; return false
+        }
+    }
+
+    @discardableResult func saveTarget() -> Bool {
+        guard !libraryBusy, canPlace, case .aim(let id, let method) = scenePick,
+              let target = pendingTarget else { return false }
+        // Re-solve against current committed values: a preset may have been saved
+        // while this dialogue was open. Never publish a stale preview snapshot.
+        guard acceptTarget(target), let candidate = targetPreview, candidate.id == id,
+              let index = fixtures.firstIndex(where: { $0.id == id }), candidate.validationIssue(among: fixtures) == nil else { return false }
+        beginHistoryAction("Retarget fixture"); defer { endHistoryAction() }
+        fixtures[index] = candidate; lastTarget = target
+        cancelPicking(); revision += 1; persist()
+        message = method == .head ? "Head retargeted · pan/tilt override saved for this fixture." : "Mount retargeted · DMX values unchanged."
+        return true
+    }
+
+    func beginTransform(_ id: UUID) {
+        guard canPlace, fixture(id) != nil else { return }
+        select(id); gizmoVisible = true; previewDraft = false
+    }
+
+    @discardableResult func updateFixtureDetails(_ id: UUID, name: String, universe: Int, address: Int) -> Bool {
+        guard !libraryBusy, let i = fixtures.firstIndex(where: { $0.id == id }) else { return false }
+        var candidate = fixtures[i]
+        candidate.name = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        candidate.universe = universe; candidate.startAddress = address
+        if let issue = candidate.validationIssue(among: fixtures) { message = issue; return false }
+        endTransformDrag()
+        beginHistoryAction("Edit fixture details"); defer { endHistoryAction() }
+        cancelPicking(); fixtures[i] = candidate; revision += 1; persist()
+        message = "Saved item details."
+        return true
+    }
+
+    func beginTransformDrag(axis: FixtureAxis, mode: FixtureTransformMode, at point: SIMD3<Float>) {
+        guard canPlace, gizmoVisible, transformDrag == nil, let id = selectedID, let fixture = fixture(id) else { return }
+        let center = FixtureAiming.vector(fixture.position) + [0, fixture.assetID == nil ? 0 : LightingPreview.height/2, 0]
+        let angle = axis.angle(at: point, about: center)
+        guard mode == .move || angle != nil else { return }
+        cancelPicking(); previewDraft = false
+        beginHistoryAction("\(mode.rawValue) fixture · \(axis.rawValue.uppercased()) axis")
+        transformDrag = .init(fixture: fixture, axis: axis, mode: mode, start: point, lastAngle: angle)
+    }
+
+    func updateTransformDrag(to point: SIMD3<Float>) {
+        guard var drag = transformDrag, point.x.isFinite, point.y.isFinite, point.z.isFinite,
+              selectedID == drag.fixture.id, let i = fixtures.firstIndex(where: { $0.id == drag.fixture.id }), let environment else { return }
+        var candidate = drag.fixture
+        if drag.mode == .move {
+            var position = FixtureAiming.vector(candidate.position)
+            position[drag.axis.index] += point[drag.axis.index]-drag.start[drag.axis.index]
+            candidate.position = .init(x: position.x, y: position.y, z: position.z)
+            if let issue = LightingPreview.placementIssue(candidate.position, in: environment) { message = issue; return }
+        } else {
+            let center = FixtureAiming.vector(candidate.position) + [0, candidate.assetID == nil ? 0 : LightingPreview.height/2, 0]
+            guard let next = drag.axis.angle(at: point, about: center), let previous = drag.lastAngle else { return }
+            drag.totalAngle += FixtureAiming.angleDelta(from: previous, to: next); drag.lastAngle = next
+            candidate.orientation = FixtureAiming.rotatedMount(candidate.orientation, around: drag.axis, radians: drag.totalAngle)
+        }
+        transformDrag = drag; candidate.surfaceID = nil
+        guard candidate != fixtures[i], candidate.validationIssue(among: fixtures) == nil else { return }
+        fixtures[i] = candidate; lastTarget = nil; revision += 1; persist(); message = nil
+    }
+
+    func endTransformDrag() {
+        guard transformDrag != nil else { return }
+        transformDrag = nil; endHistoryAction()
     }
 
     func reposition(at hit: Position3D, surfaceID: String) {
@@ -560,6 +672,7 @@ final class VenueModel {
         guard !libraryBusy else { return }
         beginHistoryAction("Reset fixture aim"); defer { endHistoryAction() }
         guard let index = fixtures.firstIndex(where: { $0.id == id }), fixtures[index].aimOverride != nil else { return }
+        cancelPicking()
         let saved = presets.first(where: { $0.id == fixtures[index].presetID })
         fixtures[index].aimOverride = nil
         for channel in 4...5 {
@@ -590,15 +703,25 @@ final class VenueModel {
 
     func remove(_ id: UUID) {
         guard !libraryBusy else { return }
+        endTransformDrag()
         beginHistoryAction("Delete fixture"); defer { endHistoryAction() }
         guard fixtures.contains(where: { $0.id == id }) else { return }
         fixtures.removeAll { $0.id == id }
-        scenePick = nil; lastTarget = nil
+        cancelPicking(); lastTarget = nil
         recent.remove(.fixture(id))
-        if selectedID == id { selectedID = nil }
+        if selectedID == id { selectedID = nil; gizmoVisible = false }
         if expandedID == id { expandedID = nil }
         revision += 1
         persist()
+    }
+
+    func clearScene() {
+        guard !libraryBusy, !fixtures.isEmpty else { return }
+        endTransformDrag()
+        beginHistoryAction("Clear scene fixtures"); defer { endHistoryAction() }
+        cancelPicking(); fixtures = []; selectedID = nil; expandedID = nil
+        gizmoVisible = false; lastTarget = nil; previewDraft = false; recent = RecentItems()
+        revision += 1; persist()
     }
 
     func sync() async {
@@ -659,6 +782,7 @@ final class VenueModel {
     }
 
     func requestRoom(_ room: LibraryRoom, setup: VenueSetup? = nil, blank: Bool = true) {
+        endTransformDrag(); gizmoVisible = false
         guard !libraryBusy else { return }
         flushHistoryEdits()
         do { if let setup { try setup.validate(room: room) } }
@@ -781,6 +905,7 @@ extension VenueModel {
     }
 
     func finishHistoryGesture() {
+        endTransformDrag()
         if actionDepth > 0 { actionDepth = 1; endHistoryAction() }
     }
 
@@ -798,7 +923,7 @@ extension VenueModel {
     private func applyHistoryState(_ state: VenueAuditState) {
         restoringHistory = true
         defer { restoringHistory = false }
-        cancelPicking(); endPresetDrag(); lastTarget = nil; recent = RecentItems()
+        cancelPicking(); endPresetDrag(); gizmoVisible = false; lastTarget = nil; recent = RecentItems()
         rooms = state.rooms; savedSetups = state.setups
         environment = state.rooms.first { $0.id == state.roomID }!.manifest
         fixtures = state.fixtures; presets = state.presets; presetDraft = state.draft; editingPresetID = state.editingPresetID

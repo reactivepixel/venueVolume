@@ -17,14 +17,9 @@ struct PresetEditorView: View {
             Divider()
             VStack(alignment: .leading, spacing: 18) {
                 navigation
-                @Bindable var model = model
-                Picker("Controls", selection: $model.controlsTab) {
-                    Text("DMX preset").tag(0)
-                    Text("Fixture position").tag(1)
-                }.pickerStyle(.segmented)
                 HistoryControls()
-                if model.controlsTab == 0 { editor; footer }
-                else { FixturePlacementView().frame(maxHeight: .infinity) }
+                editor
+                footer
             }.padding(28).frame(maxWidth: .infinity)
         }.frame(width: 1040, height: 820)
         .disabled(model.libraryBusy)
@@ -78,7 +73,7 @@ struct PresetEditorView: View {
 
     private var navigation: some View {
         HStack {
-            Label("Fixture controls", systemImage: "slider.horizontal.3").font(.title2.weight(.semibold))
+            Label("Preset editor", systemImage: "slider.horizontal.3").font(.title2.weight(.semibold))
             Spacer()
             Button { adjacent(-1) } label: { Image(systemName: "chevron.left") }
                 .disabled(adjacentID(-1) == nil).accessibilityLabel("Previous preset")

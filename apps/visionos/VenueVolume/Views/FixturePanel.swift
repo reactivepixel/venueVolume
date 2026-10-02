@@ -38,7 +38,8 @@ struct FixturePanel: View {
                 model.openPreset(fixture.presetID)
                 model.record(.presets)
                 openWindow(id: "presets")
-            } label: { Label("Open fixture controls", systemImage: "slider.horizontal.3") }
+                model.controlsTab = 0
+            } label: { Label(fixture.presetID == nil ? "Choose or create preset" : "Edit assigned preset", systemImage: "slider.horizontal.3") }
             Text("Drag a preset from the toolbox onto this fixture to apply it.")
                 .font(.caption).foregroundStyle(.secondary)
         }.font(.callout)

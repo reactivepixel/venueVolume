@@ -55,31 +55,11 @@ struct ToolboxView: View {
                             section("Presets · drag onto a fixture")
                             ForEach(model.presets) { preset in item(.preset(preset.id)) }
                             if model.presets.isEmpty { Text("Create a preset in the preset editor.").font(.caption).foregroundStyle(.secondary) }
-                            section("Objects · \(model.fixtures.count)")
-                            ForEach(model.fixtures) { fixture in item(.fixture(fixture.id)) }
-                            if model.fixtures.isEmpty { Text("Place your first fixture using Add fixture.").font(.caption).foregroundStyle(.secondary) }
                         }.padding(.trailing, 6)
                     }
                 }.frame(maxWidth: .infinity, alignment: .leading)
                 Divider()
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("RECENT · \(model.recent.items.count)/10").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
-                    if model.recent.items.isEmpty {
-                        VStack(alignment: .leading, spacing: 16) {
-                            Image(systemName: "hand.draw").font(.system(size: 30)).foregroundStyle(.cyan)
-                            Text("Use the toolbox").font(.title3.weight(.semibold))
-                            Text("Raise your left palm to reveal the toolbox. Choose an action, select an object, or drag a preset onto a fixture.")
-                            Text("Your ten most recently used items will appear here.").foregroundStyle(.secondary)
-                        }.font(.callout).padding(.top, 24)
-                    } else {
-                        ScrollView {
-                            VStack(spacing: 8) {
-                                ForEach(model.recent.items, id: \.self) { item($0) }
-                            }.padding(.trailing, 6)
-                        }
-                    }
-                    Spacer(minLength: 0)
-                }.frame(maxWidth: .infinity, alignment: .leading)
+                SceneSelectionPane().frame(maxWidth: .infinity, alignment: .leading)
             }.frame(height: 410)
             }
             Divider()
@@ -146,7 +126,7 @@ struct ToolboxView: View {
             }.buttonStyle(.plain).disabled(!model.canPlace && !model.isPlacing)
         case .presets:
             Button { model.record(.presets); openWindow(id: "presets") } label: {
-                row("Fixture controls", subtitle: "Position, aim & edit presets", icon: "square.stack.3d.up")
+                row("Preset editor", subtitle: "Create and edit saved DMX presets", icon: "slider.horizontal.3")
             }.buttonStyle(.plain)
         case .sync:
             Button { Task { await model.sync() } } label: {

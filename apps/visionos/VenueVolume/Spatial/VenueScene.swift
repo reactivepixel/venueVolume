@@ -15,6 +15,7 @@ final class VenueScene {
     private var displayedWhiteRoom: Bool?
     private var fixtureTemplate: Entity?
     private var rigs: [UUID: FixtureRig] = [:]
+    private let transformGizmo = FixtureTransformGizmo()
     let headAnchor = AnchorEntity(.head, trackingMode: .continuous)
     private let repository: (any EnvironmentRepository)?
     private let environmentID: String
@@ -114,6 +115,14 @@ final class VenueScene {
             root.children.removeAll(); cubes.removeAll(); rigs.removeAll(); labels.removeAll(); drops.removeAll()
             aligned = false; root.transform = Transform(); root.isEnabled = false
             root.addChild(room); proxies.forEach { root.addChild($0) }
+            let background = Entity()
+            background.name = "scene-background"
+            background.position = SIMD3(resolved.manifest.bounds.min[0]+resolved.manifest.bounds.max[0],
+                                        resolved.manifest.bounds.min[1]+resolved.manifest.bounds.max[1],
+                                        resolved.manifest.bounds.min[2]+resolved.manifest.bounds.max[2]) / 2
+            background.components.set(CollisionComponent(shapes: [.generateSphere(radius: 40)]))
+            background.components.set(InputTargetComponent(allowedInputTypes: [.indirect]))
+            root.addChild(background)
             roomMaterials = newMaterials; displayedWhiteRoom = nil; fixtureTemplate = template
             model.scannedMesh = scan
             // Imported opaque PBR meshes receive dynamic light and write depth.
@@ -144,7 +153,13 @@ final class VenueScene {
 
     func handleTap(entity: Entity, position: SIMD3<Float>, model: VenueModel) {
         let point = Position3D(x: position.x, y: position.y, z: position.z)
-        if entity.name.hasPrefix("aim-surface:"), model.isRetargeting {
+        if !model.isPickingRoom {
+            if FixtureTransformGizmo.handle(entity) != nil { return }
+            if let id = UUID(uuidString: entity.name) { model.select(id) }
+            else if entity.name.hasPrefix("aim-surface:") || entity.name.hasPrefix("room-collider:") || entity.name == "scene-background" {
+                model.deselect()
+            }
+        } else if entity.name.hasPrefix("aim-surface:"), model.isRetargeting {
             _ = model.acceptTarget(point)
         } else if entity.name.hasPrefix("aim-surface:"), model.scannedMesh != nil, model.isPlacing {
             model.placeOnMesh(at: point)
@@ -154,9 +169,20 @@ final class VenueScene {
             let id = String(entity.name.dropFirst("room-collider:".count))
             if model.isPlacing { model.place(at: position, surfaceID: id) }
             else if model.scenePick != nil { model.reposition(at: point, surfaceID: id) }
-        } else if !model.isPickingRoom, let id = UUID(uuidString: entity.name) {
-            model.select(id)
         }
+    }
+
+    func handleDrag(entity: Entity, position: SIMD3<Float>, start: SIMD3<Float>, model: VenueModel) -> Bool {
+        if model.isRetargeting && entity.name.hasPrefix("aim-surface:") {
+            _ = model.acceptTarget(.init(x: position.x, y: position.y, z: position.z))
+            return true
+        }
+        if let (axis, mode) = FixtureTransformGizmo.handle(entity), model.gizmoVisible {
+            if !model.isTransformDragging { model.beginTransformDrag(axis: axis, mode: mode, at: start) }
+            model.updateTransformDrag(to: position)
+            return true
+        }
+        return false
     }
 
     private func rememberMaterials(_ entity: Entity) {
@@ -189,18 +215,23 @@ final class VenueScene {
         toolbox?.isEnabled = model.toolboxVisible
         if let hud = attachments.entity(for: "targeting") {
             if hud.parent == nil { hud.position = [0, -0.42, -1.2]; headAnchor.addChild(hud) }
-            hud.isEnabled = model.isPickingRoom
+            hud.isEnabled = model.isPickingRoom || (model.gizmoVisible && model.selectedID != nil)
         }
         if targetMarker.parent == nil { root.addChild(targetMarker) }
         targetMarker.components.set(DynamicLightShadowComponent(castsShadow: false))
-        targetMarker.isEnabled = model.lastTarget != nil
-        if let target = model.lastTarget { targetMarker.position = FixtureAiming.vector(target) }
+        let marker = model.pendingTarget ?? model.lastTarget
+        targetMarker.isEnabled = marker != nil
+        if let target = marker { targetMarker.position = FixtureAiming.vector(target) }
         for (entity, _) in roomMaterials {
-            entity.components.set(InputTargetComponent(allowedInputTypes: model.isRetargeting || (model.scannedMesh != nil && model.isPickingRoom) ? [.indirect] : []))
+            entity.components.set(InputTargetComponent(allowedInputTypes: !model.isPickingRoom || model.isRetargeting || (model.scannedMesh != nil && model.isPickingRoom) ? [.indirect] : []))
         }
         for child in root.children where child.name.hasPrefix("room-collider:") {
             child.components.set(InputTargetComponent(allowedInputTypes: model.isRetargeting || model.scannedMesh != nil ? [] : [.indirect]))
         }
+        root.findEntity(named: "scene-background")?.components.set(InputTargetComponent(allowedInputTypes: model.isPickingRoom ? [] : [.indirect]))
+        if transformGizmo.entity.parent == nil { root.addChild(transformGizmo.entity) }
+        transformGizmo.update(fixture: model.selectedID.flatMap { model.fixture($0) },
+                              visible: model.gizmoVisible && !model.isPickingRoom, mode: model.transformMode)
         for surface in model.environment?.surfaces ?? [] {
             if let zone = attachments.entity(for: "surface-drop-\(surface.id)") {
                 if zone.parent == nil { root.addChild(zone) }
@@ -240,7 +271,8 @@ final class VenueScene {
             drops.removeValue(forKey: id)?.removeFromParent()
         }
         for fixture in model.fixtures {
-            let position = SIMD3<Float>(fixture.position.x, fixture.position.y, fixture.position.z)
+            let displayed = model.renderedFixture(fixture)
+            let position = FixtureAiming.vector(displayed.position)
             let selected = model.selectedID == fixture.id
             if fixture.assetID == LightingPreview.assetID, let template = fixtureTemplate {
                 if rigs[fixture.id] == nil {
@@ -249,8 +281,9 @@ final class VenueScene {
                         rigs[fixture.id] = rig; root.addChild(rig.entity)
                     } catch { model.message = error.localizedDescription }
                 }
-                rigs[fixture.id]?.update(fixture: fixture, channels: model.renderedChannels(for: fixture),
-                                         selected: selected, blackout: model.blackout, placing: model.isPickingRoom)
+                rigs[fixture.id]?.update(fixture: displayed, channels: model.renderedChannels(for: fixture),
+                                         selected: selected, blackout: model.blackout, placing: model.isPickingRoom,
+                                         interactive: model.isTransformDragging)
             } else {
                 let cube = cubes[fixture.id] ?? Self.makeCube(id: fixture.id)
                 if cube.parent == nil { root.addChild(cube); cubes[fixture.id] = cube }

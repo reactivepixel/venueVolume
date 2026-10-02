@@ -22,8 +22,10 @@
 		8FC4C74944432D3BD74698FB /* RoomLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9926915861960E1C383B16B3 /* RoomLibraryView.swift */; };
 		9BB968DBAB077D17CF8A74FA /* VenueVolumeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 9F29BE575556521651280192 /* VenueVolumeCore */; };
 		A3AD2D01A086CDCF6D63E473 /* VenueVolumeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC612EAB7EDA7D85628811 /* VenueVolumeApp.swift */; };
+		AD8C275DDC1945BB1092CD89 /* FixtureInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36264B9671A4D573E153004E /* FixtureInspector.swift */; };
 		BA725057435FA665998EB8E4 /* RoomAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3055105B38C0B40683E01E33 /* RoomAssets.swift */; };
 		BAC9DE14B1CA468B200F1B78 /* FixtureAssets in Resources */ = {isa = PBXBuildFile; fileRef = 5F8F6E6D8005604A5816EC4B /* FixtureAssets */; };
+		BB110DD60C104F77B97D2B11 /* FixtureTransformGizmo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9DEE749A32406F9D8E6E18 /* FixtureTransformGizmo.swift */; };
 		C772781690B63BEBAEA67657 /* PresetEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DE72BEDB41CF8A53707C9C /* PresetEditorView.swift */; };
 		C798C5ECB6528BF8CEEC25B7 /* VenueSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6480D9EF8B26C0AD2C6F7 /* VenueSpaceView.swift */; };
 		DF7F226A13D50185AD29409F /* FixturePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAD85CBEF3AD8C985E74BDC /* FixturePanel.swift */; };
@@ -39,8 +41,10 @@
 		3055105B38C0B40683E01E33 /* RoomAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAssets.swift; sourceTree = "<group>"; };
 		31D6480D9EF8B26C0AD2C6F7 /* VenueSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueSpaceView.swift; sourceTree = "<group>"; };
 		35673AE49B168A54E86ACC38 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		36264B9671A4D573E153004E /* FixtureInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureInspector.swift; sourceTree = "<group>"; };
 		4C2ADB8E13E6149392D53533 /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = Core; sourceTree = SOURCE_ROOT; };
 		5F8F6E6D8005604A5816EC4B /* FixtureAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FixtureAssets; path = VenueVolume/FixtureAssets; sourceTree = SOURCE_ROOT; };
+		6C9DEE749A32406F9D8E6E18 /* FixtureTransformGizmo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureTransformGizmo.swift; sourceTree = "<group>"; };
 		6DCC5AEC820ED40A582D3DE4 /* AuditHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditHistoryView.swift; sourceTree = "<group>"; };
 		7173CF5099A0437DFF8633DD /* RoomLibrarySmoke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomLibrarySmoke.swift; sourceTree = "<group>"; };
 		939A243D42757B95897B46BF /* RoomScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomScanner.swift; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				9C8A9C441DF185E732E8E41E /* FixtureRig.swift */,
+				6C9DEE749A32406F9D8E6E18 /* FixtureTransformGizmo.swift */,
 				3055105B38C0B40683E01E33 /* RoomAssets.swift */,
 				7173CF5099A0437DFF8633DD /* RoomLibrarySmoke.swift */,
 				939A243D42757B95897B46BF /* RoomScanner.swift */,
@@ -134,6 +139,7 @@
 			children = (
 				6DCC5AEC820ED40A582D3DE4 /* AuditHistoryView.swift */,
 				F58C9AC408DE096B035A72DE /* DebugPanel.swift */,
+				36264B9671A4D573E153004E /* FixtureInspector.swift */,
 				00372CBAA7C8480C7AC8437A /* FixtureLabel.swift */,
 				CDAD85CBEF3AD8C985E74BDC /* FixturePanel.swift */,
 				AD38AEB3AC858868B97CE99D /* FixturePlacementView.swift */,
@@ -224,10 +230,12 @@
 			files = (
 				31168DE9ABBE06BB43C628B8 /* AuditHistoryView.swift in Sources */,
 				401DB4EDFCC193C6117F2594 /* DebugPanel.swift in Sources */,
+				AD8C275DDC1945BB1092CD89 /* FixtureInspector.swift in Sources */,
 				2783645E3DCA12EDFCFABF73 /* FixtureLabel.swift in Sources */,
 				DF7F226A13D50185AD29409F /* FixturePanel.swift in Sources */,
 				E8C47E05F9704B18695FC303 /* FixturePlacementView.swift in Sources */,
 				4073CEA2DD7557680EFADB2B /* FixtureRig.swift in Sources */,
+				BB110DD60C104F77B97D2B11 /* FixtureTransformGizmo.swift in Sources */,
 				2B78E9F222443AE2BBD9F507 /* LaunchView.swift in Sources */,
 				C772781690B63BEBAEA67657 /* PresetEditorView.swift in Sources */,
 				BA725057435FA665998EB8E4 /* RoomAssets.swift in Sources */,

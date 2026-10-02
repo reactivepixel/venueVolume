@@ -20,6 +20,10 @@ struct VenueVolumeApp: App {
         .windowResizability(.contentSize)
         .defaultSize(width: 1040, height: 740)
 
+        WindowGroup(id: "fixture-editor") { FixtureEditorView().environment(model) }
+            .windowResizability(.contentSize)
+            .defaultSize(width: 620, height: 760)
+
         WindowGroup(id: "diagnostics") {
             DebugPanel().environment(model)
         }
