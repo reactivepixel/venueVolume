@@ -1,0 +1,164 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "look-solutions/unique-2-1",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Look Solutions",
+      "model": "Unique 2.1",
+      "variant": "Unique 2.1",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.looksolutions.com/products/unique_2_1/8.html",
+        "title": "Unique 2.1 product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": "current page; Info Unique 2.1",
+        "locator": "Technical data: DMX/analog control, dimensions, power and canister mass",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.looksolutions.com/uploads/pdf/en_fr/info_unique21_e.pdf",
+        "title": "Info Unique 2.1",
+        "kind": "manufacturer_drawing",
+        "accessed_at": "2026-10-02",
+        "document_revision": "official information sheet",
+        "locator": "Technical specification and dimensional diagram, 47 × 25 × 25 cm",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.looksolutions.com/uploads/produkte/Unique2-1-Side.jpg",
+        "title": "Unique 2.1 product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "b57106f9ccd114521081a9bf08ec2b75e421934a04f47cdb307424420865d931"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.25,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 470/250/250 mm; no flight case included."
+      },
+      "height": {
+        "value": 0.25,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 470/250/250 mm; no flight case included."
+      },
+      "depth": {
+        "value": 0.47,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 470/250/250 mm; no flight case included."
+      },
+      "reference_pose": "Machine resting on feet with outlet panel facing forward; optional hanging set, diverter and flight case excluded."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "1500 W haze generator; 2 L tank; internal 6000 L/min fan; pump and fan adjustable separately; DMX standard.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "1500 W",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "14 kg including canister",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "0–10 V analog",
+            "standalone",
+            "internal timer"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Machine resting on feet with outlet panel facing forward; optional hanging set, diverter and flight case excluded.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer L/W/H = 470/250/250 mm; no flight case included.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "e00d009a6a2c46b54cff4bcc687c068561a7beb9e7623dbc9af2dfe6c5ae8d5f"
+  },
+  "git_commit": "b54cf066890555aa4729a81cee9400883a874af3",
+  "note": "Initial research record before any generated model artifacts existed."
+}

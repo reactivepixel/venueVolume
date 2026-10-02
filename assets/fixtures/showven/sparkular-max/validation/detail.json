@@ -1,0 +1,59 @@
+{
+  "mesh_count": 208,
+  "triangle_count": 38144,
+  "geometry_sha256": "27d63f1878269ce7427d588c53458daf4b0e2558e4691a7bc73e4db8051a1f88",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.07819148898124695,
+      0.3313152492046356,
+      -0.09010308235883713
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        -0.0
+      ]
+    },
+    {
+      "name": "output",
+      "prim_path": "/Fixture/Output",
+      "pivot_m": [
+        0.07819148898124695,
+        0.32800206542015076,
+        -0.09010308235883713
+      ]
+    }
+  ],
+  "family": "spark",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9798431992530823,
+    1.0309277772903442,
+    1.0039855241775513
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.showven.cn/product/sparkular-max/",
+    "https://www.showven.cn/wp-content/uploads/2026/04/21-500x500.png"
+  ]
+}

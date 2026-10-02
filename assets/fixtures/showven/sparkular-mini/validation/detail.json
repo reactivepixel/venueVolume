@@ -1,0 +1,59 @@
+{
+  "mesh_count": 208,
+  "triangle_count": 38144,
+  "geometry_sha256": "473f2fdf118de74bb3626516f5b3e0cf0bf824500c622998a4c1814f1c57b745",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0323047898709774,
+      0.22859756648540497,
+      -0.03290721774101257
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        -0.0
+      ]
+    },
+    {
+      "name": "output",
+      "prim_path": "/Fixture/Output",
+      "pivot_m": [
+        0.0323047898709774,
+        0.226311594247818,
+        -0.03290721774101257
+      ]
+    }
+  ],
+  "family": "spark",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9445844292640686,
+    1.0309278964996338,
+    1.0026209354400635
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.showven.cn/product/sparkular-mini/",
+    "https://www.showven.cn/wp-content/uploads/2019/12/nufhc1W3QiOm5S6MdHjefQ.png_640xa-500x500.png"
+  ]
+}

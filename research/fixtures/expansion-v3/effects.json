@@ -7,12 +7,12 @@
     "type": "special effect",
     "subtype": "dual-aperture RGB laser projector",
     "url": "https://www.chauvetdj.com/products/scorpion-dual-rgb/",
-    "images": [],
+    "images": ["https://www.chauvetdj.com/wp-content/uploads/2018/12/cat-Scorpion-Dual.jpg", "https://www.chauvetdj.com/wp-content/uploads/2018/12/Scorpion-Dual-FRONT.jpg"],
     "data": {"protocols": ["DMX (10-channel mode)", "IR remote (optional IRC-6)", "standalone", "master/slave"], "dmx_channels": [10], "power": "19 W at 230 V; 20 W at 120 V", "weight": "1.7 kg", "notable": "Dual mirror output; RGB diode wavelengths/powers 638 nm/30 mW, 520 nm/20 mW, 450 nm/50 mW; M12 bracket mounting; no ILDA input documented.", "source_urls": ["https://www.chauvetdj.com/products/scorpion-dual-rgb/", "https://www.chauvetdj.com/wp-content/uploads/2019/01/Scorpion_Dual_RGB_UM_Rev5_ML3.pdf"]},
     "dimensions": {"width_m": 0.216, "height_m": 0.1795, "depth_m": 0.161, "axis_status": "documented", "axis_note": "Manual product dimension drawing: 216 mm wide, 179.5 mm high, 161 mm deep; assembled housing on support feet.", "reference_pose": "Base resting on feet; laser apertures forward."},
     "modeling": {"family": "laser", "lens_count": 2, "body_style": "compact rectangular dual-output laser projector", "notes": "Two mirror output apertures are explicitly identified by the manufacturer. Model as laser apparatus; do not add ordinary spotlight emission."},
     "evidence": [{"url": "https://www.chauvetdj.com/products/scorpion-dual-rgb/", "title": "Scorpion Dual RGB product page", "locator": "Specifications: DMX, power, mass, dimensions, laser sources, mount", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}, {"url": "https://www.chauvetdj.com/wp-content/uploads/2019/01/Scorpion_Dual_RGB_UM_Rev5_ML3.pdf", "title": "Scorpion Dual RGB User Manual Rev. 5", "locator": "Product dimensions drawing, p. 6; product overview, p. 5", "accessed_at": "2026-10-02", "source_kind": "manufacturer_manual"}],
-    "acquisition_errors": ["Manufacturer gallery URL previously listed as a still resolves to an effect/pattern image rather than a product-body still; exact body image not confirmed, so image omitted."]
+    "acquisition_errors": []
   },
   {
     "expansion_batch": 3,
@@ -22,7 +22,7 @@
     "type": "special effect",
     "subtype": "dual-aperture green laser projector",
     "url": "https://www.chauvetdj.com/products/scorpion-dual/",
-    "images": ["https://www.chauvetdj.com/wp-content/uploads/2015/12/gal-Scorpion-Dual-1.jpg"],
+    "images": ["https://www.chauvetdj.com/wp-content/uploads/2015/12/scorpion-dual-cat.jpg"],
     "data": {"protocols": ["DMX (10-channel mode)", "IR remote (optional IRC-6)", "standalone", "master/slave"], "dmx_channels": [10], "power": "19 W at 230 V; 20 W at 120 V", "weight": "2.4 kg", "notable": "Dual mirror output; 532 nm/50 mW green diode; M12 bracket mount; no ILDA input documented.", "source_urls": ["https://www.chauvetdj.com/products/scorpion-dual/"]},
     "dimensions": {"width_m": 0.226, "height_m": 0.205, "depth_m": 0.194, "axis_status": "documented", "axis_note": "Manufacturer page size 226 x 205 x 194 mm; interpreted as W x H x D per product specification order.", "reference_pose": "Assembled housing; base level."},
     "modeling": {"family": "laser", "lens_count": 2, "body_style": "compact rectangular dual-output laser projector", "notes": "Two mirror output apertures per manufacturer description; laser apparatus, not a spotlight."},
@@ -202,9 +202,9 @@
     "images": ["https://www.adj.com/cdn/shop/files/896038a44e707ec22b40e120942f21b101901139_GALAXIAN__IMG__001__16485316a8d9.jpg?v=1776714566&width=418"],
     "data": {"protocols": ["DMX (4 channels)", "sound active", "primary/secondary"], "dmx_channels": [4], "power": "12 W", "weight": "2.8 kg", "notable": "Manufacturer describes over 500 red/green laser beams; this is beam count, not lens count. Includes hanging bracket; discontinued status not established.", "source_urls": ["https://www.adj.com/products/galaxian"]},
     "dimensions": {"width_m": 0.248, "height_m": 0.071, "depth_m": 0.249, "axis_status": "documented", "axis_note": "Manufacturer L x W x H 249 x 248 x 71 mm.", "reference_pose": "Flat housing with hanging bracket attached."},
-    "modeling": {"family": "laser", "lens_count": null, "body_style": "low rectangular laser array with bracket", "notes": "Over 500 projected beams do not establish physical emitter aperture count; leave count unknown."},
+    "modeling": {"family": "laser", "lens_count": 1, "body_style": "low rectangular laser array with bracket", "notes": "Parent visually inspected official IMG001 still: one round front output window. Projected beam count is not an aperture count."},
     "evidence": [{"url": "https://www.adj.com/products/galaxian", "title": "ADJ Galaxian product page", "locator": "Specifications: source, channels, power, dimensions and mass", "accessed_at": "2026-10-02", "source_kind": "manufacturer_product"}],
-    "acquisition_errors": ["Exact aperture count not established from source-backed product imagery/specifications."]
+    "acquisition_errors": ["The listed 71 mm height appears to describe only the housing, while the photo includes a taller hanging bracket; the assembled bracket envelope needs a dimensional drawing."]
   },
   {
     "expansion_batch": 3,

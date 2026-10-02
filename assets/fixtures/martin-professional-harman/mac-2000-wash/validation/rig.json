@@ -1,0 +1,17 @@
+{
+  "id": "martin-professional-harman/mac-2000-wash",
+  "passed": true,
+  "source_usdz_sha256": "eee654d39878cfc5e7948a5bbef8259ebc08fbc3c7a786c8564e46fcf4a12b6e",
+  "joints": 2,
+  "moving_meshes": 26,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

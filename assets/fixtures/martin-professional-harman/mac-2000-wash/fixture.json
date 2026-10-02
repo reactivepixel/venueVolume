@@ -1,0 +1,331 @@
+{
+  "schema_version": 1,
+  "id": "martin-professional-harman/mac-2000-wash",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Martin Professional (HARMAN)",
+    "model": "MAC 2000 Wash",
+    "variant": "MAC 2000 Wash",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.martin.com/en-US/products/mac-2000-wash",
+      "title": "MAC 2000 Wash product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Features and physical specifications; Control and Programming specifies USITT DMX512/1990 protocol",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://adn.harmanpro.com/product_attachments/product_attachments/6139_1728120883/mac-2000-wash_x_large.webp",
+      "title": "MAC 2000 Wash product still",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Official Martin/HARMAN product image",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://adn.harmanpro.com/product_attachments/product_attachments/6139_1728120883/mac-2000-wash_x_large.webp",
+      "title": "MAC 2000 Wash product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.webp",
+      "sha256": "554534b44a7ce1506abf0460829d953504da0557139e5a2e331cdaf9ecb5f5b4"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.49,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Martin physical specification: length 408 mm, width 490 mm, height 750 mm head straight up."
+    },
+    "height": {
+      "value": 0.75,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Martin physical specification: length 408 mm, width 490 mm, height 750 mm head straight up."
+    },
+    "depth": {
+      "value": 0.408,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Martin physical specification: length 408 mm, width 490 mm, height 750 mm head straight up."
+    },
+    "reference_pose": "Assembled, head straight up; base level."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "1200 W short-arc wash; 12.5°–95° beam-angle span, motorized zoom, CMY, dual color wheels and 540°/267° pan/tilt.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {},
+    "mechanical": {
+      "weight": {
+        "value": "34 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "USITT DMX512/1990"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Assembled, head straight up; base level.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.24500000476837158,
+        0.0,
+        -0.20400000584777445
+      ],
+      "max": [
+        0.24500000476837158,
+        0.75,
+        0.20400000142399222
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0002873592311516404
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.11912675201892853,
+          0.0002873592311516404
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.584018886089325,
+          0.0002873592311516404
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.584018886089325,
+          -0.10651248693466187
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.11912675201892853,
+          0.0002873592311516404
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.584018886089325,
+          0.0002873592311516404
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.584018886089325,
+          -0.11056278645992279
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Martin physical specification: length 408 mm, width 490 mm, height 750 mm head straight up.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "9214debd043236dd89b2da67bdeb21d67704c9c839d51aa48a2c6583786963f7"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "eee654d39878cfc5e7948a5bbef8259ebc08fbc3c7a786c8564e46fcf4a12b6e"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "596dce4e469600c918a68a7277aafab7cfa75e88b3ba5fc2cc9af5b0898a4404"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "ed0a0101e832dd141cf381a5dd50469faf9c176beada98853682f3c33fa97f6e"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "b641c4bc84a215c396c4297798685b4afe8d197b7a166eec5508f781af57a31e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "c4ce18d78e1d2cb257e0ec87256b3487be98123e3e4c95abb3fb384988fe011f"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "d1325453a5b1e302995ed6384baa60918b5aefe4ac877848d7d53771c0179fc8"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "e93ce97cb766d0dd17f2c643872b3a3c6238ee3d2d1f2a4968ddd387ac365486"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "3925ca50dc759b26bde848b17b8dc997b952e19a707374a81606d1bef180a8b1"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "3d0f9179dadb4b65a6b32e168372be8913cccbc3d23f810349b218215cfb1bc7"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "eb9c9677615e90551b236380cb0f4e0427f3c417ea10834271d0ce1250bc893b",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 1,
+      "body_style": "large discharge wash moving head",
+      "notes": "Manufacturer lists PC, Fresnel and super-wide lens options as included; micro-Fresnel is optional."
+    },
+    "mesh_count": 73,
+    "triangle_count": 19160,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "0c20786709517f6e8cbd42c958fc2184a16163b6bd8f959c5c1ec6c106600da1",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

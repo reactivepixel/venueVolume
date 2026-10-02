@@ -1,0 +1,69 @@
+{
+  "mesh_count": 71,
+  "triangle_count": 12276,
+  "geometry_sha256": "292f91ba6664b1a39358d8fbe079815471748b85fd904e671f73dc651d531826",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.14812877774238586,
+      -0.22017590701580048
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.1728169173002243,
+        0.024563686922192574
+      ]
+    },
+    {
+      "name": "output",
+      "prim_path": "/Fixture/Output",
+      "pivot_m": [
+        0.0,
+        0.14812877774238586,
+        -0.2017049789428711
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.1728169173002243,
+        0.024563686922192574
+      ]
+    }
+  ],
+  "family": "snow",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.981354296207428,
+    0.9144015908241272,
+    1.0060362815856934
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.antari.com/ProductGuide/2026/2026ProductGuide.pdf",
+    "https://www.antari.com/usermanual/S/S-100X/S-100X.pdf",
+    "https://antari.com/wp-content/uploads/S-200X_01.jpg"
+  ]
+}

@@ -41,14 +41,22 @@ def run(cmd,log,env=None):
 
 def build_one(row,profile,force=False):
     ident=fid(row);folder=ROOT/'assets/fixtures'/ident;rp=folder/'fixture.json';record=json.loads(rp.read_text())
-    builder=BUILDER.with_name({'equipment':'equipment_fixture.py','catalog':'catalog_fixture.py'}.get(profile.get('generator'),BUILDER.name))
+    builder=BUILDER.with_name({'equipment':'equipment_fixture.py','catalog':'catalog_fixture.py','effects':'effects_fixture.py'}.get(profile.get('generator'),BUILDER.name))
     dependency_hash=sha(BUILDER)+(sha(builder) if builder!=BUILDER else '')
+    dependencies=[builder,BUILDER] if builder!=BUILDER else [BUILDER]
+    if profile.get('generator')=='effects':
+        dependencies.append(BUILDER.with_name('equipment_fixture.py'))
+        dependency_hash+=sha(dependencies[-1])
     token=hashlib.sha256((dependency_hash+json.dumps(profile,sort_keys=True)+json.dumps(record['dimensions'],sort_keys=True)).encode()).hexdigest()
-    if record['model'].get('detail_build_token')==token and not force:return ident,'already_current'
+    log=ROOT/'research/fixtures/build-logs'/Path(ident.replace('/','--')+'.log');log.parent.mkdir(exist_ok=True)
+    if record['model'].get('detail_build_token')==token and record['model'].get('reference_pose')==record['dimensions']['reference_pose'] and not force:
+        # A token can have been written before a failed final schema check.
+        # Never turn a cached partial build into a success without revalidation.
+        run([sys.executable,str(LIB),'validate','--root',str(ROOT),str(rp)],log)
+        return ident,'already_current'
     for a in record['model']['artifacts']:
         if sha(folder/a['file'])!=a['sha256']:raise RuntimeError(f'Manual edit preserved; refusing overwrite: {ident}/{a["file"]}')
     spec={'id':ident,**{axis+'_m':record['dimensions'][axis]['value'] for axis in ('width','height','depth')},'profile':profile,'source_urls':[s['url'] for s in record['sources']]}
-    log=ROOT/'research/fixtures/build-logs'/Path(ident.replace('/','--')+'.log');log.parent.mkdir(exist_ok=True)
     old_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     with tempfile.TemporaryDirectory(prefix='vv-detail-') as tmp:
         candidate=Path(tmp);(candidate/'models').mkdir();(candidate/'validation').mkdir()
@@ -64,7 +72,8 @@ def build_one(row,profile,force=False):
         new=copy.deepcopy(record)
         if not prior_is_batch:new['revision']+=1
         new['updated_at']=DATE
-        model=new['model'];model['parts']=detail['parts'];model['emitters']=[detail['emitter']]
+        model=new['model'];model['reference_pose']=new['dimensions']['reference_pose']
+        model['parts']=detail['parts'];model['emitters']=[detail['emitter']]
         output_kind=profile.get('output_kind','light')
         if output_kind!='light':
             model['emitters']=[]
@@ -74,7 +83,7 @@ def build_one(row,profile,force=False):
             piv={p['name']:p['pivot_m'] for p in detail['parts']}
             model['joints']=[{'name':'pan','parent':'base','child':'yoke','pivot_m':piv['yoke'],'axis':[0,1,0],'status':'estimated','limits':None},{'name':'tilt','parent':'yoke','child':'head','pivot_m':piv['head'],'axis':[1,0,0],'status':'estimated','limits':None}]
         model.update({'detail_level':'high','detail_batch':BATCH,'detail_build_token':token,'generator_dependency':{'file':'../../_shared/'+builder.name,'sha256':sha(builder)},'profile':profile,'mesh_count':detail['mesh_count'],'triangle_count':detail['triangle_count'],'authoring_to_runtime':detail['authoring_to_runtime']})
-        if builder!=BUILDER:model['generator_dependencies']=[{'file':'../../_shared/'+p.name,'sha256':sha(p)} for p in (builder,BUILDER)]
+        if builder!=BUILDER:model['generator_dependencies']=[{'file':'../../_shared/'+p.name,'sha256':sha(p)} for p in dependencies]
         model['assumptions']=[s for s in model['assumptions'] if 'articulation joints' not in s and 'Moving components remain' not in s]
         model['assumptions']+=['Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.', 'Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints.']
         model['assumptions']=list(dict.fromkeys(model['assumptions']))

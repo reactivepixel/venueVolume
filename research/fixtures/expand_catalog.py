@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Resumable acquisition/build pipeline; no product is dropped for missing evidence.
 
-Input: reviewed expansion-v2/*.json acquisition arrays. Output: research backlog,
+Input: reviewed expansion-v*/*.json acquisition arrays. Output: research backlog,
 new fixture packages and a per-product event ledger. Publication is a separate step.
 """
 import argparse
@@ -23,23 +23,33 @@ ROOT = Path(__file__).resolve().parents[2]
 ACQUISITION = ROOT/'research/fixtures/expansion-v2'
 LEDGER = ACQUISITION/'pipeline-ledger.json'
 DATE = '2026-10-02'
+BATCHES={'touring-dj-2026-10':ACQUISITION,'legacy-effects-2026-10':ROOT/'research/fixtures/expansion-v3'}
 SUPPORTED = {'moving_spot','moving_wash','batten','strobe','par','profile','fresnel','blinder'} | EQUIPMENT
 
 def candidates():
     found = {}
-    for path in sorted(ACQUISITION.glob('*.json')):
-        data = json.loads(path.read_text())
-        if not isinstance(data, list): continue
-        for item in data:
-            if not isinstance(item, dict) or not all(k in item for k in ('name','manufacturer','url')): continue
-            ident = detail.fid(item)
-            if ident in found and found[ident] != item: raise ValueError('Conflicting acquisition identity: '+ident)
-            found[ident] = item
-    overrides=ACQUISITION/'modeling-overrides.json'
-    if overrides.exists():
-        for ident,profile in json.loads(overrides.read_text()).items():
-            if ident in found:found[ident]['modeling'].update(profile)
+    for batch,folder in BATCHES.items():
+        for path in sorted(folder.glob('*.json')):
+            data = json.loads(path.read_text())
+            if not isinstance(data, list): continue
+            for item in data:
+                if not isinstance(item, dict) or not all(k in item for k in ('name','manufacturer','url')): continue
+                ident = detail.fid(item)
+                if ident in found: raise ValueError('Duplicate acquisition identity: '+ident)
+                item['_batch']=batch
+                found[ident] = item
+        overrides=folder/'modeling-overrides.json'
+        if overrides.exists():
+            for ident,profile in json.loads(overrides.read_text()).items():
+                if ident in found:found[ident]['modeling'].update(profile)
     return found
+
+def load_ledger():
+    merged={}
+    for folder in BATCHES.values():
+        path=folder/'pipeline-ledger.json'
+        if path.exists():merged.update(json.loads(path.read_text()))
+    return merged
 
 def issues(item):
     errors = []
@@ -47,8 +57,12 @@ def issues(item):
     if not all(isinstance(d.get(k), (int,float)) and math.isfinite(d[k]) and d[k] > 0 for k in ('width_m','height_m','depth_m')):
         errors.append('A sourced assembled width, height and depth have not all been established')
     data = item.get('data') or {}
-    if not any(re.search(r'dmx|art[ -]?net|sacn', p, re.I) for p in data.get('protocols') or []):
-        errors.append('DMX or network lighting control compatibility has not been verified')
+    network=any(re.search(r'dmx|art[ -]?net|sacn', p, re.I) for p in data.get('protocols') or [])
+    # Dedicated/manual effects can be visual inventory, but must never acquire
+    # fabricated DMX capability merely to satisfy a lighting-only import gate.
+    external=(item.get('modeling') or {}).get('family') in EQUIPMENT and data.get('visual_inventory_only') is True and bool(data.get('control_path'))
+    if not network and not external:
+        errors.append('DMX/network compatibility or an explicit visual-inventory-only control dependency has not been verified')
     if not item.get('images'): errors.append('An exact-model product reference image is unavailable')
     if not item.get('evidence'): errors.append('Technical source evidence is missing')
     if (item.get('modeling') or {}).get('family') not in SUPPORTED:
@@ -66,7 +80,7 @@ def as_row(item):
     data.update(dimensions=item.get('dimensions'), research_evidence=item.get('evidence', []))
     return {k:item.get(k,'') for k in ('name','model_number','manufacturer','type','subtype','url')} | {
         'data':json.dumps(data, ensure_ascii=False), 'images':json.dumps(item.get('images') or []),
-        'expansion_batch':'touring-dj-2026-10', 'pipelineErrors':''}
+        'expansion_batch':item.get('_batch','touring-dj-2026-10'), 'pipelineErrors':''}
 
 def get_reference(item, folder):
     errors = []
@@ -141,7 +155,7 @@ def prepare(item, refresh=False):
     record['sources'].append(dict(id='product-reference',url=url,title=item['name']+' product reference',kind='manufacturer_asset',
         accessed_at=DATE,document_revision=None,locator='Exact-model reference image',reuse_status='reference_only',
         file=image.relative_to(folder).as_posix(),sha256=detail.sha(image)))
-    record['revision_notes'] = ['Source-backed acquisition for expanded touring, mid-market and DJ catalog.']
+    record['revision_notes'] = ['Source-backed catalog acquisition: '+row['expansion_batch']+'.']
     if existing:
         record['model']=existing['model'];record['revision']=existing['revision']
         record['revision_notes']=existing['revision_notes']
@@ -152,26 +166,28 @@ def prepare(item, refresh=False):
 
 def main():
     parser=argparse.ArgumentParser(); parser.add_argument('--workers',type=int,default=4)
+    parser.add_argument('--batch',choices=list(BATCHES),default='touring-dj-2026-10')
     parser.add_argument('--only',action='append'); parser.add_argument('--prepare-only',action='store_true')
     parser.add_argument('--refresh',action='store_true',help='Refresh reviewed research for this expansion batch only; preserve checked model artifacts')
-    args=parser.parse_args(); items=candidates(); ACQUISITION.mkdir(exist_ok=True)
-    ledger=json.loads(LEDGER.read_text()) if LEDGER.exists() else {}
+    args=parser.parse_args(); items={k:v for k,v in candidates().items() if v['_batch']==args.batch}
+    folder=BATCHES[args.batch];folder.mkdir(exist_ok=True);ledger_path=folder/'pipeline-ledger.json'
+    ledger=json.loads(ledger_path.read_text()) if ledger_path.exists() else {}
     profiles=json.loads(detail.PROFILES.read_text()); dimsmap=json.loads(base.MAP.read_text())
     rows=list(csv.DictReader(detail.CSV.open())); byid={detail.fid(r):r for r in rows}
     existing=set(byid); tasks=[]
     for ident,item in items.items():
         if args.only and ident not in args.only: continue
-        refresh=args.refresh and byid.get(ident,{}).get('expansion_batch')=='touring-dj-2026-10'
+        refresh=args.refresh and byid.get(ident,{}).get('expansion_batch')==args.batch
         if ident in existing and not refresh:
             ledger.setdefault(ident,dict(stage='model',status='existing',errors=[])); continue
         try: row,event=prepare(item,refresh=refresh)
         except Exception as error:row,event=None,dict(stage='record',status='failed',errors=[str(error)])
         ledger[ident]=event
-        detail.dump(LEDGER,ledger)
+        detail.dump(ledger_path,ledger)
         if row:
             profile=dict(item['modeling'])
             if profile['family'] in EQUIPMENT:
-                profile['generator']='equipment'; profile.setdefault('output_kind',OUTLETS.get(profile['family'],'none' if profile['family'] in PASSIVE else 'light'))
+                profile.setdefault('generator','equipment'); profile.setdefault('output_kind',OUTLETS.get(profile['family'],'none' if profile['family'] in PASSIVE else 'light'))
             profiles[ident]=profile; dimsmap[item['manufacturer']+'|'+item['name']]=item['dimensions']
             tasks.append((ident,row,profile))
         else: print('BLOCKED',ident,event['stage'],flush=True)
@@ -188,7 +204,7 @@ def main():
             except Exception as error:
                 ledger[ident]=dict(stage='model',status='failed',errors=[str(error)])
                 print('FAILED',ident,str(error),flush=True)
-            detail.sync_csv(list(byid.values())); detail.dump(LEDGER,ledger)
+            detail.sync_csv(list(byid.values())); detail.dump(ledger_path,ledger)
     current=[event for ident,event in ledger.items() if ident in items]
     print(json.dumps({state:sum(v['status']==state for v in current) for state in sorted({v['status'] for v in current})}))
 

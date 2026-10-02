@@ -1724,5 +1724,261 @@
     "axis_status": "documented",
     "axis_note": "Product page lists 404 x 757 x 366 mm; 2024 sheet rounds length to 405 mm. Page value retained.",
     "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+  },
+  "Antari|Z-1200III Fog Machine": {
+    "width_m": 0.32,
+    "height_m": 0.326,
+    "depth_m": 0.458,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer labels L/W/H = 458/320/326 mm, mapped length to front-to-back depth and width to lateral axis; supplied hanging bracket is included in the product configuration.",
+    "reference_pose": "Machine upright on its feet, front output forward, with included hanging bracket attached; external accessories excluded."
+  },
+  "Antari|Z-1500III Fog Machine": {
+    "width_m": 0.235,
+    "height_m": 0.278,
+    "depth_m": 0.674,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer L/W/H = 674/235/278 mm mapped to depth/width/height.",
+    "reference_pose": "Machine resting on feet with front output facing forward; no flight case included."
+  },
+  "Antari|HZ-500 Hazer": {
+    "width_m": 0.375,
+    "height_m": 0.355,
+    "depth_m": 0.515,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer L/W/H = 515/375/355 mm, mapped to depth/width/height for the integrated case in its normal upright pose. Listed envelope is interpreted as the closed case; image shows the access hatch open and may make the pictured assembly taller.",
+    "reference_pose": "Integrated case upright with front access hatch open as shown in the official still; external shipping carton excluded."
+  },
+  "Antari|HZ-1000 Hazer": {
+    "width_m": 0.51,
+    "height_m": 0.61,
+    "depth_m": 0.69,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer L/W/H = 690/510/610 mm, mapped to depth/width/height. This is the wheeled machine case, not a shipping package.",
+    "reference_pose": "Integrated wheeled case upright, outlets/fan face oriented forward; casters included in stated assembled dimensions."
+  },
+  "Antari|S-200X Snow Machine": {
+    "width_m": 0.365,
+    "height_m": 0.409,
+    "depth_m": 0.505,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer L/W/H = 505/365/409 mm, mapped to depth/width/height.",
+    "reference_pose": "Machine body upright, snow outlet toward front, hanging bracket included only if inseparable from body (not separately dimensioned)."
+  },
+  "Antari|SW-250 Snow Machine": {
+    "width_m": 0.365,
+    "height_m": 0.409,
+    "depth_m": 0.539,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer L/W/H = 539/365/409 mm, mapped to depth/width/height.",
+    "reference_pose": "Machine on feet with front snow outlet facing forward; detachable remote and fluid supply excluded."
+  },
+  "Antari|B-200 Bubble Machine": {
+    "width_m": 0.508,
+    "height_m": 0.391,
+    "depth_m": 0.251,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer L/W/H = 508/251/391 mm. The product still shows the broad six-wheel array face as the 508 mm frontage, so length is assigned to lateral width and 251 mm to front-to-back depth; this axis mapping is inferred from the image.",
+    "reference_pose": "Machine upright with the broad bubble-wheel array facing forward; detachable accessories excluded."
+  },
+  "Antari|W-101 Wireless Bubble Machine": {
+    "width_m": 0.264,
+    "height_m": 0.29,
+    "depth_m": 0.35,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer L/W/H = 350/264/290 mm mapped to depth/width/height.",
+    "reference_pose": "Machine resting on feet, bubble wheel/outlet forward; supplied transmitter excluded from enclosure bounds."
+  },
+  "Look Solutions|Unique 2.1": {
+    "width_m": 0.25,
+    "height_m": 0.25,
+    "depth_m": 0.47,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer L/W/H = 470/250/250 mm; no flight case included.",
+    "reference_pose": "Machine resting on feet with outlet panel facing forward; optional hanging set, diverter and flight case excluded."
+  },
+  "Look Solutions|Tiny S": {
+    "width_m": 0.051,
+    "height_m": 0.035,
+    "depth_m": 0.103,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer L/W/H = 103/51/35 mm for single-component current Tiny S including battery and reservoir.",
+    "reference_pose": "Handheld body with battery and fluid reservoir attached; transport case, remote and accessories excluded."
+  },
+  "ADJ|Entour Venue": {
+    "width_m": 0.394,
+    "height_m": 0.253,
+    "depth_m": 0.434,
+    "axis_status": "documented",
+    "axis_note": "ADJ lists L × W × H = 434 × 394 × 253 mm; external anti-spill fluid reservoir and bracket are not separately dimensioned.",
+    "reference_pose": "Machine resting on feet, adjustable nozzle facing forward, loose remote/fluid container excluded."
+  },
+  "Antari|HZ-400 Hazer": {
+    "width_m": 0.32,
+    "height_m": 0.325,
+    "depth_m": 0.51,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer L/W/H = 510/320/325 mm mapped to depth/width/height.",
+    "reference_pose": "Machine resting upright, dual nozzles at front; external wireless receiver excluded."
+  },
+  "Antari|F-1 Fazer": {
+    "width_m": 0.275,
+    "height_m": 0.382,
+    "depth_m": 0.618,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer L/W/H = 618/275/382 mm mapped to depth/width/height.",
+    "reference_pose": "Machine resting on feet, nozzle forward; optional wireless accessories excluded."
+  },
+  "Antari|Z-3000III Fog Machine": {
+    "width_m": 0.275,
+    "height_m": 0.278,
+    "depth_m": 0.712,
+    "axis_status": "documented",
+    "axis_note": "Current product page and 2026 guide agree on L/W/H = 712/275/278 mm; 2024 guide gives L735 mm, so dimensions are revision-specific.",
+    "reference_pose": "Machine on feet, front output facing forward; no optional wireless module or shipping case."
+  },
+  "SHOWVEN|SPARKULAR mini": {
+    "width_m": 0.18,
+    "height_m": 0.228,
+    "depth_m": 0.168,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer sheet: 168 x 180 x 228 mm (L x W x H); normal assembled housing dimensions, packaging excluded.",
+    "reference_pose": "Base horizontal; output nozzle upward."
+  },
+  "SHOWVEN|SPARKULAR MAX": {
+    "width_m": 0.42,
+    "height_m": 0.33,
+    "depth_m": 0.46,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer listing gives 460 x 420 x 330 mm; interpreted length x width x height.",
+    "reference_pose": "Base level; outlet upward."
+  },
+  "SHOWVEN|SPARKULAR Cyclone II": {
+    "width_m": 0.348,
+    "height_m": 0.29,
+    "depth_m": 0.316,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer listing: 348 x 316 x 290 mm (L x W x H).",
+    "reference_pose": "Base level; rotating assembly centered."
+  },
+  "SHOWVEN|SPARKULAR JET II": {
+    "width_m": 0.348,
+    "height_m": 0.29,
+    "depth_m": 0.348,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer listing: 348 x 348 x 290 mm (L x W x H).",
+    "reference_pose": "Base level; output assembly upward."
+  },
+  "Robe Lighting|ColorWash 250 AT": {
+    "width_m": 0.419,
+    "height_m": 0.513,
+    "depth_m": 0.438,
+    "axis_status": "documented",
+    "axis_note": "Official manufacturer leaflet drawing gives front width 419 mm and height 513 mm head horizontal / 502 mm in alternate pose; side depth 438 mm. Used the maximum stated height.",
+    "reference_pose": "Assembled; maximum 513 mm head-horizontal envelope; base level."
+  },
+  "Robe Lighting|ColorWash 575 AT": {
+    "width_m": 0.47,
+    "height_m": 0.588,
+    "depth_m": 0.446,
+    "axis_status": "documented",
+    "axis_note": "Robe mechanical specification: width 470 mm, height 588 mm with head horizontal, depth 446 mm.",
+    "reference_pose": "Assembled, head horizontal; base level."
+  },
+  "MDG|ATMOSPHERE APS": {
+    "width_m": 0.18,
+    "height_m": 0.3,
+    "depth_m": 0.685,
+    "axis_status": "documented",
+    "axis_note": "MDG labels length 68.5 cm, width 18 cm and height 30 cm; separate shipping weight explicitly includes flight case, while product dimensions identify the machine.",
+    "reference_pose": "Machine enclosure upright, haze outlets toward front; case, gas cylinder and optional DMX module excluded."
+  },
+  "MDG|MSe1": {
+    "width_m": 0.305,
+    "height_m": 0.356,
+    "depth_m": 0.229,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer gives unit dimensions L229 × W305 × H356 mm, mapped to depth/width/height; shipping dimensions 305 × 406 × 736 mm excluded.",
+    "reference_pose": "Weather-resistant box mounted in its normal upright orientation; external reservoir, gas source and plumbing excluded."
+  },
+  "Antari|S-100X Snow Machine": {
+    "width_m": 0.365,
+    "height_m": 0.409,
+    "depth_m": 0.505,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer L/W/H = 505/365/409 mm mapped to depth/width/height.",
+    "reference_pose": "Machine upright on body feet with snow outlet forward; optional floor bracket and hose excluded."
+  },
+  "CHAUVET DJ|Scorpion Dual RGB": {
+    "width_m": 0.216,
+    "height_m": 0.1795,
+    "depth_m": 0.161,
+    "axis_status": "documented",
+    "axis_note": "Manual product dimension drawing: 216 mm wide, 179.5 mm high, 161 mm deep; assembled housing on support feet.",
+    "reference_pose": "Base resting on feet; laser apertures forward."
+  },
+  "SHOWVEN|SPARKULAR": {
+    "width_m": 0.218,
+    "height_m": 0.305,
+    "depth_m": 0.2,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer page: 200 x 218 x 305 mm; interpreted L x W x H from product viewing orientation.",
+    "reference_pose": "Base level; effect outlet upward."
+  },
+  "SHOWVEN|SPARKULAR WP": {
+    "width_m": 0.317,
+    "height_m": 0.295,
+    "depth_m": 0.287,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer page: 317 x 287 x 295 mm; width x depth x height as shown in specification.",
+    "reference_pose": "Base level; upward output."
+  },
+  "Martin Professional (HARMAN)|MAC 2000 Profile": {
+    "width_m": 0.49,
+    "height_m": 0.743,
+    "depth_m": 0.408,
+    "axis_status": "documented",
+    "axis_note": "Martin physical specification: length 408 mm, width 490 mm, height 743 mm head straight up.",
+    "reference_pose": "Assembled, head straight up; base level."
+  },
+  "Martin Professional (HARMAN)|MAC 2000 Wash": {
+    "width_m": 0.49,
+    "height_m": 0.75,
+    "depth_m": 0.408,
+    "axis_status": "documented",
+    "axis_note": "Martin physical specification: length 408 mm, width 490 mm, height 750 mm head straight up.",
+    "reference_pose": "Assembled, head straight up; base level."
+  },
+  "Robe Lighting|ColorSpot 250 AT": {
+    "width_m": 0.419,
+    "height_m": 0.494,
+    "depth_m": 0.438,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer ColorSpot 250 AT leaflet: width 419 mm, height 494 mm, depth 438 mm.",
+    "reference_pose": "Assembled fixture in manufacturer dimension convention."
+  },
+  "ADJ|X-Move Laser": {
+    "width_m": 0.19,
+    "height_m": 0.285,
+    "depth_m": 0.205,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer L x W x H 205 x 190 x 285 mm; mapped to width 190, height 285, depth 205 mm.",
+    "reference_pose": "Assembled moving head, base level."
+  },
+  "Le Maitre|GForce 3": {
+    "width_m": 0.27,
+    "height_m": 0.43,
+    "depth_m": 0.55,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer gives 270 x 290 x 430 mm, with length 550 mm including bottle carrier; mapped W x H x overall D as 270 x 430 x 550 mm.",
+    "reference_pose": "Base level with bottle carrier fitted; outlet forward."
+  },
+  "Le Maitre|G300": {
+    "width_m": 0.61,
+    "height_m": 0.26,
+    "depth_m": 0.29,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer product page specifies 610 x 290 x 260 mm (L x W x H); comparison gives 10.5 x 11.5 x 24 in, consistent within inch/mm rounding. Mapped to width x height x depth: 610 x 260 x 290 mm.",
+    "reference_pose": "Base level; outlet forward."
   }
 }

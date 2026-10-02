@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "id": "robe-lighting/colorspot-250-at",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "ROBE Lighting",
+    "model": "ColorSpot 250 AT",
+    "variant": "ColorSpot 250 AT",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.robe.cz/colorspot-250-at",
+      "title": "ColorSpot 250 AT product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Discontinued status and official product image (CDN still asset)",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.robe.cz/res/downloads/catalogues/ColorSpot_250_AT_leaflet.pdf",
+      "title": "ColorSpot 250 AT leaflet",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Mechanical specification: dimensions and EU/US mass",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://www.robe.cz/res/downloads/user_manuals/User_manual_Colorspot_250_AT.pdf",
+      "title": "ColorSpot 250 AT User Manual v2.5",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "DMX-512 connection, pp. 11–12; technical specification, p. 31 (DMX-512 and RDM support)",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://cdn.aws.robe.cz/v1/image/resize/6d0d71f3c0dce0301a58534772e45d078535abd6?fit=contain&height=800&width=800&withoutEnlargement=false",
+      "title": "ColorSpot 250 AT product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "40ae34a3596d575cb08284c08e2f695ac2fda309b414b89b84254133ce4e8c64"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.419,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer ColorSpot 250 AT leaflet: width 419 mm, height 494 mm, depth 438 mm."
+    },
+    "height": {
+      "value": 0.494,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer ColorSpot 250 AT leaflet: width 419 mm, height 494 mm, depth 438 mm."
+    },
+    "depth": {
+      "value": 0.438,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer ColorSpot 250 AT leaflet: width 419 mm, height 494 mm, depth 438 mm."
+    },
+    "reference_pose": "Assembled fixture in manufacturer dimension convention."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "MSD 250/2 lamp; standard 15° objective with optional 12°/18°; 10 dichroic colors plus open and rotating gobo wheel.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "410 VA at 230 V / 50 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "20.5 kg EU model; 23.5 kg US model",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX-512",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Assembled fixture in manufacturer dimension convention.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.2095000147819519,
+        0.0,
+        -0.2190000223054085
+      ],
+      "max": [
+        0.2095000147819519,
+        0.49399998784065247,
+        0.21900001596077345
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.00047453175648115575
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.10868000239133835,
+          0.00047453175648115575
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.36555999517440796,
+          0.00047453175648115575
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.36555999517440796,
+          -0.19513103365898132
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.10868000239133835,
+          0.00047453175648115575
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.36555999517440796,
+          0.00047453175648115575
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.36555999517440796,
+          -0.20254920423030853
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer ColorSpot 250 AT leaflet: width 419 mm, height 494 mm, depth 438 mm.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "8a6c80921e4bb19397ba7df629266877982b74c942b7b60f27f29070bd5d5942"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "90cf08d1c72f6f648e0a2bc74f863711aed699163fdcff6a7c403e1a92089953"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "c051557da405cc52ff14347648b5756bd468e21500a15dad76ecddb82faa3f99"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "33ce41a56866c25418cd06450c2225101ee9bc5cb9546469fe1d50100ed3dfa7"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "639d3f3657c6441584757515700b452306e8f22a063e3def132458bfeca462cf"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "e8da8c2bacbb9f422bc60be40e5e69161c447c3ecf6e7053986bfd9a59bf3ee7"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "0f3bc5213c97b558eb017d1bd425493499fb91599dd481bc9a66490edcea69e9"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "50909b3a00254b42e467bb19735d3c92e96bff289983c392e261333e10202ba4"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "ed5e13015c0bb9c3669007122a55bc8eef8378aac67750e89635c3e988c83269"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "151c950e61e3d7ee220314c2d916a39317b596b0f96ced698064e2b7db353c58"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "ca408b9748c15fd5172b330e753b69cacc0d102316a9ebb4091585769f838cb6",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "discharge spot moving head",
+      "notes": "Robe marks this exact model discontinued; use only official fixture still, not event photographs.",
+      "shell": "faceted",
+      "base_height": 0.22
+    },
+    "mesh_count": 85,
+    "triangle_count": 18124,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "ddbc5d7ff3a047585643e05bd1f53eff6b2fdeb0f2ce8171b7a9a65912e77290",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.spot",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Spot / gobo projector"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

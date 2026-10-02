@@ -71,7 +71,7 @@
       ],
       "is_leaf": false,
       "asset_ids": [],
-      "asset_count": 184,
+      "asset_count": 191,
       "research_candidates": [],
       "coverage": "represented",
       "model_catalog_exhaustive": false
@@ -423,7 +423,7 @@
       ],
       "is_leaf": false,
       "asset_ids": [],
-      "asset_count": 130,
+      "asset_count": 135,
       "research_candidates": [],
       "coverage": "represented",
       "model_catalog_exhaustive": false
@@ -482,9 +482,10 @@
         "ayrton/perseo-beam",
         "ayrton/perseo-profile-s",
         "ayrton/perseo-profile-tc",
-        "ayrton/veloce-profile"
+        "ayrton/veloce-profile",
+        "martin-professional-harman/mac-2000-profile"
       ],
-      "asset_count": 43,
+      "asset_count": 44,
       "research_candidates": [
         {
           "id": "adj/focus-profile",
@@ -520,6 +521,50 @@
           "manufacturer": "Claypaky",
           "source_images": [],
           "reference_asset": ""
+        },
+        {
+          "id": "martin-professional-harman/mac-250-entour",
+          "reason": "An exact-model product reference image is unavailable; Exact official still-image asset URL remains unresolved. Power is optional metadata and remains null",
+          "category_id": "lighting.moving.profile",
+          "stage": "research",
+          "official_url": "https://www.martin.com/en-US/products/mac-250-entour",
+          "name": "MAC 250 Entour",
+          "manufacturer": "Martin Professional (HARMAN)",
+          "source_images": [],
+          "reference_asset": ""
+        },
+        {
+          "id": "martin-professional-harman/mac-700-profile",
+          "reason": "DMX/network compatibility or an explicit visual-inventory-only control dependency has not been verified; An exact-model product reference image is unavailable; Exact official still-image asset URL remains unresolved. Protocol/channel count and power are optional metadata and remain null",
+          "category_id": "lighting.moving.profile",
+          "stage": "research",
+          "official_url": "https://www.martin.com/en-US/products/mac-700-profile",
+          "name": "MAC 700 Profile",
+          "manufacturer": "Martin Professional (HARMAN)",
+          "source_images": [],
+          "reference_asset": ""
+        },
+        {
+          "id": "martin-professional-harman/mac-2000-performance",
+          "reason": "A sourced assembled width, height and depth have not all been established; DMX/network compatibility or an explicit visual-inventory-only control dependency has not been verified; An exact-model product reference image is unavailable; Dimensions and exact official still-image asset remain unresolved. Mass, power and channel count are optional metadata and remain null",
+          "category_id": "lighting.moving.profile",
+          "stage": "research",
+          "official_url": "https://www.martin.com/en-US/products/mac-2000-performance",
+          "name": "MAC 2000 Performance",
+          "manufacturer": "Martin Professional (HARMAN)",
+          "source_images": [],
+          "reference_asset": ""
+        },
+        {
+          "id": "claypaky/alpha-profile-1500",
+          "reason": "An exact-model product reference image is unavailable; A direct manufacturer-hosted brochure and exact standalone official still image were not found; cited brochure remains explicitly secondary",
+          "category_id": "lighting.moving.profile",
+          "stage": "research",
+          "official_url": "https://www.claypaky.it/en/news/clay-paky-new-products-plasa-2010/",
+          "name": "Alpha Profile 1500",
+          "manufacturer": "Claypaky",
+          "source_images": [],
+          "reference_asset": ""
         }
       ],
       "coverage": "represented",
@@ -550,9 +595,10 @@
         "adj/focus-spot-6z",
         "showtec/phantom-100-spot",
         "showtec/phantom-65",
-        "ayrton/argo-6-fx"
+        "ayrton/argo-6-fx",
+        "robe-lighting/colorspot-250-at"
       ],
-      "asset_count": 14,
+      "asset_count": 15,
       "research_candidates": [
         {
           "id": "adj/focus-spot-2x",
@@ -631,6 +677,39 @@
             "https://www.adj.com/cdn/shop/files/145192469264cb21035127d693ab0cb00286b174_DJS613__IMG__001__e8c051d82f89.jpg?v=1776713221&width=2048"
           ],
           "reference_asset": ""
+        },
+        {
+          "id": "martin-professional-harman/mac-250-krypton",
+          "reason": "An exact-model product reference image is unavailable; Exact official still-image asset URL remains unresolved. DMX channel count and power are optional metadata and remain null",
+          "category_id": "lighting.moving.spot",
+          "stage": "research",
+          "official_url": "https://www.martin.com/en-US/products/mac-250-krypton",
+          "name": "MAC 250 Krypton",
+          "manufacturer": "Martin Professional (HARMAN)",
+          "source_images": [],
+          "reference_asset": ""
+        },
+        {
+          "id": "robe-lighting/colorspot-575-at",
+          "reason": "An exact-model product reference image is unavailable; Exact official still-image URL not transcribed from brochure",
+          "category_id": "lighting.moving.spot",
+          "stage": "research",
+          "official_url": "https://www.robe.cz/res/downloads/catalogues/ColorSpot_575_AT_leaflet.pdf",
+          "name": "ColorSpot 575 AT",
+          "manufacturer": "Robe Lighting",
+          "source_images": [],
+          "reference_asset": ""
+        },
+        {
+          "id": "claypaky/alpha-spot-hpe-1500",
+          "reason": "An exact-model product reference image is unavailable; Direct manufacturer-hosted brochure and exact product still image not found; series brochure is labeled secondary",
+          "category_id": "lighting.moving.spot",
+          "stage": "research",
+          "official_url": "https://www.claypaky.it/en/news/clay-paky-new-products-plasa-2010/",
+          "name": "Alpha Spot HPE 1500",
+          "manufacturer": "Claypaky",
+          "source_images": [],
+          "reference_asset": ""
         }
       ],
       "coverage": "represented",
@@ -694,9 +773,12 @@
         "ayrton/veloce-wash",
         "ayrton/argo-6-wash",
         "robe-lighting/ledbeam-150",
-        "claypaky/volero-cube"
+        "claypaky/volero-cube",
+        "robe-lighting/colorwash-250-at",
+        "robe-lighting/colorwash-575-at",
+        "martin-professional-harman/mac-2000-wash"
       ],
-      "asset_count": 47,
+      "asset_count": 50,
       "research_candidates": [
         {
           "id": "chauvet-dj/intimidator-wash-led-150",
@@ -766,6 +848,61 @@
           "stage": "research",
           "official_url": "https://www.claypaky.it/products/arolla-aqua-wash-hc/",
           "name": "Arolla Aqua Wash HC",
+          "manufacturer": "Claypaky",
+          "source_images": [],
+          "reference_asset": ""
+        },
+        {
+          "id": "martin-professional-harman/mac-250-wash",
+          "reason": "An exact-model product reference image is unavailable; Exact official still-image asset URL remains unresolved",
+          "category_id": "lighting.moving.wash",
+          "stage": "research",
+          "official_url": "https://www.martin.com/en-US/products/MAC-250-Wash",
+          "name": "MAC 250 Wash",
+          "manufacturer": "Martin Professional (HARMAN)",
+          "source_images": [],
+          "reference_asset": ""
+        },
+        {
+          "id": "martin-professional-harman/mac-600",
+          "reason": "An exact-model product reference image is unavailable; Exact official still-image asset URL remains unresolved",
+          "category_id": "lighting.moving.wash",
+          "stage": "research",
+          "official_url": "https://www.martin.com/en-US/products/mac-600",
+          "name": "MAC 600",
+          "manufacturer": "Martin Professional (HARMAN)",
+          "source_images": [],
+          "reference_asset": ""
+        },
+        {
+          "id": "martin-professional-harman/mac-700-wash",
+          "reason": "A sourced assembled width, height and depth have not all been established; DMX/network compatibility or an explicit visual-inventory-only control dependency has not been verified; An exact-model product reference image is unavailable; Dimensions and exact official still-image asset remain unresolved. Weight, power and channel count are optional metadata and remain null",
+          "category_id": "lighting.moving.wash",
+          "stage": "research",
+          "official_url": "https://www.martin.com/en/products/MAC-700-Wash",
+          "name": "MAC 700 Wash",
+          "manufacturer": "Martin Professional (HARMAN)",
+          "source_images": [],
+          "reference_asset": ""
+        },
+        {
+          "id": "claypaky/alpha-wash-1500",
+          "reason": "An exact-model product reference image is unavailable; Direct official still-image URL and manufacturer-hosted brochure not located",
+          "category_id": "lighting.moving.wash",
+          "stage": "research",
+          "official_url": "https://www.claypaky.it/en/news/clay-paky-new-products-plasa-2010/",
+          "name": "Alpha Wash 1500",
+          "manufacturer": "Claypaky",
+          "source_images": [],
+          "reference_asset": ""
+        },
+        {
+          "id": "claypaky/alpha-wash-1500-lt",
+          "reason": "An exact-model product reference image is unavailable; Direct official still-image URL and manufacturer-hosted brochure not located",
+          "category_id": "lighting.moving.wash",
+          "stage": "research",
+          "official_url": "https://www.claypaky.it/en/news/clay-paky-new-products-plasa-2010/",
+          "name": "Alpha Wash 1500 LT",
           "manufacturer": "Claypaky",
           "source_images": [],
           "reference_asset": ""
@@ -848,6 +985,17 @@
           "source_images": [
             "https://chauvetprofessional.com/wp-content/uploads/2025/10/ROGUE_R1_FXB-FRONT.840-FEAT.png"
           ],
+          "reference_asset": ""
+        },
+        {
+          "id": "claypaky/alpha-beam-1500",
+          "reason": "An exact-model product reference image is unavailable; The model needs a supported geometry profile; Direct official still-image URL and manufacturer-hosted brochure not located",
+          "category_id": "lighting.moving.beam",
+          "stage": "research",
+          "official_url": "https://www.claypaky.it/en/news/clay-paky-new-products-plasa-2010/",
+          "name": "Alpha Beam 1500",
+          "manufacturer": "Claypaky",
+          "source_images": [],
           "reference_asset": ""
         }
       ],
@@ -965,7 +1113,7 @@
       ],
       "is_leaf": false,
       "asset_ids": [],
-      "asset_count": 13,
+      "asset_count": 15,
       "research_candidates": [],
       "coverage": "represented",
       "model_catalog_exhaustive": false
@@ -1016,6 +1164,45 @@
           "manufacturer": "CHAUVET DJ",
           "source_images": [
             "https://www.chauvetdj.com/wp-content/uploads/2022/05/GigBAR-Move-ILS-FEATURED_img.png"
+          ],
+          "reference_asset": ""
+        },
+        {
+          "id": "adj/startec-rayzer",
+          "reason": "The model needs a supported geometry profile; The visible optical module count has not been established; Exact laser outlet count not recovered",
+          "category_id": "lighting.effects.multi_effect",
+          "stage": "research",
+          "official_url": "https://www.adj.com/products/rayzer",
+          "name": "Startec Rayzer",
+          "manufacturer": "ADJ",
+          "source_images": [
+            "https://www.adj.com/cdn/shop/files/54cccaf414c8c4944ec81f38c1a6d0aa789f0b22_RAY129__IMG__001__9241ee4a4ecc.jpg?v=1776712605&width=800"
+          ],
+          "reference_asset": ""
+        },
+        {
+          "id": "adj/stinger",
+          "reason": "The model needs a supported geometry profile; The visible optical module count has not been established; Exact laser outlet count not recovered",
+          "category_id": "lighting.effects.multi_effect",
+          "stage": "research",
+          "official_url": "https://www.adj.com/products/stinger",
+          "name": "Stinger",
+          "manufacturer": "ADJ",
+          "source_images": [
+            "https://www.adj.com/cdn/shop/files/944f905ae339bcce1f469c47e930a644d89df2c0_STI960__IMG__001__97f92424f2c9.jpg?v=1776715480&width=800"
+          ],
+          "reference_asset": ""
+        },
+        {
+          "id": "adj/boom-box-fx2",
+          "reason": "The model needs a supported geometry profile; The visible optical module count has not been established; Exact laser outlet count not recovered",
+          "category_id": "lighting.effects.multi_effect",
+          "stage": "research",
+          "official_url": "https://www.adj.com/products/boom-box-fx2",
+          "name": "Boom Box FX2",
+          "manufacturer": "ADJ",
+          "source_images": [
+            "https://www.adj.com/cdn/shop/files/7022c1535af264d67d1ed14a1d509a6a7827c82b_BOO663__IMG__001__9e49d4bcb1c0.jpg?v=1776713992&width=800"
           ],
           "reference_asset": ""
         }
@@ -1119,10 +1306,78 @@
       ],
       "is_leaf": true,
       "asset_ids": [
-        "laserworld/ds-1000rgb-mk5"
+        "laserworld/ds-1000rgb-mk5",
+        "chauvet-dj/scorpion-dual-rgb",
+        "adj/x-move-laser"
       ],
-      "asset_count": 1,
-      "research_candidates": [],
+      "asset_count": 3,
+      "research_candidates": [
+        {
+          "id": "chauvet-dj/scorpion-dual",
+          "reason": "Dimensions lack a separate drawing citation",
+          "category_id": "lighting.effects.laser",
+          "stage": "research",
+          "official_url": "https://www.chauvetdj.com/products/scorpion-dual/",
+          "name": "Scorpion Dual",
+          "manufacturer": "CHAUVET DJ",
+          "source_images": [
+            "https://www.chauvetdj.com/wp-content/uploads/2015/12/scorpion-dual-cat.jpg"
+          ],
+          "reference_asset": ""
+        },
+        {
+          "id": "chauvet-dj/scorpion-bar-rg",
+          "reason": "The visible optical module count has not been established; Exact aperture count not established from source-backed product imagery/specifications",
+          "category_id": "lighting.effects.laser",
+          "stage": "research",
+          "official_url": "https://www.chauvetdj.com/products/scorpion-bar-rg/",
+          "name": "Scorpion Bar RG",
+          "manufacturer": "CHAUVET DJ",
+          "source_images": [
+            "https://www.chauvetdj.com/wp-content/uploads/2016/01/gal-Scorpion-Bar-RG-1.jpg"
+          ],
+          "reference_asset": ""
+        },
+        {
+          "id": "chauvet-dj/scorpion-storm-fxrg",
+          "reason": "The visible optical module count has not been established; Exact laser aperture count not established",
+          "category_id": "lighting.effects.laser",
+          "stage": "research",
+          "official_url": "https://www.chauvetdj.com/products/scorpion-storm-fxrg/",
+          "name": "Scorpion Storm FXRG",
+          "manufacturer": "CHAUVET DJ",
+          "source_images": [
+            "https://www.chauvetdj.com/wp-content/uploads/2015/12/Scorpion-Storm-FXRG-1.jpg"
+          ],
+          "reference_asset": ""
+        },
+        {
+          "id": "adj/galaxian",
+          "reason": "The listed 71 mm height appears to describe only the housing, while the photo includes a taller hanging bracket; the assembled bracket envelope needs a dimensional drawing",
+          "category_id": "lighting.effects.laser",
+          "stage": "research",
+          "official_url": "https://www.adj.com/products/galaxian",
+          "name": "Galaxian",
+          "manufacturer": "ADJ",
+          "source_images": [
+            "https://www.adj.com/cdn/shop/files/896038a44e707ec22b40e120942f21b101901139_GALAXIAN__IMG__001__16485316a8d9.jpg?v=1776714566&width=418"
+          ],
+          "reference_asset": ""
+        },
+        {
+          "id": "adj/laser-widow",
+          "reason": "A sourced assembled width, height and depth have not all been established; The visible optical module count has not been established; Dimension orientation ambiguous; source gives three axes without identifying their order",
+          "category_id": "lighting.effects.laser",
+          "stage": "research",
+          "official_url": "https://www.adj.com/products/laser-widow",
+          "name": "Laser Widow",
+          "manufacturer": "ADJ",
+          "source_images": [
+            "https://www.adj.com/cdn/shop/files/8eacce0e6d6f59304ffb3004d12d5bdff897b81c_LASER_WIDOW__IMG__001__ea59aad3854d.jpg?v=1776715128&width=216"
+          ],
+          "reference_asset": ""
+        }
+      ],
       "coverage": "represented",
       "model_catalog_exhaustive": false
     },
@@ -1135,7 +1390,7 @@
       ],
       "is_leaf": false,
       "asset_ids": [],
-      "asset_count": 7,
+      "asset_count": 21,
       "research_candidates": [],
       "coverage": "represented",
       "model_catalog_exhaustive": false
@@ -1151,10 +1406,40 @@
       ],
       "is_leaf": true,
       "asset_ids": [
-        "antari/z-1000iii-fog-machine"
+        "antari/z-1000iii-fog-machine",
+        "antari/z-1500iii-fog-machine",
+        "antari/z-1200iii-fog-machine",
+        "look-solutions/tiny-s",
+        "antari/z-3000iii-fog-machine",
+        "mdg/mse1",
+        "le-maitre/gforce-3",
+        "le-maitre/g300"
       ],
-      "asset_count": 1,
-      "research_candidates": [],
+      "asset_count": 8,
+      "research_candidates": [
+        {
+          "id": "le-maitre/g300-smart",
+          "reason": "An exact-model product reference image is unavailable; Official still URL not recovered",
+          "category_id": "atmosphere.fog",
+          "stage": "research",
+          "official_url": "https://lemaitreltd.com/downloads/smoke-machine-manuals/g300-smart-manual/",
+          "name": "G300-Smart",
+          "manufacturer": "Le Maitre",
+          "source_images": [],
+          "reference_asset": ""
+        },
+        {
+          "id": "le-maitre/gforce-2",
+          "reason": "An exact-model product reference image is unavailable; Dedicated product manual and exact still URL not retrieved",
+          "category_id": "atmosphere.fog",
+          "stage": "research",
+          "official_url": "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/gforce-3/le-maitre-smoke-machine-comparison-breakdown/",
+          "name": "GForce 2",
+          "manufacturer": "Le Maitre",
+          "source_images": [],
+          "reference_asset": ""
+        }
+      ],
       "coverage": "represented",
       "model_catalog_exhaustive": false
     },
@@ -1170,9 +1455,12 @@
       "is_leaf": true,
       "asset_ids": [
         "chauvet-dj/hurricane-haze-1dx",
-        "chauvet-dj/hurricane-haze-2d"
+        "chauvet-dj/hurricane-haze-2d",
+        "look-solutions/unique-2-1",
+        "adj/entour-venue",
+        "antari/f-1-fazer"
       ],
-      "asset_count": 2,
+      "asset_count": 5,
       "research_candidates": [
         {
           "id": "adj/entour-faze",
@@ -1215,10 +1503,28 @@
       ],
       "is_leaf": true,
       "asset_ids": [
-        "mdg/atmosphere-aps-haze-generator"
+        "mdg/atmosphere-aps-haze-generator",
+        "antari/hz-1000-hazer",
+        "antari/hz-500-hazer",
+        "antari/hz-400-hazer",
+        "mdg/atmosphere-aps"
       ],
-      "asset_count": 1,
-      "research_candidates": [],
+      "asset_count": 5,
+      "research_candidates": [
+        {
+          "id": "antari/hz-350-hazer",
+          "reason": "Current product page and manual refer to current-generation model. The older 2022 HZ-350 generation has different dimensions and power; verify manufacturing generation before selecting geometry",
+          "category_id": "atmosphere.haze_oil",
+          "stage": "research",
+          "official_url": "https://antari.com/products/hz-350/",
+          "name": "HZ-350 Hazer",
+          "manufacturer": "Antari",
+          "source_images": [
+            "https://antari.com/wp-content/uploads/HZ-350_01.jpg"
+          ],
+          "reference_asset": ""
+        }
+      ],
       "coverage": "represented",
       "model_catalog_exhaustive": false
     },
@@ -1236,7 +1542,34 @@
         "chauvet-dj/cumulus-hp-low-lying-fog-machine"
       ],
       "asset_count": 1,
-      "research_candidates": [],
+      "research_candidates": [
+        {
+          "id": "adj/entour-chill",
+          "reason": "ADJ page gives 461.85 × 300 × 270.82 mm, while a 2020 manufacturer news post gives 420 × 297 × 273 mm. The product page links a dimensional drawing and that page specification is retained; verify PDF before modeling",
+          "category_id": "atmosphere.low_fog",
+          "stage": "research",
+          "official_url": "https://www.adj.com/products/entour-chill",
+          "name": "Entour Chill",
+          "manufacturer": "ADJ",
+          "source_images": [
+            "https://www.adj.com/cdn/shop/files/3e7661948e28165dc0fdeddd00b573fd2c2deb36_ENT791__IMG__001__fd97ff053a3a.jpg?v=1776712412&width=1200"
+          ],
+          "reference_asset": ""
+        },
+        {
+          "id": "le-maitre/freezefog-pro",
+          "reason": "Mass and exact official still URL not recovered",
+          "category_id": "atmosphere.low_fog",
+          "stage": "research",
+          "official_url": "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/freezefog-pro/",
+          "name": "Freezefog Pro",
+          "manufacturer": "Le Maitre",
+          "source_images": [
+            "https://lemaitreltd.com/sites/lemaitreltd/cache/file/A4C6E40B-BFD7-4B36-918B7CCAB9A58AA7.jpg"
+          ],
+          "reference_asset": ""
+        }
+      ],
       "coverage": "represented",
       "model_catalog_exhaustive": false
     },
@@ -1297,7 +1630,7 @@
       ],
       "is_leaf": false,
       "asset_ids": [],
-      "asset_count": 6,
+      "asset_count": 17,
       "research_candidates": [],
       "coverage": "represented",
       "model_catalog_exhaustive": false
@@ -1312,9 +1645,11 @@
       ],
       "is_leaf": true,
       "asset_ids": [
-        "antari/b-100-bubble-machine"
+        "antari/b-100-bubble-machine",
+        "antari/b-200-bubble-machine",
+        "antari/w-101-wireless-bubble-machine"
       ],
-      "asset_count": 1,
+      "asset_count": 3,
       "research_candidates": [],
       "coverage": "represented",
       "model_catalog_exhaustive": false
@@ -1329,10 +1664,40 @@
       ],
       "is_leaf": true,
       "asset_ids": [
-        "antari/s-500-snow-machine"
+        "antari/s-500-snow-machine",
+        "antari/sw-250-snow-machine",
+        "antari/s-200x-snow-machine",
+        "antari/s-100x-snow-machine"
       ],
-      "asset_count": 1,
-      "research_candidates": [],
+      "asset_count": 4,
+      "research_candidates": [
+        {
+          "id": "antari/s-600-snow-machine",
+          "reason": "Unresolved manufacturer dimension conflict: current page/manual details give 462 × 596 × 630 mm and 24 kg; 2026 guide gives 464 × 624 × 661 mm and 26 kg. Retained webpage values, do not treat scaled model as final until revision is resolved",
+          "category_id": "effects.snow",
+          "stage": "research",
+          "official_url": "https://antari.com/products/s-600/",
+          "name": "S-600 Snow Machine",
+          "manufacturer": "Antari",
+          "source_images": [
+            "https://antari.com/wp-content/uploads/S-600_main-1000x1000-1.jpg"
+          ],
+          "reference_asset": ""
+        },
+        {
+          "id": "antari/sw-300-snow-machine",
+          "reason": "Product page dimension string 513 × 376 × 349 mm conflicts materially with manual 500 × 276 × 311 mm. Resolve the current assembled dimension set before modeling",
+          "category_id": "effects.snow",
+          "stage": "research",
+          "official_url": "https://antari.com/products/sw-300/",
+          "name": "SW-300 Snow Machine",
+          "manufacturer": "Antari",
+          "source_images": [
+            "https://antari.com/wp-content/uploads/SW-300_01.jpg"
+          ],
+          "reference_asset": ""
+        }
+      ],
       "coverage": "represented",
       "model_catalog_exhaustive": false
     },
@@ -1350,7 +1715,19 @@
         "magic-fx/powershot-ii"
       ],
       "asset_count": 1,
-      "research_candidates": [],
+      "research_candidates": [
+        {
+          "id": "ultratec-special-effects/cyclofetti",
+          "reason": "A sourced assembled width, height and depth have not all been established; An exact-model product reference image is unavailable; Height, mounting orientation, activation interface and official still URL not established",
+          "category_id": "effects.confetti",
+          "stage": "research",
+          "official_url": "https://portal.ultratecfx.com/Products/confetti-streamers/cyclofetti",
+          "name": "Cyclofetti",
+          "manufacturer": "Ultratec Special Effects",
+          "source_images": [],
+          "reference_asset": ""
+        }
+      ],
       "coverage": "represented",
       "model_catalog_exhaustive": false
     },
@@ -1381,6 +1758,19 @@
             "https://magicfx.com/cdn/shop/files/CO2JET1.png?v=1774359837&width=3840"
           ],
           "reference_asset": "research/fixtures/taxonomy/atmos-sources/magicfx-co2jet-i.png"
+        },
+        {
+          "id": "showven/co2-jet-x-c1",
+          "reason": "Dimension axis orientation needs drawing confirmation",
+          "category_id": "effects.co2",
+          "stage": "research",
+          "official_url": "https://www.showven.cn/product/co2-jet-x-c1/",
+          "name": "CO2 JET X-C1",
+          "manufacturer": "SHOWVEN",
+          "source_images": [
+            "https://www.showven.cn/wp-content/uploads/2024/03/%E4%BA%8C%E6%B0%A7%E5%8C%96%E7%A2%B3%E6%B0%94%E6%9F%B1-500x500.png"
+          ],
+          "reference_asset": ""
         }
       ],
       "coverage": "represented",
@@ -1397,9 +1787,15 @@
       ],
       "is_leaf": true,
       "asset_ids": [
-        "magic-fx/sparxtar-ii"
+        "magic-fx/sparxtar-ii",
+        "showven/sparkular-mini",
+        "showven/sparkular-jet-ii",
+        "showven/sparkular-cyclone-ii",
+        "showven/sparkular-max",
+        "showven/sparkular",
+        "showven/sparkular-wp"
       ],
-      "asset_count": 1,
+      "asset_count": 7,
       "research_candidates": [],
       "coverage": "represented",
       "model_catalog_exhaustive": false
@@ -1418,7 +1814,32 @@
         "magic-fx/flameblazer"
       ],
       "asset_count": 1,
-      "research_candidates": [],
+      "research_candidates": [
+        {
+          "id": "magic-fx/flameblazer-standalone",
+          "reason": "Official product still URL not extracted",
+          "category_id": "effects.flame",
+          "stage": "research",
+          "official_url": "https://www.magicfx.eu/data/uploads/documents/MAGICFX_FLAMEBLAZER_MANUAL.pdf",
+          "name": "FLAMEBLAZER Standalone",
+          "manufacturer": "MAGIC FX",
+          "source_images": [
+            "https://lemaitreltd.com/sites/lemaitreltd/cache/file/AD75D031-C865-4286-9E7926ADFF25C3DB.jpg"
+          ],
+          "reference_asset": ""
+        },
+        {
+          "id": "tbf-pyrotec-le-maitre/5-master",
+          "reason": "An exact-model product reference image is unavailable; Dimension axis order and DMX footprint need the linked manufacturer data sheet; official still URL not extracted",
+          "category_id": "effects.flame",
+          "stage": "research",
+          "official_url": "https://lemaitreltd.com/products/flame-machines/flame-machines/5-master-by-tbf-pyrotec/",
+          "name": "5-Master",
+          "manufacturer": "TBF Pyrotec / Le Maitre",
+          "source_images": [],
+          "reference_asset": ""
+        }
+      ],
       "coverage": "represented",
       "model_catalog_exhaustive": false
     },
@@ -2090,8 +2511,8 @@
   ],
   "coverage_rule": "A terminal category is represented only by an assigned exact-product record with existing Blender, USDZ and preview files and passing geometry validation. Research-only candidates, component-like geometry embedded in another fixture, simulation effects and generic placeholders do not count. Representative coverage is not exhaustive manufacturer/model coverage.",
   "summary": {
-    "asset_count": 220,
-    "manufacturer_count": 42,
+    "asset_count": 252,
+    "manufacturer_count": 45,
     "terminal_categories": 66,
     "represented_categories": 59,
     "unrepresented_categories": 7,
@@ -6200,6 +6621,582 @@
       "dimensions": "0.404 m W × 0.757 m H × 0.366 m D",
       "pose": "Manufacturer reference dimensions; assembled fixture.",
       "dimension_caveat": false
+    },
+    {
+      "id": "antari/hz-1000-hazer",
+      "name": "HZ-1000 Hazer",
+      "manufacturer": "Antari",
+      "category_id": "atmosphere.haze_oil",
+      "category_path": "Atmosphere and air movement > Oil-based / atomizing hazer",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../antari/hz-1000-hazer/previews/three-quarter.png",
+      "asset_root": "../antari/hz-1000-hazer/",
+      "official_url": "https://antari.com/products/hz-1000/",
+      "control_path": "Source protocol list: DMX512, manual, timer, optional wireless DMX",
+      "dimensions": "0.51 m W × 0.61 m H × 0.69 m D",
+      "pose": "Integrated wheeled case upright, outlets/fan face oriented forward; casters included in stated assembled dimensions.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "antari/hz-500-hazer",
+      "name": "HZ-500 Hazer",
+      "manufacturer": "Antari",
+      "category_id": "atmosphere.haze_oil",
+      "category_path": "Atmosphere and air movement > Oil-based / atomizing hazer",
+      "tags": [],
+      "state": "researched",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../antari/hz-500-hazer/previews/three-quarter.png",
+      "asset_root": "../antari/hz-500-hazer/",
+      "official_url": "https://antari.com/products/hz-500/",
+      "control_path": "Source protocol list: DMX512, manual, timer",
+      "dimensions": "0.375 m W × 0.355 m H × 0.515 m D",
+      "pose": "Integrated case upright with front access hatch open as shown in the official still; external shipping carton excluded.",
+      "dimension_caveat": true
+    },
+    {
+      "id": "antari/z-1500iii-fog-machine",
+      "name": "Z-1500III Fog Machine",
+      "manufacturer": "Antari",
+      "category_id": "atmosphere.fog",
+      "category_path": "Atmosphere and air movement > Fog / smoke-look generator",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../antari/z-1500iii-fog-machine/previews/three-quarter.png",
+      "asset_root": "../antari/z-1500iii-fog-machine/",
+      "official_url": "https://antari.com/products/z-1500iii/",
+      "control_path": "Source protocol list: DMX512, manual, timer, optional wireless",
+      "dimensions": "0.235 m W × 0.278 m H × 0.674 m D",
+      "pose": "Machine resting on feet with front output facing forward; no flight case included.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "antari/z-1200iii-fog-machine",
+      "name": "Z-1200III Fog Machine",
+      "manufacturer": "Antari",
+      "category_id": "atmosphere.fog",
+      "category_path": "Atmosphere and air movement > Fog / smoke-look generator",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../antari/z-1200iii-fog-machine/previews/three-quarter.png",
+      "asset_root": "../antari/z-1200iii-fog-machine/",
+      "official_url": "https://antari.com/products/z-1200iii/",
+      "control_path": "Source protocol list: DMX512, manual, timer, optional wireless, optional cable remote",
+      "dimensions": "0.32 m W × 0.326 m H × 0.458 m D",
+      "pose": "Machine upright on its feet, front output forward, with included hanging bracket attached; external accessories excluded.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "antari/sw-250-snow-machine",
+      "name": "SW-250 Snow Machine",
+      "manufacturer": "Antari",
+      "category_id": "effects.snow",
+      "category_path": "Special-effects appliances > Snow / foam-look machine",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../antari/sw-250-snow-machine/previews/three-quarter.png",
+      "asset_root": "../antari/sw-250-snow-machine/",
+      "official_url": "https://antari.com/zh-hant/products/sw-250/",
+      "control_path": "Source protocol list: DMX512, manual, timer, wireless, optional W-DMX, optional wired remote",
+      "dimensions": "0.365 m W × 0.409 m H × 0.539 m D",
+      "pose": "Machine on feet with front snow outlet facing forward; detachable remote and fluid supply excluded.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "antari/s-200x-snow-machine",
+      "name": "S-200X Snow Machine",
+      "manufacturer": "Antari",
+      "category_id": "effects.snow",
+      "category_path": "Special-effects appliances > Snow / foam-look machine",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../antari/s-200x-snow-machine/previews/three-quarter.png",
+      "asset_root": "../antari/s-200x-snow-machine/",
+      "official_url": "https://antari.com/products/s-200x/",
+      "control_path": "Source protocol list: DMX512, manual, optional wired remote",
+      "dimensions": "0.365 m W × 0.409 m H × 0.505 m D",
+      "pose": "Machine body upright, snow outlet toward front, hanging bracket included only if inseparable from body (not separately dimensioned).",
+      "dimension_caveat": false
+    },
+    {
+      "id": "antari/b-200-bubble-machine",
+      "name": "B-200 Bubble Machine",
+      "manufacturer": "Antari",
+      "category_id": "effects.bubble",
+      "category_path": "Special-effects appliances > Bubble machine",
+      "tags": [],
+      "state": "researched",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../antari/b-200-bubble-machine/previews/three-quarter.png",
+      "asset_root": "../antari/b-200-bubble-machine/",
+      "official_url": "https://antari.com/products/b-200/",
+      "control_path": "Source protocol list: DMX512, manual, optional timer, optional wireless, optional cable remote",
+      "dimensions": "0.508 m W × 0.391 m H × 0.251 m D",
+      "pose": "Machine upright with the broad bubble-wheel array facing forward; detachable accessories excluded.",
+      "dimension_caveat": true
+    },
+    {
+      "id": "antari/w-101-wireless-bubble-machine",
+      "name": "W-101 Wireless Bubble Machine",
+      "manufacturer": "Antari",
+      "category_id": "effects.bubble",
+      "category_path": "Special-effects appliances > Bubble machine",
+      "tags": [],
+      "state": "researched",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../antari/w-101-wireless-bubble-machine/previews/three-quarter.png",
+      "asset_root": "../antari/w-101-wireless-bubble-machine/",
+      "official_url": "https://antari.com/products/w-101/",
+      "control_path": "On/off and supplied W-1 wireless transmitter are listed by manufacturer; no DMX interface is listed.",
+      "dimensions": "0.264 m W × 0.29 m H × 0.35 m D",
+      "pose": "Machine resting on feet, bubble wheel/outlet forward; supplied transmitter excluded from enclosure bounds.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "look-solutions/tiny-s",
+      "name": "Tiny S",
+      "manufacturer": "Look Solutions",
+      "category_id": "atmosphere.fog",
+      "category_path": "Atmosphere and air movement > Fog / smoke-look generator",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../look-solutions/tiny-s/previews/three-quarter.png",
+      "asset_root": "../look-solutions/tiny-s/",
+      "official_url": "https://www.looksolutions.com/products/tiny_s/8.html",
+      "control_path": "Local start button, cable remote and radio remote are documented; no DMX is listed.",
+      "dimensions": "0.051 m W × 0.035 m H × 0.103 m D",
+      "pose": "Handheld body with battery and fluid reservoir attached; transport case, remote and accessories excluded.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "look-solutions/unique-2-1",
+      "name": "Unique 2.1",
+      "manufacturer": "Look Solutions",
+      "category_id": "atmosphere.haze_water",
+      "category_path": "Atmosphere and air movement > Water-based hazer / fazer",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../look-solutions/unique-2-1/previews/three-quarter.png",
+      "asset_root": "../look-solutions/unique-2-1/",
+      "official_url": "https://www.looksolutions.com/products/unique_2_1/8.html",
+      "control_path": "Source protocol list: DMX512, 0–10 V analog, standalone, internal timer",
+      "dimensions": "0.25 m W × 0.25 m H × 0.47 m D",
+      "pose": "Machine resting on feet with outlet panel facing forward; optional hanging set, diverter and flight case excluded.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "adj/entour-venue",
+      "name": "Entour Venue",
+      "manufacturer": "ADJ",
+      "category_id": "atmosphere.haze_water",
+      "category_path": "Atmosphere and air movement > Water-based hazer / fazer",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../adj/entour-venue/previews/three-quarter.png",
+      "asset_root": "../adj/entour-venue/",
+      "official_url": "https://www.adj.com/products/entour-venue",
+      "control_path": "Source protocol list: DMX512, manual, timer",
+      "dimensions": "0.394 m W × 0.253 m H × 0.434 m D",
+      "pose": "Machine resting on feet, adjustable nozzle facing forward, loose remote/fluid container excluded.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "antari/hz-400-hazer",
+      "name": "HZ-400 Hazer",
+      "manufacturer": "Antari",
+      "category_id": "atmosphere.haze_oil",
+      "category_path": "Atmosphere and air movement > Oil-based / atomizing hazer",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../antari/hz-400-hazer/previews/three-quarter.png",
+      "asset_root": "../antari/hz-400-hazer/",
+      "official_url": "https://antari.com/products/hz-400/",
+      "control_path": "Source protocol list: DMX512, manual, timer, optional wireless",
+      "dimensions": "0.32 m W × 0.325 m H × 0.51 m D",
+      "pose": "Machine resting upright, dual nozzles at front; external wireless receiver excluded.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "antari/f-1-fazer",
+      "name": "F-1 Fazer",
+      "manufacturer": "Antari",
+      "category_id": "atmosphere.haze_water",
+      "category_path": "Atmosphere and air movement > Water-based hazer / fazer",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../antari/f-1-fazer/previews/three-quarter.png",
+      "asset_root": "../antari/f-1-fazer/",
+      "official_url": "https://antari.com/products/f-1/",
+      "control_path": "Source protocol list: DMX512, manual, timer, optional wireless, optional W-DMX",
+      "dimensions": "0.275 m W × 0.382 m H × 0.618 m D",
+      "pose": "Machine resting on feet, nozzle forward; optional wireless accessories excluded.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "antari/z-3000iii-fog-machine",
+      "name": "Z-3000III Fog Machine",
+      "manufacturer": "Antari",
+      "category_id": "atmosphere.fog",
+      "category_path": "Atmosphere and air movement > Fog / smoke-look generator",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../antari/z-3000iii-fog-machine/previews/three-quarter.png",
+      "asset_root": "../antari/z-3000iii-fog-machine/",
+      "official_url": "https://antari.com/products/z-3000iii/",
+      "control_path": "Source protocol list: DMX512, manual, timer, optional wireless",
+      "dimensions": "0.275 m W × 0.278 m H × 0.712 m D",
+      "pose": "Machine on feet, front output facing forward; no optional wireless module or shipping case.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "showven/sparkular-mini",
+      "name": "SPARKULAR mini",
+      "manufacturer": "SHOWVEN",
+      "category_id": "effects.spark",
+      "category_path": "Special-effects appliances > Spark-effect appliance",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../showven/sparkular-mini/previews/three-quarter.png",
+      "asset_root": "../showven/sparkular-mini/",
+      "official_url": "https://www.showven.cn/product/sparkular-mini/",
+      "control_path": "Source protocol list: DMX (2 channels), wireless remote",
+      "dimensions": "0.18 m W × 0.228 m H × 0.168 m D",
+      "pose": "Base horizontal; output nozzle upward.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "showven/sparkular-jet-ii",
+      "name": "SPARKULAR JET II",
+      "manufacturer": "SHOWVEN",
+      "category_id": "effects.spark",
+      "category_path": "Special-effects appliances > Spark-effect appliance",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../showven/sparkular-jet-ii/previews/three-quarter.png",
+      "asset_root": "../showven/sparkular-jet-ii/",
+      "official_url": "https://www.showven.cn/product/sparkular-jet-ii/",
+      "control_path": "Source protocol list: DMX (2 channels), 9–60 V pyro signal input",
+      "dimensions": "0.348 m W × 0.29 m H × 0.348 m D",
+      "pose": "Base level; output assembly upward.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "showven/sparkular-cyclone-ii",
+      "name": "SPARKULAR Cyclone II",
+      "manufacturer": "SHOWVEN",
+      "category_id": "effects.spark",
+      "category_path": "Special-effects appliances > Spark-effect appliance",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../showven/sparkular-cyclone-ii/previews/three-quarter.png",
+      "asset_root": "../showven/sparkular-cyclone-ii/",
+      "official_url": "https://www.showven.cn/product/sparkular-cyclone-ii/",
+      "control_path": "Source protocol list: DMX (2 channels)",
+      "dimensions": "0.348 m W × 0.29 m H × 0.316 m D",
+      "pose": "Base level; rotating assembly centered.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "showven/sparkular-max",
+      "name": "SPARKULAR MAX",
+      "manufacturer": "SHOWVEN",
+      "category_id": "effects.spark",
+      "category_path": "Special-effects appliances > Spark-effect appliance",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../showven/sparkular-max/previews/three-quarter.png",
+      "asset_root": "../showven/sparkular-max/",
+      "official_url": "https://www.showven.cn/product/sparkular-max/",
+      "control_path": "Source protocol list: DMX (2 channels)",
+      "dimensions": "0.42 m W × 0.33 m H × 0.46 m D",
+      "pose": "Base level; outlet upward.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "robe-lighting/colorwash-250-at",
+      "name": "ColorWash 250 AT",
+      "manufacturer": "ROBE Lighting",
+      "category_id": "lighting.moving.wash",
+      "category_path": "Lighting fixtures > Automated lighting > Wash",
+      "tags": [],
+      "state": "researched",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../robe-lighting/colorwash-250-at/previews/three-quarter.png",
+      "asset_root": "../robe-lighting/colorwash-250-at/",
+      "official_url": "https://www.robe.cz/res/downloads/catalogues/ColorWash_250_AT_leaflet.pdf",
+      "control_path": "Source protocol list: USITT DMX-512",
+      "dimensions": "0.419 m W × 0.513 m H × 0.438 m D",
+      "pose": "Assembled; maximum 513 mm head-horizontal envelope; base level.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "robe-lighting/colorwash-575-at",
+      "name": "ColorWash 575 AT",
+      "manufacturer": "ROBE Lighting",
+      "category_id": "lighting.moving.wash",
+      "category_path": "Lighting fixtures > Automated lighting > Wash",
+      "tags": [],
+      "state": "researched",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../robe-lighting/colorwash-575-at/previews/three-quarter.png",
+      "asset_root": "../robe-lighting/colorwash-575-at/",
+      "official_url": "https://www.robe.cz/colorwash-575-at-tm",
+      "control_path": "Source protocol list: USITT DMX-512, RDM",
+      "dimensions": "0.47 m W × 0.588 m H × 0.446 m D",
+      "pose": "Assembled, head horizontal; base level.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "mdg/atmosphere-aps",
+      "name": "ATMOSPHERE APS",
+      "manufacturer": "MDG",
+      "category_id": "atmosphere.haze_oil",
+      "category_path": "Atmosphere and air movement > Oil-based / atomizing hazer",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../mdg/atmosphere-aps/previews/three-quarter.png",
+      "asset_root": "../mdg/atmosphere-aps/",
+      "official_url": "https://www.mdgfog.com/en/atmosphereaps",
+      "control_path": "Source protocol list: remote control, optional 2-channel DMX interface, optional remote timer",
+      "dimensions": "0.18 m W × 0.3 m H × 0.685 m D",
+      "pose": "Machine enclosure upright, haze outlets toward front; case, gas cylinder and optional DMX module excluded.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "mdg/mse1",
+      "name": "MSe1",
+      "manufacturer": "MDG",
+      "category_id": "atmosphere.fog",
+      "category_path": "Atmosphere and air movement > Fog / smoke-look generator",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../mdg/mse1/previews/three-quarter.png",
+      "asset_root": "../mdg/mse1/",
+      "official_url": "https://www.mdgfog.com/en/mse1-mse2",
+      "control_path": "Manufacturer documents an isolated 20–28 VDC control signal for system integration; no DMX interface is listed. External fluid and gas supply are required dependencies.",
+      "dimensions": "0.305 m W × 0.356 m H × 0.229 m D",
+      "pose": "Weather-resistant box mounted in its normal upright orientation; external reservoir, gas source and plumbing excluded.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "antari/s-100x-snow-machine",
+      "name": "S-100X Snow Machine",
+      "manufacturer": "Antari",
+      "category_id": "effects.snow",
+      "category_path": "Special-effects appliances > Snow / foam-look machine",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../antari/s-100x-snow-machine/previews/three-quarter.png",
+      "asset_root": "../antari/s-100x-snow-machine/",
+      "official_url": "https://antari.com/products/s-100x/",
+      "control_path": "Source protocol list: DMX512, manual, optional cable remote",
+      "dimensions": "0.365 m W × 0.409 m H × 0.505 m D",
+      "pose": "Machine upright on body feet with snow outlet forward; optional floor bracket and hose excluded.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "chauvet-dj/scorpion-dual-rgb",
+      "name": "Scorpion Dual RGB",
+      "manufacturer": "CHAUVET DJ",
+      "category_id": "lighting.effects.laser",
+      "category_path": "Lighting fixtures > Visible and audience effects > Show laser projector",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../chauvet-dj/scorpion-dual-rgb/previews/three-quarter.png",
+      "asset_root": "../chauvet-dj/scorpion-dual-rgb/",
+      "official_url": "https://www.chauvetdj.com/products/scorpion-dual-rgb/",
+      "control_path": "Source protocol list: DMX (10-channel mode), IR remote (optional IRC-6), standalone, master/slave",
+      "dimensions": "0.216 m W × 0.1795 m H × 0.161 m D",
+      "pose": "Base resting on feet; laser apertures forward.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "martin-professional-harman/mac-2000-profile",
+      "name": "MAC 2000 Profile",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "category_id": "lighting.moving.profile",
+      "category_path": "Lighting fixtures > Automated lighting > Framing profile",
+      "tags": [],
+      "state": "researched",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../martin-professional-harman/mac-2000-profile/previews/three-quarter.png",
+      "asset_root": "../martin-professional-harman/mac-2000-profile/",
+      "official_url": "https://www.martin.com/en-US/products/mac-2000-profile",
+      "control_path": "Source protocol list: USITT DMX512/1990",
+      "dimensions": "0.49 m W × 0.743 m H × 0.408 m D",
+      "pose": "Assembled, head straight up; base level.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "showven/sparkular",
+      "name": "SPARKULAR",
+      "manufacturer": "SHOWVEN",
+      "category_id": "effects.spark",
+      "category_path": "Special-effects appliances > Spark-effect appliance",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../showven/sparkular/previews/three-quarter.png",
+      "asset_root": "../showven/sparkular/",
+      "official_url": "https://www.showven.cn/product/sparkular/",
+      "control_path": "Source protocol list: DMX (2 channels)",
+      "dimensions": "0.218 m W × 0.305 m H × 0.2 m D",
+      "pose": "Base level; effect outlet upward.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "showven/sparkular-wp",
+      "name": "SPARKULAR WP",
+      "manufacturer": "SHOWVEN",
+      "category_id": "effects.spark",
+      "category_path": "Special-effects appliances > Spark-effect appliance",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../showven/sparkular-wp/previews/three-quarter.png",
+      "asset_root": "../showven/sparkular-wp/",
+      "official_url": "https://www.showven.cn/product/sparkular-wp/",
+      "control_path": "Source protocol list: DMX (2 channels)",
+      "dimensions": "0.317 m W × 0.295 m H × 0.287 m D",
+      "pose": "Base level; upward output.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "martin-professional-harman/mac-2000-wash",
+      "name": "MAC 2000 Wash",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "category_id": "lighting.moving.wash",
+      "category_path": "Lighting fixtures > Automated lighting > Wash",
+      "tags": [],
+      "state": "researched",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../martin-professional-harman/mac-2000-wash/previews/three-quarter.png",
+      "asset_root": "../martin-professional-harman/mac-2000-wash/",
+      "official_url": "https://www.martin.com/en-US/products/mac-2000-wash",
+      "control_path": "Source protocol list: USITT DMX512/1990",
+      "dimensions": "0.49 m W × 0.75 m H × 0.408 m D",
+      "pose": "Assembled, head straight up; base level.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "robe-lighting/colorspot-250-at",
+      "name": "ColorSpot 250 AT",
+      "manufacturer": "ROBE Lighting",
+      "category_id": "lighting.moving.spot",
+      "category_path": "Lighting fixtures > Automated lighting > Spot / gobo projector",
+      "tags": [],
+      "state": "researched",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../robe-lighting/colorspot-250-at/previews/three-quarter.png",
+      "asset_root": "../robe-lighting/colorspot-250-at/",
+      "official_url": "https://www.robe.cz/colorspot-250-at",
+      "control_path": "Source protocol list: DMX-512, RDM",
+      "dimensions": "0.419 m W × 0.494 m H × 0.438 m D",
+      "pose": "Assembled fixture in manufacturer dimension convention.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "adj/x-move-laser",
+      "name": "X-Move Laser",
+      "manufacturer": "ADJ",
+      "category_id": "lighting.effects.laser",
+      "category_path": "Lighting fixtures > Visible and audience effects > Show laser projector",
+      "tags": [],
+      "state": "researched",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../adj/x-move-laser/previews/three-quarter.png",
+      "asset_root": "../adj/x-move-laser/",
+      "official_url": "https://www.adj.com/products/x-move-laser",
+      "control_path": "Source protocol list: DMX512 (6 channels), sound active, primary/secondary",
+      "dimensions": "0.19 m W × 0.285 m H × 0.205 m D",
+      "pose": "Assembled moving head, base level.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "le-maitre/gforce-3",
+      "name": "GForce 3",
+      "manufacturer": "Le Maitre",
+      "category_id": "atmosphere.fog",
+      "category_path": "Atmosphere and air movement > Fog / smoke-look generator",
+      "tags": [],
+      "state": "researched",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../le-maitre/gforce-3/previews/three-quarter.png",
+      "asset_root": "../le-maitre/gforce-3/",
+      "official_url": "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/gforce-3/le-maitre-smoke-machine-comparison-breakdown/",
+      "control_path": "Source protocol list: DMX512 (2 channels), manual/timer remote",
+      "dimensions": "0.27 m W × 0.43 m H × 0.55 m D",
+      "pose": "Base level with bottle carrier fitted; outlet forward.",
+      "dimension_caveat": false
+    },
+    {
+      "id": "le-maitre/g300",
+      "name": "G300",
+      "manufacturer": "Le Maitre",
+      "category_id": "atmosphere.fog",
+      "category_path": "Atmosphere and air movement > Fog / smoke-look generator",
+      "tags": [],
+      "state": "ready_for_visualization",
+      "model_state": "validated",
+      "asset_complete": true,
+      "preview": "../le-maitre/g300/previews/three-quarter.png",
+      "asset_root": "../le-maitre/g300/",
+      "official_url": "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/g300/g300-technical-specification/",
+      "control_path": "Source protocol list: optional DMX remote (2 channels), manual/timer remote",
+      "dimensions": "0.61 m W × 0.26 m H × 0.29 m D",
+      "pose": "Base level; outlet forward.",
+      "dimension_caveat": false
     }
   ],
   "pending_acquisition": [
@@ -6680,6 +7677,388 @@
       "stage": "research",
       "official_url": "https://www.claypaky.it/products/arolla-aqua-wash-hc/",
       "name": "Arolla Aqua Wash HC",
+      "manufacturer": "Claypaky",
+      "source_images": [],
+      "reference_asset": ""
+    },
+    {
+      "id": "antari/s-600-snow-machine",
+      "reason": "Unresolved manufacturer dimension conflict: current page/manual details give 462 × 596 × 630 mm and 24 kg; 2026 guide gives 464 × 624 × 661 mm and 26 kg. Retained webpage values, do not treat scaled model as final until revision is resolved",
+      "category_id": "effects.snow",
+      "stage": "research",
+      "official_url": "https://antari.com/products/s-600/",
+      "name": "S-600 Snow Machine",
+      "manufacturer": "Antari",
+      "source_images": [
+        "https://antari.com/wp-content/uploads/S-600_main-1000x1000-1.jpg"
+      ],
+      "reference_asset": ""
+    },
+    {
+      "id": "adj/entour-chill",
+      "reason": "ADJ page gives 461.85 × 300 × 270.82 mm, while a 2020 manufacturer news post gives 420 × 297 × 273 mm. The product page links a dimensional drawing and that page specification is retained; verify PDF before modeling",
+      "category_id": "atmosphere.low_fog",
+      "stage": "research",
+      "official_url": "https://www.adj.com/products/entour-chill",
+      "name": "Entour Chill",
+      "manufacturer": "ADJ",
+      "source_images": [
+        "https://www.adj.com/cdn/shop/files/3e7661948e28165dc0fdeddd00b573fd2c2deb36_ENT791__IMG__001__fd97ff053a3a.jpg?v=1776712412&width=1200"
+      ],
+      "reference_asset": ""
+    },
+    {
+      "id": "antari/hz-350-hazer",
+      "reason": "Current product page and manual refer to current-generation model. The older 2022 HZ-350 generation has different dimensions and power; verify manufacturing generation before selecting geometry",
+      "category_id": "atmosphere.haze_oil",
+      "stage": "research",
+      "official_url": "https://antari.com/products/hz-350/",
+      "name": "HZ-350 Hazer",
+      "manufacturer": "Antari",
+      "source_images": [
+        "https://antari.com/wp-content/uploads/HZ-350_01.jpg"
+      ],
+      "reference_asset": ""
+    },
+    {
+      "id": "antari/sw-300-snow-machine",
+      "reason": "Product page dimension string 513 × 376 × 349 mm conflicts materially with manual 500 × 276 × 311 mm. Resolve the current assembled dimension set before modeling",
+      "category_id": "effects.snow",
+      "stage": "research",
+      "official_url": "https://antari.com/products/sw-300/",
+      "name": "SW-300 Snow Machine",
+      "manufacturer": "Antari",
+      "source_images": [
+        "https://antari.com/wp-content/uploads/SW-300_01.jpg"
+      ],
+      "reference_asset": ""
+    },
+    {
+      "id": "chauvet-dj/scorpion-dual",
+      "reason": "Dimensions lack a separate drawing citation",
+      "category_id": "lighting.effects.laser",
+      "stage": "research",
+      "official_url": "https://www.chauvetdj.com/products/scorpion-dual/",
+      "name": "Scorpion Dual",
+      "manufacturer": "CHAUVET DJ",
+      "source_images": [
+        "https://www.chauvetdj.com/wp-content/uploads/2015/12/scorpion-dual-cat.jpg"
+      ],
+      "reference_asset": ""
+    },
+    {
+      "id": "chauvet-dj/scorpion-bar-rg",
+      "reason": "The visible optical module count has not been established; Exact aperture count not established from source-backed product imagery/specifications",
+      "category_id": "lighting.effects.laser",
+      "stage": "research",
+      "official_url": "https://www.chauvetdj.com/products/scorpion-bar-rg/",
+      "name": "Scorpion Bar RG",
+      "manufacturer": "CHAUVET DJ",
+      "source_images": [
+        "https://www.chauvetdj.com/wp-content/uploads/2016/01/gal-Scorpion-Bar-RG-1.jpg"
+      ],
+      "reference_asset": ""
+    },
+    {
+      "id": "chauvet-dj/scorpion-storm-fxrg",
+      "reason": "The visible optical module count has not been established; Exact laser aperture count not established",
+      "category_id": "lighting.effects.laser",
+      "stage": "research",
+      "official_url": "https://www.chauvetdj.com/products/scorpion-storm-fxrg/",
+      "name": "Scorpion Storm FXRG",
+      "manufacturer": "CHAUVET DJ",
+      "source_images": [
+        "https://www.chauvetdj.com/wp-content/uploads/2015/12/Scorpion-Storm-FXRG-1.jpg"
+      ],
+      "reference_asset": ""
+    },
+    {
+      "id": "showven/co2-jet-x-c1",
+      "reason": "Dimension axis orientation needs drawing confirmation",
+      "category_id": "effects.co2",
+      "stage": "research",
+      "official_url": "https://www.showven.cn/product/co2-jet-x-c1/",
+      "name": "CO2 JET X-C1",
+      "manufacturer": "SHOWVEN",
+      "source_images": [
+        "https://www.showven.cn/wp-content/uploads/2024/03/%E4%BA%8C%E6%B0%A7%E5%8C%96%E7%A2%B3%E6%B0%94%E6%9F%B1-500x500.png"
+      ],
+      "reference_asset": ""
+    },
+    {
+      "id": "magic-fx/flameblazer-standalone",
+      "reason": "Official product still URL not extracted",
+      "category_id": "effects.flame",
+      "stage": "research",
+      "official_url": "https://www.magicfx.eu/data/uploads/documents/MAGICFX_FLAMEBLAZER_MANUAL.pdf",
+      "name": "FLAMEBLAZER Standalone",
+      "manufacturer": "MAGIC FX",
+      "source_images": [
+        "https://lemaitreltd.com/sites/lemaitreltd/cache/file/AD75D031-C865-4286-9E7926ADFF25C3DB.jpg"
+      ],
+      "reference_asset": ""
+    },
+    {
+      "id": "adj/galaxian",
+      "reason": "The listed 71 mm height appears to describe only the housing, while the photo includes a taller hanging bracket; the assembled bracket envelope needs a dimensional drawing",
+      "category_id": "lighting.effects.laser",
+      "stage": "research",
+      "official_url": "https://www.adj.com/products/galaxian",
+      "name": "Galaxian",
+      "manufacturer": "ADJ",
+      "source_images": [
+        "https://www.adj.com/cdn/shop/files/896038a44e707ec22b40e120942f21b101901139_GALAXIAN__IMG__001__16485316a8d9.jpg?v=1776714566&width=418"
+      ],
+      "reference_asset": ""
+    },
+    {
+      "id": "adj/startec-rayzer",
+      "reason": "The model needs a supported geometry profile; The visible optical module count has not been established; Exact laser outlet count not recovered",
+      "category_id": "lighting.effects.multi_effect",
+      "stage": "research",
+      "official_url": "https://www.adj.com/products/rayzer",
+      "name": "Startec Rayzer",
+      "manufacturer": "ADJ",
+      "source_images": [
+        "https://www.adj.com/cdn/shop/files/54cccaf414c8c4944ec81f38c1a6d0aa789f0b22_RAY129__IMG__001__9241ee4a4ecc.jpg?v=1776712605&width=800"
+      ],
+      "reference_asset": ""
+    },
+    {
+      "id": "adj/stinger",
+      "reason": "The model needs a supported geometry profile; The visible optical module count has not been established; Exact laser outlet count not recovered",
+      "category_id": "lighting.effects.multi_effect",
+      "stage": "research",
+      "official_url": "https://www.adj.com/products/stinger",
+      "name": "Stinger",
+      "manufacturer": "ADJ",
+      "source_images": [
+        "https://www.adj.com/cdn/shop/files/944f905ae339bcce1f469c47e930a644d89df2c0_STI960__IMG__001__97f92424f2c9.jpg?v=1776715480&width=800"
+      ],
+      "reference_asset": ""
+    },
+    {
+      "id": "adj/boom-box-fx2",
+      "reason": "The model needs a supported geometry profile; The visible optical module count has not been established; Exact laser outlet count not recovered",
+      "category_id": "lighting.effects.multi_effect",
+      "stage": "research",
+      "official_url": "https://www.adj.com/products/boom-box-fx2",
+      "name": "Boom Box FX2",
+      "manufacturer": "ADJ",
+      "source_images": [
+        "https://www.adj.com/cdn/shop/files/7022c1535af264d67d1ed14a1d509a6a7827c82b_BOO663__IMG__001__9e49d4bcb1c0.jpg?v=1776713992&width=800"
+      ],
+      "reference_asset": ""
+    },
+    {
+      "id": "adj/laser-widow",
+      "reason": "A sourced assembled width, height and depth have not all been established; The visible optical module count has not been established; Dimension orientation ambiguous; source gives three axes without identifying their order",
+      "category_id": "lighting.effects.laser",
+      "stage": "research",
+      "official_url": "https://www.adj.com/products/laser-widow",
+      "name": "Laser Widow",
+      "manufacturer": "ADJ",
+      "source_images": [
+        "https://www.adj.com/cdn/shop/files/8eacce0e6d6f59304ffb3004d12d5bdff897b81c_LASER_WIDOW__IMG__001__ea59aad3854d.jpg?v=1776715128&width=216"
+      ],
+      "reference_asset": ""
+    },
+    {
+      "id": "le-maitre/g300-smart",
+      "reason": "An exact-model product reference image is unavailable; Official still URL not recovered",
+      "category_id": "atmosphere.fog",
+      "stage": "research",
+      "official_url": "https://lemaitreltd.com/downloads/smoke-machine-manuals/g300-smart-manual/",
+      "name": "G300-Smart",
+      "manufacturer": "Le Maitre",
+      "source_images": [],
+      "reference_asset": ""
+    },
+    {
+      "id": "le-maitre/gforce-2",
+      "reason": "An exact-model product reference image is unavailable; Dedicated product manual and exact still URL not retrieved",
+      "category_id": "atmosphere.fog",
+      "stage": "research",
+      "official_url": "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/gforce-3/le-maitre-smoke-machine-comparison-breakdown/",
+      "name": "GForce 2",
+      "manufacturer": "Le Maitre",
+      "source_images": [],
+      "reference_asset": ""
+    },
+    {
+      "id": "le-maitre/freezefog-pro",
+      "reason": "Mass and exact official still URL not recovered",
+      "category_id": "atmosphere.low_fog",
+      "stage": "research",
+      "official_url": "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/freezefog-pro/",
+      "name": "Freezefog Pro",
+      "manufacturer": "Le Maitre",
+      "source_images": [
+        "https://lemaitreltd.com/sites/lemaitreltd/cache/file/A4C6E40B-BFD7-4B36-918B7CCAB9A58AA7.jpg"
+      ],
+      "reference_asset": ""
+    },
+    {
+      "id": "tbf-pyrotec-le-maitre/5-master",
+      "reason": "An exact-model product reference image is unavailable; Dimension axis order and DMX footprint need the linked manufacturer data sheet; official still URL not extracted",
+      "category_id": "effects.flame",
+      "stage": "research",
+      "official_url": "https://lemaitreltd.com/products/flame-machines/flame-machines/5-master-by-tbf-pyrotec/",
+      "name": "5-Master",
+      "manufacturer": "TBF Pyrotec / Le Maitre",
+      "source_images": [],
+      "reference_asset": ""
+    },
+    {
+      "id": "ultratec-special-effects/cyclofetti",
+      "reason": "A sourced assembled width, height and depth have not all been established; An exact-model product reference image is unavailable; Height, mounting orientation, activation interface and official still URL not established",
+      "category_id": "effects.confetti",
+      "stage": "research",
+      "official_url": "https://portal.ultratecfx.com/Products/confetti-streamers/cyclofetti",
+      "name": "Cyclofetti",
+      "manufacturer": "Ultratec Special Effects",
+      "source_images": [],
+      "reference_asset": ""
+    },
+    {
+      "id": "martin-professional-harman/mac-250-entour",
+      "reason": "An exact-model product reference image is unavailable; Exact official still-image asset URL remains unresolved. Power is optional metadata and remains null",
+      "category_id": "lighting.moving.profile",
+      "stage": "research",
+      "official_url": "https://www.martin.com/en-US/products/mac-250-entour",
+      "name": "MAC 250 Entour",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "source_images": [],
+      "reference_asset": ""
+    },
+    {
+      "id": "martin-professional-harman/mac-250-krypton",
+      "reason": "An exact-model product reference image is unavailable; Exact official still-image asset URL remains unresolved. DMX channel count and power are optional metadata and remain null",
+      "category_id": "lighting.moving.spot",
+      "stage": "research",
+      "official_url": "https://www.martin.com/en-US/products/mac-250-krypton",
+      "name": "MAC 250 Krypton",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "source_images": [],
+      "reference_asset": ""
+    },
+    {
+      "id": "martin-professional-harman/mac-250-wash",
+      "reason": "An exact-model product reference image is unavailable; Exact official still-image asset URL remains unresolved",
+      "category_id": "lighting.moving.wash",
+      "stage": "research",
+      "official_url": "https://www.martin.com/en-US/products/MAC-250-Wash",
+      "name": "MAC 250 Wash",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "source_images": [],
+      "reference_asset": ""
+    },
+    {
+      "id": "martin-professional-harman/mac-600",
+      "reason": "An exact-model product reference image is unavailable; Exact official still-image asset URL remains unresolved",
+      "category_id": "lighting.moving.wash",
+      "stage": "research",
+      "official_url": "https://www.martin.com/en-US/products/mac-600",
+      "name": "MAC 600",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "source_images": [],
+      "reference_asset": ""
+    },
+    {
+      "id": "martin-professional-harman/mac-700-profile",
+      "reason": "DMX/network compatibility or an explicit visual-inventory-only control dependency has not been verified; An exact-model product reference image is unavailable; Exact official still-image asset URL remains unresolved. Protocol/channel count and power are optional metadata and remain null",
+      "category_id": "lighting.moving.profile",
+      "stage": "research",
+      "official_url": "https://www.martin.com/en-US/products/mac-700-profile",
+      "name": "MAC 700 Profile",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "source_images": [],
+      "reference_asset": ""
+    },
+    {
+      "id": "martin-professional-harman/mac-700-wash",
+      "reason": "A sourced assembled width, height and depth have not all been established; DMX/network compatibility or an explicit visual-inventory-only control dependency has not been verified; An exact-model product reference image is unavailable; Dimensions and exact official still-image asset remain unresolved. Weight, power and channel count are optional metadata and remain null",
+      "category_id": "lighting.moving.wash",
+      "stage": "research",
+      "official_url": "https://www.martin.com/en/products/MAC-700-Wash",
+      "name": "MAC 700 Wash",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "source_images": [],
+      "reference_asset": ""
+    },
+    {
+      "id": "martin-professional-harman/mac-2000-performance",
+      "reason": "A sourced assembled width, height and depth have not all been established; DMX/network compatibility or an explicit visual-inventory-only control dependency has not been verified; An exact-model product reference image is unavailable; Dimensions and exact official still-image asset remain unresolved. Mass, power and channel count are optional metadata and remain null",
+      "category_id": "lighting.moving.profile",
+      "stage": "research",
+      "official_url": "https://www.martin.com/en-US/products/mac-2000-performance",
+      "name": "MAC 2000 Performance",
+      "manufacturer": "Martin Professional (HARMAN)",
+      "source_images": [],
+      "reference_asset": ""
+    },
+    {
+      "id": "robe-lighting/colorspot-575-at",
+      "reason": "An exact-model product reference image is unavailable; Exact official still-image URL not transcribed from brochure",
+      "category_id": "lighting.moving.spot",
+      "stage": "research",
+      "official_url": "https://www.robe.cz/res/downloads/catalogues/ColorSpot_575_AT_leaflet.pdf",
+      "name": "ColorSpot 575 AT",
+      "manufacturer": "Robe Lighting",
+      "source_images": [],
+      "reference_asset": ""
+    },
+    {
+      "id": "claypaky/alpha-profile-1500",
+      "reason": "An exact-model product reference image is unavailable; A direct manufacturer-hosted brochure and exact standalone official still image were not found; cited brochure remains explicitly secondary",
+      "category_id": "lighting.moving.profile",
+      "stage": "research",
+      "official_url": "https://www.claypaky.it/en/news/clay-paky-new-products-plasa-2010/",
+      "name": "Alpha Profile 1500",
+      "manufacturer": "Claypaky",
+      "source_images": [],
+      "reference_asset": ""
+    },
+    {
+      "id": "claypaky/alpha-spot-hpe-1500",
+      "reason": "An exact-model product reference image is unavailable; Direct manufacturer-hosted brochure and exact product still image not found; series brochure is labeled secondary",
+      "category_id": "lighting.moving.spot",
+      "stage": "research",
+      "official_url": "https://www.claypaky.it/en/news/clay-paky-new-products-plasa-2010/",
+      "name": "Alpha Spot HPE 1500",
+      "manufacturer": "Claypaky",
+      "source_images": [],
+      "reference_asset": ""
+    },
+    {
+      "id": "claypaky/alpha-beam-1500",
+      "reason": "An exact-model product reference image is unavailable; The model needs a supported geometry profile; Direct official still-image URL and manufacturer-hosted brochure not located",
+      "category_id": "lighting.moving.beam",
+      "stage": "research",
+      "official_url": "https://www.claypaky.it/en/news/clay-paky-new-products-plasa-2010/",
+      "name": "Alpha Beam 1500",
+      "manufacturer": "Claypaky",
+      "source_images": [],
+      "reference_asset": ""
+    },
+    {
+      "id": "claypaky/alpha-wash-1500",
+      "reason": "An exact-model product reference image is unavailable; Direct official still-image URL and manufacturer-hosted brochure not located",
+      "category_id": "lighting.moving.wash",
+      "stage": "research",
+      "official_url": "https://www.claypaky.it/en/news/clay-paky-new-products-plasa-2010/",
+      "name": "Alpha Wash 1500",
+      "manufacturer": "Claypaky",
+      "source_images": [],
+      "reference_asset": ""
+    },
+    {
+      "id": "claypaky/alpha-wash-1500-lt",
+      "reason": "An exact-model product reference image is unavailable; Direct official still-image URL and manufacturer-hosted brochure not located",
+      "category_id": "lighting.moving.wash",
+      "stage": "research",
+      "official_url": "https://www.claypaky.it/en/news/clay-paky-new-products-plasa-2010/",
+      "name": "Alpha Wash 1500 LT",
       "manufacturer": "Claypaky",
       "source_images": [],
       "reference_asset": ""

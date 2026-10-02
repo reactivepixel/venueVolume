@@ -1,0 +1,309 @@
+{
+  "schema_version": 1,
+  "id": "adj/entour-venue",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ADJ",
+    "model": "Entour Venue",
+    "variant": "ENT610",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.adj.com/products/entour-venue",
+      "title": "Entour Venue product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": "current product page",
+      "locator": "Specifications: SKU family, DMX personalities, dimensions, mass, power and external reservoir",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.adj.com/cdn/shop/files/8240dffd98db7012ef4f30d6239ba76cd5f16666_ENT610__IMG__001__e3470b1106c0.jpg?v=1776712354&width=850",
+      "title": "Entour Venue product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "6888eeaa43ff37434048f932af321d04536c72612756ee1290983cc21d94f4e8"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.394,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "ADJ lists L × W × H = 434 × 394 × 253 mm; external anti-spill fluid reservoir and bracket are not separately dimensioned."
+    },
+    "height": {
+      "value": 0.253,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "ADJ lists L × W × H = 434 × 394 × 253 mm; external anti-spill fluid reservoir and bracket are not separately dimensioned."
+    },
+    "depth": {
+      "value": 0.434,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "ADJ lists L × W × H = 434 × 394 × 253 mm; external anti-spill fluid reservoir and bracket are not separately dimensioned."
+    },
+    "reference_pose": "Machine resting on feet, adjustable nozzle facing forward, loose remote/fluid container excluded."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Mobile water-based faze machine; three DMX personalities; 5.6 L external anti-spill fluid tank; adjustable metal outlet nozzle and hanging bracket.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "1500 W",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "10.6 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "manual",
+          "timer"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "1-channel mode",
+      "footprint": 1,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "2-channel mode",
+      "footprint": 2,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "4-channel mode",
+      "footprint": 4,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Machine resting on feet, adjustable nozzle facing forward, loose remote/fluid container excluded.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.19699999690055847,
+        0.0,
+        -0.2170000015757978
+      ],
+      "max": [
+        0.19699999690055847,
+        0.2529999911785126,
+        0.21699999878183007
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.16271783411502838,
+          0.007409936282783747
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.16271783411502838,
+          0.007409936282783747
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "ADJ lists L × W × H = 434 × 394 × 253 mm; external anti-spill fluid reservoir and bracket are not separately dimensioned.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "6e8833023367b7577269e85be9274e735abda0c646f433b95ea3113b53a1f47d"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "5faddd237fdac85f73fe2a7a70a75d082ebfe14b8d4b5987a9659bff5fe8feb7"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "78e879beae26c522be34147c6a7edb2bd0cf17a77eda03c192abb76f1525845c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "213e77072fe8771507f50e86d345b49ef123c0600010d799333180c6eefccc18"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "101dda26cf8459c76a404021434d4994d1d8566201b8e15a70d749374d924f03"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "1f88312fecbeb3e3c828c8e80e73ac9ed967f69a7cffb6416a635bfdedf6808f"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "1230060eb2c61812f51c80e1c08ae35b4688bc30b48fdb7119679c22b8a28b3b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "69853cf684ca2e69c449dd26ab0d06efa2a8935617f051ad9698a63708edaa08"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "3bb5640005bb5fd2631af08ac0d3809e80dff742599544843992b387725b942a"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "99453144519e89a2b418212ba9a178f0682970f063a26d63b398b5fb5608980a"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.07733071595430374,
+          0.03411826118826866,
+          -0.2155582159757614
+        ],
+        "kind": "haze",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "8d5dceb5d64f403bcc8267871942a52ff94cb1a3e03fc2fa8031bcf94656c480",
+    "generator_dependency": {
+      "file": "../../_shared/effects_fixture.py",
+      "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+    },
+    "profile": {
+      "family": "hazer",
+      "body_style": "portable rectangular all-metal faze machine with top handle, fluid window and adjustable nozzle",
+      "notes": "External anti-spill fluid tank is a separate dependency; do not model it as an internal compartment.",
+      "generator": "effects",
+      "enclosure": "venue_hazer",
+      "manual_equipment_tilt": true,
+      "output_kind": "haze"
+    },
+    "mesh_count": 80,
+    "triangle_count": 14400,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/effects_fixture.py",
+        "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      },
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed hazer geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "a3e0901642dad30efcd084f8a04a8079d3a1e1fa5f37c7f59224b5a5bc35037f",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "atmosphere.haze_water",
+    "category_path": [
+      "Atmosphere and air movement",
+      "Water-based hazer / fazer"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

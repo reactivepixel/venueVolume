@@ -1,0 +1,176 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "antari/z-1200iii-fog-machine",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Antari",
+      "model": "Z-1200III Fog Machine",
+      "variant": "Z-1200III",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://antari.com/products/z-1200iii/",
+        "title": "Z-1200III Fog Machine product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": "current web product page; manual Rev.05",
+        "locator": "Specification block: dimensions, mass, rated power, tank, DMX and controls",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://antari.com/wp-content/uploads/2024-Antari-Product-Guide.pdf",
+        "title": "Antari 2024 Product Guide",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": "2024",
+        "locator": "Fog machine product panel: model identity, L/W/H and weight",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://antari.com/wp-content/uploads/Z-1200III_01.jpg",
+        "title": "Z-1200III Fog Machine product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "c0688635512685e726032641e367378a0dcd1dd78a6722dfd4064c3d58a06ca2"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.32,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer labels L/W/H = 458/320/326 mm, mapped length to front-to-back depth and width to lateral axis."
+      },
+      "height": {
+        "value": 0.326,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer labels L/W/H = 458/320/326 mm, mapped length to front-to-back depth and width to lateral axis."
+      },
+      "depth": {
+        "value": 0.458,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer labels L/W/H = 458/320/326 mm, mapped length to front-to-back depth and width to lateral axis."
+      },
+      "reference_pose": "Machine on feet, front output facing forward; bracket/accessory case excluded."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "2.5 L onboard reservoir; 1-channel DMX; LCD heater/status display; current III generation.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "1200 W",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "11.0 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "manual",
+            "timer",
+            "optional wireless",
+            "optional cable remote"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "1-channel mode",
+        "footprint": 1,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Machine on feet, front output facing forward; bracket/accessory case excluded.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer labels L/W/H = 458/320/326 mm, mapped length to front-to-back depth and width to lateral axis.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "2a3b5d6d887c197ee15d86a0a8ea7d57ecaa740267481f5ea486f571cc4fc9f4"
+  },
+  "git_commit": "b54cf066890555aa4729a81cee9400883a874af3",
+  "note": "Initial research record before any generated model artifacts existed."
+}

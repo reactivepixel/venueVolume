@@ -1,0 +1,17 @@
+{
+  "id": "showven/sparkular-jet-ii",
+  "passed": true,
+  "source_usdz_sha256": "cb35dc15b79e11b778ec0dbde125881ba856c6a4f49bb450c11ef42b7a46e21b",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 208,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

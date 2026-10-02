@@ -1,0 +1,310 @@
+{
+  "schema_version": 1,
+  "id": "robe-lighting/colorwash-250-at",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "ROBE Lighting",
+    "model": "ColorWash 250 AT",
+    "variant": "ColorWash 250 AT",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.robe.cz/res/downloads/catalogues/ColorWash_250_AT_leaflet.pdf",
+      "title": "ColorWash 250 AT leaflet",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Technical diagram dimensions; product overview and optical/control features; official product still linked from manufacturer product page",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://cdn.aws.robe.cz/v1/image/resize/e6c804d7a25ab0d1bd33dbd3974a44d1ccbb1b0f?fit=contain&height=800&width=800&withoutEnlargement=false",
+      "title": "ColorWash 250 AT product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "caca81bcb6577dc6909b46c73eb150144c968c68733f7e5ac6d1ab5cdf36feff"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.419,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official manufacturer leaflet drawing gives front width 419 mm and height 513 mm head horizontal / 502 mm in alternate pose; side depth 438 mm. Used the maximum stated height."
+    },
+    "height": {
+      "value": 0.513,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official manufacturer leaflet drawing gives front width 419 mm and height 513 mm head horizontal / 502 mm in alternate pose; side depth 438 mm. Used the maximum stated height."
+    },
+    "depth": {
+      "value": 0.438,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official manufacturer leaflet drawing gives front width 419 mm and height 513 mm head horizontal / 502 mm in alternate pose; side depth 438 mm. Used the maximum stated height."
+    },
+    "reference_pose": "Assembled; maximum 513 mm head-horizontal envelope; base level."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "MSD 250/2 wash; motorized zoom 8°–32°; CMY color mixing, six-color wheel, frost and beam shaper.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "USITT DMX-512"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Assembled; maximum 513 mm head-horizontal envelope; base level.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.2095000147819519,
+        0.0,
+        -0.2190000223054085
+      ],
+      "max": [
+        0.2095000147819519,
+        0.5130000114440918,
+        0.21900001596077345
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.00047453175648115575
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.11187107115983963,
+          0.00047453175648115575
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.3762935698032379,
+          0.00047453175648115575
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.3762935698032379,
+          -0.1652148813009262
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.11187107115983963,
+          0.00047453175648115575
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.3762935698032379,
+          0.00047453175648115575
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.3762935698032379,
+          -0.17149852216243744
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Official manufacturer leaflet drawing gives front width 419 mm and height 513 mm head horizontal / 502 mm in alternate pose; side depth 438 mm. Used the maximum stated height.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "3ba025b59cdad1b815b9d4f195822f042421e407cbd0442ac8196cf2b9728a38"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "161bf5727dccffd70231cbdb540bd6752382a7b0b497bcf7270243ce17915859"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "71c5c67a8013a6bd1519a76cb53f4578cf47c21974a01c9a4b03b2c0d4fd5901"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "a101bb4e1d386869be41f13c3c40c8b64cac2943a668192b00fb53a2671d17f2"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "e6679b7e7526c93a167398afee4c9b967438647f3710b19047844be6fa7b0ea6"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "b638a3dd887d772224739382abc0f817abb687bde6417b693759d9a823138da5"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "28dd66771f74a21176258d380cdb466215559e429b26b57a624dd6e3bf3da4ed"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "63506acae3a60482b2c6c104f0dafc49610f9392070aafecb8722e7ce1a137e5"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "776d67993fd6a878bcd9c6597b1e8ba83181b742742d32d87a5b98fa3345a52e"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "439d875a3b4abf003ca8f7c19feb718896154d44d3dacda744c9a30d719c55f3"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "4edd8ed19529cb37906eee81a994a28f02f28a92506234c3099a9adf9157a0ce",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 1,
+      "body_style": "discharge wash moving head",
+      "notes": "The official leaflet includes a still product photo and dimension views; dimensions exclude shipping packaging.",
+      "fresnel": true,
+      "head_depth": 0.72,
+      "base_height": 0.22
+    },
+    "mesh_count": 82,
+    "triangle_count": 26200,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "1ec5e74149eb5005304dce86fb18ee6badd1a61ee42e9e27f9d7ec262a6e7ed5",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

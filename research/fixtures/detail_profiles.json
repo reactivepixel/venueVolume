@@ -1537,5 +1537,283 @@
     "lens_count": 1,
     "body_style": "large IP65 profile moving head",
     "notes": "13-element zoom optics and four-blade framing; continuous pan and tilt rotation require unlimited-axis support."
+  },
+  "antari/z-1200iii-fog-machine": {
+    "family": "fogger",
+    "body_style": "compact convex metal fogger with top reservoir, carry handle and front nozzle",
+    "notes": "Current embossed III-series shell; do not reuse Z-1000III dimensions or geometry blindly.",
+    "generator": "effects",
+    "enclosure": "silver_machine",
+    "hanging_bracket": true,
+    "manual_equipment_tilt": true,
+    "output_kind": "fog"
+  },
+  "antari/z-1500iii-fog-machine": {
+    "family": "fogger",
+    "body_style": "low rectangular embossed fogger with top fluid reservoir and front outlet",
+    "notes": "Distinct long low chassis from Antari Z-1000III. Product page and guide specify model-specific size and weight.",
+    "generator": "effects",
+    "enclosure": "silver_machine",
+    "hanging_bracket": false,
+    "output_kind": "fog"
+  },
+  "antari/hz-500-hazer": {
+    "family": "hazer",
+    "body_style": "black flight-case hazer with dual outlets and case latches",
+    "notes": "The built-in case is part of the machine enclosure, distinct from shipping case dimensions. Product image shows the small square access hatch open; preserve this visual detail while using the closed-case listed envelope.",
+    "generator": "effects",
+    "enclosure": "road_case",
+    "outlet_count": 2,
+    "output_kind": "haze"
+  },
+  "antari/hz-1000-hazer": {
+    "family": "hazer",
+    "body_style": "large wheeled flight-case hazer with dual outlets, adjustable fan diverter and control panel",
+    "notes": "Render the integrated wheeled enclosure; do not add separate flight-case geometry.",
+    "generator": "effects",
+    "enclosure": "road_case",
+    "outlet_count": 1,
+    "casters": true,
+    "output_kind": "haze"
+  },
+  "antari/s-200x-snow-machine": {
+    "family": "snow",
+    "body_style": "silver rectangular snow machine with top control panel, front hose outlet and suspension bracket",
+    "notes": "Do not include extension hose in enclosure bounds. The product guide's 3-pin note identifies the DMX connector; the current shared manual explicitly documents DMX512 and one channel for the S-200X.",
+    "generator": "effects",
+    "enclosure": "silver_machine",
+    "hanging_bracket": true,
+    "manual_equipment_tilt": true,
+    "output_kind": "snow"
+  },
+  "antari/sw-250-snow-machine": {
+    "family": "snow",
+    "body_style": "silver metal snow appliance with top LCD controls and front hose outlet",
+    "notes": "Current SW-250 wireless unit; retain W-1 transmitter as included accessory metadata, not enclosure geometry.",
+    "generator": "effects",
+    "enclosure": "silver_machine",
+    "hanging_bracket": true,
+    "manual_equipment_tilt": true,
+    "output_kind": "snow"
+  },
+  "antari/b-200-bubble-machine": {
+    "family": "bubble",
+    "body_style": "large black framed bubble appliance with triple wheel array and broad forward outlet",
+    "notes": "Current B-200 variant's three dual wheels differ from compact B-100 single double wheel.",
+    "generator": "effects",
+    "enclosure": "bubble_bank",
+    "bubble_rotor": true,
+    "output_kind": "bubbles"
+  },
+  "antari/w-101-wireless-bubble-machine": {
+    "family": "bubble",
+    "body_style": "compact silver bubble machine with top handle, single wheel opening and control switch",
+    "notes": "Do not confuse W-101 with B-100; dimensions, wireless package and model identity are separate.",
+    "generator": "equipment",
+    "output_kind": "bubbles"
+  },
+  "look-solutions/unique-2-1": {
+    "family": "hazer",
+    "body_style": "compact squared metal hazer with integrated fan, controls and removable fluid canister",
+    "notes": "Use the official manufacturer side view for enclosure geometry; optional hanging set, diverter, and flight case are excluded.",
+    "generator": "effects",
+    "enclosure": "unique_hazer",
+    "output_kind": "haze"
+  },
+  "look-solutions/tiny-s": {
+    "family": "fogger",
+    "body_style": "small cylindrical handheld fogger with screw-on battery and transparent fluid reservoir",
+    "notes": "Miniature scale; battery and reservoir contribute to modeled body. Exact current product still URL was located and captured locally.",
+    "generator": "effects",
+    "enclosure": "tiny_fogger",
+    "output_kind": "fog"
+  },
+  "adj/entour-venue": {
+    "family": "hazer",
+    "body_style": "portable rectangular all-metal faze machine with top handle, fluid window and adjustable nozzle",
+    "notes": "External anti-spill fluid tank is a separate dependency; do not model it as an internal compartment.",
+    "generator": "effects",
+    "enclosure": "venue_hazer",
+    "manual_equipment_tilt": true,
+    "output_kind": "haze"
+  },
+  "antari/hz-400-hazer": {
+    "family": "hazer",
+    "body_style": "medium metal hazer with top handle, control panel, twin front nozzles and adjustable diverter",
+    "notes": "Dual nozzle assembly is a meaningful visual distinction from HZ-350 and HZ-500.",
+    "generator": "effects",
+    "enclosure": "silver_hazer",
+    "output_kind": "haze"
+  },
+  "antari/f-1-fazer": {
+    "family": "hazer",
+    "body_style": "long low rectangular metal fazer with front nozzle, top carry handle and air-pump housing",
+    "notes": "Manufacturer describes both fog and haze output; model as equipment enclosure, not a light fixture.",
+    "generator": "effects",
+    "enclosure": "fazer_wedge",
+    "output_kind": "haze"
+  },
+  "antari/z-3000iii-fog-machine": {
+    "family": "fogger",
+    "body_style": "wide industrial fog machine with convex sheet-metal shell, LCD/dual controls and front outlet",
+    "notes": "Model current III generation. Do not carry over an older 735 mm length from earlier brochure.",
+    "generator": "effects",
+    "enclosure": "silver_machine",
+    "hanging_bracket": false,
+    "output_kind": "fog"
+  },
+  "showven/sparkular-mini": {
+    "family": "spark",
+    "lens_count": 0,
+    "body_style": "small square-base cold-spark fountain machine",
+    "notes": "One visible effect outlet; no optical lenses or spotlight emitter. Cold-spark effect is not a conventional pyrotechnic flare.",
+    "generator": "effects",
+    "enclosure": "spark_box",
+    "output_kind": "spark"
+  },
+  "showven/sparkular-max": {
+    "family": "spark",
+    "lens_count": 0,
+    "body_style": "large rectangular cold-spark machine",
+    "notes": "One visible effect outlet; no optical lens or spotlight emission.",
+    "generator": "effects",
+    "enclosure": "spark_box",
+    "output_kind": "spark"
+  },
+  "showven/sparkular-cyclone-ii": {
+    "family": "spark",
+    "lens_count": 0,
+    "body_style": "rotating cold-spark effect housing",
+    "notes": "No optical lens; rotating effect outlet direction is a physical feature. Do not approximate outlet count or positions from effect diagrams.",
+    "generator": "effects",
+    "enclosure": "spark_box",
+    "output_kind": "spark"
+  },
+  "showven/sparkular-jet-ii": {
+    "family": "spark",
+    "lens_count": 0,
+    "body_style": "stainless steel spark jet with integrated compressor",
+    "notes": "One visible effect outlet; no optical lens. Physical geometry only. Manufacturer's dedicated pyro-signal input is not DMX.",
+    "generator": "effects",
+    "enclosure": "spark_box",
+    "output_kind": "spark"
+  },
+  "robe-lighting/colorwash-250-at": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "discharge wash moving head",
+    "notes": "The official leaflet includes a still product photo and dimension views; dimensions exclude shipping packaging.",
+    "fresnel": true,
+    "head_depth": 0.72,
+    "base_height": 0.22
+  },
+  "robe-lighting/colorwash-575-at": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "575 W discharge wash moving head",
+    "notes": "Keep optional wide-angle lens modules separate from standard body envelope.",
+    "fresnel": true,
+    "head_depth": 0.72,
+    "base_height": 0.22
+  },
+  "mdg/atmosphere-aps": {
+    "family": "hazer",
+    "body_style": "long purple rectangular industrial haze generator with full-length side panel, top handle and brass cap; broad fan and outlet assembly at one end",
+    "notes": "The exact ATMOSPHERE APS full-body side view is available in official gallery image 2. CO2 and MDG Neutral fluid are separate operating supplies and are not enclosure geometry; optional DMX module is external. Do not use the separate fan-detail image as the only body reference.",
+    "generator": "equipment",
+    "output_kind": "haze"
+  },
+  "mdg/mse1": {
+    "family": "fogger",
+    "body_style": "grey closed industrial cabinet with weather-resistant face panel and service vents; external fluid/gas connections",
+    "notes": "The exact MSe1 product image shows a grey closed cabinet, not the purple ATMOSPHERE-series body. Model the enclosure only. Fluid container, gas supply and control wiring are external dependencies.",
+    "generator": "effects",
+    "enclosure": "sealed_cabinet",
+    "output_kind": "fog"
+  },
+  "antari/s-100x-snow-machine": {
+    "family": "snow",
+    "body_style": "compact rectangular snow machine with front outlet, top controls and hanging bracket",
+    "notes": "Distinguish current S-100X from legacy S-100II; dimensions and fluid/control data match current X-series page.",
+    "generator": "effects",
+    "enclosure": "silver_machine",
+    "hanging_bracket": true,
+    "manual_equipment_tilt": true,
+    "output_kind": "snow"
+  },
+  "chauvet-dj/scorpion-dual-rgb": {
+    "family": "laser",
+    "lens_count": 2,
+    "body_style": "compact rectangular dual-output laser projector",
+    "notes": "Two mirror output apertures are explicitly identified by the manufacturer. Model as laser apparatus; do not add ordinary spotlight emission.",
+    "generator": "effects",
+    "enclosure": "laser_box",
+    "dual_mirror_window": true,
+    "manual_equipment_tilt": true,
+    "output_kind": "laser_aperture"
+  },
+  "showven/sparkular": {
+    "family": "spark",
+    "lens_count": 0,
+    "body_style": "upright metal cold-spark fountain unit",
+    "notes": "One visible effect outlet; no optical lenses or spotlight emitter.",
+    "generator": "effects",
+    "enclosure": "spark_box",
+    "output_kind": "spark"
+  },
+  "showven/sparkular-wp": {
+    "family": "spark",
+    "lens_count": 0,
+    "body_style": "weather-rated metal cold-spark unit",
+    "notes": "One visible effect outlet; no optical lenses or spotlight emitter. Retain weather-rated enclosure as a visual distinction.",
+    "generator": "effects",
+    "enclosure": "spark_box",
+    "output_kind": "spark"
+  },
+  "martin-professional-harman/mac-2000-profile": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "large discharge profile moving head",
+    "notes": "Keep original Profile distinct from Profile II; ballast variants affect mass, not documented outer dimensions."
+  },
+  "martin-professional-harman/mac-2000-wash": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "large discharge wash moving head",
+    "notes": "Manufacturer lists PC, Fresnel and super-wide lens options as included; micro-Fresnel is optional."
+  },
+  "robe-lighting/colorspot-250-at": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "discharge spot moving head",
+    "notes": "Robe marks this exact model discontinued; use only official fixture still, not event photographs.",
+    "shell": "faceted",
+    "base_height": 0.22
+  },
+  "adj/x-move-laser": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "output_kind": "laser_aperture",
+    "body_style": "small yoke-mounted laser projector",
+    "notes": "Pan/tilt moving head (manufacturer lists 540° pan / 220° tilt and stepper motors). Retain dark/output-only laser_aperture semantics; do not create ordinary visible spotlight output.",
+    "category_id": "lighting.effects.laser",
+    "shell": "faceted",
+    "lens_ratio": 0.45
+  },
+  "le-maitre/gforce-3": {
+    "family": "fogger",
+    "lens_count": 0,
+    "body_style": "rectangular fogger with rear bottle carrier",
+    "notes": "Do not add optical emission. Carrier-equipped overall envelope used.",
+    "generator": "equipment",
+    "output_kind": "fog"
+  },
+  "le-maitre/g300": {
+    "family": "fogger",
+    "lens_count": 0,
+    "body_style": "large rectangular smoke machine",
+    "notes": "No optical emitter. Distinguish from G300-Smart due to built-in network/DMX differences.",
+    "generator": "equipment",
+    "output_kind": "fog"
   }
 }

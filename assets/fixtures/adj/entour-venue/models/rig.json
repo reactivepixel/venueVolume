@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "5faddd237fdac85f73fe2a7a70a75d082ebfe14b8d4b5987a9659bff5fe8feb7",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "adj/entour-venue",
+    "name": "Entour Venue",
+    "manufacturer": "ADJ",
+    "family": "hazer",
+    "resource": "FixtureAssets/Catalog/adj/entour-venue/fixture.usdz",
+    "sha256": "5faddd237fdac85f73fe2a7a70a75d082ebfe14b8d4b5987a9659bff5fe8feb7",
+    "boundsMin": [
+      -0.19699999690055847,
+      0.0,
+      -0.2170000015757978
+    ],
+    "boundsMax": [
+      0.19699999690055847,
+      0.2529999911785126,
+      0.21699999878183007
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body"
+        ],
+        "pivot": [
+          0.0,
+          0.16271783411502838,
+          0.007409936282783747
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative. Visual correction pending: The exposed fluid-canister bay and lower outlet assembly are not sufficiently faithful to the product photograph; these components need revision."
+  }
+}

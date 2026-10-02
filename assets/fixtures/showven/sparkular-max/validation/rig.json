@@ -1,0 +1,17 @@
+{
+  "id": "showven/sparkular-max",
+  "passed": true,
+  "source_usdz_sha256": "78c98b9bab09b621a1ee8dbc31ca82c848312a561d04afe3d4d0a880094e4544",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 208,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

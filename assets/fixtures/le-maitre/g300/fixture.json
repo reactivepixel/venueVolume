@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "id": "le-maitre/g300",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Le Maitre",
+    "model": "G300",
+    "variant": "G300",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/g300/",
+      "title": "Le Maitre G300 product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Size 610 x 290 x 260 mm and product specifications",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/g300/le-maitre-smoke-machine-comparison-breakdown1/",
+      "title": "Le Maitre smoke-machine comparison",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "G300 control, dimensions and weight",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://lemaitreltd.com/sites/lemaitreltd/cache/file/711CDFCB-1C44-456A-ABC242A5BC99DAC4.jpg",
+      "title": "G300 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "14a464eabbf37227f4cc55e01f8273c22d0c3f9b1bf660865c7208cd6f92e827"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.61,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer product page specifies 610 x 290 x 260 mm (L x W x H); comparison gives 10.5 x 11.5 x 24 in, consistent within inch/mm rounding. Mapped to width x height x depth: 610 x 260 x 290 mm."
+    },
+    "height": {
+      "value": 0.26,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer product page specifies 610 x 290 x 260 mm (L x W x H); comparison gives 10.5 x 11.5 x 24 in, consistent within inch/mm rounding. Mapped to width x height x depth: 610 x 260 x 290 mm."
+    },
+    "depth": {
+      "value": 0.29,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer product page specifies 610 x 290 x 260 mm (L x W x H); comparison gives 10.5 x 11.5 x 24 in, consistent within inch/mm rounding. Mapped to width x height x depth: 610 x 260 x 290 mm."
+    },
+    "reference_pose": "Base level; outlet forward."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Comparison confirms mass 50 lb (22.7 kg), optional external 2-channel DMX remote, and 10.5 x 11.5 x 24 in dimensions; these are consistent within rounding with the product page's 610 x 290 x 260 mm L x W x H.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "2200 W at 230 V",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "22.7 kg (50 lb)",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "optional DMX remote (2 channels)",
+          "manual/timer remote"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Base level; outlet forward.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.3050000071525574,
+        0.0,
+        -0.14499999582767487
+      ],
+      "max": [
+        0.3050000071525574,
+        0.25999999046325684,
+        0.14499999303370714
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.010118586011230946
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.11208020150661469,
+          0.010118586011230946
+        ]
+      },
+      {
+        "name": "output",
+        "prim_path": "/Fixture/Output",
+        "pivot_m": [
+          0.0,
+          0.10947368294000626,
+          -0.14054682850837708
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer product page specifies 610 x 290 x 260 mm (L x W x H); comparison gives 10.5 x 11.5 x 24 in, consistent within inch/mm rounding. Mapped to width x height x depth: 610 x 260 x 290 mm.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "ed8f758cfb9f84961c04ac2a9bf4302864b7bdb45a26b34dea0f6bd162895417"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "065a00dccdfe294bb1add34fa21906fdcd937af7bca8ee6fb36848109dcd87b7"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "6d7d57822954306fa55eaa143e577ed7673afcdb58b5f101f4af6064c24c605e"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "8f3c5e11ac8e3fa686950d169dc0f27452061589b7a1906da87353940f394643"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "a8f9941d5c88f68364a34ecf0d48b0c042f9200d841941bad7cd0a2fec8e4158"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "620c3053b5076d7153884893ac43db175919968cabf85c58dd41fa49bc8fff9f"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "fb2fa02d18c66cc2d5c5bf4c95b9c12e8cdd1b1892d3aed023db854e715ca6f0"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "5036d2d57b4d1cf6854f0439f38f4cfd9ef8f8eed55943f73bb62da7f7f14e50"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "c8c411c47daed2a0d27f4b4386efc7353d2a0a413db29532ee95aa09f49ef829"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "ff19fa31c1b773c7c64a9ed1ada3bd7219789d14398ed672253e6c0303a993c3"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.10947368294000626,
+          -0.14198172092437744
+        ],
+        "kind": "fog",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "11a8ec2a7eea2189a5aca79bc34533745eaec6c401443b0ff4b83ae2f3be29dd",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "fogger",
+      "lens_count": 0,
+      "body_style": "large rectangular smoke machine",
+      "notes": "No optical emitter. Distinguish from G300-Smart due to built-in network/DMX differences.",
+      "generator": "equipment",
+      "output_kind": "fog"
+    },
+    "mesh_count": 26,
+    "triangle_count": 2568,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed fogger geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "a875facd70acc04d7207653f468dd7cd672f4286de78a7ccc323b235c0e9a681",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "atmosphere.fog",
+    "category_path": [
+      "Atmosphere and air movement",
+      "Fog / smoke-look generator"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

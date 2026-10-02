@@ -112,6 +112,15 @@ def build(record_path):
         members = [str(q.GetPath()) for q in stage.GetPrimAtPath(path('Body')).GetChildren()
                    if q.IsA(UsdGeom.Mesh) and not any(s in q.GetName().lower() for s in ('loop', 'eye', 'suspension'))]
         joint('ball', 'Ball speed', members, [0, model['bounds_m']['max'][1]/2, 0], [0, 1, 0], 7, 36, continuous=True, mode='manual')
+    elif profile.get('bubble_rotor'):
+        joint('tilt','Bracket tilt (manual)',[path('Body')],p('Yoke'),[1,0,0],5,120,mode='manual')
+        joint('rotor','Bubble wheel speed',[path('Rotor')],p('Rotor'),[1,0,0],7,360,'tilt',continuous=True)
+        assert not model.get('emitters'),record['id']
+    elif profile.get('manual_equipment_tilt') and 'Yoke' in parts:
+        members=[path(name) for name in ('Body','Output') if name in parts]
+        joint('tilt','Bracket tilt (manual)',members,p('Yoke'),[1,0,0],5,120,mode='manual')
+        # Effect outlets are not lights; manual placement never creates beams.
+        assert not model.get('emitters'), record['id']
     elif 'Yoke' in parts and 'Lens' in parts and family in ('par', 'profile', 'fresnel', 'pc', 'par_can', 'followspot', 'flood', 'cyc', 'blinder'):
         joint('tilt', 'Bracket tilt (manual)', [path('Body'), path('Lens')], p('Yoke'), [1, 0, 0], 5, 120, mode='manual')
         for e in model.get('emitters', []): emitter(e['position_m'], 'tilt')
@@ -123,8 +132,9 @@ def build(record_path):
                       family=family, resource=resource, sha256=runtime['sha256'], boundsMin=model['bounds_m']['min'],
                       boundsMax=model['bounds_m']['max'], joints=joints, emitters=emitters, headAim=head_aim,
                       notes='VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative.' if joints or emitters else 'Static equipment model.')
-    review_file=ROOT/'research/fixtures/expansion-v2/visual-review-issues.json'
-    review=json.loads(review_file.read_text()) if review_file.exists() else {}
+    review={}
+    for review_file in sorted((ROOT/'research/fixtures').glob('expansion-v*/visual-review-issues.json')):
+        review.update(json.loads(review_file.read_text()))
     if record['id'] in review:descriptor['notes']+=' Visual correction pending: '+review[record['id']]+'.'
     rig_path = folder / 'models/rig.json'
     save(rig_path, dict(schema_version=1, state='runtime_integrated_native_validation_pending', source_usdz_sha256=runtime['sha256'],

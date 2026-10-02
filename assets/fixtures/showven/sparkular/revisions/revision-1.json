@@ -1,0 +1,172 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "showven/sparkular",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "SHOWVEN",
+      "model": "SPARKULAR",
+      "variant": "BT01 / BT02",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.showven.cn/product/sparkular/",
+        "title": "SHOWVEN SPARKULAR product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications and features",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.showven.cn/wp-content/uploads/2025/07/SPARKULAR-20250616.pdf",
+        "title": "SPARKULAR specifications",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Model BT01/BT02 specification table",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.showven.cn/wp-content/uploads/2019/11/gsdT7v69Sa298ZXLkx6vww.png_640xa-500x500.png",
+        "title": "SPARKULAR product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "c47765bd1d7d8098273a8c56cd5e82d905dca7e9d4b877b0eee9e5465df678f9"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.218,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer page: 200 x 218 x 305 mm; interpreted L x W x H from product viewing orientation."
+      },
+      "height": {
+        "value": 0.305,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer page: 200 x 218 x 305 mm; interpreted L x W x H from product viewing orientation."
+      },
+      "depth": {
+        "value": 0.2,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer page: 200 x 218 x 305 mm; interpreted L x W x H from product viewing orientation."
+      },
+      "reference_pose": "Base level; effect outlet upward."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "3-pin XLR and power in/out; 200 g hopper capacity. One upward outlet shown in official product image; no lens terminology applies.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "500 W work power",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "8.5 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX (2 channels)"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "2-channel mode",
+        "footprint": 2,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base level; effect outlet upward.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer page: 200 x 218 x 305 mm; interpreted L x W x H from product viewing orientation.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "fec3ae9a7670fe3df3931655bf2cb6b2ef1ac78bd5fe466c91ccfc751d4aedd9"
+  },
+  "git_commit": "e38251487abca51f9e65385abff756975f2e448d",
+  "note": "Initial research record before any generated model artifacts existed."
+}

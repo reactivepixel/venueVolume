@@ -1,0 +1,322 @@
+{
+  "schema_version": 1,
+  "id": "antari/sw-250-snow-machine",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Antari",
+    "model": "SW-250 Snow Machine",
+    "variant": "SW-250",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://antari.com/zh-hant/products/sw-250/",
+      "title": "SW-250 Snow Machine product page (Traditional Chinese)",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": "current web product page",
+      "locator": "Specifications: rated power, fluid capacity, controls, one DMX channel, dimensions and weight",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.antari.com/DM/S/SW-250/SW-250.pdf",
+      "title": "SW-250 Snow Machine product flyer",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": "Ver.02, 2025",
+      "locator": "L539 W365 H409 mm, mass, 900 W and fluid data",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://antari.com/wp-content/uploads/SW-250_01.jpg",
+      "title": "SW-250 Snow Machine product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "decc057f72fab2ae0e524703a2e173cdd1cfa86f1f43d074fc033d392f70a666"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.365,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 539/365/409 mm, mapped to depth/width/height."
+    },
+    "height": {
+      "value": 0.409,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 539/365/409 mm, mapped to depth/width/height."
+    },
+    "depth": {
+      "value": 0.539,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 539/365/409 mm, mapped to depth/width/height."
+    },
+    "reference_pose": "Machine on feet with front snow outlet facing forward; detachable remote and fluid supply excluded."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "5 L reservoir; included W-1 transmitter and hanging bracket; 1-channel DMX; snow output appliance.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "900 W",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "11.5 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "manual",
+          "timer",
+          "wireless",
+          "optional W-DMX",
+          "optional wired remote"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "1-channel mode",
+      "footprint": 1,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Machine on feet with front snow outlet facing forward; detachable remote and fluid supply excluded.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.18250000476837158,
+        0.0,
+        -0.2694999873638153
+      ],
+      "max": [
+        0.18250000476837158,
+        0.4090000092983246,
+        0.2694999948143959
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.1728169173002243,
+          0.026454098522663116
+        ]
+      },
+      {
+        "name": "output",
+        "prim_path": "/Fixture/Output",
+        "pivot_m": [
+          0.0,
+          0.14812877774238586,
+          -0.21524173021316528
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.1728169173002243,
+          0.026454098522663116
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer L/W/H = 539/365/409 mm, mapped to depth/width/height.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "47aff2da97351b06b9b9c9972c8a1fa78899999862bc9734c86b412634bee823"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "cf52dde5913e1410add93cebd328c41f74b3063e3e4b1ed2f54758691a408231"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "1f2748c99c7b090ea0d2dc137f41f5f68ff73581268a93b2b32014bd1f137838"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "00e0453b204b6a6c14d3cbcab6fd2265012bf43ddadbb992d7e436e7c2c268ce"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "34f99227645acbe6d765234c2fdd2b5049a31f1eb3fc07e46100851fd23b0e89"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "de98f9164391f40730e856eb24ea4913183a93ef666b67e73a0967c52d36ca91"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "81b50f10b588553a44c4118d21ce0a0696e9f73bfc078219707be66951a68019"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "6236ce01733802c193da3e8a5377c427043befaa1692d673c0ab03280ae0481d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "890dabf2e2db730aa82b06b84d5e25ca184a330c63346e35d5e1717a5a436130"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "16e81be49fb4c78f7f22d61ba9d356cacc9c7db5d299ea572e65df6f66d40403"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.14812877774238586,
+          -0.2349720299243927
+        ],
+        "kind": "snow",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "e06356b31ded03f142a9dc46b2b9093f99b99a40958eab82f160e850d82fc208",
+    "generator_dependency": {
+      "file": "../../_shared/effects_fixture.py",
+      "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+    },
+    "profile": {
+      "family": "snow",
+      "body_style": "silver metal snow appliance with top LCD controls and front hose outlet",
+      "notes": "Current SW-250 wireless unit; retain W-1 transmitter as included accessory metadata, not enclosure geometry.",
+      "generator": "effects",
+      "enclosure": "silver_machine",
+      "hanging_bracket": true,
+      "manual_equipment_tilt": true,
+      "output_kind": "snow"
+    },
+    "mesh_count": 71,
+    "triangle_count": 12276,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/effects_fixture.py",
+        "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      },
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed snow geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "f64faf55766103c5d5b3a894dd522e2b8701fcf89f641502fbdccc721bd034d2",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "effects.snow",
+    "category_path": [
+      "Special-effects appliances",
+      "Snow / foam-look machine"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "robe-lighting/colorwash-575-at",
+  "passed": true,
+  "source_usdz_sha256": "08711a75da08b6ad3d8f4fe3103202a96832f38610d0746ce847f3fc8a25b1c7",
+  "joints": 2,
+  "moving_meshes": 35,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

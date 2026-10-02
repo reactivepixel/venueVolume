@@ -1,0 +1,145 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "le-maitre/gforce-3",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Le Maitre",
+      "model": "GForce 3",
+      "variant": "GForce 3",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://lemaitreltd.com/products/smoke-fog-haze/smoke-fog-haze-machines/gforce-3/le-maitre-smoke-machine-comparison-breakdown/",
+        "title": "Le Maitre smoke-machine comparison",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "GForce 3 dimensions, mass and DMX",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://lemaitreltd.com/sites/lemaitreltd/cache/file/AD75D031-C865-4286-9E7926ADFF25C3DB.jpg",
+        "title": "GForce 3 product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "c75893ce495682b7800266da1d6a3be4f06123e77aafa21b149f9e04257da0fd"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.27,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer gives 270 x 290 x 430 mm, with length 550 mm including bottle carrier; mapped W x H x overall D as 270 x 430 x 550 mm."
+      },
+      "height": {
+        "value": 0.43,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer gives 270 x 290 x 430 mm, with length 550 mm including bottle carrier; mapped W x H x overall D as 270 x 430 x 550 mm."
+      },
+      "depth": {
+        "value": 0.55,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer gives 270 x 290 x 430 mm, with length 550 mm including bottle carrier; mapped W x H x overall D as 270 x 430 x 550 mm."
+      },
+      "reference_pose": "Base level with bottle carrier fitted; outlet forward."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Bottle carrier adds to overall length; manufacturer comparison dimensions 270 x 290 x 430 mm, or 550 mm long with carrier.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "2200 W at 230 V",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "15.9 kg (35 lb)",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512 (2 channels)",
+            "manual/timer remote"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base level with bottle carrier fitted; outlet forward.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer gives 270 x 290 x 430 mm, with length 550 mm including bottle carrier; mapped W x H x overall D as 270 x 430 x 550 mm.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "c29188bf8ce07b2400d54d3c15975190980d6a31cc56832d7b366c1147c643f4"
+  },
+  "git_commit": "07e9005d4a27809a7538a3235f7cb42674303c77",
+  "note": "Initial research record before any generated model artifacts existed."
+}

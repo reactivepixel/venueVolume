@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "id": "antari/f-1-fazer",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Antari",
+    "model": "F-1 Fazer",
+    "variant": "F-1",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://antari.com/products/f-1/",
+      "title": "F-1 Fazer product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": "current page; manual Rev.01",
+      "locator": "Specifications: dimensions, power, mass, output/control modes and 2.4 L capacity",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://antari.com/wp-content/uploads/F-1_01.jpg",
+      "title": "F-1 Fazer product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "40e9f3508d8e87355379a6829a61a67bbebd7d79b54cd70d5366ca4b1f1d477c"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.275,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 618/275/382 mm mapped to depth/width/height."
+    },
+    "height": {
+      "value": 0.382,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 618/275/382 mm mapped to depth/width/height."
+    },
+    "depth": {
+      "value": 0.618,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 618/275/382 mm mapped to depth/width/height."
+    },
+    "reference_pose": "Machine resting on feet, nozzle forward; optional wireless accessories excluded."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Dual purpose fog/faze with built-in air pump and self-cleaning feature; 2.4 L reservoir; 2-channel DMX; current successor/overhaul of X-310.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "800 W",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "14.1 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "manual",
+          "timer",
+          "optional wireless",
+          "optional W-DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "2-channel mode",
+      "footprint": 2,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Machine resting on feet, nozzle forward; optional wireless accessories excluded.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.13750000298023224,
+        0.0,
+        -0.3089999947696924
+      ],
+      "max": [
+        0.13750000298023224,
+        0.38200002908706665,
+        0.30899997614324093
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.003185560926795006
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer L/W/H = 618/275/382 mm mapped to depth/width/height.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "85040364e568a1f964734490f71ee98aac852c439369582103fbf5bbfab4cb38"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "427dba31aa9aeafb299786913df798be57afa6cdc593d1bc4c850f50ebd33415"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "6f2b8a3b39211eaee4c3baceb29e138b6d1da6ef6085209bb516b14d5df8da4a"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "f74871010dbd270d89092bd0a61c070850111619e7918fe1e581aa07b6cc6032"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "39709a88242faf0c4530cdd4f2eeb081c1a2f02ae5271689e57ba6996c56c5f5"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "3e615480a646788c8fe6b2137db2ac4f06eee808a941dcd98be98b1ce8705c74"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "c384b83703f400bfd7da561c21ee0859542841132bc63ef7f30008f1eb90b0dd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "cc85257b69b1d0f11f8b0c645142a2ab2a31f0718ddcf265ed9a730f4fcb4fdd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "a0c5dd451d0a25199bc0e78cbfb77056c6efff74e490127d2c637076e8928f49"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "1ffb28007ae5c6d94bf7634d3682a4ba918de8ef7d91ce7e6a5d908c8393449c"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.2440635859966278,
+          -0.3217422366142273
+        ],
+        "kind": "haze",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "684a67ff26ca02eab827cde75a7f36d4cedcc7db3a9741178d06af84e13621c3",
+    "generator_dependency": {
+      "file": "../../_shared/effects_fixture.py",
+      "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+    },
+    "profile": {
+      "family": "hazer",
+      "body_style": "long low rectangular metal fazer with front nozzle, top carry handle and air-pump housing",
+      "notes": "Manufacturer describes both fog and haze output; model as equipment enclosure, not a light fixture.",
+      "generator": "effects",
+      "enclosure": "fazer_wedge",
+      "output_kind": "haze"
+    },
+    "mesh_count": 13,
+    "triangle_count": 2124,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/effects_fixture.py",
+        "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      },
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed hazer geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "14e5148ec22287dceed88ce1f97f0fc2b2b4bd2492a6a69f164c0c678285ba39",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "atmosphere.haze_water",
+    "category_path": [
+      "Atmosphere and air movement",
+      "Water-based hazer / fazer"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "id": "showven/sparkular-jet-ii",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "SHOWVEN",
+    "model": "SPARKULAR JET II",
+    "variant": "SPARKULAR JET II",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.showven.cn/product/sparkular-jet-ii/",
+      "title": "SHOWVEN SPARKULAR JET II product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Specifications and DMX/dedicated trigger interfaces",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.showven.cn/wp-content/uploads/2025/02/JET-II-500x500.png",
+      "title": "SPARKULAR JET II product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "650ffeb07d90ba0a0c538271aae178fe696470d09698a63203dd8b1d3bcc96e2"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.348,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer listing: 348 x 348 x 290 mm (L x W x H)."
+    },
+    "height": {
+      "value": 0.29,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer listing: 348 x 348 x 290 mm (L x W x H)."
+    },
+    "depth": {
+      "value": 0.348,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer listing: 348 x 348 x 290 mm (L x W x H)."
+    },
+    "reference_pose": "Base level; output assembly upward."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Dual hopper capacity listed as 450 g x 2; DMX plus isolated dedicated trigger input stated by manufacturer. No firing map or operation details transcribed.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "800 W",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "25 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX (2 channels)",
+          "9–60 V pyro signal input"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "2-channel mode",
+      "footprint": 2,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Base level; output assembly upward.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.17399999499320984,
+        0.0,
+        -0.17399999499320984
+      ],
+      "max": [
+        0.17399999499320984,
+        0.28999999165534973,
+        0.17399999499320984
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          -0.0
+        ]
+      },
+      {
+        "name": "output",
+        "prim_path": "/Fixture/Output",
+        "pivot_m": [
+          0.0644141286611557,
+          0.28812330961227417,
+          -0.06816494464874268
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer listing: 348 x 348 x 290 mm (L x W x H).",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "43de8fd8baa11c9b818a5efa22313d319700ebf8ad8028e5bfb02fad821eb953"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "cb35dc15b79e11b778ec0dbde125881ba856c6a4f49bb450c11ef42b7a46e21b"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "5850d6054ef7b16d8c434abe7de94b28eafc06fd726b88422b084086b389c28b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "348cfd358ec431b5eaab7aaf5bad30aef2d3d781a1f09f0aee3f50603fb2cc63"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "fa8e6964a6bc9537a60c06d81cb4e074cc0dfbc5649fd98c86c4dedd905ba03a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "84d73d331ae6e51dccfe10e934a0e41a4ed694e1097c9c455c4cc8f18fdb0cac"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "8e393f2853651ceaa960880db517c0712dfc1eb82c850f8a70eb5a52487aa631"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "f58a1abc375e7e8c18844a4cb8780fd76d335e28a4fa06028ec5ca0f70b71f2b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "e9c676e03c6cf69531cf5ede332b3bdd1af3bd3531dc39dda7258d715156ca34"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "5a1a21e792f059d9fec2ee104c799685235aeaf0996fdb684df1b1329ae75a4d"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0644141286611557,
+          0.29103365540504456,
+          -0.06816494464874268
+        ],
+        "kind": "spark",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "ff7ecae128808adea80ebe8920281dc822cb5207e17636ae11ad6e29142d0741",
+    "generator_dependency": {
+      "file": "../../_shared/effects_fixture.py",
+      "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+    },
+    "profile": {
+      "family": "spark",
+      "lens_count": 0,
+      "body_style": "stainless steel spark jet with integrated compressor",
+      "notes": "One visible effect outlet; no optical lens. Physical geometry only. Manufacturer's dedicated pyro-signal input is not DMX.",
+      "generator": "effects",
+      "enclosure": "spark_box",
+      "output_kind": "spark"
+    },
+    "mesh_count": 208,
+    "triangle_count": 38144,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/effects_fixture.py",
+        "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      },
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed spark geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "11e7572e496b7ad2bf36f0e6e58b469f1c9406dbdd841c65f96f2445e0081856",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "effects.spark",
+    "category_path": [
+      "Special-effects appliances",
+      "Spark-effect appliance"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

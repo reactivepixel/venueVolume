@@ -1,0 +1,154 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "showven/sparkular-cyclone-ii",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "SHOWVEN",
+      "model": "SPARKULAR Cyclone II",
+      "variant": "SPARKULAR Cyclone II",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.showven.cn/product/sparkular-cyclone-ii/",
+        "title": "SHOWVEN SPARKULAR Cyclone II product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications: dimensions, mass, power and DMX interface",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.showven.cn/wp-content/uploads/2025/02/%E9%A3%93%E9%A3%8E2-8-500x500.png",
+        "title": "SPARKULAR Cyclone II product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "221a0ad6105df485d3f7ce398dca0fb78c95cc05f8f091c606d1bfebaf91f3aa"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.348,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer listing: 348 x 316 x 290 mm (L x W x H)."
+      },
+      "height": {
+        "value": 0.29,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer listing: 348 x 316 x 290 mm (L x W x H)."
+      },
+      "depth": {
+        "value": 0.316,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer listing: 348 x 316 x 290 mm (L x W x H)."
+      },
+      "reference_pose": "Base level; rotating assembly centered."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "DMX/powerCON TRUE1 in/out; rotating effect body distinguishes it from fixed-nozzle SPARKULAR. Exact physical nozzle count not explicit in listing.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "1500 W work power",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "16 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX (2 channels)"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "2-channel mode",
+        "footprint": 2,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base level; rotating assembly centered.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer listing: 348 x 316 x 290 mm (L x W x H).",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "d85183369c98bb0c198436d447736f46f39823164599d516e9336e441bb12a98"
+  },
+  "git_commit": "5fd02c096c4e99645d94ef35db1a87b3ec29f23e",
+  "note": "Initial research record before any generated model artifacts existed."
+}

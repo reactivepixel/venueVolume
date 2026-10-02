@@ -1,0 +1,17 @@
+{
+  "id": "antari/hz-500-hazer",
+  "passed": true,
+  "source_usdz_sha256": "45990c5e38c9b3ce4937aa5cf79ff5bbf9101c821879a83c547e083db3fc5673",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 37,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

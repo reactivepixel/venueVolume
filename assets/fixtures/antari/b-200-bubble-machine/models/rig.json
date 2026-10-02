@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "ceb2806675bcf81b0364faca0ec3e6e2b03b7d2fa5641c081d02f7bd46f15ef6",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "antari/b-200-bubble-machine",
+    "name": "B-200 Bubble Machine",
+    "manufacturer": "Antari",
+    "family": "bubble",
+    "resource": "FixtureAssets/Catalog/antari/b-200-bubble-machine/fixture.usdz",
+    "sha256": "ceb2806675bcf81b0364faca0ec3e6e2b03b7d2fa5641c081d02f7bd46f15ef6",
+    "boundsMin": [
+      -0.2540000081062317,
+      0.0,
+      -0.12549998686881736
+    ],
+    "boundsMax": [
+      0.2540000081062317,
+      0.39100003242492676,
+      0.12549997790483758
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body"
+        ],
+        "pivot": [
+          0.0,
+          0.15734407305717468,
+          0.0007875777664594352
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      },
+      {
+        "id": "rotor",
+        "label": "Bubble wheel speed",
+        "parent": "tilt",
+        "members": [
+          "/Fixture/Rotor"
+        ],
+        "pivot": [
+          0.0,
+          0.15734407305717468,
+          -0.02574697695672512
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 7,
+        "travel": 360,
+        "continuous": true,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "le-maitre/gforce-3",
+  "passed": true,
+  "source_usdz_sha256": "59175dcf04250a38be49f24e03dea932e221293769ec2c95940ef704c1d59414",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 26,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

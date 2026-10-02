@@ -1,0 +1,154 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "showven/sparkular-wp",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "SHOWVEN",
+      "model": "SPARKULAR WP",
+      "variant": "BT81 / BT82",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.showven.cn/product/sparkular-wp/",
+        "title": "SHOWVEN SPARKULAR WP product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications: enclosure, dimensions, mass, power, interface and DMX",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.showven.cn/wp-content/uploads/2025/02/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260427154257_1569_1952-500x500.png",
+        "title": "SPARKULAR WP product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "8e06208bbe0431fe34147a791869e43412e9f2f1a3502078d9f2139e1e2cbab6"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.317,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer page: 317 x 287 x 295 mm; width x depth x height as shown in specification."
+      },
+      "height": {
+        "value": 0.295,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer page: 317 x 287 x 295 mm; width x depth x height as shown in specification."
+      },
+      "depth": {
+        "value": 0.287,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer page: 317 x 287 x 295 mm; width x depth x height as shown in specification."
+      },
+      "reference_pose": "Base level; upward output."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "IPX4 rated enclosure, 1200 g hopper; powerCON TRUE1 and IP65-rated 3-/5-pin XLR connectors. Manufacturer calls for DMX control.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "700 W",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "14 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX (2 channels)"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "2-channel mode",
+        "footprint": 2,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base level; upward output.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer page: 317 x 287 x 295 mm; width x depth x height as shown in specification.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "d93da9509dc466181561e7987bd5489867fa02a1cc66f1be7a8ee04ec51fb990"
+  },
+  "git_commit": "e38251487abca51f9e65385abff756975f2e448d",
+  "note": "Initial research record before any generated model artifacts existed."
+}

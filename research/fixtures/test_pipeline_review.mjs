@@ -19,11 +19,15 @@ try{
  await page.fill('#search','Color Force 3 72');assert.equal(await page.locator('article').count(),1);
  await page.locator('article img').evaluate(img=>img.decode());
  await page.fill('#search','');await page.selectOption('#state','');
+ const batches=await page.locator('#batch option').evaluateAll(items=>items.map(o=>o.value).filter(Boolean));
+ let batchRows=0;
+ for(const batch of batches){await page.selectOption('#batch',batch);batchRows+=await page.locator('article').count()}
+ assert.equal(batchRows,report.rows);await page.selectOption('#batch','');
  await page.screenshot({path:fileURLToPath(new URL('pipeline-review-desktop.png',root))});
  await page.setViewportSize({width:390,height:844});
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
  await page.screenshot({path:fileURLToPath(new URL('pipeline-review-mobile.png',root))});
  assert.deepEqual(errors,[]);
- await writeFile(new URL('pipeline-review-validation.json',root),JSON.stringify({passed:true,rows:report.rows,local_links:links.filter(l=>l.startsWith('file:')).length,checks:['all catalog items rendered','blocked rows have no fabricated asset links','every local link resolves','state and search filters','preview decodes','no mobile overflow','no JavaScript errors']},null,2)+'\n');
+ await writeFile(new URL('pipeline-review-validation.json',root),JSON.stringify({passed:true,rows:report.rows,local_links:links.filter(l=>l.startsWith('file:')).length,checks:['all catalog items rendered','blocked rows have no fabricated asset links','every local link resolves','batch partitions cover every row exactly once','state and search filters','preview decodes','no mobile overflow','no JavaScript errors']},null,2)+'\n');
  console.log('PASS: complete pipeline review');
 }finally{await browser.close()}
