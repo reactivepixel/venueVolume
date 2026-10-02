@@ -3,14 +3,14 @@
   "reviewed_at": "2026-10-02",
   "reviewer_scope": "Read-only visual and runtime QA of currently built ADJ, CHAUVET DJ, Eliminator Lighting, Eurolite, SHEHDS, and Showtec assets in the parent expansion worktree.",
   "method": {
-    "visual_pairs": "Viewed each stored official product-reference image beside its rendered three-quarter preview.",
-    "runtime_checks": "Compared documented fixture dimensions to exported USDZ bounds in fixture.json and reviewed articulated-part/joint metadata.",
+    "visual_pairs": "Viewed each stored official product-reference image beside its rendered three-quarter preview. Rechecked Focus Spot 6Z, Phantom 100 Spot and Eurolite KLS-120; added a source/render review of Intimidator Spot Duo.",
+    "runtime_checks": "Compared documented fixture dimensions to exported USDZ bounds in fixture.json and reviewed articulated-part/joint metadata and generated runtime rig sidecars where present.",
     "limitations": "This is a visual/source comparison, not physical measurement, DMX bench testing, RealityKit testing, or a check of entries that remain in research/blocked state."
   },
   "summary": {
-    "built_assets_reviewed": 15,
-    "documented_dimensions_match_exported_bounds": "All 15 reviewed fixtures match each documented outer axis within approximately 0.000001 m.",
-    "articulated_moving_heads": "All 12 reviewed moving-head fixtures expose pan and tilt joints; fixed bar, atmosphere, and static scissor-spot fixtures appropriately do not.",
+    "built_assets_reviewed": 16,
+    "documented_dimensions_match_exported_bounds": "All 16 reviewed fixtures match each documented outer axis within approximately 0.000001 m.",
+    "articulated_moving_heads": "Intimidator Spot Duo runtime sidecar defines separate pan/tilt chains and emitters for both heads. KLS-120 runtime sidecar defines four individual head pivots and emitters; these are manually aimable fixed spots, not moving-head joints. Other previously reviewed moving heads retain their prior QA status.",
     "material_findings": 2,
     "high_severity_blockers": 0
   },
@@ -29,7 +29,8 @@
     "showtec/phantom-100-spot",
     "chauvet-dj/intimidator-spot-360x",
     "chauvet-dj/intimidator-spot-475zx",
-    "chauvet-dj/sentinel-wash-q120"
+    "chauvet-dj/sentinel-wash-q120",
+    "chauvet-dj/intimidator-spot-duo"
   ],
   "findings": [
     {
@@ -72,6 +73,7 @@
     "adj/focus-flex-l7",
     "chauvet-dj/intimidator-spot-360x",
     "chauvet-dj/intimidator-spot-475zx",
-    "chauvet-dj/sentinel-wash-q120"
+    "chauvet-dj/sentinel-wash-q120",
+    "chauvet-dj/intimidator-spot-duo"
   ]
 }
