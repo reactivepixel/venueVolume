@@ -1,0 +1,376 @@
+{
+  "schema_version": 1,
+  "id": "showtec/phantom-100-spot",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Showtec",
+    "model": "Phantom 100 Spot",
+    "variant": "40077",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.showtec-lights.com/en/40077-phantom-100-spot.html",
+      "title": "Showtec Phantom 100 Spot product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Control: DMX 10/14; power 200 W; mechanical L325 x W210 x H420 mm, weight 11.3 kg; product still image",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.highlite.com/media/attachments/MANUAL/40077_MANUAL_GB_V2.pdf",
+      "title": "Showtec Phantom 100 Spot manual",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Official manufacturer manual confirms 40077 identity, operating modes and DMX control",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.showtec-lights.com/media/catalog/product/cache/cf45802cd465083d13f645e2a66e0ee8/4/0/40077_40.png",
+      "title": "Phantom 100 Spot product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "a51c521928666aae155d6a300ddfd6e05ca2b0fdd619f9874b284b58213bc64b"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.325,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Showtec lists mechanical length 325 mm, width 210 mm, height 420 mm; in upright head pose, length is mapped to front-back depth."
+    },
+    "height": {
+      "value": 0.42,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Showtec lists mechanical length 325 mm, width 210 mm, height 420 mm; in upright head pose, length is mapped to front-back depth."
+    },
+    "depth": {
+      "value": 0.21,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Showtec lists mechanical length 325 mm, width 210 mm, height 420 mm; in upright head pose, length is mapped to front-back depth."
+    },
+    "reference_pose": "Base level with head upright; dimensions from mechanical specification"
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "100 W cool-white LED, manual 12–17° zoom, motorized focus, 8 colors + open, 7 rotating gobos + open, 5- and 6-facet prisms.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "200 W",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "11.3 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "10-channel mode",
+      "footprint": 10,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "14-channel mode",
+      "footprint": 14,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Base level with head upright; dimensions from mechanical specification",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.16249999403953552,
+        0.0,
+        -0.10499999905005097
+      ],
+      "max": [
+        0.16249999403953552,
+        0.41999995708465576,
+        0.1049999943934381
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.005108905490487814
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.0776400938630104,
+          0.005108905490487814
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.2960878014564514,
+          0.005108905490487814
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.2960878014564514,
+          -0.09337930381298065
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.0776400938630104,
+          0.005108905490487814
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.2960878014564514,
+          0.005108905490487814
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.2960878014564514,
+          -0.09711439162492752
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Showtec lists mechanical length 325 mm, width 210 mm, height 420 mm; in upright head pose, length is mapped to front-back depth.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "3076dff1a233a80a3195632d5cf7828bd25b5e7f152078d59dbcec3daf9e365f"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "3f175915c931167656cc2d9b04ceb368748785e7f6f45f464795f38cd483ca45"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "e12997de51d678e72597fc4f6f3ba4474b75111fd0c4aa00f6cfee24fcd1f676"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "00538860b48b4636e016904ac73844e415db96ef440eaea304f625736080ef30"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "88a23c2c4cbe6d60407d627f54cd06fe609d92e522657154c8d170fdd8633faf"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "90e069861446490c171c856bc8e34db49d1cb501cf768938b8c246845c98f755"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "0425d1117daa4a45fcd9682cf21a77fdb6d87daaa28a4354e0946e15e7a6efe3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "a24dd99812d0c986748a58d86f63596231bd892a6a827868195dc1043ac6550e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "50d72916bd928b90decc63f09857e995a2da24e3a86bac3c1615730ae621c51a"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "80f0f3d97213648e5e554a2c395cb9a954c3ccb9b0170f19e7a7e84b83417499"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "faf1b4bc1148a2fbecc6c4e10ad43791d899ce634905666042fd120554b6a7fa",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "compact 100 W LED spot moving head with yoke",
+      "notes": "Official model page links current product manual and provides source-backed assembled envelope.",
+      "generator": "catalog",
+      "shell": "faceted",
+      "head_depth": 1.45,
+      "lens_ratio": 0.48,
+      "yoke_compression": 0.23
+    },
+    "mesh_count": 85,
+    "triangle_count": 18060,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "d47fa6dbe589c964016778c26ddb0be6d2ed7ed61f69225209dc64aea88b6491",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.spot",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Spot / gobo projector"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

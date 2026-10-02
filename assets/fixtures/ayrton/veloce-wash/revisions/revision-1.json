@@ -1,0 +1,176 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "ayrton/veloce-wash",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Ayrton",
+      "model": "Veloce Wash",
+      "variant": "012541",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.ayrton.eu/produit/veloce-wash/",
+        "title": "Veloce Wash product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Optics, 60-channel control, network protocols, source/power, size, weight and product code 012541",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.ayrton.eu/wp-content/uploads/2024/09/VeloceWashS-Specification-Sheet-V4.pdf",
+        "title": "Veloce Wash specification sheet V4",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "DMX/RDM/network protocols and single 60-channel footprint; power source/electrical data",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.ayrton.eu/wp-content/uploads/2025/02/VeloceW.png",
+        "title": "Veloce Wash product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "485dfe96ec4ea1065fb8f26ed413ca1441a9cb87d56c0b85780ab4ff3206a2b3"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.405,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Official product page: 405 x 757 x 366 mm (length x height x depth); manual V1 gives depth 367 mm, so product-page value retained."
+      },
+      "height": {
+        "value": 0.757,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Official product page: 405 x 757 x 366 mm (length x height x depth); manual V1 gives depth 367 mm, so product-page value retained."
+      },
+      "depth": {
+        "value": 0.366,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Official product page: 405 x 757 x 366 mm (length x height x depth); manual V1 gives depth 367 mm, so product-page value retained."
+      },
+      "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "850 W sealed LED module; 58,000 lm engine / 40,000 lm fixture output; 4°–57° zoom; 190 mm lens; 4-blade framing and continuous pan/tilt; IP65.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "1300 W maximum",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "39 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM",
+            "Art-Net",
+            "sACN",
+            "CRMX wireless DMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "60-channel mode",
+        "footprint": 60,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Manufacturer reference dimensions; fixture assembled.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Official product page: 405 x 757 x 366 mm (length x height x depth); manual V1 gives depth 367 mm, so product-page value retained.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "c5e66fb662616f23788549d082285f1440f189c15679deadda819c7c2945ae0b"
+  },
+  "git_commit": "529393313efc84b984528b9491e9f5e230df9fd1",
+  "note": "Initial research record before any generated model artifacts existed."
+}

@@ -1,0 +1,78 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 18580,
+  "geometry_sha256": "b457c9fe4ab2ac604bb55040b1efa85d4787517f987acfa997d7a54755e3cca0",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.18389999866485596,
+      -0.06019343063235283
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0028253900818526745
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.03840000182390213,
+        0.0028253900818526745
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.18389999866485596,
+        0.0028253900818526745
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.18389999866485596,
+        -0.05789082124829292
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852217435836792,
+    0.9505101442337036,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.steinigke.de/mpn51786070-eurolite-led-tmh-s30-moving-head-spot.html",
+    "https://www.steinigke.de/download/Move-Magazine-2-2020-E_00131465.pdf",
+    "https://media.steinigke.de/images/7640p/86/51786070a.webp"
+  ]
+}

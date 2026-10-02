@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Candidate-first detailed builds; preserve records, evidence, and manual edits."""
 import argparse,copy,csv,hashlib,importlib.util,json,os,re,shutil,subprocess,sys,tempfile
+from datetime import date
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor,as_completed
 ROOT=Path(__file__).resolve().parents[2]
@@ -9,7 +10,8 @@ CSV=ROOT/'assets/fixtures/research/major-manufacturer-fixtures.csv'
 LIB=ROOT/'docs/08 Fixture Library/skill/create-venue-fixture/scripts/library.py'
 CHECK=LIB.with_name('check_usdz.py')
 PROFILES=ROOT/'research/fixtures/detail_profiles.json'
-DATE='2026-09-30'
+DATE=date.today().isoformat()
+BATCH='catalog-expansion-'+DATE
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def dump(p,obj):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(obj,indent=2,ensure_ascii=False)+'\n')
@@ -32,11 +34,14 @@ sys.stdout.flush();sys.stderr.flush();os._exit(0)
 def run(cmd,log,env=None):
     r=subprocess.run(cmd,capture_output=True,text=True,env=env,timeout=180)
     log.write_text(log.read_text()+'\n'+r.stdout+r.stderr if log.exists() else r.stdout+r.stderr)
-    if r.returncode:raise RuntimeError(f'{cmd[0]} failed ({r.returncode}); see {log}')
+    if r.returncode:
+        diagnoses=re.findall(r'^(?:[A-Za-z]+Error|Exception): .+$',r.stdout+'\n'+r.stderr,re.M)
+        reason=diagnoses[-1] if diagnoses else f'{cmd[0]} exited with code {r.returncode}'
+        raise RuntimeError(f'{reason}; details: {log.relative_to(ROOT)}')
 
 def build_one(row,profile,force=False):
     ident=fid(row);folder=ROOT/'assets/fixtures'/ident;rp=folder/'fixture.json';record=json.loads(rp.read_text())
-    builder=BUILDER.with_name('equipment_fixture.py') if profile.get('generator')=='equipment' else BUILDER
+    builder=BUILDER.with_name({'equipment':'equipment_fixture.py','catalog':'catalog_fixture.py'}.get(profile.get('generator'),BUILDER.name))
     dependency_hash=sha(BUILDER)+(sha(builder) if builder!=BUILDER else '')
     token=hashlib.sha256((dependency_hash+json.dumps(profile,sort_keys=True)+json.dumps(record['dimensions'],sort_keys=True)).encode()).hexdigest()
     if record['model'].get('detail_build_token')==token and not force:return ident,'already_current'
@@ -55,7 +60,7 @@ def build_one(row,profile,force=False):
         published=subprocess.run(['git','show','HEAD:'+rp.relative_to(ROOT).as_posix()],cwd=ROOT,capture_output=True,text=True)
         published_record=json.loads(published.stdout) if published.returncode==0 else {}
         is_published=published_record.get('revision')==record['revision'] and published_record.get('model',{}).get('detail_build_token')==record['model'].get('detail_build_token')
-        prior_is_batch=record['model'].get('detail_batch')=='catalog-expansion-2026-09-30' and not is_published
+        prior_is_batch=record['model'].get('detail_batch')==BATCH and not is_published
         new=copy.deepcopy(record)
         if not prior_is_batch:new['revision']+=1
         new['updated_at']=DATE
@@ -68,7 +73,7 @@ def build_one(row,profile,force=False):
         if profile['family'].startswith('moving_'):
             piv={p['name']:p['pivot_m'] for p in detail['parts']}
             model['joints']=[{'name':'pan','parent':'base','child':'yoke','pivot_m':piv['yoke'],'axis':[0,1,0],'status':'estimated','limits':None},{'name':'tilt','parent':'yoke','child':'head','pivot_m':piv['head'],'axis':[1,0,0],'status':'estimated','limits':None}]
-        model.update({'detail_level':'high','detail_batch':'catalog-expansion-2026-09-30','detail_build_token':token,'generator_dependency':{'file':'../../_shared/'+builder.name,'sha256':sha(builder)},'profile':profile,'mesh_count':detail['mesh_count'],'triangle_count':detail['triangle_count'],'authoring_to_runtime':detail['authoring_to_runtime']})
+        model.update({'detail_level':'high','detail_batch':BATCH,'detail_build_token':token,'generator_dependency':{'file':'../../_shared/'+builder.name,'sha256':sha(builder)},'profile':profile,'mesh_count':detail['mesh_count'],'triangle_count':detail['triangle_count'],'authoring_to_runtime':detail['authoring_to_runtime']})
         if builder!=BUILDER:model['generator_dependencies']=[{'file':'../../_shared/'+p.name,'sha256':sha(p)} for p in (builder,BUILDER)]
         model['assumptions']=[s for s in model['assumptions'] if 'articulation joints' not in s and 'Moving components remain' not in s]
         model['assumptions']+=['Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.', 'Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints.']

@@ -20,7 +20,8 @@ print('Asset checks passed: exact room and fixture copies, SHA-256, articulation
 
 catalog = json.loads((repo / 'assets/fixtures/runtime-catalog.json').read_text())
 records = {p.parent.relative_to(repo / 'assets/fixtures').as_posix()
-           for p in (repo / 'assets/fixtures').glob('*/*/fixture.json')}
+           for p in (repo / 'assets/fixtures').glob('*/*/fixture.json')
+           if json.loads(p.read_text())['model']['status'] == 'validated'}
 assert {a['id'] for a in catalog} == records
 generated = (app / 'Core/Sources/VenueVolumeCore/GeneratedFixtureCatalog.swift').read_text()
 assert json.loads(generated.split('#"""\n', 1)[1].rsplit('\n"""#', 1)[0]) == catalog

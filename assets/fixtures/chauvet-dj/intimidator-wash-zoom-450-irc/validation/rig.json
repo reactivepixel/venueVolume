@@ -1,0 +1,17 @@
+{
+  "id": "chauvet-dj/intimidator-wash-zoom-450-irc",
+  "passed": true,
+  "source_usdz_sha256": "57daac618829cea017253c9b5b14bbf0723e35ad470bb86f2789ac716b61a93b",
+  "joints": 2,
+  "moving_meshes": 60,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

@@ -1,0 +1,369 @@
+{
+  "schema_version": 1,
+  "id": "eurolite/led-kls-120-compact-light-set",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Eurolite",
+    "model": "LED KLS-120 Compact Light Set",
+    "variant": "42109606",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.steinigke.de/mpn42109606-eurolite-led-kls-120-kompakt-lichtset.html",
+      "title": "EUROLITE LED KLS-120 Compact Light Set product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Technical data: power 30 W, DMX modes 4/7/16/19, dimensions W61.6 x H22.6 x D10.0 cm, weight 3.70 kg; four RGBW spots individually controlled",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://media.steinigke.de/images/7640p/09/42109606a.webp",
+      "title": "EUROLITE LED KLS-120 product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Official product gallery main image",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://media.steinigke.de/images/7640p/09/42109606a.webp",
+      "title": "LED KLS-120 Compact Light Set product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.webp",
+      "sha256": "f468e8621ba7672b26d08029c6123677d7ac9b9ab91af030585085ae93d437bb"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.616,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer page explicitly labels width, height and depth for the assembled crossbar."
+    },
+    "height": {
+      "value": 0.226,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer page explicitly labels width, height and depth for the assembled crossbar."
+    },
+    "depth": {
+      "value": 0.1,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer page explicitly labels width, height and depth for the assembled crossbar."
+    },
+    "reference_pose": "Crossbar assembled, front-facing, without stand"
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Four individually controlled 8 W RGBW spots on a crossbar; electronic dimmer and strobe effect.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "30 W",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "3.70 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "4-channel mode",
+      "footprint": 4,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "7-channel mode",
+      "footprint": 7,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "16-channel mode",
+      "footprint": 16,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "19-channel mode",
+      "footprint": 19,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Crossbar assembled, front-facing, without stand",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.30799999833106995,
+        -3.725290298461914e-09,
+        -0.05000000214204192
+      ],
+      "max": [
+        0.30799999833106995,
+        0.22599999140948057,
+        0.0499999993480742
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.006830488331615925,
+          0.005128203425556421
+        ]
+      },
+      {
+        "name": "head_01",
+        "prim_path": "/Fixture/Head_01",
+        "pivot_m": [
+          -0.1986600011587143,
+          0.06206832453608513,
+          0.005128203425556421
+        ]
+      },
+      {
+        "name": "head_02",
+        "prim_path": "/Fixture/Head_02",
+        "pivot_m": [
+          -0.0662200003862381,
+          0.06206832453608513,
+          0.005128203425556421
+        ]
+      },
+      {
+        "name": "head_03",
+        "prim_path": "/Fixture/Head_03",
+        "pivot_m": [
+          0.0662200003862381,
+          0.06206832453608513,
+          0.005128203425556421
+        ]
+      },
+      {
+        "name": "head_04",
+        "prim_path": "/Fixture/Head_04",
+        "pivot_m": [
+          0.1986600011587143,
+          0.06206832453608513,
+          0.005128203425556421
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.06206832453608513,
+          -0.04615384340286255
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer page explicitly labels width, height and depth for the assembled crossbar.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "36a4700fef12967b5185be16ef88b8a5974789f826d95a234b1c9b9a952fbaa8"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "98eebb2b74ad32ae9bdc8a5c7335ae918b64a6c06e8a636690bf69976f4771d4"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "ccd905c8b528a7c3ccc0fd16ce061d85159c629ebb4c847bffc80a4d85ab4ed2"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "734bb519d9fa40395a55f08c4e7fb8a2769b509e3e3a19a0cb2826b14997985f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "4bb2bc3a4aa0735a2b4563e3f117f4de8d012899eeadedb86e18e2215a4c44f1"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "9726069ba479e9c9a0859c1ba4b0a066d3832116524aea0dde52262697131fbf"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "e5fbb6582f2cb708c307f330a0e51b4873327cd2c3c9d33a62d0757aad6bd00d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "8d19f36902e652a1745e59ac27668232019c5e5e69ad23fd01fb3437d6111cfd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "ce5a1f7e66395a91480f8f2576174278d6e38d69ae5739da3463fd5f8154aa41"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "239214c174113151260de5a4dbfda83890144a6a94e4aefa8f52d6a080a59e69"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "c2d440bd115f9968074ebd672a3a7e7868f14574cd907dfffcf97951d9b5cb1d",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "batten",
+      "lens_count": 4,
+      "body_style": "four-head RGBW spot bar with central control/mounting crossbar",
+      "notes": "Four spots are individually controllable; no derby or laser is part of this model. Manual not transcribed in this pass; product page provides core DMX modes, dimensions and control behavior.",
+      "generator": "catalog",
+      "multi_heads": true,
+      "spot_bar": true,
+      "head_mode": "manual"
+    },
+    "mesh_count": 90,
+    "triangle_count": 32408,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed batten geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "5673f2cc1870d973a35acc884d4952683501ec1d95a9abc76238fe12b3783a92",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.static.batten",
+    "category_path": [
+      "Lighting fixtures",
+      "Static and manually focused",
+      "Linear batten / striplight"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

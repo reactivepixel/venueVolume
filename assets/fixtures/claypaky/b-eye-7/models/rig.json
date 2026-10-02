@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "07fe945dfb62cead388ecd269f6e9c8bbf719f74a43c1e08a69475a1177d7674",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "claypaky/b-eye-7",
+    "name": "B-Eye 7",
+    "manufacturer": "Claypaky",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/claypaky/b-eye-7/fixture.usdz",
+    "sha256": "07fe945dfb62cead388ecd269f6e9c8bbf719f74a43c1e08a69475a1177d7674",
+    "boundsMin": [
+      -0.17499999701976776,
+      0.0,
+      -0.10240000212797895
+    ],
+    "boundsMax": [
+      0.17499999701976776,
+      0.4609000086784363,
+      0.10239999269833788
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.07312098890542984,
+          0.0005038556992076337
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.34248197078704834,
+          0.0005038556992076337
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.34248197078704834,
+          -0.05315505340695381
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

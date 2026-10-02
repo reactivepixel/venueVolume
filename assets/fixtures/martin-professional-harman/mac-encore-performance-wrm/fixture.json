@@ -1,0 +1,348 @@
+{
+  "schema_version": 1,
+  "id": "martin-professional-harman/mac-encore-performance-wrm",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Martin Professional (HARMAN)",
+    "model": "MAC Encore Performance WRM",
+    "variant": "MAC Encore Performance WRM",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.martin.com/en-US/products/mac-encore-performance-wrm.html",
+      "title": "MAC Encore Performance WRM product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Technical Data: physical dimensions, weight, power; Control: DMX compliance USITT DMX512-A, RDM compliance ANSI/ESTA E1.20, 38-channel mode",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://adn.harmanpro.com/productattachment/5009/product_attachment/x_large-f067900483bdc666afaa9a55a7f38df3.webp",
+      "title": "MAC Encore Performance WRM product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.webp",
+      "sha256": "ad05301fd21ae8f5da5fc254ec47918432df10b10118b9c74d090dedb563b843"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.48,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer physical dimensions: length 452 mm, width 480 mm across yoke, maximum height 740 mm (731 mm head straight up)."
+    },
+    "height": {
+      "value": 0.74,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer physical dimensions: length 452 mm, width 480 mm across yoke, maximum height 740 mm (731 mm head straight up)."
+    },
+    "depth": {
+      "value": 0.452,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer physical dimensions: length 452 mm, width 480 mm across yoke, maximum height 740 mm (731 mm head straight up)."
+    },
+    "reference_pose": "Maximum height reference; base level."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "468 W 3000 K LED engine; 12°–48° zoom; framing, iris, gobos and Animotion FX.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "596 W typical; 64 W idle",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "31 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512-A",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "38-channel mode",
+      "footprint": 38,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Maximum height reference; base level.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.23999999463558197,
+        0.0,
+        -0.225999993737787
+      ],
+      "max": [
+        0.23999999463558197,
+        0.7399999499320984,
+        0.22599999839439988
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.006208586040884256
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.13730847835540771,
+          0.006208586040884256
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.5563035011291504,
+          0.006208586040884256
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.5563035011291504,
+          -0.2121167629957199
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.13730847835540771,
+          0.006208586040884256
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.5563035011291504,
+          0.006208586040884256
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.5563035011291504,
+          -0.22039657831192017
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer physical dimensions: length 452 mm, width 480 mm across yoke, maximum height 740 mm (731 mm head straight up).",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "b276810bd8679a6869fb085eacda0945e9d00efd048c3690dbc3907a2aca9ae0"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "33bf7c7748961364c875180f66076114a7d55a284dcb57048fd60dc55465a01b"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "d4f161d56cfcf359529d38654dff49979907d9979411d3e60b89ca857cfec5c8"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "a30eac7db38e453c5cb6ade6093e836e56aecb3431e3fa64dcdf94edbe64db3b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "e88c9ebf268f1fead2ba616eabf632d990c2146417c78e87df50969ccea031c2"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "ac285dbe9dba2cdf1b4acf53918eeb80e32d87e34f33d73a07e801d6fcf2d698"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "ba95f59ed81a888fa85193125e8b3a2ca19facb1061a3ac28d3a9e39cdcb6b9f"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "afba343e6cd9f7b2bec5d5f82147ed695f205bff0dff3ae1f94df6dbd56bb6ed"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "1d9c6bf3e78f5b2f25f560acb0c9808dd24efc3bd4dd924e341bbcfb457d93cc"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "534c822a28538a1158069352efd41a5368a5746e39367f9a90d855ad4000ac7f"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "e041293fe310ce17408d93229f2166e222b8c5300dfc163e7cc9bba65addccf9",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "LED profile moving head",
+      "notes": "WRM warm-white variant; keep distinct from CLD and Encore Two.",
+      "generator": "catalog",
+      "shell": "faceted",
+      "head_depth": 1.25,
+      "yoke_compression": 0.22
+    },
+    "mesh_count": 85,
+    "triangle_count": 18124,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "ea9397d514b32e168bf66b8b2b9f5c94141bb050c1bb447c3649e094fe45494c",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.profile",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Framing profile"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

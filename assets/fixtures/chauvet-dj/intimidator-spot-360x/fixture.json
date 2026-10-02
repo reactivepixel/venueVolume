@@ -1,0 +1,363 @@
+{
+  "schema_version": 1,
+  "id": "chauvet-dj/intimidator-spot-360x",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "CHAUVET DJ",
+    "model": "Intimidator Spot 360X",
+    "variant": "Intimidator Spot 360X",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.chauvetdj.com/products/intimidator-spot-360x/",
+      "title": "Intimidator Spot 360X product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Specifications: 8/14 DMX, source, optical system, power, weight and dimensions",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.chauvetdj.com/wp-content/uploads/2022/10/Intimidator-Spot-360X_UM_Rev1.pdf",
+      "title": "Intimidator Spot 360X User Manual Rev. 1",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Product Dimensions figure; technical specifications",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.chauvetdj.com/wp-content/uploads/2022/10/INTIMIDATOR-360X-FRONT-OFF.jpg",
+      "title": "Intimidator Spot 360X product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "c6fbdfa1a57ba648cd8f956571de8b67d441f662a2f96c142d0e8544540c7848"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.322,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Official listing gives 322 x 220 x 423 mm; manual drawing dimensions were also checked and show compatible head-up envelope."
+    },
+    "height": {
+      "value": 0.423,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Official listing gives 322 x 220 x 423 mm; manual drawing dimensions were also checked and show compatible head-up envelope."
+    },
+    "depth": {
+      "value": 0.22,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Official listing gives 322 x 220 x 423 mm; manual drawing dimensions were also checked and show compatible head-up envelope."
+    },
+    "reference_pose": "Base level, head upright; manual dimension figure indicates head upright."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "100 W LED, manual zoom 12–17°, dual rotating prisms, rotating gobos, Totem mode.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "217 W at 120 V; 211 W at 230 V",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "11.4 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "8-channel mode",
+      "footprint": 8,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "14-channel mode",
+      "footprint": 14,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Base level, head upright; manual dimension figure indicates head upright.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.16099999845027924,
+        0.0,
+        -0.11000000382773578
+      ],
+      "max": [
+        0.16099999845027924,
+        0.4230000078678131,
+        0.10999999498017132
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.002869214164093137
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.0676800012588501,
+          0.002869214164093137
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.3167400062084198,
+          0.002869214164093137
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.3167400062084198,
+          -0.09216155856847763
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.0676800012588501,
+          0.002869214164093137
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.3167400062084198,
+          0.002869214164093137
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.3167400062084198,
+          -0.09576551616191864
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Official listing gives 322 x 220 x 423 mm; manual drawing dimensions were also checked and show compatible head-up envelope.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "1c5a3ddffde1603beda54baef6bbf166f664718b2014e9de6df013ac6b844b51"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "ea18aa9f397ae4ab1caa4e0c51478ea836e372672bb1cb8a164c1a7e9cbb2551"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "e2606b12e613911500330c86f3c458441ea28bb417bdf489287abc8054560cd1"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "6588f4ed5b13892947a43ba54f925033bd1b614b236142f024046a0cdc8f05ae"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "20e104882bb7c79dacec04623e76d24104eabbf1686a59e51a8ed8f4e4c63ca2"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "1ca9b13f85bc521d1878eeb1f8423bc3974aae756102aeb0d0ad1e9b9fd1eece"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "29ebd2be645a2b3dacf1116e2d8630370aed998baabd3daad7ffac73c3928193"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "29520e797e4b67a53d6fedc5492324dfb32d6447f32bf5fbe8e9cd3413720990"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "7bfcd1349cc43143c4368644e5ad1c2586d9d49d234417f9a1a7365e853d7af5"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "8087cb48155845318f81e3ffad14e77ccd6cfa904ed7afa8c4c690d04ab60b3d"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "d346905ab124632a3554fffd5fc57f3e11ce7e5eed9a9fdff0f7a51476cb6f79",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "compact LED moving spot with lens and dual-prism optics",
+      "notes": "Common mobile event fixture with wide manual zoom and dual rotating prisms.",
+      "shell": "faceted",
+      "head_depth": 0.87
+    },
+    "mesh_count": 85,
+    "triangle_count": 17996,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "9e05316a075b623c2e7434ccbdd2bf0ba7d360a3ac618cb9f6b32fd8a378b43f",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.spot",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Spot / gobo projector"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

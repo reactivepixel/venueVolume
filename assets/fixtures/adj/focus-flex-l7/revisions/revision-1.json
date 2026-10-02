@@ -1,0 +1,223 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "adj/focus-flex-l7",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "ADJ",
+      "model": "Focus Flex L7",
+      "variant": "FOC734",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.adj.com/products/focus-flex-l7",
+        "title": "ADJ Focus Flex L7 product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications: seven modes (16/25/34/42/50/25/28 channels), DMX/RDM, seven 40 W RGBL LEDs, dimensions, power and weight",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.adj.com/cdn/shop/files/d33775b549cb16578938a380735e1b6d7f7f5094_FOC734__IMG__003__c7174f800104.jpg?v=1776712415&width=2048",
+        "title": "ADJ Focus Flex L7 product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Official product-page image asset",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.adj.com/cdn/shop/files/d33775b549cb16578938a380735e1b6d7f7f5094_FOC734__IMG__003__c7174f800104.jpg?v=1776712415&width=2048",
+        "title": "Focus Flex L7 product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "c543b659df282fa25fa209d89b627613e92dac3a193a350935979bd7bb927bb2"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.25,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "ADJ labels L x W x H = 178.8 x 250.0 x 349.2 mm; 250 mm cross-head span mapped to width, 349.2 mm upright height, 178.8 mm front-back depth."
+      },
+      "height": {
+        "value": 0.349,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "ADJ labels L x W x H = 178.8 x 250.0 x 349.2 mm; 250 mm cross-head span mapped to width, 349.2 mm upright height, 178.8 mm front-back depth."
+      },
+      "depth": {
+        "value": 0.179,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "ADJ labels L x W x H = 178.8 x 250.0 x 349.2 mm; 250 mm cross-head span mapped to width, 349.2 mm upright height, 178.8 mm front-back depth."
+      },
+      "reference_pose": "Base level; head vertical in dimensional pose"
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Seven independently controlled 40 W RGBL LED engines; 6–55° field zoom; wireless WiFLY EXR; virtual CMY options.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "337 W max at 120 V",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "7 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "16-channel mode",
+        "footprint": 16,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "25-channel mode",
+        "footprint": 25,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "34-channel mode",
+        "footprint": 34,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "42-channel mode",
+        "footprint": 42,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "50-channel mode",
+        "footprint": 50,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "28-channel mode",
+        "footprint": 28,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base level; head vertical in dimensional pose",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "ADJ labels L x W x H = 178.8 x 250.0 x 349.2 mm; 250 mm cross-head span mapped to width, 349.2 mm upright height, 178.8 mm front-back depth.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "1cf6e1316e7d6b2de07a3a1f8899d39e34d19289793aa6fe15f1367d9f08a7e4"
+  },
+  "git_commit": "d55dda961571d5dee607a7716e8d764ae34254cb",
+  "note": "Initial research record before any generated model artifacts existed."
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "678692934647bd2b1644282703a85d986e8bd11c9764171b662be99cf8972ab8",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "ayrton/argo-6-wash",
+    "name": "Argo 6 Wash",
+    "manufacturer": "Ayrton",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/ayrton/argo-6-wash/fixture.usdz",
+    "sha256": "678692934647bd2b1644282703a85d986e8bd11c9764171b662be99cf8972ab8",
+    "boundsMin": [
+      -0.21799999475479126,
+      0.0,
+      -0.14000000242958777
+    ],
+    "boundsMax": [
+      0.21799999475479126,
+      0.5360000133514404,
+      0.14000001366366632
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.08500852435827255,
+          0.0004212390922475606
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.3931644558906555,
+          0.0004212390922475606
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.3931644558906555,
+          -0.07437475025653839
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

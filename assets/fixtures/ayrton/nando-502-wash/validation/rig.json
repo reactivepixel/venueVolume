@@ -1,0 +1,17 @@
+{
+  "id": "ayrton/nando-502-wash",
+  "passed": true,
+  "source_usdz_sha256": "58cfd2d2517b58e8572d416f0dd07e17b3dfd0ad44df42fb13326919813c5fdd",
+  "joints": 2,
+  "moving_meshes": 60,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

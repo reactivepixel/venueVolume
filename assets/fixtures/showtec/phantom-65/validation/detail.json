@@ -1,0 +1,77 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 18516,
+  "geometry_sha256": "70635da87afdba89684f323af6e3d3c943ea166a906219c6d5e5c35ed47e63bc",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.2890999913215637,
+      -0.08538202941417694
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.002108074026182294
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.058400001376867294,
+        0.002108074026182294
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.2890999913215637,
+        0.002108074026182294
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.2890999913215637,
+        -0.0821852758526802
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216243743896,
+    0.9897070527076721,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.highlite.com/media/attachments/MANUAL/40070_MANUAL_GB_V1.pdf",
+    "https://www.showtec-lights.com/media/catalog/product/cache/87bb4254b6bb8fe881d0a120867e629d/4/0/40070_43.png"
+  ]
+}

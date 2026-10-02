@@ -1,0 +1,331 @@
+{
+  "schema_version": 1,
+  "id": "cameo/opus-x4-ip",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Cameo",
+    "model": "OPUS X4 IP",
+    "variant": "CLOX4PIP",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.cameolight.com/en/solutions/rental/moving-lights/profile-moving-heads/31933/opus-x4-ip",
+      "title": "OPUS X4 IP product specifications",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Control, mains, construction, environmental and dimensions & weight sections: protocols, 1780 W, 475 × 860 × 350 mm, 46 kg; optical features",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://cdn-shop.adamhall.com/ORIGINAL/media/MARKEN/CAMEO/CLOX4PIP/CLOX4PIP_1.jpg",
+      "title": "OPUS X4 IP product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "2faa5f4ac8a71efa9c8ec0ca1005ded9575f54e13846471693e0dba5de11cc90"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.475,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Cameo product page labels width 475 mm, height 860 mm, depth 350 mm."
+    },
+    "height": {
+      "value": 0.86,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Cameo product page labels width 475 mm, height 860 mm, depth 350 mm."
+    },
+    "depth": {
+      "value": 0.35,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Cameo product page labels width 475 mm, height 860 mm, depth 350 mm."
+    },
+    "reference_pose": "Overall assembled IP65 fixture; head pose not separately specified."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "IP65 version; 1400 W white LED engine, 50,000 lm, 5°–50° zoom, framing, dual gobo wheels and animation; three DMX modes (footprints not stated on product page).",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "1780 W rated",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "46 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "Art-Net",
+          "sACN",
+          "W-DMX",
+          "CRMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Overall assembled IP65 fixture; head pose not separately specified.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.23749998211860657,
+        0.0,
+        -0.17500001055304892
+      ],
+      "max": [
+        0.23749998211860657,
+        0.8600000143051147,
+        0.1749999834864866
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.00032448905403725803
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.13760000467300415,
+          0.00032448905403725803
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.703249990940094,
+          0.00032448905403725803
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.703249990940094,
+          -0.14898259937763214
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.13760000467300415,
+          0.00032448905403725803
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.703249990940094,
+          0.00032448905403725803
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.703249990940094,
+          -0.1546449512243271
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Cameo product page labels width 475 mm, height 860 mm, depth 350 mm.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "b07e82cf9225e4813a80908240522a01fd73a51fe19a68ac566eab2990cfc762"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "32c324200c78f2b16acc9e1f4f8b2e8585341661fe2df93e9a967805f64a3bb0"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "abd021418518e66929b9d6ec77ee8db76a1fe2fec0d9747a178aaec804adb80c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "801ba882dad8bbfbf503937f05f3922d5dcb8bd57ce949be5a3ba7f9cf9238b3"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "7e176a17a85efaec857c17d4ef6f0ec6719285e362faf6a8de43e860ed5c81ae"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "e468676d04ec4c50601453ad0f2f49ba7c086eaa9c5af9016e508f39b1efac6c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "b13853109fad180628b9720a6c95c74df21f6413ecc26194892f1547b04f0e02"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "f3d6b0befad0949f429b56c8249d5e7edefcafa3020215bafbd39710890ec3df"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "5e6a8586589cf22ee449ac66bdc87bb8f32c98f5c3fb50494fc18cb8bba4b02f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "dfa8a52230ed18825ac8cedd2b7a164250987f8c63e4a5bb0f659e1ffe6c95d2"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "2963eb3a43b0c99d8965f83f40e7616a3fcaefca729fef33d896538ff07ffde9",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "shell": "faceted",
+      "lens_ratio": 0.65,
+      "head_depth": 0.82,
+      "notes": "Sealed outdoor profile fixture; enclosure may differ from indoor variant."
+    },
+    "mesh_count": 85,
+    "triangle_count": 17996,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "b49a02ee85d7f92e0137e86975a9b5ed7fc8cb668e5fa46a025e4e4930e8474e",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.profile",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Framing profile"
+    ],
+    "use_tags": [
+      "weather-rated variant"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

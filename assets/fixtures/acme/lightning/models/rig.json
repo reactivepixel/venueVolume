@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "0603ce3d9e04fe129bbad1cb9c655fcc1a32e4ff92aabf3dcfeecf1f69daaaa3",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "acme/lightning",
+    "name": "LIGHTNING",
+    "manufacturer": "ACME",
+    "family": "strobe",
+    "resource": "FixtureAssets/Catalog/acme/lightning/fixture.usdz",
+    "sha256": "0603ce3d9e04fe129bbad1cb9c655fcc1a32e4ff92aabf3dcfeecf1f69daaaa3",
+    "boundsMin": [
+      -0.24150000512599945,
+      0.0,
+      -0.10600000619888306
+    ],
+    "boundsMax": [
+      0.24150000512599945,
+      0.2240000069141388,
+      0.10600000200793147
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body/Extruded_fixture_housing_0",
+          "/Fixture/Body/Long_heatsink_rib_1",
+          "/Fixture/Body/Long_heatsink_rib_001_2",
+          "/Fixture/Body/Long_heatsink_rib_002_3",
+          "/Fixture/Body/Long_heatsink_rib_003_4",
+          "/Fixture/Body/Long_heatsink_rib_004_5",
+          "/Fixture/Body/Long_heatsink_rib_005_6",
+          "/Fixture/Body/Long_heatsink_rib_006_7",
+          "/Fixture/Body/Long_heatsink_rib_007_8",
+          "/Fixture/Body/Optic_surround_9",
+          "/Fixture/Body/End_cheek_10",
+          "/Fixture/Body/Tilt_knob_11",
+          "/Fixture/Body/End_cheek_001_14",
+          "/Fixture/Body/Tilt_knob_001_15",
+          "/Fixture/Body/Overhead_bracket_side_18",
+          "/Fixture/Body/Overhead_bracket_side_001_19",
+          "/Fixture/Body/Overhead_bracket_bridge_20",
+          "/Fixture/Body/DMX_power_socket_21",
+          "/Fixture/Body/Socket_rim_22",
+          "/Fixture/Body/Socket_pin_23",
+          "/Fixture/Body/Socket_pin_001_24",
+          "/Fixture/Body/Socket_pin_002_25",
+          "/Fixture/Body/DMX_power_socket_001_26",
+          "/Fixture/Body/Socket_rim_001_27",
+          "/Fixture/Body/Socket_pin_003_28",
+          "/Fixture/Body/Socket_pin_004_29",
+          "/Fixture/Body/Socket_pin_005_30",
+          "/Fixture/Body/DMX_power_socket_002_31",
+          "/Fixture/Body/Socket_rim_002_32",
+          "/Fixture/Body/Socket_pin_006_33",
+          "/Fixture/Body/Socket_pin_007_34",
+          "/Fixture/Body/Socket_pin_008_35",
+          "/Fixture/Body/DMX_power_socket_003_36",
+          "/Fixture/Body/Socket_rim_003_37",
+          "/Fixture/Body/Socket_pin_009_38",
+          "/Fixture/Body/Socket_pin_010_39",
+          "/Fixture/Body/Socket_pin_011_40",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.11573333293199539,
+          -0.004515301901847124
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.11573333293199539,
+          -0.09512821584939957
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

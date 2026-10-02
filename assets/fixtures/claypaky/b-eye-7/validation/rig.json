@@ -1,0 +1,17 @@
+{
+  "id": "claypaky/b-eye-7",
+  "passed": true,
+  "source_usdz_sha256": "07fe945dfb62cead388ecd269f6e9c8bbf719f74a43c1e08a69475a1177d7674",
+  "joints": 2,
+  "moving_meshes": 45,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

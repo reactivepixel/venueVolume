@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "5d6d3615f7537a1a3e67a296339b2a3121150529dd107030032ff6703e97af2e",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "robe-lighting/ledpointe",
+    "name": "LedPOINTE",
+    "manufacturer": "ROBE Lighting",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/robe-lighting/ledpointe/fixture.usdz",
+    "sha256": "5d6d3615f7537a1a3e67a296339b2a3121150529dd107030032ff6703e97af2e",
+    "boundsMin": [
+      -0.18150000274181366,
+      0.0,
+      -0.11999999592080712
+    ],
+    "boundsMax": [
+      0.18150000274181366,
+      0.6669999361038208,
+      0.11999999126419425
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.12296077609062195,
+          0.005723902489989996
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5289801955223083,
+          0.005723902489989996
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5289801955223083,
+          -0.11129296571016312
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

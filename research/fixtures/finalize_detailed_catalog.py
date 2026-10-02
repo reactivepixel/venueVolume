@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Publish a local review gallery and audit the canonical catalog manifest."""
 import csv,hashlib,html,json,re,subprocess,sys
+from datetime import date
 from collections import Counter
 from pathlib import Path
 from build_detailed_catalog import ROOT,CSV,dump,fid,LIB
@@ -68,6 +69,9 @@ headline=f"{len(rows)} fixtures · {summary['manufacturer_count']} manufacturers
 page=page.replace('</style>','label{min-width:0;max-width:100%}select,input{min-width:0;max-width:100%}@media(max-width:600px){form label{width:100%;display:flex;flex-direction:column;align-items:stretch}article h2{overflow-wrap:anywhere}}</style>')
 page=page.replace('77 fixtures · 10 manufacturers · 53 upgraded + 24 additions in two batches.',headline).replace('Original 53',f"Original {batches['original']}")
 page=page.replace('<option value="2">Expansion 2</option>','<option value="2">Expansion 2</option><option value="taxonomy">Category coverage</option>')
+page=page.replace('2026-09-30',date.today().isoformat())
+page=page.replace('<option value="taxonomy">Category coverage</option>','<option value="taxonomy">Category coverage</option>'+''.join(f'<option value="{html.escape(batch)}">{html.escape(batch)}</option>' for batch in sorted(batches) if batch not in ('original','1','2','taxonomy')))
+page=page.replace('<nav>','<nav><a href="pipeline-review.html">All items &amp; pipeline errors</a>')
 page=page.replace('<a href="major-manufacturer-fixtures.csv">','<a href="show-equipment.html">Category hierarchy &amp; coverage</a><a href="major-manufacturer-fixtures.csv">')
 (ROOT/'assets/fixtures/research/catalog-preview.html').write_text(page.replace('PAYLOAD',payload))
 subprocess.run([sys.executable,str(LIB),'index','--root',str(ROOT)],check=True)

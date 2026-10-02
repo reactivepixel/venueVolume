@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "44392fe9c9d80c97b88080718fa6a0d4465c21db2052a30dbe7fbcc7eb11c4ad",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "martin-professional-harman/mac-aura-pxl",
+    "name": "MAC Aura PXL",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/mac-aura-pxl/fixture.usdz",
+    "sha256": "44392fe9c9d80c97b88080718fa6a0d4465c21db2052a30dbe7fbcc7eb11c4ad",
+    "boundsMin": [
+      -0.20500001311302185,
+      0.0,
+      -0.11599999980535358
+    ],
+    "boundsMax": [
+      0.20500001311302185,
+      0.5440000295639038,
+      0.1160000009695068
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.0977759063243866,
+          0.00048274232540279627
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.3868439197540283,
+          0.00048274232540279627
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.3868439197540283,
+          -0.060819897800683975
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

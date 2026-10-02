@@ -1,0 +1,17 @@
+{
+  "id": "elation-professional/proteus-lucius",
+  "passed": true,
+  "source_usdz_sha256": "4ede12875f1fbb8a4ebe9c45e5d3f86bdca7535f20b34d86651b14f794b622fb",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

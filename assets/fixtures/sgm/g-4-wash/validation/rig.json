@@ -1,0 +1,17 @@
+{
+  "id": "sgm/g-4-wash",
+  "passed": true,
+  "source_usdz_sha256": "0af20f211906214ee41264aeaa73fbb72f5a5b4c252917d5bb8159b07c234401",
+  "joints": 2,
+  "moving_meshes": 35,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

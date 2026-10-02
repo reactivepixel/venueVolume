@@ -1,0 +1,163 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "chauvet-dj/intimidator-spot-375zx",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "CHAUVET DJ",
+      "model": "Intimidator Spot 375ZX",
+      "variant": "Intimidator Spot 375ZX",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.chauvetdj.com/products/intimidator-spot-375zx/",
+        "title": "Intimidator Spot 375ZX product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications and downloads; 9/15 DMX channels, electrical, dimensions, mass and optics",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.chauvetdj.com/wp-content/uploads/2022/10/INTIMIDATOR-375ZX-FRONT-OFF.jpg",
+        "title": "Intimidator Spot 375ZX product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "5f91ab612259094284d9fd9cc2d0b3e22eebd15ece628494e14b25d73a2ab234"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.322,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer size 322 x 220 x 466 mm; mapped width x depth x height."
+      },
+      "height": {
+        "value": 0.466,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer size 322 x 220 x 466 mm; mapped width x depth x height."
+      },
+      "depth": {
+        "value": 0.22,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer size 322 x 220 x 466 mm; mapped width x depth x height."
+      },
+      "reference_pose": "Base level, head vertical per product dimensional listing."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "200 W LED, 10–23° motorized zoom, motorized focus, rotating gobos and dual prisms.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "354 W at 120 V; 337 W at 230 V",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "12.4 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "9-channel mode",
+        "footprint": 9,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "15-channel mode",
+        "footprint": 15,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base level, head vertical per product dimensional listing.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer size 322 x 220 x 466 mm; mapped width x depth x height.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "9e09698934672cb458d3172c2410d4cb933353d131fde21e498e69dcbb62b16c"
+  },
+  "git_commit": "57d1c4f4b986e095c19ed7af915f82f46f817f9c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

@@ -1,0 +1,17 @@
+{
+  "id": "jb-lighting/sparx-18",
+  "passed": true,
+  "source_usdz_sha256": "01f6b122a98c59b1d58ac6299d1731ff764705aa589119c5528bd5bca24fcbea",
+  "joints": 2,
+  "moving_meshes": 135,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

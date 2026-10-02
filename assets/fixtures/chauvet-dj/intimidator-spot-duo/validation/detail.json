@@ -1,0 +1,105 @@
+{
+  "mesh_count": 71,
+  "triangle_count": 20468,
+  "geometry_sha256": "08c50ae6cac143310cd9b2834de6bdbd4f50bd424eed25e832f6b51de6b6ea3b",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.3032335638999939,
+      -0.08001366257667542
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.000524899282027036
+      ]
+    },
+    {
+      "name": "yoke_01",
+      "prim_path": "/Fixture/Yoke_01",
+      "pivot_m": [
+        -0.17010000348091125,
+        0.10151731967926025,
+        0.000524899282027036
+      ]
+    },
+    {
+      "name": "head_01",
+      "prim_path": "/Fixture/Head_01",
+      "pivot_m": [
+        -0.17010000348091125,
+        0.3032335638999939,
+        0.000524899282027036
+      ]
+    },
+    {
+      "name": "head_01_lens",
+      "prim_path": "/Fixture/Head_01/Lens",
+      "pivot_m": [
+        -0.17010000348091125,
+        0.3032335638999939,
+        -0.0749800056219101
+      ]
+    },
+    {
+      "name": "yoke_02",
+      "prim_path": "/Fixture/Yoke_02",
+      "pivot_m": [
+        0.17010000348091125,
+        0.10151731967926025,
+        0.000524899282027036
+      ]
+    },
+    {
+      "name": "head_02",
+      "prim_path": "/Fixture/Head_02",
+      "pivot_m": [
+        0.17010000348091125,
+        0.3032335638999939,
+        0.000524899282027036
+      ]
+    },
+    {
+      "name": "head_02_lens",
+      "prim_path": "/Fixture/Head_02/Lens",
+      "pivot_m": [
+        0.17010000348091125,
+        0.3032335638999939,
+        -0.0749800056219101
+      ]
+    }
+  ],
+  "family": "batten",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0,
+    1.076718807220459,
+    1.2040244340896606
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.chauvetdj.com/products/intimidator-spot-duo/",
+    "https://www.chauvetdj.com/wp-content/uploads/pdf/en/intimidator-spot-duo.pdf",
+    "https://www.chauvetdj.com/wp-content/uploads/2015/12/intimidator-spot-duo-cat.jpg"
+  ]
+}

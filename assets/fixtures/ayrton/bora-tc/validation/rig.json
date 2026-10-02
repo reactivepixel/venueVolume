@@ -1,0 +1,17 @@
+{
+  "id": "ayrton/bora-tc",
+  "passed": true,
+  "source_usdz_sha256": "53fb336aacc01c34f64f95e654a3eb17a3bcfb2208bae8a1de0169cf6b45d633",
+  "joints": 2,
+  "moving_meshes": 26,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

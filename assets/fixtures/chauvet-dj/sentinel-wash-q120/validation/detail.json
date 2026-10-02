@@ -1,0 +1,78 @@
+{
+  "mesh_count": 82,
+  "triangle_count": 26072,
+  "geometry_sha256": "c57a50dd44919391cfe25ff1f161a05461a3ddf37bb8583d45a301e0b5879788",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.22188805043697357,
+      -0.053612422198057175
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.000693405163474381
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.04697008803486824,
+        0.000693405163474381
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.22188805043697357,
+        0.000693405163474381
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.22188805043697357,
+        -0.051628172397613525
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216243743896,
+    0.9737462997436523,
+    0.9917671084403992
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.chauvetdj.com/products/sentinel-wash-q120/",
+    "https://www.chauvetdj.com/wp-content/uploads/pdf/en/sentinel-wash-q120.pdf",
+    "https://www.chauvetdj.com/wp-content/uploads/2026/04/SENTINEL-WASH-Q120-FRONT-OFF-FEATURE.png"
+  ]
+}

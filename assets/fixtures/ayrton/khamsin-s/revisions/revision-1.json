@@ -1,0 +1,167 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "ayrton/khamsin-s",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Ayrton",
+      "model": "Khamsin S",
+      "variant": "011640",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.ayrton.eu/produit/khamsin/",
+        "title": "Khamsin product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "S/TC output, 13-element optic, movement, control protocols/modes, power, dimensions and code 011640",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.ayrton.eu/wp-content/uploads/2018/10/Product-slider-khamsin-03.jpg",
+        "title": "Khamsin S product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "5c5b3a5d9abc49f349c7a7b5879ddd1b985b8a307a5a2469278e90ec5bfc6e8b"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.494,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Current Ayrton product page: 494 x 778 x 280 mm. An older manual gives a different height; current page value retained."
+      },
+      "height": {
+        "value": 0.778,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Current Ayrton product page: 494 x 778 x 280 mm. An older manual gives a different height; current page value retained."
+      },
+      "depth": {
+        "value": 0.28,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Current Ayrton product page: 494 x 778 x 280 mm. An older manual gives a different height; current page value retained."
+      },
+      "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "60,000 lm 8000 K white LED engine; 40,000 lm output; 7°–58° zoom; 158 mm lens; four-blade framing; IP20.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "1150 W maximum",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "39.8 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM",
+            "Art-Net",
+            "sACN",
+            "CRMX wireless DMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "40-channel mode",
+        "footprint": 40,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "64-channel mode",
+        "footprint": 64,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Manufacturer reference dimensions; assembled fixture.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Current Ayrton product page: 494 x 778 x 280 mm. An older manual gives a different height; current page value retained.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "364c39ac42df45952ba4a31aded53be939e14d8bd6033540bdf4236d7f83cd1d"
+  },
+  "git_commit": "12c756a8b8dac8b0f1d5301b9ad05c17a0f1ef37",
+  "note": "Initial research record before any generated model artifacts existed."
+}

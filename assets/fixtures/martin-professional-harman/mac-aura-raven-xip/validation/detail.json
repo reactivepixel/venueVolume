@@ -1,0 +1,77 @@
+{
+  "mesh_count": 416,
+  "triangle_count": 65404,
+  "geometry_sha256": "55b887c4df9f00d259827b0dbf574dd34503e31fb4f3c36dfda5cfd3586779fd",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.44017845392227173,
+      -0.07577602565288544
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0004396977892611176
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.10731420665979385,
+        0.0004396977892611176
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.44017845392227173,
+        0.0004396977892611176
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.44017845392227173,
+        -0.07299121469259262
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    1.0285521745681763,
+    1.1122949123382568
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.martin.com/en-US/products/mac-aura-raven-xip",
+    "https://adn.harmanpro.com/productattachment/12797/product_attachment/x_large-c5fd37cb61ca8d844c5298005092457a.webp"
+  ]
+}

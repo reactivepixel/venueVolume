@@ -1,0 +1,17 @@
+{
+  "id": "ayrton/eurus-profile-tc",
+  "passed": true,
+  "source_usdz_sha256": "39d08780325f74184dea3647707456affe31eba47fa68cb24c987eb77ed57999",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

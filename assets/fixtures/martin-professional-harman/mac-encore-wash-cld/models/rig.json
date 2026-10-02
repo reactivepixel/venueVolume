@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "2d6bffa60a3ca58632239461fcf74afa5e6ed1df1909aada8f630d6d975f4efb",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "martin-professional-harman/mac-encore-wash-cld",
+    "name": "MAC Encore Wash CLD",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/mac-encore-wash-cld/fixture.usdz",
+    "sha256": "2d6bffa60a3ca58632239461fcf74afa5e6ed1df1909aada8f630d6d975f4efb",
+    "boundsMin": [
+      -0.23999999463558197,
+      0.0,
+      -0.22600000258535147
+    ],
+    "boundsMax": [
+      0.23999999463558197,
+      0.7549999356269836,
+      0.22600000444799662
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.13909205794334412,
+          0.010870673693716526
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5664132237434387,
+          0.010870673693716526
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5664132237434387,
+          -0.21742981672286987
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

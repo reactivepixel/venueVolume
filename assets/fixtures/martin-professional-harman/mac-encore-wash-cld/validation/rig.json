@@ -1,0 +1,17 @@
+{
+  "id": "martin-professional-harman/mac-encore-wash-cld",
+  "passed": true,
+  "source_usdz_sha256": "2d6bffa60a3ca58632239461fcf74afa5e6ed1df1909aada8f630d6d975f4efb",
+  "joints": 2,
+  "moving_meshes": 35,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

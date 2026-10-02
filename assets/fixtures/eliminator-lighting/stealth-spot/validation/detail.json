@@ -1,0 +1,77 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 18580,
+  "geometry_sha256": "8ceec94a0948f25b907f3919eed8f1873a05b83feb2882aae0ac2e8197805179",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.2989000082015991,
+      -0.10521705448627472
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0014877228531986475
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.0568000003695488,
+        0.0014877228531986475
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.2989000082015991,
+        0.0014877228531986475
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.2989000082015991,
+        -0.10131822526454926
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852217435836792,
+    1.0100984573364258,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.eliminatorlighting.com/products/stealth-spot",
+    "https://www.eliminatorlighting.com/cdn/shop/files/e9cc2f1941b7f92d0f54e5119f2fa3af2a1ff5df_STEALTH_SPOT__IMG__001__bdb2c102a9b5.jpg?v=1777055789&width=2048"
+  ]
+}

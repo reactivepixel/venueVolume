@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "203356e0be1de41b0fb62179b56a8038b2ff5c287130445e1a6ffead8caf04b4",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "chauvet-dj/intimidator-spot-duo",
+    "name": "Intimidator Spot Duo",
+    "manufacturer": "CHAUVET DJ",
+    "family": "batten",
+    "resource": "FixtureAssets/Catalog/chauvet-dj/intimidator-spot-duo/fixture.usdz",
+    "sha256": "203356e0be1de41b0fb62179b56a8038b2ff5c287130445e1a6ffead8caf04b4",
+    "boundsMin": [
+      -0.27000001072883606,
+      0.0,
+      -0.09350000479025766
+    ],
+    "boundsMax": [
+      0.27000001072883606,
+      0.36500000953674316,
+      0.09350000909762457
+    ],
+    "joints": [
+      {
+        "id": "pan_1",
+        "label": "Head 1 pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke_01"
+        ],
+        "pivot": [
+          -0.17010000348091125,
+          0.10151731967926025,
+          0.000524899282027036
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 7,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt_1",
+        "label": "Head 1 tilt",
+        "parent": "pan_1",
+        "members": [
+          "/Fixture/Head_01"
+        ],
+        "pivot": [
+          -0.17010000348091125,
+          0.3032335638999939,
+          0.000524899282027036
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 8,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "pan_2",
+        "label": "Head 2 pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke_02"
+        ],
+        "pivot": [
+          0.17010000348091125,
+          0.10151731967926025,
+          0.000524899282027036
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 9,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt_2",
+        "label": "Head 2 tilt",
+        "parent": "pan_2",
+        "members": [
+          "/Fixture/Head_02"
+        ],
+        "pivot": [
+          0.17010000348091125,
+          0.3032335638999939,
+          0.000524899282027036
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 10,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt_1",
+        "position": [
+          -0.17010000348091125,
+          0.3032335638999939,
+          -0.08538380017085001
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      },
+      {
+        "parent": "tilt_2",
+        "position": [
+          0.17010000348091125,
+          0.3032335638999939,
+          -0.08538380017085001
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

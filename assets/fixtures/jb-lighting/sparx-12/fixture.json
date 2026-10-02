@@ -1,0 +1,331 @@
+{
+  "schema_version": 1,
+  "id": "jb-lighting/sparx-12",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "JB-Lighting",
+    "model": "Sparx 12",
+    "variant": "Sparx 12",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.jb-lighting.de/en/Sparx12",
+      "title": "JB-Lighting Sparx 12 specifications",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Mechanical / electrical specifications and control; exact-model product gallery",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.jb-lighting.de/images/products/Sparx12/Sparx12_seitlich_min_Zoom.png",
+      "title": "Sparx 12 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "72a2150d5f1fddd321228674db76b7afec8dc9472c1fb58cd4fc3b1e03fb0b32"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.404,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+    },
+    "height": {
+      "value": 0.491,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+    },
+    "depth": {
+      "value": 0.265,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+    },
+    "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "19 RGBW 40 W LEDs; independently controlled inner/outer TwinZoom optics. Internal zoom mechanism and beam-shape accessory are not modeled.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "750 VA max; 100–240 V 50/60 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "15.5 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "Art-Net",
+          "sACN",
+          "Kling-Net",
+          "CRMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.20200000703334808,
+        0.0,
+        -0.13250001933192834
+      ],
+      "max": [
+        0.20200000703334808,
+        0.4909999966621399,
+        0.1324999961652793
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0005021575489081442
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.07787162065505981,
+          0.0005021575489081442
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.36015620827674866,
+          0.0005021575489081442
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.36015620827674866,
+          -0.07433111220598221
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.07787162065505981,
+          0.0005021575489081442
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.36015620827674866,
+          0.0005021575489081442
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.36015620827674866,
+          -0.07716910541057587
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "687b038b36c7fcbb46b4053d7fd29482bf3be855d89f940b7e4156af7ae3edfe"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "38de460fdf309fa74b65da872fb52d32e99753eb9447db1a3d16387e6edec389"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "2d4cb328d79171c6fb3a8dc98099215cb95556d4dcab9eca0ecef3245bf6932f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "a751fc106031f52b35d395a1bdc1f02465e191e22e6bfb4060c0f87531c74f37"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "cc5f1e3e70ffa9098794457c394708deee753716b773bb0167ff51922d92bf62"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "c93fcb4c0b0ab74191aa0e2bb64482d747467d989687a5cd65540d1804082844"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "be4ef905538baa26995ba900dee3d1450ddfab7c14c6084d535dcf7cbbaf5668"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "2278c5cf08a407e9d739473aa6e18bd821b65696c7a1ea5355d91857e34d0d94"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "012054e64de2029862e22a16d72f232fd17d7f9d7de219a13d4bd59d76d8c5da"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "7085b79c88ee90af6f5b5e44d744033d41769831136982d8a6f9981315a5aa6f"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "2018e21bfe5f68121323a345a5540ac6e06f22eca12b872fcbfb54db766e4636",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "shell": "round",
+      "lens_count": 19,
+      "lens_ratio": 0.9,
+      "head_depth": 0.55
+    },
+    "mesh_count": 128,
+    "triangle_count": 38116,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "cf9c6672a71261169ae8619f67b90569e58166bd665b098cc4de585c9dffe736",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [
+      "pixel control"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

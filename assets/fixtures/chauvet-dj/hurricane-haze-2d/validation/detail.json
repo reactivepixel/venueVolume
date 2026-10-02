@@ -1,0 +1,59 @@
+{
+  "mesh_count": 62,
+  "triangle_count": 10648,
+  "geometry_sha256": "5cbe6f3f583e39dfeee1fcd47c5371ba281c33eb6516abc45352b912b6bfdc8a",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.2167392373085022,
+      -0.13023659586906433
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.002780608367174864
+      ]
+    },
+    {
+      "name": "output",
+      "prim_path": "/Fixture/Output",
+      "pivot_m": [
+        0.0,
+        0.2167392373085022,
+        -0.13023659586906433
+      ]
+    }
+  ],
+  "family": "hazer",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9478673934936523,
+    0.9580610394477844,
+    0.9675858616828918
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.chauvetdj.com/wp-content/uploads/pdf/en/hurricane-haze-2d.pdf",
+    "https://www.chauvetdj.com/wp-content/uploads/2015/12/hurricane-haze-2d-cat.jpg"
+  ]
+}

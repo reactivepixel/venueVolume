@@ -1,0 +1,363 @@
+{
+  "schema_version": 1,
+  "id": "chauvet-dj/sentinel-wash-q120",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "CHAUVET DJ",
+    "model": "Sentinel Wash Q120",
+    "variant": "Sentinel Wash Q120",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.chauvetdj.com/products/sentinel-wash-q120/",
+      "title": "Sentinel Wash Q120 product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Specifications: 10/14 DMX modes, source, size, mass and electrical",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.chauvetdj.com/wp-content/uploads/pdf/en/sentinel-wash-q120.pdf",
+      "title": "Sentinel Wash Q120 official specification sheet",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Specifications table",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.chauvetdj.com/wp-content/uploads/2026/04/SENTINEL-WASH-Q120-FRONT-OFF-FEATURE.png",
+      "title": "Sentinel Wash Q120 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "f56a7f970b3e54c7d7525c81f438a5e870b728b8c5641c0b01ce33df99641c70"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.219,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer size 219 x 143 x 296 mm; mapped width x depth x height."
+    },
+    "height": {
+      "value": 0.296,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer size 219 x 143 x 296 mm; mapped width x depth x height."
+    },
+    "depth": {
+      "value": 0.143,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer size 219 x 143 x 296 mm; mapped width x depth x height."
+    },
+    "reference_pose": "Base level, head upright; assembled with hanging bracket."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "120 W RGBW LED and 16° Fresnel coverage; USB-C software update port; compact party/event moving wash.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "152 W at 120 V; 148 W at 230 V",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "3.5 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "10-channel mode",
+      "footprint": 10,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "14-channel mode",
+      "footprint": 14,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Base level, head upright; assembled with hanging bracket.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.109499990940094,
+        0.0,
+        -0.07150001253467053
+      ],
+      "max": [
+        0.109499990940094,
+        0.29600000381469727,
+        0.07150000531692058
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.000693405163474381
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.04697008803486824,
+          0.000693405163474381
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.22188805043697357,
+          0.000693405163474381
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.22188805043697357,
+          -0.051628172397613525
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.04697008803486824,
+          0.000693405163474381
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.22188805043697357,
+          0.000693405163474381
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.22188805043697357,
+          -0.053612422198057175
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer size 219 x 143 x 296 mm; mapped width x depth x height.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "796d5aec63931f0c895a6b0ef71d764125ed61f2663aeb5090cde02e84b32fd8"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "0da2f4f410dfd9ef0ce811cf7e6cbd4a6001effb4b49f981f0619dfe53fdc184"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "b464b3a637b6507ec015f8e26a285c6feab31f12e438976c49b8c70d9ce0fea1"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "89b039f76586c2837693506009fc3f2dcc1679a24c8d4de6c37acd1cce8d8820"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "f2f904a0ec171f03286b2aa931e5751de271e0401b8ebe60b260ecfead338067"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "1d5d4a6b16e191a9657a2a9e7147c90f26292478acf7db3e559d10e64cbf07c6"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "f9aaccab93f6bbb13cb94a4bb2ac245654216c77f5d607c71a14ec55b535604b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "a1aa1e038cc845df7b231ab131bf4e5e683080dafcab44247bb2fe35b292ca4b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "193c86a5c061320ccd268ade1c0f3962a60b99ae098f14f483c0cca75b13ea24"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "d0ce4430188bd7b02585144d843ca11ead98d1da5654ea96cb5ff7b6248b510c"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "b1fac191366c5db7abbdf1cc8fdd5fa39678a348d4d48484e9e7b269eb991044",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 1,
+      "body_style": "miniature RGBW Fresnel wash head with yoke",
+      "notes": "New-generation unit; do not conflate with similarly named Sentinel Wash Q7Z ILS.",
+      "fresnel": true,
+      "head_depth": 0.75
+    },
+    "mesh_count": 82,
+    "triangle_count": 26072,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "1a3c25428fea9c79e25fa4ff92758e2a4200e49cd5c1b226c970628f133beec6",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

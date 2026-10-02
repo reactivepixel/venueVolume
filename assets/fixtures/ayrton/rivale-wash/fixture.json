@@ -1,0 +1,353 @@
+{
+  "schema_version": 1,
+  "id": "ayrton/rivale-wash",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Ayrton",
+    "model": "Rivale Wash",
+    "variant": "Rivale Wash",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.ayrton.eu/produit/rivale-wash/",
+      "title": "Rivale Wash product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Performance, movement, control, power and size: weight, 60 channels, 700 W, dimensions",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.ayrton.eu/wp-content/uploads/2024/06/RivaleW-3.png",
+      "title": "Rivale Wash product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "930241a637c8b3267fc8ea54492802b2f0c44b6b8927fa9716b1511d67a8cf5d"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.36,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer product dimensions 360 x 676 x 316 mm (length x height x depth); flight case excluded."
+    },
+    "height": {
+      "value": 0.676,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer product dimensions 360 x 676 x 316 mm (length x height x depth); flight case excluded."
+    },
+    "depth": {
+      "value": 0.316,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer product dimensions 360 x 676 x 316 mm (length x height x depth); flight case excluded."
+    },
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "28,000 lm; 4°–57° zoom; 170 mm lens; continuous pan and tilt rotation; IP65.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "700 W maximum",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "30.8 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX 512",
+          "DMX-RDM",
+          "ArtNet",
+          "sACN"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "60-channel mode",
+      "footprint": 60,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.18000000715255737,
+        0.0,
+        -0.1579999951645732
+      ],
+      "max": [
+        0.18000000715255737,
+        0.6759999990463257,
+        0.15800000447779894
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.010994893498718739
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.12202052026987076,
+          0.010994893498718739
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.5374191999435425,
+          0.010994893498718739
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.5374191999435425,
+          -0.1393103301525116
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.12202052026987076,
+          0.010994893498718739
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.5374191999435425,
+          0.010994893498718739
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.5374191999435425,
+          -0.14501053094863892
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer product dimensions 360 x 676 x 316 mm (length x height x depth); flight case excluded.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "baf0ebb0dcbfb16c9c3629aa33a80166c0e873d6cf5d9a1d4b5420816f14e8e7"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "e83a2c79cbabeb6385bf75c2a5a79b389545af408ffea2fef19d14845c327da9"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "2164bfc5098c06f211609e8b04d614fab2ae05250caef0aa121bd6cbccae4425"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "1bcca672cc1b7b5e7615cdc0157c1c38b43da45515f904d526a4e601c5b6f474"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "7f8463fdae962add2fbc87565dadf8d5d588f420fc138f19a815626997e441fd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "2bc31bd601d021151836e48a47f5501126ad769a7f5485d45ae8c1c1a1582738"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "f0babf8753a82c17e4669655eab06aa7565e80199d8cd408aa76b53a5f969009"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "21446650f70519b0e8af0d0d9db086fa6d9fa9fff3c9103cb3a918007f37db85"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "ec0ac1fe6d6193d3deb86631b1470265e34451f99ca41bc723271a040da94a8f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "3327fad2166ba6ef3cebbe6268e8d35584ffe5cc0e313e7e469852c10680aa54"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "f126e016e44908b57459568950a659246ade627b87e63753167e0ca6feb5d551",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 1,
+      "body_style": "sealed Fresnel wash moving head",
+      "notes": "Continuous pan and tilt rotation requires unlimited-axis support; don't fabricate mechanical end stops.",
+      "generator": "catalog",
+      "shell": "faceted",
+      "head_depth": 1.05,
+      "fresnel": true,
+      "yoke_compression": 0.18
+    },
+    "mesh_count": 82,
+    "triangle_count": 25552,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "be718ed5bbcc650375bf626cdfbaf1fdc94e72bd45af49f6fb6e92b4e38f0294",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [
+      "weather-rated variant"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

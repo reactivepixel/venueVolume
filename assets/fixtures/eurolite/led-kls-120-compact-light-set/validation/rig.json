@@ -1,0 +1,17 @@
+{
+  "id": "eurolite/led-kls-120-compact-light-set",
+  "passed": true,
+  "source_usdz_sha256": "98eebb2b74ad32ae9bdc8a5c7335ae918b64a6c06e8a636690bf69976f4771d4",
+  "joints": 4,
+  "moving_meshes": 48,
+  "fixed_meshes": 42,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

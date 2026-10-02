@@ -1,0 +1,205 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "acme/mana-profile",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "ACME",
+      "model": "MANA PROFILE",
+      "variant": "XA 600 BSWF IP",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://en.acmelighting.com/item/MANA-PROFILE",
+        "title": "ACME MANA PROFILE",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Official product page: product image, control protocols, five channel modes and 910 W consumption",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://en.acmelighting.com/upload/other/20260722/aea9031a33652685164a03651b20b64d.pdf",
+        "title": "MANA PROFILE leaflet, July 2026",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications: XA 600 BSWF IP, 600 W LED, 26,000 lm, 32.5 kg, W380 × D284 × H658 mm; optics and effects",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://en.acmelighting.com/upload/image/20250109/f418501fcbdf3338a8a1164670990feb.png",
+        "title": "MANA PROFILE product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "091653641792e353efce37f10dfa0afa3462347b8e5cc4bc14df0fcc1842e9ea"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.38,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer 2026 leaflet physical information lists fixture dimensions 380 × 284 × 658 mm; mapped to W × D × H, corroborated by its dimension illustration."
+      },
+      "height": {
+        "value": 0.658,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer 2026 leaflet physical information lists fixture dimensions 380 × 284 × 658 mm; mapped to W × D × H, corroborated by its dimension illustration."
+      },
+      "depth": {
+        "value": 0.284,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer 2026 leaflet physical information lists fixture dimensions 380 × 284 × 658 mm; mapped to W × D × H, corroborated by its dimension illustration."
+      },
+      "reference_pose": "Assembled fixture upright in manufacturer dimension illustration; flight-case dimensions excluded."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "600 W LED engine, 26,000 lm, 170 mm front lens, 3.5°–45° zoom, IP66; CMY/CTO, framing, iris, animation and dual prisms. Manufacturer lists five modes with footprints 22/30/31/31/40 channels.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "910 W consumption",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "32.5 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM",
+            "Art-Net",
+            "sACN"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "22-channel mode",
+        "footprint": 22,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "30-channel mode",
+        "footprint": 30,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "31-channel mode",
+        "footprint": 31,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "40-channel mode",
+        "footprint": 40,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Assembled fixture upright in manufacturer dimension illustration; flight-case dimensions excluded.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer 2026 leaflet physical information lists fixture dimensions 380 × 284 × 658 mm; mapped to W × D × H, corroborated by its dimension illustration.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "153056f2093d549f362ae54472bfb37e491f525e6c7d961fe0fe9cf08a15cf19"
+  },
+  "git_commit": "529393313efc84b984528b9491e9f5e230df9fd1",
+  "note": "Initial research record before any generated model artifacts existed."
+}

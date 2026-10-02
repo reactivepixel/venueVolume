@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "6a3282dfa45cc56135038d87da573f3442b71024fd289ce1f08ed8be62df3cbd",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "ayrton/rawbeam-350",
+    "name": "Rawbeam 350",
+    "manufacturer": "Ayrton",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/ayrton/rawbeam-350/fixture.usdz",
+    "sha256": "6a3282dfa45cc56135038d87da573f3442b71024fd289ce1f08ed8be62df3cbd",
+    "boundsMin": [
+      -0.16950000822544098,
+      0.0,
+      -0.1484999912790954
+    ],
+    "boundsMax": [
+      0.16950000822544098,
+      0.5920000076293945,
+      0.1484999847598374
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.10729320347309113,
+          0.006580416578799486
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.46528029441833496,
+          0.006580416578799486
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.46528029441833496,
+          -0.13906104862689972
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

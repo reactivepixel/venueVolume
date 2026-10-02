@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "4b45289ada29a3830598aaf7ed5c7b95656b3eb6c6ac628f33580aae43560665",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "chroma-q/color-force-ii-72",
+    "name": "Color Force II 72",
+    "manufacturer": "Chroma-Q",
+    "family": "batten",
+    "resource": "FixtureAssets/Catalog/chroma-q/color-force-ii-72/fixture.usdz",
+    "sha256": "4b45289ada29a3830598aaf7ed5c7b95656b3eb6c6ac628f33580aae43560665",
+    "boundsMin": [
+      -0.8794999122619629,
+      0.0,
+      -0.08250000514090061
+    ],
+    "boundsMax": [
+      0.8794999122619629,
+      0.19099998543970287,
+      0.08250000886619091
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body/Extruded_fixture_housing_0",
+          "/Fixture/Body/Long_heatsink_rib_1",
+          "/Fixture/Body/Long_heatsink_rib_001_2",
+          "/Fixture/Body/Long_heatsink_rib_002_3",
+          "/Fixture/Body/Long_heatsink_rib_003_4",
+          "/Fixture/Body/Long_heatsink_rib_004_5",
+          "/Fixture/Body/Long_heatsink_rib_005_6",
+          "/Fixture/Body/Long_heatsink_rib_006_7",
+          "/Fixture/Body/Long_heatsink_rib_007_8",
+          "/Fixture/Body/Optic_surround_9",
+          "/Fixture/Body/End_cheek_10",
+          "/Fixture/Body/Tilt_knob_11",
+          "/Fixture/Body/End_cheek_001_14",
+          "/Fixture/Body/Tilt_knob_001_15",
+          "/Fixture/Body/DMX_power_socket_18",
+          "/Fixture/Body/Socket_rim_19",
+          "/Fixture/Body/Socket_pin_20",
+          "/Fixture/Body/Socket_pin_001_21",
+          "/Fixture/Body/Socket_pin_002_22",
+          "/Fixture/Body/DMX_power_socket_001_23",
+          "/Fixture/Body/Socket_rim_001_24",
+          "/Fixture/Body/Socket_pin_003_25",
+          "/Fixture/Body/Socket_pin_004_26",
+          "/Fixture/Body/Socket_pin_005_27",
+          "/Fixture/Body/DMX_power_socket_002_28",
+          "/Fixture/Body/Socket_rim_002_29",
+          "/Fixture/Body/Socket_pin_006_30",
+          "/Fixture/Body/Socket_pin_007_31",
+          "/Fixture/Body/Socket_pin_008_32",
+          "/Fixture/Body/DMX_power_socket_003_33",
+          "/Fixture/Body/Socket_rim_003_34",
+          "/Fixture/Body/Socket_pin_009_35",
+          "/Fixture/Body/Socket_pin_010_36",
+          "/Fixture/Body/Socket_pin_011_37",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.12649005651474,
+          -0.006365397945046425
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.12649005651474,
+          -0.07791358232498169
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

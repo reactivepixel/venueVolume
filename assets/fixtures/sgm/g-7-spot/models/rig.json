@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "7de559fe0ab6cf13635db2846e9d964ecbd290bb1b630e27c4211f2facaac842",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "sgm/g-7-spot",
+    "name": "G-7 Spot",
+    "manufacturer": "SGM",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/sgm/g-7-spot/fixture.usdz",
+    "sha256": "7de559fe0ab6cf13635db2846e9d964ecbd290bb1b630e27c4211f2facaac842",
+    "boundsMin": [
+      -0.1850000023841858,
+      0.0,
+      -0.21649998892098665
+    ],
+    "boundsMax": [
+      0.1850000023841858,
+      0.621999979019165,
+      0.2165000094100833
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.12846167385578156,
+          0.006135116331279278
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.4643917679786682,
+          0.006135116331279278
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.4643917679786682,
+          -0.21107913553714752
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

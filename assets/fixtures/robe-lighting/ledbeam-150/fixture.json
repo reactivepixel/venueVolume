@@ -1,0 +1,324 @@
+{
+  "schema_version": 1,
+  "id": "robe-lighting/ledbeam-150",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "ROBE Lighting",
+    "model": "LEDBeam 150",
+    "variant": "LEDBeam 150",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.robelighting.com/ledbeam-150",
+      "title": "LEDBeam 150 product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Source: 7 x 40 W RGBW multichips; optical system; max power, physical dimensions and weight",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://cdn.aws.robe.cz/v1/image/resize/371252fca4e93281166480433c3fbbc5635c6c8e",
+      "title": "LEDBeam 150 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "657999cdd82e0064039495a66b353c3befbde93defd3ee0b23adef1753a8996e"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.244,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Product page dimensions; assembled orientation per page specification."
+    },
+    "height": {
+      "value": 0.337,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Product page dimensions; assembled orientation per page specification."
+    },
+    "depth": {
+      "value": 0.149,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Product page dimensions; assembled orientation per page specification."
+    },
+    "reference_pose": "Head vertical; base level."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Seven 40 W RGBW multichips; proprietary high-efficiency 15.5:1 zoom optical system, 3.8°–60° range.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "220 W max",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "5.7 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Head vertical; base level.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.12199999392032623,
+        0.0,
+        -0.07449999527307227
+      ],
+      "max": [
+        0.12199999392032623,
+        0.3370000123977661,
+        0.07450000121025369
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0004903070512227714
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.05348550155758858,
+          0.0004903070512227714
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.2544132471084595,
+          0.0004903070512227714
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.2544132471084595,
+          -0.03611055016517639
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.05348550155758858,
+          0.0004903070512227714
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.2544132471084595,
+          0.0004903070512227714
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.2544132471084595,
+          -0.037498608231544495
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Product page dimensions; assembled orientation per page specification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "20a0a45c982c54a5dadc53a146fba38d8a89296235491b7f67db9ff6a7b35ee7"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "c7c50c699eb1d229c5e768d8bf6372d24187bb14081ce1ff1f0c80946827bbb5"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "cce60c87cd76aef06e028ed1059cfefd83060cff92b600a469a1130f2141d78f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "ded50852d521f56378920d58721172d169881b902c6320ea64bf76dd3b30b6ac"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "c52f6ebdeaf67323d583de421896b7c0163ec139c1f223775786e96e7e5704bf"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "7c24d0554dc2d7840204f2f7efb10dc7ae82a2aeb5a8e8c220cee7f7038d1762"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "a9bce41ec611fc0d90423c20113b488a84aaaf3b327c5fa25d9d5fdc8bbed1e2"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "5a6f98c83db8eefe32fd72a84bfaf7bf3501e1e177ca52bfffb543c2b877d887"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "dbef999f36eba8ded3c5915363eaeb303bd3bd3d16904308b441d0ebf68c1013"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "d63ef87fdba4ef27ae6a218e2d0481c939ba6936719e329e5b58f4f9e8181c3d"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "82846632248fb519af0a30f4348acc64d7b85304c5ff939547955d98a9b5ce5f",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 7,
+      "body_style": "compact multisource wash/beam head",
+      "notes": "Seven discrete RGBW source/lens channels arranged in compact head."
+    },
+    "mesh_count": 92,
+    "triangle_count": 25540,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "7de57addb36760d1bd3f61d43692c07402266d5d77253909f0a4c6e863d7825e",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

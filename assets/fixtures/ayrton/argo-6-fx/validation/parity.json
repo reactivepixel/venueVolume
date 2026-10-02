@@ -1,0 +1,19 @@
+{
+  "fixture_id": "ayrton/argo-6-fx",
+  "passed": true,
+  "mesh_count": 128,
+  "triangle_count": 38116,
+  "max_vertex_deviation_m": 7.672875927506591e-09,
+  "tolerance_m": 1e-06,
+  "tests": [
+    "Saved Blender and USDZ reopened independently",
+    "World-space positions after unit/axis conversion",
+    "Exact ordered triangle topology",
+    "Material bindings and diffuse color",
+    "No missing or extra physical meshes",
+    "Finite coordinates",
+    "Outward closed-solid winding"
+  ],
+  "errors": [],
+  "realitykit_device_test": "not_run"
+}

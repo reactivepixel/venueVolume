@@ -1,0 +1,17 @@
+{
+  "id": "astera/titan-tube",
+  "passed": true,
+  "source_usdz_sha256": "7ae281ec30e84f412967d38fc294472a370024287c99310d411ecac61e8556ff",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 3,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

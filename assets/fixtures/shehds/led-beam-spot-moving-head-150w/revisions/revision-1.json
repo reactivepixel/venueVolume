@@ -1,0 +1,172 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "shehds/led-beam-spot-moving-head-150w",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "SHEHDS",
+      "model": "LED Beam & Spot Moving Head 150W",
+      "variant": "SHE-NLEDB150W-BPUS",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://shehds.com/products/new-arrival-led-beam-150w-good-moving-head-lighting",
+        "title": "SHEHDS 150W LED Beam & Spot product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Technical Parameters: 16-channel DMX, movement, optics and unit weight",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://shehds.com/cdn/shop/files/f7d7c897f798fc44c391847188c3ac79.jpg?v=1752917692&width=416",
+        "title": "SHEHDS 150W product-size image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Labeled assembled dimensions: head width 27 cm, side depth 18 cm, overall height 42 cm",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://shehds.com/cdn/shop/files/MG_4008_f7139f4f-c15c-4bf7-babd-4e14fb86c8e1.jpg?v=1752917692&width=416",
+        "title": "LED Beam & Spot Moving Head 150W product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "81eb4b578234b850097764a46804a3766e4a593e158c48fd5175c568768aba0c"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.27,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Official product-size image labels 27 cm head width, 18 cm side depth and 42 cm assembled overall height."
+      },
+      "height": {
+        "value": 0.42,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Official product-size image labels 27 cm head width, 18 cm side depth and 42 cm assembled overall height."
+      },
+      "depth": {
+        "value": 0.18,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Official product-size image labels 27 cm head width, 18 cm side depth and 42 cm assembled overall height."
+      },
+      "reference_pose": "Base level, head upright, per official product-size image."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "2.2° beam, 12 colors plus open, 13 gobos plus open, rotating 8/20-face prism; 540° pan / 190° tilt.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "150 W",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "8.35 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "16-channel mode",
+        "footprint": 16,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base level, head upright, per official product-size image.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Official product-size image labels 27 cm head width, 18 cm side depth and 42 cm assembled overall height.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "63ec4f051e0ab3702ec2a6d07a67845f7e7209b2231c985576a6f4ebda8e12ed"
+  },
+  "git_commit": "57d1c4f4b986e095c19ed7af915f82f46f817f9c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

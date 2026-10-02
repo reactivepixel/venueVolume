@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "f59d8e458c88fc544ab3d714e2c19061191ce7ca3244a8eb9c71b2ebed1701cf",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "ayrton/khamsin-tc",
+    "name": "Khamsin TC",
+    "manufacturer": "Ayrton",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/ayrton/khamsin-tc/fixture.usdz",
+    "sha256": "f59d8e458c88fc544ab3d714e2c19061191ce7ca3244a8eb9c71b2ebed1701cf",
+    "boundsMin": [
+      -0.24699997901916504,
+      0.0,
+      -0.1399999835412018
+    ],
+    "boundsMax": [
+      0.24699997901916504,
+      0.777999997138977,
+      0.1399999952991493
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.1244800016283989,
+          0.000560248561669141
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.6149799823760986,
+          0.000560248561669141
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.6149799823760986,
+          -0.12619571387767792
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

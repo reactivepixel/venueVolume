@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "id": "adj/focus-spot-6z",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ADJ",
+    "model": "Focus Spot 6Z",
+    "variant": "FOC635",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.adj.com/products/focus-spot-6z",
+      "title": "ADJ Focus Spot 6Z product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Specifications: 21/25/29 DMX channels; DMX512, sACN, Art-Net; 300 W LED, 380 W max power, 20 kg, dimensions LxWxH 360x234x562 mm",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.adj.com/cdn/shop/files/95ee89cff1e445d51cb614ec245ed52d33baaae6_FOCUS_SPOT_6Z_red_RT.jpg?v=1778306534&width=2048",
+      "title": "ADJ Focus Spot 6Z product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Official product-page image asset",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.adj.com/cdn/shop/files/95ee89cff1e445d51cb614ec245ed52d33baaae6_FOCUS_SPOT_6Z_red_RT.jpg?v=1778306534&width=2048",
+      "title": "Focus Spot 6Z product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "a167813b97b58e41f404c1cb5fd9c11b0558a9939cb8d3ac86a76479ffd602dc"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.234,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "ADJ labels assembled dimensions L x W x H = 360 x 234 x 562 mm; long front-back axis is depth, 234 mm is width, and 562 mm is head-upright height."
+    },
+    "height": {
+      "value": 0.562,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "ADJ labels assembled dimensions L x W x H = 360 x 234 x 562 mm; long front-back axis is depth, 234 mm is width, and 562 mm is head-upright height."
+    },
+    "depth": {
+      "value": 0.36,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "ADJ labels assembled dimensions L x W x H = 360 x 234 x 562 mm; long front-back axis is depth, 234 mm is width, and 562 mm is head-upright height."
+    },
+    "reference_pose": "Base level, head upright as in dimensional drawing"
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "300 W cool-white LED, 9–28° motorized zoom, two color wheels, two gobo wheels, dual 6-facet prisms and two frost filters.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "380 W max",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "20 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "Art-Net",
+          "sACN"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "21-channel mode",
+      "footprint": 21,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "25-channel mode",
+      "footprint": 25,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "29-channel mode",
+      "footprint": 29,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Base level, head upright as in dimensional drawing",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.11699999868869781,
+        0.0,
+        -0.17999999085441232
+      ],
+      "max": [
+        0.11699999868869781,
+        0.5619999766349792,
+        0.18000000854954123
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.005316571798175573
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.1072515919804573,
+          0.005316571798175573
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.4698962867259979,
+          0.005316571798175573
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.4698962867259979,
+          -0.16878975927829742
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.1072515919804573,
+          0.005316571798175573
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.4698962867259979,
+          0.005316571798175573
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.4698962867259979,
+          -0.17539258301258087
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "ADJ labels assembled dimensions L x W x H = 360 x 234 x 562 mm; long front-back axis is depth, 234 mm is width, and 562 mm is head-upright height.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "7391030a1f277bdf30e90ae3d7309bcefb4d527be9d6c47d11f9756a4a3f2501"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "28ab647950e32c8d3dbebf0a496d30446b657ec019c8e66215a12a527ae775c0"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "184f6551726b55d97007a530da113a9ed1d6c5f4cfbf531c47e5130cefbc1c5a"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "e115e6a7ebfc44d7bff1e863f3df7380025f6176b950c7c371f910963bcd89f7"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "98f8b9f396d3399d287d3e490ba5d5081c2d9c168416cc7a6d30821e47df4367"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "226e3d08443913cd9874e4ef31c5723f3bb32ad0b046718fca51e6bcf6b4ddc6"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "2907365126c2accb3317f3ed458f2e3f8249c7f9e7f879c01e9c84fc51379f8a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "3a0b53543adf32c51052a526ac160bf3bc43228cc58bd2f9e5b43dcb6726340c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "3886b2b09e0d5cb3fb450820a5216433b090d5bf4d52c89a53f15d6ae117bd82"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "cb961d3a66e6fcb37f0268d77355ce87a6f0ac44c407315f6ff85b55da690380"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "be34f6353233dc3719d53ef8e9914527e57aba48cb083df79c29067224d0cf5a",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "compact LED spot mover with dual gobo/color wheels, prisms and yoke",
+      "notes": "The single optical axis remains one moving spot despite rich beam shaping.",
+      "generator": "catalog",
+      "shell": "faceted",
+      "head_depth": 1.55,
+      "lens_ratio": 0.62,
+      "yoke_compression": 0.23
+    },
+    "mesh_count": 85,
+    "triangle_count": 18124,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "f03411edf02c190e4c2cffe28645cd6d0116a9b54c18a2255fb40527d5395c36",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.spot",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Spot / gobo projector"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

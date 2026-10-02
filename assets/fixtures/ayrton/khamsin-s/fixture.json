@@ -1,0 +1,346 @@
+{
+  "schema_version": 1,
+  "id": "ayrton/khamsin-s",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Ayrton",
+    "model": "Khamsin S",
+    "variant": "011640",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.ayrton.eu/produit/khamsin/",
+      "title": "Khamsin product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Official Khamsin studio product still; S/TC output, 13-element optic, movement, control protocols/modes, power, dimensions and code 011640",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.ayrton.eu/wp-content/uploads/2018/10/Product-Khamsin-01-Produit.png",
+      "title": "Khamsin S product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "4d431c56bba855367d7af420fdec4cadf42ffe7454c7fd49a5c8bee40abd8770"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.494,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Current Ayrton product page: 494 x 778 x 280 mm. An older manual gives a different height; current page value retained."
+    },
+    "height": {
+      "value": 0.778,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Current Ayrton product page: 494 x 778 x 280 mm. An older manual gives a different height; current page value retained."
+    },
+    "depth": {
+      "value": 0.28,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Current Ayrton product page: 494 x 778 x 280 mm. An older manual gives a different height; current page value retained."
+    },
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "60,000 lm 8000 K white LED engine; 40,000 lm output; 7°–58° zoom; 158 mm lens; four-blade framing; IP20.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "1150 W maximum",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "39.8 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "Art-Net",
+          "sACN",
+          "CRMX wireless DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "40-channel mode",
+      "footprint": 40,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "64-channel mode",
+      "footprint": 64,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.24699997901916504,
+        0.0,
+        -0.1399999835412018
+      ],
+      "max": [
+        0.24699997901916504,
+        0.777999997138977,
+        0.1399999952991493
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.000560248561669141
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.1244800016283989,
+          0.000560248561669141
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.6149799823760986,
+          0.000560248561669141
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.6149799823760986,
+          -0.12156424671411514
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.1244800016283989,
+          0.000560248561669141
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.6149799823760986,
+          0.000560248561669141
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.6149799823760986,
+          -0.12619571387767792
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Current Ayrton product page: 494 x 778 x 280 mm. An older manual gives a different height; current page value retained.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "dfed755b8c515c5fcb8042d19695939d8523711200d202291888c22b86e68d05"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "f59d8e458c88fc544ab3d714e2c19061191ce7ca3244a8eb9c71b2ebed1701cf"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "d87891832d4270b954716288b7b644a9dc37f4045bb5e88b218493910f9b0af6"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "c6efc490a969d9c487cf48446cbc65af51f2f1f5a972c34c98b140982c2d4e9c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "ab5ca9118793d5623a0586b4a470d1c01b3a7fc6bb584ed6f1dd7ea8fe106b69"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "5ebda54633cd7679adcf0ad2d376f759f314249eb838e798dbdaf4958287d7fd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "0a18148feb2ebe756263b639640aa3803ce9a34d64afd8bcacfe0d12c0c654bf"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "b0c2ef56d19da9b228c7f3ea60612c0b9bde2f8aeac9b7d39e50d039b3098b14"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "ce05141bbe53895a62851170664f0e4825203c4e83f68cc83394a2d1e8ad3f6d"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "094ff004ebc08136c64a4552fe4a01cfe6aad7425ca1517ffd23096212caaf73"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "e090d407e5a063e6a7896dc7af188a4111676fdaacb1aa4a7900b517684c117f",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "profile moving head",
+      "notes": "Single front aperture; 13-element zoom optic. Pan 540°, tilt 262°."
+    },
+    "mesh_count": 85,
+    "triangle_count": 18516,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "889a3df536697723fd51fd8954b1502b52ed95659a3d8b93704102a1c0b67f4e",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.profile",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Framing profile"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

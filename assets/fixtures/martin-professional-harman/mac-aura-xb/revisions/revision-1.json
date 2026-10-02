@@ -1,0 +1,164 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "martin-professional-harman/mac-aura-xb",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Aura XB",
+      "variant": "MAC Aura XB",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.martin.com/en-US/products/mac-aura-xb",
+        "title": "MAC Aura XB product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Physical dimensions, power, protocols and DMX mode channel counts",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://adn.harmanpro.com/productattachment/4821/product_attachment/x_large-c3352fc68c412cf3ff940047dbe67d37.webp",
+        "title": "MAC Aura XB product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.webp",
+        "sha256": "17e6149a3aba34037c6d6869f5fdbec352ff4dba9f0a9ab32a9d2655ade412a8"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.222,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer physical specs: base width 222 mm, maximum height 390 mm, base depth 138 mm; across-yoke width is 302 mm."
+      },
+      "height": {
+        "value": 0.39,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer physical specs: base width 222 mm, maximum height 390 mm, base depth 138 mm; across-yoke width is 302 mm."
+      },
+      "depth": {
+        "value": 0.138,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer physical specs: base width 222 mm, maximum height 390 mm, base depth 138 mm; across-yoke width is 302 mm."
+      },
+      "reference_pose": "Head maximum height; base level."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "High-output MAC Aura static wash fixture; its product page describes pan/tilt but it is not the larger automated moving-head body.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "400 W maximum; 359 W typical",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "6.5 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "14-channel mode",
+        "footprint": 14,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "25-channel mode",
+        "footprint": 25,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Head maximum height; base level.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer physical specs: base width 222 mm, maximum height 390 mm, base depth 138 mm; across-yoke width is 302 mm.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "341d4abdfcb13135157f8b70b884305a212dc4963ada130083df473511317ff4"
+  },
+  "git_commit": "5d864d3f93fd8d6b0bfac3473118bdda1bb36d03",
+  "note": "Initial research record before any generated model artifacts existed."
+}

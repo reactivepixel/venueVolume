@@ -1,0 +1,166 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "ayrton/stradale-profile",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Ayrton",
+      "model": "Stradale Profile",
+      "variant": "012121",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.ayrton.eu/produit/stradale-profile/",
+        "title": "Stradale Profile product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Performance, movement, control, power and size: 23.5 kg, 42/65 channels, 630 W, dimensions",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.ayrton.eu/wp-content/uploads/2025/03/StradaleP.png",
+        "title": "Stradale Profile product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "65e080701dfbcfb6a148e5abdccc78204d0c5d96b0f247b811db492ebf15439a"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.339,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer dimensions are 339 x 593 x 298 mm (length x height x depth)."
+      },
+      "height": {
+        "value": 0.593,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer dimensions are 339 x 593 x 298 mm (length x height x depth)."
+      },
+      "depth": {
+        "value": 0.298,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer dimensions are 339 x 593 x 298 mm (length x height x depth)."
+      },
+      "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "20,000 lm; 4°–52° zoom; 140 mm lens; continuous pan and tilt rotation; IP65.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "630 W maximum",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "23.5 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX 512",
+            "DMX-RDM",
+            "ArtNet",
+            "sACN"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "42-channel mode",
+        "footprint": 42,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "65-channel mode",
+        "footprint": 65,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Manufacturer reference dimensions; assembled fixture.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer dimensions are 339 x 593 x 298 mm (length x height x depth).",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "e7513e53bd221b01035f70a7e0abcbc3b76c805f042f9eeacc4c7d1db98b028e"
+  },
+  "git_commit": "5d864d3f93fd8d6b0bfac3473118bdda1bb36d03",
+  "note": "Initial research record before any generated model artifacts existed."
+}

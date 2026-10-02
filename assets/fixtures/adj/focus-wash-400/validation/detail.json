@@ -1,0 +1,77 @@
+{
+  "mesh_count": 73,
+  "triangle_count": 19160,
+  "geometry_sha256": "777496bbec022d2a49efd1e05f73f78fc4b67d84fc6b12c11e5cd8b91af1662f",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.42565569281578064,
+      -0.07388876378536224
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0005138819687999785
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.07931486517190933,
+        0.0005138819687999785
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.42565569281578064,
+        0.0005138819687999785
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.42565569281578064,
+        -0.07117020338773727
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    1.0277771949768066,
+    0.9952176809310913
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/products/focus-wash-400",
+    "https://www.adj.com/cdn/shop/files/f47caca4f21ed796c0be8a2c5f4cd420206163b7_FOC615__IMG__001__aec75c6e5447.jpg?v=1776712595"
+  ]
+}

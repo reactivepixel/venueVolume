@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "id": "ayrton/bora-tc",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Ayrton",
+    "model": "Bora TC",
+    "variant": "010650",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.ayrton.eu/produit/bora/",
+      "title": "Bora product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "S/TC model codes and source output; CONTROL modes/protocols; power; physical dimensions and weight",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.ayrton.eu/wp-content/uploads/2015/02/Product-Bora-01-Produit.png",
+      "title": "Bora TC product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "a3d02170420331f29dab9a201cb0e231f42e23143eecb6b08c426f9303e1c41b"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.494,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official product page: 494 x 737 x 280 mm (length x height x depth)."
+    },
+    "height": {
+      "value": 0.737,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official product page: 494 x 737 x 280 mm (length x height x depth)."
+    },
+    "depth": {
+      "value": 0.28,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official product page: 494 x 737 x 280 mm (length x height x depth)."
+    },
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "48,000 lm 7000 K LED engine; 31,000 lm fixture output at 6200 K; native CRI >90; 8°–64° zoom; IP20.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "1150 W maximum",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "37.8 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "Art-Net",
+          "sACN",
+          "CRMX wireless DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "30-channel mode",
+      "footprint": 30,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "52-channel mode",
+      "footprint": 52,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.24699997901916504,
+        0.0,
+        -0.1399999838322401
+      ],
+      "max": [
+        0.24699997901916504,
+        0.7369999885559082,
+        0.139999995008111
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.009631270542740822
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.13158723711967468,
+          0.009631270542740822
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.5489004850387573,
+          0.009631270542740822
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.5489004850387573,
+          -0.12366410344839096
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.13158723711967468,
+          0.009631270542740822
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.5489004850387573,
+          0.009631270542740822
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.5489004850387573,
+          -0.12871921062469482
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Official product page: 494 x 737 x 280 mm (length x height x depth).",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "7dcb0bb1a6467af73f6d0f84aa10cddb7789a30e72e2970bece561e55ad65548"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "53fb336aacc01c34f64f95e654a3eb17a3bcfb2208bae8a1de0169cf6b45d633"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "0d147e512174565ad41d72ec0d475005d0d5fd339bf8460e1154506a1d347e78"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "36a0f42b5654bb8b165b40afdfe0627d872f74d7dd23ff5fd3e9a63e87d55979"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "cf39d5715e7ba830f98cb2d005c0c4f093d4156fb31303e5bffda6b1a7c931b1"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "e884496cfbe7c60918a90829577b1232c21d12fad59dc829107d33738e1bd8cb"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "a4535cc4775d0d00a85790cb2b85cfd197b99331c32c403b0769f88f666aa5ac"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "b5cd0bd282ce8b204f0ebdc7c80835919ed0bdad7bfdf76601411c949a1ea3a0"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "eb3737b6ef123f4037ae2fcbbad06bc110695e9e3fe787c4aa89d21d8f41467a"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "679bfe57ca68ee12a94dbfc0451a8c66605f855e4e4d0734a3b55760875322c1"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "b7bafc820a691e0d4dd4b3e737343260d6ad6e79c2904474333fd5504dcc0112",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 1,
+      "body_style": "large spherical-lens high-CRI wash with framing shutters",
+      "notes": "Official product code 010650 identifies Bora TC.",
+      "generator": "catalog",
+      "shell": "faceted",
+      "head_depth": 1.1,
+      "yoke_compression": 0.18
+    },
+    "mesh_count": 73,
+    "triangle_count": 18640,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "c27139fb28640f0cddb49faf4cc564fb496af137aa418453fee412c76f6ef1eb",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

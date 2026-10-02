@@ -1,0 +1,17 @@
+{
+  "id": "acme/lightning",
+  "passed": true,
+  "source_usdz_sha256": "0603ce3d9e04fe129bbad1cb9c655fcc1a32e4ff92aabf3dcfeecf1f69daaaa3",
+  "joints": 1,
+  "moving_meshes": 337,
+  "fixed_meshes": 4,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

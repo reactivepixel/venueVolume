@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "814786c0a0585db6387226b8d022f538e7ab5a1a162682ea1517699b5bf8ea31",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "robe-lighting/esprite",
+    "name": "ESPRITE",
+    "manufacturer": "ROBE Lighting",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/robe-lighting/esprite/fixture.usdz",
+    "sha256": "814786c0a0585db6387226b8d022f538e7ab5a1a162682ea1517699b5bf8ea31",
+    "boundsMin": [
+      -0.2214999943971634,
+      0.0,
+      -0.13199999602511525
+    ],
+    "boundsMax": [
+      0.2214999943971634,
+      0.7329999208450317,
+      0.13199999509379268
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.13451266288757324,
+          0.0060150581412017345
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.565329372882843,
+          0.0060150581412017345
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.565329372882843,
+          -0.12316938489675522
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

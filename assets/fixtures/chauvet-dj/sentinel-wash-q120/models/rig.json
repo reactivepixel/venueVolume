@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "0da2f4f410dfd9ef0ce811cf7e6cbd4a6001effb4b49f981f0619dfe53fdc184",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "chauvet-dj/sentinel-wash-q120",
+    "name": "Sentinel Wash Q120",
+    "manufacturer": "CHAUVET DJ",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/chauvet-dj/sentinel-wash-q120/fixture.usdz",
+    "sha256": "0da2f4f410dfd9ef0ce811cf7e6cbd4a6001effb4b49f981f0619dfe53fdc184",
+    "boundsMin": [
+      -0.109499990940094,
+      0.0,
+      -0.07150001253467053
+    ],
+    "boundsMax": [
+      0.109499990940094,
+      0.29600000381469727,
+      0.07150000531692058
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.04697008803486824,
+          0.000693405163474381
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.22188805043697357,
+          0.000693405163474381
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.22188805043697357,
+          -0.053612422198057175
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

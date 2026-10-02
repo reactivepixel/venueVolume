@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-30",
+  "updated_at": "2026-10-02",
   "scope": "Physical equipment for lighting and visual show design, from bars and theatres to arenas. Audio/backline is a separate department, not silently included. This is an extensible taxonomy, not a claim to enumerate every product ever manufactured.",
   "method": "Practitioner terminology from Blue Room, ControlBooth, r/lightingdesign and r/techtheatre informs navigation. Exact product classification and specifications use manufacturer evidence. Primary category counts each product once; cross-use tags do not manufacture additional coverage.",
   "forum_evidence": "research/fixtures/taxonomy/forum-research.json",
@@ -38,6 +38,7 @@
     {"id":"lighting.moving.scanner","name":"Moving-mirror scanner","parent_id":"lighting.moving","definition":"Fixed body with motorized mirror; not a moving-head yoke."},
     {"id":"lighting.followspot","name":"Manually operated followspot","parent_id":"lighting","definition":"Operator steers the light; optional DMX intensity does not imply motorized pan/tilt."},
     {"id":"lighting.effects","name":"Visible and audience effects","parent_id":"lighting"},
+    {"id":"lighting.effects.multi_effect","name":"Integrated multi-effect assembly","parent_id":"lighting.effects","definition":"One manufacturer assembly combining distinct effects or independently moving modules; each optical source retains its own geometry and control limitations."},
     {"id":"lighting.effects.strobe","name":"Strobe","parent_id":"lighting.effects","definition":"Dedicated flash/strobe system; hybrid blinder capability kept as a use tag."},
     {"id":"lighting.effects.blinder","name":"Audience blinder","parent_id":"lighting.effects","definition":"Audience-facing punch/tungsten-style glow role, distinct from ACL beam arrays."},
     {"id":"lighting.effects.mirror_ball","name":"Mirror ball / reflective effect","parent_id":"lighting.effects","definition":"Passive reflective object; motor and pinspots are separate products."},

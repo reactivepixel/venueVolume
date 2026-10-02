@@ -1,0 +1,17 @@
+{
+  "id": "martin-professional-harman/mac-one-beam",
+  "passed": true,
+  "source_usdz_sha256": "d97e15dc87f87e5b71c0c8072ca96b239e2c59d396a6c26e3cbbda95d1cd4323",
+  "joints": 2,
+  "moving_meshes": 86,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

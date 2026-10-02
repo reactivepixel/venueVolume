@@ -1,0 +1,175 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "martin-professional-harman/mac-one-beam",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC One Beam",
+      "variant": "MAC One Beam",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.martin.com/en-US/products/mac-one-beam",
+        "title": "MAC One Beam product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Physical specs (width, height, depth, weight); Control (protocols, DMX modes/channels); Overview (120 mm light guides, 7 Mcd)",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://adn.harmanpro.com/productattachment/13642/product_attachment/x_large-e7dbe56ff717256b1331ad23914f76ad.webp",
+        "title": "MAC One Beam product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.webp",
+        "sha256": "4979446c43ebd6b4f4f911bd6bad07a6814e6609fbfd67e6960f4ff91ce3e16c"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.254,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer physical specs: base width 254 mm, maximum height 350 mm, head depth 233 mm. Across-yoke width is 226 mm; dimensions intentionally use base width and maximum vertical envelope."
+      },
+      "height": {
+        "value": 0.35,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer physical specs: base width 254 mm, maximum height 350 mm, head depth 233 mm. Across-yoke width is 226 mm; dimensions intentionally use base width and maximum vertical envelope."
+      },
+      "depth": {
+        "value": 0.233,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer physical specs: base width 254 mm, maximum height 350 mm, head depth 233 mm. Across-yoke width is 226 mm; dimensions intentionally use base width and maximum vertical envelope."
+      },
+      "reference_pose": "Maximum-height dimension with head forward; base level."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Laser illuminated light instrument; 7 million candela; 120 mm lens with individually controllable light guides.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "55 W maximum",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "4.95 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "Art-Net",
+            "sACN",
+            "Martin P3"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "19-channel mode",
+        "footprint": 19,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "35-channel mode",
+        "footprint": 35,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "107-channel mode",
+        "footprint": 107,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Maximum-height dimension with head forward; base level.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer physical specs: base width 254 mm, maximum height 350 mm, head depth 233 mm. Across-yoke width is 226 mm; dimensions intentionally use base width and maximum vertical envelope.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "a4444552c7a863a26f5c370c8de87d64f44469a3d119158399e67eb815daf730"
+  },
+  "git_commit": "cde57148359c6fba452466258e6762e851414b92",
+  "note": "Initial research record before any generated model artifacts existed."
+}

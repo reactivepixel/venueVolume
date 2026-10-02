@@ -1,0 +1,411 @@
+{
+  "schema_version": 1,
+  "id": "glp/mad-maxx",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "GLP",
+    "model": "MAD MAXX",
+    "variant": "7992",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://glp.de/en/products/entertainment-lighting/moving-lights/mad-maxx-en",
+      "title": "GLP MAD MAXX product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Technical Data: construction, dimensions, weight, power, motion and beam specs",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://glp.de/en/component/content/article/mad-maxx-cw-product-data",
+      "title": "GLP MAD MAXX CW Product Data",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Control modes/protocols, channel counts, LED source and dimensional table",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://glp.de/files/products/mad-maxx-cw-product-data/Mad-Maxx_Datasheet-Rev20251128.pdf",
+      "title": "GLP MAD MAXX datasheet Rev. 2025-11-28",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Dimensions & Weight: discrepancy with current product page (195 kg vs 208 kg)",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://glp.de/images/products/MadMaxx/MadMaxx_Header.png",
+      "title": "MAD MAXX product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "9948ce7652c536c693706a2a5ac289afc72156d199e60d7ed494d1a870c81944"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 1.043,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "GLP product page lists width 1043 mm, height 1057 mm, depth 789 mm; with head straight up the alternate envelope is 1248 mm high and 528 mm deep."
+    },
+    "height": {
+      "value": 1.057,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "GLP product page lists width 1043 mm, height 1057 mm, depth 789 mm; with head straight up the alternate envelope is 1248 mm high and 528 mm deep."
+    },
+    "depth": {
+      "value": 0.789,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "GLP product page lists width 1043 mm, height 1057 mm, depth 789 mm; with head straight up the alternate envelope is 1248 mm high and 528 mm deep."
+    },
+    "reference_pose": "Manufacturer technical data baseline; head position as shown in the standard dimension view. Alternate head-straight-up extent recorded in axis note."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "19 white-light LED beams; approx. 750 mm front lens/beam diameter; 1.6° fixed beam; 68,000 lm; three control modes.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "2,500 W max at 230 V",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "208 kg (current product page); 195 kg (datasheet Rev. 2025-11-28)",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512-A",
+          "RDM",
+          "CRMX DMX/RDM",
+          "Art-Net",
+          "sACN",
+          "GLP iQ.Mesh"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "15-channel mode",
+      "footprint": 15,
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "22-channel mode",
+      "footprint": 22,
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "70-channel mode",
+      "footprint": 70,
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Manufacturer technical data baseline; head position as shown in the standard dimension view. Alternate head-straight-up extent recorded in axis note.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.5214999914169312,
+        7.450580596923828e-09,
+        -0.3944999946979806
+      ],
+      "max": [
+        0.5214999914169312,
+        1.056999921798706,
+        0.3945000098319724
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.006695186253637075,
+          -0.001175440731458366
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.1270969659090042,
+          -0.001175440731458366
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.7491728663444519,
+          -0.001175440731458366
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.7491728663444519,
+          -0.32842010259628296
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.1270969659090042,
+          -0.001175440731458366
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.7491728663444519,
+          -0.001175440731458366
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.7491728663444519,
+          -0.34083059430122375
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "GLP product page lists width 1043 mm, height 1057 mm, depth 789 mm; with head straight up the alternate envelope is 1248 mm high and 528 mm deep.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "1c125a2f38ad33d5c78b554d0dc7c1b7335558fdbd9d4e71bbdd78a6f88116cb"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "19238fe57d70894c2e75183e19b98d6cf5158fad5b67a5508ebbeaa4ba41c969"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "4d3e63482377533b5bcb8a75e79ead9f3a9f18730581c32d83cd521bb7ccb938"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "6105f08252d643978d5f5675d2a57321380e526472fc292a9cecd7f45c84fe60"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "32e64f82a227d9edb0cbb8cadb8eb54338423899641a572b8c16fff92107974b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "a33fd029063375e5bcf92f1cce0d9e5aabb4cc0549133f3c07ee8827372ecbc7"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "c49cfda9de4b1eba4057b35194fcf5fa37c8eb9a01242678b27a35683dcbf164"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "9bf1d7e1bcc04b509b6ea26557c2385daef3241e0931e9fa86bf36118f7e4a3d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "a2d6e223f9f3f970d075a419d3d0229eadcfff5e157568018810ba9d025cd7e0"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "dd81f59e62e0c442847d77c736e79e141e5779e6fc0b6c607c5f666cbf326a02"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "878cc0dd19b6d4862d55461db3279d225ce5fbc5b3d4ddc82a542762e916ab36",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 19,
+      "body_style": "oversized yoke-mounted multisource fat-beam fixture",
+      "notes": "Nonstandard 19-beam array and extraordinary scale. Current moving_wash geometry is not an exact oversized fat-beam profile; preserve individual large front emitters, high yoke and alternate head-up envelope, and expect custom dimensions/modeling. Mass conflict between page and datasheet remains explicit.",
+      "generator": "catalog",
+      "head_depth": 0.78,
+      "base_height": 0.12,
+      "large_head": true
+    },
+    "mesh_count": 128,
+    "triangle_count": 38244,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "9ff21bc2dd43d4aa2e4b2cd1799b8eca516ea78ae3a970ac8d1c5eedf15b10b7",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.beam",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Beam"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

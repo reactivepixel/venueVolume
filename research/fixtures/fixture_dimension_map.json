@@ -980,5 +980,749 @@
     "axis_status": "estimated",
     "axis_note": "Estimated outer 90 x 44 x 16 mm from orthographic manufacturer drawing: 70 mm inner length and 20 mm inner clear height, calibrated with 10 mm bar diameter; closure sleeve measures about 1.6x rod diameter in the side view and raises the silhouette about 4 mm beyond the 40 mm loop estimate. These are drawing-calibrated visual bounds, not published outer dimensions or certified clearances. Raw 70/20/11/10 mm measures retained above. Product page says 550 kg while data sheet says WLL 500 kg; appearance research only, not load selection.",
     "reference_pose": "Closed quick link with loop plane vertical, long axis horizontal and closure sleeve along the lower edge; no attached rigging. Estimated outer silhouette."
+  },
+  "CHAUVET Professional|Rogue R3 Beam": {
+    "width_m": 0.325,
+    "height_m": 0.55,
+    "depth_m": 0.22,
+    "axis_status": "estimated",
+    "axis_note": "Product specifications state 325 × 220 × 550 mm without named axes. In the official upright product pose, the 550 mm axis is vertical and 220 mm is front-to-back; mapped as width × height × depth = 325 × 550 × 220 mm. Treat as an image-informed estimate pending a dimensioned CAD drawing.",
+    "reference_pose": "Base level; head at neutral vertical orientation."
+  },
+  "Elation Professional|PROTEUS MAXIMUS": {
+    "width_m": 0.591,
+    "height_m": 0.828,
+    "depth_m": 0.458,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer specifications list length 458 mm × width 591 mm × height 828 mm; mapped to depth × width × height.",
+    "reference_pose": "Manufacturer overall dimensions; head position not separately specified."
+  },
+  "Cameo|OPUS X4": {
+    "width_m": 0.441,
+    "height_m": 0.83,
+    "depth_m": 0.312,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer lists width 441 mm, height 830 mm, depth 312 mm.",
+    "reference_pose": "Product page overall assembled dimensions; head position not separately specified."
+  },
+  "PROLIGHTS|Astra Hybrid330": {
+    "width_m": 0.411,
+    "height_m": 0.638,
+    "depth_m": 0.244,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer product page explicitly lists WxHxD 411 × 638 × 244 mm.",
+    "reference_pose": "Overall assembled fixture; head position not separately specified."
+  },
+  "JB-Lighting|Sparx 12": {
+    "width_m": 0.404,
+    "height_m": 0.491,
+    "depth_m": 0.265,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+    "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+  },
+  "JB-Lighting|Sparx 18": {
+    "width_m": 0.481,
+    "height_m": 0.58,
+    "depth_m": 0.308,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+    "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+  },
+  "JB-Lighting|Sparx 30": {
+    "width_m": 0.53,
+    "height_m": 0.628,
+    "depth_m": 0.308,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+    "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+  },
+  "JB-Lighting|P18 Profile MK2 HP": {
+    "width_m": 0.475,
+    "height_m": 0.755,
+    "depth_m": 0.307,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+    "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+  },
+  "Chroma-Q|Color Force II 12": {
+    "width_m": 0.335,
+    "height_m": 0.218,
+    "depth_m": 0.19,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+    "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+  },
+  "Chroma-Q|Color Force II 48": {
+    "width_m": 1.181,
+    "height_m": 0.191,
+    "depth_m": 0.165,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+    "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+  },
+  "Chroma-Q|Color Force II 72": {
+    "width_m": 1.759,
+    "height_m": 0.191,
+    "depth_m": 0.165,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+    "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+  },
+  "ACME|LIGHTNING": {
+    "width_m": 0.483,
+    "height_m": 0.224,
+    "depth_m": 0.212,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer physical specs explicitly label width 483 mm, depth 212 mm, height 224 mm.",
+    "reference_pose": "Assembled fixture with yoke; universal working position."
+  },
+  "High End Systems|Lonestar Prime": {
+    "width_m": 0.35,
+    "height_m": 0.584,
+    "depth_m": 0.23,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer datasheet explicitly lists height 584 mm, width 350 mm and depth 230 mm; fixture excluding mounting hardware.",
+    "reference_pose": "Manufacturer overall envelope; moving head orientation not separately specified."
+  },
+  "Ayrton|Rivale Profile": {
+    "width_m": 0.36,
+    "height_m": 0.676,
+    "depth_m": 0.316,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer technical specification lists product dimensions 360 x 676 x 316 mm (l x h x d); flight-case dimensions excluded.",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "Martin Professional (HARMAN)|MAC One Beam": {
+    "width_m": 0.254,
+    "height_m": 0.35,
+    "depth_m": 0.233,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer physical specs: base width 254 mm, maximum height 350 mm, head depth 233 mm. Across-yoke width is 226 mm; dimensions intentionally use base width and maximum vertical envelope.",
+    "reference_pose": "Maximum-height dimension with head forward; base level."
+  },
+  "Vari-Lite|VL10 BeamWash": {
+    "width_m": 0.704,
+    "height_m": 0.501,
+    "depth_m": 0.32,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer product page gives an unlabelled compact envelope of 704 x 501 x 320 mm; axis mapping to width, height and depth follows its product rendering and is an estimate.",
+    "reference_pose": "Assembled fixture; manufacturer product summary dimensions."
+  },
+  "GLP|MAD MAXX": {
+    "width_m": 1.043,
+    "height_m": 1.057,
+    "depth_m": 0.789,
+    "axis_status": "documented",
+    "axis_note": "GLP product page lists width 1043 mm, height 1057 mm, depth 789 mm; with head straight up the alternate envelope is 1248 mm high and 528 mm deep.",
+    "reference_pose": "Manufacturer technical data baseline; head position as shown in the standard dimension view. Alternate head-straight-up extent recorded in axis note."
+  },
+  "Chroma-Q|Color Force 3 72": {
+    "width_m": 1.785,
+    "height_m": 0.215,
+    "depth_m": 0.18,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+    "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+  },
+  "CHAUVET DJ|Intimidator Spot 375ZX": {
+    "width_m": 0.322,
+    "height_m": 0.466,
+    "depth_m": 0.22,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer size 322 x 220 x 466 mm; mapped width x depth x height.",
+    "reference_pose": "Base level, head vertical per product dimensional listing."
+  },
+  "CHAUVET DJ|Intimidator Wash Zoom 450 IRC": {
+    "width_m": 0.194,
+    "height_m": 0.363,
+    "depth_m": 0.277,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer size 194 x 277 x 363 mm; mapped width x depth x height.",
+    "reference_pose": "Base level, head vertical; assembled fixture."
+  },
+  "CHAUVET DJ|Hurricane Haze 2D": {
+    "width_m": 0.285,
+    "height_m": 0.35,
+    "depth_m": 0.267,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer size 285 x 267 x 350 mm; mapped width x depth x height.",
+    "reference_pose": "Machine level on feet, output aimed horizontally."
+  },
+  "Eliminator Lighting|Stealth Spot": {
+    "width_m": 0.17,
+    "height_m": 0.355,
+    "depth_m": 0.239,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer lists 239 x 170 x 355 mm, L x W x H.",
+    "reference_pose": "Assembled head upright; base level."
+  },
+  "SHEHDS|LED Beam & Spot Moving Head 150W": {
+    "width_m": 0.27,
+    "height_m": 0.42,
+    "depth_m": 0.18,
+    "axis_status": "documented",
+    "axis_note": "Official product-size image labels 27 cm head width, 18 cm side depth and 42 cm assembled overall height.",
+    "reference_pose": "Base level, head upright, per official product-size image."
+  },
+  "CHAUVET DJ|Intimidator Spot 360X": {
+    "width_m": 0.322,
+    "height_m": 0.423,
+    "depth_m": 0.22,
+    "axis_status": "documented",
+    "axis_note": "Official listing gives 322 x 220 x 423 mm; manual drawing dimensions were also checked and show compatible head-up envelope.",
+    "reference_pose": "Base level, head upright; manual dimension figure indicates head upright."
+  },
+  "CHAUVET DJ|Intimidator Spot 475ZX": {
+    "width_m": 0.363,
+    "height_m": 0.531,
+    "depth_m": 0.25,
+    "axis_status": "documented",
+    "axis_note": "Manual lists length 363 mm, width 250 mm, height 531 mm.",
+    "reference_pose": "Assembled, base level, head vertical."
+  },
+  "CHAUVET DJ|Sentinel Wash Q120": {
+    "width_m": 0.219,
+    "height_m": 0.296,
+    "depth_m": 0.143,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer size 219 x 143 x 296 mm; mapped width x depth x height.",
+    "reference_pose": "Base level, head upright; assembled with hanging bracket."
+  },
+  "Eurolite|LED TMH-S30 Moving-Head Spot": {
+    "width_m": 0.17,
+    "height_m": 0.24,
+    "depth_m": 0.15,
+    "axis_status": "documented",
+    "axis_note": "Steinigke product specification explicitly gives width 17.0 cm, height 24.0 cm, depth 15.0 cm.",
+    "reference_pose": "Compact head and base assembled; main product pose, base level."
+  },
+  "SGM|G-4 Wash": {
+    "width_m": 0.255,
+    "height_m": 0.465,
+    "depth_m": 0.219,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+    "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+  },
+  "SGM|G-7 Spot": {
+    "width_m": 0.37,
+    "height_m": 0.622,
+    "depth_m": 0.433,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+    "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+  },
+  "Eliminator Lighting|Stealth Beam": {
+    "width_m": 0.239,
+    "height_m": 0.285,
+    "depth_m": 0.158,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer lists 158 x 239 x 285 mm as L x W x H.",
+    "reference_pose": "Base level, head vertical; listed assembled dimensions."
+  },
+  "Eurolite|LED KLS-120 Compact Light Set": {
+    "width_m": 0.616,
+    "height_m": 0.226,
+    "depth_m": 0.1,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer page explicitly labels width, height and depth for the assembled crossbar.",
+    "reference_pose": "Crossbar assembled, front-facing, without stand"
+  },
+  "ADJ|Saber Spot DTW": {
+    "width_m": 0.17,
+    "height_m": 0.087,
+    "depth_m": 0.088,
+    "axis_status": "documented",
+    "axis_note": "ADJ labels dimensions L x W x H = 88 x 170 x 87 mm; elongated scissor-bracket dimension is treated as width and lens-axis length as depth.",
+    "reference_pose": "Housing mounted in scissor bracket, optical axis horizontal"
+  },
+  "ADJ|Focus Spot 6Z": {
+    "width_m": 0.234,
+    "height_m": 0.562,
+    "depth_m": 0.36,
+    "axis_status": "documented",
+    "axis_note": "ADJ labels assembled dimensions L x W x H = 360 x 234 x 562 mm; long front-back axis is depth, 234 mm is width, and 562 mm is head-upright height.",
+    "reference_pose": "Base level, head upright as in dimensional drawing"
+  },
+  "ADJ|Focus Flex L7": {
+    "width_m": 0.25,
+    "height_m": 0.349,
+    "depth_m": 0.179,
+    "axis_status": "documented",
+    "axis_note": "ADJ labels L x W x H = 178.8 x 250.0 x 349.2 mm; 250 mm cross-head span mapped to width, 349.2 mm upright height, 178.8 mm front-back depth.",
+    "reference_pose": "Base level; head vertical in dimensional pose"
+  },
+  "Showtec|Phantom 100 Spot": {
+    "width_m": 0.325,
+    "height_m": 0.42,
+    "depth_m": 0.21,
+    "axis_status": "documented",
+    "axis_note": "Showtec lists mechanical length 325 mm, width 210 mm, height 420 mm; in upright head pose, length is mapped to front-back depth.",
+    "reference_pose": "Base level with head upright; dimensions from mechanical specification"
+  },
+  "Martin Professional (HARMAN)|MAC Encore Performance WRM": {
+    "width_m": 0.48,
+    "height_m": 0.74,
+    "depth_m": 0.452,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer physical dimensions: length 452 mm, width 480 mm across yoke, maximum height 740 mm (731 mm head straight up).",
+    "reference_pose": "Maximum height reference; base level."
+  },
+  "Martin Professional (HARMAN)|MAC Encore Performance CLD": {
+    "width_m": 0.48,
+    "height_m": 0.74,
+    "depth_m": 0.452,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer physical dimensions: length 452 mm, width 480 mm across yoke, maximum height 740 mm (731 mm head straight up).",
+    "reference_pose": "Maximum height reference; base level."
+  },
+  "Martin Professional (HARMAN)|MAC Encore Wash CLD": {
+    "width_m": 0.48,
+    "height_m": 0.755,
+    "depth_m": 0.452,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer physical dimensions: length 452 mm, width 480 mm across yoke, maximum height 755 mm (745 mm head straight up).",
+    "reference_pose": "Maximum height reference; base level."
+  },
+  "Martin Professional (HARMAN)|MAC Encore Wash WRM": {
+    "width_m": 0.48,
+    "height_m": 0.755,
+    "depth_m": 0.452,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer physical dimensions: length 452 mm, width 480 mm across yoke, maximum height 755 mm (745 mm head straight up).",
+    "reference_pose": "Maximum height reference; base level."
+  },
+  "Martin Professional (HARMAN)|MAC Aura PXL": {
+    "width_m": 0.41,
+    "height_m": 0.544,
+    "depth_m": 0.232,
+    "axis_status": "documented",
+    "axis_note": "Official page overall dimensions: 410 x 489 x 232 mm; maximum height is 544 mm and base width is 385 mm. Overall width is across yoke, not base width.",
+    "reference_pose": "Head maximum height; base level."
+  },
+  "Martin Professional (HARMAN)|MAC Aura Raven XIP": {
+    "width_m": 0.429,
+    "height_m": 0.603,
+    "depth_m": 0.285,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer physical specs: base width 429 mm, maximum height 603 mm, base depth 285 mm; across-yoke width is 528 mm.",
+    "reference_pose": "Head maximum height; base level."
+  },
+  "Martin Professional (HARMAN)|MAC Aura XB": {
+    "width_m": 0.222,
+    "height_m": 0.39,
+    "depth_m": 0.138,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer physical specs: base width 222 mm, maximum height 390 mm, base depth 138 mm; across-yoke width is 302 mm.",
+    "reference_pose": "Head maximum height; base level."
+  },
+  "Ayrton|Rivale Wash": {
+    "width_m": 0.36,
+    "height_m": 0.676,
+    "depth_m": 0.316,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer product dimensions 360 x 676 x 316 mm (length x height x depth); flight case excluded.",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "Ayrton|Stradale Profile": {
+    "width_m": 0.339,
+    "height_m": 0.593,
+    "depth_m": 0.298,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer dimensions are 339 x 593 x 298 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+  },
+  "Ayrton|Zonda 3 FX": {
+    "width_m": 0.365,
+    "height_m": 0.404,
+    "depth_m": 0.233,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer dimensions are 365 x 404 x 233 mm (length x height x depth); flight case excluded.",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "Ayrton|Nando 502 Wash": {
+    "width_m": 0.342,
+    "height_m": 0.467,
+    "depth_m": 0.268,
+    "axis_status": "documented",
+    "axis_note": "Current product page gives 342 x 467 x 268 mm (length x height x depth); older manual specifies 340 x 474 x 268 mm, so the conflicting revision dimensions are retained in evidence rather than blended.",
+    "reference_pose": "Current manufacturer product page reference dimensions; fixture assembled."
+  },
+  "ROBE Lighting|ESPRITE": {
+    "width_m": 0.443,
+    "height_m": 0.733,
+    "depth_m": 0.264,
+    "axis_status": "documented",
+    "axis_note": "Product page dimensions; width and depth specified with head vertical.",
+    "reference_pose": "Head vertical; base level."
+  },
+  "ROBE Lighting|LedPOINTE": {
+    "width_m": 0.363,
+    "height_m": 0.667,
+    "depth_m": 0.24,
+    "axis_status": "documented",
+    "axis_note": "Product page dimensions; depth specified with head vertical.",
+    "reference_pose": "Head vertical; base level."
+  },
+  "ROBE Lighting|PAINTE": {
+    "width_m": 0.367,
+    "height_m": 0.619,
+    "depth_m": 0.219,
+    "axis_status": "documented",
+    "axis_note": "Product page dimensions; depth specified with head vertical.",
+    "reference_pose": "Head vertical; base level."
+  },
+  "ROBE Lighting|CUETE": {
+    "width_m": 0.343,
+    "height_m": 0.51,
+    "depth_m": 0.22,
+    "axis_status": "documented",
+    "axis_note": "Product page dimensions; depth specified with head vertical.",
+    "reference_pose": "Head vertical; base level."
+  },
+  "ROBE Lighting|Tetra1": {
+    "width_m": 0.508,
+    "height_m": 0.279,
+    "depth_m": 0.192,
+    "axis_status": "documented",
+    "axis_note": "Product page dimensions; depth specified with head horizontal.",
+    "reference_pose": "Linear fixture head horizontal."
+  },
+  "ROBE Lighting|LEDBeam 150": {
+    "width_m": 0.244,
+    "height_m": 0.337,
+    "depth_m": 0.149,
+    "axis_status": "documented",
+    "axis_note": "Product page dimensions; assembled orientation per page specification.",
+    "reference_pose": "Head vertical; base level."
+  },
+  "CHAUVET DJ|Intimidator Spot Duo": {
+    "width_m": 0.54,
+    "height_m": 0.365,
+    "depth_m": 0.187,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer publishes assembled dimensions 540 x 187 x 365 mm; long bar dimension is width, vertical envelope is height, and remaining dimension is depth.",
+    "reference_pose": "Crossbar level with both heads in upright home position"
+  },
+  "Showtec|Phantom 65": {
+    "width_m": 0.23,
+    "height_m": 0.365,
+    "depth_m": 0.2,
+    "axis_status": "documented",
+    "axis_note": "Manual lists 230 x 200 x 365 mm, L x W x H.",
+    "reference_pose": "Head vertical and base level per manual dimension figure."
+  },
+  "ADJ|Focus Wash 400": {
+    "width_m": 0.21333,
+    "height_m": 0.4981,
+    "depth_m": 0.27843,
+    "axis_status": "documented",
+    "axis_note": "ADJ lists width 213.33 mm, vertical height 498.1 mm without snoot, and length 278.43 mm.",
+    "reference_pose": "Assembled fixture without optional snoot; head vertical as manufacturer dimensions specify."
+  },
+  "CHAUVET Professional|Rogue R3X Wash": {
+    "width_m": 0.394,
+    "height_m": 0.47,
+    "depth_m": 0.298,
+    "axis_status": "documented",
+    "axis_note": "User Manual Rev. 8, Product Dimensions drawing (p. 5): 394 mm front width × 470 mm maximum height × 298 mm depth, assembled neutral pose.",
+    "reference_pose": "Assembled fixture in manual's dimensional drawing pose; yoke level."
+  },
+  "Elation Professional|PROTEUS LUCIUS": {
+    "width_m": 0.37,
+    "height_m": 0.682,
+    "depth_m": 0.468,
+    "axis_status": "documented",
+    "axis_note": "Current manufacturer specification sheet explicitly labels Length 468 mm, Width 370 mm, Height 682 mm; corroborated by the May 2023 dimensional drawing (base width 370 mm, base length 468 mm, max assembled height 682 mm). Older Proteus series brochure dimensions are superseded and do not match this model's current drawing.",
+    "reference_pose": "Manufacturer dimensional drawing, assembled fixture with head in illustrated forward/down pose; width × height × depth mapped from sheet's width/height/length."
+  },
+  "Cameo|OPUS X4 IP": {
+    "width_m": 0.475,
+    "height_m": 0.86,
+    "depth_m": 0.35,
+    "axis_status": "documented",
+    "axis_note": "Cameo product page labels width 475 mm, height 860 mm, depth 350 mm.",
+    "reference_pose": "Overall assembled IP65 fixture; head pose not separately specified."
+  },
+  "Astera|Titan Tube": {
+    "width_m": 1.035,
+    "height_m": 0.043,
+    "depth_m": 0.043,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer datasheet specifies 1035 mm overall length × Ø43 mm; modeled horizontally as width × circular height/depth.",
+    "reference_pose": "Tube horizontal; included end caps fitted, no brackets/accessories fitted."
+  },
+  "Astera|Helios Tube": {
+    "width_m": 0.55,
+    "height_m": 0.043,
+    "depth_m": 0.043,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer Datasheet V4 (3 July 2025): overall length 550 mm × Ø43 mm; horizontal tube orientation used for width.",
+    "reference_pose": "Tube horizontal; end caps fitted, no mounting accessories."
+  },
+  "Astera|AX5 TriplePAR": {
+    "width_m": 0.1936,
+    "height_m": 0.2135,
+    "depth_m": 0.1481,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer dimensions with bracket: L148.1 × W193.6 × H213.5 mm; mapped to depth × width × height in the bracketed pose. Body without bracket is Ø153.2 × H140.5 mm.",
+    "reference_pose": "Upright PAR with included yoke/bracket attached, as specified in manufacturer with-bracket dimensions."
+  },
+  "ETC|ColorSource Spot jr": {
+    "width_m": 0.258,
+    "height_m": 0.331,
+    "depth_m": 0.46,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer physical drawing labels width 258 mm, height 331 mm and depth 460 mm for the assembled fixture.",
+    "reference_pose": "Manufacturer physical drawing, yoke assembled; C-clamp not included."
+  },
+  "ETC|ColorSource PAR jr": {
+    "width_m": 0.213,
+    "height_m": 0.282,
+    "depth_m": 0.251,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer table labels H282 × W213 × D251 mm, including yoke envelope.",
+    "reference_pose": "Upright PAR with included yoke attached; C-clamp excluded."
+  },
+  "ACME|MANA PROFILE": {
+    "width_m": 0.38,
+    "height_m": 0.658,
+    "depth_m": 0.284,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer 2026 leaflet physical information lists fixture dimensions 380 × 284 × 658 mm; mapped to W × D × H, corroborated by its dimension illustration.",
+    "reference_pose": "Assembled fixture upright in manufacturer dimension illustration; flight-case dimensions excluded."
+  },
+  "High End Systems|Lonestar": {
+    "width_m": 0.368,
+    "height_m": 0.6,
+    "depth_m": 0.221,
+    "axis_status": "documented",
+    "axis_note": "Manufacturer Datasheet Rev H gives W368 × H600 × D221 mm for fixture envelope.",
+    "reference_pose": "Assembled moving head, upright base and head orientation as manufacturer drawing."
+  },
+  "Claypaky|B-Eye 7": {
+    "width_m": 0.35,
+    "height_m": 0.4609,
+    "depth_m": 0.2048,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer states 350 x 204.8 mm base and 460.9 mm vertical-head height; assignment of base axes to width/depth follows product views and is estimated.",
+    "reference_pose": "Head vertical; base level."
+  },
+  "Claypaky|Arolla Aqua": {
+    "width_m": 0.325,
+    "height_m": 0.75,
+    "depth_m": 0.45,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer states 325 x 450 mm base and 750 mm height with vertical head. Assignment of base axes to width/depth follows the product views; preserve original base spans.",
+    "reference_pose": "Head vertical; base level."
+  },
+  "Claypaky|B-Eye K30": {
+    "width_m": 0.43,
+    "height_m": 0.609,
+    "depth_m": 0.4,
+    "axis_status": "estimated",
+    "axis_note": "Claypaky lists 430 x 400 mm base dimensions and 609 mm with vertical head but does not label the two base axes; width/depth mapping is estimated from the product view.",
+    "reference_pose": "Head vertical; base level."
+  },
+  "Martin Professional (HARMAN)|MAC Encore Two": {
+    "width_m": 0.479,
+    "height_m": 0.776,
+    "depth_m": 0.596,
+    "axis_status": "documented",
+    "axis_note": "Martin physical specifications: base width 429 mm, across-yoke width 479 mm, head length 596 mm, maximum height 776 mm (head straight up 758 mm), base depth 275 mm. Width uses across-yoke envelope; depth uses head length.",
+    "reference_pose": "Maximum height; base level; head tilted to maximum envelope."
+  },
+  "Ayrton|Karif LT": {
+    "width_m": 0.365,
+    "height_m": 0.622,
+    "depth_m": 0.212,
+    "axis_status": "documented",
+    "axis_note": "Official product page states 365 x 622 x 212 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "Ayrton|Mistral S": {
+    "width_m": 0.365,
+    "height_m": 0.591,
+    "depth_m": 0.212,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 365 x 591 x 212 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "Ayrton|Mistral TC": {
+    "width_m": 0.365,
+    "height_m": 0.591,
+    "depth_m": 0.212,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 365 x 591 x 212 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "Ayrton|Diablo Profile S": {
+    "width_m": 0.365,
+    "height_m": 0.591,
+    "depth_m": 0.208,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 365 x 591 x 208 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "Ayrton|Diablo Profile TC": {
+    "width_m": 0.365,
+    "height_m": 0.591,
+    "depth_m": 0.208,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 365 x 591 x 208 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "Ayrton|Levante S": {
+    "width_m": 0.365,
+    "height_m": 0.632,
+    "depth_m": 0.212,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 365 x 632 x 212 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "Ayrton|Levante TC": {
+    "width_m": 0.365,
+    "height_m": 0.632,
+    "depth_m": 0.212,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 365 x 632 x 212 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "Ayrton|Zonda 3 Wash": {
+    "width_m": 0.365,
+    "height_m": 0.404,
+    "depth_m": 0.233,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 365 x 404 x 233 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "Ayrton|Rawbeam 350": {
+    "width_m": 0.339,
+    "height_m": 0.592,
+    "depth_m": 0.297,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 339 x 592 x 297 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+  },
+  "Ayrton|Eurus Profile S": {
+    "width_m": 0.445,
+    "height_m": 0.743,
+    "depth_m": 0.273,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 445 x 743 x 273 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+  },
+  "Ayrton|Eurus Profile TC": {
+    "width_m": 0.445,
+    "height_m": 0.743,
+    "depth_m": 0.273,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 445 x 743 x 273 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+  },
+  "Ayrton|Bora S": {
+    "width_m": 0.494,
+    "height_m": 0.737,
+    "depth_m": 0.28,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 494 x 737 x 280 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "Ayrton|Bora TC": {
+    "width_m": 0.494,
+    "height_m": 0.737,
+    "depth_m": 0.28,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 494 x 737 x 280 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "Ayrton|Veloce Wash": {
+    "width_m": 0.405,
+    "height_m": 0.757,
+    "depth_m": 0.366,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 405 x 757 x 366 mm (length x height x depth); manual V1 gives depth 367 mm, so product-page value retained.",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "Ayrton|Argo 6 FX": {
+    "width_m": 0.436,
+    "height_m": 0.536,
+    "depth_m": 0.28,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 436 x 536 x 280 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "Ayrton|Argo 6 Wash": {
+    "width_m": 0.436,
+    "height_m": 0.536,
+    "depth_m": 0.28,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 436 x 536 x 280 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "Claypaky|Volero Cube": {
+    "width_m": 0.245,
+    "height_m": 0.476,
+    "depth_m": 0.338,
+    "axis_status": "estimated",
+    "axis_note": "Manufacturer specifies 245 x 338 mm base and 476 mm height with vertical head. Width/depth mapping of the two base axes is assigned from page views and is an estimate; retain original undirected spans.",
+    "reference_pose": "Vertical head; base level; as in manufacturer dimensional specification."
+  },
+  "Ayrton|Cobra²": {
+    "width_m": 0.36,
+    "height_m": 0.674,
+    "depth_m": 0.319,
+    "axis_status": "documented",
+    "axis_note": "Ayrton product page dimensions: 360 x 674 x 319 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+  },
+  "Ayrton|Khamsin S": {
+    "width_m": 0.494,
+    "height_m": 0.778,
+    "depth_m": 0.28,
+    "axis_status": "documented",
+    "axis_note": "Current Ayrton product page: 494 x 778 x 280 mm. An older manual gives a different height; current page value retained.",
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+  },
+  "Ayrton|Khamsin TC": {
+    "width_m": 0.494,
+    "height_m": 0.778,
+    "depth_m": 0.28,
+    "axis_status": "documented",
+    "axis_note": "Current Ayrton product page: 494 x 778 x 280 mm. An older manual gives a different height; current page value retained.",
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+  },
+  "Ayrton|Perseo Beam": {
+    "width_m": 0.49,
+    "height_m": 0.71,
+    "depth_m": 0.33,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 490 x 710 x 330 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+  },
+  "Ayrton|Perseo Profile S": {
+    "width_m": 0.49,
+    "height_m": 0.71,
+    "depth_m": 0.33,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 490 x 710 x 330 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+  },
+  "Ayrton|Perseo Profile TC": {
+    "width_m": 0.49,
+    "height_m": 0.71,
+    "depth_m": 0.33,
+    "axis_status": "documented",
+    "axis_note": "Official product page: 490 x 710 x 330 mm (length x height x depth).",
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+  },
+  "Ayrton|Veloce Profile": {
+    "width_m": 0.404,
+    "height_m": 0.757,
+    "depth_m": 0.366,
+    "axis_status": "documented",
+    "axis_note": "Product page lists 404 x 757 x 366 mm; 2024 sheet rounds length to 405 mm. Page value retained.",
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture."
   }
 }

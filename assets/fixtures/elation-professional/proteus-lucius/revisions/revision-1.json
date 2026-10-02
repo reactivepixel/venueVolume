@@ -1,0 +1,204 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "elation-professional/proteus-lucius",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Elation Professional",
+      "model": "PROTEUS LUCIUS",
+      "variant": "PROTEUS LUCIUS",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.elationlighting.com/products/proteus-lucius",
+        "title": "PROTEUS LUCIUS product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Current product specifications and downloads; 33,500 lm, 580 W source, 89.9 lb; linked spec sheet and drawing",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://assets.centryngroup.com/dl/files/PRL546__DL__006.pdf",
+        "title": "PROTEUS LUCIUS Dimensional Drawing, 10 May 2023",
+        "kind": "manufacturer_drawing",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Orthographic dimension sheet: base width 370 mm, base length 468 mm, max height 682 mm",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-3",
+        "url": "https://assets.centryngroup.com/dl/files/PRL546__DL__008.pdf",
+        "title": "PROTEUS LUCIUS Specification Sheet, 16 May 2023",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Size/Weight and Electrical sections: L468 × W370 × H682 mm, 40.8 kg, max 1000 W, DMX modes 43/68",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.elationlighting.com/cdn/shop/files/e852a97433e35b21e3ea37860247754dbf5e272c_PRL546__IMG__001__e7dc0c89c4f6.jpg?v=1776815027&width=2048",
+        "title": "PROTEUS LUCIUS product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "e3b0ecdfc8a7c2d7fdb3c840b8c44a5ecc3573f3f940dd4780cd494d1e6e106e"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.37,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "unit": "m",
+        "note": "Current manufacturer specification sheet explicitly labels Length 468 mm, Width 370 mm, Height 682 mm; corroborated by the May 2023 dimensional drawing (base width 370 mm, base length 468 mm, max assembled height 682 mm). Older Proteus series brochure dimensions are superseded and do not match this model's current drawing."
+      },
+      "height": {
+        "value": 0.682,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "unit": "m",
+        "note": "Current manufacturer specification sheet explicitly labels Length 468 mm, Width 370 mm, Height 682 mm; corroborated by the May 2023 dimensional drawing (base width 370 mm, base length 468 mm, max assembled height 682 mm). Older Proteus series brochure dimensions are superseded and do not match this model's current drawing."
+      },
+      "depth": {
+        "value": 0.468,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "unit": "m",
+        "note": "Current manufacturer specification sheet explicitly labels Length 468 mm, Width 370 mm, Height 682 mm; corroborated by the May 2023 dimensional drawing (base width 370 mm, base length 468 mm, max assembled height 682 mm). Older Proteus series brochure dimensions are superseded and do not match this model's current drawing."
+      },
+      "reference_pose": "Manufacturer dimensional drawing, assembled fixture with head in illustrated forward/down pose; width × height × depth mapped from sheet's width/height/length."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "IP65 profile; 33,500 lm, 580 W LED source; 5.5°–50° zoom, framing and CMY.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2",
+            "official-3"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "1000 W max",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2",
+            "official-3"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "40.8 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2",
+            "official-3"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM",
+            "Art-Net",
+            "sACN"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2",
+            "official-3"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "43-channel mode",
+        "footprint": 43,
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "68-channel mode",
+        "footprint": 68,
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Manufacturer dimensional drawing, assembled fixture with head in illustrated forward/down pose; width × height × depth mapped from sheet's width/height/length.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Current manufacturer specification sheet explicitly labels Length 468 mm, Width 370 mm, Height 682 mm; corroborated by the May 2023 dimensional drawing (base width 370 mm, base length 468 mm, max assembled height 682 mm). Older Proteus series brochure dimensions are superseded and do not match this model's current drawing.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "64ee148f3a6e609b01936faae2a10191f4ed9261688b23eb41aa1a3d542f3569"
+  },
+  "git_commit": "529393313efc84b984528b9491e9f5e230df9fd1",
+  "note": "Initial research record before any generated model artifacts existed."
+}

@@ -1,0 +1,137 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "robe-lighting/tetra1",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "ROBE Lighting",
+      "model": "Tetra1",
+      "variant": "Tetra1",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.robe.cz/tetra1",
+        "title": "Tetra1 product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Technical specifications: width, depth, height, weight and power; first gallery image URL in page markup",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://cdn.aws.robe.cz/v1/image/resize/0d779a8285c7afd295ab8119df8a6b6b0062a4cc",
+        "title": "Tetra1 product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "d048605f793f20689db89715e9447476f308f37602efd1a80d73144b38ea1fca"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.508,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Product page dimensions; depth specified with head horizontal."
+      },
+      "height": {
+        "value": 0.279,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Product page dimensions; depth specified with head horizontal."
+      },
+      "depth": {
+        "value": 0.192,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Product page dimensions; depth specified with head horizontal."
+      },
+      "reference_pose": "Linear fixture head horizontal."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "300 W max",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "11.3 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Linear fixture head horizontal.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Product page dimensions; depth specified with head horizontal.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "05e3690b93f620cf78936daa958bdb923f8c25b9589980180fa115e95090aa1a"
+  },
+  "git_commit": "529393313efc84b984528b9491e9f5e230df9fd1",
+  "note": "Initial research record before any generated model artifacts existed."
+}

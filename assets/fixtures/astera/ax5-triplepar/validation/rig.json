@@ -1,0 +1,17 @@
+{
+  "id": "astera/ax5-triplepar",
+  "passed": true,
+  "source_usdz_sha256": "5f6e31cc477d3b23092d4bfd8e6cb7593ff4cb9e4081c3148e36669f7748b4c5",
+  "joints": 1,
+  "moving_meshes": 43,
+  "fixed_meshes": 8,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

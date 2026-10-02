@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "id": "shehds/led-beam-spot-moving-head-150w",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "SHEHDS",
+    "model": "LED Beam & Spot Moving Head 150W",
+    "variant": "SHE-NLEDB150W-BPUS",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://shehds.com/products/new-arrival-led-beam-150w-good-moving-head-lighting",
+      "title": "SHEHDS 150W LED Beam & Spot product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Technical Parameters: 16-channel DMX, movement, optics and unit weight",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://shehds.com/cdn/shop/files/f7d7c897f798fc44c391847188c3ac79.jpg?v=1752917692&width=416",
+      "title": "SHEHDS 150W product-size image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Labeled assembled dimensions: head width 27 cm, side depth 18 cm, overall height 42 cm",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://shehds.com/cdn/shop/files/MG_4008_f7139f4f-c15c-4bf7-babd-4e14fb86c8e1.jpg?v=1752917692&width=416",
+      "title": "LED Beam & Spot Moving Head 150W product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "81eb4b578234b850097764a46804a3766e4a593e158c48fd5175c568768aba0c"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.27,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Official product-size image labels 27 cm head width, 18 cm side depth and 42 cm assembled overall height."
+    },
+    "height": {
+      "value": 0.42,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Official product-size image labels 27 cm head width, 18 cm side depth and 42 cm assembled overall height."
+    },
+    "depth": {
+      "value": 0.18,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Official product-size image labels 27 cm head width, 18 cm side depth and 42 cm assembled overall height."
+    },
+    "reference_pose": "Base level, head upright, per official product-size image."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "2.2° beam, 12 colors plus open, 13 gobos plus open, rotating 8/20-face prism; 540° pan / 190° tilt.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "150 W",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "8.35 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "16-channel mode",
+      "footprint": 16,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Base level, head upright, per official product-size image.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.13500000536441803,
+        0.0,
+        -0.0900000014808029
+      ],
+      "max": [
+        0.13500000536441803,
+        0.41999998688697815,
+        0.08999999822117388
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0024084991309791803
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.06719999760389328,
+          0.0024084991309791803
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.33090001344680786,
+          0.0024084991309791803
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.33090001344680786,
+          -0.07242684066295624
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.06719999760389328,
+          0.0024084991309791803
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.33090001344680786,
+          0.0024084991309791803
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.33090001344680786,
+          -0.07526490092277527
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Official product-size image labels 27 cm head width, 18 cm side depth and 42 cm assembled overall height.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "fbe6e4cf3e290ffc384c1637e7bd107d99ee90e4b40b5733a5a521e5c9874e2c"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "a8385c1ff7c90d1527f2015cc804d9a93a1e404d6ed2d7953ecc4988e70de85b"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "4f01d21003317e30b9ac37b1980783373af808d5ab5c48481d91f0b96756edc0"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "7a75e5e07024326b349abc979146bc5ad1d1cb296d7db9ffff534b0f4e67e968"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "2660f7e5ca3f9d73269a3aa4d495ee70a6cab257bdd9f77360b6f2e0ac41066e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "28e8eee042afb11a44abcb1edb2b9c6df17c07086c179ef452422c0651be143c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "69647658f404b066f2169b71f2c0a167b8fd4b8fe8138174e28fd9e0fa39bcb2"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "3eb72b31f802a3bb868d6d732a3c0e729d5ac8d8c4a26030dd98f0187dc02fb6"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "5a011a77501de6bc3fc759bf019559e8976e76bedd6a67178c504367bbd29fe1"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "8d33dc7c721429ea1b1a2782098ef88b8f6d6d010333421d3c3b9ea738415710"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "d1cae3f49f360c775050c58fc18765ccb0cb51deb7ce01d4dcf2bf2374902f26",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "LED beam/spot moving head with large lens and yoke",
+      "notes": "Exact SKU and official page gallery image verified. Product page includes manual-library link."
+    },
+    "mesh_count": 85,
+    "triangle_count": 18516,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "63ec4f051e0ab3702ec2a6d07a67845f7e7209b2231c985576a6f4ebda8e12ed",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.beam",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Beam"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

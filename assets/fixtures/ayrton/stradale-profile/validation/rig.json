@@ -1,0 +1,17 @@
+{
+  "id": "ayrton/stradale-profile",
+  "passed": true,
+  "source_usdz_sha256": "190e8f6a9e029590ac4403cbe162755ca75c864c8e71de5a68ea627545de50c0",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

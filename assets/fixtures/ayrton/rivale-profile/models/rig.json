@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "1d36fa18d1a54930d2ace39c9355fd8c9c6d91f92d88182fb26dee9be112879e",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "ayrton/rivale-profile",
+    "name": "Rivale Profile",
+    "manufacturer": "Ayrton",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/ayrton/rivale-profile/fixture.usdz",
+    "sha256": "1d36fa18d1a54930d2ace39c9355fd8c9c6d91f92d88182fb26dee9be112879e",
+    "boundsMin": [
+      -0.18000000715255737,
+      0.0,
+      -0.1579999984242022
+    ],
+    "boundsMax": [
+      0.18000000715255737,
+      0.6759999394416809,
+      0.15800000121816993
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.12284861505031586,
+          0.0069023906253278255
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5410664081573486,
+          0.0069023906253278255
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5410664081573486,
+          -0.1482202112674713
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

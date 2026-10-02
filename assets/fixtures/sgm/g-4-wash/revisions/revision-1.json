@@ -1,0 +1,157 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "sgm/g-4-wash",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "SGM",
+      "model": "G-4 Wash",
+      "variant": "G-4 Wash",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.sgmlighting.com/products/g%C2%B74-wash",
+        "title": "SGM G-4 Wash specifications",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Mechanical / electrical specifications and control; exact-model product gallery",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.sgmlighting.com/files/images/perfion/G4%20Wash_STD-Discontinued%20Products.png",
+        "title": "G-4 Wash product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "bfa89315ae707de74c670999dab00901f33ce403097ba24d7313818389c07c6c"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.255,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+      },
+      "height": {
+        "value": 0.465,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+      },
+      "depth": {
+        "value": 0.219,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+      },
+      "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Legacy IP65 RGBAM Fresnel wash; 220° tilt and endless pan; physical 219 L × 465 H × 255 W mm. Preview uses illustrative travel, not a manufacturer control personality.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "250 W max; 100–240 V 50/60 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "10 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512-A",
+            "RDM",
+            "CRMX",
+            "W-DMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "18-channel mode",
+        "footprint": 18,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "3b8275ceb99d73f3f4e2a534daae5797f536211b854d216b5573b589ce66f41b"
+  },
+  "git_commit": "57d1c4f4b986e095c19ed7af915f82f46f817f9c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

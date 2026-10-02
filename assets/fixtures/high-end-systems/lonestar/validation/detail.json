@@ -1,0 +1,79 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 17996,
+  "geometry_sha256": "866de334cdec0ce7f9e154987f6b8aa85549d88b31a70af597c5df4c190ddac3",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.4785600006580353,
+      -0.0903140977025032
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0005065965815447271
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.09600000083446503,
+        0.0005065965815447271
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.4785600006580353,
+        0.0005065965815447271
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.4785600006580353,
+        -0.08699564635753632
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    1.0131986141204834,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.etcconnect.com/lonestar/",
+    "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737513380",
+    "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737514372",
+    "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Live_Events/Lighting_Fixtures/Lonestar/Lonestar_Prod_Left_Red_547x400.jpg"
+  ]
+}
