@@ -13,6 +13,9 @@ Sources opened for the current acquisition rows (all accessed 2026-10-02):
 | Cameo OPUS X4 IP | https://www.cameolight.com/en/solutions/rental/moving-lights/profile-moving-heads/31933/opus-x4-ip | Variant product description, IP65, output and optics; page calls dimensions nearly identical to X4 but does not provide an exact dimensional value in the inspected section. Hero image URL is direct Cameo CDN. |
 | PROLIGHTS Astra Hybrid330 | https://prolights.it/en/product/ASTRAHYB330 | Full physical and technical spec table; current DMX chart, manual, 2026 datasheet, CAD/3D files are linked. Direct official product image URL confirmed in HTML markup. |
 | ACME TORNADO | https://en.acmelighting.com/item/TORNADO | Technical product page and downloadable assets list; exact model code TB 5 IP, source/head layout, five DMX footprints, max power, dimensions and weight. Hero image URL taken from page's product gallery markup. |
+| ACME LIGHTNING | https://en.acmelighting.com/item/LIGHTNING | Technical product page: LED sources/sections, IP66, protocols/DMX modes, 1610 W, 483 × 212 × 224 mm, 13.3 kg. Hero image URL taken from page product gallery markup. |
+| High End Systems Lonestar Prime | https://www.etcconnect.com/Lonestar-Prime/ | Product features and image URL from current page markup; May 2026 Datasheet C via https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737520529 verified lumens, optics, channel count, weight and dimensions. |
+| ETC Source Four 36° | https://www.etcconnect.com/Products/Entertainment-Fixtures/Source-Four/ | Official current family page/image; model-specific physical drawing https://www.etcconnect.com/workarea/DownloadAsset.aspx?id=10737460423 provides dimensions and 36° unit weight including C-clamp. |
 
 Catalog and family pages used to discover ranges are linked in
 `../mid-coverage.md`. No local copy of manufacturer media is distributed here; online
