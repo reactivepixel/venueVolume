@@ -1,0 +1,77 @@
+{
+  "batch": "touring-dj-2026-10",
+  "reviewed_at": "2026-10-02",
+  "reviewer_scope": "Read-only visual and runtime QA of currently built ADJ, CHAUVET DJ, Eliminator Lighting, Eurolite, SHEHDS, and Showtec assets in the parent expansion worktree.",
+  "method": {
+    "visual_pairs": "Viewed each stored official product-reference image beside its rendered three-quarter preview.",
+    "runtime_checks": "Compared documented fixture dimensions to exported USDZ bounds in fixture.json and reviewed articulated-part/joint metadata.",
+    "limitations": "This is a visual/source comparison, not physical measurement, DMX bench testing, RealityKit testing, or a check of entries that remain in research/blocked state."
+  },
+  "summary": {
+    "built_assets_reviewed": 15,
+    "documented_dimensions_match_exported_bounds": "All 15 reviewed fixtures match each documented outer axis within approximately 0.000001 m.",
+    "articulated_moving_heads": "All 12 reviewed moving-head fixtures expose pan and tilt joints; fixed bar, atmosphere, and static scissor-spot fixtures appropriately do not.",
+    "material_findings": 2,
+    "high_severity_blockers": 0
+  },
+  "reviewed_fixture_ids": [
+    "chauvet-dj/intimidator-spot-375zx",
+    "chauvet-dj/intimidator-wash-zoom-450-irc",
+    "eurolite/led-kls-120-compact-light-set",
+    "chauvet-dj/hurricane-haze-2d",
+    "eliminator-lighting/stealth-beam",
+    "eliminator-lighting/stealth-spot",
+    "shehds/led-beam-spot-moving-head-150w",
+    "eurolite/led-tmh-s30-moving-head-spot",
+    "adj/saber-spot-dtw",
+    "adj/focus-spot-6z",
+    "adj/focus-flex-l7",
+    "showtec/phantom-100-spot",
+    "chauvet-dj/intimidator-spot-360x",
+    "chauvet-dj/intimidator-spot-475zx",
+    "chauvet-dj/sentinel-wash-q120"
+  ],
+  "findings": [
+    {
+      "finding_id": "DJ-QA-01",
+      "fixture_id": "adj/focus-spot-6z",
+      "severity": "medium",
+      "category": "head silhouette / model identity",
+      "observation": "The official reference shows a noticeably long, tapered/faceted spot housing with substantial side and top profile. The rendered head reads as the same short rounded shell used by several compact movers, so the overall dimensions are right but the housing proportions do not convey this model's distinctive optical body.",
+      "evidence_paths": [
+        "assets/fixtures/adj/focus-spot-6z/sources/product-reference-0.jpg",
+        "assets/fixtures/adj/focus-spot-6z/previews/three-quarter.png",
+        "assets/fixtures/adj/focus-spot-6z/fixture.json"
+      ],
+      "concrete_fix": "Reshape the head within its existing documented 0.360 x 0.234 x 0.562 m envelope into the elongated wedge/cylinder profile visible in the product image, preserving the large front optic and broad shoulder transition. Re-render the three-quarter and side previews."
+    },
+    {
+      "finding_id": "DJ-QA-02",
+      "fixture_id": "showtec/phantom-100-spot",
+      "severity": "medium",
+      "category": "head silhouette / model identity",
+      "observation": "The product reference has a compact tapered head with a visibly faceted, angular shell and a small projecting lens hood. The preview uses a largely spherical smooth head with a large planar lens ring, making the head silhouette materially rounder than the referenced model despite correctly matching the overall bounding box.",
+      "evidence_paths": [
+        "assets/fixtures/showtec/phantom-100-spot/sources/product-reference-0.png",
+        "assets/fixtures/showtec/phantom-100-spot/previews/three-quarter.png",
+        "assets/fixtures/showtec/phantom-100-spot/fixture.json"
+      ],
+      "concrete_fix": "Replace the round head primitive with a short tapered/faceted housing and smaller protruding lens hood, keeping the existing documented 0.325 x 0.210 x 0.420 m assembled envelope; verify against the source's three-quarter silhouette."
+    }
+  ],
+  "no_material_issue_observed": [
+    "chauvet-dj/intimidator-spot-375zx",
+    "chauvet-dj/intimidator-wash-zoom-450-irc",
+    "eurolite/led-kls-120-compact-light-set",
+    "chauvet-dj/hurricane-haze-2d",
+    "eliminator-lighting/stealth-beam",
+    "eliminator-lighting/stealth-spot",
+    "shehds/led-beam-spot-moving-head-150w",
+    "eurolite/led-tmh-s30-moving-head-spot",
+    "adj/saber-spot-dtw",
+    "adj/focus-flex-l7",
+    "chauvet-dj/intimidator-spot-360x",
+    "chauvet-dj/intimidator-spot-475zx",
+    "chauvet-dj/sentinel-wash-q120"
+  ]
+}
