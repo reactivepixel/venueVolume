@@ -79,7 +79,7 @@ import VenueVolumeCore
         emitter.components.set(light)
         selection.isEnabled = selected && !placing
         for child in entity.children where child.components.has(InputTargetComponent.self) {
-            child.components.set(InputTargetComponent(allowedInputTypes: placing ? [] : [.indirect, .direct]))
+            child.components.set(InputTargetComponent(allowedInputTypes: placing ? [] : [.indirect]))
         }
     }
 

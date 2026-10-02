@@ -58,6 +58,18 @@ final class VenueModel {
     var editingPresetID: UUID?
     var presetMessage: String?
     var toolboxVisible = false
+    var toolboxPresentedID: UUID?
+    private(set) var toolboxRequestID: UUID?
+    private var palmActivationHeld = false
+
+    /// A raised palm requests a window once; lowering the hand never closes it.
+    func updateToolboxActivation(raised: Bool) {
+        if raised && !palmActivationHeld { requestToolbox() }
+        palmActivationHeld = raised
+    }
+
+    func requestToolbox() { toolboxRequestID = UUID() }
+    func resetToolboxActivation() { palmActivationHeld = false }
     var simulatedPalm = true
     var needsManualToolbox = false
     var handTrackingStatus = "Raise your left palm toward you"
@@ -141,7 +153,6 @@ final class VenueModel {
         if let first = presets.first { presetDraft = first; editingPresetID = first.id }
         guard isDemoMode else { return }
         simulatedPalm = !arguments.contains("--palm-hidden")
-        toolboxVisible = simulatedPalm
 
     }
 

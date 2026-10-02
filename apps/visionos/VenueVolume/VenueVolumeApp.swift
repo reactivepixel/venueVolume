@@ -14,6 +14,12 @@ struct VenueVolumeApp: App {
         .windowResizability(.contentSize)
         .defaultSize(width: 620, height: 620)
 
+        WindowGroup(id: "toolbox", for: UUID.self) { identity in
+            ToolboxView(instanceID: identity.wrappedValue).environment(model)
+        }
+        .windowResizability(.contentSize)
+        .defaultSize(width: 720, height: 650)
+
         WindowGroup(id: "presets") {
             PresetEditorView().environment(model)
         }

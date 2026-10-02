@@ -9,6 +9,25 @@ import VenueVolumeCore
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent(suite)
         defer { defaults.removePersistentDomain(forName: suite); try? FileManager.default.removeItem(at: folder) }
         let model = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder)
+        model.updateToolboxActivation(raised: true)
+        let firstRecall = model.toolboxRequestID
+        check(firstRecall != nil, "Raising palm requests the toolbox")
+        model.toolboxVisible = true
+        model.updateToolboxActivation(raised: true)
+        check(model.toolboxRequestID == firstRecall, "Held palm does not repeatedly recall the window")
+        model.updateToolboxActivation(raised: false)
+        check(model.toolboxVisible, "Lowering the palm leaves the normal window open")
+        model.updateToolboxActivation(raised: true)
+        let secondRecall = model.toolboxRequestID
+        check(secondRecall != firstRecall, "A new raise recalls with a fresh window identity")
+        model.toolboxVisible = false
+        model.updateToolboxActivation(raised: true)
+        check(model.toolboxRequestID == secondRecall && !model.toolboxVisible, "Closing while palm is raised stays closed")
+        model.updateToolboxActivation(raised: false); model.updateToolboxActivation(raised: true)
+        check(model.toolboxRequestID != secondRecall, "Lower then raise reopens a closed toolbox")
+        let thirdRecall = model.toolboxRequestID
+        model.requestToolbox()
+        check(model.toolboxRequestID != thirdRecall, "Manual fallback can recall repeatedly without a hand toggle")
         model.activate(environment: environment); model.canPlace = true
         check(model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 2.66,y: 0,z: -2), surfaceID: "floor"), "First pilot")
         let first = model.fixtures[0].id
@@ -90,6 +109,6 @@ import VenueVolumeCore
         check(model.fixtures.isEmpty && model.selectedID == nil && model.presets == presets && model.activeRoom == room, "Clear all affects scene items only")
         model.undo(); check(model.fixtures == fixtures, "Undo restores all scene items")
         model.redo(); check(model.fixtures.isEmpty, "Redo clears scene items")
-        print("Interaction checks passed: target preview/save/cancel, held updates, selection, axis gestures, grouped history, scene clearing and persistence.")
+        print("Interaction checks passed: toolbox activation/close/reopen, target preview/save/cancel, held updates, selection, axis gestures, grouped history, scene clearing and persistence.")
     }
 }

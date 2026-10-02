@@ -24,7 +24,6 @@ struct VenueSpaceView: View {
             scene.update(model: model, attachments: attachments)
         } attachments: {
             Attachment(id: "targeting") { TargetingPrompt().environment(model) }
-            Attachment(id: "toolbox") { ToolboxView().environment(model) }
             ForEach(model.environment?.surfaces ?? [], id: \.id) { surface in
                 Attachment(id: "surface-drop-\(surface.id)") { FixtureSurfaceDrop(surface: surface).environment(model) }
             }
@@ -45,7 +44,7 @@ struct VenueSpaceView: View {
             let position = value.convert(value.location3D, from: .local, to: scene.root)
             scene.handleTap(entity: value.entity, position: position, model: model)
         })
-        .simultaneousGesture(DragGesture(minimumDistance: 0).targetedToAnyEntity()
+        .simultaneousGesture(DragGesture(minimumDistance: 0).targetedToEntity(where: .has(SpatialDragTarget.self))
             .updating($spatialDragActive) { _, active, _ in active = true }
             .onChanged { value in
                 guard !cancelledDrag, !handledDrag || dragFixtureID == model.selectedID else { return }
@@ -77,6 +76,19 @@ struct VenueSpaceView: View {
             if selected == nil {
                 dismissWindow(id: "fixture-editor")
             }
+        }
+        .task(id: model.toolboxRequestID) {
+            guard let request = model.toolboxRequestID else { return }
+            // A new window value recalls the toolbox near the viewer instead of
+            // refocusing an existing window at its old, possibly distant position.
+            if model.toolboxVisible {
+                dismissWindow(id: "toolbox")
+                for _ in 0..<30 where model.toolboxVisible {
+                    do { try await Task.sleep(for: .milliseconds(50)) } catch { return }
+                }
+            }
+            guard !Task.isCancelled else { return }
+            openWindow(id: "toolbox", value: request)
         }
         .task(id: model.roomLoadToken) {
             model.canPlace = false
@@ -133,6 +145,8 @@ struct VenueSpaceView: View {
         }
         .task {
             #if DEBUG
+            await runToolboxWindowSmoke()
+            await scene.runInputSmoke(model: model)
             await RoomLibrarySmoke.run(model: model)
             #endif
         }
@@ -145,7 +159,8 @@ struct VenueSpaceView: View {
             model.expandedID = nil
             model.gizmoVisible = false
             dismissWindow(id: "fixture-editor")
-            model.toolboxVisible = false
+            dismissWindow(id: "toolbox")
+            model.resetToolboxActivation()
             model.endPresetDrag()
             model.previewDraft = false
             scene.clearAttachments()
@@ -155,4 +170,39 @@ struct VenueSpaceView: View {
             if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits() }
         }
     }
+
+    #if DEBUG
+    private func runToolboxWindowSmoke() async {
+        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--input-smoke") else { return }
+        do {
+            while !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
+            model.requestToolbox()
+            try await waitForToolbox(model.toolboxRequestID)
+            let heldRequest = model.toolboxRequestID
+            dismissWindow(id: "toolbox")
+            try await waitForToolbox(nil)
+            try await Task.sleep(for: .milliseconds(300))
+            guard !model.toolboxVisible, model.toolboxRequestID == heldRequest else {
+                throw CancellationError()
+            }
+            model.updateToolboxActivation(raised: false)
+            model.updateToolboxActivation(raised: true)
+            try await waitForToolbox(model.toolboxRequestID)
+            let reopened = model.toolboxPresentedID
+            model.requestToolbox()
+            try await waitForToolbox(model.toolboxRequestID)
+            guard model.toolboxPresentedID != reopened else { throw CancellationError() }
+            print("TOOLBOX_WINDOW_SMOKE_PASS")
+        } catch { print("TOOLBOX_WINDOW_SMOKE_FAIL: \(error)") }
+    }
+
+    private func waitForToolbox(_ identity: UUID?) async throws {
+        for _ in 0..<100 {
+            if model.toolboxPresentedID == identity && model.toolboxVisible == (identity != nil) { return }
+            try await Task.sleep(for: .milliseconds(100))
+        }
+        throw CancellationError()
+    }
+    #endif
+
 }

@@ -2,8 +2,10 @@ import SwiftUI
 import VenueVolumeCore
 
 struct ToolboxView: View {
+    let instanceID: UUID?
     @Environment(VenueModel.self) private var model
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.dismissWindow) private var dismissWindow
     @Environment(\.dismissImmersiveSpace) private var dismissSpace
 
     var body: some View {
@@ -13,7 +15,7 @@ struct ToolboxView: View {
                 Spacer()
                 HistoryControls()
                 VStack(alignment: .trailing, spacing: 2) {
-                    Label("Left wrist", systemImage: "hand.raised")
+                    Label("Palm activated", systemImage: "hand.raised")
                     Text(appVersion).font(.caption.weight(.semibold)).foregroundStyle(.cyan).monospacedDigit()
                         .accessibilityLabel("Venue Volume version \(appVersion)")
                 }.font(.caption).foregroundStyle(.secondary)
@@ -21,7 +23,10 @@ struct ToolboxView: View {
                     Button("Diagnostics & sync") { openWindow(id: "diagnostics") }
                     Button("Leave venue") { model.flushHistoryEdits(); model.auditExternal("Leave venue"); Task { await dismissSpace() } }
                 } label: { Image(systemName: "ellipsis") }
+                Button { dismissWindow(id: "toolbox") } label: { Image(systemName: "xmark") }
+                    .accessibilityLabel("Close toolbox")
             }
+            if !model.isImmersed { VenueEntryButton() }
             @Bindable var model = model
             Picker("Toolbox section", selection: $model.toolboxTab) {
                 Text("Fixtures & presets").tag(0)
@@ -82,7 +87,12 @@ struct ToolboxView: View {
         }
         .padding(26).frame(width: 720)
         .disabled(model.libraryBusy)
-        .glassBackgroundEffect(in: RoundedRectangle(cornerRadius: 30))
+        .onAppear { model.toolboxVisible = true; model.toolboxPresentedID = instanceID }
+        .onDisappear {
+            if model.toolboxPresentedID == instanceID {
+                model.toolboxVisible = false; model.toolboxPresentedID = nil
+            }
+        }
     }
 
     private var appVersion: String {
@@ -155,7 +165,10 @@ struct SimulatorPalmControl: View {
         @Bindable var model = model
         VStack(alignment: .leading, spacing: 8) {
             Text(model.canSimulatePalm ? "SIMULATOR" : "HAND TRACKING UNAVAILABLE").font(.caption2.weight(.semibold)).foregroundStyle(.secondary)
-            Toggle(model.canSimulatePalm ? "Left palm facing me" : "Show toolbox", isOn: $model.simulatedPalm).font(.callout)
+            Button("Open / recall toolbox", systemImage: "rectangle.on.rectangle") { model.requestToolbox() }
+            if model.canSimulatePalm {
+                Toggle("Left palm facing me", isOn: $model.simulatedPalm).font(.callout)
+            }
         }.padding(16).frame(width: 270).glassBackgroundEffect()
     }
 }

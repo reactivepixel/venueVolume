@@ -56,7 +56,8 @@ import VenueVolumeCore
     private static func target(_ entity: ModelEntity, name: String, size: SIMD3<Float>) {
         entity.name = name
         entity.components.set(CollisionComponent(shapes: [.generateBox(size: size)]))
-        entity.components.set(InputTargetComponent())
+        entity.components.set(InputTargetComponent(allowedInputTypes: [.indirect]))
+        entity.components.set(SpatialDragTarget())
         entity.components.set(HoverEffectComponent())
         entity.components.set(DynamicLightShadowComponent(castsShadow: false))
     }
