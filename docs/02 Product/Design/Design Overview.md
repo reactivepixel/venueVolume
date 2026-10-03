@@ -2,7 +2,7 @@
 type: design
 status: prototype
 owner: product-design
-updated: 2026-09-19
+updated: 2026-10-03
 ---
 
 # Design Overview
@@ -66,6 +66,10 @@ Use native controls, visible keyboard focus, semantic labels, textual status alo
 - Script follow/timecode/branching scope beyond the expected cue sequence.
 - Collaboration roles, offline authorization lifetime, and plan entitlements.
 - Venue-specific script replacement versus future fine-grained sequence merging.
+
+## Native touring workflow plan
+
+[[Touring Inventory and Fixture Workflows]] records the planned inventory, hierarchical groups, partial presets, placement shortcuts and venue adaptation workflow for visionOS. It includes persistence boundaries, migration, delivery phases and acceptance checks. These are planned features, separate from the current native prototype and the React design study.
 
 ## Related
 

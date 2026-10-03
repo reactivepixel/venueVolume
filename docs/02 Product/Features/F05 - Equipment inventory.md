@@ -3,7 +3,7 @@ type: feature
 id: F05
 status: specified
 owner: product-and-engineering
-updated: 2026-09-19
+updated: 2026-10-03
 ---
 
 # F05 — Equipment inventory
@@ -39,6 +39,10 @@ Only compatible controllable fixture instances reach compilation. Removing equip
 A 12-cable line item needs no profile; four wash fixtures create four distinct controllable instances; removing a referenced fixture returns a useful dependency report.
 
 Apply tenant isolation, revision conflicts, invalid input, empty/loading/error, and permission checks where relevant. Test against resolved data rather than only the presentation.
+
+## Native implementation plan
+
+See [[../Design/Touring Inventory and Fixture Workflows|Touring Inventory and Fixture Workflows]] for the planned visionOS workflow, group semantics, persistence and acceptance checks. The plan distinguishes current native behavior from proposed implementation.
 
 ## Relationships
 
