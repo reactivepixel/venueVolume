@@ -1,0 +1,92 @@
+[
+  {
+    "movie": "/home/chapman/Projects/venueVolume/assets/raw_room_videos/1.MOV",
+    "command": [
+      "./apps/room2blender/room2blender",
+      "run",
+      "/home/chapman/Projects/venueVolume/assets/raw_room_videos/1.MOV",
+      "--out",
+      "/home/chapman/Projects/venueVolume/.worktree/numbered-room-captures/outputs/numbered-movies/1"
+    ],
+    "started_at": "2026-10-02T13:20:31.560271+00:00",
+    "finished_at": "2026-10-02T13:20:52.609733+00:00",
+    "exit_code": 3,
+    "status": {
+      "pipeline_version": "1.1.0",
+      "state": "review_required",
+      "updated_at": "2026-10-02T13:20:52.598888+00:00",
+      "capture": "captures/1acd62a8d8725c13a54758ee5e7b25771d9541e4fcd011973a439face09b6b59",
+      "source_sha256": "e3c80b7bff2c3cc97f53edaf5fb8c4aa4d5d5eb5f0cbf0797ede3a22aab71400",
+      "draft": "room_spec.e3c80b7bff2c.draft.json"
+    },
+    "verification": {
+      "duration_seconds": 55.128333,
+      "reference_count": 16,
+      "selected_frames_with_decoder_error_lines": 0,
+      "hdr_tone_mapped": true,
+      "artifact_checksums_verified": true,
+      "source_sha256_verified": true,
+      "visual_review_notes": "Room, seating, side walls, ceiling rig and stage overview."
+    }
+  },
+  {
+    "movie": "/home/chapman/Projects/venueVolume/assets/raw_room_videos/2.MOV",
+    "command": [
+      "./apps/room2blender/room2blender",
+      "run",
+      "/home/chapman/Projects/venueVolume/assets/raw_room_videos/2.MOV",
+      "--out",
+      "/home/chapman/Projects/venueVolume/.worktree/numbered-room-captures/outputs/numbered-movies/2"
+    ],
+    "started_at": "2026-10-02T13:20:52.609959+00:00",
+    "finished_at": "2026-10-02T13:21:12.383768+00:00",
+    "exit_code": 3,
+    "status": {
+      "pipeline_version": "1.1.0",
+      "state": "review_required",
+      "updated_at": "2026-10-02T13:21:12.374560+00:00",
+      "capture": "captures/c55481875156c159b3853cf4e3f862713c53643b2be1990cad5dbbd136e851b4",
+      "source_sha256": "72d99543f0e6f4ebe17b0d3c91bcfaf0307ab4dfd6c312aa81c609850938e91c",
+      "draft": "room_spec.72d99543f0e6.draft.json"
+    },
+    "verification": {
+      "duration_seconds": 67.405,
+      "reference_count": 16,
+      "selected_frames_with_decoder_error_lines": 0,
+      "hdr_tone_mapped": true,
+      "artifact_checksums_verified": true,
+      "source_sha256_verified": true,
+      "visual_review_notes": "Additional aisle, tiered seating and stage approach views."
+    }
+  },
+  {
+    "movie": "/home/chapman/Projects/venueVolume/assets/raw_room_videos/3.MOV",
+    "command": [
+      "./apps/room2blender/room2blender",
+      "run",
+      "/home/chapman/Projects/venueVolume/assets/raw_room_videos/3.MOV",
+      "--out",
+      "/home/chapman/Projects/venueVolume/.worktree/numbered-room-captures/outputs/numbered-movies/3"
+    ],
+    "started_at": "2026-10-02T13:21:12.383975+00:00",
+    "finished_at": "2026-10-02T13:21:33.084392+00:00",
+    "exit_code": 3,
+    "status": {
+      "pipeline_version": "1.1.0",
+      "state": "review_required",
+      "updated_at": "2026-10-02T13:21:33.075269+00:00",
+      "capture": "captures/0b3c5abd65d1af18e0a96c11fd71e0d58a00dfa1a56c3aad523b6008b1a86074",
+      "source_sha256": "3667216d07033895e08f5414d05d9d4f1e8564fa2af919d4f6c588cdde72945f",
+      "draft": "room_spec.3667216d0703.draft.json"
+    },
+    "verification": {
+      "duration_seconds": 71.705,
+      "reference_count": 16,
+      "selected_frames_with_decoder_error_lines": 0,
+      "hdr_tone_mapped": true,
+      "artifact_checksums_verified": true,
+      "source_sha256_verified": true,
+      "visual_review_notes": "Closer stage, speaker, screen and overhead rig views. Some overhead views show ghosting/overlap and need individual review."
+    }
+  }
+]

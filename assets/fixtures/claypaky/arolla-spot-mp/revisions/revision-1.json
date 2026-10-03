@@ -1,0 +1,212 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "claypaky/arolla-spot-mp",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "Claypaky",
+      "model": "Arolla Spot MP",
+      "variant": "CL3012",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.claypaky.it/products/arolla-spot-mp/",
+        "title": "Claypaky Arolla Spot MP official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.claypaky.it/products/arolla-spot-mp/claypaky_arollaspotmp_en/",
+        "title": "Claypaky Arolla Spot MP official source 2",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_Arolla_Spot_MP.jpg",
+        "title": "Claypaky Arolla Spot MP official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.jpg",
+        "sha256": "039b987605488f48a47b7c65b33ff0d2f696051580237cc173af64db948e5650"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.36,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "height": {
+        "value": 0.593,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "depth": {
+        "value": 0.25,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "470 W LED; max 740 VA, 100-240 VAC 50/60 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "Art-Net",
+            "RDM",
+            "sACN"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.18000000715255737,
+          0.0,
+          -0.125
+        ],
+        "max": [
+          0.18000000715255737,
+          0.5929999947547913,
+          0.125
+        ]
+      },
+      "parts": [
+        {
+          "name": "base",
+          "prim_path": "/Fixture/Base"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "head",
+          "prim_path": "/Fixture/Head"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Head/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Head/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "86fb0a56c768716aa64c15e3f57059a7bfbe7903f37b95f2d7cb413c62b0687b"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "a4b0d276143935512ad41233c4aab0f97a287163192ff624e1a33d905e2a11e6"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "eacd45334eb80d206b3a169f168730042d33e3ec558f0d4e1f58e072bafa9b68"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "d27253196ec7bcd315d05ba3c57fb1c66de9f18d691d37c151b584f4362f51db"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "a57c82b669b89bcd1789f495b9c41d90c1a21e62682a187295d7c35fc3d5e714"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "9de08d85a783249c8d5c57f76c4722a3bf40d4230956827bc71a09129fcdcc4c"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "7047781c86a8a8ec68d9edb8586dfb8d8f11bf8d2e92029fc34debe81b255daf"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "ee9ce5df2bd3bf72fb114e2f016b5f2aecb79e1e7f419ef816ad9757834c0649"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-1",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

@@ -1,0 +1,51 @@
+{
+  "mesh_count": 22,
+  "triangle_count": 10712,
+  "geometry_sha256": "d979f022fb632e9346522fa8a15d875ebb798faf46a4c64c5157be62ec3bb2bb",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.14060606062412262,
+      -0.15795795619487762
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.011350256390869617
+      ]
+    }
+  ],
+  "family": "bubble",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.046025037765503,
+    0.9930101037025452,
+    1.0101009607315063
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://antari.com/products/b-100/",
+    "https://www.antari.com/usermanual/B/B-100/B-100.pdf",
+    "https://antari.com/wp-content/uploads/B-100-01.jpg"
+  ]
+}

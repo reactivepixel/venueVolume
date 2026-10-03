@@ -1,0 +1,348 @@
+{
+  "schema_version": 1,
+  "id": "ayrton/argo-6-fx",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Ayrton",
+    "model": "Argo 6 FX",
+    "variant": "019650",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.ayrton.eu/produit/argo-6-fx/",
+      "title": "Argo 6 FX product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Official gallery image; 19-source optical arrangement; control/protocols/mode range; power; dimensions, weight and code 019650",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.ayrton.eu/wp-content/uploads/2023/04/Argo6FX.png",
+      "title": "Argo 6 FX product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "e88c08a2eebc4e7cccb01b1800b18d1172e36f4f996c154bf22d678a82ac1927"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.436,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official product page: 436 x 536 x 280 mm (length x height x depth)."
+    },
+    "height": {
+      "value": 0.536,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official product page: 436 x 536 x 280 mm (length x height x depth)."
+    },
+    "depth": {
+      "value": 0.28,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official product page: 436 x 536 x 280 mm (length x height x depth)."
+    },
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "19 x 40 W RGBW emitters in 280 mm cluster; 13,000 lm; 4°–56° zoom; infinite pan/tilt; LiquidEffect graphics; IP65.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "950 W maximum",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "24.2 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "Art-Net",
+          "sACN",
+          "CRMX wireless DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "26-channel mode",
+      "footprint": 26,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "127-channel mode",
+      "footprint": 127,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.21799999475479126,
+        0.0,
+        -0.14000000242958777
+      ],
+      "max": [
+        0.21799999475479126,
+        0.5360000133514404,
+        0.14000001366366632
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0004212390922475606
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.08500852435827255,
+          0.0004212390922475606
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.3931644558906555,
+          0.0004212390922475606
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.3931644558906555,
+          -0.07164181023836136
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.08500852435827255,
+          0.0004212390922475606
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.3931644558906555,
+          0.0004212390922475606
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.3931644558906555,
+          -0.07437475025653839
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Official product page: 436 x 536 x 280 mm (length x height x depth).",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "debc0d644bb1be33c51f0841c1ff86249e8c5476e5e61115b58ff41b008f3e7f"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "678692934647bd2b1644282703a85d986e8bd11c9764171b662be99cf8972ab8"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "ff22c40fe2264048567147e5ac8f00b9e4f394b991b392e4712a638508bc5f6a"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "9cafcbc05e034ca0c4d47c8ac594e64261c008db8c11be4a26a26a4fe346b235"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "591d09187005f0105bc1e1562aa307c99ef8d2de2c62ffa335960bf05b23094f"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "b75e7f3bddf702886065872e0497b23cb0928a0b4f1294914028810e03e53f16"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "536c778edd401d6c322fcb8d5ea28ffb87546805320cc6ed92862ebae8ba4f2e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "b9c7024a23d8a286f47c8316537b6795a834024e68f0cd64d2bacd6b3ee4ae2e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "2965a1b485301ba575df5f2b5fcb30b3bb292384de3cf4f282778d26a7ff3ecd"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "2f8d352ac6319a78d5ea948cbcab9adcc9ba5d8a74fdbde2677cea748484a6e0"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "9d0fa2b8db5fa941666993a3bc8c22e07afdc803123b0e7ea4f81efeae1707df",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 19,
+      "body_style": "compact 19-emitter RGBW effect head with LiquidEffect optical system",
+      "notes": "19 discrete 50 mm truncated lenses and glass light guides in 280 mm cluster; individual pixel control; unlimited pan/tilt."
+    },
+    "mesh_count": 128,
+    "triangle_count": 38116,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "488236a8ec8780a21f70c973c6f9932664ebceaa7ccc7d7e97d8aa073996c043",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.spot",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Spot / gobo projector"
+    ],
+    "use_tags": [
+      "weather-rated variant"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "mesh_count": 30,
+  "triangle_count": 1672,
+  "geometry_sha256": "7b85d0b60dbaa872da64999b8c104128f8fe3dcee7b3e9d585ade2ac0c94554a",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      -0.006122446618974209,
+      -0.0
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.006122446618974209,
+        -0.0
+      ]
+    }
+  ],
+  "family": "fluid_container",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0395010709762573,
+    1.0395010709762573,
+    1.020408272743225
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.chauvetdj.com/products/fog-juice-gallon/",
+    "https://www.chauvetdj.com/wp-content/uploads/2015/12/fju-front-feat.png"
+  ]
+}

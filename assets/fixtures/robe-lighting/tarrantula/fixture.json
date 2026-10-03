@@ -1,0 +1,407 @@
+{
+  "schema_version": 1,
+  "id": "robe-lighting/tarrantula",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "ROBE Lighting",
+    "model": "Tarrantula",
+    "variant": "Robin Tarrantula RGBA",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.robe.cz/tarrantula",
+      "title": "Tarrantula product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Technical Specification and product images",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.robe.cz/res/downloads/exterior_dimensions/Robin_Tarrantula_dimensions.pdf",
+      "title": "Robin Tarrantula exterior dimensions",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Sheet 1 of 1, dated 2017-11-16; all dimensions in mm; overall envelope labels 588, 605, and 523 mm; other labels include component spans and motion clearances",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://www.robe.cz/res/downloads/user_manuals/User_manual_Robin_Tarrantula_RGBA.pdf",
+      "title": "User Manual Robin Tarrantula RGBA",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Technical Specifications, pp. 32-33; weight, max power, modes and operating limits",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://cdn.aws.robe.cz/v1/image/resize/6c9de341cb1ae82efd1cbaa4693d7540565e81c6?fit=cover&height=452&width=452&withoutEnlargement=false",
+      "title": "Tarrantula product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.jpg",
+      "sha256": "6c718268daffd274bf56199f739add6feadecfaab3622ecdd5bdbb0478542fa1"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.588,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer drawing documents overall envelope labels 588, 605, and 523 mm, but extraction does not make their assignment to model width/height/depth unambiguous. Values are assigned as width x height x depth from the front/side orthographic layout; axis assignment is an estimate, the dimensions themselves are manufacturer-documented."
+    },
+    "height": {
+      "value": 0.605,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer drawing documents overall envelope labels 588, 605, and 523 mm, but extraction does not make their assignment to model width/height/depth unambiguous. Values are assigned as width x height x depth from the front/side orthographic layout; axis assignment is an estimate, the dimensions themselves are manufacturer-documented."
+    },
+    "depth": {
+      "value": 0.523,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer drawing documents overall envelope labels 588, 605, and 523 mm, but extraction does not make their assignment to model width/height/depth unambiguous. Values are assigned as width x height x depth from the front/side orthographic layout; axis assignment is an estimate, the dimensions themselves are manufacturer-documented."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Base level; drawing's upper vertical head position with beam shaper installed."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "1000 W max",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "21 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "Art-Net",
+          "MANet",
+          "MANet2",
+          "sACN",
+          "Kling-Net"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "28-channel mode",
+      "footprint": 28,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "48-channel mode",
+      "footprint": 48,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "146-channel mode",
+      "footprint": 146,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "183-channel mode",
+      "footprint": 183,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "159-channel mode",
+      "footprint": 159,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "196-channel mode",
+      "footprint": 196,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.2939999997615814,
+        0.0,
+        -0.2615000324076391
+      ],
+      "max": [
+        0.2939999997615814,
+        0.6050000190734863,
+        0.26149999930203194
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          3.158881008857861e-05
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.09595178812742233,
+          3.158881008857861e-05
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.4437769949436188,
+          3.158881008857861e-05
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.4437769949436188,
+          -0.1379365473985672
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.09595178812742233,
+          3.158881008857861e-05
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.4437769949436188,
+          3.158881008857861e-05
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.4437769949436188,
+          -0.1431688666343689
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer drawing documents overall envelope labels 588, 605, and 523 mm, but extraction does not make their assignment to model width/height/depth unambiguous. Values are assigned as width x height x depth from the front/side orthographic layout; axis assignment is an estimate, the dimensions themselves are manufacturer-documented.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "c5ea65c426deefa2750779629186b650bf4b782bc00bf55603b68ceab6d7c442"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "47a8f5af55f8e7ce915107be8ba2d86786fde705df1184da0ec0b230166ba08d"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "35637a429b987160a2137355d38e9d0de72e7859a7871c72f609150ec8fcaaf6"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "d5eac5c4701ea20211dcd6311b20cc8ab19b3f45d16656d503ca6272a8a8c29b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "220633c0cdd3d63cce2f0413c1bde2ce2180836bd18eabdaede554d1b7eda8af"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "e5c99d654cb004cb12a15a895f4bee17d07406954e6fec6a38d187b532b8b7fe"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "3530f1489e3438e22b44a9663972cbbc6b67383799688bd2230c9a74b652f362"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "4b5ee411cb10bcc554a22c1b327021abfc756422545c6c4d6e0e813e726f83d0"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "896f0b79011d872b619e8e0e374cb93bd8cf15973215101955c5ae7d9fc08e08"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "bf574d83dde6be28287e0b1087061aaa4a0f994465f872116e44d208cbb6f2b8"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "e7a7b316035d64d1c5f39fb51094f252248a60c1898855e4c7486511f3da4865",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 37,
+      "body_style": "multi-source rounded head with RGBA pixel array",
+      "notes": "37 RGBA LED multichips; beam shaper is removable, but the shown standard assembly includes it."
+    },
+    "mesh_count": 182,
+    "triangle_count": 57108,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion.",
+    "Source describes a vertical-head dimensional pose; modeled horizontal optical-axis pose fits that envelope. Verify pose-specific shape before placement/clearance use."
+  ],
+  "revision_notes": [
+    "Acquired in expansion batch 1. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.hybrid",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Beam / spot / wash hybrid"
+    ],
+    "use_tags": [
+      "multi-role optics"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

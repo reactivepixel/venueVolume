@@ -1,0 +1,17 @@
+{
+  "id": "ayrton/levante-tc",
+  "passed": true,
+  "source_usdz_sha256": "01b7b1752369fe150659136d1a2862acca69f00b94992285778886af3949b4a4",
+  "joints": 2,
+  "moving_meshes": 26,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

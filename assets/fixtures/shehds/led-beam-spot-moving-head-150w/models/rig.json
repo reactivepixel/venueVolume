@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "a8385c1ff7c90d1527f2015cc804d9a93a1e404d6ed2d7953ecc4988e70de85b",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "shehds/led-beam-spot-moving-head-150w",
+    "name": "LED Beam & Spot Moving Head 150W",
+    "manufacturer": "SHEHDS",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/shehds/led-beam-spot-moving-head-150w/fixture.usdz",
+    "sha256": "a8385c1ff7c90d1527f2015cc804d9a93a1e404d6ed2d7953ecc4988e70de85b",
+    "boundsMin": [
+      -0.13500000536441803,
+      0.0,
+      -0.0900000014808029
+    ],
+    "boundsMax": [
+      0.13500000536441803,
+      0.41999998688697815,
+      0.08999999822117388
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.06719999760389328,
+          0.0024084991309791803
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.33090001344680786,
+          0.0024084991309791803
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.33090001344680786,
+          -0.07526490092277527
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

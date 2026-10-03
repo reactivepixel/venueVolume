@@ -1,0 +1,341 @@
+{
+  "schema_version": 1,
+  "id": "adj/stryker-wash",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ADJ",
+    "model": "STRYKER WASH",
+    "variant": "STR100",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.adj.com/products/stryker-wash",
+      "title": "ADJ STRYKER WASH official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://www.adj.com/cdn/shop/files/aff04e4f77e061376b58502065e4278f6f563981_STR100__IMG__001__3350049b2831.jpg?v=1776712421&width=800",
+      "title": "ADJ STRYKER WASH official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "5f71074c4d0241623a14a56fdf9156a68692a4ffbc37d86750ea30575b9d7d5e"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.324,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "height": {
+      "value": 0.399,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "depth": {
+      "value": 0.222,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": [
+          "19 x 12 W RGBW LEDs",
+          "motorized zoom 6-50°",
+          "IP20"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "300 W max; 100-240 V AC, 50/60 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "18.1 lb (8.2 kg)",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX-512"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "13-channel mode",
+      "footprint": 13,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "23-channel mode",
+      "footprint": 23,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.16200000047683716,
+        0.0,
+        -0.11099999531870708
+      ],
+      "max": [
+        0.16200000047683716,
+        0.39899998903274536,
+        0.11100000009173527
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0005067573511041701
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.06328059732913971,
+          0.0005067573511041701
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.2926727533340454,
+          0.0005067573511041701
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.2926727533340454,
+          -0.05585569143295288
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.06328059732913971,
+          0.0005067573511041701
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.2926727533340454,
+          0.0005067573511041701
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.2926727533340454,
+          -0.057993192225694656
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "f3f1b6e69b1775963c9a3a9d4558c74e0dd67cd520f0bee25485d45b69ef3e71"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "c9cd630b1739aed98c555b6fa6598f19f8ed613bfc72137f43959e6cef9cd0af"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "5e3f9ba547847e3555a5d78d8daa0082d6800c6834e22a05cb0c7e01d876a411"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "3cd4f5f8cc12f80687629dd7fd4ac7396cdebb6730303bda0746f2cd53a9e730"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "8c234c68f06b79f26767d836152a06aa98c5086dc05146309330411f51997bf7"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "8b7ab2dbbf00d5d28efa29e2ebfd7b230064caf60e12557fd835aa2667396d9c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "233e1997265574220a24fac0904f4488f605cb80f03163ce73941bddeb57408b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "d6864a4182de2c6e70b2db778b4f3abf6ddbf9b7a70a831752dfc3f69ae63412"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "dd11cfd979e744a2df616656db3d2327ca6337d39c789ba3f30fc6dd669ecc89"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "34c2adf1d8e48fd6555c8e9ff8a89953843a45b403af57f622728b4f1199b6d8"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "7517e65273c9d0f87234e202ea19033783d2980ffe9baa3fec244237f49dbe68",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 19,
+      "shell": "round"
+    },
+    "mesh_count": 128,
+    "triangle_count": 38116,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

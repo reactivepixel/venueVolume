@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "id": "chauvet-dj/hurricane-haze-2d",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "CHAUVET DJ",
+    "model": "Hurricane Haze 2D",
+    "variant": "Hurricane Haze 2D",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.chauvetdj.com/wp-content/uploads/pdf/en/hurricane-haze-2d.pdf",
+      "title": "Hurricane Haze 2D official specification sheet",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Highlights and specifications: 2 DMX channels, output, dimensions, weight, power and tank",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.chauvetdj.com/wp-content/uploads/2015/12/hurricane-haze-2d-cat.jpg",
+      "title": "Hurricane Haze 2D product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "4e13b55fd992ff8f39015ef841d46bd50707e97cbb59caaf6a4f897d7dde1f65"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.285,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer size 285 x 267 x 350 mm; mapped width x depth x height."
+    },
+    "height": {
+      "value": 0.35,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer size 285 x 267 x 350 mm; mapped width x depth x height."
+    },
+    "depth": {
+      "value": 0.267,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer size 285 x 267 x 350 mm; mapped width x depth x height."
+    },
+    "reference_pose": "Machine level on feet, output aimed horizontally."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Water-based haze, 1,200 cfm output, 2.5 L tank, 5 min warm-up, user-adjustable outlet angle.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "533 W at 120 V",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "8.5 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "2-channel mode",
+      "footprint": 2,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Machine level on feet, output aimed horizontally.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.14249999821186066,
+        0.0,
+        -0.13349999487400055
+      ],
+      "max": [
+        0.14249999821186066,
+        0.3499999940395355,
+        0.13349998695775867
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.002780608367174864
+        ]
+      },
+      {
+        "name": "output",
+        "prim_path": "/Fixture/Output",
+        "pivot_m": [
+          0.0,
+          0.2167392373085022,
+          -0.13023659586906433
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer size 285 x 267 x 350 mm; mapped width x depth x height.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "5e05b86216b1319e320852b23b5aaf881392f8d3e4ca29ea8ef1d87de28a4c7e"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "519881541dd72679f67bcd86f3649bc6d838ca3d6dee8f95135285f1ac0562b4"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "32b214ca9bf4dc15cacd7772acccb4770e96ff2ac8b3d2d61d5da9280846a80f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "08cf7ba6f9c7f3f931d1246a4232c37fa2639cf987e6f39740b41a63773cefa3"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "59b037627ea363ad629709f0d6d93f560dc88e3596f007afd2c5de0122c127dd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "3e3315d4bc546ee265b20a1934e3277aa80da240b8ca12d9c9e0207d49664b47"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "0b1d3bf7331e9627a5cc65f04b468bc23afbe0281a3ab55d34f4063cdc9526b9"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "b8bab29ba4ed5a2753222ea02cf605fdb4fb6d759344cd32ca3f9a4eded5bc12"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "45bbedfd5e5aa08d530500b125ebff5df5802efb1a93bfdf3285a471cdc71345"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "fb170fbff0e723d0084d6856950ee5dd23f8ec8eeb2a6c150392b4870570778b"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.2167392373085022,
+          -0.13023659586906433
+        ],
+        "kind": "haze",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "3f941fe4252b9ae2eb5d4137ec4565aebf9c08729c81f879eb9e2127b00c2be7",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "hazer",
+      "generator": "equipment",
+      "output_kind": "haze",
+      "lens_count": 0,
+      "body_style": "rectangular haze machine with top handle, fluid window and adjustable nozzle",
+      "notes": "No light source; distinct from a fog machine used for dense plume effects."
+    },
+    "mesh_count": 62,
+    "triangle_count": 10648,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed hazer geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "9acd37f1b652fbea883eec2e7e55708616bd80974ceec8c0c0af572cd55536eb",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "atmosphere.haze_water",
+    "category_path": [
+      "Atmosphere and air movement",
+      "Water-based hazer / fazer"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

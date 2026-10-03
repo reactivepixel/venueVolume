@@ -1,0 +1,17 @@
+{
+  "id": "ayrton/rawbeam-350",
+  "passed": true,
+  "source_usdz_sha256": "6a3282dfa45cc56135038d87da573f3442b71024fd289ce1f08ed8be62df3cbd",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

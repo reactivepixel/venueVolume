@@ -1,0 +1,158 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "martin-professional-harman/mac-viper-performance",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Viper Performance",
+      "variant": "MAC Viper Performance",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.martin.com/en-US/products/mac-viper-performance",
+        "title": "MAC Viper Performance",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Specifications / Physical explicitly list 472 mm base length, 566 mm head length, width 472 mm (335 mm base), height 731 mm head straight up / 748 mm maximum, mass 37.9 kg; downloads include 2D dimensions drawing",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://adn.harmanpro.com/product_attachments/product_attachments/4794_1728940667/macviperperformance_x_large.webp",
+        "title": "MAC Viper Performance product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Reference image; exact-model identity visually reviewed separately",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference.webp",
+        "sha256": "9eacbed95b540fcf4a870b712d5458214da03f8ab8fc17d1e72e285642a8fe7f"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.472,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Source values: width 472 mm (335 mm base), length 472 mm base / 566 mm head, height 731 mm with head straight up / 748 mm maximum. The product page and drawing list these distinct extents but do not define a single matching W×H×D box; depth uses the longer head length and height uses the head-straight-up pose. Treat this as an estimated envelope, not a fully documented pose."
+      },
+      "height": {
+        "value": 0.731,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Source values: width 472 mm (335 mm base), length 472 mm base / 566 mm head, height 731 mm with head straight up / 748 mm maximum. The product page and drawing list these distinct extents but do not define a single matching W×H×D box; depth uses the longer head length and height uses the head-straight-up pose. Treat this as an estimated envelope, not a fully documented pose."
+      },
+      "depth": {
+        "value": 0.566,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Source values: width 472 mm (335 mm base), length 472 mm base / 566 mm head, height 731 mm with head straight up / 748 mm maximum. The product page and drawing list these distinct extents but do not define a single matching W×H×D box; depth uses the longer head length and height uses the head-straight-up pose. Treat this as an estimated envelope, not a fully documented pose."
+      },
+      "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+      "source_reference_pose": "Head straight up; estimated bounding envelope assembled from manufacturer physical values"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "1225 W typical",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "37.9 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Source values: width 472 mm (335 mm base), length 472 mm base / 566 mm head, height 731 mm with head straight up / 748 mm maximum. The product page and drawing list these distinct extents but do not define a single matching W×H×D box; depth uses the longer head length and height uses the head-straight-up pose. Treat this as an estimated envelope, not a fully documented pose.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion.",
+      "Source describes a vertical-head dimensional pose; modeled horizontal optical-axis pose fits that envelope. Verify pose-specific shape before placement/clearance use."
+    ],
+    "revision_notes": [
+      "Acquired in expansion batch 2. Technical sources retained with locators; detailed model build pending."
+    ]
+  },
+  "git_commit": "4f96bdc0ec081c3756f42c22c8d181b776dab91a",
+  "note": "Initial research record before any generated model artifacts existed."
+}

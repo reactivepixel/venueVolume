@@ -1,0 +1,79 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 18124,
+  "geometry_sha256": "d051edac1dfde4ae58cd9117f018bd5cfc99b2738f878954ff1238ec1f38754b",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.36555999517440796,
+      -0.20254920423030853
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.00047453175648115575
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.10868000239133835,
+        0.00047453175648115575
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.36555999517440796,
+        0.00047453175648115575
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.36555999517440796,
+        -0.19513103365898132
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852217435836792,
+    1.0486979484558105,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.robe.cz/colorspot-250-at",
+    "https://www.robe.cz/res/downloads/catalogues/ColorSpot_250_AT_leaflet.pdf",
+    "https://www.robe.cz/res/downloads/user_manuals/User_manual_Colorspot_250_AT.pdf",
+    "https://cdn.aws.robe.cz/v1/image/resize/6d0d71f3c0dce0301a58534772e45d078535abd6?fit=contain&height=800&width=800&withoutEnlargement=false"
+  ]
+}

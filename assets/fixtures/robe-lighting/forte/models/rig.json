@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "5e3f98980cca8612acd8697180945144b17e26d1786a1babf8698c075485c8f5",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "robe-lighting/forte",
+    "name": "FORTE",
+    "manufacturer": "ROBE Lighting",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/robe-lighting/forte/fixture.usdz",
+    "sha256": "5e3f98980cca8612acd8697180945144b17e26d1786a1babf8698c075485c8f5",
+    "boundsMin": [
+      -0.24175000190734863,
+      0.0,
+      -0.31225000019185245
+    ],
+    "boundsMax": [
+      0.24175000190734863,
+      0.6355000138282776,
+      0.3122500062454492
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.10168000310659409,
+          0.00108431582339108
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.47594499588012695,
+          0.00108431582339108
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.47594499588012695,
+          -0.30438676476478577
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

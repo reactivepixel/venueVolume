@@ -1,0 +1,77 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 17996,
+  "geometry_sha256": "c18aff3eeb2971ade65c32c629cf11e562abc63ffc4d562c2ca4abefb9ac0fd0",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.57695072889328,
+      -0.12726990878582
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.006257159635424614
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.13442246615886688,
+        0.006257159635424614
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.57695072889328,
+        0.006257159635424614
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.57695072889328,
+        -0.12239104509353638
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    0.7838304042816162,
+    1.130740761756897
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.ayrton.eu/produit/eurus/",
+    "https://www.ayrton.eu/wp-content/uploads/2020/11/Product-Eurus-04.png"
+  ]
+}

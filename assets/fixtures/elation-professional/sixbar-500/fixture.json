@@ -1,0 +1,350 @@
+{
+  "schema_version": 1,
+  "id": "elation-professional/sixbar-500",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Elation Professional",
+    "model": "SIXBAR 500",
+    "variant": "SIX074",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.elationlighting.com/products/sixbar-500",
+      "title": "SIXBAR 500 product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Control / Connections, electrical; downloads include dimensional drawing, CAD, manual and DMX traits",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.elationlighting.com/cdn/shop/files/d48723d2ee9c88af30a9f643cdbfa40fac578a7b_SIX074__IMG__002__d682ef9e3d1d.jpg?v=1773210028&width=1800",
+      "title": "SIXBAR 500 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.jpg",
+      "sha256": "7cfc0bad4c26b3e4de9fa9f797f90248e79dcb12012d5dcc9e1dc6315ed6a6cf"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.45,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer defines length, width with included glare shield, and vertical height. Long LED bar axis mapped to width."
+    },
+    "height": {
+      "value": 0.155,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer defines length, width with included glare shield, and vertical height. Long LED bar axis mapped to width."
+    },
+    "depth": {
+      "value": 0.2064,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer defines length, width with included glare shield, and vertical height. Long LED bar axis mapped to width."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Assembled batten, face forward, long axis horizontal; included glare shield installed, per dimensional drawing."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "93 W maximum; 110–240 V AC, 50/60 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "9.0 lb (4.1 kg)",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "Art-Net",
+          "KlingNet"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "6-channel mode",
+      "footprint": 6,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "7-channel mode",
+      "footprint": 7,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "11-channel mode",
+      "footprint": 11,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "13-channel mode",
+      "footprint": 13,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "18-channel mode",
+      "footprint": 18,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "36-channel mode",
+      "footprint": 36,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "39-channel mode",
+      "footprint": 39,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "43-channel mode",
+      "footprint": 43,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.22499999403953552,
+        3.725290298461914e-09,
+        -0.1032000076957047
+      ],
+      "max": [
+        0.22499999403953552,
+        0.1550000071292743,
+        0.10320000676438212
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0016556292539462447,
+          -0.007118400651961565
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.10264900326728821,
+          -0.007118400651961565
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.10264900326728821,
+          -0.09509674459695816
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.10264900326728821,
+          -0.09741196036338806
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer defines length, width with included glare shield, and vertical height. Long LED bar axis mapped to width.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "18a7343bae5061872478a62389e9e60909861f57bf30927ed4c40ea24cf52ad6"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "71f68ae98e408687dff1f0ed07b77b466cfd709636b39bcf8c53070f4f964f71"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "899ca502cfb8009e3d1e9227be8ccf0831ca47ee5ce6a826089d114978f73353"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "99ff48d4c7f6aab00bf61ec035fc21a572c13ef10dbfffe0ce6d424c61723c22"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "9655e30044b0faf6eed8f431c39b264c3a6dd6b1c808cdb5bf3a3c5b6a9a7bac"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "a2a5ccf405e0dbf96ac132b7c4e220ecc72af7a776f03e4ee3c7d366ababb535"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "04487f483c2677630b87cc9d53854aace4f6b0c174f4599f01561cb80cc621d5"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "8b694881e27da282b74518b9eafc5dbb8af25ed8df91745b715000a1faef30a0"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "bfc7225c560cb1a4d6759fe8e426ad0ba677836363099b9634562bd5af284ec2"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "29e35245d7fa407d66e0b92c232d0a41aba521002bc0145b22eb271edee24c22"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "61c3cc1f14a52f76a125f9df093a5dda6e797a05e5ffd32b3a7761ad68057443",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "batten",
+      "lens_count": 6,
+      "body_style": "compact linear die-cast bar with six independent LED cells, dual integrated rigging brackets and glare shield",
+      "notes": "Legacy product; stated overall width includes the supplied glare shield."
+    },
+    "mesh_count": 50,
+    "triangle_count": 12896,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Acquired in expansion batch 2. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed batten geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.static.batten",
+    "category_path": [
+      "Lighting fixtures",
+      "Static and manually focused",
+      "Linear batten / striplight"
+    ],
+    "use_tags": [
+      "pixel control",
+      "legacy model"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

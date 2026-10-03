@@ -1,0 +1,51 @@
+{
+  "mesh_count": 10,
+  "triangle_count": 1880,
+  "geometry_sha256": "b9b6ea88074b8875befc21d8498f3e87e0db178c61f15620a7589f13d23c9c3e",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.0,
+      0.0010411144467070699
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0010411144467070699
+      ]
+    }
+  ],
+  "family": "pixel_driver",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0,
+    0.9205256104469299,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.elationlighting.com/products/pixel-driver-170",
+    "https://www.elationlighting.com/products/pixel-tape-16ip",
+    "https://www.elationlighting.com/cdn/shop/files/e09856f207a5349be7eb1cb57d0dab9e1b04f8c9_PIX170__IMG__001__35eed3f29864.jpg?v=1776815686&width=2048"
+  ]
+}

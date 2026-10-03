@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "474b3305cf5f8777b389cf8540bf0086a6ce5da5fad56a1f89d5d303f0033fd4",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "chauvet-professional/rogue-r3x-wash",
+    "name": "Rogue R3X Wash",
+    "manufacturer": "CHAUVET Professional",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/chauvet-professional/rogue-r3x-wash/fixture.usdz",
+    "sha256": "474b3305cf5f8777b389cf8540bf0086a6ce5da5fad56a1f89d5d303f0033fd4",
+    "boundsMin": [
+      -0.19699999690055847,
+      0.0,
+      -0.1490000204066746
+    ],
+    "boundsMax": [
+      0.19699999690055847,
+      0.4699999690055847,
+      0.1490000023622997
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.07454105466604233,
+          0.0005157574196346104
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.34475237131118774,
+          0.0005157574196346104
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.34475237131118774,
+          -0.07940704375505447
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

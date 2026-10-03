@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "86907d4bfa12366107b38e9048b6f85a531aff3d2a280eddf612512f56c19915",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "adj/hydro-beam-x1",
+    "name": "Hydro Beam X1",
+    "manufacturer": "ADJ",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/adj/hydro-beam-x1/fixture.usdz",
+    "sha256": "86907d4bfa12366107b38e9048b6f85a531aff3d2a280eddf612512f56c19915",
+    "boundsMin": [
+      -0.10499999672174454,
+      0.0,
+      -0.1679999998304993
+    ],
+    "boundsMax": [
+      0.10499999672174454,
+      0.4300000071525574,
+      0.1679999956395477
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.06880000233650208,
+          0.000518811633810401
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.36070001125335693,
+          0.000518811633810401
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.36070001125335693,
+          -0.12638640403747559
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

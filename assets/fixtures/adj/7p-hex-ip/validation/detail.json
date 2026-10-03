@@ -1,0 +1,69 @@
+{
+  "mesh_count": 64,
+  "triangle_count": 22588,
+  "geometry_sha256": "fcdbd75e015e0c8e98365c8d7f42319dd0d36c31a2df329ee280f8c35597d355",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.14037564396858215,
+      -0.08938051760196686
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.0008209102088585496,
+        -0.0030578416772186756
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.14037564396858215,
+        -0.0030578416772186756
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        0.0,
+        0.14037564396858215,
+        -0.0632522851228714
+      ]
+    }
+  ],
+  "family": "par",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0050251483917236,
+    1.045129418373108,
+    1.3984841108322144
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/products/7p-hex-ip",
+    "https://www.adj.com/cdn/shop/files/d067275be528798fdbc863962e9e0de2d25444f7_HEX700__IMG__001__ff60fa4bc937.jpg?v=1776713404&width=850",
+    "https://www.adj.eu/mwdownloads/download/link/id/1178"
+  ]
+}

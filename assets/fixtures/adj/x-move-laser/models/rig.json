@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "862b5c05d4be0e079200b9d0128645c5bd4591977d3caf904e46945b13381175",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "adj/x-move-laser",
+    "name": "X-Move Laser",
+    "manufacturer": "ADJ",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/adj/x-move-laser/fixture.usdz",
+    "sha256": "862b5c05d4be0e079200b9d0128645c5bd4591977d3caf904e46945b13381175",
+    "boundsMin": [
+      -0.0949999988079071,
+      0.0,
+      -0.10250000096857548
+    ],
+    "boundsMax": [
+      0.0949999988079071,
+      0.2849999964237213,
+      0.10249999724328518
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.04560000076889992,
+          0.0020308177918195724
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.2222999930381775,
+          0.0020308177918195724
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

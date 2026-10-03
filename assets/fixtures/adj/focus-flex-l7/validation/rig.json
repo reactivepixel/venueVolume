@@ -1,0 +1,17 @@
+{
+  "id": "adj/focus-flex-l7",
+  "passed": true,
+  "source_usdz_sha256": "3587a62fc408c80f5960efa22d5d94f4b1857dcf47a62f250ccb8e8b1ece6400",
+  "joints": 2,
+  "moving_meshes": 45,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

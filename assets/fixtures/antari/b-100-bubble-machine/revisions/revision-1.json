@@ -1,0 +1,226 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "antari/b-100-bubble-machine",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Antari",
+      "model": "B-100 Bubble Machine",
+      "variant": "B-100",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://antari.com/products/b-100/",
+        "title": "B-100 Bubble Machine product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Current specification block: product dimensions, weight, power and manual control",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.antari.com/usermanual/B/B-100/B-100.pdf",
+        "title": "B-100 User Manual Rev. 05",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Technical specifications agree with the current product page on L/W/H and machine weight",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://antari.com/wp-content/uploads/B-100-01.jpg",
+        "title": "B-100 Bubble Machine visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.jpg",
+        "sha256": "098974f205e3634d19619ed8a0b19cd53dc44f01badbd6c0de58676b8628619d"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.265,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Current product page and current Rev. 05 manual agree on manufacturer L/W/H = 341/265/290 mm; dimensions refer to the B-100 variant."
+      },
+      "height": {
+        "value": 0.29,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Current product page and current Rev. 05 manual agree on manufacturer L/W/H = 341/265/290 mm; dimensions refer to the B-100 variant."
+      },
+      "depth": {
+        "value": 0.341,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Current product page and current Rev. 05 manual agree on manufacturer L/W/H = 341/265/290 mm; dimensions refer to the B-100 variant."
+      },
+      "reference_pose": "Enclosed bubble machine resting on feet, output/wheel opening front-facing and carry handle above; manufacturer L/W/H."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "30 W at 120 V / 32 W at 230 V",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "4.2 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "manual",
+            "optional timer",
+            "optional wireless",
+            "optional cable remote"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "1-channel mode",
+        "footprint": 1,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Enclosed bubble machine resting on feet, output/wheel opening front-facing and carry handle above; manufacturer L/W/H.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "Current product page and current Rev. 05 manual agree on manufacturer L/W/H = 341/265/290 mm; dimensions refer to the B-100 variant.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "fx.atmosphere.bubble.machine",
+      "control_path": "See source-backed protocol list; compatibility and control system are not implemented.",
+      "physical_asset_only": true,
+      "source_data": {
+        "protocols": [
+          "DMX512",
+          "manual",
+          "optional timer",
+          "optional wireless",
+          "optional cable remote"
+        ],
+        "source_urls": [
+          "https://antari.com/products/b-100/",
+          "https://www.antari.com/usermanual/B/B-100/B-100.pdf"
+        ],
+        "power": "30 W at 120 V / 32 W at 230 V",
+        "weight": "4.2 kg",
+        "dmx_channels": [
+          1
+        ],
+        "dimensions": {
+          "width_m": 0.265,
+          "height_m": 0.29,
+          "depth_m": 0.341,
+          "axis_status": "documented",
+          "axis_note": "Current product page and current Rev. 05 manual agree on manufacturer L/W/H = 341/265/290 mm; dimensions refer to the B-100 variant.",
+          "reference_pose": "Enclosed bubble machine resting on feet, output/wheel opening front-facing and carry handle above; manufacturer L/W/H."
+        },
+        "research_evidence": [
+          {
+            "url": "https://antari.com/products/b-100/",
+            "title": "B-100 Bubble Machine product page",
+            "locator": "Current specification block: product dimensions, weight, power and manual control",
+            "accessed_at": "2026-09-30"
+          },
+          {
+            "url": "https://www.antari.com/usermanual/B/B-100/B-100.pdf",
+            "title": "B-100 User Manual Rev. 05",
+            "locator": "Technical specifications agree with the current product page on L/W/H and machine weight",
+            "accessed_at": "2026-09-30"
+          }
+        ],
+        "control_path": "See source-backed protocol list; compatibility and control system are not implemented."
+      }
+    }
+  },
+  "git_commit": "c753c434774c5386e4b9f87fc3f00a1f589aad3c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

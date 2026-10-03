@@ -1,0 +1,193 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "adj/saber-spot-dtw",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "ADJ",
+      "model": "Saber Spot DTW",
+      "variant": "SAB990",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.adj.com/products/saber-spot-dtw",
+        "title": "ADJ Saber Spot DTW product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications list 1/2/4-channel DMX modes, RDM, 15 W source, dimensions and weight",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.adj.com/blogs/news/adj-saber-spot-dtw-innovative-new-saber-spot-unleashed",
+        "title": "ADJ Saber Spot DTW launch article",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Confirms labeled L x W x H dimensions and channel modes",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.adj.com/cdn/shop/files/98f3715e256374fee335f16f73bb79e00a474798_SAB990__IMG__001__7b5b730252c4.jpg?v=1776712483&width=2048",
+        "title": "Saber Spot DTW product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "ba32d84eccb818e067437c13fc8c3226b3b0f0137b0c1d76e9d45c51daa7a18a"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.17,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "ADJ labels dimensions L x W x H = 88 x 170 x 87 mm; elongated scissor-bracket dimension is treated as width and lens-axis length as depth."
+      },
+      "height": {
+        "value": 0.087,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "ADJ labels dimensions L x W x H = 88 x 170 x 87 mm; elongated scissor-bracket dimension is treated as width and lens-axis length as depth."
+      },
+      "depth": {
+        "value": 0.088,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "ADJ labels dimensions L x W x H = 88 x 170 x 87 mm; elongated scissor-bracket dimension is treated as width and lens-axis length as depth."
+      },
+      "reference_pose": "Housing mounted in scissor bracket, optical axis horizontal"
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "15 W warm-white LED, 20° ACL optic, dim-to-warm effect, two interchangeable frost lenses, scissor floor/hanging bracket.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "24 W consumption; 15 W LED",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "1.2 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "1-channel mode",
+        "footprint": 1,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "2-channel mode",
+        "footprint": 2,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "4-channel mode",
+        "footprint": 4,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Housing mounted in scissor bracket, optical axis horizontal",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "ADJ labels dimensions L x W x H = 88 x 170 x 87 mm; elongated scissor-bracket dimension is treated as width and lens-axis length as depth.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "dd6e9e98910ffcac9d04483ecbf88199f95cba5f72525a42204a49f0b373379b"
+  },
+  "git_commit": "d55dda961571d5dee607a7716e8d764ae34254cb",
+  "note": "Initial research record before any generated model artifacts existed."
+}

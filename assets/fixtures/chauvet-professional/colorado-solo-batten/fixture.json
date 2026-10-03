@@ -1,0 +1,362 @@
+{
+  "schema_version": 1,
+  "id": "chauvet-professional/colorado-solo-batten",
+  "revision": 3,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "CHAUVET Professional",
+    "model": "COLORado Solo Batten",
+    "variant": "COLORADOSOLOBATTEN",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://chauvetprofessional.com/product/colorado-solo-batten/",
+      "title": "CHAUVET Professional COLORado Solo Batten official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://chauvetprofessional.com/wp-content/uploads/2025/10/COLORADO-SOLO-BATTEN-FRONT-FEAT.png",
+      "title": "CHAUVET Professional COLORado Solo Batten official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.png",
+      "sha256": "c54ab9143deedd8719f355aadcb5a814baba4830a9628aa97e959044f032f39c"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 1.0125,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; bar-length/height/depth axis assignment is inferred from product class and imagery."
+    },
+    "height": {
+      "value": 0.2498,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; bar-length/height/depth axis assignment is inferred from product class and imagery."
+    },
+    "depth": {
+      "value": 0.23,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; bar-length/height/depth axis assignment is inferred from product class and imagery."
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": [
+          "144 LEDs; 12 controllable sections; IP65"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "336 W at 120 V; 100-240 V AC",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "Art-Net",
+          "sACN"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "36-channel mode",
+      "footprint": 36,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "48-channel mode",
+      "footprint": 48,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "60-channel mode",
+      "footprint": 60,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "75-channel mode",
+      "footprint": 75,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "85-channel mode",
+      "footprint": 85,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "87-channel mode",
+      "footprint": 87,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "99-channel mode",
+      "footprint": 99,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "120-channel mode",
+      "footprint": 120,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "160-channel mode",
+      "footprint": 160,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.5062500238418579,
+        0.0,
+        -0.11500000348314643
+      ],
+      "max": [
+        0.5062500238418579,
+        0.24979996914044023,
+        0.1150000081397593
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0026682340539991856,
+          -0.007542827632278204
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.1654304414987564,
+          -0.007542827632278204
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.1654304414987564,
+          -0.10593734681606293
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.1654304414987564,
+          -0.10852667689323425
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Fixture-specific procedural approximation informed by the stored official product image; not manufacturer CAD.",
+      "Ribbed extrusion, continuous twelve-segment optic, electronics pod and mounting feet.",
+      "Small fasteners, exact surface curvature, labels, internal mechanics, connector geometry and photometry remain simplified.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "9f633056e984baf45b8860f12fd5840edd35e1d9b23393dc1caca9eb8edc8034"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "445fff6f34281035e9d44a7774cd9eacdc5157a7e136d2f7e092a73b17b15c03"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "f26c7af5d8a8d85613750a30bd16ab3f923e46d783983301e3b3dc6019a71d57"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "b97069cbd1f1f0ff237dda621d7c7c2a75b1fcede3a85915c0792919c28d378a"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "0db59cfb5ac0956399e1d425fd21e91b16a093eaa26626d31ab07a8f04748f89"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "a593f3e875d0f551342ad0c338837740cb20a2dcf486b594e8a75f66d4de154a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "af511127bd2c4afe17af118d9fc705e0776515ef0bb149a411761e4b98559823"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "0e3fd750b62546aa6c95de5705807da65360b3ed1f6aaa32ef8f775324c3f085"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "2acb3b13f638f42c3001df675b681021aa226eec4c8e2d0cc5dc4c70cd993711"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "fa9cc7304cd1fb7e61b6562d90ba697bba9c2a760944cc5ed1d729552cd091ac"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "9a23bfc2ceb2bc76f25a1b663ef318c7f8ce3e6b680bb889e270a47b8384ec37",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "batten",
+      "lens_count": 12,
+      "diffuser": true
+    },
+    "mesh_count": 50,
+    "triangle_count": 9416,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2 replaces the generic proxy with fixture-specific silhouette, optics, housing and mounting details while preserving sourced outer dimensions.",
+    "Revision 3: detailed batten geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.static.batten",
+    "category_path": [
+      "Lighting fixtures",
+      "Static and manually focused",
+      "Linear batten / striplight"
+    ],
+    "use_tags": [
+      "pixel control"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

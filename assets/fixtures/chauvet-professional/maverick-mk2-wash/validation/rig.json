@@ -1,0 +1,17 @@
+{
+  "id": "chauvet-professional/maverick-mk2-wash",
+  "passed": true,
+  "source_usdz_sha256": "4e0e6e462d916447bcc964454d4bda2c40c54be0accbc7b20bf6f13b24d3feda",
+  "joints": 2,
+  "moving_meshes": 60,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

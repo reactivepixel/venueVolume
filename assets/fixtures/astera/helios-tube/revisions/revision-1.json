@@ -1,0 +1,182 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "astera/helios-tube",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Astera",
+      "model": "Helios Tube",
+      "variant": "FP2-BTB",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://astera-led.com/fr/products/helios-tube/specs/",
+        "title": "Helios Tube technical specifications",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "FP2/FP2-BTB comparison: 36 W total LED power, 24 W draw, eight pixels, 0.765 kg, L550 × Ø43 mm",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://astera-led.com/wp-content/uploads/Datasheet_Helios_Tube_V4-1.pdf",
+        "title": "Helios Datasheet V4, 3 July 2025",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications: LED source/color/output, control and physical specification",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-3",
+        "url": "https://astera-led.com/wp-content/uploads/FP2-BTB_HeliosTube_BTB_Manual_EN_DE_IT_ES_FR_PT.pdf",
+        "title": "BTB Helios Tube Manual",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Technical data and dimensions table",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://media.astera-led.com/wp-content/uploads/Helios-Tube_V2.png",
+        "title": "Helios Tube product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "ecc75b22482543035d58aefdaf39e1a181163ff16e333d8489cf814053f020d5"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.55,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "unit": "m",
+        "note": "Manufacturer Datasheet V4 (3 July 2025): overall length 550 mm × Ø43 mm; horizontal tube orientation used for width."
+      },
+      "height": {
+        "value": 0.043,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "unit": "m",
+        "note": "Manufacturer Datasheet V4 (3 July 2025): overall length 550 mm × Ø43 mm; horizontal tube orientation used for width."
+      },
+      "depth": {
+        "value": 0.043,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "unit": "m",
+        "note": "Manufacturer Datasheet V4 (3 July 2025): overall length 550 mm × Ø43 mm; horizontal tube orientation used for width."
+      },
+      "reference_pose": "Tube horizontal; end caps fitted, no mounting accessories."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "8-pixel battery-powered Titan LED Engine tube; RGBMintAmber; 1285 lm at 3200 K / 1340 lm at 4000 K; up to 20 h runtime; IP65 only with FP1-SP end cap.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2",
+            "official-3"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "36 W max; 24 W LED power draw; 24 VDC, 1.25 A",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2",
+            "official-3"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "0.765 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2",
+            "official-3"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512 (via Astera interface)",
+            "CRMX",
+            "UHF",
+            "Bluetooth",
+            "Wi-Fi"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2",
+            "official-3"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Tube horizontal; end caps fitted, no mounting accessories.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer Datasheet V4 (3 July 2025): overall length 550 mm × Ø43 mm; horizontal tube orientation used for width.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "4d8bfcc0ff0a51ba729b3fd03a17c32e97159d860def9eeff4cf9b249bfc6a23"
+  },
+  "git_commit": "529393313efc84b984528b9491e9f5e230df9fd1",
+  "note": "Initial research record before any generated model artifacts existed."
+}

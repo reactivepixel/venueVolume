@@ -1,0 +1,349 @@
+{
+  "schema_version": 1,
+  "id": "martin-professional-harman/mac-encore-wash-cld",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Martin Professional (HARMAN)",
+    "model": "MAC Encore Wash CLD",
+    "variant": "MAC Encore Wash CLD",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.martin.com/en-US/products/mac-encore-wash-cld.html",
+      "title": "MAC Encore Wash CLD product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Technical Data: physical dimensions, weight, power; Control: DMX compliance USITT DMX512-A, RDM compliance ANSI/ESTA E1.20, 24-channel mode",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://adn.harmanpro.com/productattachment/5561/product_attachment/x_large-405323454e3e7cca83aef032adab4ef8.webp",
+      "title": "MAC Encore Wash CLD product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.webp",
+      "sha256": "488a3a4cb36a3259e31e363c6968220db276e224f9deb7e09aeee70fc8aa37cf"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.48,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer physical dimensions: length 452 mm, width 480 mm across yoke, maximum height 755 mm (745 mm head straight up)."
+    },
+    "height": {
+      "value": 0.755,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer physical dimensions: length 452 mm, width 480 mm across yoke, maximum height 755 mm (745 mm head straight up)."
+    },
+    "depth": {
+      "value": 0.452,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer physical dimensions: length 452 mm, width 480 mm across yoke, maximum height 755 mm (745 mm head straight up)."
+    },
+    "reference_pose": "Maximum height reference; base level."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "LED soft-edge head; standard Fresnel lens, optional PC lens; 11°–58° zoom with optional PC lens.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "596 W typical; 64 W idle",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "28.5 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512-A",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "24-channel mode",
+      "footprint": 24,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Maximum height reference; base level.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.23999999463558197,
+        0.0,
+        -0.22600000258535147
+      ],
+      "max": [
+        0.23999999463558197,
+        0.7549999356269836,
+        0.22600000444799662
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.010870673693716526
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.13909205794334412,
+          0.010870673693716526
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.5664132237434387,
+          0.010870673693716526
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.5664132237434387,
+          -0.20908807218074799
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.13909205794334412,
+          0.010870673693716526
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.5664132237434387,
+          0.010870673693716526
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.5664132237434387,
+          -0.21742981672286987
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer physical dimensions: length 452 mm, width 480 mm across yoke, maximum height 755 mm (745 mm head straight up).",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "667cd75491c8c24fd214805e8d55569f3aabce79e820b8a795bddfc56ee2c226"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "2d6bffa60a3ca58632239461fcf74afa5e6ed1df1909aada8f630d6d975f4efb"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "ed6ea95542e8fbca52d12f373d6a778d76fcc548cd1aab19c01bde7e5f104f07"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "355ab5926251d8feb8966c42f26abc341d5fb3632538f1766d877037b6379962"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "276df9887eb8ee11657ef7206134f7d7a781647a32a3cda1791f0f890d982b5c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "4b709785bf38aabc29bd27dbe60b0ebbd93c4c02e5563e1bab975f5a497efde7"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "9989438988b81a84e82828b7789185d0ca894c4f870ec0871b315a25087c1740"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "4b2de57170542d5d606ce1dc90bcc4d3fa6c6f6a549da7fb6865aeb74ca3cd9d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "ac478ad8f673fc195f6fb317e0a79d3b551f839d2344488408bd288cd913194f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "02f8668db03ae19062359e411823451a6099ced0405c04e6f41c651732a184ac"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "606771c8efa002acbb2dca564a82eb9553bab398fd7120bc4a4a7f35d9d34169",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 1,
+      "body_style": "soft-edge moving head",
+      "notes": "CLD variant; verify front optic assembly from exact-model imagery before modeling.",
+      "generator": "catalog",
+      "shell": "faceted",
+      "head_depth": 1.2,
+      "fresnel": true,
+      "yoke_compression": 0.22
+    },
+    "mesh_count": 82,
+    "triangle_count": 25680,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "6634d267cdaaf42f46f3107d224b563c9b76a2219ea5b8ea1a441366e538da06",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

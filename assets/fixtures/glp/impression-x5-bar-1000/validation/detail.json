@@ -1,0 +1,68 @@
+{
+  "mesh_count": 75,
+  "triangle_count": 24556,
+  "geometry_sha256": "bfb81a4d33d6e999c018914345d52b5021b9a4b1ae54ac22bbfbbcdae9f9b029",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.1960264891386032,
+      -0.04754502326250076
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0031617179047316313,
+        -0.002815165091305971
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.1960264891386032,
+        -0.002815165091305971
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        0.0,
+        0.1960264891386032,
+        -0.0463981032371521
+      ]
+    }
+  ],
+  "family": "batten",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.967117965221405,
+    1.042654037475586,
+    1.068147897720337
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://glp.de/en/products/entertainment-lighting/moving-lights/impression-x5-bar-1000-en",
+    "https://glp.de/templates/yootheme/cache/96/impression-X5-Bar-1000_Header12-96c4ac35.png"
+  ]
+}

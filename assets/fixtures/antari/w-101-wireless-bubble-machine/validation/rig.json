@@ -1,0 +1,17 @@
+{
+  "id": "antari/w-101-wireless-bubble-machine",
+  "passed": true,
+  "source_usdz_sha256": "d59c88f19b737d2b58e694a73fd9d6c866e5fcd5d7d02c787af9822f033fe717",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 22,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

@@ -1,0 +1,17 @@
+{
+  "id": "cm-entertainment-technology-columbus-mckinnon/lodestar-d8-type-l-1-tonne",
+  "passed": true,
+  "source_usdz_sha256": "f01abd08697ddfeae65ab6145b0c8d81ba44209424fdb1063c0c1a3bbd5cc281",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 67,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

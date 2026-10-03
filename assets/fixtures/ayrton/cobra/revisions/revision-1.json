@@ -1,0 +1,186 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "ayrton/cobra",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Ayrton",
+      "model": "Cobra²",
+      "variant": "014175",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.ayrton.eu/produit/cobra2/",
+        "title": "Cobra² product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Optics, source, movement, control modes and protocols, power, dimensions and product code 014175",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.ayrton.eu/wp-content/uploads/2024/01/COBRA2-Specification-Sheet-V9.pdf",
+        "title": "Cobra² Specification Sheet V9",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "DMX/network/wireless control compatibility and fixture physical dimensions",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.ayrton.eu/wp-content/uploads/2024/01/Cobra2-3.png",
+        "title": "Cobra² product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "693f835e489eadc6330a9f542dbc1ba1d68f83f9ce86aa4e37a23d598e63e13b"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.36,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Ayrton product page dimensions: 360 x 674 x 319 mm (length x height x depth)."
+      },
+      "height": {
+        "value": 0.674,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Ayrton product page dimensions: 360 x 674 x 319 mm (length x height x depth)."
+      },
+      "depth": {
+        "value": 0.319,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Ayrton product page dimensions: 360 x 674 x 319 mm (length x height x depth)."
+      },
+      "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Laser-phosphor engine; 1,544,000 lx at 10 m; 0.9°–23° zoom; 170 mm lens; 13-element optic; continuous pan and tilt; IP65.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "480 W maximum",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "30.7 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM",
+            "Art-Net",
+            "sACN",
+            "CRMX wireless DMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "35-channel mode",
+        "footprint": 35,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "45-channel mode",
+        "footprint": 45,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Manufacturer reference dimensions; assembled fixture.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Ayrton product page dimensions: 360 x 674 x 319 mm (length x height x depth).",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "6b0f7e27d625c94db8a1f9e3f73a70a34f0bf5d6126a8ed586cc16bd1dd3b1f9"
+  },
+  "git_commit": "12c756a8b8dac8b0f1d5301b9ad05c17a0f1ef37",
+  "note": "Initial research record before any generated model artifacts existed."
+}

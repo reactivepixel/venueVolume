@@ -1,0 +1,17 @@
+{
+  "id": "altman-lighting/altman-scoop-153",
+  "passed": true,
+  "source_usdz_sha256": "04f33fa47c8b7bb66fdb092c0bb3f8ea9a56ed6e4cd39f75af7bc0a272182f28",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 8,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

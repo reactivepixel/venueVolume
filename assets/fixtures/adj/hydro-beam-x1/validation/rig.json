@@ -1,0 +1,17 @@
+{
+  "id": "adj/hydro-beam-x1",
+  "passed": true,
+  "source_usdz_sha256": "86907d4bfa12366107b38e9048b6f85a531aff3d2a280eddf612512f56c19915",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

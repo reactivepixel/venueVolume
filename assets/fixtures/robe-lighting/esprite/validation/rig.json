@@ -1,0 +1,17 @@
+{
+  "id": "robe-lighting/esprite",
+  "passed": true,
+  "source_usdz_sha256": "814786c0a0585db6387226b8d022f538e7ab5a1a162682ea1517699b5bf8ea31",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

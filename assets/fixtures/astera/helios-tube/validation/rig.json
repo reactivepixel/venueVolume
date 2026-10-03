@@ -1,0 +1,17 @@
+{
+  "id": "astera/helios-tube",
+  "passed": true,
+  "source_usdz_sha256": "e77066a924d68da303d46696358f9ee2bf8ca9b88662749cd917d5e969d664a2",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 3,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

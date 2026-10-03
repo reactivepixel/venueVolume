@@ -1,0 +1,17 @@
+{
+  "id": "elation-professional/fuze-wash-500",
+  "passed": true,
+  "source_usdz_sha256": "a944b4fee4e267ae9981e41e890ccfe02f1c9ae48c87d35d670d606e66e743fc",
+  "joints": 2,
+  "moving_meshes": 47,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

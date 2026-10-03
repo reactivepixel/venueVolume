@@ -1,0 +1,367 @@
+{
+  "schema_version": 1,
+  "id": "ayrton/argo-6-wash",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Ayrton",
+    "model": "Argo 6 Wash",
+    "variant": "019640",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.ayrton.eu/produit/argo-6-wash/",
+      "title": "Argo 6 Wash product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Official gallery image; 19-source optical arrangement; control protocols/mode range; source, power, dimensions, weight and product code 019640",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.ayrton.eu/wp-content/uploads/2023/04/Argo-6-WASH-V103-DMX.pdf",
+      "title": "Argo 6 Wash DMX Chart V103",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Four personality mode channel footprints and pixel control chart",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.ayrton.eu/wp-content/uploads/2023/04/Argo6Wash-1-1.png",
+      "title": "Argo 6 Wash product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "29442521451152c72c7d2b7a530741f9d7eea35d805fc1c23320fff6484189a8"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.436,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Official product page: 436 x 536 x 280 mm (length x height x depth)."
+    },
+    "height": {
+      "value": 0.536,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Official product page: 436 x 536 x 280 mm (length x height x depth)."
+    },
+    "depth": {
+      "value": 0.28,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Official product page: 436 x 536 x 280 mm (length x height x depth)."
+    },
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "19 x 40 W RGBW emitters in 280 mm cluster; 13,000 lm; 4°–56° zoom; individual pixel control; infinite pan/tilt; IP65.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "950 W maximum",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "24.2 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "Art-Net",
+          "sACN",
+          "CRMX wireless DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "26-channel mode",
+      "footprint": 26,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "67-channel mode",
+      "footprint": 67,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.21799999475479126,
+        0.0,
+        -0.14000000242958777
+      ],
+      "max": [
+        0.21799999475479126,
+        0.5360000133514404,
+        0.14000001366366632
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0004212390922475606
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.08500852435827255,
+          0.0004212390922475606
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.3931644558906555,
+          0.0004212390922475606
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.3931644558906555,
+          -0.07164181023836136
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.08500852435827255,
+          0.0004212390922475606
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.3931644558906555,
+          0.0004212390922475606
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.3931644558906555,
+          -0.07437475025653839
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Official product page: 436 x 536 x 280 mm (length x height x depth).",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "ad4a982856212f8fcf03c441b33eeb158c929fda33b0aadfe9a4c7dfbbca9463"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "678692934647bd2b1644282703a85d986e8bd11c9764171b662be99cf8972ab8"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "523de62c64e49873a93dfe51a34a22b8eab7212bdaf140ab6e413b45ecf40fc4"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "9cafcbc05e034ca0c4d47c8ac594e64261c008db8c11be4a26a26a4fe346b235"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "de03ac5e80fe5658780a0ae7308f2f81c21d04036c5bda0a5b76e5173d9e8454"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "92bfdd1043ca08a27c5545bc5bbea57191d23e7620cc0a8743044b4589a05d9b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "536c778edd401d6c322fcb8d5ea28ffb87546805320cc6ed92862ebae8ba4f2e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "b9c7024a23d8a286f47c8316537b6795a834024e68f0cd64d2bacd6b3ee4ae2e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "b71c2ec94bca4fa15458cfba99cdbb8a7199481e46b4cf61cbae908f5e1c3ae5"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "d6329ed0e50e7308bd68d7a57d85a4b908001292b8b43bdb05645ca3fb86cf6f"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "a294d4fd48c31db69790ae1f4d26e6d51194766fbaaf5f30605f66ad112579c1",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 19,
+      "body_style": "compact 19-emitter RGBW wash head with 280 mm cluster",
+      "notes": "19 discrete truncated lenses and glass light guides; independent pixel effects; unlimited pan/tilt."
+    },
+    "mesh_count": 128,
+    "triangle_count": 38116,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "0c76737bb3176c7acd9526c819b43984a4437b87ec16d3bd0a40ea4391931a93",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [
+      "weather-rated variant"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

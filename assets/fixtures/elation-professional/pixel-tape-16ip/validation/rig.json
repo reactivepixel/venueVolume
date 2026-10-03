@@ -1,0 +1,17 @@
+{
+  "id": "elation-professional/pixel-tape-16ip",
+  "passed": true,
+  "source_usdz_sha256": "9b628f49ae5a7309f7b602779377e3a3113e34f3f6df059e408739a633339841",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 341,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

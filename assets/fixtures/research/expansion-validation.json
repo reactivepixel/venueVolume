@@ -1,0 +1,81 @@
+{
+  "reviewed_at": "2026-10-02",
+  "scope": "Legacy lighting, atmosphere, laser, spark and other effects; not exhaustive manufacturer coverage",
+  "batch": "legacy-effects-2026-10",
+  "baseline_models": 220,
+  "new_inventory_rows": 64,
+  "new_models": 32,
+  "new_research_blocked": 32,
+  "new_visual_correction_rows": 7,
+  "packaged_models": 252,
+  "all_csv_rows": 323,
+  "csv_manufacturers": 52,
+  "packaged_manufacturers": 45,
+  "articulated_models": 175,
+  "preview_joints": 322,
+  "blocked_rows": 71,
+  "visual_correction_rows": [
+    "etc/colorsource-par-jr",
+    "astera/ax5-triplepar",
+    "antari/f-1-fazer",
+    "antari/hz-1000-hazer",
+    "adj/entour-venue",
+    "le-maitre/g300",
+    "le-maitre/gforce-3",
+    "martin-professional-harman/mac-2000-profile",
+    "martin-professional-harman/mac-2000-wash"
+  ],
+  "local_checks": {
+    "python_pipeline_and_taxonomy_tests": {
+      "passed": true,
+      "tests": 16
+    },
+    "swift_core": {
+      "passed": true,
+      "tests": 45,
+      "runtime": "Swift 6.0.3 in swift:6.0 Linux container"
+    },
+    "session_smoke": {
+      "passed": true,
+      "groups": [
+        "session",
+        "room",
+        "audit",
+        "interaction",
+        "catalog"
+      ]
+    },
+    "saved_blender_usdz_vertex_parity": "geometry-audit.json",
+    "rig_neutral_and_four_pose_checks": "articulation-validation.json",
+    "bundle_and_generated_catalog_parity": {
+      "passed": true,
+      "assets": 252
+    },
+    "csv_import": "csv-import-validation.json",
+    "complete_review_browser": "pipeline-review-validation.json",
+    "four_view_gallery_browser": "gallery-validation.json",
+    "taxonomy_browser": "taxonomy-validation.json"
+  },
+  "visual_review": {
+    "method": "Official source/model contact sheets and direct previews; independent atmosphere review followed by parent source/model corrections. Structural tests do not establish model fidelity.",
+    "reports": [
+      "research/fixtures/expansion-v3/atmosphere-qa.json",
+      "research/fixtures/expansion-v3/visual-review-issues.json",
+      "research/fixtures/expansion-v2/visual-review-issues.json"
+    ],
+    "corrections": [
+      "B-200 dimensional axes and six wheels",
+      "MDG whole-machine reference and separate grey MSe1 cabinet",
+      "Robe uncropped references and Fresnel optics",
+      "Scorpion body reference replacing effect-pattern image",
+      "X-Move laser pan/tilt without spotlight emission",
+      "reference-pose cache revalidation"
+    ],
+    "remaining": "Nine packaged models retain visual findings, including seven additions; 71 inventory-only rows retain source or geometry blockers"
+  },
+  "native_realitykit": "pending on Mac for all 252 models in this release",
+  "physical_headset": "not tested",
+  "hardware_dmx": "not implemented or tested; rigs use synthetic VV Preview 16",
+  "effects": "No operational laser, pyro, spark, CO2, smoke or other effect firing/control is implemented",
+  "representation": "Image-informed high-detail procedural approximations, not manufacturer CAD"
+}

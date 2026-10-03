@@ -1,0 +1,59 @@
+{
+  "mesh_count": 80,
+  "triangle_count": 14400,
+  "geometry_sha256": "466ae3df8942e6a4b4abc08a517aa4977cac442e4e4b44665940ca1ddb554aff",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.07733071595430374,
+      0.03411826118826866,
+      -0.2155582159757614
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.16271783411502838,
+        0.007409936282783747
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.16271783411502838,
+        0.007409936282783747
+      ]
+    }
+  ],
+  "family": "hazer",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9813542366027832,
+    1.0275030136108398,
+    1.0373443365097046
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/products/entour-venue",
+    "https://www.adj.com/cdn/shop/files/8240dffd98db7012ef4f30d6239ba76cd5f16666_ENT610__IMG__001__e3470b1106c0.jpg?v=1776712354&width=850"
+  ]
+}

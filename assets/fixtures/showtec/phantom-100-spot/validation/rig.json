@@ -1,0 +1,17 @@
+{
+  "id": "showtec/phantom-100-spot",
+  "passed": true,
+  "source_usdz_sha256": "3f175915c931167656cc2d9b04ceb368748785e7f6f45f464795f38cd483ca45",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

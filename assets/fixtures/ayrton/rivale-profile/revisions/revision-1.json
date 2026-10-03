@@ -1,0 +1,185 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "ayrton/rivale-profile",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Ayrton",
+      "model": "Rivale Profile",
+      "variant": "Rivale Profile",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.ayrton.eu/produit/rivale-profile/",
+        "title": "Rivale Profile product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Performance, Control, Power Supply, Size and Weight; protocols, channel modes, dimensions and weight",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.ayrton.eu/wp-content/uploads/2024/04/RivaleProfile-Specification-Sheet.pdf",
+        "title": "Rivale Profile specification sheet",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Optics and performance; 4°–52°, 160 mm, 30,000 lm",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.ayrton.eu/wp-content/uploads/2023/04/ayrton_plus_vignettes_rivalep-819x630.jpg",
+        "title": "Rivale Profile product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "82414bfa1d1a51f160860bf15c3df0b0e439120845fb28049b156e235a98fb13"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.36,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer technical specification lists product dimensions 360 x 676 x 316 mm (l x h x d); flight-case dimensions excluded."
+      },
+      "height": {
+        "value": 0.676,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer technical specification lists product dimensions 360 x 676 x 316 mm (l x h x d); flight-case dimensions excluded."
+      },
+      "depth": {
+        "value": 0.316,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer technical specification lists product dimensions 360 x 676 x 316 mm (l x h x d); flight-case dimensions excluded."
+      },
+      "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "30,000 lm; 4°–52° zoom; 160 mm front lens; IP65; continuous pan and tilt rotation.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "700 W maximum",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "30.8 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX 512",
+            "DMX-RDM",
+            "ArtNet",
+            "sACN"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "42-channel mode",
+        "footprint": 42,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "65-channel mode",
+        "footprint": 65,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Manufacturer reference dimensions; fixture assembled.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer technical specification lists product dimensions 360 x 676 x 316 mm (l x h x d); flight-case dimensions excluded.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "e5c54ba15d3d0c7efe1b4e0c2b14cc77ae29a5787a7bb51cb260ff097d98fa50"
+  },
+  "git_commit": "cde57148359c6fba452466258e6762e851414b92",
+  "note": "Initial research record before any generated model artifacts existed."
+}

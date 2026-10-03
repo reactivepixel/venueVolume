@@ -1,0 +1,17 @@
+{
+  "id": "adj/jolt-bar-fx",
+  "passed": true,
+  "source_usdz_sha256": "e6286a5b27d177e94728a75d87f5ddcc552cbef897a7a0118436be093a37c1f9",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 99,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

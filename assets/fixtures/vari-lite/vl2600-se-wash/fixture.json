@@ -1,0 +1,329 @@
+{
+  "schema_version": 1,
+  "id": "vari-lite/vl2600-se-wash",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Vari-Lite",
+    "model": "VL2600 SE WASH",
+    "variant": "VL2600 SE WASH",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.vari-lite.com/global/products/vl2600-wash",
+      "title": "VL2600 SE WASH",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product overview; 570 W light engine, 27,500 lm, 12–63 degree zoom; theatre/touring uses",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://vari-lite.s3.eu-west-1.amazonaws.com/datasheets/vl2600-se-wash.pdf",
+      "title": "VL2600 SE WASH Specification Sheet",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Physical table and dimensional drawing; 300 × 464 × 705 mm, 30 kg; drawing gives motion and clearance",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.vari-lite.com/b-dam/vari-lite/products/vl2600-wash/images/vl2600-se-wash-thumbnail.jpg",
+      "title": "VL2600 SE WASH product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.jpg",
+      "sha256": "dc6d0a2dbae15b5131d75951aa3cdee4af6bb0e028964828703a5a4cb9b13e4f"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.464,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "SE revision manufacturer datasheet lists assembled H × W × L as 705 × 464 × 300 mm; excluded packed dimensions."
+    },
+    "height": {
+      "value": 0.705,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "SE revision manufacturer datasheet lists assembled H × W × L as 705 × 464 × 300 mm; excluded packed dimensions."
+    },
+    "depth": {
+      "value": 0.3,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "SE revision manufacturer datasheet lists assembled H × W × L as 705 × 464 × 300 mm; excluded packed dimensions."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Head centered, yoke upright; assembled operating envelope"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "570 W",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "30 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.23200000822544098,
+        0.0,
+        -0.15000000409781933
+      ],
+      "max": [
+        0.23200000822544098,
+        0.7049999833106995,
+        0.14999999292194843
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0003504473716020584
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.11197312921285629,
+          0.0003504473716020584
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.5478345155715942,
+          0.0003504473716020584
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.5478345155715942,
+          -0.07711046934127808
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.11197312921285629,
+          0.0003504473716020584
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.5478345155715942,
+          0.0003504473716020584
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.5478345155715942,
+          -0.08004811406135559
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "SE revision manufacturer datasheet lists assembled H × W × L as 705 × 464 × 300 mm; excluded packed dimensions.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "2ce2bf491d8d220bf705f6a24277434715fb5b0c1cd8eb0838b2d5692bb0cad7"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "39766d2887f5fc1ceecb331f2b2807148c2ccf267f37b38864d7578a3a96636d"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "f17d0a07c65fb1c773bd1a9a18ed8f3a0c5a22bb760bac5c6de43a93671bcb33"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "bc1660ee3e8bc39f03129df51ca4286a98315cdd1a733af550ff0fc525bf72b1"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "b2c35252fad014ae7abbae6ec2dd0ceb9d8eb7c435388a851d016a925cb091da"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "d1ab43bfc9a9658e27d60be6a869b7d2d22552773c5f50807c8a4820c807a91a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "2943e38096cc69df598196bb22ab0a3d596f165da287b0163fa6f075b1684e59"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "9233257ffca5a4771d12d6b2cfa0173fb099ab62d7c678bf6cad98454b3346ca"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "e24fb953689762033f2aaf5e23c2852bd5507cc05ae8063a85e811415b06d64d"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "87b1969ca7dc9517e1fba6ac48989c01101f9a5fc81ee222c58c5ba62e8f4185"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "1a526af7d3618f759194a2f398abec2ffcc9d94e02acada64bf694aea4b320ad",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 1,
+      "body_style": "mid-size wash head with yoke and automated barn doors",
+      "notes": "Do not substitute dimensions of legacy VL2600 Wash for the SE version."
+    },
+    "mesh_count": 73,
+    "triangle_count": 19160,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Acquired in expansion batch 2. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

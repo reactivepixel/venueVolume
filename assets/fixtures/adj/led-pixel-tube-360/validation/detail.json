@@ -1,0 +1,51 @@
+{
+  "mesh_count": 3,
+  "triangle_count": 564,
+  "geometry_sha256": "cb65d7751a20a91b987a188f3132b1b3d8597297ff4450ea9651b272c406e8c7",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.02500000037252903,
+      -0.0264660082757473
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.0009470679797232151,
+        -0.0
+      ]
+    }
+  ],
+  "family": "tube",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0020040273666382,
+    1.037882685661316,
+    1.037882685661316
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/products/led-pixel-tube-360",
+    "https://www.adj.com/products/led-pixel-10c",
+    "https://www.adj.com/cdn/shop/files/429d3536aa084bddeeeb30bfad5c4762f264648f_LED075__IMG__001__adb6428d9066.jpg?v=1776713790&width=450"
+  ]
+}

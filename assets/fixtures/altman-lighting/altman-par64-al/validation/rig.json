@@ -1,0 +1,17 @@
+{
+  "id": "altman-lighting/altman-par64-al",
+  "passed": true,
+  "source_usdz_sha256": "dca34a5274bc3fdde7429f2364853fdab821416b11cdae4920181a55bc903ab3",
+  "joints": 1,
+  "moving_meshes": 23,
+  "fixed_meshes": 5,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

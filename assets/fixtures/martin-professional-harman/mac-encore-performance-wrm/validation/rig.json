@@ -1,0 +1,17 @@
+{
+  "id": "martin-professional-harman/mac-encore-performance-wrm",
+  "passed": true,
+  "source_usdz_sha256": "33bf7c7748961364c875180f66076114a7d55a284dcb57048fd60dc55465a01b",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

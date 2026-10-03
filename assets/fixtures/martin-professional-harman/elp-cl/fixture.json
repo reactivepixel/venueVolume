@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "id": "martin-professional-harman/elp-cl",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Martin Professional (HARMAN)",
+    "model": "ELP CL",
+    "variant": "ELP CL",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.martin.com/en-US/products/elp-cl",
+      "title": "Martin Professional (HARMAN) ELP CL official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://adn.harmanpro.com/productattachment/7028/product_attachment/x_large-7585204fdcb485b9e58a0edf39e1a50a.webp",
+      "title": "Martin Professional (HARMAN) ELP CL official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.webp",
+      "sha256": "be4268f98923006536d6faf6cce5bb081442f1b79a1f90260c1540a06b985bc7"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.259,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Bracketed envelope is documented; long housing axis is assigned to runtime depth."
+    },
+    "height": {
+      "value": 0.427,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Bracketed envelope is documented; long housing axis is assigned to runtime depth."
+    },
+    "depth": {
+      "value": 0.648,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Bracketed envelope is documented; long housing axis is assigned to runtime depth."
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.12950000166893005,
+        0.0,
+        -0.3240000009536743
+      ],
+      "max": [
+        0.12950000166893005,
+        0.4269999787211418,
+        0.32400000328198075
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.1184513047337532,
+          0.005890908185392618
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.11550786346197128,
+          0.005890908185392618
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.11550786346197128,
+          -0.3055908977985382
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.11550786346197128,
+          -0.3311590850353241
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Bracketed envelope is documented; long housing axis is assigned to runtime depth.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "2c99ccc79ede6db1b9d4d1099e0ac19c1a40eb9f6a657de7b33c911ecc0067b6"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "e4dc3aba2336f66128dbc151aab4fc8793e88dc275d080963430f5cb7e732b12"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "04992183c9d4bb6b1e9ac700aa39d398f69a25b3467873cf6d11d06d61005b24"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "f5453a076d332202448aaeed0081845d1c6d60ab752b8e13a7a4a90ea887e751"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "d927596ca4a30e0734be7c9f3cd505beb565653282cb527725693802f0c8a461"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "1cf3ababebaea2bda1b9c74065fc036acd87ab38602944978aca2e821bd5b508"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "bf4d6222f92fe32b7be3de01a4cee5c9120225e2a8c73f13e8419134aaa82b7a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "94157214b76bce48135055c788ed3b5548a8d5080aa45b76d59dc72cb172817f"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "736cc49064f7aff58bd057548d8df4cdc8266b311c0f7b475dd4f08d0a15a139"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "6663e5b3b6cacff9d81f91e5dff4552623c44825c828a62345d64c03ee63beda"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "24ab061c836f6d3c2b8de5cecdb9faaacb42470866e0f2031fe5b87dccdc15ce",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "profile",
+      "barrel_ratio": 0.43
+    },
+    "mesh_count": 47,
+    "triangle_count": 16908,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed profile geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.static.profile",
+    "category_path": [
+      "Lighting fixtures",
+      "Static and manually focused",
+      "Profile / ellipsoidal (ERS)"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

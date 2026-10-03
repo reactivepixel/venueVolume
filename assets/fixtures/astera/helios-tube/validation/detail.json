@@ -1,0 +1,52 @@
+{
+  "mesh_count": 3,
+  "triangle_count": 564,
+  "geometry_sha256": "73922e8b574fadbe7e8573797604b0c5c1c38738cfa1eb1009ea4353fc499d1e",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.021500002592802048,
+      -0.022760769352316856
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.0008144793100655079,
+        -0.0
+      ]
+    }
+  ],
+  "family": "tube",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0020040273666382,
+    1.0378828048706055,
+    1.0378828048706055
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://astera-led.com/fr/products/helios-tube/specs/",
+    "https://astera-led.com/wp-content/uploads/Datasheet_Helios_Tube_V4-1.pdf",
+    "https://astera-led.com/wp-content/uploads/FP2-BTB_HeliosTube_BTB_Manual_EN_DE_IT_ES_FR_PT.pdf",
+    "https://media.astera-led.com/wp-content/uploads/Helios-Tube_V2.png"
+  ]
+}

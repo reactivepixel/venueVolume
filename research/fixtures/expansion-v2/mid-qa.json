@@ -1,0 +1,85 @@
+{
+  "review_date": "2026-10-02",
+  "reviewer": "catalog-mid-v2",
+  "purpose": "Visual comparison of generated fixture previews against official product-reference images; record substantive lens or silhouette mismatches only.",
+  "source_worktree": "/home/chapman/Projects/venueVolume/.worktree/catalog-expansion-v2",
+  "read_only_review": true,
+  "contact_sheet_suffix": "batchtouring-dj-2026-10.jpg",
+  "reviewed_count": 16,
+  "coverage_note": "The requested brand/model contact sheets contain 16 identifiable source/model pairs in this scope. No seventeenth requested mid-catalog pair was present in the listed ACME, Astera, Elation, ETC jr, HES, Cameo, PROLIGHTS, and Rogue R3/R3X sheets.",
+  "findings": [
+    {
+      "id": "etc-colorsource-par-jr-optic-count",
+      "fixture": "etc/colorsource-par-jr",
+      "severity": "substantive",
+      "status": "resolved",
+      "source_image": "assets/fixtures/etc/colorsource-par-jr/sources/product-reference-0.jpg",
+      "model_preview": "assets/fixtures/etc/colorsource-par-jr/previews/three-quarter.png",
+      "observation": "Resolved in the revised preview: it now shows four concave reflectors, matching the four visible optics in the manufacturer image. Front-view inspection confirms the small source points are centered in their cups; the earlier apparent offset was three-quarter-view parallax.",
+      "recommended_focus": "No further change requested for the four-cup layout or emitter positions."
+    },
+    {
+      "id": "etc-colorsource-spot-jr-square-front-plate",
+      "fixture": "etc/colorsource-spot-jr",
+      "severity": "substantive",
+      "status": "resolved",
+      "source_image": "assets/fixtures/etc/colorsource-spot-jr/sources/product-reference-0.jpg",
+      "model_preview": "assets/fixtures/etc/colorsource-spot-jr/previews/three-quarter.png",
+      "observation": "Resolved in the revised preview: the unsupported square plate is gone and the model now presents the circular lens/rim at the end of the zoom barrel, consistent with the official image.",
+      "recommended_focus": "No further change requested for this finding."
+    },
+    {
+      "id": "astera-ax5-reflector-cups",
+      "fixture": "astera/ax5-triplepar",
+      "severity": "notable",
+      "status": "resolved",
+      "source_image": "assets/fixtures/astera/ax5-triplepar/sources/product-reference-0.png",
+      "model_preview": "assets/fixtures/astera/ax5-triplepar/previews/three-quarter.png",
+      "observation": "Resolved in the revised preview: it now shows three broad concave reflectors and the requested floor-yoke. Front-view inspection confirms the small source points are centered in their cups; the earlier apparent offset was three-quarter-view parallax.",
+      "recommended_focus": "No further change requested for the three-cup layout, emitter positions, or floor-yoke."
+    },
+    {
+      "id": "etc-colorsource-par-jr-oval-front-housing",
+      "fixture": "etc/colorsource-par-jr",
+      "severity": "notable",
+      "status": "open",
+      "source_image": "assets/fixtures/etc/colorsource-par-jr/sources/product-reference-0.jpg",
+      "model_preview": "assets/fixtures/etc/colorsource-par-jr/previews/front.png",
+      "observation": "In the front orthographic preview the outer PAR head/optical face reads vertically oval; the official product reference shows a round front housing and face.",
+      "recommended_focus": "Check round housing proportions independently of the full fixture's dimension envelope; preserve the sourced overall dimensions while keeping the PAR face circular."
+    },
+    {
+      "id": "astera-ax5-oval-front-housing",
+      "fixture": "astera/ax5-triplepar",
+      "severity": "substantive",
+      "status": "open",
+      "source_image": "assets/fixtures/astera/ax5-triplepar/sources/product-reference-0.png",
+      "model_preview": "assets/fixtures/astera/ax5-triplepar/previews/front.png",
+      "observation": "The AX5 front orthographic preview has a markedly vertically elongated/oval housing face, whereas the manufacturer's TriplePAR face and reflector group are circular.",
+      "recommended_focus": "Restore a circular optical housing/face while retaining the dimensioned overall envelope and separate floor-yoke."
+    }
+  ],
+  "reviewed_fixtures": [
+    {"fixture":"acme/lightning","source":"assets/fixtures/acme/lightning/sources/product-reference-0.png","model":"assets/fixtures/acme/lightning/previews/front.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"acme/mana-profile","source":"assets/fixtures/acme/mana-profile/sources/product-reference-0.png","model":"assets/fixtures/acme/mana-profile/previews/three-quarter.png","result":"no specific blocking lens/silhouette discrepancy recorded"},
+    {"fixture":"astera/titan-tube","source":"assets/fixtures/astera/titan-tube/sources/product-reference-0.jpg","model":"assets/fixtures/astera/titan-tube/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"astera/helios-tube","source":"assets/fixtures/astera/helios-tube/sources/product-reference-0.png","model":"assets/fixtures/astera/helios-tube/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"astera/ax5-triplepar","source":"assets/fixtures/astera/ax5-triplepar/sources/product-reference-0.png","model":"assets/fixtures/astera/ax5-triplepar/previews/three-quarter.png","result":"three cups, centered emitters and floor-yoke verified; front housing circularity remains open"},
+    {"fixture":"elation-professional/proteus-lucius","source":"assets/fixtures/elation-professional/proteus-lucius/sources/product-reference-0.jpg","model":"assets/fixtures/elation-professional/proteus-lucius/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"elation-professional/proteus-maximus","source":"assets/fixtures/elation-professional/proteus-maximus/sources/product-reference-0.jpg","model":"assets/fixtures/elation-professional/proteus-maximus/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"etc/colorsource-spot-jr","source":"assets/fixtures/etc/colorsource-spot-jr/sources/product-reference-0.jpg","model":"assets/fixtures/etc/colorsource-spot-jr/previews/three-quarter.png","result":"square plate removal verified; prior finding resolved"},
+    {"fixture":"etc/colorsource-par-jr","source":"assets/fixtures/etc/colorsource-par-jr/sources/product-reference-0.jpg","model":"assets/fixtures/etc/colorsource-par-jr/previews/three-quarter.png","result":"four reflectors and centered emitters verified; front housing circularity remains open"},
+    {"fixture":"high-end-systems/lonestar","source":"assets/fixtures/high-end-systems/lonestar/sources/product-reference-0.jpg","model":"assets/fixtures/high-end-systems/lonestar/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"high-end-systems/lonestar-prime","source":"assets/fixtures/high-end-systems/lonestar-prime/sources/product-reference-0.jpg","model":"assets/fixtures/high-end-systems/lonestar-prime/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"cameo/opus-x4","source":"assets/fixtures/cameo/opus-x4/sources/product-reference-0.jpg","model":"assets/fixtures/cameo/opus-x4/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"cameo/opus-x4-ip","source":"assets/fixtures/cameo/opus-x4-ip/sources/product-reference-0.jpg","model":"assets/fixtures/cameo/opus-x4-ip/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"prolights/astra-hybrid330","source":"assets/fixtures/prolights/astra-hybrid330/sources/product-reference-0.webp","model":"assets/fixtures/prolights/astra-hybrid330/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"chauvet-professional/rogue-r3-beam","source":"assets/fixtures/chauvet-professional/rogue-r3-beam/sources/product-reference-0.png","model":"assets/fixtures/chauvet-professional/rogue-r3-beam/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted"},
+    {"fixture":"chauvet-professional/rogue-r3x-wash","source":"assets/fixtures/chauvet-professional/rogue-r3x-wash/sources/product-reference-0.png","model":"assets/fixtures/chauvet-professional/rogue-r3x-wash/previews/three-quarter.png","result":"no substantive lens/silhouette issue noted; multi-lens face arrangement is recognizably consistent"}
+  ],
+  "limitations": [
+    "Visual QA only; no changes were made to the parent worktree or generated models.",
+    "Review covered contact sheets and available front/three-quarter PNG previews, not Blender mesh inspection or in-app runtime viewing.",
+    "A blank model.joints field was not used as an articulation failure criterion."
+  ]
+}

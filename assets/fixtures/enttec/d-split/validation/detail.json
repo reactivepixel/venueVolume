@@ -1,0 +1,51 @@
+{
+  "mesh_count": 14,
+  "triangle_count": 2248,
+  "geometry_sha256": "2b6ff8c36001591ba6057d8b1ade6642fb6a3a1aec7d4605ab7fa9b2485299ab",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      4.352780160843395e-05,
+      0.0,
+      -0.0
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        4.352780160843395e-05,
+        0.0,
+        -0.0
+      ]
+    }
+  ],
+  "family": "splitter",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9462589621543884,
+    1.0989010334014893,
+    1.0534846782684326
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.enttec.com/es/product/dmx-isolated-splitter-din-rail/d-split-dmx-opto-splitter-isolator/",
+    "https://cdn.enttec.com/pdf/assets/70574_70578_70579/70574_70578_70579_D-SPLIT_DATASHEET.pdf",
+    "https://cdn.enttec.com/wp-content/uploads/2021/10/10015010/2024_0003_dsplit_Isometric-Top-view-A-3-pin.png"
+  ]
+}

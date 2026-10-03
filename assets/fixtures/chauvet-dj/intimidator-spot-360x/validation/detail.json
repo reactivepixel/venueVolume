@@ -1,0 +1,78 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 17996,
+  "geometry_sha256": "3b061e27ab373e725c06e885f63ed1acb0b999bf6bdd64d9d196067b7a0c08d9",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.3167400062084198,
+      -0.09576551616191864
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.002869214164093137
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.0676800012588501,
+        0.002869214164093137
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.3167400062084198,
+        0.002869214164093137
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.3167400062084198,
+        -0.09216155856847763
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    0.991024911403656,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.chauvetdj.com/products/intimidator-spot-360x/",
+    "https://www.chauvetdj.com/wp-content/uploads/2022/10/Intimidator-Spot-360X_UM_Rev1.pdf",
+    "https://www.chauvetdj.com/wp-content/uploads/2022/10/INTIMIDATOR-360X-FRONT-OFF.jpg"
+  ]
+}

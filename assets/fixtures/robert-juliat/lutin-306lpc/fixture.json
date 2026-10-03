@@ -1,0 +1,324 @@
+{
+  "schema_version": 1,
+  "id": "robert-juliat/lutin-306lpc",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Robert Juliat",
+    "model": "Lutin 306LPC",
+    "variant": "306LPC",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.robertjuliat.com/singlelenslum/lutin.html",
+      "title": "Robert Juliat Lutin 306LPC official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.robertjuliat.com/Product_Specifications/Fiches_EN/Standard/DSEN004_306LPC.pdf",
+      "title": "Lutin 306LPC product specification",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "306LPC variant; dimensional drawing and 1000W tungsten specification",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.robertjuliat.com/images/produits_pics/LUTIN_c08.png",
+      "title": "Lutin 306LPC visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.png",
+      "sha256": "75f11ee2120fc689dd212f90054f8a202af7f13f8d5a39fc288189c3b21b6a52"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.3,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer drawing for exact 306LPC variant."
+    },
+    "height": {
+      "value": 0.385,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer drawing for exact 306LPC variant."
+    },
+    "depth": {
+      "value": 0.43,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer drawing for exact 306LPC variant."
+    },
+    "reference_pose": "Yoke assembled, lens axis horizontal; accessory and lamp excluded unless listed."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "1000 W tungsten",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "7.2 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Yoke assembled, lens axis horizontal; accessory and lamp excluded unless listed.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.15000000596046448,
+        0.0,
+        -0.2150000035762787
+      ],
+      "max": [
+        0.15000000596046448,
+        0.38499991595745087,
+        0.21500000543892384
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.1041126698255539,
+          0.013189690187573433
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.1041126698255539,
+          -0.19557960331439972
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.1041126698255539,
+          0.041025593876838684
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.1041126698255539,
+          -0.2048582285642624
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Manufacturer drawing for exact 306LPC variant.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "da2b9d0988028eeab06f0a8eb00beb32f3416e81d30004c766b200faf1aef47b"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "697f4ef83307213bda75637157722e2a0b827f8897b7ecb8fc8cd7b58500a737"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "e462be5cdef09f80d237ddad630a52731ee7d00f4e4d9434ba6dd7053ad3f929"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "a002beb62553fb9e8dbd862f775d878aa506182848e89d344e8590bc7d1b08a1"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "2f2bcfaa1d5f0ec48d822c7ddb7a4a8871a9ffb27a49f4c76611b37bbd31eaa3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "7ae3f212edd5c5cc6460ec01cfce44189776805eec66384ad85038e69f8d8de9"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "9006ad2afaec4df2cd38ce57da61322492d36325dde9be1a75d5b9ad1fdb8c69"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "53d8e6ef4da0e5481f3e8ddcbb811e5ffd95031d36a637a6eb90f3c47b3201a3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "23d0084a03fd826c35f907d8b504f122c9aff23602814b341d2c1ffbf2eb458c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "4b8c48e73f32a681e33f0d5939c4f9151565f45e1c2d52371310bbc383ea0b3d"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "a8ca264d07bf3d0896098f24b1ed91122e7c82949809e30ce492932e72fdfe92",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "pc",
+      "body_style": "compact single-lens plano-convex housing, lens door and yoke",
+      "notes": "True PC optical type, not an ERS/profile proxy.",
+      "generator": "equipment",
+      "output_kind": "light"
+    },
+    "mesh_count": 36,
+    "triangle_count": 7928,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed pc geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "lighting.static.pc",
+    "control_path": "Mains-powered tungsten fixture; dimmer compatibility not transcribed from cited specification",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://www.robertjuliat.com/singlelenslum/lutin.html",
+        "https://www.robertjuliat.com/Product_Specifications/Fiches_EN/Standard/DSEN004_306LPC.pdf"
+      ],
+      "control_path": "Mains-powered tungsten fixture; dimmer compatibility not transcribed from cited specification",
+      "protocols": [],
+      "power": "1000 W tungsten",
+      "weight": "7.2 kg",
+      "dimensions": {
+        "width_m": 0.3,
+        "height_m": 0.385,
+        "depth_m": 0.43,
+        "axis_status": "documented",
+        "axis_note": "Manufacturer drawing for exact 306LPC variant.",
+        "reference_pose": "Yoke assembled, lens axis horizontal; accessory and lamp excluded unless listed."
+      },
+      "research_evidence": [
+        {
+          "url": "https://www.robertjuliat.com/Product_Specifications/Fiches_EN/Standard/DSEN004_306LPC.pdf",
+          "title": "Lutin 306LPC product specification",
+          "locator": "306LPC variant; dimensional drawing and 1000W tungsten specification",
+          "accessed_at": "2026-09-30"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.static.pc",
+    "category_path": [
+      "Lighting fixtures",
+      "Static and manually focused",
+      "Plano-convex / pebble-convex (PC)"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "id": "cm-entertainment-technology-columbus-mckinnon/lodestar-d8-type-l-1-tonne",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "CM Entertainment Technology (Columbus McKinnon)",
+    "model": "Lodestar D8+ Type L, 1 tonne",
+    "variant": "Lodestar D8+ Model L",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.cmco.com/globalassets/catalogs--documents/emea/cmco-cm-et-product-catalogue-2022.pdf",
+      "title": "CM Entertainment Technology product catalog 2022",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Page 4 Lodestar D8+ product view and capability family; page 5: dimension drawing D8+ Series columns and Type L 1,000 kg, 4 m/min, 400 V 3-phase specification",
+      "reuse_status": "reference_only",
+      "file": "sources/cm-lodestar-d8plus-catalog.pdf",
+      "sha256": "f453768cc9847d4361ef3dceedc190ebb5c97e22388ae2d472a96ea1ef885674"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.cmco.com/globalassets/catalogs--documents/emea/cmco-cm-et-product-catalogue-2022.pdf",
+      "title": "Lodestar D8+ Type L, 1 tonne visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.png",
+      "sha256": "ad63e9332b3ce30f28bb7539d7849f637aa6fea08172da9176e5de033d0fe870"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.582,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Mapped to axes from the manufacturer drawing; total height adds two labeled 30 mm hook offsets to the 472 mm A span, so the outer envelope is estimated."
+    },
+    "height": {
+      "value": 0.532,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Mapped to axes from the manufacturer drawing; total height adds two labeled 30 mm hook offsets to the 472 mm A span, so the outer envelope is estimated."
+    },
+    "depth": {
+      "value": 0.321,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Mapped to axes from the manufacturer drawing; total height adds two labeled 30 mm hook offsets to the 472 mm A span, so the outer envelope is estimated."
+    },
+    "reference_pose": "Body horizontal, suspension hook upright, load hook below; chain and bag omitted. Estimated outer hook envelope."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Body horizontal, suspension hook upright, load hook below; chain and bag omitted. Estimated outer hook envelope.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.29100001137703657,
+        0.0,
+        -0.16050000488758087
+      ],
+      "max": [
+        0.2910000057891011,
+        0.5320000336505473,
+        0.16050000488758087
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          -0.014802875928580761,
+          -0.007305653300136328,
+          -0.0
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Mapped to axes from the manufacturer drawing; total height adds two labeled 30 mm hook offsets to the 472 mm A span, so the outer envelope is estimated.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "6ddb9f8df5d04d9886693f4701c68bca2a3ae24f5092f55b7b70f0babfaad79f"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "f01abd08697ddfeae65ab6145b0c8d81ba44209424fdb1063c0c1a3bbd5cc281"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "06065bdc9c43bfb8dbd948cf9f18f3aba674524096a596ff050d63e4c4bbe303"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "3c829dd36d860488467a8140e03f8a51680796037e877e0c4bfdd33cc98c36b9"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "ed21cf3b33bc7b73e31e4adb1c182bed621a3bc6f809422ca592457d678e5409"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "e646ae1f99a5b8512ea8ee2becf98f418242017497432d7dcb370f47f273030a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "5cd89793512847f44423b4ec785fcdc5876b0a2eaed0872e1e7de01dc1273a22"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "0eca136715ffe2bd0feda4e0fc7742a4d0fc17416bfaf664c4419d7725d6e754"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "47b534a80e5d2d6c302742c2a85880f87626bc77e2ea803d22c32f87021d78ef"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "86712bce6f749f4da6f9f7c16aa86595c5514f4211804c8fd4c4ec3d89cac3ed"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "468a64580e31502e163ba8f806ac7258fbe37a5865e800ab5690141f130ea261",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "hoist",
+      "body_style": "horizontal oval motor/gear housing with upper suspension hook and lower load hook",
+      "notes": "Reference body only; chain and lift height are variable instance/configuration properties, not fixed object geometry. This is an optional engineered-rigging category example, not a certified rigging model.",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 67,
+    "triangle_count": 6260,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion.",
+    "No official product image URL was present in the research CSV."
+  ],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed hoist geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "rigging.hoist",
+    "control_path": "Mains-powered lifting equipment with hoist controller and chain; not a lighting DMX fixture. Power/control model and rigging compatibility are production-specific.",
+    "physical_asset_only": true,
+    "source_data": {
+      "dimensions": {
+        "width_m": 0.582,
+        "height_m": 0.532,
+        "depth_m": 0.321,
+        "source_order": "D8+ Series JJ/L/LL (Type L) mapped envelope: 582 mm length (D+F), 532 mm estimated outer hook-to-hook height (A+2H), 321 mm end width (I+J).",
+        "axis_status": "estimated",
+        "axis_note": "Mapped to axes from the manufacturer drawing; total height adds two labeled 30 mm hook offsets to the 472 mm A span, so the outer envelope is estimated.",
+        "reference_pose": "Body horizontal, suspension hook upright, load hook below; chain and bag omitted. Estimated outer hook envelope."
+      },
+      "dimensions_status": "estimated_envelope_from_manufacturer_drawing",
+      "dimension_notes": "Type L is the middle D8+ Series JJ/L/LL column, not the F column. D+F gives 582 mm horizontal envelope; I+J gives 321 mm end width; A=472 mm is the inner hook span. Adding H=30 mm at each hook end yields an estimated 532 mm outer hook envelope; confirm datum interpretation before precise clearance modeling. Values describe one reeving pose only and are not a structural/rigging model.",
+      "control_path": "Mains-powered lifting equipment with hoist controller and chain; not a lighting DMX fixture. Power/control model and rigging compatibility are production-specific.",
+      "pose": "Hoist body horizontal, suspension hook upright and load hook directly below; no chain or chain bag included. Estimated outer hook extremities in vertical envelope.",
+      "rated_capacity_kg": 1000,
+      "lifting_speed_m_per_min": 4,
+      "reeving": "single reeved",
+      "research_evidence": [
+        {
+          "url": "https://www.cmco.com/globalassets/catalogs--documents/emea/cmco-cm-et-product-catalogue-2022.pdf",
+          "title": "CM Entertainment Technology product catalog 2022",
+          "locator": "Page 4 Lodestar D8+ product view and capability family; page 5: dimension drawing D8+ Series columns and Type L 1,000 kg, 4 m/min, 400 V 3-phase specification",
+          "file": "research/fixtures/taxonomy/support-sources/cm-lodestar-d8plus-catalog.pdf",
+          "sha256": "f453768cc9847d4361ef3dceedc190ebb5c97e22388ae2d472a96ea1ef885674",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "rigging.hoist",
+    "category_path": [
+      "Rigging and support",
+      "Hoist / winch / motion hardware"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

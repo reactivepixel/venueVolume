@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "90eecb75e1e6dd4521254bdda942523d9ea48f8942c7cfd0121fd5dde02db313",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "martin-professional-harman/mac-2000-profile",
+    "name": "MAC 2000 Profile",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/mac-2000-profile/fixture.usdz",
+    "sha256": "90eecb75e1e6dd4521254bdda942523d9ea48f8942c7cfd0121fd5dde02db313",
+    "boundsMin": [
+      -0.24500000476837158,
+      0.0,
+      -0.20400000584777445
+    ],
+    "boundsMax": [
+      0.24500000476837158,
+      0.7429999709129333,
+      0.20400000142399222
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.1188800036907196,
+          0.0002873592311516404
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5813000202178955,
+          0.0002873592311516404
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5813000202178955,
+          -0.18815788626670837
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative. Visual correction pending: The sourced head-up envelope is currently represented by a forward-facing neutral head; exact neutral-pose proportions need verification against the dimensional drawing."
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "chroma-q/color-force-3-72",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Chroma-Q",
+      "model": "Color Force 3 72",
+      "variant": "CQ1530-7200",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://chroma-q.com/products/color-force-3-72",
+        "title": "Chroma-Q Color Force 3 72 specifications",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Mechanical / electrical specifications and control; exact-model product gallery",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://chroma-q.com/media/cache/app_top_hero/1b/63/541e6aee1d2fc564aed8e47ae239.jpeg",
+        "title": "Color Force 3 72 product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpeg",
+        "sha256": "3ffe81891c8b67c922a6ee528812f7a59eb9790b35c186b9b0d73b2bd755c2bb"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 1.785,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+      },
+      "height": {
+        "value": 0.215,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+      },
+      "depth": {
+        "value": 0.18,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+      },
+      "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Black wired variant; 24 RGBA cells plus 48 SparQle LEDs; IP65; manual ±120° focus. Rectangular cells and two accent-pixel banks have separate geometry; detail proportions and pivot are estimated.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "1100 W; 100–240 V 50/60 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "35 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512-A",
+            "Art-Net",
+            "sACN",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "13ce4abace5a57545883f18f370f72ea58989b2a3c3791117df66869f442c9a8"
+  },
+  "git_commit": "cde57148359c6fba452466258e6762e851414b92",
+  "note": "Initial research record before any generated model artifacts existed."
+}

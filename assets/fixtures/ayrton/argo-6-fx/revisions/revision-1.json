@@ -1,0 +1,167 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "ayrton/argo-6-fx",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Ayrton",
+      "model": "Argo 6 FX",
+      "variant": "019650",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.ayrton.eu/produit/argo-6-fx/",
+        "title": "Argo 6 FX product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "19-source optical arrangement; control/protocols/mode range; power; dimensions, weight and code 019650",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.ayrton.eu/wp-content/uploads/2023/04/Argo6FX-2-1.jpg",
+        "title": "Argo 6 FX product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "83d8643260153d42c2d636f1249fa347adc637dbaafa94bd6def5f073c5b575a"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.436,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Official product page: 436 x 536 x 280 mm (length x height x depth)."
+      },
+      "height": {
+        "value": 0.536,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Official product page: 436 x 536 x 280 mm (length x height x depth)."
+      },
+      "depth": {
+        "value": 0.28,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Official product page: 436 x 536 x 280 mm (length x height x depth)."
+      },
+      "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "19 x 40 W RGBW emitters in 280 mm cluster; 13,000 lm; 4°–56° zoom; infinite pan/tilt; LiquidEffect graphics; IP65.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "950 W maximum",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "24.2 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM",
+            "Art-Net",
+            "sACN",
+            "CRMX wireless DMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "26-channel mode",
+        "footprint": 26,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "127-channel mode",
+        "footprint": 127,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Manufacturer reference dimensions; fixture assembled.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Official product page: 436 x 536 x 280 mm (length x height x depth).",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "bbc78aaf742bf5b268051e4aebd3ea1db543f1837219bb304b5b6a58feed9266"
+  },
+  "git_commit": "529393313efc84b984528b9491e9f5e230df9fd1",
+  "note": "Initial research record before any generated model artifacts existed."
+}

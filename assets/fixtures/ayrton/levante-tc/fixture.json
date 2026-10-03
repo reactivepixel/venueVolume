@@ -1,0 +1,358 @@
+{
+  "schema_version": 1,
+  "id": "ayrton/levante-tc",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Ayrton",
+    "model": "Levante TC",
+    "variant": "010250",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.ayrton.eu/produit/levante/",
+      "title": "Levante product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Version descriptions and product codes; CONTROL modes/channel count; power, physical size and weight",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.ayrton.eu/wp-content/uploads/2019/02/Product-Levante-02.png",
+      "title": "Levante TC product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "65d7d24ec76b03c64f691c99bc782238d2765d29368c3af6e72da26e7635c4b8"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.365,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official product page: 365 x 632 x 212 mm (length x height x depth)."
+    },
+    "height": {
+      "value": 0.632,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official product page: 365 x 632 x 212 mm (length x height x depth)."
+    },
+    "depth": {
+      "value": 0.212,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official product page: 365 x 632 x 212 mm (length x height x depth)."
+    },
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "7000 K LED engine; up to 15,000 lm fixture output; native CRI >90; 6.9°–57° zoom; 138 mm lens; IP20.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "550 W maximum",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "22 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "CRMX wireless DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "29-channel mode",
+      "footprint": 29,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "50-channel mode",
+      "footprint": 50,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Manufacturer reference dimensions; fixture assembled.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.18250000476837158,
+        0.0,
+        -0.10600000340491533
+      ],
+      "max": [
+        0.18250000476837158,
+        0.6320000886917114,
+        0.10599999409168959
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.00917379092425108
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.1136709600687027,
+          0.00917379092425108
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.49199625849723816,
+          0.00917379092425108
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.49199625849723816,
+          -0.08930975943803787
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.1136709600687027,
+          0.00917379092425108
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.49199625849723816,
+          0.00917379092425108
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.49199625849723816,
+          -0.09304466098546982
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Official product page: 365 x 632 x 212 mm (length x height x depth).",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "2f2a5f797895a6999324cb08c78b0597e02f0bd92b486d153d1702e5ec850b36"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "01b7b1752369fe150659136d1a2862acca69f00b94992285778886af3949b4a4"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "0752b39adfa1f17df768941bdf3987c7f11d98e77e07eaade38f2c23b53ce63d"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "1ff5de0bee48c86f4c8910027f2907714d0051c196caad2363ad647d9786f0e5"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "9d6723f1120aa4f47e8355f9d5e8cf493618a89cdc16619ae7bac8fc990798a5"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "ad213e02edd1c31ea749eaa228d2665cecb5026d03799845fa46f647c5d21e5e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "a8ca93d2dbaff6e47be956159076db050fbefaef62e404e8be20968c7c46223c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "eb20780c52bfee835033f0429da370913c8ce631a5e9e0fc621d9d31a8210c7e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "5b730fa205d932fcea210591f7ab0afe0f2dd2c1a313c7dfc99e27073b6661ff"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "1c466e15b404e6cc9948009494b5a00ee79c9f2dbb1732d0bd12567cc35c3b02"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "54fcd6895078367881f41539db7d7f7cf963cc2e41fe095b70d71d8053119ae5",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 1,
+      "body_style": "high-CRI wash with framing shutters and spherical front lens",
+      "notes": "Official product code 010250 identifies Levante TC; dedicated shutters and their rotating module should be modeled.",
+      "generator": "catalog",
+      "shell": "faceted",
+      "head_depth": 1.0,
+      "yoke_compression": 0.18
+    },
+    "mesh_count": 73,
+    "triangle_count": 18640,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "5947cd19455960033ffcbc240844ac668540de6dadea2e466289486fc6d1f24c",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

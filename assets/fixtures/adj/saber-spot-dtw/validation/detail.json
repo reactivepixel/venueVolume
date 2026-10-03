@@ -1,0 +1,69 @@
+{
+  "mesh_count": 45,
+  "triangle_count": 16208,
+  "geometry_sha256": "230657ab642f7dd60ef6d1f8cb630f2f5c3f6820e676f884050b672583a76e96",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.05201311409473419,
+      -0.05050200596451759
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.0003041704767383635,
+        0.000347395078279078
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.05201311409473419,
+        0.000347395078279078
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        0.0,
+        0.05201311409473419,
+        -0.027280554175376892
+      ]
+    }
+  ],
+  "family": "par",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0050251483917236,
+    0.9288579225540161,
+    1.3984839916229248
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/products/saber-spot-dtw",
+    "https://www.adj.com/blogs/news/adj-saber-spot-dtw-innovative-new-saber-spot-unleashed",
+    "https://www.adj.com/cdn/shop/files/98f3715e256374fee335f16f73bb79e00a474798_SAB990__IMG__001__7b5b730252c4.jpg?v=1776712483&width=2048"
+  ]
+}

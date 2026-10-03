@@ -1,0 +1,348 @@
+{
+  "schema_version": 1,
+  "id": "ayrton/perseo-beam",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Ayrton",
+    "model": "Perseo Beam",
+    "variant": "012470",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.ayrton.eu/produit/perseo-beam/",
+      "title": "Perseo Beam product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "13-element optics, source, control/protocols/mode range, power, dimensions and product code 012470",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.ayrton.eu/wp-content/uploads/2021/06/PerseoLT3.png",
+      "title": "Perseo Beam product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "f810c0811add72794ee3f3d001e4e7893fc07287cfb193a13750ec4c426d01f0"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.49,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official product page: 490 x 710 x 330 mm (length x height x depth)."
+    },
+    "height": {
+      "value": 0.71,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official product page: 490 x 710 x 330 mm (length x height x depth)."
+    },
+    "depth": {
+      "value": 0.33,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Official product page: 490 x 710 x 330 mm (length x height x depth)."
+    },
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "25,000 lm 9000 K LED engine; up to 18,000 lm output; 2°–42° zoom; 168 mm front lens; IP65.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "700 W maximum",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "41.5 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "Art-Net",
+          "sACN",
+          "CRMX wireless DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "29-channel mode",
+      "footprint": 29,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "42-channel mode",
+      "footprint": 42,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Manufacturer reference dimensions; assembled fixture.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.24500000476837158,
+        0.0,
+        -0.16500001167878509
+      ],
+      "max": [
+        0.24500000476837158,
+        0.7099999785423279,
+        0.16499998653307557
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.00028469646349549294
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.1136000007390976,
+          0.00028469646349549294
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.54830002784729,
+          0.00028469646349549294
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.54830002784729,
+          -0.1452043354511261
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.1136000007390976,
+          0.00028469646349549294
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.54830002784729,
+          0.00028469646349549294
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.54830002784729,
+          -0.15072187781333923
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Official product page: 490 x 710 x 330 mm (length x height x depth).",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "81d15be636cd35dbc2351c6eca7376547e399e548a0a47feb91131ae5dc1dcc9"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "a0a827177efd09b614752257981f99076a03a4336cd00babd0b210f36ef8b689"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "f425474598a1ed741ab1f6872f8d583f4afe42ec80acb1db5cf8cf7dedf110e9"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "ce792f7818e71b087e874d8de71ebab95ea5c89eff52bf0e9b4067fc622ce992"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "20383887a44132ea6c56c0059210f6e5890e1564ba73082c6d002ce4118ab186"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "43635d10a0766829ce916fbeb0b6883563da47ce00953005084bda3e1b1d3dae"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "0a6ef01c6921f39509f2787cce04edca74c6dc06a2e6659236c0ade6f81587ed"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "68e479a039061c8608b5f684943b7d9943b1f7a76caa931542cbbde294ed3809"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "b62f0b97414fcf51e543085202750adbd7bf642e406208ac1bcd0996acf18d3e"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "63ea14bbf1e52205bdb1360b2641d3966513d9a8570a6d7451698e7e3f060c5d"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "a7366b144d5656f44a60d242ca0a8ccc6cc06b3da0756ad8febfd0297e5a927a",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "IP65 profile/beam moving head",
+      "notes": "Single front aperture with 13-element zoom optic; 540° pan and 263° tilt."
+    },
+    "mesh_count": 85,
+    "triangle_count": 18516,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "9e4483a5cb3d2de88845135fc79d4b2b276037ed7498c47dc9d11fa2897f7a59",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.profile",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Framing profile"
+    ],
+    "use_tags": [
+      "weather-rated variant"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

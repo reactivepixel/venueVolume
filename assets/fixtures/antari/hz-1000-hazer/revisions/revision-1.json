@@ -1,0 +1,157 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "antari/hz-1000-hazer",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Antari",
+      "model": "HZ-1000 Hazer",
+      "variant": "HZ-1000",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://antari.com/products/hz-1000/",
+        "title": "HZ-1000 Hazer product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": "current web product page; manual Rev.04",
+        "locator": "Specifications and feature list: dimensions, weight, 1150 W, two DMX channels, fan and tank",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://antari.com/wp-content/uploads/HZ-1000_01.jpg",
+        "title": "HZ-1000 Hazer product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "b9b5ebd33055104e385746c4d794e4fe488c8e70d4e883e45c977fef0d027257"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.51,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 690/510/610 mm, mapped to depth/width/height. This is the wheeled machine case, not a shipping package."
+      },
+      "height": {
+        "value": 0.61,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 690/510/610 mm, mapped to depth/width/height. This is the wheeled machine case, not a shipping package."
+      },
+      "depth": {
+        "value": 0.69,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 690/510/610 mm, mapped to depth/width/height. This is the wheeled machine case, not a shipping package."
+      },
+      "reference_pose": "Integrated wheeled case upright, outlets/fan face oriented forward; casters included in stated assembled dimensions."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Wheeled integrated flight case; built-in high-velocity fan with adjustable diverter; dual haze output positions; 6.4 L reservoir; 2-channel DMX.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "1150 W",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "74.6 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "manual",
+            "timer",
+            "optional wireless DMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "2-channel mode",
+        "footprint": 2,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Integrated wheeled case upright, outlets/fan face oriented forward; casters included in stated assembled dimensions.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer L/W/H = 690/510/610 mm, mapped to depth/width/height. This is the wheeled machine case, not a shipping package.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "97159bb955884f89c834873176b8b9358bd3bf268e93b3b3751ef15ef7d9970e"
+  },
+  "git_commit": "b54cf066890555aa4729a81cee9400883a874af3",
+  "note": "Initial research record before any generated model artifacts existed."
+}

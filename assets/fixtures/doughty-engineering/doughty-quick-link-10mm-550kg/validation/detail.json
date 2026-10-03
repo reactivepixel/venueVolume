@@ -1,0 +1,51 @@
+{
+  "mesh_count": 3,
+  "triangle_count": 1728,
+  "geometry_sha256": "ee19ccf61711053986ad753b9c6e4931c33ae693557f066d467ab39d4771a8b1",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.002023555338382721,
+      -0.0
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.002023555338382721,
+        -0.0
+      ]
+    }
+  ],
+  "family": "safety_hardware",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0,
+    1.0,
+    1.0494506359100342
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://doughty-engineering.co.uk/products/quick-link-10mm-550kg/",
+    "https://doughty-engineering.co.uk/wp-content/uploads/2023/01/T23505-Data-Sheet-US.pdf",
+    "https://doughty-engineering.co.uk/wp-content/uploads/Product-Images/T23505-Quick-Link-1-700x700-c-default.jpg"
+  ]
+}

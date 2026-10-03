@@ -1,0 +1,167 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "ayrton/eurus-profile-s",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Ayrton",
+      "model": "Eurus Profile S",
+      "variant": "011540",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.ayrton.eu/produit/eurus/",
+        "title": "Eurus Profile product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "S/TC versions and codes; source output; CONTROL channel modes; power, dimensions and weight",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.ayrton.eu/wp-content/uploads/2020/11/Product-Eurus-04.png",
+        "title": "Eurus Profile S product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "4332dffd851a28305be3dac85086d9da8bdc5e94c4c48d2c183b17c5281a455c"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.445,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Official product page: 445 x 743 x 273 mm (length x height x depth)."
+      },
+      "height": {
+        "value": 0.743,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Official product page: 445 x 743 x 273 mm (length x height x depth)."
+      },
+      "depth": {
+        "value": 0.273,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Official product page: 445 x 743 x 273 mm (length x height x depth)."
+      },
+      "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "650 W LED engine; 36,000 lm fixture output; 4.5°–50° zoom; 170 mm lens; four-blade framing; IP20.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "1000 W maximum",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "32.9 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM",
+            "Art-Net",
+            "sACN",
+            "CRMX wireless DMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "39-channel mode",
+        "footprint": 39,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "62-channel mode",
+        "footprint": 62,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Manufacturer reference dimensions; assembled fixture.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Official product page: 445 x 743 x 273 mm (length x height x depth).",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "9f6f910b93642db3a21c24713ce403f4f1277ecf01e8701a7aa4dcc886f0041f"
+  },
+  "git_commit": "529393313efc84b984528b9491e9f5e230df9fd1",
+  "note": "Initial research record before any generated model artifacts existed."
+}

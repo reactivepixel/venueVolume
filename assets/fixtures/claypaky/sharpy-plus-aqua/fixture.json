@@ -1,0 +1,319 @@
+{
+  "schema_version": 1,
+  "id": "claypaky/sharpy-plus-aqua",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Claypaky",
+    "model": "Sharpy Plus Aqua",
+    "variant": "CD3002",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.claypaky.it/products/sharpy-plus-aqua/",
+      "title": "Claypaky Sharpy Plus Aqua official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_NewProducts2019-2020_EN.pdf",
+      "title": "Claypaky Sharpy Plus Aqua official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://www.claypaky.it/wp-content/uploads/2025/06/Claypaky_SharpyPlusAqua.jpg",
+      "title": "Claypaky Sharpy Plus Aqua official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "9d02da10e1b8988fb4dd90d8547bb6bc676aeed3f457a5c095919f90120ede78"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.42,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "height": {
+      "value": 0.731,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "depth": {
+      "value": 0.336,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {
+      "weight": {
+        "value": "38 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "Art-Net",
+          "RDM",
+          "sACN"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.20999999344348907,
+        0.0,
+        -0.16799999261274934
+      ],
+      "max": [
+        0.20999999344348907,
+        0.7310000061988831,
+        0.16799998795613647
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0015170923434197903
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.11695999652147293,
+          0.0015170923434197903
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.5924000144004822,
+          0.0015170923434197903
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.5924000144004822,
+          -0.14944563806056976
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.11695999652147293,
+          0.0015170923434197903
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.5924000144004822,
+          0.0015170923434197903
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.5924000144004822,
+          -0.1551707684993744
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "877f7e122e9d88932eb14dcb689b69b9ae977cf57aebc9110e2a8777f2e030df"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "388b54ecc5666294c051821f1fa05fb7cc32980e767a364331ff82712092999c"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "4453a847aceb5c39509b8d7a270e8faae829de717f82e72ea96a76d76a5b082d"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "32272fb0c1e0ac294febae72afe4e6aed6cb1915191e1fe9cd7b2245a2033c2d"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "c2a999490ef210889e069ed0e37ef35b1011da761a8e75c27def7073c84177ce"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "5029fa1ebfb92d95669dc0286ab1dfd5a038db0d457be5d51d585558f96335fd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "5e94fb1405e3fcfb2e79ddd84ac6e0ecd0cf80ad2aa30da5097de1b61ae26005"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "e946353b01ff2e7f3a7488a2e0d8fbf45c8380b0279ec9765c9971ffd83e2a15"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "04bf06f8b43967ba33685b53941a7468a8aa9a768fab64bc7e5b92ac975ed145"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "ce2a8b96327bfd8fa66e860158c86362a985dd250386b610428a99573217f614"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "25d286f0af62bf416531ec45867d7839d1b84686eac1ec6b70a05a88f1aa669f",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "shell": "faceted",
+      "lens_ratio": 0.65,
+      "head_depth": 0.87
+    },
+    "mesh_count": 85,
+    "triangle_count": 17996,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.hybrid",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Beam / spot / wash hybrid"
+    ],
+    "use_tags": [
+      "weather-rated variant",
+      "multi-role optics"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "checks": {
+    "meter_y_up": true,
+    "finite_nonempty_mesh_bounds": true,
+    "dimensions_match_reference_pose": true,
+    "usd_arkit_compatibility": true,
+    "declared_parts_exist": true,
+    "declared_emitters_exist": true
+  },
+  "asset_sha256": "eee654d39878cfc5e7948a5bbef8259ebc08fbc3c7a786c8564e46fcf4a12b6e",
+  "bounds_m": {
+    "min": [
+      -0.24500000476837158,
+      0.0,
+      -0.20400000584777445
+    ],
+    "max": [
+      0.24500000476837158,
+      0.75,
+      0.20400000142399222
+    ]
+  },
+  "actual_dimensions_m": [
+    0.49000000953674316,
+    0.75,
+    0.40800000727176666
+  ],
+  "expected_dimensions_m": [
+    0.49,
+    0.75,
+    0.408
+  ],
+  "tolerance_m": 0.001,
+  "mesh_count": 73,
+  "errors": [],
+  "failed_checks": [],
+  "warnings": [],
+  "realitykit": "not tested by this script",
+  "hardware": "not tested by this script"
+}

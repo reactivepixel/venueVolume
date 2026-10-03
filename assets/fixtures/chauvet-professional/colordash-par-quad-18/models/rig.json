@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "d3fc7d2440f4cdba30c3c80e7dae9da5601af1fa5777f75d1b033ee27e1be135",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "chauvet-professional/colordash-par-quad-18",
+    "name": "COLORdash Par-Quad 18",
+    "manufacturer": "CHAUVET Professional",
+    "family": "par",
+    "resource": "FixtureAssets/Catalog/chauvet-professional/colordash-par-quad-18/fixture.usdz",
+    "sha256": "d3fc7d2440f4cdba30c3c80e7dae9da5601af1fa5777f75d1b033ee27e1be135",
+    "boundsMin": [
+      -0.1615000069141388,
+      -7.450580596923828e-09,
+      -0.05300000309944153
+    ],
+    "boundsMax": [
+      0.1615000069141388,
+      0.2979999706149101,
+      0.05300000333227217
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.09963592141866684,
+          0.000781242037191987
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.09963592141866684,
+          -0.056785546243190765
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

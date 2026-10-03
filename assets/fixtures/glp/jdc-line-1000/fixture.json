@@ -1,0 +1,368 @@
+{
+  "schema_version": 1,
+  "id": "glp/jdc-line-1000",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "GLP",
+    "model": "JDC Line 1000",
+    "variant": "7875",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www1.glp.de/en/products/entertainment-lighting/strobes/jdc-line-1000-en",
+      "title": "GLP JDC Line 1000 product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Overview and Technical Data; hybrid strobe/pixel mapping, mode footprints, dimensions and net weight",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://glp.de/files/products/jdc-line-1000-product-data/JDC_Line_1000_User_Manual_EN_Rev_20240618-01.pdf",
+      "title": "JDC Line 1000 User Manual",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Revision 2024-06-18; operating modes and fixture description",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://glp.de/files/products/jdc-line-1000-product-data/JDC_Line_1000_DMX_Channel_Index_Rev_20240618-01.pdf",
+      "title": "JDC Line 1000 DMX Channel Index",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Revision 2024-06-18; all seven mode footprints",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www1.glp.de/templates/yootheme/cache/f0/JDC-Line-1000_Header-f04c3b7d.png",
+      "title": "JDC Line 1000 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.png",
+      "sha256": "62abf6822512b1b6af30c6420f8ae91cd859fbd7e5ae6eb01ee32a8fefd11d3f"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 1.0,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "GLP JDC Line 1000 product page; width 1000 mm, height 74 mm, depth 201.5 mm. Body without optional rigging or alignment brackets."
+    },
+    "height": {
+      "value": 0.074,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "GLP JDC Line 1000 product page; width 1000 mm, height 74 mm, depth 201.5 mm. Body without optional rigging or alignment brackets."
+    },
+    "depth": {
+      "value": 0.2015,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "GLP JDC Line 1000 product page; width 1000 mm, height 74 mm, depth 201.5 mm. Body without optional rigging or alignment brackets."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Bar horizontal, optical face upward; no accessory brackets."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "1600 W max",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "12 kg net",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512-A",
+          "RDM",
+          "Art-Net",
+          "sACN"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "M1",
+      "footprint": 32,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "M2",
+      "footprint": 68,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "M3",
+      "footprint": 168,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "M4",
+      "footprint": 94,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "M5",
+      "footprint": 196,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "M6",
+      "footprint": 316,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "M7",
+      "footprint": 78,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.4999999701976776,
+        1.862645149230957e-09,
+        -0.10075000114738941
+      ],
+      "max": [
+        0.4999999701976776,
+        0.07399999909102917,
+        0.10074999742209911
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.008874816820025444,
+          -0.007029915228486061
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.051766589283943176,
+          -0.007029915228486061
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.051766589283943176,
+          -0.09284588694572449
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.051766589283943176,
+          -0.09510420262813568
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "GLP JDC Line 1000 product page; width 1000 mm, height 74 mm, depth 201.5 mm. Body without optional rigging or alignment brackets.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "278477eba64c8cf9fbf8f7c696cac52fb1d194a3b785ac28c46764260b16ba2f"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "a87519fa60ca384f03a504a2323337086cefb947cf8dd9d2916c02156928e968"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "fc09b7aa10a5eb9dabb329c21c9f77cce54695fffc914a7e8a102a49895189ec"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "47ab14616d51be126cf3705e1d3d3703e733d10983d9687870894e9ab9cf6670"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "a131b8a5c6d0ebbe21b766e8ef42787009d2f66a9182ae5d8b19bebe0bbaf679"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "8146c0f46552573a21bc75c570f8bf0e2bd42e45aff8d2f7fa589ed05773fda6"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "0ec07e0635be796aa93ee9fa75901dbd5da376b69934c1fc559e7ee32343dc43"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "d82a61ca3f18f252319e898ec55df93fb6a775d20ee44d016b4b7352bc2bcce3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "f50910ac658fa8d5446a30dbc944263f1ee00ea557916703aa6b03747b4ad27c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "96f361ae4661907659e923b7c37889978457cdc4700d97368707f934e2ae6d1a"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "4d8353dbce5d048850b494d87e7111605f140e4983169d4fb6a9a189279c983d",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "batten",
+      "lens_count": 1,
+      "body_style": "linear hybrid strobe and RGB pixel mapping fixture",
+      "notes": "The 1000 mm lens tube shares RGB pixel and white strobe emission; a single continuous tube is a better shape representation than separate visible LEDs.",
+      "diffuser": true
+    },
+    "mesh_count": 39,
+    "triangle_count": 7348,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Acquired in expansion batch 2. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed batten geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.effects.strobe",
+    "category_path": [
+      "Lighting fixtures",
+      "Visible and audience effects",
+      "Strobe"
+    ],
+    "use_tags": [
+      "strobe capable",
+      "pixel control"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

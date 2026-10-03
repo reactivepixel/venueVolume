@@ -1,0 +1,141 @@
+{
+  "mesh_count": 141,
+  "triangle_count": 29628,
+  "geometry_sha256": "0d1edcd0a652926a38aa3bc3ba08b7f1ac32f7134b35784c12374edac76f5241",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.19759760797023773,
+      -0.06533117592334747
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0031870556995272636,
+        0.004690824542194605
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.19759760797023773,
+        0.004690824542194605
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        0.0,
+        0.19759760797023773,
+        -0.06353574246168137
+      ]
+    },
+    {
+      "name": "head_01",
+      "prim_path": "/Fixture/Head_01",
+      "pivot_m": [
+        -0.3723404109477997,
+        0.2568768858909607,
+        0.004690824542194605
+      ]
+    },
+    {
+      "name": "head_02",
+      "prim_path": "/Fixture/Head_02",
+      "pivot_m": [
+        -0.26595744490623474,
+        0.2568768858909607,
+        0.004690824542194605
+      ]
+    },
+    {
+      "name": "head_03",
+      "prim_path": "/Fixture/Head_03",
+      "pivot_m": [
+        -0.1595744639635086,
+        0.2568768858909607,
+        0.004690824542194605
+      ]
+    },
+    {
+      "name": "head_04",
+      "prim_path": "/Fixture/Head_04",
+      "pivot_m": [
+        -0.05319148674607277,
+        0.2568768858909607,
+        0.004690824542194605
+      ]
+    },
+    {
+      "name": "head_05",
+      "prim_path": "/Fixture/Head_05",
+      "pivot_m": [
+        0.05319148674607277,
+        0.2568768858909607,
+        0.004690824542194605
+      ]
+    },
+    {
+      "name": "head_06",
+      "prim_path": "/Fixture/Head_06",
+      "pivot_m": [
+        0.1595744639635086,
+        0.2568768858909607,
+        0.004690824542194605
+      ]
+    },
+    {
+      "name": "head_07",
+      "prim_path": "/Fixture/Head_07",
+      "pivot_m": [
+        0.26595744490623474,
+        0.2568768858909607,
+        0.004690824542194605
+      ]
+    },
+    {
+      "name": "head_08",
+      "prim_path": "/Fixture/Head_08",
+      "pivot_m": [
+        0.3723404109477997,
+        0.2568768858909607,
+        0.004690824542194605
+      ]
+    }
+  ],
+  "family": "batten",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.967117965221405,
+    0.9865033030509949,
+    0.9687106609344482
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.claypaky.it/products/volero-wave/",
+    "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_VoleroWave.jpg",
+    "https://ltb.no/media/multicase/documents/claypaky/datablad_claypaky_volerowave_11.2022.pdf"
+  ]
+}

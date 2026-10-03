@@ -1,0 +1,177 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "martin-professional-harman/mac-encore-two",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC Encore Two",
+      "variant": "MAC Encore Two",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.martin.com/en-US/products/mac-encore-two",
+        "title": "MAC Encore Two product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications > Physical: across-yoke/base widths, maximum/head-up height, head length and weight; Control modes; power",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://adn.harmanpro.com/productattachment/13804/product_attachment/x_large-f4b421de0df9f555d4e46bcbff7105cd.webp",
+        "title": "MAC Encore Two product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.webp",
+        "sha256": "b53c5f5f434aeac815062c7d7a9be679d845f6a5622eb507a0b45b0bfff06bf7"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.479,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Martin physical specifications: base width 429 mm, across-yoke width 479 mm, head length 596 mm, maximum height 776 mm (head straight up 758 mm), base depth 275 mm. Width uses across-yoke envelope; depth uses head length."
+      },
+      "height": {
+        "value": 0.776,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Martin physical specifications: base width 429 mm, across-yoke width 479 mm, head length 596 mm, maximum height 776 mm (head straight up 758 mm), base depth 275 mm. Width uses across-yoke envelope; depth uses head length."
+      },
+      "depth": {
+        "value": 0.596,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Martin physical specifications: base width 429 mm, across-yoke width 479 mm, head length 596 mm, maximum height 776 mm (head straight up 758 mm), base depth 275 mm. Width uses across-yoke envelope; depth uses head length."
+      },
+      "reference_pose": "Maximum height; base level; head tilted to maximum envelope."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Current LED profile with CMY mixing, 7 rotating gobos, animation wheel and framing system.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "1040 W maximum; 945 W typical",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "36.8 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM",
+            "Art-Net",
+            "RDM over Art-Net",
+            "sACN",
+            "Martin P3"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "52-channel mode",
+        "footprint": 52,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "62-channel mode",
+        "footprint": 62,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "68-channel mode",
+        "footprint": 68,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Maximum height; base level; head tilted to maximum envelope.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Martin physical specifications: base width 429 mm, across-yoke width 479 mm, head length 596 mm, maximum height 776 mm (head straight up 758 mm), base depth 275 mm. Width uses across-yoke envelope; depth uses head length.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "fba2476a67a05c2e56270db0b7db8dd9a08fbda929f644ac5b78b9feabb72b0e"
+  },
+  "git_commit": "529393313efc84b984528b9491e9f5e230df9fd1",
+  "note": "Initial research record before any generated model artifacts existed."
+}

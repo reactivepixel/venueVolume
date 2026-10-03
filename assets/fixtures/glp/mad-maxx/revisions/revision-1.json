@@ -1,0 +1,217 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "glp/mad-maxx",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "GLP",
+      "model": "MAD MAXX",
+      "variant": "7992",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://glp.de/en/products/entertainment-lighting/moving-lights/mad-maxx-en",
+        "title": "GLP MAD MAXX product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Technical Data: construction, dimensions, weight, power, motion and beam specs",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://glp.de/en/component/content/article/mad-maxx-cw-product-data",
+        "title": "GLP MAD MAXX CW Product Data",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Control modes/protocols, channel counts, LED source and dimensional table",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-3",
+        "url": "https://glp.de/files/products/mad-maxx-cw-product-data/Mad-Maxx_Datasheet-Rev20251128.pdf",
+        "title": "GLP MAD MAXX datasheet Rev. 2025-11-28",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Dimensions & Weight: discrepancy with current product page (195 kg vs 208 kg)",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://glp.de/images/products/MadMaxx/MadMaxx_Header.png",
+        "title": "MAD MAXX product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "9948ce7652c536c693706a2a5ac289afc72156d199e60d7ed494d1a870c81944"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 1.043,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "unit": "m",
+        "note": "GLP product page lists width 1043 mm, height 1057 mm, depth 789 mm; with head straight up the alternate envelope is 1248 mm high and 528 mm deep."
+      },
+      "height": {
+        "value": 1.057,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "unit": "m",
+        "note": "GLP product page lists width 1043 mm, height 1057 mm, depth 789 mm; with head straight up the alternate envelope is 1248 mm high and 528 mm deep."
+      },
+      "depth": {
+        "value": 0.789,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "unit": "m",
+        "note": "GLP product page lists width 1043 mm, height 1057 mm, depth 789 mm; with head straight up the alternate envelope is 1248 mm high and 528 mm deep."
+      },
+      "reference_pose": "Manufacturer technical data baseline; head position as shown in the standard dimension view. Alternate head-straight-up extent recorded in axis note."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "19 white-light LED beams; approx. 750 mm front lens/beam diameter; 1.6° fixed beam; 68,000 lm; three control modes.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2",
+            "official-3"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "2,500 W max at 230 V",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2",
+            "official-3"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "208 kg (current product page); 195 kg (datasheet Rev. 2025-11-28)",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2",
+            "official-3"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512-A",
+            "RDM",
+            "CRMX DMX/RDM",
+            "Art-Net",
+            "sACN",
+            "GLP iQ.Mesh"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2",
+            "official-3"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "15-channel mode",
+        "footprint": 15,
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "22-channel mode",
+        "footprint": 22,
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "70-channel mode",
+        "footprint": 70,
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Manufacturer technical data baseline; head position as shown in the standard dimension view. Alternate head-straight-up extent recorded in axis note.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "GLP product page lists width 1043 mm, height 1057 mm, depth 789 mm; with head straight up the alternate envelope is 1248 mm high and 528 mm deep.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "31e6608504bf1000f5c89b0f445b4b873ff846f0053da015349cec57ac7a8fef"
+  },
+  "git_commit": "cde57148359c6fba452466258e6762e851414b92",
+  "note": "Initial research record before any generated model artifacts existed."
+}

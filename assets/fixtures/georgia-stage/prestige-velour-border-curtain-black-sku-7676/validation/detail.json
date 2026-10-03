@@ -1,0 +1,50 @@
+{
+  "mesh_count": 75,
+  "triangle_count": 55332,
+  "geometry_sha256": "3541bc1992cb465b0d100133e0474d0661b9980ea8d9d8e12e22f1787abb8f9e",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.0,
+      0.0008108109468594193
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0008108109468594193
+      ]
+    }
+  ],
+  "family": "drape",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0,
+    0.675675630569458,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://gastage.com/sale-stage-curtain-valances-and-borders/988-prestige-velour-border-curtain-3-1-x-37-6-black-7676.html",
+    "https://gastage.com/3512-large_default/prestige-velour-border-curtain-3-1-x-37-6-black-7676.jpg"
+  ]
+}

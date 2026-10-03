@@ -1,0 +1,78 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 17996,
+  "geometry_sha256": "3bdf43dbaf6d12a8c99e3c5ebf3b184303ac6a5729d439ae56ed8a08ad73588c",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.6329699754714966,
+      -0.21468427777290344
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        2.3579461412737146e-05
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.13247999548912048,
+        2.3579461412737146e-05
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.6329699754714966,
+        2.3579461412737146e-05
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.6329699754714966,
+        -0.2068391889333725
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    1.048288106918335,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.elationlighting.com/products/proteus-maximus",
+    "https://www.elationlighting.com/media/certipro/articles/p/r/proteus_series-2022.pdf",
+    "https://www.elationlighting.com/cdn/shop/files/c0cfdc6e8c4020e8d6a8c32b1ba9d9a93bcaa229_PRM992__IMG__002__7152aceb057b.jpg?v=1776815619&width=2048"
+  ]
+}

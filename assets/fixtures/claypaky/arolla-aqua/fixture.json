@@ -1,0 +1,364 @@
+{
+  "schema_version": 1,
+  "id": "claypaky/arolla-aqua",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Claypaky",
+    "model": "Arolla Aqua",
+    "variant": "CL3027",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.claypaky.it/products/arolla-aqua/",
+      "title": "Arolla Aqua product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Source/output and CONTROL and CONNECTIONS: 38/41 channels, DMX/Art-Net/RDM/sACN/wireless; WEIGHT-SIZE: 38.7 kg, base/height, 1100 VA",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.claypaky.it/wp-content/uploads/2025/06/Claypaky_ArollaAqua.jpg",
+      "title": "Arolla Aqua product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "bec6f672ccaace830e3db6fb9046e50cca5b2d6837f8e2d802e8052e5bd54288"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.325,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer states 325 x 450 mm base and 750 mm height with vertical head. Assignment of base axes to width/depth follows the product views; preserve original base spans."
+    },
+    "height": {
+      "value": 0.75,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer states 325 x 450 mm base and 750 mm height with vertical head. Assignment of base axes to width/depth follows the product views; preserve original base spans."
+    },
+    "depth": {
+      "value": 0.45,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer states 325 x 450 mm base and 750 mm height with vertical head. Assignment of base axes to width/depth follows the product views; preserve original base spans."
+    },
+    "reference_pose": "Head vertical; base level."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Custom 900 W white LED engine (7000 K), 40,000 lm; IP66 moving profile; rotating gobos, animation wheel, framing and color section.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "1100 VA",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "38.7 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "Art-Net",
+          "RDM",
+          "sACN",
+          "Wireless DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "38-channel mode",
+      "footprint": 38,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "41-channel mode",
+      "footprint": 41,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Head vertical; base level.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.16249999403953552,
+        0.0,
+        -0.2249999907799065
+      ],
+      "max": [
+        0.16249999403953552,
+        0.7500001192092896,
+        0.22499998239800334
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.005780402105301619
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.13401083648204803,
+          0.005780402105301619
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.6302278637886047,
+          0.005780402105301619
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.6302278637886047,
+          -0.21254892647266388
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.13401083648204803,
+          0.005780402105301619
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.6302278637886047,
+          0.005780402105301619
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.6302278637886047,
+          -0.22082889080047607
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer states 325 x 450 mm base and 750 mm height with vertical head. Assignment of base axes to width/depth follows the product views; preserve original base spans.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "05ea737864e841d93a9e35ad8b5807d20c9071e974e5d83903115e1a95b32c7a"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "7b7d9945e52a687ab3bc37ee4cafd917663d9590b2657894b6a65339567990a0"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "9f1c52f807107b723243e05185d8020b309ff8806042d749f2fd78193e56f686"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "258e9bb939020e874dd21fb5890106b3c86cac7c177b5b23d1fc05ed52359890"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "9781f1f4ce7b3d1582518b5bd734fd5bb2b2d23dc21d577ca9a05e99e1b537c2"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "5d1907e5ec0c384f74dabe3bc3e53ca5080367637c8c1f8dd71fffaa7784c955"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "71f59eb11c10ec52355384e189bad7af27fec400ffa017d1b4c6b84df2684328"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "5de08f62b4ad928d3dfd7a2c1100c52f25ecfc0a157ce4d41eea97765a22ae23"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "5f16d7ff90143b3f8cd1c0dbc699cf0fbdcb484bfd80c9c4c974b0fd7f3d7617"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "7ac345b41560d1dbc92e573dad8cd86e6281d5db436c99f82cc60e76011f27ca"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "1ce0cef03883d523a60c13e18508a396180b0a9dcbe99d9edc9f8fdf88ab514a",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "weather-rated profile head",
+      "notes": "This CL3027 is the standard Marine-shield-free model; MG variant CL3047 is separately identified in official product copy.",
+      "generator": "catalog",
+      "shell": "faceted",
+      "head_depth": 1.4,
+      "yoke_compression": 0.15
+    },
+    "mesh_count": 85,
+    "triangle_count": 18060,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "7a367f3e4347908f015af8ec442027344077efe8cad55737f44a06e41e133718",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.profile",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Framing profile"
+    ],
+    "use_tags": [
+      "weather-rated variant"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

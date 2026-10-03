@@ -1,0 +1,77 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 18516,
+  "geometry_sha256": "01f7bf0cdd6485ff281aa92c41c71ce6e9e4532ba5fd0c7e21bf7a0fc427669f",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.54830002784729,
+      -0.15072187781333923
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.00028469646349549294
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.1136000007390976,
+        0.00028469646349549294
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.54830002784729,
+        0.00028469646349549294
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.54830002784729,
+        -0.1452043354511261
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    1.035284399986267,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.ayrton.eu/produit/perseo-beam/",
+    "https://www.ayrton.eu/wp-content/uploads/2021/06/PerseoLT3.png"
+  ]
+}

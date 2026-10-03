@@ -1,0 +1,70 @@
+{
+  "mesh_count": 39,
+  "triangle_count": 7348,
+  "geometry_sha256": "376320892fe5c79c454fd6a37ebe186854bfa76b9f88f813c3c06f44590efe37",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.051766589283943176,
+      -0.09510420262813568
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.008874816820025444,
+        -0.007029915228486061
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.051766589283943176,
+        -0.007029915228486061
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        0.0,
+        0.051766589283943176,
+        -0.09284588694572449
+      ]
+    }
+  ],
+  "family": "batten",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.967117965221405,
+    1.120751976966858,
+    0.9501944184303284
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www1.glp.de/en/products/entertainment-lighting/strobes/jdc-line-1000-en",
+    "https://glp.de/files/products/jdc-line-1000-product-data/JDC_Line_1000_User_Manual_EN_Rev_20240618-01.pdf",
+    "https://glp.de/files/products/jdc-line-1000-product-data/JDC_Line_1000_DMX_Channel_Index_Rev_20240618-01.pdf",
+    "https://www1.glp.de/templates/yootheme/cache/f0/JDC-Line-1000_Header-f04c3b7d.png"
+  ]
+}

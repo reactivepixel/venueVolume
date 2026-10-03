@@ -1,0 +1,17 @@
+{
+  "id": "jb-lighting/p18-profile-mk2-hp",
+  "passed": true,
+  "source_usdz_sha256": "04b2231183087939b080129a01013811d4ee10c93b8d7fbc183b22259b48fb00",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

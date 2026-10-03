@@ -1,0 +1,148 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "adj/x-move-laser",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "ADJ",
+      "model": "X-Move Laser",
+      "variant": "X-Move Laser",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.adj.com/products/x-move-laser",
+        "title": "ADJ X-Move Laser product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications: output class, DMX modes, travel, dimensions, mass",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.adj.com/cdn/shop/files/e7333973f25e0385bc10441d2975406234e62f28_XMOVE_LASER__IMG__001__238d14f3295f.jpg?v=1776715879&width=350",
+        "title": "X-Move Laser product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "d913d18346250ad9d64e3eab722f9806e9bb25781825b135c29992695d39c391"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.19,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L x W x H 205 x 190 x 285 mm; mapped to width 190, height 285, depth 205 mm."
+      },
+      "height": {
+        "value": 0.285,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L x W x H 205 x 190 x 285 mm; mapped to width 190, height 285, depth 205 mm."
+      },
+      "depth": {
+        "value": 0.205,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L x W x H 205 x 190 x 285 mm; mapped to width 190, height 285, depth 205 mm."
+      },
+      "reference_pose": "Assembled moving head, base level."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Discontinued manufacturer listing; 4.9 mW green source; 540° pan and 220° tilt; no ILDA input stated.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {},
+      "mechanical": {
+        "weight": {
+          "value": "4.5 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512 (6 channels)",
+            "sound active",
+            "primary/secondary"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "6-channel mode",
+        "footprint": 6,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Assembled moving head, base level.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer L x W x H 205 x 190 x 285 mm; mapped to width 190, height 285, depth 205 mm.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "296df209f02b944949bb29e2053fc53bec5825093d72a120007f89f5ee8afa28"
+  },
+  "git_commit": "07e9005d4a27809a7538a3235f7cb42674303c77",
+  "note": "Initial research record before any generated model artifacts existed."
+}

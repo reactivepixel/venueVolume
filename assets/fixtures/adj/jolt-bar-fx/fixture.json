@@ -1,0 +1,373 @@
+{
+  "schema_version": 1,
+  "id": "adj/jolt-bar-fx",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ADJ",
+    "model": "Jolt Bar FX",
+    "variant": "JOLT-BAR-FX",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.adj.com/products/jolt-bar-fx",
+      "title": "ADJ Jolt Bar FX official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://www.adj.com/cdn/shop/files/4ba34d07f96ad74129a39daa60a889601126b3e3_JOL250__IMG__003__d947eb5428f7.jpg?v=1776713379&width=800",
+      "title": "ADJ Jolt Bar FX official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "8d117235afdf91e02ec196e09c7b3ddc41b8f4af8128583bef2d92864c9809ae"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 1.0,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "height": {
+      "value": 0.123,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "depth": {
+      "value": 0.107,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": [
+          "448 RGB plus 112 cool-white LEDs; strobe/blinder zones",
+          "discontinued"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "6-channel mode",
+      "footprint": 6,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "9-channel mode",
+      "footprint": 9,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "13-channel mode",
+      "footprint": 13,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "16-channel mode",
+      "footprint": 16,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "18-channel mode",
+      "footprint": 18,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "32-channel mode",
+      "footprint": 32,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "38-channel mode",
+      "footprint": 38,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "43-channel mode",
+      "footprint": 43,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "64-channel mode",
+      "footprint": 64,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "78-channel mode",
+      "footprint": 78,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "112-channel mode",
+      "footprint": 112,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "127-channel mode",
+      "footprint": 127,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.4999999701976776,
+        0.0,
+        -0.05350000038743019
+      ],
+      "max": [
+        0.4999999701976776,
+        0.1230000073555857,
+        0.05350000225007534
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.00124594965018332,
+          -0.0036588404327630997
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.07724879682064056,
+          -0.0036588404327630997
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.07724879682064056,
+          -0.04660587012767792
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.07724879682064056,
+          -0.04773605614900589
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer specifies bar L x W x H; runtime width follows bar length.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "1117b66a98d8bc165755c4797b49dc9eea2160b24811eab28a1beeadb8838f96"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "e6286a5b27d177e94728a75d87f5ddcc552cbef897a7a0118436be093a37c1f9"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "d5adf4de9000a77b0e5c9e136c7a10238a5e47f77c3c4c64c2b776c155773f78"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "f286e4e41b24a7bad02d980cf36681c8742a161ba5fec52c8afabf4d904af32f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "185cdb70d91a213b886c171387ef59d44dbfbea1c0be6156b9459bb40c2c9ee3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "a17f3f3c510fc8cc7d6cb0f2c920d6c35602d366a08902e9bd1dd53db7d63398"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "e6bcdc708652780ab61382af7293124b72fd2c85f66901e95dde1ab96633e1c3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "6b6f4a9cb7e09822461d1bf0b1f58a415b653f6d8386face1e9c9a6b61ae3d04"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "4dcf5c3f6b1f6fac81e0f45bf49fb132ff07d96b801d327936981d827018f4a3"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "ebe67be232208c247c9cf4476a89a7f2efcc6007b6a2ed4104b0cf4d4d345441"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "89f9256cb09f5632a047e5a94e74071b8267d1c962d01a34a7d8a47dc7a2c5d4",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "strobe",
+      "strip": true,
+      "cells": 20
+    },
+    "mesh_count": 99,
+    "triangle_count": 18628,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed strobe geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.effects.strobe",
+    "category_path": [
+      "Lighting fixtures",
+      "Visible and audience effects",
+      "Strobe"
+    ],
+    "use_tags": [
+      "strobe capable",
+      "blinder capable"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

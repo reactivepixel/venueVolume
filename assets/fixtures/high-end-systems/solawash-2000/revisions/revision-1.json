@@ -1,0 +1,249 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "high-end-systems/solawash-2000",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "High End Systems",
+      "model": "SolaWash 2000",
+      "variant": "SolaWash 2000",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaWash/2000/Features.aspx",
+        "title": "High End Systems SolaWash 2000 official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/",
+        "title": "High End Systems SolaWash 2000 official source 2",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-3",
+        "url": "https://www.highend.com/",
+        "title": "High End Systems SolaWash 2000 official source 3",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-4",
+        "url": "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaWash/2000/Documentation.aspx",
+        "title": "High End Systems SolaWash 2000 official source 4",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/High_End_Systems_Images/Lighting_Fixtures/SolaWash/Solawash_2000_prod_left.jpg",
+        "title": "High End Systems SolaWash 2000 official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.jpg",
+        "sha256": "c5c143e3ac44167b8094394025496f96faa2e5da844c109f96ca59fdaefc3bf1"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.475,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Overall dimensions are documented; width/depth/height assignment follows the official dimensional drawing."
+      },
+      "height": {
+        "value": 0.886,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Overall dimensions are documented; width/depth/height assignment follows the official dimensional drawing."
+      },
+      "depth": {
+        "value": 0.32,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Overall dimensions are documented; width/depth/height assignment follows the official dimensional drawing."
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {
+        "zoom": {
+          "value": "5–55°",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        },
+        "output": {
+          "value": "26,000 lm",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "600 W LED; 100–240 VAC, 50–60 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.23749999701976776,
+          0.0,
+          -0.1599999964237213
+        ],
+        "max": [
+          0.23749999701976776,
+          0.8859999775886536,
+          0.1599999964237213
+        ]
+      },
+      "parts": [
+        {
+          "name": "base",
+          "prim_path": "/Fixture/Base"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "head",
+          "prim_path": "/Fixture/Head"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Head/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Head/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Overall dimensions are documented; width/depth/height assignment follows the official dimensional drawing.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "6d182e2a8f6da22c2f1456427cdc492b4eae9e7cf54683c65febca1b52847a22"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "a077a0b86971c3ff052580bc732b08a85ede65a48fa41696890a20b199175bd2"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "644fb4e5eab5ae9e443079b992979d3159f0738b498c3e3041eeec1511d42479"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "be199c16c7a9fc2f4ad203bf233d767ed230b560cf6d05ebe31704885b3b0710"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "908e5035a6175550e1735e4a89cbb4541d708c59d7854db1f322c8337be8a0a2"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "4cc8fd0bc752fc125d54539aa122e1adc0f8cf5995bd794fb2e3e3431dda7975"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "fe6f2bc845e89b94415a72a54d5c9337ee6f46989dc36efd015ffcc499d27f01"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "0f34d5c9058ed8d35d27cae71969997a21be443594d9c406039478c062d6f6da"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-1",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

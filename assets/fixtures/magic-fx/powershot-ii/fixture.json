@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "id": "magic-fx/powershot-ii",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "MAGIC FX",
+    "model": "Powershot II",
+    "variant": "MFX0304",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://magicfx.com/products/powershot-ii",
+      "title": "Powershot II product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Description identifies electric confetti/streamer launcher; specifications give SKU, size, mass, power and power-on/off control",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://magicfx.com/cdn/shop/files/Powershot_II_manual.pdf?v=2824067315526127119",
+      "title": "MAGIC FX Powershot II official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://magicfx.com/cdn/shop/files/POWERSHOTII_66533f85-fbf1-4057-ae70-44f6163f6649.jpg?v=1774941991&width=3840",
+      "title": "Powershot II visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "ce2be4cb12ab4fd7bc5debf6f0b71c6b9d2e6dc491def3ee7f2c057e75d882a8"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.127,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer labels length/width/height; image checked in compact upright mounting pose, length treated as front-to-back short axis."
+    },
+    "height": {
+      "value": 0.19,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer labels length/width/height; image checked in compact upright mounting pose, length treated as front-to-back short axis."
+    },
+    "depth": {
+      "value": 0.09,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer labels length/width/height; image checked in compact upright mounting pose, length treated as front-to-back short axis."
+    },
+    "reference_pose": "Compact unit held upright with shot socket uppermost, mounting surface down; official product image."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "120 W; 220–240 VAC, 50/60 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "1.7 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "power on/off trigger"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Compact unit held upright with shot socket uppermost, mounting surface down; official product image.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.06350000202655792,
+        0.0,
+        -0.04500000365078449
+      ],
+      "max": [
+        0.06350000202655792,
+        0.1900000013411045,
+        0.0450000015553087
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          -0.005243979394435883,
+          0.003214180236682296
+        ]
+      },
+      {
+        "name": "output",
+        "prim_path": "/Fixture/Output",
+        "pivot_m": [
+          0.0,
+          0.03670786693692207,
+          -0.0055828336626291275
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Manufacturer labels length/width/height; image checked in compact upright mounting pose, length treated as front-to-back short axis.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "56b640e79ef9d6690e32946526a03829ee11ef92d849345dfee8d7d04976a6cc"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "06313e4fb13e4cbd3b7a875c7ff5130e951fc78b679d8cd7865276a3cd0e2077"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "612886e283db463062af8b0bb4422861d2d1c70edcd29205fcd793273b74d5b9"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "94f14dc0a17c563899458b88b32111d65dc05a5e67b4c1def798130cfb2230cd"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "441a8e14b6f371cb0a5c65fa6e96c9c10777f1e74fa7d6d139e749c592ab130d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "7f819757aa4d67dfe2c29183ad8a8286f4ffb4eab9fa895f4b52ae61a7549c07"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "4cc9508202c975e696dead2faecba161ae15cf1eb1aa1eb0d809d89fcb9ea0d3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "eb78426883918a09ed314cb3eb2f833e132fd16c57e86a2006a8d22b61fdf8d9"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "034eec6d64e46f89501d9297ffa46bc22df1028d71acbca41d84480165780927"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "68fc51e51e5939ad757c2e438188d84b66967ef01aaf19fbd8e10de9c808dd47"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.18563693761825562,
+          -0.021417461335659027
+        ],
+        "kind": "confetti",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "ebf668b67681fc73b123dfcddd264c8f5b3b317e5ba01c94d5314ad8defa3474",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "confetti",
+      "notes": "Launcher is a reusable electrical shot appliance; disposable electric cannons/consumables are separate products.",
+      "body_style": "small black box-shaped powered shot unit with top-facing cannon socket, angle indicator and mounting clamps",
+      "generator": "equipment",
+      "output_kind": "confetti"
+    },
+    "mesh_count": 5,
+    "triangle_count": 844,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed confetti geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "effects.confetti",
+    "control_path": "See source-backed protocol list; compatibility and control system are not implemented.",
+    "physical_asset_only": true,
+    "source_data": {
+      "protocols": [
+        "power on/off trigger"
+      ],
+      "source_urls": [
+        "https://magicfx.com/products/powershot-ii",
+        "https://magicfx.com/cdn/shop/files/Powershot_II_manual.pdf?v=2824067315526127119"
+      ],
+      "power": "120 W; 220–240 VAC, 50/60 Hz",
+      "weight": "1.7 kg",
+      "dimensions": {
+        "width_m": 0.127,
+        "height_m": 0.19,
+        "depth_m": 0.09,
+        "axis_status": "documented",
+        "axis_note": "Manufacturer labels length/width/height; image checked in compact upright mounting pose, length treated as front-to-back short axis.",
+        "reference_pose": "Compact unit held upright with shot socket uppermost, mounting surface down; official product image."
+      },
+      "research_evidence": [
+        {
+          "url": "https://magicfx.com/products/powershot-ii",
+          "title": "Powershot II product page",
+          "locator": "Description identifies electric confetti/streamer launcher; specifications give SKU, size, mass, power and power-on/off control",
+          "accessed_at": "2026-09-30"
+        }
+      ],
+      "control_path": "See source-backed protocol list; compatibility and control system are not implemented."
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "effects.confetti",
+    "category_path": [
+      "Special-effects appliances",
+      "Confetti / streamer launcher"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

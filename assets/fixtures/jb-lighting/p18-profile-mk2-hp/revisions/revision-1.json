@@ -1,0 +1,147 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "jb-lighting/p18-profile-mk2-hp",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "JB-Lighting",
+      "model": "P18 Profile MK2 HP",
+      "variant": "P18 Profile MK2 HP",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.jb-lighting.de/en/P18Profile",
+        "title": "JB-Lighting P18 Profile MK2 HP specifications",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Mechanical / electrical specifications and control; exact-model product gallery",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.jb-lighting.de/images/products/P18/P18_seitlich_MK2.png",
+        "title": "P18 Profile MK2 HP product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "9bf34e02c6d3128d217549ec07d2b25ab054f5e7f9d995cdcf9b5b17f814d5d9"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.475,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+      },
+      "height": {
+        "value": 0.755,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+      },
+      "depth": {
+        "value": 0.307,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates."
+      },
+      "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "HP variant: 1100 W white LED module, 6800 K, CRI >=70, 40000 lm output; framing system. HC source variant is not conflated with HP.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "1500 VA max; 100–240 V 50/60 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "32 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM",
+            "Art-Net",
+            "sACN",
+            "CRMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base level, optical axis forward; listed assembled envelope normalized to visualization neutral pose, not a swept movement envelope.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer mechanical specifications; optical-forward neutral pose and detail proportions are image-informed estimates.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ]
+  },
+  "git_commit": "2bf730f9a3fe86c6b7c383bd6ce00e98e4969329",
+  "note": "Initial research record before any generated model artifacts existed."
+}

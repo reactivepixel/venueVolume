@@ -1,0 +1,148 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "cameo/opus-x4",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Cameo",
+      "model": "OPUS X4",
+      "variant": "CLOX4P",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.cameolight.com/en/solutions/rental/moving-lights/profile-moving-heads/30735/opus-x4",
+        "title": "OPUS X4 product specifications",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications: photometric values, control, mains, dimensions & weight; 441 × 830 × 312 mm, 44 kg",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://cdn-shop.adamhall.com/ORIGINAL/media/MARKEN/CAMEO/CLOX4P/CLOX4P_1.jpg",
+        "title": "OPUS X4 product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "fdde28004afb280629be7f2675ae7491b36e0bca36aa140d110136e9fef14c24"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.441,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer lists width 441 mm, height 830 mm, depth 312 mm."
+      },
+      "height": {
+        "value": 0.83,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer lists width 441 mm, height 830 mm, depth 312 mm."
+      },
+      "depth": {
+        "value": 0.312,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer lists width 441 mm, height 830 mm, depth 312 mm."
+      },
+      "reference_pose": "Product page overall assembled dimensions; head position not separately specified."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "1400 W white COB LED; 50,000 lm; 5°–55° zoom; 4-blade framing, dual color and gobo wheels plus animation.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "1670 W rated",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "44 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM",
+            "Art-Net",
+            "sACN",
+            "W-DMX",
+            "CRMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Product page overall assembled dimensions; head position not separately specified.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer lists width 441 mm, height 830 mm, depth 312 mm.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ]
+  },
+  "git_commit": "2bf730f9a3fe86c6b7c383bd6ce00e98e4969329",
+  "note": "Initial research record before any generated model artifacts existed."
+}

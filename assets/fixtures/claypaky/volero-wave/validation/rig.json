@@ -1,0 +1,17 @@
+{
+  "id": "claypaky/volero-wave",
+  "passed": true,
+  "source_usdz_sha256": "d13a5e89e12b479d263389e0f551bfe885fb5c4d15203bf1c99ec611c52dab8e",
+  "joints": 8,
+  "moving_meshes": 72,
+  "fixed_meshes": 69,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

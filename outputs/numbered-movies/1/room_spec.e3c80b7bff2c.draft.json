@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "recipe": "boxes-v1",
+  "id": "new-room",
+  "source_sha256": "e3c80b7bff2c3cc97f53edaf5fb8c4aa4d5d5eb5f0cbf0797ede3a22aab71400",
+  "review": {
+    "status": "draft",
+    "reviewer": "",
+    "basis": ""
+  },
+  "units": "meters",
+  "coordinates": "Blender Z-up; origin at rear-left floor; front=+Y, rear=-Y, left=-X, right=+X",
+  "scale_status": "Unknown; supply measured or explicitly estimated dimensions",
+  "room": {
+    "width": null,
+    "depth": null,
+    "height": null,
+    "wall_thickness": null
+  },
+  "spawn": {
+    "eye": [
+      null,
+      null,
+      null
+    ],
+    "look_at": [
+      null,
+      null,
+      null
+    ]
+  },
+  "materials": {
+    "neutral": [
+      0.5,
+      0.5,
+      0.5
+    ]
+  },
+  "objects": [],
+  "assumptions": [
+    "Populate from reference review; do not infer metric accuracy from video alone."
+  ]
+}

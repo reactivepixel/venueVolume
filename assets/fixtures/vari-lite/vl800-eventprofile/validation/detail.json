@@ -1,0 +1,78 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 18580,
+  "geometry_sha256": "2105804fc617f4f38e68a34706f452d7e768ad52b2d0d4e5ea13454b73f11485",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.500249981880188,
+      -0.18813958764076233
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0005230798269622028
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.09984000027179718,
+        0.0005230798269622028
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.500249981880188,
+        0.0005230798269622028
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.500249981880188,
+        -0.18124614655971527
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216243743896,
+    1.046173095703125,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.vari-lite.com/global/products/vl800-eventprofile",
+    "https://vari-lite.s3.eu-west-1.amazonaws.com/datasheets/vl800-eventprofile.pdf",
+    "https://vari-lite.s3.eu-west-1.amazonaws.com/graphics/product-images/vl800-eventprofile-high-res.jpg"
+  ]
+}

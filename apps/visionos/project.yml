@@ -16,8 +16,11 @@ targets:
     platform: visionOS
     sources:
       - path: VenueVolume
-        excludes: [Environments]
+        excludes: [Environments, FixtureAssets]
       - path: VenueVolume/Environments
+        type: folder
+        buildPhase: resources
+      - path: VenueVolume/FixtureAssets
         type: folder
         buildPhase: resources
     dependencies:
@@ -26,6 +29,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.venuevolume.VenueVolume
         PRODUCT_NAME: Venue Volume
+        MARKETING_VERSION: 0.2.0
         INFOPLIST_FILE: VenueVolume/Info.plist
         GENERATE_INFOPLIST_FILE: NO
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor

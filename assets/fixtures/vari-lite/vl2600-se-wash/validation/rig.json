@@ -1,0 +1,17 @@
+{
+  "id": "vari-lite/vl2600-se-wash",
+  "passed": true,
+  "source_usdz_sha256": "39766d2887f5fc1ceecb331f2b2807148c2ccf267f37b38864d7578a3a96636d",
+  "joints": 2,
+  "moving_meshes": 26,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

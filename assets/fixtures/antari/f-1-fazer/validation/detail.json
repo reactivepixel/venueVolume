@@ -1,0 +1,50 @@
+{
+  "mesh_count": 13,
+  "triangle_count": 2124,
+  "geometry_sha256": "22d41bfddd38d4c7b749caf90401faf76914a99788a3b12acbe64a7c3b22618a",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.2440635859966278,
+      -0.3217422366142273
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.003185560926795006
+      ]
+    }
+  ],
+  "family": "hazer",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.010101079940796,
+    1.0309277772903442,
+    1.064849853515625
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://antari.com/products/f-1/",
+    "https://antari.com/wp-content/uploads/F-1_01.jpg"
+  ]
+}

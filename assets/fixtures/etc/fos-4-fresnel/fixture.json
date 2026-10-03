@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "id": "etc/fos-4-fresnel",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "ETC",
+    "model": "fos/4 Fresnel",
+    "variant": "fos/4 Fresnel",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/fos/4-Fresnel/Documentation.aspx",
+      "title": "ETC fos/4 Fresnel official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.etcconnect.com/Products/Lighting-Fixtures/",
+      "title": "ETC fos/4 Fresnel official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "reviewed-image",
+      "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Entertainment_Fixtures/fos4_Fresnel_Group_960x350.jpg",
+      "title": "fos/4 Fresnel reviewed manufacturer reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Official product image; fos/4 family image depicts multiple aperture sizes",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "e709f66a5552febc431300c97e0f1b930ca16d939b6c7a7ade5fb4b77adcf0cf"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.313,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Zoom range envelope is documented; the extended depth is used for a conservative outer bound."
+    },
+    "height": {
+      "value": 0.435,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Zoom range envelope is documented; the extended depth is used for a conservative outer bound."
+    },
+    "depth": {
+      "value": 0.505,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Zoom range envelope is documented; the extended depth is used for a conservative outer bound."
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "wireless DMX/RDM (Multiverse)"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.15650001168251038,
+        1.4901161193847656e-08,
+        -0.2524999976158142
+      ],
+      "max": [
+        0.15650001168251038,
+        0.4350000321865082,
+        0.2524999547749758
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.08968677371740341,
+          -0.027155322954058647
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.13536593317985535,
+          -0.027155322954058647
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.13536593317985535,
+          -0.22826914489269257
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.13536593317985535,
+          -0.25772514939308167
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Zoom range envelope is documented; the extended depth is used for a conservative outer bound.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "104b31bc547e56ac5b5fb3ec2c27f1e2a2fbc12e40f247ac7134601922c7cb5b"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "2e5c19cd4ff695ccb09a39e6d1f6bd01e7ccf0255498e53cb602d61a9da29d50"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "308ad9e5593774aae687808499d70f27b23339696f5605bbf85388402822b6a1"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "88696cd18f12ff2f83c1e6c145a20de73a2fe7df75ac6fad072a62a626adf2a1"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "07935ea3e57a100d26afd76a527fa3bdecb35ee5df6aa53914269bd03d08b9de"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "b3849320520ffe5266e7eeeb45d5765b9d44b97555e0387e2961b0feeede8c5b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "f5799425903dd352e194dd46e0800f1f301d482c0b611b690b990e1b1658d462"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "b6824ae499e3a2030e741978de995d3c789783d11179ad68fdee4331fd81d2fa"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "2c71f333068e389af7b4373aa544e39cd54c9c52ed1ff2496a547a84c7caed79"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "a7367f1980782efd44b2f401c3afe77c8b9315a09dd80842f789b26c050f8a60"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "c8e63b98c6439e47a830d643ea96c37079adc930e1fdb493e841c92640720707",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "fresnel",
+      "barn_doors": false
+    },
+    "mesh_count": 52,
+    "triangle_count": 22744,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed fresnel geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.static.fresnel",
+    "category_path": [
+      "Lighting fixtures",
+      "Static and manually focused",
+      "Fresnel wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

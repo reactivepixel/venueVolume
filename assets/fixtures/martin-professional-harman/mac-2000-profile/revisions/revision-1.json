@@ -1,0 +1,173 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "martin-professional-harman/mac-2000-profile",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "MAC 2000 Profile",
+      "variant": "MAC 2000 Profile",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.martin.com/en-US/products/mac-2000-profile",
+        "title": "MAC 2000 Profile product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Physical; Dynamic Effects; Control and Programming; Lamp and Typical Power and Current",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://adn.harmanpro.com/product_attachments/product_attachments/6130_1728121020/mac-2000-profile_x_large.webp",
+        "title": "MAC 2000 Profile product still",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Official Martin/HARMAN product image",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://adn.harmanpro.com/product_attachments/product_attachments/6130_1728121020/mac-2000-profile_x_large.webp",
+        "title": "MAC 2000 Profile product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.webp",
+        "sha256": "bdb7c7e34f5834f648be7a409df4b183ca465ef5a2c1872a4c44fa5545a2e0fe"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.49,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Martin physical specification: length 408 mm, width 490 mm, height 743 mm head straight up."
+      },
+      "height": {
+        "value": 0.743,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Martin physical specification: length 408 mm, width 490 mm, height 743 mm head straight up."
+      },
+      "depth": {
+        "value": 0.408,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Martin physical specification: length 408 mm, width 490 mm, height 743 mm head straight up."
+      },
+      "reference_pose": "Assembled, head straight up; base level."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "1200 W short-arc profile; 10°–28° zoom; CMY, framing system, gobo animation, iris, frost and prism; 540°/267° pan/tilt.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {},
+      "mechanical": {
+        "weight": {
+          "value": "38 kg electronic ballast; 45 kg magnetic ballast",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "USITT DMX512/1990"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "20-channel mode",
+        "footprint": 20,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "24-channel mode",
+        "footprint": 24,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Assembled, head straight up; base level.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Martin physical specification: length 408 mm, width 490 mm, height 743 mm head straight up.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "c6937d7319a1ed8f45a38e6d7f2524b9f9ed2fdf188daacac1d80243723cb6a8"
+  },
+  "git_commit": "e38251487abca51f9e65385abff756975f2e448d",
+  "note": "Initial research record before any generated model artifacts existed."
+}

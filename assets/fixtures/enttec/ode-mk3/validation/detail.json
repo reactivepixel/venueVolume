@@ -1,0 +1,52 @@
+{
+  "mesh_count": 12,
+  "triangle_count": 1872,
+  "geometry_sha256": "24bb903f4ef3b8a09048f9a69cfd22046dd6816529af3fd68b3248ec30791de5",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      -0.001400256878696382,
+      0.0,
+      -0.0
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        -0.001400256878696382,
+        0.0,
+        -0.0
+      ]
+    }
+  ],
+  "family": "node",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9675597548484802,
+    1.0989011526107788,
+    1.047120451927185
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.enttec.com/product/dmx-ethernet/ode-mk3-dmx-ethernet-converter/",
+    "https://cdn.enttec.com/pdf/assets/70407/70407_ODE_MK3_DATASHEET.pdf",
+    "https://cdn.enttec.com/cad/70407/70407_ODE_MK3_CAD.pdf",
+    "https://cdn.enttec.com/website/products/70407-ode-mk3/70407-ode-mk3-render-00.png"
+  ]
+}

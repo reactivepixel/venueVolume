@@ -1,0 +1,77 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 17996,
+  "geometry_sha256": "4a8b0971e4e88bb206b41f6cb77282a14828d80142428340a8d1d3ed0d1e59ac",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.4662720859050751,
+      -0.1389336884021759
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.006826771888881922
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.10748142749071121,
+        0.006826771888881922
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.4662720859050751,
+        0.006826771888881922
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.4662720859050751,
+        -0.13360781967639923
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    0.8551207184791565,
+    1.1328144073486328
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.ayrton.eu/produit/stradale-profile/",
+    "https://www.ayrton.eu/wp-content/uploads/2025/03/StradaleP.png"
+  ]
+}

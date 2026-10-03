@@ -1,0 +1,77 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 18124,
+  "geometry_sha256": "5a8d169febbc24f7c9f23316c890a89abfeafcd3437706e0130ca5b3dee476ad",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.5922005772590637,
+      -0.2944304347038269
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.006515357177704573
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.14436979591846466,
+        0.006515357177704573
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.5922005772590637,
+        0.006515357177704573
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.5922005772590637,
+        -0.28343436121940613
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    0.8092029094696045,
+    1.1627721786499023
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.martin.com/en-US/products/mac-encore-two",
+    "https://adn.harmanpro.com/productattachment/13804/product_attachment/x_large-f4b421de0df9f555d4e46bcbff7105cd.webp"
+  ]
+}

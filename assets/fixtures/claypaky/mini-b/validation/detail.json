@@ -1,0 +1,78 @@
+{
+  "mesh_count": 92,
+  "triangle_count": 25540,
+  "geometry_sha256": "3278fe28c2677e656e0b6df4d40772de574f73e4edde252664ba7ae97ea9a59c",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.2714633345603943,
+      -0.04787220060825348
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0005001284298487008
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.05496785044670105,
+        0.0005001284298487008
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.2714633345603943,
+        0.0005001284298487008
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.2714633345603943,
+        -0.04610474780201912
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    1.0002548694610596,
+    0.9929163455963135
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.claypaky.it/products/mini-b/",
+    "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_NewProducts2019-2020_EN.pdf",
+    "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_Mini-B.jpg"
+  ]
+}

@@ -1,0 +1,404 @@
+{
+  "schema_version": 1,
+  "id": "adj/focus-flex-l7",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "ADJ",
+    "model": "Focus Flex L7",
+    "variant": "FOC734",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.adj.com/products/focus-flex-l7",
+      "title": "ADJ Focus Flex L7 product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Specifications: seven modes (16/25/34/42/50/25/28 channels), DMX/RDM, seven 40 W RGBL LEDs, dimensions, power and weight",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.adj.com/cdn/shop/files/d33775b549cb16578938a380735e1b6d7f7f5094_FOC734__IMG__003__c7174f800104.jpg?v=1776712415&width=2048",
+      "title": "ADJ Focus Flex L7 product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Official product-page image asset",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.adj.com/cdn/shop/files/d33775b549cb16578938a380735e1b6d7f7f5094_FOC734__IMG__003__c7174f800104.jpg?v=1776712415&width=2048",
+      "title": "Focus Flex L7 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "c543b659df282fa25fa209d89b627613e92dac3a193a350935979bd7bb927bb2"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.25,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "ADJ labels L x W x H = 178.8 x 250.0 x 349.2 mm; 250 mm cross-head span mapped to width, 349.2 mm upright height, 178.8 mm front-back depth."
+    },
+    "height": {
+      "value": 0.349,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "ADJ labels L x W x H = 178.8 x 250.0 x 349.2 mm; 250 mm cross-head span mapped to width, 349.2 mm upright height, 178.8 mm front-back depth."
+    },
+    "depth": {
+      "value": 0.179,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "ADJ labels L x W x H = 178.8 x 250.0 x 349.2 mm; 250 mm cross-head span mapped to width, 349.2 mm upright height, 178.8 mm front-back depth."
+    },
+    "reference_pose": "Base level; head vertical in dimensional pose"
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Seven independently controlled 40 W RGBL LED engines; 6–55° field zoom; wireless WiFLY EXR; virtual CMY options.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "337 W max at 120 V",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "7 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "16-channel mode",
+      "footprint": 16,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "25-channel mode",
+      "footprint": 25,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "34-channel mode",
+      "footprint": 34,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "42-channel mode",
+      "footprint": 42,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "50-channel mode",
+      "footprint": 50,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "28-channel mode",
+      "footprint": 28,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Base level; head vertical in dimensional pose",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.125,
+        0.0,
+        -0.08949999866308644
+      ],
+      "max": [
+        0.125,
+        0.3490000069141388,
+        0.089500006462913
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0004985520499758422
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.05539477989077568,
+          0.0004985520499758422
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.26437515020370483,
+          0.0004985520499758422
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.26437515020370483,
+          -0.04421134293079376
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.05539477989077568,
+          0.0004985520499758422
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.26437515020370483,
+          0.0004985520499758422
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.26437515020370483,
+          -0.045906923711299896
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "ADJ labels L x W x H = 178.8 x 250.0 x 349.2 mm; 250 mm cross-head span mapped to width, 349.2 mm upright height, 178.8 mm front-back depth.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "a2091bb9b613719792e437f7f827e4c7aad45ad6b98771b2654475e261883c82"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "3587a62fc408c80f5960efa22d5d94f4b1857dcf47a62f250ccb8e8b1ece6400"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "51d7664a81c1082b00c0b3b2ea2b9df9278c4224f012e0126a3a186541e01a61"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "fd3eff1e8f93444b041b1f1094ab8619a456e14f170d30c4e055f0c01db3dca9"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "fb17022e6b841c10ccf4030a6a6f3a3e330b78d49033cd36f64de306e936becb"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "00cf44cbe6cfe2b6ae5176ef05ce65a49355fcb2eab3329fbb42f69431c3f083"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "29ca3f79479f187348659a77e53ae5703ee1eae74d5f9c44335ba342be7fdaac"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "54fa16ef9f771b978c57676ba3d57a347596db2f6948c46cb69e14fd1c6cbfc1"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "7439727c17e039ca4e95c4b293708a0b63e3f2e3be157a85516f4e95864707ce"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "103d234b5ada7f74343d76a84291a24543cb81c6387b28e3949158b5d24b9556"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "e253c61cb4250787183b0eb77dbb595b0d70bb3debcedbe3af3ea7fd57a0c0f7",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 7,
+      "body_style": "compact moving head with a linear seven-engine RGBL array and zoom optics",
+      "notes": "Seven independent RGBL engines create pixel effects; model all optical apertures rather than a single emitter if supported."
+    },
+    "mesh_count": 92,
+    "triangle_count": 25540,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "1cf6e1316e7d6b2de07a3a1f8899d39e34d19289793aa6fe15f1367d9f08a7e4",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [
+      "pixel control"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

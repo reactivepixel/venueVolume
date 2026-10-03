@@ -1,5 +1,11 @@
 # mov2splat
 
+**Optional experiment.** The current venue environment pipeline is
+[room2blender](../room2blender/README.md), producing Blender/USDZ and interaction metadata.
+It has no dependency on this application or its Docker image. Use `scripts/host.sh` for
+Gaussian experiments; the unused Compose launcher has been removed. See the
+[cleanup review](../../docs/05%20Operations/mov2splat-review.md).
+
 Headless, local Docker pipeline: one iPhone Camera video to a standard binary 3D Gaussian Splatting PLY in the video's directory. The image contains CUDA 12.8, COLMAP 4.0.4, PyTorch CUDA 12.8, and gsplat 1.5.3. The host needs Docker and NVIDIA Container Toolkit; no host Python installation is needed.
 
 ## Omarchy host setup

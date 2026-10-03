@@ -1,0 +1,401 @@
+{
+  "schema_version": 1,
+  "id": "martin-professional-harman/mac-aura-pxl",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Martin Professional (HARMAN)",
+    "model": "MAC Aura PXL",
+    "variant": "MAC Aura PXL",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.martin.com/en-US/products/mac-aura-pxl",
+      "title": "MAC Aura PXL product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Dimensions: 410 x 489 x 232 mm; 19 main beam pixels and 141 Aura pixels; protocols, 17/32/89/512/17 channel modes",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.martin.com/en-US/site_elements/martin-mac-aura-pxl-user-safety-and-installation-manual",
+      "title": "MAC Aura PXL User Guide",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Pixel mapping diagram and statement identifying 19 Beam pixels and 141 Aura pixels",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://adn.harmanpro.com/productattachment/11973/product_attachment/x_large-405d2e500f88a8f703df7ab87a842f65.webp",
+      "title": "MAC Aura PXL product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.webp",
+      "sha256": "87db13bc43be5ad7aef4ce34c5c8007324af0f5936cb333be86d9c23088221dd"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.41,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Official page overall dimensions: 410 x 489 x 232 mm; maximum height is 544 mm and base width is 385 mm. Overall width is across yoke, not base width."
+    },
+    "height": {
+      "value": 0.544,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Official page overall dimensions: 410 x 489 x 232 mm; maximum height is 544 mm and base width is 385 mm. Overall width is across yoke, not base width."
+    },
+    "depth": {
+      "value": 0.232,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Official page overall dimensions: 410 x 489 x 232 mm; maximum height is 544 mm and base width is 385 mm. Overall width is across yoke, not base width."
+    },
+    "reference_pose": "Head maximum height; base level."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "19 individually controlled 40 W RGBW beam pixels plus 141 x 0.3 W RGB Aura backlight pixels; 13,000 lm output.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "560 W maximum; 500 W typical",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "15.60 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "Art-Net",
+          "RDM over Art-Net",
+          "sACN",
+          "Martin P3"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "17-channel mode",
+      "footprint": 17,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "32-channel mode",
+      "footprint": 32,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "89-channel mode",
+      "footprint": 89,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "512-channel mode",
+      "footprint": 512,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Head maximum height; base level.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.20500001311302185,
+        0.0,
+        -0.11599999980535358
+      ],
+      "max": [
+        0.20500001311302185,
+        0.5440000295639038,
+        0.1160000009695068
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.00048274232540279627
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.0977759063243866,
+          0.00048274232540279627
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.3868439197540283,
+          0.00048274232540279627
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.3868439197540283,
+          -0.05857999250292778
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.0977759063243866,
+          0.00048274232540279627
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.3868439197540283,
+          0.00048274232540279627
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.3868439197540283,
+          -0.060819897800683975
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer physical specs: base width 385 mm, maximum height 544 mm, base depth 232 mm; across-yoke width is 410 mm.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "d833b3d20eb34693c22fd546a65ec6d912330e50d200c4bc7aff197c7e7f955b"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "44392fe9c9d80c97b88080718fa6a0d4465c21db2052a30dbe7fbcc7eb11c4ad"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "51deeca58d375ea058b1212aa8a7d274e8082e638b3ce5ff3b83760558af1d81"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "4c54e26715b8b3ffa6125977cc9121b0c9ede641ee359d521ce638eaa9ca28dc"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "1ab885c2a7cfccadeb1240c5f719c1f473b03f402d440464d906af247f8a52f9"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "2b2e4ff5c8706186ce171ec8ab1fa5250d139ec3b7d3fbd609d3a123ec2f6940"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "03e2422587ec881f601230fb49313c738eb8acdf15c1d6fbcce48e508b0199ea"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "714a060eaf9724c22e6c845a4c3448be8601a197891eeb89e25fa4f4211526dd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "023878d255ff72558891abb8532301d2f30091703927770e1736c31f23954c08"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "31fcc57145a8e7aec4332efd2cf991a4de74a3f5edba87a1c45779efd74645eb"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "52051f6edf9cdd83979040356236e76ac1ab38c8bbd6d0a926d0c8392c95e59b",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "moving_wash",
+      "lens_count": 19,
+      "body_style": "medium pixel wash head with secondary Aura ring",
+      "notes": "19 beam lenses and 141 individually controlled Aura pixels; retain beam and Aura zones separately.",
+      "generator": "catalog",
+      "aura_pixels": 141,
+      "yoke_compression": 0.2
+    },
+    "mesh_count": 269,
+    "triangle_count": 43192,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_wash geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "f7003316a07b79f1551c331df1eb6c5f43aef366b996cb860e8f88ad837e9274",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [
+      "pixel control"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

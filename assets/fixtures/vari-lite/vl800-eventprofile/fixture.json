@@ -1,0 +1,322 @@
+{
+  "schema_version": 1,
+  "id": "vari-lite/vl800-eventprofile",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Vari-Lite",
+    "model": "VL800 EVENTPROFILE",
+    "variant": "VL800 EVENTPROFILE",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.vari-lite.com/global/products/vl800-eventprofile",
+      "title": "VL800 EVENTPROFILE",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page and official high resolution product image",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://vari-lite.s3.eu-west-1.amazonaws.com/datasheets/vl800-eventprofile.pdf",
+      "title": "VL800 EVENTPROFILE Specification Sheet",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Physical dimensions and weight; 375 × 624 × 408 mm, 21 kg",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://vari-lite.s3.eu-west-1.amazonaws.com/graphics/product-images/vl800-eventprofile-high-res.jpg",
+      "title": "VL800 EVENTPROFILE product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.jpg",
+      "sha256": "cabbd7878bfe0818258946d5ad9b8d6515b945cb0484ae2f7e6458d95cddeaec"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.375,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer specification sheet gives assembled physical extents; excludes packed dimensions."
+    },
+    "height": {
+      "value": 0.624,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer specification sheet gives assembled physical extents; excludes packed dimensions."
+    },
+    "depth": {
+      "value": 0.408,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer specification sheet gives assembled physical extents; excludes packed dimensions."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Yoke upright; head centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {
+      "weight": {
+        "value": "21 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "Art-Net"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.1874999850988388,
+        0.0,
+        -0.20399999181972817
+      ],
+      "max": [
+        0.1874999850988388,
+        0.6240000128746033,
+        0.2039999856497161
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0005230798269622028
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.09984000027179718,
+          0.0005230798269622028
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.500249981880188,
+          0.0005230798269622028
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.500249981880188,
+          -0.18124614655971527
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.09984000027179718,
+          0.0005230798269622028
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.500249981880188,
+          0.0005230798269622028
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.500249981880188,
+          -0.18813958764076233
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer specification sheet gives assembled physical extents; excludes packed dimensions.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "a62529fd40fcce3101bc59462ea53c0c779a0ac46e7beb31fa96bb976ff5ad3d"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "3568722291c6a296ad795c75f5fe3fd6503c08fa96049b0aa1f07a81a905c2a9"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "185efdb2956c1d225385ba61e5a716d445a1a7657cff7d586c8cf8043b3105e8"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "20088a49cc386b822a5392c7e027e69ebe405c1b884b9aa89cd1b478c9356399"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "f2d50f1381addf7a88b9bde473b8e3324bad0c19c5b45851a39caa0dc4e12890"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "78c0cb6adb74a93853de7508278741ca5cb0f46d5ab84afd45da4316782cb621"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "e3078cf48d3ca867af974c8b53fe24f563d0499552e55f59f5c7fd25a361142c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "5f50c960c62bd49a7c87c693a97aeb78ffa8f2e1bb622357d8d008079bea2046"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "ee171f8ab1339a3df300d942acd4ae32f19fb8bcf959bdebd03e3102299c69f1"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "ae1aeaecc24b1ae041ee6c9c684389a8d99b117f23e0564e19755ceb2c758010"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "8aaefeef5444a51c6594292cfbbd16a6bd64373d44211b8aec4fd17b46d63aea",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "compact framing profile on yoke",
+      "notes": "Black and white body variants; housing shape otherwise same."
+    },
+    "mesh_count": 85,
+    "triangle_count": 18580,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Acquired in expansion batch 2. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.profile",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Framing profile"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

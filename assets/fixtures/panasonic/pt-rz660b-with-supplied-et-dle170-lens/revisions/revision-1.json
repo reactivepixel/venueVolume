@@ -1,0 +1,193 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "panasonic/pt-rz660b-with-supplied-et-dle170-lens",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "Panasonic",
+      "model": "PT-RZ660B with supplied ET-DLE170 lens",
+      "variant": "PT-RZ660B",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://eu.connect.panasonic.com/gb/en/projectors/pt-rz660",
+        "title": "PT-RZ660 product page and image gallery",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product gallery image labeled PT-RZ660B Angled High-res; supplied image file is a high-resolution angled view",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://na.panasonic.com/ns/246048_rz660_spec_en.pdf",
+        "title": "PT-RZ660B/RZ660W Product Specification File",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Page 4: dimensions with/without supplied lens and footnote *5; Page 5: dimensional drawing, exact 580.8 mm lens-installed depth; Page 4 identifies supplied ET-DLE170",
+        "reuse_status": "reference_only",
+        "file": "sources/panasonic-pt-rz660-spec.pdf",
+        "sha256": "49ff223e2d20ba907d0c79ada15aecb170d5f017e830ccb0b28a06e445cc7df4"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://eu.connect.panasonic.com/sites/default/files/media/image/2024-04/ca90fd90df4b2185ef5c10b1a03a7c59ad66e542.jpg",
+        "title": "PT-RZ660B with supplied ET-DLE170 lens visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.jpg",
+        "sha256": "376f3c3abc0411b6744050b0cf618d211aaeb54567c0a2c4ac35ca06489dc97e"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.498,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm"
+      },
+      "height": {
+        "value": 0.2,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm"
+      },
+      "depth": {
+        "value": 0.5808,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm"
+      },
+      "reference_pose": "Cabinet in upright base-resting position, lens forward; manufacturer dimension drawing gives 498 mm width and lens-installed overall depth. Do not add ceiling bracket dimensions."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Cabinet in upright base-resting position, lens forward; manufacturer dimension drawing gives 498 mm width and lens-installed overall depth. Do not add ceiling bracket dimensions.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "optional.video_visuals_optional.projection_systems",
+      "control_path": "Video path by HDMI, SDI, DVI-D, RGB; network/serial control includes Ethernet/PJLink and RS-232. Not DMX-controlled.",
+      "physical_asset_only": true,
+      "source_data": {
+        "source_urls": [
+          "https://na.panasonic.com/ns/246048_rz660_spec_en.pdf",
+          "https://eu.connect.panasonic.com/gb/en/projectors/pt-rz660"
+        ],
+        "dimensions": {
+          "width_m": 0.498,
+          "height_m": 0.2,
+          "depth_m": 0.5808,
+          "source_order": "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm",
+          "axis_status": "documented",
+          "axis_note": "498 W x 200 H x 580.8 D mm; spec table rounds depth to 581 mm",
+          "reference_pose": "Cabinet in upright base-resting position, lens forward; manufacturer dimension drawing gives 498 mm width and lens-installed overall depth. Do not add ceiling bracket dimensions."
+        },
+        "dimensions_status": "documented",
+        "dimension_footnote": "Specification footnote *5: 200 mm height with adjustable legs at shortest position. Supplied lens ET-DLE170 is included in 581 mm overall depth; without lens the table gives 538 mm depth. The dimension drawing labels exact depth 580.8 mm.",
+        "control_path": "Video path by HDMI, SDI, DVI-D, RGB; network/serial control includes Ethernet/PJLink and RS-232. Not DMX-controlled.",
+        "pose": "Cabinet in upright base-resting position, lens forward; manufacturer dimension drawing gives 498 mm width and lens-installed overall depth. Do not add ceiling bracket dimensions.",
+        "lens": "ET-DLE170 standard supplied lens, 1.7-2.4:1 throw ratio",
+        "research_evidence": [
+          {
+            "url": "https://na.panasonic.com/ns/246048_rz660_spec_en.pdf",
+            "title": "PT-RZ660B/RZ660W Product Specification File",
+            "locator": "Page 4: dimensions with/without supplied lens and footnote *5; Page 5: dimensional drawing, exact 580.8 mm lens-installed depth; Page 4 identifies supplied ET-DLE170",
+            "file": "research/fixtures/taxonomy/support-sources/panasonic-pt-rz660-spec.pdf",
+            "sha256": "49ff223e2d20ba907d0c79ada15aecb170d5f017e830ccb0b28a06e445cc7df4",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown"
+          },
+          {
+            "url": "https://eu.connect.panasonic.com/gb/en/projectors/pt-rz660",
+            "title": "PT-RZ660 product page and image gallery",
+            "locator": "Product gallery image labeled PT-RZ660B Angled High-res; supplied image file is a high-resolution angled view",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "65ee24e76027977f1cf6c26ca1ffb0c6472db854",
+  "note": "Initial research record before any generated model artifacts existed."
+}

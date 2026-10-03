@@ -1,0 +1,17 @@
+{
+  "id": "doughty-engineering/doughty-quick-link-10mm-550kg",
+  "passed": true,
+  "source_usdz_sha256": "7133b41a6a18483c8f757cf1467c07055bd00c3bfcc7313a67f35dfb6cd04673",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 3,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "id": "showven/sparkular-max",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "SHOWVEN",
+    "model": "SPARKULAR MAX",
+    "variant": "SPARKULAR MAX",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.showven.cn/product/sparkular-max/",
+      "title": "SHOWVEN SPARKULAR MAX product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Specifications: dimensions, mass, power and interface",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.showven.cn/wp-content/uploads/2026/04/21-500x500.png",
+      "title": "SPARKULAR MAX product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "6d4e0eed50faeab49fff1ff6d0b103042b64c40998a9c9c7a308c25b2ca74557"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.42,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer listing gives 460 x 420 x 330 mm; interpreted length x width x height."
+    },
+    "height": {
+      "value": 0.33,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer listing gives 460 x 420 x 330 mm; interpreted length x width x height."
+    },
+    "depth": {
+      "value": 0.46,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer listing gives 460 x 420 x 330 mm; interpreted length x width x height."
+    },
+    "reference_pose": "Base level; outlet upward."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "950 g hopper, IPX3 rain rating, powerCON TRUE1 and 3-/5-pin DMX in/out per manufacturer catalog listing.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "3200 W work power",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "45 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX (2 channels)"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "2-channel mode",
+      "footprint": 2,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Base level; outlet upward.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.21000000834465027,
+        0.0,
+        -0.22999998927116394
+      ],
+      "max": [
+        0.21000000834465027,
+        0.33000001311302185,
+        0.22999998927116394
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          -0.0
+        ]
+      },
+      {
+        "name": "output",
+        "prim_path": "/Fixture/Output",
+        "pivot_m": [
+          0.07819148898124695,
+          0.32800206542015076,
+          -0.09010308235883713
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer listing gives 460 x 420 x 330 mm; interpreted length x width x height.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "e74b8c9e65511384a3f56e27e968959a8cc1ea322d2177f0fa1216473f942fbd"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "78c98b9bab09b621a1ee8dbc31ca82c848312a561d04afe3d4d0a880094e4544"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "529e63c575c672eb267a98e82d82628972a373b022bd948d9aba3d66e6655189"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "a4beb6566ba9d1a0f790b41e150b768b3cc4a803c93ebed3727f6c14ae6b7a2b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "d3b58c654d541ad60f1803344d283c6056f496e4072d1479ab88ca2ae9e497ad"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "700bd584977f12448ac0d4055de86dbf02e86d70aace50dd262ca4c9fb85c7cd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "dfd95be45412f6734424820339fa85b7e70faed00139d1b49e56860e17c3e4ff"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "b6478abf3dcca73545ba3877a9c1cfdb23fbfebf85d7673d53c883a354c1d4a2"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "ee615075b48edf3f417d2ce5cf37dff5effd93c04288be285e9b1190e31d9d6e"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "556880a350b9ce0c800f9b3c6a0f8abba8541ddfc7a54951ab2f9f100003e241"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.07819148898124695,
+          0.3313152492046356,
+          -0.09010308235883713
+        ],
+        "kind": "spark",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "4f821cb3439de2db882814a97531424f978d49b6994edcb914aa22de5b8a967d",
+    "generator_dependency": {
+      "file": "../../_shared/effects_fixture.py",
+      "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+    },
+    "profile": {
+      "family": "spark",
+      "lens_count": 0,
+      "body_style": "large rectangular cold-spark machine",
+      "notes": "One visible effect outlet; no optical lens or spotlight emission.",
+      "generator": "effects",
+      "enclosure": "spark_box",
+      "output_kind": "spark"
+    },
+    "mesh_count": 208,
+    "triangle_count": 38144,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/effects_fixture.py",
+        "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      },
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed spark geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "6163cda105a2bde999b130977a30041b760832562f9e7f22e56d00b6f1d77d3f",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "effects.spark",
+    "category_path": [
+      "Special-effects appliances",
+      "Spark-effect appliance"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

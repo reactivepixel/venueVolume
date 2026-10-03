@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "f07f4efa0f2b4102528bc51f735a91bda5ed8b602e98312ec237632357721408",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "ayrton/karif-lt",
+    "name": "Karif LT",
+    "manufacturer": "Ayrton",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/ayrton/karif-lt/fixture.usdz",
+    "sha256": "f07f4efa0f2b4102528bc51f735a91bda5ed8b602e98312ec237632357721408",
+    "boundsMin": [
+      -0.18250000476837158,
+      0.0,
+      -0.10599998710677028
+    ],
+    "boundsMax": [
+      0.18250000476837158,
+      0.621999979019165,
+      0.10599999548867345
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.11262289434671402,
+          0.006419685203582048
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.4856914281845093,
+          0.006419685203582048
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.4856914281845093,
+          -0.09468642622232437
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

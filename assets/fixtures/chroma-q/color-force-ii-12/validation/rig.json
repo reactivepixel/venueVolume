@@ -1,0 +1,17 @@
+{
+  "id": "chroma-q/color-force-ii-12",
+  "passed": true,
+  "source_usdz_sha256": "94cf6c19b0283556b9f96f36dcb397ad80837b3a3a4b09c2ae58dbaa8c3a54d3",
+  "joints": 1,
+  "moving_meshes": 38,
+  "fixed_meshes": 4,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

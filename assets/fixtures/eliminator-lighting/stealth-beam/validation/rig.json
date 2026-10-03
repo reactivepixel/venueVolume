@@ -1,0 +1,17 @@
+{
+  "id": "eliminator-lighting/stealth-beam",
+  "passed": true,
+  "source_usdz_sha256": "821bfcb7064da1106ff5acec92aa7f878a9005932fb648b4dd623294de6a9a24",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

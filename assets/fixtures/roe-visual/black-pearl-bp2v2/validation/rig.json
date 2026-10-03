@@ -1,0 +1,17 @@
+{
+  "id": "roe-visual/black-pearl-bp2v2",
+  "passed": true,
+  "source_usdz_sha256": "679df6a7d09f646d41ce5b74fd1a431b46b32760b3d0dba16f3d68935a193f76",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 9,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

@@ -1,0 +1,86 @@
+{
+  "mesh_count": 53,
+  "triangle_count": 8828,
+  "geometry_sha256": "3a4a6f698b10873bda48cb91161d2637654e1605156d601c849503e20ebe104e",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.1809999942779541,
+      -0.07880669832229614
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.011553184129297733,
+        0.006175165995955467
+      ]
+    },
+    {
+      "name": "pod_n1_0_25",
+      "prim_path": "/Fixture/Pod_n1_0_25",
+      "pivot_m": [
+        -0.09627658873796463,
+        0.08472340553998947,
+        0.006175165995955467
+      ]
+    },
+    {
+      "name": "pod_n1_0_75",
+      "prim_path": "/Fixture/Pod_n1_0_75",
+      "pivot_m": [
+        -0.09627658873796463,
+        0.27727657556533813,
+        0.006175165995955467
+      ]
+    },
+    {
+      "name": "pod_1_0_25",
+      "prim_path": "/Fixture/Pod_1_0_25",
+      "pivot_m": [
+        0.09627658873796463,
+        0.08472340553998947,
+        0.006175165995955467
+      ]
+    },
+    {
+      "name": "pod_1_0_75",
+      "prim_path": "/Fixture/Pod_1_0_75",
+      "pivot_m": [
+        0.09627658873796463,
+        0.27727657556533813,
+        0.006175165995955467
+      ]
+    }
+  ],
+  "family": "blinder",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.063829779624939,
+    1.1849117279052734,
+    1.063829779624939
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://chauvetprofessional.com/product/strike-4/",
+    "https://chauvetprofessional.com/wp-content/uploads/2025/10/STRIKE-4-FRONT-FEAT.png"
+  ]
+}

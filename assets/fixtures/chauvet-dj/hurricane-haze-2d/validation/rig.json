@@ -1,0 +1,17 @@
+{
+  "id": "chauvet-dj/hurricane-haze-2d",
+  "passed": true,
+  "source_usdz_sha256": "519881541dd72679f67bcd86f3649bc6d838ca3d6dee8f95135285f1ac0562b4",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 62,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

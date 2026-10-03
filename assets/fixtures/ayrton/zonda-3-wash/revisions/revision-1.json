@@ -1,0 +1,166 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "ayrton/zonda-3-wash",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Ayrton",
+      "model": "Zonda 3 Wash",
+      "variant": "013240",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.ayrton.eu/produit/zonda-3-wash/",
+        "title": "Zonda 3 Wash product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Sources/optics, movement, control, power, size/weight and product code 013240",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.ayrton.eu/wp-content/uploads/2022/12/Zonda-3-Wash-3.png",
+        "title": "Zonda 3 Wash product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "5fa20b7ab6a81629b093448549b14e3882aabcac58722134b14017531ef5360e"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.365,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Official product page: 365 x 404 x 233 mm (length x height x depth)."
+      },
+      "height": {
+        "value": 0.404,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Official product page: 365 x 404 x 233 mm (length x height x depth)."
+      },
+      "depth": {
+        "value": 0.233,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Official product page: 365 x 404 x 233 mm (length x height x depth)."
+      },
+      "reference_pose": "Manufacturer reference dimensions; fixture assembled."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Seven 40 W RGBW sources; 5,200 lm; 4°–56° zoom; 170 mm source cluster; 540° pan, 265° tilt; IP20.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "400 W maximum",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "11.1 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM",
+            "Art-Net",
+            "sACN"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "26-channel mode",
+        "footprint": 26,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "46-channel mode",
+        "footprint": 46,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Manufacturer reference dimensions; fixture assembled.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Official product page: 365 x 404 x 233 mm (length x height x depth).",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "73b01a3d53034721073cab61b5b1ab137d3e858e85a66223547cb5eaebaf2ee6"
+  },
+  "git_commit": "529393313efc84b984528b9491e9f5e230df9fd1",
+  "note": "Initial research record before any generated model artifacts existed."
+}

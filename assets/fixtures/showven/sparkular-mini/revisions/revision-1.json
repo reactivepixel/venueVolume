@@ -1,0 +1,155 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "showven/sparkular-mini",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "SHOWVEN",
+      "model": "SPARKULAR mini",
+      "variant": "BT06 / BT07",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.showven.cn/product/sparkular-mini/",
+        "title": "SHOWVEN SPARKULAR mini product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications: dimensions, mass, power, DMX interface and control",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.showven.cn/wp-content/uploads/2019/12/nufhc1W3QiOm5S6MdHjefQ.png_640xa-500x500.png",
+        "title": "SPARKULAR mini product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "4ca00c1312f291a981c54f85e18e02eae08112fbdd7b3eb6f5f1d8a4e80c7d5c"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.18,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer sheet: 168 x 180 x 228 mm (L x W x H); normal assembled housing dimensions, packaging excluded."
+      },
+      "height": {
+        "value": 0.228,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer sheet: 168 x 180 x 228 mm (L x W x H); normal assembled housing dimensions, packaging excluded."
+      },
+      "depth": {
+        "value": 0.168,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer sheet: 168 x 180 x 228 mm (L x W x H); normal assembled housing dimensions, packaging excluded."
+      },
+      "reference_pose": "Base horizontal; output nozzle upward."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "BT06/BT07; 100 g hopper; manufacturer product page specifications. Single visible effect outlet, no optical lens.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "380 W work power",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "4.5 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX (2 channels)",
+            "wireless remote"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "2-channel mode",
+        "footprint": 2,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base horizontal; output nozzle upward.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer sheet: 168 x 180 x 228 mm (L x W x H); normal assembled housing dimensions, packaging excluded.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "827255f1cabadb1529d24f50bec4e03996cd448e7e436574aa661aa0795e65f9"
+  },
+  "git_commit": "5fd02c096c4e99645d94ef35db1a87b3ec29f23e",
+  "note": "Initial research record before any generated model artifacts existed."
+}

@@ -1,0 +1,469 @@
+[
+  {
+    "category_id": "fx.atmosphere.fogger.heated",
+    "name": "Z-1000III Fog Machine",
+    "model_number": "Z-1000III",
+    "manufacturer": "Antari",
+    "type": "atmospherics",
+    "subtype": "heated water-based fogger",
+    "url": "https://antari.com/products/z-1000iii/",
+    "data": {
+      "protocols": ["DMX512", "manual", "timer", "optional wireless", "optional cable remote"],
+      "source_urls": ["https://antari.com/products/z-1000iii/"],
+      "power": "1000 W",
+      "weight": "7.9 kg",
+      "dmx_channels": [1],
+      "dimensions": {"source_order": "L x W x H = 433 x 281 x 266 mm"}
+    },
+    "images": ["https://antari.com/wp-content/uploads/Z-1000III_01.jpg"],
+    "dimensions": {"width_m": 0.281, "height_m": 0.266, "depth_m": 0.433, "axis_status": "documented", "axis_note": "Manufacturer labels L/W/H; L mapped to depth in the upright front-facing pose.", "reference_pose": "Machine resting on feet with outlet facing forward and hanging bracket raised; L/W/H."},
+    "modeling": {"family": "fogger", "notes": "Conventional heated water-based fog machine; chosen instead of Z-1200III because the official Z-1000III source has a consistent dimensional identity. Distinct from compressor hazer and cold CO2 jet.", "body_style": "rectangular metal fogger with carry handle, fluid tank, front outlet and pivoting hanging bracket"},
+    "evidence": [
+      {"url": "https://antari.com/products/z-1000iii/", "title": "Z-1000III Fog Machine product page", "locator": "Specifications: 1000 W, 7.9 kg, L/W/H 433/281/266 mm, one-channel DMX", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "category_id": "fx.atmosphere.hazer.water_based",
+    "name": "Hurricane Haze 1DX",
+    "model_number": "Hurricane Haze 1DX",
+    "manufacturer": "CHAUVET DJ",
+    "type": "atmospherics",
+    "subtype": "water-based heated hazer",
+    "url": "https://fr.chauvetdj.com/products/hurricane-haze-1dx/",
+    "data": {
+      "protocols": ["DMX", "standalone display", "included wired timer remote"],
+      "source_urls": ["https://fr.chauvetdj.com/products/hurricane-haze-1dx/"],
+      "power": "303 W at 230 V, 50 Hz",
+      "weight": null,
+      "dmx_channels": [1],
+      "dimensions": {"source_order": "278 x 150 x 223 mm; product page does not label axes"}
+    },
+    "images": ["https://fr.chauvetdj.com/wp-content/uploads/2016/12/wsi-imageoptim-Hurricane-Haze-1DX-RIGHT.jpg"],
+    "dimensions": {"width_m": 0.15, "height_m": 0.223, "depth_m": 0.278, "axis_status": "estimated", "axis_note": "Manufacturer lists 278 x 150 x 223 mm without labels; mapped largest axis to depth and shortest to width based on upright product view. Numeric dimensions are preserved; width/depth mapping is estimated.", "reference_pose": "Body upright on base, output scoop facing forward; axis mapping inferred from official product photo."},
+    "modeling": {"family": "hazer", "notes": "Water-based heated hazer with HFG fluid. Manufacturer page lists one DMX channel and provides the direct right-side product photo; product page does not map the dimension triplet to axes.", "body_style": "compact low-profile metal hazer with top handle, adjustable output scoop and rear controls"},
+    "evidence": [
+      {"url": "https://fr.chauvetdj.com/products/hurricane-haze-1dx/", "title": "Hurricane Haze 1DX product page", "locator": "Specifications: water-based haze, power, dimensions, one-channel DMX; product-view gallery", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "category_id": "fx.atmosphere.hazer.oil_compressor",
+    "name": "ATMOSPHERE APS Haze Generator",
+    "model_number": "ATMOSPHERE APS",
+    "manufacturer": "MDG",
+    "type": "atmospherics",
+    "subtype": "oil-based compressor hazer",
+    "url": "https://www.mdgfog.com/en/atmosphereaps",
+    "data": {
+      "protocols": ["DMX via optional 2-channel interface", "remote timer"],
+      "source_urls": ["https://www.mdgfog.com/en/atmosphereaps", "https://www.mdgfog.com/en/2-channel-dmx-interface"],
+      "power": "715 W; 115 or 230 VAC, 50/60 Hz single phase",
+      "weight": "19 kg (machine); shipping/flight case weight excluded",
+      "dmx_channels": [2],
+      "dimensions": {"source_order": "Length 685 mm x width 180 mm x height 300 mm"},
+      "process": "Mineral-oil fluid is atomized using compressed CO2 from a separate external supply; CO2 consumption is documented as 0.18 kg/h at 1.38 bar (20 psi). No onboard compressor is claimed; this is a haze atomizer, not a CO2 plume jet."
+    },
+    "images": ["https://mdgfog.s3.amazonaws.com/uploads/img-tiny/atmosphere-a-bb3c9a.png", "https://mdgfog.s3.amazonaws.com/uploads/img-tiny/atmosphere-b-b46a60.png"],
+    "dimensions": {"width_m": 0.18, "height_m": 0.3, "depth_m": 0.685, "axis_status": "documented", "axis_note": "MDG labels length, width and height explicitly; L mapped to depth. Front/angled official image inspected for body orientation.", "reference_pose": "Machine resting horizontally on its base, fluid reservoir at the front end and carry handle above; MDG product page dimensions."},
+    "modeling": {"family": "hazer", "notes": "Oil-based atomizing fluid plus separate externally supplied compressed CO2; no onboard compressor is claimed and this is not a CO2 plume jet.", "body_style": "long low rectangular violet metal machine with raised fluid reservoir at one end and carry handle"},
+    "evidence": [
+      {"url": "https://www.mdgfog.com/en/atmosphereaps", "title": "ATMOSPHERE APS product page", "locator": "Specifications: consumption, fluid, power, dimensions, machine weight; excludes 34 kg shipping weight", "accessed_at": "2026-09-30"},
+      {"url": "https://www.mdgfog.com/en/2-channel-dmx-interface", "title": "2-channel DMX interface product page", "locator": "Interface compatible with ATMOSPHERE; separate accessory", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "category_id": "fx.atmosphere.low_fog.ultrasonic",
+    "name": "Cumulus HP Low-Lying Fog Machine",
+    "model_number": "Cumulus HP",
+    "manufacturer": "CHAUVET DJ",
+    "type": "atmospherics",
+    "subtype": "ultrasonic water-mist low fogger",
+    "url": "https://www.chauvetdj.com/products/cumulus-hp/",
+    "data": {
+      "protocols": ["DMX", "standalone display", "included wireless remote"],
+      "source_urls": ["https://www.chauvetdj.com/products/cumulus-hp/", "https://www.chauvetdj.com/wp-content/uploads/2023/12/Cumulus_HP_UM_Rev1.pdf"],
+      "power": "1608 W at 120 V / 60 Hz; 1541 W at 230 V / 50 Hz",
+      "weight": "15.7 kg",
+      "dmx_channels": [2],
+      "dimensions": {"source_order": "Length x width x height = 464 x 304 x 347 mm (manual Rev. 1, page 13)"}
+    },
+    "images": [],
+    "reference_image_file": "research/fixtures/taxonomy/atmos-sources/cumulus-hp-product-dimensions-06.png",
+    "reference_image_locator": "https://www.chauvetdj.com/wp-content/uploads/2023/12/Cumulus_HP_UM_Rev1.pdf#page=6 (printed page 3; product-dimensions drawing)",
+    "dimensions": {"width_m": 0.304, "height_m": 0.347, "depth_m": 0.464, "axis_status": "documented", "axis_note": "The manual's drawing and specifications label the bare enclosure length 464 mm, width 304 mm, height 347 mm. External output hose and floor nozzle are not included in this housing envelope.", "reference_pose": "Bare Cumulus HP enclosure level on its base; hose and floor nozzle excluded from reference dimensions."},
+    "modeling": {"family": "low_fog", "notes": "Ultrasonic atomizer uses distilled water; separate fog fluid feeds the warmed carrier fog. No dry ice required.", "body_style": "rugged rectangular case-style enclosure with hose outlet and separate water/fog tanks"},
+    "evidence": [{"url": "https://www.chauvetdj.com/products/cumulus-hp/", "title": "Cumulus HP product page", "locator": "Highlights and specifications: ultrasonic atomizer, DMX, power, mass, size", "accessed_at": "2026-09-30"}, {"url": "https://www.chauvetdj.com/wp-content/uploads/2023/12/Cumulus_HP_UM_Rev1.pdf", "title": "Cumulus HP User Manual Rev. 1", "locator": "Printed page 3 (PDF page 6): product overview and labeled L/W/H dimensional drawing; technical specification table on printed page 13", "accessed_at": "2026-09-30"}]
+  },
+  {
+    "category_id": "fx.atmosphere.jet.led_fog",
+    "name": "M-9 Jet Fog Machine",
+    "model_number": "M-9",
+    "manufacturer": "Antari",
+    "type": "atmospherics",
+    "subtype": "LED-equipped heated fog jet",
+    "url": "https://antari.com/products/m-9/",
+    "data": {
+      "protocols": ["DMX512", "manual", "timer", "master/slave", "wireless", "optional wireless DMX"],
+      "source_urls": ["https://antari.com/products/m-9/"],
+      "power": "1820 W; US 100–120 V 50/60 Hz, EU 220–240 V 50/60 Hz",
+      "weight": "25.0 kg",
+      "dmx_channels": [10, 15, 25],
+      "dimensions": {"source_order": "L x W x H = 393 x 321 x 420 mm"},
+      "light_source": "27 x 8 W 5-in-1 LED; fog fluid product, not CO2 propellant"
+    },
+    "images": ["https://antari.com/wp-content/uploads/M-9_01.jpg"],
+    "dimensions": {"width_m": 0.321, "height_m": 0.42, "depth_m": 0.393, "axis_status": "documented", "axis_note": "Manufacturer labels L/W/H; W mapped lateral and L depth. Official product image inspected, but image pose is not itself a dimensional drawing.", "reference_pose": "Machine standing on its base with LED tray above body; fog outlet direction horizontal. Manufacturer's L/W/H dimensions."},
+    "modeling": {"family": "jet", "notes": "Produces a forceful heated fog plume with integrated LEDs. Antari markets it as a CO2-style visual effect, but its documented consumable is FLC fog fluid; it is not a real CO2 jet.", "body_style": "large faceted black fog machine with top emitter tray containing 27 multicolor LED modules, carry handles and base feet"},
+    "evidence": [{"url": "https://antari.com/products/m-9/", "title": "M-9 Jet Fog Machine product page", "locator": "Overview and specifications: FLC compatible fluid, LED count, dimensions, weight, DMX footprints", "accessed_at": "2026-09-30"}]
+  },
+  {
+    "category_id": "fx.atmosphere.bubble.machine",
+    "name": "B-100 Bubble Machine",
+    "model_number": "B-100",
+    "manufacturer": "Antari",
+    "type": "atmospherics",
+    "subtype": "DMX bubble machine",
+    "url": "https://antari.com/products/b-100/",
+    "data": {
+      "protocols": ["DMX512", "manual", "optional timer", "optional wireless", "optional cable remote"],
+      "source_urls": ["https://antari.com/products/b-100/", "https://www.antari.com/usermanual/B/B-100/B-100.pdf"],
+      "power": "30 W at 120 V / 32 W at 230 V",
+      "weight": "4.2 kg",
+      "dmx_channels": [1],
+      "dimensions": {"source_order": "L x W x H = 341 x 265 x 290 mm"}
+    },
+    "images": ["https://antari.com/wp-content/uploads/B-100-01.jpg"],
+    "dimensions": {"width_m": 0.265, "height_m": 0.29, "depth_m": 0.341, "axis_status": "documented", "axis_note": "Current product page and current Rev. 05 manual agree on manufacturer L/W/H = 341/265/290 mm; dimensions refer to the B-100 variant.", "reference_pose": "Enclosed bubble machine resting on feet, output/wheel opening front-facing and carry handle above; manufacturer L/W/H."},
+    "modeling": {"family": "bubble", "notes": "Selected B-100 rather than B-200 to avoid a substantial same-model manual/product-page envelope conflict. Current product page and Rev. 05 manual agree on the B-100 envelope and mass.", "body_style": "compact enclosed metal bubble machine with broad wheel/output opening, feet and rear control panel"},
+    "evidence": [
+      {"url": "https://antari.com/products/b-100/", "title": "B-100 Bubble Machine product page", "locator": "Current specification block: product dimensions, weight, power and manual control", "accessed_at": "2026-09-30"},
+      {"url": "https://www.antari.com/usermanual/B/B-100/B-100.pdf", "title": "B-100 User Manual Rev. 05", "locator": "Technical specifications agree with the current product page on L/W/H and machine weight", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "category_id": "fx.atmosphere.snow.machine",
+    "name": "S-500 Snow Machine",
+    "model_number": "S-500",
+    "manufacturer": "Antari",
+    "type": "atmospherics",
+    "subtype": "water-based snow effect machine",
+    "url": "https://antari.com/products/s-500/",
+    "data": {
+      "protocols": ["DMX512", "manual", "timer", "optional wireless", "optional wireless DMX", "optional cable remote"],
+      "source_urls": ["https://antari.com/products/s-500/"],
+      "power": "900 W; US 100–120 V 50/60 Hz, EU 220–240 V 50/60 Hz",
+      "weight": "37.2 kg (S-500); S-500L variant is 46.4 kg and excluded",
+      "dmx_channels": [2],
+      "dimensions": {"source_order": "L x W x H = 592 x 551 x 651 mm for S-500; S-500L variant dimensions excluded"}
+    },
+    "images": ["https://antari.com/wp-content/uploads/S-500_main-1000x1000-1.jpg"],
+    "dimensions": {"width_m": 0.551, "height_m": 0.651, "depth_m": 0.592, "axis_status": "estimated", "axis_note": "Antari labels L/W/H = 592/551/651 mm for S-500, but the current product image shows the case open and the dimensions appear to be the protective case's transport envelope. Body orientation mapping follows L/W/H; pose is estimated closed case.", "reference_pose": "Model as the S-500 road case closed, with its open-lid manufacturer photo used only for product identification; exact closed-case drawing not found."},
+    "modeling": {"family": "snow", "notes": "Professional snow machine with case and hose; dimensions/mass refer to S-500, not S-500L. Nominal dimensions are treated as the closed road-case envelope (estimated pose); open-lid product photo does not depict that envelope pose.", "body_style": "large black wheeled road case for the snow machine; use closed case geometry for nominal transport envelope"},
+    "evidence": [{"url": "https://antari.com/products/s-500/", "title": "S-500 Snow Machine product page", "locator": "Specifications: rated power, fluid, 2-channel DMX, dimensions and weight; S-500 and S-500L variants separated", "accessed_at": "2026-09-30"}]
+  },
+  {
+    "category_id": "fx.atmosphere.fan.effect",
+    "name": "Look-Fan DMX",
+    "model_number": "Look-Fan DMX",
+    "manufacturer": "Look Solutions",
+    "type": "atmospherics",
+    "subtype": "DMX axial effect fan",
+    "url": "https://www.looksolutions.com/uploads/pdf/en_fr/info_dmxfan_e.pdf",
+    "data": {
+      "protocols": ["DMX512", "display standalone control"],
+      "source_urls": ["https://www.looksolutions.com/uploads/pdf/en_fr/info_dmxfan_e.pdf", "https://www.looksolutions.com/products/look_fan_s/8.html"],
+      "power": "850 W maximum; 230 V / 50 Hz",
+      "weight": "29.5 kg",
+      "dmx_channels": null,
+      "dimensions": {"diagram_dimensions_mm": {"fan_diameter": 665, "overall_front_width": 721, "body_depth": 425, "overall_side_height": 460}, "source_order": "Technical data sheet dimension diagram; dimensions include the fan and supplied yoke geometry as drawn"},
+      "airflow": "approximately 9000 m3/h; up to 1250 rpm"
+    },
+    "images": [],
+    "reference_image_file": "research/fixtures/taxonomy/atmos-sources/look-fan-dmx-sheet-1.png",
+    "reference_image_locator": "https://www.looksolutions.com/uploads/pdf/en_fr/info_dmxfan_e.pdf#page=1",
+    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "Official sheet labels fan Ø665 mm, front-view overall width 721 mm, side-view projection 460 mm, and depth 425 mm. The drawing does not make clear whether the 460 mm projection is a pose-dependent yoke dimension or overall height in the intended mounted reference pose; do not map these into a bounding box without clarification.", "reference_pose": "Official sheet shows a hanging yoke in a front and side drawing plus a fan photo; assembly pose/orientation for the 460 mm measure remains unresolved."},
+    "modeling": {"family": "fan", "notes": "The local reference image is a rasterized copy of page 1 of the official product/technical sheet. Source dimensional values are retained but axis mapping is unresolved; DMX channel footprint is not published there.", "body_style": "large guarded axial fan with circular grille, yoke and rear motor housing"},
+    "evidence": [{"url": "https://www.looksolutions.com/uploads/pdf/en_fr/info_dmxfan_e.pdf", "title": "Look-Fan DMX technical data sheet", "locator": "Page 1: diagram dimensions, power, voltage, weight and DMX operation", "accessed_at": "2026-09-30"}]
+  },
+  {
+    "category_id": "fx.atmosphere.confetti.launcher",
+    "name": "Powershot II",
+    "model_number": "MFX0304",
+    "manufacturer": "MAGIC FX",
+    "type": "atmospherics",
+    "subtype": "electric confetti / streamer shot launcher",
+    "url": "https://magicfx.com/products/powershot-ii",
+    "data": {
+      "protocols": ["power on/off trigger"],
+      "source_urls": ["https://magicfx.com/products/powershot-ii", "https://magicfx.com/cdn/shop/files/Powershot_II_manual.pdf?v=2824067315526127119"],
+      "power": "120 W; 220–240 VAC, 50/60 Hz",
+      "weight": "1.7 kg",
+      "dmx_channels": null,
+      "dimensions": {"source_order": "Length 90 mm x width 127 mm x height 190 mm"}
+    },
+    "images": ["https://magicfx.com/cdn/shop/files/POWERSHOTII_66533f85-fbf1-4057-ae70-44f6163f6649.jpg?v=1774941991&width=3840"],
+    "dimensions": {"width_m": 0.127, "height_m": 0.19, "depth_m": 0.09, "axis_status": "documented", "axis_note": "Manufacturer labels length/width/height; image checked in compact upright mounting pose, length treated as front-to-back short axis.", "reference_pose": "Compact unit held upright with shot socket uppermost, mounting surface down; official product image."},
+    "modeling": {"family": "confetti", "notes": "Launcher is a reusable electrical shot appliance; disposable electric cannons/consumables are separate products.", "body_style": "small black box-shaped powered shot unit with top-facing cannon socket, angle indicator and mounting clamps"},
+    "evidence": [{"url": "https://magicfx.com/products/powershot-ii", "title": "Powershot II product page", "locator": "Description identifies electric confetti/streamer launcher; specifications give SKU, size, mass, power and power-on/off control", "accessed_at": "2026-09-30"}]
+  },
+  {
+    "category_id": "fx.atmosphere.co2_jet.gas",
+    "name": "CO2 Jet I",
+    "model_number": "MFX1101",
+    "manufacturer": "MAGIC FX",
+    "type": "atmospherics",
+    "subtype": "liquid CO2 gas jet",
+    "url": "https://magicfx.com/products/co2-jet-i",
+    "data": {
+      "protocols": ["direct on/off output; product page says manual control"],
+      "source_urls": ["https://magicfx.com/products/co2-jet-i", "https://magicfx.com/cdn/shop/files/CO2jet_manual.pdf?v=10601256926410507290"],
+      "power": "20 W; 220–240 VAC, 50–60 Hz",
+      "weight": null,
+      "dmx_channels": null,
+      "dimensions": {"product_page": "Length 200 mm x width 150 mm x height 130 mm; product page does not say whether the removable output tube is included", "manual": "Length 195 mm x width 150 mm x height 130 mm; manual also lists mass 2.85 kg versus product page 3.49 kg; component/envelope relationship unresolved"},
+      "propellant": "Liquid CO2; product manual identifies CO2 FX and liquid CO2 input. Distinct from heated-fluid LED fog jets."
+    },
+    "images": ["https://magicfx.com/cdn/shop/files/CO2JET1.png?v=1774359837&width=3840"],
+    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "Although the manufacturer page lists a 200 x 150 x 130 mm triplet, its matching manual gives 195 x 150 x 130 mm and a conflicting mass; neither clarifies whether the protruding removable output tube is included. The canonical assembled envelope is unresolved.", "reference_pose": "Official product image shows the unit on its baseplate with output tube elevated; dimensions are not assigned to this assembled pose."},
+    "modeling": {"family": "co2_jet", "notes": "Genuine liquid CO2 jet, unlike the Antari M-9 LED fog jet which uses fog fluid. Product-page and manual dimensions/mass disagree and do not clarify the protruding tube envelope, so no scale is claimed.", "body_style": "compact black riggable housing with angled output tube, baseplate, gas input and power connection"},
+    "evidence": [
+      {"url": "https://magicfx.com/products/co2-jet-i", "title": "CO2 Jet I product page", "locator": "SKU MFX1101; liquid CO2; dimensions, mass, power, electrical input and on/off control", "accessed_at": "2026-09-30"},
+      {"url": "https://magicfx.com/cdn/shop/files/CO2jet_manual.pdf?v=10601256926410507290", "title": "CO2 Jet I manual", "locator": "Exact product code MFX1101; technical specifications give 195 x 150 x 130 mm and 2.85 kg, differing from current product page; no assembled output-tube envelope drawing identified", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "category_id": "fx.atmosphere.co2_jet.gas.co2jet_ii",
+    "name": "CO2 JET II",
+    "model_number": "MFX1118",
+    "manufacturer": "MAGIC FX",
+    "type": "atmospherics",
+    "subtype": "liquid CO2 gas jet",
+    "url": "https://magicfx.com/products/co2jet-ii",
+    "data": {
+      "protocols": ["direct output; manual lists direct output control"],
+      "source_urls": ["https://magicfx.com/products/co2jet-ii", "https://magicfx.com/cdn/shop/files/CO2jet_II_manual.pdf?v=5588412156141481997"],
+      "power": "20 W; 220–240 VAC, 50–60 Hz",
+      "weight": "3.7 kg empty",
+      "dmx_channels": null,
+      "dimensions": {"source_order": "Main product dimensions: length 232 mm x width 196 mm x height 124.5 mm. The product page dimensions 290 x 290 x 200 mm and 4.29 kg match the manual's 289 x 289 x 201 mm package dimensions / 4.2 kg packaged weight, not appliance dimensions."},
+      "propellant": "Liquid CO2; manual identifies the appliance as CO2 FX and lists liquid CO2. This is distinct from heated-fluid LED fog jets."
+    },
+    "images": ["https://magicfx.com/cdn/shop/files/CO2JETII-01.jpg?v=1773148408&width=3840"],
+    "reference_image_file": "research/fixtures/taxonomy/atmos-sources/magicfx-co2jet-ii-01.jpg",
+    "reference_image_locator": "Official product gallery image CO2JETII-01; visually inspected view includes the outlet pipe/nozzle attached in a horizontal orientation.",
+    "dimensions": {"width_m": 0.232, "height_m": 0.1245, "depth_m": 0.196, "axis_status": "estimated", "axis_note": "Manufacturer documents main dimensions length 232 mm, width 196 mm, height 124.5 mm. Image-based pose maps length to width and manual width to depth; this axis assignment is estimated from the official view. Page triplet 290 x 290 x 200 mm is packaging, corroborated by manual package dimensions 289 x 289 x 201 mm; the manual's appliance dimensions are used.", "reference_pose": "Main appliance with attached short outlet pipe angled upward as in official CO2JETII-01 image; exclude external baseplate, clamp, hoses, and case."},
+    "modeling": {"family": "co2_jet", "notes": "Genuine liquid-CO2 jet. The official manual distinguishes main product dimensions/weight from larger package dimensions/weight, resolving the conflicting product-page figures. Use the outlet-pipe configuration visible in the exact product photo; do not substitute a removable alternate nozzle or add baseplate/rigging hardware.", "body_style": "compact angular black metal box housing with attached short outlet pipe, mounting plate and side connectors"},
+    "evidence": [
+      {"url": "https://magicfx.com/products/co2jet-ii", "title": "CO2jet II product page", "locator": "SKU MFX1118; genuine CO2 effect; product page figures 29 x 29 x 20 cm and 4.29 kg are identified by manual as package dimensions/packaged mass; electrical and direct output data", "accessed_at": "2026-09-30"},
+      {"url": "https://magicfx.com/cdn/shop/files/CO2jet_II_manual.pdf?v=5588412156141481997", "title": "MAGICFX CO2 JET II User and Installation Manual", "locator": "Page 6 printed / PDF page 5: Product code MFX1118; main dimensions L 232 x W 196 x H 124.5 mm; empty mass 3.7 kg; package dimensions and packaged mass separately listed; 20W, 220-240VAC, 50-60Hz; liquid CO2 propellant", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "category_id": "fx.atmosphere.spark.cold_spark",
+    "name": "Sparxtar II",
+    "model_number": "MFX5003",
+    "manufacturer": "MAGIC FX",
+    "type": "atmospherics",
+    "subtype": "cold-spark effect appliance",
+    "url": "https://magicfx.com/products/sparxtar-ii",
+    "data": {
+      "protocols": ["DMX512", "RDM"],
+      "source_urls": ["https://magicfx.com/products/sparxtar-ii"],
+      "power": "700 W; 220–250 VAC",
+      "weight": "10.25 kg",
+      "dmx_channels": null,
+      "dimensions": {"source_order": "22.6 x 25.4 x 25.4 cm; product page does not label axes"}
+    },
+    "images": ["https://magicfx.com/cdn/shop/files/SPARXTAR_II_VIEW-HERO.jpg?v=1783682020&width=3840"],
+    "dimensions": {"width_m": 0.254, "height_m": 0.254, "depth_m": 0.226, "axis_status": "estimated", "axis_note": "Manufacturer publishes a three-axis size but does not label axis names; the two equal 254 mm axes remain interchangeable and 226 mm is assigned depth based on the product image.", "reference_pose": "Compact black enclosure upright on base feet, front access panel facing forward; image shows the specific Sparxtar II chassis."},
+    "modeling": {"family": "spark", "notes": "Cold-spark effect appliance; only its physical product metadata is recorded. Manufacturer listing identifies this exact model as Sparxtar II. No operational or firing details included.", "body_style": "compact cuboid black enclosure with front access panel, ventilation, feet and top handling features"},
+    "evidence": [{"url": "https://magicfx.com/products/sparxtar-ii", "title": "Sparxtar II product page", "locator": "SKU MFX5003, product image, dimensions, weight, power and DMX/RDM protocol listing", "accessed_at": "2026-09-30"}]
+  },
+  {
+    "category_id": "fx.atmosphere.flame.effect_appliance",
+    "name": "Flameblazer",
+    "model_number": "MFX1403",
+    "manufacturer": "MAGIC FX",
+    "type": "atmospherics",
+    "subtype": "flame effect appliance",
+    "url": "https://magicfx.com/products/flameblazer",
+    "data": {
+      "protocols": ["DMX512", "RDM"],
+      "source_urls": ["https://magicfx.com/products/flameblazer"],
+      "power": "395 W; 220–250 VAC",
+      "weight": "19 kg",
+      "dmx_channels": null,
+      "dimensions": {"source_order": "L x W x H = 410 x 300 x 280 mm"}
+    },
+    "images": ["https://magicfx.com/cdn/shop/files/FLAMEBLAZER-03_b1e6b1f8-cda1-42e9-a702-83a9c509f9f8.jpg?v=1773150186"],
+    "dimensions": {"width_m": 0.3, "height_m": 0.28, "depth_m": 0.41, "axis_status": "documented", "axis_note": "Manufacturer labels length, width and height; length is mapped to depth for the upright product body pose.", "reference_pose": "Rectangular enclosure resting on bottom feet with output/face panel and connective side facing forward; official standalone image."},
+    "modeling": {"family": "flame", "notes": "Physical flame-effect appliance; record contains product geometry and identity only, not operating, firing or channel instructions.", "body_style": "rectangular metal effect appliance with side access panels, feet and output/control face"},
+    "evidence": [{"url": "https://magicfx.com/products/flameblazer", "title": "Flameblazer product page", "locator": "SKU MFX1403, standalone product image, dimensions, weight, power and DMX/RDM metadata", "accessed_at": "2026-09-30"}]
+  },
+  {
+    "category_id": "fx.atmosphere.fan.effect.adj_entour_cyclone",
+    "name": "Entour Cyclone",
+    "model_number": "ENT550",
+    "manufacturer": "ADJ",
+    "type": "atmospherics",
+    "subtype": "DMX axial effect fan",
+    "url": "https://www.adj.com/products/entour-cyclone",
+    "data": {
+      "protocols": ["DMX512", "manual", "optional remote controller"],
+      "source_urls": ["https://www.adj.com/products/entour-cyclone", "https://www.adj.com/cdn/shop/files/ADJ_Entour_Cyclone_User_Manual.pdf?v=12488028309515808394"],
+      "power": "120–220 W; region-specific 120 V or 230 V model",
+      "weight": "8.56 kg product page; 8.39 kg manual (conflict; not used for scale)",
+      "dmx_channels": [1, 2],
+      "dimensions": {"source_order": "Product page L/W/H = 350/422/131 mm; manual dimensional drawing confirms front elevation 350 mm wide x 422 mm high and 131 mm front-to-back thickness"}
+    },
+    "images": ["https://www.adj.com/cdn/shop/files/0d0fed98b1c2f787a2f2af17a70aff0c68e442a0_ENT550__IMG__001__6678f14107a6.jpg?v=1775714654&width=2048"],
+    "reference_image_file": "research/fixtures/taxonomy/atmos-sources/adj-entour-cyclone-dimensions-4.png",
+    "reference_image_locator": "https://www.adj.com/cdn/shop/files/ADJ_Entour_Cyclone_User_Manual.pdf?v=12488028309515808394#page=4 (printed pages 6–7; dimensional drawing)",
+    "dimensions": {"width_m": 0.35, "height_m": 0.422, "depth_m": 0.131, "axis_status": "documented", "axis_note": "ADJ manual dimensional drawing gives 350 mm width and 422 mm height in the front elevation, and 131 mm front-to-back in side elevation. The product page's L/W/H naming order is atypical; front/side drawing establishes fixture axes.", "reference_pose": "Front grille vertical, fan unit standing in dual-purpose floor/truss bracket in its upright drawing pose; envelope includes bracket projections as shown."},
+    "modeling": {"family": "fan", "notes": "Buildable DMX fan alternative to unresolved Look-Fan. Product page and manual dimensions are similar; manual diagram resolves front width, height and depth. Product page/manual mass disagree slightly, so mass is recorded with source conflict.", "body_style": "compact square axial fan with front/rear grille and dual-purpose scissor/yoke bracket"},
+    "evidence": [
+      {"url": "https://www.adj.com/products/entour-cyclone", "title": "Entour Cyclone product page", "locator": "SKU ENT550, 1/2-channel DMX modes, rated power, mass, dimensions L/W/H, product gallery", "accessed_at": "2026-09-30"},
+      {"url": "https://www.adj.com/cdn/shop/files/ADJ_Entour_Cyclone_User_Manual.pdf?v=12488028309515808394", "title": "Entour Cyclone User Manual", "locator": "Printed pages 6–7 / PDF page 4: dimensional drawing maps 350 mm front width, 422 mm front height and 131 mm side depth; final spec page lists 8.39 kg", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "category_id": "fx.atmosphere.water_jet.fountain",
+    "name": "Fontana Jumping Jet MXP 3000",
+    "model_number": "MXP 3000",
+    "manufacturer": "Fontana Fountains",
+    "type": "atmospherics",
+    "subtype": "laminar water-jet fountain fixture",
+    "url": "https://fontanafountains.com/products/spray-systems/special-water-effects/jumping-jet/",
+    "data": {
+      "protocols": ["DMX/RDM", "led:bus", "electrical command control option"],
+      "source_urls": ["https://fontanafountains.com/products/spray-systems/special-water-effects/jumping-jet/", "https://fontanafountains.com/wp-content/uploads/drawings/3000.svg"],
+      "power": "20 W total; 24 V DC (12 V DC also offered)",
+      "weight": null,
+      "dmx_channels": [5],
+      "dimensions": {"source_order": "MXP 3000 values: Ø275 mm, total width 370 mm, total height up to 570 mm, total length up to 480 mm; envelope varies with jet/bracket trajectory and water-level geometry"}
+    },
+    "images": [],
+    "reference_image_file": "research/fixtures/taxonomy/atmos-sources/fontana-jumping-jet-mxp3000.png",
+    "reference_image_locator": "https://fontanafountains.com/wp-content/uploads/drawings/3000.svg (official MXP 3000 product drawing rasterized locally)",
+    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "Manufacturer lists maximum/variable extents rather than a single fixed pose: total width 370 mm, total height up to 570 mm, total length up to 480 mm, and 275 mm diameter. Do not treat these pose-dependent maximums as a fixed rigid fixture envelope.", "reference_pose": "Stationary water-effect nozzle/cutter module on heavy-duty floor bracket; jet trajectory and installation waterline vary. Not a portable plug-and-play appliance."},
+    "modeling": {"family": "water_jet", "notes": "Exact MXP 3000 laminar water-jet fixture family. The drawing shows nozzle/cutter hardware; total envelope varies with adjustable installation pose, so no scaled bounds are assigned. Product line is for integrated fountain/water-show installations rather than a portable stage effect box.", "body_style": "stainless cylindrical laminar nozzle/cutter assembly on a floor bracket with inlet plumbing and integrated RGBW light"},
+    "evidence": [
+      {"url": "https://fontanafountains.com/products/spray-systems/special-water-effects/jumping-jet/", "title": "Fontana Jumping Jet product page", "locator": "MXP 3000 technical specifications: material, power, water inlet, DMX/RDM, and variable dimensional extents; product drawing link", "accessed_at": "2026-09-30"},
+      {"url": "https://fontanafountains.com/wp-content/uploads/drawings/3000.svg", "title": "MXP 3000 dimensional drawing", "locator": "Official dimensioned nozzle and bracket line drawing; rasterized as local visual reference", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "category_id": "fx.atmosphere.fluid_container.water_based_fog",
+    "name": "High Performance Fog Fluid (FJU) Gallon Jug",
+    "model_number": "FJU",
+    "manufacturer": "CHAUVET DJ",
+    "type": "atmospherics",
+    "subtype": "sealed manufacturer-approved water-based fog-fluid container",
+    "url": "https://www.chauvetdj.com/products/fog-juice-gallon/",
+    "data": {
+      "protocols": [],
+      "source_urls": ["https://www.chauvetdj.com/products/fog-juice-gallon/"],
+      "power": null,
+      "weight": "3.9 kg",
+      "dmx_channels": null,
+      "dimensions": {"source_order": "155 x 155 x 300 mm; 1 US gal / 3.8 L net contents; dimensions describe the sealed jug package, not its liquid contents"}
+    },
+    "images": ["https://www.chauvetdj.com/wp-content/uploads/2015/12/fju-front-feat.png"],
+    "dimensions": {"width_m": 0.155, "height_m": 0.3, "depth_m": 0.155, "axis_status": "estimated", "axis_note": "CHAUVET lists dimensions 155 x 155 x 300 mm without axis labels; bottle photo supports upright height on the 300 mm axis and equal 155 mm base axes.", "reference_pose": "Sealed one-gallon jug upright on its flat base with cap at top; exact external package dimensions from manufacturer listing."},
+    "modeling": {"family": "fluid_container", "notes": "Exact sealed FJU gallon jug product/package; record is the container geometry, not a fluid mixture or recipe. CHAUVET identifies the formula as designed for water-based machines.", "body_style": "white handled rectangular plastic gallon jug with screw cap and printed product label"},
+    "evidence": [{"url": "https://www.chauvetdj.com/products/fog-juice-gallon/", "title": "High Performance Fog Fluid (FJU)", "locator": "Product page: sealed 1 gal / 3.8 L jug, package weight 3.9 kg, package dimensions 155 x 155 x 300 mm", "accessed_at": "2026-09-30"}]
+  },
+  {
+    "category_id": "fx.atmosphere.co2_supply.cylinder_north_american",
+    "name": "MDG CO2 Gas Bottle, 1.5 kg (North American)",
+    "model_number": null,
+    "manufacturer": "MDG",
+    "type": "atmospherics",
+    "subtype": "North American aluminum CO2 gas cylinder",
+    "url": "https://www.mdgfog.com/en/accessories",
+    "data": {
+      "protocols": [],
+      "source_urls": ["https://www.mdgfog.com/en/accessories"],
+      "power": null,
+      "weight": null,
+      "dmx_channels": null,
+      "dimensions": {"source_order": "MDG identifies a North American 1.5 kg / 3.3 lb aluminum CO2 gas bottle; external cylinder dimensions and filled mass are not published on the accessory page"},
+      "region": "North America; exact local approval/connector variant must be confirmed with the manufacturer or gas supplier before use"
+    },
+    "images": ["https://mdgfog.s3.amazonaws.com/uploads/img/1.5-KG-3.3-LB-CO2.png"],
+    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "Exact North American 1.5 kg MDG bottle identity is documented, but cylinder dimensions are not published; no standard-cylinder envelope is assumed.", "reference_pose": "Manufacturer image shows aluminum cylinder horizontally; image pose is visual identification only, not a dimensional reference."},
+    "modeling": {"family": "co2_supply", "notes": "Specific North American MDG cylinder accessory, distinguished from European bottle interfaces. External dimensions and connector details remain undocumented in the public accessory listing; do not substitute a generic bottle model.", "body_style": "compact aluminum pressure cylinder with valve and protective cap/handle features; exact silhouette and dimensions unresolved"},
+    "evidence": [{"url": "https://www.mdgfog.com/en/accessories", "title": "MDG Accessories", "locator": "Gas accessories list identifies North American 1.5 kg (3.3 lb) aluminum CO2 gas bottle; no external dimensions or filled mass shown", "accessed_at": "2026-09-30"}]
+  },
+  {
+    "category_id": "fx.atmosphere.rigging.secondary_safety_wire",
+    "name": "KUPO 75 cm Safety Wire (Black)",
+    "model_number": "SW-01-B",
+    "manufacturer": "KUPO",
+    "type": "atmospherics",
+    "subtype": "secondary safety wire / bond",
+    "url": "https://www.kuposhop.com/en/product-697067/KUPO-75cm-Safety-Wire-3-2mm-Diameter-Black-SW-01-B.html",
+    "data": {
+      "protocols": [],
+      "source_urls": ["https://www.kuposhop.com/en/product-697067/KUPO-75cm-Safety-Wire-3-2mm-Diameter-Black-SW-01-B.html"],
+      "power": null,
+      "weight": null,
+      "dmx_channels": null,
+      "dimensions": {"source_order": "Wire length 750 mm; core wire diameter 3.2 mm; cable is flexible and endpoint-to-endpoint package envelope depends on coiled/uncoiled pose"},
+      "load_capacity": "10 kg (22 lb); manufacturer page lists load capacity, not a dimensional bounding box"
+    },
+    "images": ["https://www.kuposhop.com/comm/upimage/p_230511_05662.jpg"],
+    "dimensions": {"width_m": null, "height_m": null, "depth_m": null, "axis_status": "unknown", "axis_note": "A flexible safety wire has 750 mm length and 3.2 mm cable diameter, but no fixed 3D bounding box in the variable coil/installed pose; retain those source measures without assigning an envelope.", "reference_pose": "Black galvanized safety wire with spring hook and pressed loop shown in a loose loop; dimension depends on installed routing."},
+    "modeling": {"family": "safety_wire", "notes": "Product is identified as a secondary protection device; no installation or rigging procedure included. 10 kg load-capacity rating is recorded solely as product metadata.", "body_style": "flexible black galvanized steel wire with spring hook, pressed loop/ferrule and circular cable coil"},
+    "evidence": [{"url": "https://www.kuposhop.com/en/product-697067/KUPO-75cm-Safety-Wire-3-2mm-Diameter-Black-SW-01-B.html", "title": "KUPO 75 cm Safety Wire SW-01-B", "locator": "Manufacturer product page: exact model, 750 mm length, 3.2 mm diameter, hook, 10 kg load capacity, secondary-protection application", "accessed_at": "2026-09-30"}]
+  },
+  {
+    "category_id": "fx.atmosphere.rigging.secondary_safety_connector.t23505",
+    "name": "Doughty Quick Link-10mm-550Kg",
+    "model_number": "T23505",
+    "manufacturer": "Doughty Engineering",
+    "type": "atmospherics",
+    "subtype": "rated secondary-suspension quick link",
+    "url": "https://doughty-engineering.co.uk/products/quick-link-10mm-550kg/",
+    "data": {
+      "protocols": [],
+      "source_urls": ["https://doughty-engineering.co.uk/products/quick-link-10mm-550kg/", "https://doughty-engineering.co.uk/wp-content/uploads/2023/01/T23505-Data-Sheet-US.pdf"],
+      "power": null,
+      "weight": null,
+      "dmx_channels": null,
+      "dimensions": {"source_drawing": "70 mm inner clear length; 20 mm inner clear height; 11 mm gap near closure; 10 mm bar diameter/thickness. These are diagram dimensions, not a published outside bounding box.", "derived_estimate": "Approx. 90 x 40 x 10 mm maximum envelope by adding two 10 mm bar diameters to the 70 x 20 mm inner clear opening; estimate only, since the drawing does not dimension the closure-sleeve outer envelope."},
+      "working_load_limit": "500 kg on the product data sheet; product page heading/description says 550 kg. Conflict retained; confirm exact rating from product marking/manufacturer before any load application.",
+      "finish": "Zinc plated; product data sheet states DIN 56926"
+    },
+    "images": ["https://doughty-engineering.co.uk/wp-content/uploads/Product-Images/T23505-Quick-Link-1-700x700-c-default.jpg"],
+    "reference_image_file": "research/fixtures/taxonomy/atmos-sources/doughty-t23505.jpg",
+    "reference_image_locator": "Official product image for T23505; the accompanying manufacturer PDF drawing shows top and side views with 70/20/11/10 mm labels.",
+    "dimensions": {"width_m": 0.09, "height_m": 0.044, "depth_m": 0.016, "axis_status": "estimated", "axis_note": "Estimated outer 90 x 44 x 16 mm from orthographic manufacturer drawing: 70 mm inner length and 20 mm inner clear height, calibrated with 10 mm bar diameter; closure sleeve measures about 1.6x rod diameter in the side view and raises the silhouette about 4 mm beyond the 40 mm loop estimate. These are drawing-calibrated visual bounds, not published outer dimensions or certified clearances. Raw 70/20/11/10 mm measures retained above. Product page says 550 kg while data sheet says WLL 500 kg; appearance research only, not load selection.", "reference_pose": "Small oval quick link laid flat, closure sleeve facing forward; envelope axes follow official top and side views."},
+    "modeling": {"family": "safety_hardware", "notes": "Rigid compact suspension connector, potential visual representative for secondary protection hardware only. Rated values are conflicting source metadata; no operating or rigging directions included. Do not treat product WLL as a selection recommendation.", "body_style": "zinc-plated oval steel quick link with threaded closure sleeve"},
+    "evidence": [
+      {"url": "https://doughty-engineering.co.uk/products/quick-link-10mm-550kg/", "title": "Quick Link-10mm-550Kg – Doughty Engineering", "locator": "Exact part T23505; 10 mm size, 550 kg stated on manufacturer product page; product image link; zinc finish", "accessed_at": "2026-09-30"},
+      {"url": "https://doughty-engineering.co.uk/wp-content/uploads/2023/01/T23505-Data-Sheet-US.pdf", "title": "T23505 Product Data Sheet", "locator": "Official one-page sheet: exact T23505 SKU, 10 mm bar, zinc plated, WLL 500 kg and DIN 56926; drawing labels 70 mm inner clear length, 20 mm inner clear height, 11 mm closure gap, 10 mm bar; no explicit outer envelope", "accessed_at": "2026-09-30"}
+    ]
+  },
+  {
+    "category_id": "fx.atmosphere.co2_supply.bottle_connector",
+    "name": "CO2 Bottle To Hose Connector",
+    "model_number": "MFX1103",
+    "manufacturer": "MAGIC FX",
+    "type": "atmospherics",
+    "subtype": "CO2 cylinder-to-hose connector",
+    "url": "https://magicfx.com/products/co2-bottle-to-hose-connector",
+    "data": {
+      "protocols": [],
+      "source_urls": ["https://magicfx.com/products/co2-bottle-to-hose-connector"],
+      "power": null,
+      "weight": "0.59 kg",
+      "dmx_channels": null,
+      "dimensions": {"source_order": "Length 150 mm x width 30 mm x height 30 mm"},
+      "regional_interface": "Manufacturer page identifies a quick connector but does not identify region-specific cylinder-thread compatibility; do not assume fit to NA or EU bottles."
+    },
+    "images": ["https://magicfx.com/cdn/shop/files/CO2Bottletohoseconnector.jpg?v=1773324576&width=3840"],
+    "dimensions": {"width_m": 0.03, "height_m": 0.03, "depth_m": 0.15, "axis_status": "documented", "axis_note": "Product page gives length/width/height 150/30/30 mm; length is mapped to the connector's long axis in the official photo.", "reference_pose": "Connector lying on its side with long coupler axis horizontal; product image used for orientation."},
+    "modeling": {"family": "co2_supply", "notes": "Exact MFX1103 cylinder-to-hose fitting. Product page does not specify regional cylinder thread; region-specific fit remains unknown and must not be inferred from its quick connector alone.", "body_style": "short metal high-pressure bottle coupling with knurled connector end and tether cap"},
+    "evidence": [{"url": "https://magicfx.com/products/co2-bottle-to-hose-connector", "title": "CO2 Bottle To Hose Connector", "locator": "SKU MFX1103; product purpose, dimensions, mass, and inclusion of quick connector; no region-specific cylinder-thread type documented", "accessed_at": "2026-09-30"}]
+  }
+]

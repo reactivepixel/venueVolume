@@ -1,0 +1,334 @@
+{
+  "schema_version": 1,
+  "id": "claypaky/sharpy",
+  "revision": 3,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Claypaky",
+    "model": "Sharpy",
+    "variant": "C61375",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.claypaky.it/products/sharpy-legacy/",
+      "title": "Claypaky Sharpy official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_sharpy_leaflet.pdf",
+      "title": "Claypaky Sharpy official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_Sharpy.jpg",
+      "title": "Claypaky Sharpy official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "d260a1284bf656225ad960bca0ea09796bfafff74b4c212f6606fd065a443c38"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.405,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Base footprint and height are documented; base width/depth orientation follows the manufacturer drawing."
+    },
+    "height": {
+      "value": 0.475,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Base footprint and height are documented; base width/depth orientation follows the manufacturer drawing."
+    },
+    "depth": {
+      "value": 0.33,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Base footprint and height are documented; base width/depth orientation follows the manufacturer drawing."
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "350 VA max; 100-240 V, 50/60 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "19 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "Art-Net",
+          "RDM",
+          "sACN"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.20250000059604645,
+        0.0,
+        -0.16500001325039193
+      ],
+      "max": [
+        0.20250000059604645,
+        0.4749999940395355,
+        0.16499998496146873
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0005053661880083382
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.07124999910593033,
+          0.0005053661880083382
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.351500004529953,
+          0.0005053661880083382
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.351500004529953,
+          -0.13318046927452087
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.07124999910593033,
+          0.0005053661880083382
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.351500004529953,
+          0.0005053661880083382
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.351500004529953,
+          -0.13825038075447083
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Fixture-specific procedural approximation informed by the stored official product image; not manufacturer CAD.",
+      "Tapered compact moving-head silhouette, console base, heavy yoke, cylindrical optical body and deep lens bezel.",
+      "Small fasteners, exact surface curvature, labels, internal mechanics, connector geometry and photometry remain simplified.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "8b3806d4fdda604362cad8bb71c7b6ecc215636604925f69e85f726687835878"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "91745c26b66d053b467c6ddaa463f0448aef1e0287d6535e53d20fae12d2b5f0"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "c7c5445a1f93d15a3ce6c740160dec0e836bd021d21dacff038231e0afb18742"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "5d567e4c547f4b7fb0c5e878f40188b926966641b3024940ee237d36ede301d7"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "61791fe499f1558691b7ad853799d5bf9b07a8ddc51eb0382e59c5c1c0173714"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "2386f4e73bec01b753126dc088e6c92c4fb1a6e880231ea47525c62f7d219264"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "e0541816ba4fa3cb943c1a9b020f56358fe80f2d65238712ebd49ce08f2a252e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "d5973499e1fbda8191fb4b38ebbf8c2171de3242dfbb02f3e2911d3587c84f49"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "19f044f484c856320108ba0461bd81a058b6cb63b7df64345e1668ac151afbf7"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "a91ffb6d910c45963a1e3e63634a6c68ba88eb8beb37ef202958ea1d106758ac"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "2f122ab6853cc99cf792b77f1f735b6ebbe903a97758f38af4a9aca89b404dcb",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "shell": "faceted",
+      "lens_ratio": 0.77,
+      "head_depth": 0.78,
+      "base_height": 0.15
+    },
+    "mesh_count": 85,
+    "triangle_count": 18060,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2 replaces the generic proxy with fixture-specific silhouette, optics, housing and mounting details while preserving sourced outer dimensions.",
+    "Revision 3: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.beam",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Beam"
+    ],
+    "use_tags": [
+      "legacy model"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

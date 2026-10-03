@@ -19,25 +19,11 @@ struct DebugPanel: View {
                 Spacer()
                 Text("\(model.totalChannels) channels").font(.callout.monospacedDigit()).foregroundStyle(.secondary)
             }
+            if !model.isImmersed { VenueEntryButton() }
             Text(model.environmentStatus).font(.headline)
+            Text(model.fixtureAssetStatus).font(.caption).foregroundStyle(.secondary)
             Text(model.persistenceStatus).font(.caption).foregroundStyle(.secondary)
             Text(model.trackingStatus).font(.caption).foregroundStyle(.secondary)
-            Button {
-                model.isPlacing.toggle()
-                model.expandedID = nil
-            } label: {
-                Label(model.isPlacing ? "Cancel placement" : "Place fixture", systemImage: model.isPlacing ? "xmark" : "plus")
-                    .frame(maxWidth: .infinity)
-            }.disabled(!model.canPlace && !model.isPlacing)
-            if model.isPlacing {
-                Text("Look at a clear floor or tabletop and pinch. The fixture needs 24 cm of space.").font(.callout)
-            }
-            if let selectedID = model.selectedID, let fixture = model.fixture(selectedID) {
-                Button {
-                    model.expandedID = selectedID
-                    model.isPlacing = false
-                } label: { Label("Configure \(fixture.name)", systemImage: "slider.horizontal.3").lineLimit(1) }
-            }
             if let message = model.message {
                 Text(message).font(.caption).foregroundStyle(.orange)
             }

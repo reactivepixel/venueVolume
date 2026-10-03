@@ -1,0 +1,77 @@
+{
+  "mesh_count": 254,
+  "triangle_count": 82132,
+  "geometry_sha256": "ecc291263310dbe7a845cc8788c43974b0023b704bac307940332917482ebbe1",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.4606478810310364,
+      -0.09064021706581116
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.00018042033480014652
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.09959954023361206,
+        0.00018042033480014652
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.4606478810310364,
+        0.00018042033480014652
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.4606478810310364,
+        -0.08732177317142487
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    1.0310217142105103,
+    0.991237461566925
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.jb-lighting.de/en/Sparx30",
+    "https://www.jb-lighting.de/images/products/Sparx30/Sparx30_seitlich.png"
+  ]
+}

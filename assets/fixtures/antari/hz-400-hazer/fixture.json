@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "id": "antari/hz-400-hazer",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Antari",
+    "model": "HZ-400 Hazer",
+    "variant": "HZ-400",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://antari.com/products/hz-400/",
+      "title": "HZ-400 Hazer product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": "current page; manual Rev.09",
+      "locator": "Specifications: dimensions, mass, power, DMX and dual-nozzle/diverter features",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://antari.com/wp-content/uploads/HZ-400_01.jpg",
+      "title": "HZ-400 Hazer product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "b2886a2adcb644db0b9001dbee40a84a7c31c3d5532a209bf22f1a23f3702855"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.32,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 510/320/325 mm mapped to depth/width/height."
+    },
+    "height": {
+      "value": 0.325,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 510/320/325 mm mapped to depth/width/height."
+    },
+    "depth": {
+      "value": 0.51,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 510/320/325 mm mapped to depth/width/height."
+    },
+    "reference_pose": "Machine resting upright, dual nozzles at front; external wireless receiver excluded."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "2.5 L reservoir; dual haze nozzle and adjustable diverter; 1-channel DMX; supplied HC-1 cable timer remote.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "470 W",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "18.5 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "manual",
+          "timer",
+          "optional wireless"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "1-channel mode",
+      "footprint": 1,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Machine resting upright, dual nozzles at front; external wireless receiver excluded.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.1599999964237213,
+        0.0,
+        -0.2549999812617898
+      ],
+      "max": [
+        0.1599999964237213,
+        0.32499998807907104,
+        0.25499999430030584
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.010103954933583736
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer L/W/H = 510/320/325 mm mapped to depth/width/height.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "7581574162afc3333508d6e2b288766eac5dd6977b3e555c3867242aa9788a1f"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "52f7aa6d5abdfc4e0311ca11a000f866834bd3efb02451efe62ad6143b3d7b4d"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "0a704afaebc8b23f2dcb63ba18009f1a7dde75bb462c41c560f8ed8cfef395bb"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "065b088ae30397d62c20d4c66100742687957fdcc48a274f769129e55de99d7e"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "51feed2f2563263cdb53c2706a34644ab8ca487ff76a5670e21ce3049077575e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "d19abb27ccfb04c674d8e94e2fc9471ad5328480603fd67f4e0d9238ec66c696"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "c767774dd664a91b6b3f8ef96b22286a1e3caf613e859bd71768b25cafabba55"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "5f15db3f2a1095e0c39f805ac904c8288cc4d7f2179ca8ddde322e0947aa985f"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "cc3fff4b607ae337591dfb23d999b2ee29ba83bc2ce44b1f73ecfb7c04f7666d"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "30607de04c88a9c291098abf95be024d4f92be73eba3c4603f3dd60185c514a3"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.19402983784675598,
+          -0.2500981092453003
+        ],
+        "kind": "haze",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "29ba01969ef88b74587942ede9bbc54a34eaa6bb754bdfc5b294ea43ef54f805",
+    "generator_dependency": {
+      "file": "../../_shared/effects_fixture.py",
+      "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+    },
+    "profile": {
+      "family": "hazer",
+      "body_style": "medium metal hazer with top handle, control panel, twin front nozzles and adjustable diverter",
+      "notes": "Dual nozzle assembly is a meaningful visual distinction from HZ-350 and HZ-500.",
+      "generator": "effects",
+      "enclosure": "silver_hazer",
+      "output_kind": "haze"
+    },
+    "mesh_count": 18,
+    "triangle_count": 3000,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/effects_fixture.py",
+        "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      },
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed hazer geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "526bd99bfdd6f852907bba6439cd60886c148e364c4fefe54a662062104e37f0",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "atmosphere.haze_oil",
+    "category_path": [
+      "Atmosphere and air movement",
+      "Oil-based / atomizing hazer"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

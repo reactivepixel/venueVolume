@@ -1,0 +1,257 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "etc/colorsource-spot-v",
+    "revision": 3,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "ETC",
+      "model": "ColorSource Spot V",
+      "variant": "ColorSource Spot V",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/ColorSource-Spot-V/Documentation.aspx",
+        "title": "ETC ColorSource Spot V official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/ColorSource-Spot-V/Features.aspx",
+        "title": "ETC ColorSource Spot V official source 2",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Entertainment_Fixtures/ColorSource_V/SpotV_adapters_Zoom_960x460.jpg",
+        "title": "ETC ColorSource Spot V official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.jpg",
+        "sha256": "6c11d80c40f30ff2c10b1182077157ee5c746364a9d841ca6af31a6fbcd297c8"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.339,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Maximum barrel/lens envelope is documented; H/W/depth assignment follows the manufacturer drawing orientation."
+      },
+      "height": {
+        "value": 0.593,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Maximum barrel/lens envelope is documented; H/W/depth assignment follows the manufacturer drawing orientation."
+      },
+      "depth": {
+        "value": 0.672,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Maximum barrel/lens envelope is documented; H/W/depth assignment follows the manufacturer drawing orientation."
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM",
+            "wireless DMX/RDM (Multiverse)"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.1694999784231186,
+          0.0,
+          -0.335999995470047
+        ],
+        "max": [
+          0.1694999784231186,
+          0.593000054359436,
+          0.3359999842941761
+        ]
+      },
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body",
+          "pivot_m": [
+            0.0,
+            -0.17647266387939453,
+            0.005774039775133133
+          ]
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke",
+          "pivot_m": [
+            0.0,
+            0.15357547998428345,
+            0.005774039775133133
+          ]
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens",
+          "pivot_m": [
+            0.0,
+            0.15357547998428345,
+            -0.3175721764564514
+          ]
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "prim_path": "/Fixture/Emitter",
+          "position_m": [
+            0.0,
+            0.15357547998428345,
+            -0.3431663513183594
+          ],
+          "quaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "optical_axis": [
+            0,
+            0,
+            -1
+          ]
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Maximum barrel/lens envelope is documented; H/W/depth assignment follows the manufacturer drawing orientation.",
+        "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+        "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints.",
+        "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+        "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "13d733ce948653448a34ec195409332929b89bf10411688b78a1f55d79227bcb"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "72e1ba901bc802e49c165510a92c4e7ec07e01d0715219bc17a839d596c72871"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "78407048723a059d2f3fd81717ff6d7f8275f07def471a0b7ac89263940a00c5"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "7c38ea8f21113eba93351425b29920a61fe3eb35b3831c78ef5377ec7f05126f"
+        },
+        {
+          "role": "validation",
+          "file": "validation/detail.json",
+          "sha256": "7098b544bc00b6838d8336324911915212d7888b68d6d16eeb3fb892ec9e616b"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "7654f5b861edd9cdd6d4e8d56b2263be942ba042a585e57c86f968fc085cffcf"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "197c951074e003a1198f58846ec669eda877ad00faa9442c28aff33d74d2be1e"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "f3074a2985229abfaea43419ac8a883ae605ec206c31bab3c7f43b9d39cd96b9"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "5311890b99a4b34586a6a99f03e92163f2664b08bb6d308412deb24a5841e304"
+        }
+      ],
+      "detail_level": "high",
+      "detail_build_token": "018fc60a73b393859289e8e1ea675eb608718020d43f0269081f6c3d018763c4",
+      "generator_dependency": {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "dc9aa1aec519f0bd49d33f821a3d47bfa1517c3a5527b5ba8e078b5c1823a257"
+      },
+      "profile": {
+        "family": "profile",
+        "barrel_ratio": 0.44
+      },
+      "mesh_count": 47,
+      "triangle_count": 16908,
+      "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+      "Revision 2: detailed profile geometry, editable part pivots, full-detail USDZ export and four refreshed previews.",
+      "Revision 3: detailed profile geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-3",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

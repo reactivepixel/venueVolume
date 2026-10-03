@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "id": "adj/encore-lp12z-ip",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "ADJ",
+    "model": "Encore LP12Z IP",
+    "variant": "ENC395",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.adj.com/products/encore-lp12z-ip",
+      "title": "Encore LP12Z IP product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Source, control, electrical, and downloads: CAD, dimensional drawing, DMX traits, manual",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.adj.com/cdn/shop/files/265349badd4c3136ad3a8df6fb6ab848cffbaaea_ENC395__IMG__002__851305f4fc1f.jpg?v=1775714586&width=800",
+      "title": "Encore LP12Z IP product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.jpg",
+      "sha256": "6f27dccc5d7fbf5889096b36f4632a5d840f4022d8e493d643e9156b16b3e673"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.316,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "ADJ's page conflicts: overview says 222 x 316 x 367 mm while the detailed dimensions list says 371 x 316 x 346 mm. This row retains the detailed list; verify against official CAD before scaling."
+    },
+    "height": {
+      "value": 0.346,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "ADJ's page conflicts: overview says 222 x 316 x 367 mm while the detailed dimensions list says 371 x 316 x 346 mm. This row retains the detailed list; verify against official CAD before scaling."
+    },
+    "depth": {
+      "value": 0.371,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "ADJ's page conflicts: overview says 222 x 316 x 367 mm while the detailed dimensions list says 371 x 316 x 346 mm. This row retains the detailed list; verify against official CAD before scaling."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Complete fixture with scissor yoke, lens axis horizontal and yoke upright; assembled pose corresponding to product-page dimensional drawing."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "227 W maximum; 100–240 V AC, 47/63 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "16.6 lb (7.5 kg)",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "Aria X2"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "6-channel mode",
+      "footprint": 6,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "9-channel mode",
+      "footprint": 9,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "10-channel mode",
+      "footprint": 10,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "12-channel mode",
+      "footprint": 12,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "15-channel mode",
+      "footprint": 15,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "18-channel mode",
+      "footprint": 18,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.15800000727176666,
+        0.0,
+        -0.18549999594688416
+      ],
+      "max": [
+        0.15800000727176666,
+        0.34599997312761843,
+        0.18550000712275505
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.0012096890714019537,
+          -0.01683320477604866
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.20685675740242004,
+          -0.01683320477604866
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.20685675740242004,
+          -0.16130565106868744
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.20685675740242004,
+          -0.19010843336582184
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "ADJ's page conflicts: overview says 222 x 316 x 367 mm while the detailed dimensions list says 371 x 316 x 346 mm. This row retains the detailed list; verify against official CAD before scaling.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "9bc0430b13d4569005190ae87ff5cc6e123f7d644c9b65802d756c86838d78c6"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "c4fe9fab2d213ad9b5322497c82909dbb59830f2c6a4d953876bf898413bd2b0"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "21b9daafd8b1d618129786684ac0e864bf5f6671563b229c8280f1d850aa7775"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "8046367cd9f5eeb3b479be7516db4aa226bf6e9002e11a218b433448c2193c8e"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "fc3b2eb59f0ba6148508869cfa778f7a04d112ee730544dc87fbcb7831114e20"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "33705f9664813334c71166765db279ad83c85135051bace4aa087fcd0469e838"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "d2faa74dcb1dbcb1a610b7f5dc393283bbaf26f5bf2b22b7f2f00e318f13f52e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "c35ddec82772948b958fd64caecd82562146c1f4a8e50457c8b1ac705674893e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "fa338de8d9d4d7b671d07b70f4b16416a87841878507fdee2ffa711937f3786b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "eed5ea3d3e0b23d7f5bb3bd7a8e279662160ac9f5746dccc05ca6880b14574b3"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "df2053395d8c29b84a431b1986fcbc0f0697e2282fc5666e6bebee78a26dedac",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "par",
+      "lens_count": 12,
+      "body_style": "compact circular-front LED PAR with projecting lens, finned housing, and double-arm scissor yoke",
+      "notes": "Twelve RGBL LED modules documented. No inferred individual lens counts beyond those modules.",
+      "floor_yoke": true
+    },
+    "mesh_count": 79,
+    "triangle_count": 27828,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Acquired in expansion batch 1. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed par geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.static.par",
+    "category_path": [
+      "Lighting fixtures",
+      "Static and manually focused",
+      "PAR and compact wash"
+    ],
+    "use_tags": [
+      "weather-rated variant"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

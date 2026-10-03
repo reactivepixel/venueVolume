@@ -1,0 +1,182 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "showtec/phantom-100-spot",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Showtec",
+      "model": "Phantom 100 Spot",
+      "variant": "40077",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.showtec-lights.com/en/40077-phantom-100-spot.html",
+        "title": "Showtec Phantom 100 Spot product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Control: DMX 10/14; power 200 W; mechanical L325 x W210 x H420 mm, weight 11.3 kg; product still image",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.highlite.com/media/attachments/MANUAL/40077_MANUAL_GB_V2.pdf",
+        "title": "Showtec Phantom 100 Spot manual",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Official manufacturer manual confirms 40077 identity, operating modes and DMX control",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.showtec-lights.com/media/catalog/product/cache/cf45802cd465083d13f645e2a66e0ee8/4/0/40077_40.png",
+        "title": "Phantom 100 Spot product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "a51c521928666aae155d6a300ddfd6e05ca2b0fdd619f9874b284b58213bc64b"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.325,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Showtec lists mechanical length 325 mm, width 210 mm, height 420 mm; in upright head pose, length is mapped to front-back depth."
+      },
+      "height": {
+        "value": 0.42,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Showtec lists mechanical length 325 mm, width 210 mm, height 420 mm; in upright head pose, length is mapped to front-back depth."
+      },
+      "depth": {
+        "value": 0.21,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Showtec lists mechanical length 325 mm, width 210 mm, height 420 mm; in upright head pose, length is mapped to front-back depth."
+      },
+      "reference_pose": "Base level with head upright; dimensions from mechanical specification"
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "100 W cool-white LED, manual 12–17° zoom, motorized focus, 8 colors + open, 7 rotating gobos + open, 5- and 6-facet prisms.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "200 W",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "11.3 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "10-channel mode",
+        "footprint": 10,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "14-channel mode",
+        "footprint": 14,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base level with head upright; dimensions from mechanical specification",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Showtec lists mechanical length 325 mm, width 210 mm, height 420 mm; in upright head pose, length is mapped to front-back depth.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "31f270666876890a62e5196ce98d849ca05f125e967d8f6590b4c715cb826ada"
+  },
+  "git_commit": "d55dda961571d5dee607a7716e8d764ae34254cb",
+  "note": "Initial research record before any generated model artifacts existed."
+}

@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "id": "global-truss/gt-stage-adjust-1-x-2-m",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Global Truss",
+    "model": "GT-Stage-Adjust 1 x 2 m",
+    "variant": "STG0004",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.globaltruss.com/gt-stage-adjust",
+      "title": "GT-Stage-Adjust product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "SKU STG0004, platform 1 x 2 m, four adjustable heights through 38.5 inches and direct product image",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "evidence-2",
+      "url": "https://www.globaltruss.com/pub/media/globaltrdownloads/downloads/g/t/gta_catalog_feb_2019_online-compressed.pdf",
+      "reuse_status": "unknown",
+      "kind": "manufacturer_manual",
+      "title": "Global Truss America catalog (February 2019)",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "GT-Stage-Adjust height range is listed as 27.5–39 in, slightly different from the current product page; do not silently reconcile the published discrepancy."
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.globaltruss.com/media/catalog/product/cache/6517c62f5899ad6aa0ba23ceb3eeff97/1/0/1000x1000-20gt-20stage-201x2-41237.jpg",
+      "title": "GT-Stage-Adjust 1 x 2 m visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "a1fef862668ff9e056bc54792191215586dd89336fa09472324d1fd5ec6be4f1"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 2.0,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "Platform footprint is documented. Maximum adjustable height is uncertain because the current product page says 38.5 in (0.9779 m) while the 2019 catalog says 39 in (0.9906 m); retained current-page value as representative configuration."
+    },
+    "height": {
+      "value": 0.9779,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "Platform footprint is documented. Maximum adjustable height is uncertain because the current product page says 38.5 in (0.9779 m) while the 2019 catalog says 39 in (0.9906 m); retained current-page value as representative configuration."
+    },
+    "depth": {
+      "value": 1.0,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "Platform footprint is documented. Maximum adjustable height is uncertain because the current product page says 38.5 in (0.9779 m) while the 2019 catalog says 39 in (0.9906 m); retained current-page value as representative configuration."
+    },
+    "reference_pose": "Platform horizontal with 2 m edge along X, top surface up; maximum 38.5 in (0.9779 m) leg setting per current product page; height is subject to source conflict."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Platform horizontal with 2 m edge along X, top surface up; maximum 38.5 in (0.9779 m) leg setting per current product page; height is subject to source conflict.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -1.0,
+        -1.862645149230957e-09,
+        -0.5
+      ],
+      "max": [
+        1.0,
+        0.9779000082053244,
+        0.5
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.00489439582452178,
+          -0.0
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Platform footprint is documented. Maximum adjustable height is uncertain because the current product page says 38.5 in (0.9779 m) while the 2019 catalog says 39 in (0.9906 m); retained current-page value as representative configuration.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "3737732c62250f39098d10fc98fbc38e4a264057493a84f8f8567648453f31f7"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "0ddd6dfa187edb9652424893ccfc48960c9c411a34240ec1bef3336ae6af0002"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "4af6cc5a72b5641cdb5a745e42cd2d220794d0cae66800e96437eb5fa6c5aaf0"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "1969a6de085ed02fe67a21a7879605904bfda067ae5a582e2f38e71144f63368"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "52928a0226810e8b2b3f206b710290cab4e10c362cec08e900208a2f70e9583b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "9bf023d813a8aa4feb47a0a05d53dae052888f613d5d5c3fd75e47283b09a427"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "1d2a1c3ffb7b7f878f6224778504e8e8674330c37f9aed536b298dab178384fd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "91b0159dc0c5dc4a5e84565c2bf79942edcc35e40439de6ea0498801adbb69c5"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "80b25d24af02f750aa5dfa48a89a307aaa36c2b87a652333f0a3f49a872c4f81"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "591385258f1a5c7cf630511a464cd72848cce49efbce86f84ee4a2e8b63bbac5"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "0e5fd49417d8bb115fdd7a1273528f2aa76125050222fcb9d103191623e4dd9c",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "deck",
+      "body_style": "rectangular modular deck with four adjustable supports",
+      "notes": "Height selection reflects maximum setting on current product page; catalog PDF has a slight height-range discrepancy, so verify the exact selected leg configuration before precision modeling. Not a rigging/load-plan model.",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 14,
+    "triangle_count": 2632,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed deck geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "scenic.deck",
+    "control_path": "Passive structural scenic platform; no electrical or DMX connection.",
+    "physical_asset_only": true,
+    "source_data": {
+      "dimensions": {
+        "width_m": 2.0,
+        "height_m": 0.9779,
+        "depth_m": 1.0,
+        "source_order": "1 x 2 m platform; current product page height range 27 to 38.5 in, exact maximum conversion 0.9779 m; 2019 catalog range differs slightly (27.5–39 in)",
+        "axis_status": "estimated",
+        "axis_note": "Platform footprint is documented. Maximum adjustable height is uncertain because the current product page says 38.5 in (0.9779 m) while the 2019 catalog says 39 in (0.9906 m); retained current-page value as representative configuration.",
+        "reference_pose": "Platform horizontal with 2 m edge along X, top surface up; maximum 38.5 in (0.9779 m) leg setting per current product page; height is subject to source conflict."
+      },
+      "control_path": "Passive structural scenic platform; no electrical or DMX connection.",
+      "pose": "Platform horizontal with 2 m edge along X, top surface upward; adjustable legs at maximum 38.5 in = 0.9779 m setting per current product page. Platform footprint is product size; leg placement shown in render.",
+      "research_evidence": [
+        {
+          "url": "https://www.globaltruss.com/gt-stage-adjust",
+          "title": "GT-Stage-Adjust product page",
+          "locator": "SKU STG0004, platform 1 x 2 m, four adjustable heights through 38.5 inches and direct product image",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://www.globaltruss.com/pub/media/globaltrdownloads/downloads/g/t/gta_catalog_feb_2019_online-compressed.pdf",
+          "title": "Global Truss America catalog (February 2019)",
+          "locator": "GT-Stage-Adjust height range is listed as 27.5–39 in, slightly different from the current product page; do not silently reconcile the published discrepancy.",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "scenic.deck",
+    "category_path": [
+      "Scenic and stage elements",
+      "Deck / riser / stairs"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

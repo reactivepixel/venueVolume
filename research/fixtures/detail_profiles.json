@@ -1,0 +1,1819 @@
+{
+  "adj/7p-hex-ip": {
+    "family": "par",
+    "lens_count": 7,
+    "floor_yoke": true,
+    "body_style": "ribbed",
+    "notes": "Seven circular optics, cooling fins and double floor yoke."
+  },
+  "adj/focus-spot-4z": {
+    "family": "moving_spot",
+    "shell": "round",
+    "lens_ratio": 0.5,
+    "head_depth": 0.7
+  },
+  "adj/hydro-beam-x1": {
+    "family": "moving_spot",
+    "shell": "round",
+    "lens_ratio": 0.63,
+    "head_depth": 0.7
+  },
+  "adj/jolt-bar-fx": {
+    "family": "strobe",
+    "strip": true,
+    "cells": 20
+  },
+  "adj/led-bar": {
+    "family": "batten",
+    "lens_count": 4,
+    "pixel_clusters": true
+  },
+  "adj/stryker-wash": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "shell": "round"
+  },
+  "chauvet-professional/colorado-solo-batten": {
+    "family": "batten",
+    "lens_count": 12,
+    "diffuser": true
+  },
+  "chauvet-professional/colordash-batten-quad-6": {
+    "family": "batten",
+    "lens_count": 6
+  },
+  "chauvet-professional/maverick-mk2-wash": {
+    "family": "moving_wash",
+    "lens_count": 12,
+    "shell": "round"
+  },
+  "chauvet-professional/rogue-r1x-spot": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.49,
+    "head_depth": 0.72
+  },
+  "chauvet-professional/rogue-r2-wash": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "shell": "round"
+  },
+  "chauvet-professional/rogue-rh1-hybrid": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.72,
+    "head_depth": 0.75
+  },
+  "claypaky/arolla-profile-mp": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.63,
+    "head_depth": 0.88
+  },
+  "claypaky/arolla-spot-mp": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.63,
+    "head_depth": 0.88
+  },
+  "claypaky/hy-b-eye-k25": {
+    "family": "moving_wash",
+    "lens_count": 37,
+    "shell": "round"
+  },
+  "claypaky/sharpy": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.77,
+    "head_depth": 0.78,
+    "base_height": 0.15
+  },
+  "claypaky/sharpy-plus": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.64,
+    "head_depth": 0.87
+  },
+  "claypaky/sharpy-plus-aqua": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.65,
+    "head_depth": 0.87
+  },
+  "elation-professional/dartz-360": {
+    "family": "moving_spot",
+    "shell": "round",
+    "lens_ratio": 0.78,
+    "head_depth": 0.73
+  },
+  "elation-professional/fuze-sfx": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.84,
+    "head_depth": 0.82
+  },
+  "elation-professional/fuze-wash-500": {
+    "family": "moving_spot",
+    "shell": "round",
+    "lens_ratio": 0.92,
+    "head_depth": 0.83,
+    "fresnel": true
+  },
+  "elation-professional/kl-fresnel-8": {
+    "family": "fresnel",
+    "barn_doors": true
+  },
+  "elation-professional/proteus-radius": {
+    "family": "moving_spot",
+    "shell": "round",
+    "lens_ratio": 0.82,
+    "head_depth": 0.79
+  },
+  "elation-professional/sixbar-1000": {
+    "family": "batten",
+    "lens_count": 12
+  },
+  "etc/colorsource-fresnel-v": {
+    "family": "fresnel",
+    "barn_doors": true
+  },
+  "etc/colorsource-spot-v": {
+    "family": "profile",
+    "barrel_ratio": 0.44
+  },
+  "etc/desire-d60": {
+    "family": "par",
+    "lens_count": 60
+  },
+  "etc/fos-4-fresnel": {
+    "family": "fresnel",
+    "barn_doors": false
+  },
+  "etc/source-four-led-series-3-lustr-x8": {
+    "family": "profile",
+    "barrel_ratio": 0.5
+  },
+  "glp/impression-x4-bar-20": {
+    "family": "batten",
+    "lens_count": 20,
+    "tilting": true
+  },
+  "glp/impression-x5": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "baseless": true
+  },
+  "glp/impression-x5-bar-1000": {
+    "family": "batten",
+    "lens_count": 18,
+    "tilting": true
+  },
+  "glp/impression-x5-compact": {
+    "family": "moving_wash",
+    "lens_count": 7,
+    "baseless": true
+  },
+  "glp/jdc-line-500": {
+    "family": "strobe",
+    "strip": true,
+    "cells": 24
+  },
+  "glp/jdc1": {
+    "family": "strobe",
+    "tilting": true,
+    "cells": 24
+  },
+  "high-end-systems/solaframe-3000": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.59,
+    "head_depth": 0.88
+  },
+  "high-end-systems/solawash-2000": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.79,
+    "head_depth": 0.89,
+    "fresnel": true
+  },
+  "martin-professional-harman/atomic-3000-led": {
+    "family": "strobe",
+    "cells": 24
+  },
+  "martin-professional-harman/elp-cl": {
+    "family": "profile",
+    "barrel_ratio": 0.43
+  },
+  "martin-professional-harman/mac-aura-xip": {
+    "family": "moving_wash",
+    "lens_count": 7,
+    "aura": true
+  },
+  "martin-professional-harman/mac-one": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "aura": true
+  },
+  "martin-professional-harman/mac-ultra-performance": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.84,
+    "head_depth": 0.9
+  },
+  "martin-professional-harman/mac-ultra-wash": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.89,
+    "head_depth": 0.88,
+    "fresnel": true
+  },
+  "martin-professional-harman/mac-viper-xip": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.73,
+    "head_depth": 0.86
+  },
+  "robe-lighting/forte": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.73,
+    "head_depth": 0.89
+  },
+  "robe-lighting/ledbeam-350": {
+    "family": "moving_wash",
+    "lens_count": 12
+  },
+  "robe-lighting/megapointe": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.73,
+    "head_depth": 0.81
+  },
+  "robe-lighting/pointe": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.67,
+    "head_depth": 0.8
+  },
+  "robe-lighting/spiider": {
+    "family": "moving_wash",
+    "lens_count": 19
+  },
+  "robe-lighting/t1-profile": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.73,
+    "head_depth": 0.86
+  },
+  "vari-lite/vl2600-spot": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.68,
+    "head_depth": 0.84
+  },
+  "vari-lite/vl3600-profile-ip": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.77,
+    "head_depth": 0.85
+  },
+  "vari-lite/vl5led-wash": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "radial_blades": true
+  },
+  "adj/jolt-bar-fx2": {
+    "family": "strobe",
+    "lens_count": 560,
+    "body_style": "linear rectangular bar with central white LED strip, RGB LED fields, and end brackets",
+    "notes": "LED quantity sourced as 448 RGB plus 112 cool-white emitters; bracket/body detail should follow official product imagery and CAD.",
+    "strip": true,
+    "cells": 28
+  },
+  "adj/encore-lp12z-ip": {
+    "family": "par",
+    "lens_count": 12,
+    "body_style": "compact circular-front LED PAR with projecting lens, finned housing, and double-arm scissor yoke",
+    "notes": "Twelve RGBL LED modules documented. No inferred individual lens counts beyond those modules.",
+    "floor_yoke": true
+  },
+  "adj/jolt-300": {
+    "family": "strobe",
+    "lens_count": 288,
+    "body_style": "short rectangular strobe panel with central white LED row, flanking RGB LED rows, and single yoke",
+    "notes": "Official page gives 144 white and 144 RGB SMD LEDs; emitter group count does not define lens geometry."
+  },
+  "etc/desire-fresnel-7": {
+    "family": "fresnel",
+    "barn_doors": true,
+    "lens_count": 1,
+    "body_style": "round Fresnel head on yoke",
+    "notes": "DFL7 is a fixed 7-inch aperture variant; allow lens travel in depth."
+  },
+  "etc/colorsource-par": {
+    "family": "par",
+    "lens_count": 7,
+    "body_style": "compact round LED PAR with yoke",
+    "notes": "Original ColorSource PAR RGB-L array, black housing; not Deep Blue or Pearl color-array options."
+  },
+  "high-end-systems/solaframe-1000": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "moving framing profile with yoke",
+    "notes": "Fixture variant available with different LED engine options; not a geometry variant."
+  },
+  "high-end-systems/solaframe-2000": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "large LED framing head with yoke and circular lens",
+    "notes": "600 W light engine; overall input draw varies by line voltage. Multiple engine variants."
+  },
+  "robe-lighting/iforte": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "large sealed moving profile with yoke",
+    "notes": "iFORTE standard IP65 body; not FS, Fresnel, or LTX variant."
+  },
+  "robe-lighting/tarrantula": {
+    "family": "moving_wash",
+    "lens_count": 37,
+    "body_style": "multi-source rounded head with RGBA pixel array",
+    "notes": "37 RGBA LED multichips; beam shaper is removable, but the shown standard assembly includes it."
+  },
+  "claypaky/sinfonya-profile-600": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "theatre moving profile with yoke and large circular lens",
+    "notes": "Sinfonya Profile 600 standard model; RGBAL source. Manufacturer lists 14 optical lenses and 165 mm front lens."
+  },
+  "claypaky/volero-wave": {
+    "family": "batten",
+    "lens_count": 8,
+    "body_style": "linear chassis with eight individually tilting optical heads",
+    "notes": "Independent modules tilt 220 degrees; product on demand. Render as a fixed bar with separate head pivots.",
+    "multi_heads": true
+  },
+  "chauvet-professional/colordash-par-h7x": {
+    "family": "par",
+    "lens_count": 7,
+    "body_style": "round-front compact PAR can with 7-cell hex-color engine and double yoke",
+    "notes": "Seven RGBAW+UV LED modules documented.",
+    "floor_yoke": false
+  },
+  "chauvet-professional/colordash-par-h12x-ip": {
+    "family": "par",
+    "lens_count": 12,
+    "body_style": "round-front sealed die-cast PAR housing with double-bracket yoke",
+    "notes": "Twelve hex-color modules documented; body orientation should be checked against official CAD."
+  },
+  "chauvet-professional/colordash-par-quad-18": {
+    "family": "par",
+    "lens_count": 18,
+    "body_style": "round metal PAR with 18-cell front array and split yoke",
+    "notes": "Legacy product, marked as such on manufacturer page. Product manual Rev. 6 diagrams show front, side, and rear views."
+  },
+  "elation-professional/sixbar-500": {
+    "family": "batten",
+    "lens_count": 6,
+    "body_style": "compact linear die-cast bar with six independent LED cells, dual integrated rigging brackets and glare shield",
+    "notes": "Legacy product; stated overall width includes the supplied glare shield."
+  },
+  "elation-professional/vbar-270": {
+    "family": "batten",
+    "lens_count": 270,
+    "body_style": "legacy short linear RGB bar with dense 5 mm LED array and mounting bracket",
+    "notes": "270 LEDs (90 each red, green, blue) documented. Manufacturer calls product discontinued.",
+    "pixel_grid": true,
+    "overhead_yoke": true
+  },
+  "martin-professional-harman/mac-viper-performance": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "discharge moving head with framing module, yoke",
+    "notes": "Estimate uses documented head-straight-up height, maximum width, and head length. Do not read as the bounding box from one manufacturer-dimensioned pose."
+  },
+  "martin-professional-harman/mac-aura": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "body_style": "19-lens RGBW moving wash with secondary Aura backlight",
+    "notes": "Official Martin optics table specifies 19 x 10 W RGBW; secondary Aura illumination is not counted as lenses.",
+    "aura": true
+  },
+  "vari-lite/vl800-eventprofile": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact framing profile on yoke",
+    "notes": "Black and white body variants; housing shape otherwise same."
+  },
+  "vari-lite/vl2600-se-wash": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "mid-size wash head with yoke and automated barn doors",
+    "notes": "Do not substitute dimensions of legacy VL2600 Wash for the SE version."
+  },
+  "claypaky/mini-b": {
+    "family": "moving_wash",
+    "lens_count": 7,
+    "body_style": "compact yoke head with central LED and six outer lenses",
+    "notes": "Seven RGBW LEDs; keep central LED optically distinct from outer ring."
+  },
+  "claypaky/tambora-flash": {
+    "family": "strobe",
+    "lens_count": 4,
+    "body_style": "IP66 rectangular modular fixture with four central reflector cells and two strobe strips",
+    "notes": "Four RGBWW reflector optics plus two lines of segmented white strobe LEDs; handles excluded from dimensions.",
+    "reflector_cells": 4
+  },
+  "glp/impression-x5-ip-maxx": {
+    "family": "moving_wash",
+    "lens_count": 37,
+    "body_style": "large IP65 moving wash head with 37 circular RGBL lenses",
+    "notes": "37 x 40 W RGBL pixel array; avoid using the similar non-IP impression X5 body.",
+    "baseless": true
+  },
+  "glp/jdc-line-1000": {
+    "family": "batten",
+    "lens_count": 1,
+    "body_style": "linear hybrid strobe and RGB pixel mapping fixture",
+    "notes": "The 1000 mm lens tube shares RGB pixel and white strobe emission; a single continuous tube is a better shape representation than separate visible LEDs.",
+    "diffuser": true
+  },
+  "etc/colorsource-20": {
+    "family": "console",
+    "body_style": "low tabletop console with 20 faders and central touchscreen",
+    "notes": "Official product image shows both CS20 and CS40; use the smaller upper CS20 image. Dimensions are typical values from ColorSource Console Spec Sheet rev G; exact physical drawing DWG retained but not parsed in this pass.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "enttec/ode-mk3": {
+    "family": "node",
+    "body_style": "compact rectangular network gateway with DMX connectors on one end and Ethernet/DC connections opposite",
+    "notes": "Dimensions cross-checked against drawing 70407-ODE MK3; drawing labels overall 128.8, 58, and 40 mm. A 25 mm body-height detail is also drawn; retain 40 mm overall envelope for the connectors/features shown in the manufacturer overall dimensions. No fictional DMX channel personality applies.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "adj/dp-415r": {
+    "family": "dimmer",
+    "body_style": "compact enclosed pack with reversible hanging bracket and Edison outlets",
+    "notes": "Product page identifies selectable dimmer/switch modes and mounting options; electrical power remains distinct from DMX control data.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "global-truss/sq-4110-f34-straight-segment-natural-aluminium": {
+    "family": "truss",
+    "body_style": "four-chord square truss module with diagonal bracing and end connector plates",
+    "notes": "Use as a visual planning component only; do not infer load capacity from the 3D model. Consult product-specific load tables and a qualified rigger for actual system design.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "roe-visual/black-pearl-bp2v2": {
+    "family": "led_panel",
+    "body_style": "500 mm square modular display with 90 mm rear housing",
+    "notes": "Optional visual-equipment example. Catalog inclusion should follow user-approved scope; one representative panel does not imply a full LED wall, processor, hanging hardware, or all vendors are included.",
+    "generator": "equipment",
+    "output_kind": "video_surface"
+  },
+  "panasonic/pt-rz660b-with-supplied-et-dle170-lens": {
+    "family": "projector",
+    "body_style": "large rectangular projector cabinet with lens protruding from front face",
+    "notes": "Optional visual-equipment example. Model lens is included and represented at ET-DLE170 geometry; exact lens external dimensions require the ET-DLE170 drawing if a production model is built.",
+    "generator": "equipment",
+    "output_kind": "projection"
+  },
+  "manfrotto/heavy-duty-stand-black-air-cushioned-black-steel": {
+    "family": "stand",
+    "body_style": "three-leg base, telescoping upright risers and leveling leg",
+    "notes": "Footprint width/depth is the maximum deployed circle from secondary retail listing; keep that attribution visible and replace with manufacturer drawing evidence if available.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "doughty-engineering/twenty-clamp": {
+    "family": "clamp",
+    "body_style": "cast hook clamp with threaded M10 fixing interface",
+    "notes": "The clamp WLL is not a rigging design approval; system-level loads and compatible attachment hardware require independent review.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "enttec/d-split": {
+    "family": "splitter",
+    "body_style": "small rounded rectangular isolated splitter with DMX and DC connectors on end face",
+    "notes": "Use overall 116 x 87 x 52 mm. Datasheet supplies envelope dimensions but not a dimensioned orthographic drawing; pose is image-inferred.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "enttec/pixelator-mini": {
+    "family": "pixel_controller",
+    "body_style": "low black rectangular controller with front-panel display and multiple output connectors",
+    "notes": "This distributes pixel data using ENTTEC PLink; PLink injectors and their pixel-power connections are separate equipment.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "brompton-technology/tessera-sx40": {
+    "family": "media_server",
+    "body_style": "2U rackmount video/LED processor with front status display and rear I/O",
+    "notes": "An optional visual department example; this is not a fixture or generic DMX node.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "antari/z-1000iii-fog-machine": {
+    "family": "fogger",
+    "notes": "Conventional heated water-based fog machine; chosen instead of Z-1200III because the official Z-1000III source has a consistent dimensional identity. Distinct from compressor hazer and cold CO2 jet.",
+    "body_style": "rectangular metal fogger with carry handle, fluid tank, front outlet and pivoting hanging bracket",
+    "generator": "equipment",
+    "output_kind": "fog"
+  },
+  "chauvet-dj/hurricane-haze-1dx": {
+    "family": "hazer",
+    "notes": "Water-based heated hazer with HFG fluid. Manufacturer page lists one DMX channel and provides the direct right-side product photo; product page does not map the dimension triplet to axes.",
+    "body_style": "compact low-profile metal hazer with top handle, adjustable output scoop and rear controls",
+    "generator": "equipment",
+    "output_kind": "haze"
+  },
+  "mdg/atmosphere-aps-haze-generator": {
+    "family": "hazer",
+    "notes": "Oil-based atomizing fluid plus separate externally supplied compressed CO2; no onboard compressor is claimed and this is not a CO2 plume jet.",
+    "body_style": "long low rectangular violet metal machine with raised fluid reservoir at one end and carry handle",
+    "generator": "equipment",
+    "output_kind": "haze"
+  },
+  "chauvet-dj/cumulus-hp-low-lying-fog-machine": {
+    "family": "low_fog",
+    "notes": "Ultrasonic atomizer uses distilled water; separate fog fluid feeds the warmed carrier fog. No dry ice required.",
+    "body_style": "rugged rectangular case-style enclosure with hose outlet and separate water/fog tanks",
+    "generator": "equipment",
+    "output_kind": "low_fog"
+  },
+  "antari/m-9-jet-fog-machine": {
+    "family": "jet",
+    "notes": "Produces a forceful heated fog plume with integrated LEDs. Antari markets it as a CO2-style visual effect, but its documented consumable is FLC fog fluid; it is not a real CO2 jet.",
+    "body_style": "large faceted black fog machine with top emitter tray containing 27 multicolor LED modules, carry handles and base feet",
+    "generator": "equipment",
+    "output_kind": "fog_jet"
+  },
+  "antari/b-100-bubble-machine": {
+    "family": "bubble",
+    "notes": "Selected B-100 rather than B-200 to avoid a substantial same-model manual/product-page envelope conflict. Current product page and Rev. 05 manual agree on the B-100 envelope and mass.",
+    "body_style": "compact enclosed metal bubble machine with broad wheel/output opening, feet and rear control panel",
+    "generator": "equipment",
+    "output_kind": "bubbles"
+  },
+  "antari/s-500-snow-machine": {
+    "family": "snow",
+    "notes": "Professional snow machine with case and hose; dimensions/mass refer to S-500, not S-500L. Nominal dimensions are treated as the closed road-case envelope (estimated pose); open-lid product photo does not depict that envelope pose.",
+    "body_style": "large black wheeled road case for the snow machine; use closed case geometry for nominal transport envelope",
+    "generator": "equipment",
+    "output_kind": "snow"
+  },
+  "magic-fx/powershot-ii": {
+    "family": "confetti",
+    "notes": "Launcher is a reusable electrical shot appliance; disposable electric cannons/consumables are separate products.",
+    "body_style": "small black box-shaped powered shot unit with top-facing cannon socket, angle indicator and mounting clamps",
+    "generator": "equipment",
+    "output_kind": "confetti"
+  },
+  "magic-fx/sparxtar-ii": {
+    "family": "spark",
+    "notes": "Cold-spark effect appliance; only its physical product metadata is recorded. Manufacturer listing identifies this exact model as Sparxtar II. No operational or firing details included.",
+    "body_style": "compact cuboid black enclosure with front access panel, ventilation, feet and top handling features",
+    "generator": "equipment",
+    "output_kind": "spark"
+  },
+  "magic-fx/flameblazer": {
+    "family": "flame",
+    "notes": "Physical flame-effect appliance; record contains product geometry and identity only, not operating, firing or channel instructions.",
+    "body_style": "rectangular metal effect appliance with side access panels, feet and output/control face",
+    "generator": "equipment",
+    "output_kind": "flame"
+  },
+  "adj/entour-cyclone": {
+    "family": "fan",
+    "notes": "Buildable DMX fan alternative to unresolved Look-Fan. Product page and manual dimensions are similar; manual diagram resolves front width, height and depth. Product page/manual mass disagree slightly, so mass is recorded with source conflict.",
+    "body_style": "compact square axial fan with front/rear grille and dual-purpose scissor/yoke bracket",
+    "generator": "equipment",
+    "output_kind": "air"
+  },
+  "chauvet-dj/high-performance-fog-fluid-fju-gallon-jug": {
+    "family": "fluid_container",
+    "notes": "Exact sealed FJU gallon jug product/package; record is the container geometry, not a fluid mixture or recipe. CHAUVET identifies the formula as designed for water-based machines.",
+    "body_style": "white handled rectangular plastic gallon jug with screw cap and printed product label",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "magic-fx/co2-bottle-to-hose-connector": {
+    "family": "co2_supply",
+    "notes": "Exact MFX1103 cylinder-to-hose fitting. Product page does not specify regional cylinder thread; region-specific fit remains unknown and must not be inferred from its quick connector alone.",
+    "body_style": "short metal high-pressure bottle coupling with knurled connector end and tether cap",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "robert-juliat/roxie2-1166-2-ww": {
+    "family": "followspot",
+    "body_style": "manual followspot with lens barrel, handles, color boomerang and yoke",
+    "notes": "Do not treat dimmer/strobe DMX as motorized pan/tilt.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "robert-juliat/lutin-306lpc": {
+    "family": "pc",
+    "body_style": "compact single-lens plano-convex housing, lens door and yoke",
+    "notes": "True PC optical type, not an ERS/profile proxy.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "etc/colorsource-cyc-floor": {
+    "family": "cyc",
+    "body_style": "low asymmetric cyc wash housing with LED aperture",
+    "notes": "Dedicated cyclorama product.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "altman-lighting/altman-par64-al": {
+    "family": "par_can",
+    "body_style": "round metal PAR64 reflector can with yoke",
+    "notes": "Traditional passive can; lamp/reflector choice is separate. Discontinued.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "chauvet-professional/strike-4": {
+    "family": "blinder",
+    "body_style": "four-cell warm-white blinder panel with yoke",
+    "notes": "Four individually aimable cells; not a tungsten lamp fixture.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "adj/uv-flood-36": {
+    "family": "uv",
+    "body_style": "low-profile rectangular blacklight with 12 LED apertures",
+    "notes": "Dedicated UV product; pose transform is image-based estimate; no safety claims inferred.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "adj/adj-pinspot-led-ii": {
+    "family": "pinspot",
+    "body_style": "compact black cylindrical pinspot barrel with lens, bracket and cable",
+    "notes": "Static beam optic; no moving scanner behavior. Body axes mapped from image/product form; bracket envelope estimated.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "altman-lighting/altman-scoop-153": {
+    "family": "flood",
+    "body_style": "elliptical scoop reflector with yoke and medium-screw lamp socket",
+    "notes": "Discontinued; 400 W maximum and passive control, no onboard DMX.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "astera/nyx-bulb": {
+    "family": "practical",
+    "body_style": "compact color-tunable bulb with E27 base and translucent diffuser",
+    "notes": "Exact FP5-E27 variant; built-in wireless CRMX receiver, not passive mains-only bulb.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "adj/led-pixel-tube-360": {
+    "family": "tube",
+    "body_style": "round translucent polycarbonate pixel tube with end caps",
+    "notes": "External controller is separate physical product; no native DMX attributed to the tube.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "elation-professional/pixel-tape-16ip": {
+    "family": "pixel_strip",
+    "body_style": "flexible conformal-coated strip with 170 RGB pixel packages",
+    "notes": "External driver dependency explicit; 2.72 m module geometry.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "adj/dynasty-scan-dmx": {
+    "family": "scanner",
+    "body_style": "compact rectangular lamp housing with front lens and oscillating mirror",
+    "notes": "Discontinued; scanner mirror rather than moving-head yoke.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "eliminator-lighting-adj-group/mbmhd3-mirror-ball-motor": {
+    "family": "mirror_motor",
+    "body_style": "square motor enclosure with shaft and safety attachment",
+    "notes": "No ball included, no DMX.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "adj/m-2020-mirror-ball": {
+    "family": "mirror_ball",
+    "body_style": "spherical mirror-tiled ball with top suspension loop",
+    "notes": "Separate from MBMHD3 motor. Suspension hardware/load rating unknown; no complete rigging assembly implied.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "elation-professional/pixel-driver-170": {
+    "family": "pixel_driver",
+    "body_style": "rectangular DMX-to-pixel controller with display, terminal blocks and slotted mounting tabs",
+    "notes": "Separate DC supply required; driver is not itself an emitter.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "laserworld/ds-1000rgb-mk5": {
+    "family": "laser",
+    "body_style": "rectangular enclosed projector chassis with front aperture and rigging frame",
+    "notes": "No beam effect, aiming, safety behavior, interlock or firing semantics modeled.",
+    "generator": "equipment",
+    "output_kind": "laser_aperture"
+  },
+  "global-truss/gt-stage-adjust-1-x-2-m": {
+    "family": "deck",
+    "body_style": "rectangular modular deck with four adjustable supports",
+    "notes": "Height selection reflects maximum setting on current product page; catalog PDF has a slight height-range discrepancy, so verify the exact selected leg configuration before precision modeling. Not a rigging/load-plan model.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "da-lite-legrand-av/fast-fold-deluxe-screen-system-88692-frame-screen-only-legs-omitted": {
+    "family": "screen",
+    "body_style": "rectangular vertical screen surface in folding aluminum frame on deployed T-legs",
+    "notes": "Model the screen/frame from exact overall/viewing dimensions. Foot/stand geometry is family-view-derived and should be treated as approximate; do not include carrying case.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "cm-entertainment-technology-columbus-mckinnon/lodestar-d8-type-l-1-tonne": {
+    "family": "hoist",
+    "body_style": "horizontal oval motor/gear housing with upper suspension hook and lower load hook",
+    "notes": "Reference body only; chain and lift height are variable instance/configuration properties, not fixed object geometry. This is an optional engineered-rigging category example, not a certified rigging model.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "georgia-stage/prestige-velour-border-curtain-black-sku-7676": {
+    "family": "drape",
+    "body_style": "wide black velour border with vertical soft folds and sewn top edge",
+    "notes": "Exact stock closeout SKU 7676; full width is listed finished span. Thickness and fold amplitude are visualization estimates, not documented fabric dimensions.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "mean-well/lrs-350-24": {
+    "family": "power_supply",
+    "body_style": "low-profile vented metal enclosure with exposed terminal block and cooling fan",
+    "notes": "Chassis only. Internal components, terminal details and mounting slots can be simplified; electrical installation and safety clearances are outside the visual envelope.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "neutrik/nc5mxx-5-pole-male-xlr-cable-connector": {
+    "family": "data_connector",
+    "body_style": "circular 5-pin XLR male connector with strain-relief boot",
+    "notes": "Use the dimension drawing for outer size and official product image for appearance. Connector only; do not add a cable or claim wiring/termination behavior.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "neutrik/powercon-true1-top-nac3fx-w-top-cable-connector-power-in-eu-us-ratings": {
+    "family": "power_connector",
+    "body_style": "locking female cable connector with molded boot, strain relief and screw-terminal rear section",
+    "notes": "Exact connector component only; omit cable. Geometric W/H are conservative square maximum envelope around the drawing's 32 mm end-view dimension; the secondary radial dimension is 26.5 mm.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "robe-lighting/robospot-motioncamera": {
+    "family": "tracking_camera",
+    "body_style": "compact moving-head camera with integrated zoom optics, yoke and base adaptor",
+    "notes": "Camera-head visual reference only; no tracking algorithm, video-network or BaseStation geometry is represented. Treat as optional video/followspot-system expansion until broader scope is approved.",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "magic-fx/co2-jet-ii": {
+    "family": "co2_jet",
+    "notes": "Genuine liquid-CO2 jet. The official manual distinguishes main product dimensions/weight from larger package dimensions/weight, resolving the conflicting product-page figures. Use the outlet-pipe configuration visible in the exact product photo; do not substitute a removable alternate nozzle or add baseplate/rigging hardware.",
+    "body_style": "compact angular black metal box housing with attached short outlet pipe, mounting plate and side connectors",
+    "generator": "equipment",
+    "output_kind": "co2"
+  },
+  "doughty-engineering/doughty-quick-link-10mm-550kg": {
+    "family": "safety_hardware",
+    "notes": "Rigid compact suspension connector, potential visual representative for secondary protection hardware only. Rated values are conflicting source metadata; no operating or rigging directions included. Do not treat product WLL as a selection recommendation.",
+    "body_style": "zinc-plated oval steel quick link with threaded closure sleeve",
+    "generator": "equipment",
+    "output_kind": "none"
+  },
+  "chauvet-professional/rogue-r3-beam": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.72,
+    "head_depth": 0.8,
+    "notes": "Discharge beam fixture with compact front aperture and long optical barrel."
+  },
+  "elation-professional/proteus-maximus": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.55,
+    "head_depth": 0.86,
+    "notes": "Large weather-sealed framing profile with 180 mm front aperture."
+  },
+  "cameo/opus-x4": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.65,
+    "head_depth": 0.82,
+    "notes": "Large spot-profile optical head with 182 mm front lens and rotating framing module."
+  },
+  "prolights/astra-hybrid330": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.64,
+    "head_depth": 0.82,
+    "notes": "Hybrid optics with large 140 mm front lens; effects package and substantial head depth distinguish the body from a conventional spot."
+  },
+  "jb-lighting/sparx-12": {
+    "family": "moving_wash",
+    "shell": "round",
+    "lens_count": 19,
+    "lens_ratio": 0.9,
+    "head_depth": 0.55
+  },
+  "jb-lighting/sparx-18": {
+    "family": "moving_wash",
+    "shell": "round",
+    "lens_count": 37,
+    "lens_ratio": 0.9,
+    "head_depth": 0.55
+  },
+  "jb-lighting/sparx-30": {
+    "family": "moving_wash",
+    "shell": "round",
+    "lens_count": 61,
+    "lens_ratio": 0.9,
+    "head_depth": 0.55
+  },
+  "jb-lighting/p18-profile-mk2-hp": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.65,
+    "head_depth": 0.88
+  },
+  "chroma-q/color-force-ii-12": {
+    "family": "batten",
+    "lens_count": 4,
+    "diffuser": true,
+    "manual_tilt": true
+  },
+  "chroma-q/color-force-ii-48": {
+    "family": "batten",
+    "lens_count": 16,
+    "diffuser": true,
+    "manual_tilt": true
+  },
+  "chroma-q/color-force-ii-72": {
+    "family": "batten",
+    "lens_count": 24,
+    "diffuser": true,
+    "manual_tilt": true
+  },
+  "acme/lightning": {
+    "family": "strobe",
+    "strip": true,
+    "cells": 30,
+    "body_style": "IP66 pixel strobe/wash panel with side and top camlock joinery",
+    "notes": "One cool-white beam emitter centered in each of 30 RGBW sections; housing has integrated yoke and matrix-joining hardware.",
+    "generator": "catalog",
+    "matrix_cells": true,
+    "overhead_yoke": true,
+    "manual_tilt": true
+  },
+  "high-end-systems/lonestar-prime": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.6,
+    "head_depth": 0.86,
+    "notes": "Compact automated profile with four-plane framing module and full-curtain shutters."
+  },
+  "ayrton/rivale-profile": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "sealed profile moving head",
+    "notes": "Continuous pan and tilt rotation requires nonstandard unlimited-axis support; do not fabricate mechanical stops. Exact digital geometry beyond envelope awaits modeling.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.1,
+    "yoke_compression": 0.18
+  },
+  "martin-professional-harman/mac-one-beam": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact beam head with rear lens light-guide array",
+    "notes": "Light guides are individually addressable; nonstandard optic details need dedicated model research.",
+    "generator": "catalog",
+    "shell": "round",
+    "head_depth": 0.55,
+    "light_guide_rings": true,
+    "lens_ratio": 0.45
+  },
+  "vari-lite/vl10-beamwash": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "hybrid beam/wash effect head with 180 mm lens",
+    "notes": "Uses a discharge lamp and layered optical effects; source-driven outer silhouette still requires model construction and image review."
+  },
+  "glp/mad-maxx": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "body_style": "oversized yoke-mounted multisource fat-beam fixture",
+    "notes": "Nonstandard 19-beam array and extraordinary scale. Current moving_wash geometry is not an exact oversized fat-beam profile; preserve individual large front emitters, high yoke and alternate head-up envelope, and expect custom dimensions/modeling. Mass conflict between page and datasheet remains explicit.",
+    "generator": "catalog",
+    "head_depth": 0.78,
+    "base_height": 0.12,
+    "large_head": true
+  },
+  "chroma-q/color-force-3-72": {
+    "family": "batten",
+    "generator": "catalog",
+    "lens_count": 24,
+    "diffuser": true,
+    "sparkle_pixels": 48,
+    "manual_tilt": true
+  },
+  "chauvet-dj/intimidator-spot-375zx": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact moving spot head with yoke",
+    "notes": "Source states 7 + open colors, 7 + open rotating gobos and two prisms.",
+    "shell": "faceted",
+    "head_depth": 0.87
+  },
+  "chauvet-dj/intimidator-wash-zoom-450-irc": {
+    "family": "moving_wash",
+    "lens_count": 12,
+    "body_style": "compact moving wash with circular multi-LED aperture",
+    "notes": "LED count and RGBW emitters documented."
+  },
+  "chauvet-dj/hurricane-haze-2d": {
+    "family": "hazer",
+    "generator": "equipment",
+    "output_kind": "haze",
+    "lens_count": 0,
+    "body_style": "rectangular haze machine with top handle, fluid window and adjustable nozzle",
+    "notes": "No light source; distinct from a fog machine used for dense plume effects."
+  },
+  "eliminator-lighting/stealth-spot": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "small LED spot mover with indexed gobo wheel and yoke",
+    "notes": "Manufacturer page links cut sheet and user manual."
+  },
+  "shehds/led-beam-spot-moving-head-150w": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "LED beam/spot moving head with large lens and yoke",
+    "notes": "Exact SKU and official page gallery image verified. Product page includes manual-library link."
+  },
+  "chauvet-dj/intimidator-spot-360x": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact LED moving spot with lens and dual-prism optics",
+    "notes": "Common mobile event fixture with wide manual zoom and dual rotating prisms.",
+    "shell": "faceted",
+    "head_depth": 0.87
+  },
+  "chauvet-dj/intimidator-spot-475zx": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "mid-size LED spot mover with dual prism and moving yoke",
+    "notes": "Manufacturer manual gives full dimensions, weight and mode footprint.",
+    "shell": "faceted",
+    "head_depth": 0.87
+  },
+  "chauvet-dj/sentinel-wash-q120": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "miniature RGBW Fresnel wash head with yoke",
+    "notes": "New-generation unit; do not conflate with similarly named Sentinel Wash Q7Z ILS.",
+    "fresnel": true,
+    "head_depth": 0.75
+  },
+  "eurolite/led-tmh-s30-moving-head-spot": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "small LED spot mover with compact yoke and replaceable rotating gobo wheel",
+    "notes": "Steinigke product page is the EUROLITE brand owner's official store and provides source details, image gallery, DMX profile and dimensions."
+  },
+  "sgm/g-4-wash": {
+    "family": "moving_wash",
+    "shell": "faceted",
+    "lens_count": 1,
+    "fresnel": true,
+    "head_depth": 1.15,
+    "generator": "catalog",
+    "yoke_compression": 0.35
+  },
+  "sgm/g-7-spot": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_count": 1,
+    "lens_ratio": 0.65,
+    "head_depth": 1.3,
+    "generator": "catalog",
+    "yoke_compression": 0.35
+  },
+  "eliminator-lighting/stealth-beam": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact RGBW beam head with single ACL lens and yoke",
+    "notes": "Continuous pan is listed; no assumed finite pan limit. Product page contains core control and geometry specs; manual not transcribed."
+  },
+  "eurolite/led-kls-120-compact-light-set": {
+    "family": "batten",
+    "lens_count": 4,
+    "body_style": "four-head RGBW spot bar with central control/mounting crossbar",
+    "notes": "Four spots are individually controllable; no derby or laser is part of this model. Manual not transcribed in this pass; product page provides core DMX modes, dimensions and control behavior.",
+    "generator": "catalog",
+    "multi_heads": true,
+    "spot_bar": true,
+    "head_mode": "manual"
+  },
+  "adj/saber-spot-dtw": {
+    "family": "par",
+    "lens_count": 1,
+    "body_style": "compact pinspot housing with ACL lens and scissor bracket",
+    "notes": "Small pinspot rather than moving head.",
+    "floor_yoke": true,
+    "category_id": "lighting.static.beam"
+  },
+  "adj/focus-spot-6z": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact LED spot mover with dual gobo/color wheels, prisms and yoke",
+    "notes": "The single optical axis remains one moving spot despite rich beam shaping.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.55,
+    "lens_ratio": 0.62,
+    "yoke_compression": 0.23
+  },
+  "adj/focus-flex-l7": {
+    "family": "moving_wash",
+    "lens_count": 7,
+    "body_style": "compact moving head with a linear seven-engine RGBL array and zoom optics",
+    "notes": "Seven independent RGBL engines create pixel effects; model all optical apertures rather than a single emitter if supported."
+  },
+  "showtec/phantom-100-spot": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact 100 W LED spot moving head with yoke",
+    "notes": "Official model page links current product manual and provides source-backed assembled envelope.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.45,
+    "lens_ratio": 0.48,
+    "yoke_compression": 0.23
+  },
+  "martin-professional-harman/mac-encore-performance-wrm": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "LED profile moving head",
+    "notes": "WRM warm-white variant; keep distinct from CLD and Encore Two.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.25,
+    "yoke_compression": 0.22
+  },
+  "martin-professional-harman/mac-encore-performance-cld": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "LED profile moving head",
+    "notes": "CLD color temperature variant; do not merge with WRM.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.25,
+    "yoke_compression": 0.22
+  },
+  "martin-professional-harman/mac-encore-wash-cld": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "soft-edge moving head",
+    "notes": "CLD variant; verify front optic assembly from exact-model imagery before modeling.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.2,
+    "fresnel": true,
+    "yoke_compression": 0.22
+  },
+  "martin-professional-harman/mac-encore-wash-wrm": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "soft-edge moving head",
+    "notes": "WRM variant; verify front optic assembly from exact-model imagery before modeling.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.2,
+    "fresnel": true,
+    "yoke_compression": 0.22
+  },
+  "martin-professional-harman/mac-aura-pxl": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "body_style": "medium pixel wash head with secondary Aura ring",
+    "notes": "19 beam lenses and 141 individually controlled Aura pixels; retain beam and Aura zones separately.",
+    "generator": "catalog",
+    "aura_pixels": 141,
+    "yoke_compression": 0.2
+  },
+  "martin-professional-harman/mac-aura-raven-xip": {
+    "family": "moving_wash",
+    "lens_count": 37,
+    "body_style": "large outdoor Aura wash head with forward beam and Aura pixel arrays",
+    "notes": "Model 37 main beam emitters across the forward face plus a separate 234-element RGB Aura backlight array; no rear video display is specified.",
+    "generator": "catalog",
+    "aura_pixels": 234,
+    "yoke_compression": 0.18
+  },
+  "martin-professional-harman/mac-aura-xb": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "body_style": "compact yoke-mounted Aura fixture",
+    "notes": "19 front wash lenses plus the forward Aura pixel effect; do not model like larger automated MAC Aura moving-head bodies.",
+    "generator": "catalog",
+    "aura": true,
+    "yoke_compression": 0.25
+  },
+  "ayrton/rivale-wash": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "sealed Fresnel wash moving head",
+    "notes": "Continuous pan and tilt rotation requires unlimited-axis support; don't fabricate mechanical end stops.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.05,
+    "fresnel": true,
+    "yoke_compression": 0.18
+  },
+  "ayrton/stradale-profile": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact sealed profile moving head",
+    "notes": "Continuous pan and tilt rotation; do not invent mechanical stops. Moving profile uses moving_spot family.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.1,
+    "yoke_compression": 0.18
+  },
+  "ayrton/zonda-3-fx": {
+    "family": "moving_wash",
+    "lens_count": 7,
+    "body_style": "seven optic RGBW cluster with central LiquidEffect element",
+    "notes": "Nonstandard seven-source optic cluster and central LiquidEffect require custom geometry; continuous pan and tilt rotation has no mechanical end stops."
+  },
+  "ayrton/nando-502-wash": {
+    "family": "moving_wash",
+    "lens_count": 12,
+    "body_style": "compact multi-source optical cluster wash",
+    "notes": "Twelve discrete 70 mm truncated lens elements in a 210 mm cluster; use a clustered optic layout rather than one lens."
+  },
+  "robe-lighting/esprite": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "white-source moving head",
+    "notes": "Product page exposes dimensions and image asset; profile-like moving-head geometry maps to moving_spot, not static profile.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.25,
+    "yoke_compression": 0.2
+  },
+  "robe-lighting/ledpointe": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact multi-purpose moving head with 155 mm front lens",
+    "notes": "Moving-head profile/beam hybrid; exact front and barrel silhouette should follow image references.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.3,
+    "yoke_compression": 0.2
+  },
+  "robe-lighting/painte": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact moving head",
+    "notes": "White-source moving profile/beam; verify product generation and options before model production.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.2,
+    "yoke_compression": 0.2
+  },
+  "robe-lighting/cuete": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact profile moving head",
+    "notes": "Use moving_spot family for articulated profile heads; source shows compact housing.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.15,
+    "yoke_compression": 0.2
+  },
+  "robe-lighting/tetra1": {
+    "family": "batten",
+    "lens_count": 9,
+    "tilting": true,
+    "body_style": "linear multisource moving luminaire",
+    "notes": "Nine discrete RGBW emitters on a single tilting linear bar; 191° tilt from official specification."
+  },
+  "robe-lighting/ledbeam-150": {
+    "family": "moving_wash",
+    "lens_count": 7,
+    "body_style": "compact multisource wash/beam head",
+    "notes": "Seven discrete RGBW source/lens channels arranged in compact head."
+  },
+  "chauvet-dj/intimidator-spot-duo": {
+    "family": "batten",
+    "lens_count": 2,
+    "body_style": "two compact moving spot heads mounted to one crossbar",
+    "notes": "Requires paired moving yokes and head subassemblies rather than a single conventional moving-head shell.",
+    "generator": "catalog",
+    "dual_movers": true
+  },
+  "showtec/phantom-65": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact LED spot head with yoke",
+    "notes": "Manufacturer documentation is Highlite manual; product identity is Showtec Phantom 65, order code 40070."
+  },
+  "adj/focus-wash-400": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "medium Fresnel wash head with large circular lens and yoke",
+    "notes": "Source uses both 9–42°, 9–43° and 10–41° zoom descriptions; record retains detailed spec's 9–43° range."
+  },
+  "chauvet-professional/rogue-r3x-wash": {
+    "family": "moving_wash",
+    "lens_count": 37,
+    "shell": "round",
+    "notes": "37-cell RGBW lens array."
+  },
+  "elation-professional/proteus-lucius": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.58,
+    "head_depth": 0.85,
+    "notes": "Weather-sealed profile with internal framing."
+  },
+  "cameo/opus-x4-ip": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.65,
+    "head_depth": 0.82,
+    "notes": "Sealed outdoor profile fixture; enclosure may differ from indoor variant."
+  },
+  "astera/titan-tube": {
+    "family": "tube",
+    "body_style": "sealed cylindrical RGB pixel tube with end caps and battery/control end",
+    "notes": "16 individually addressable light pixels distributed along the linear tube; mounting holders are accessories and excluded from envelope.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "astera/helios-tube": {
+    "family": "tube",
+    "body_style": "sealed cylindrical pixel tube with end caps and integrated battery/control end",
+    "notes": "Eight addressable pixels; 550 mm body length.",
+    "generator": "equipment",
+    "output_kind": "light"
+  },
+  "astera/ax5-triplepar": {
+    "family": "par",
+    "shell": "round",
+    "lens_count": 3,
+    "notes": "Compact three-emitter battery PAR with yoke/bracket; body-only and bracketed envelopes differ.",
+    "generator": "catalog",
+    "floor_yoke": true,
+    "reflector_cups": 3
+  },
+  "etc/colorsource-spot-jr": {
+    "family": "profile",
+    "barrel_ratio": 0.36,
+    "body_style": "compact LED ellipsoidal with integral zoom optics and yoke",
+    "notes": "ETC junior-format profile; dimensional drawing is authoritative for outer envelope.",
+    "generator": "catalog",
+    "round_front": true
+  },
+  "etc/colorsource-par-jr": {
+    "family": "par",
+    "shell": "round",
+    "lens_count": 4,
+    "notes": "Compact convection-cooled LED PAR with four visible optical cups; manufacturer specifies 16 LED emitters distributed among the four optics.",
+    "generator": "catalog",
+    "reflector_cups": 4
+  },
+  "acme/mana-profile": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.54,
+    "head_depth": 0.76,
+    "notes": "Weather-sealed LED framing profile with internal shutters and rotating optical effects."
+  },
+  "high-end-systems/lonestar": {
+    "family": "moving_spot",
+    "shell": "faceted",
+    "lens_ratio": 0.56,
+    "head_depth": 0.78,
+    "notes": "Compact white-LED framing profile; preserve yoke, pan/tilt base and internal framing module."
+  },
+  "claypaky/b-eye-7": {
+    "family": "moving_wash",
+    "lens_count": 7,
+    "body_style": "compact seven optic wash head",
+    "notes": "Endless pan and tilt behavior is unusual; document axis mechanism separately."
+  },
+  "claypaky/arolla-aqua": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "weather-rated profile head",
+    "notes": "This CL3027 is the standard Marine-shield-free model; MG variant CL3047 is separately identified in official product copy.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.4,
+    "yoke_compression": 0.15
+  },
+  "claypaky/b-eye-k30": {
+    "family": "moving_wash",
+    "lens_count": 37,
+    "body_style": "large-format RGBL multi-optic wash/effect head",
+    "notes": "37 individually addressable emitters; bi-directional rotating front lenses, endless pan and 230° tilt/safety brake require nonstandard effect/motion treatment."
+  },
+  "martin-professional-harman/mac-encore-two": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "LED profile moving head",
+    "notes": "Asymmetric across-yoke width/depth use Martin's listed fixture envelope axes; preserve official CAD silhouette.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.2,
+    "yoke_compression": 0.22
+  },
+  "ayrton/karif-lt": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "long-throw beam/spot moving head",
+    "notes": "Infinite pan rotation is an unsupported axis convention for ordinary finite-pan spot previews; preserve as an unlimited-pan capability.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.1,
+    "yoke_compression": 0.18
+  },
+  "ayrton/mistral-s": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact white-source profile moving head",
+    "notes": "Official product code 011240 identifies Mistral S.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.1,
+    "yoke_compression": 0.18
+  },
+  "ayrton/mistral-tc": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact high-CRI profile moving head",
+    "notes": "Official product code 011250 identifies Mistral TC.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.1,
+    "yoke_compression": 0.18
+  },
+  "ayrton/diablo-profile-s": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact white-source profile moving head",
+    "notes": "Exact product code 011340 is Diablo Profile S; profile category is represented by moving_spot family.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.05,
+    "yoke_compression": 0.18
+  },
+  "ayrton/diablo-profile-tc": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact high-CRI profile moving head",
+    "notes": "Exact product code 011350 is Diablo Profile TC; profile category is represented by moving_spot family.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.05,
+    "yoke_compression": 0.18
+  },
+  "ayrton/levante-s": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "wash with framing shutters and spherical front lens",
+    "notes": "Official product code 010240 identifies Levante S; dedicated shutters and their rotating module should be modeled.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.0,
+    "yoke_compression": 0.18
+  },
+  "ayrton/levante-tc": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "high-CRI wash with framing shutters and spherical front lens",
+    "notes": "Official product code 010250 identifies Levante TC; dedicated shutters and their rotating module should be modeled.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.0,
+    "yoke_compression": 0.18
+  },
+  "ayrton/zonda-3-wash": {
+    "family": "moving_wash",
+    "lens_count": 7,
+    "body_style": "compact RGBW multi-source moving head with truncated lenses in a 170 mm cluster",
+    "notes": "Seven discrete light guides; use 7 emitters rather than one circular optic."
+  },
+  "ayrton/rawbeam-350": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "compact laser-phosphor beam moving head",
+    "notes": "Continuous pan and tilt rotation requires unlimited-axis support; retain as a source-backed motion capability.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.15,
+    "yoke_compression": 0.18
+  },
+  "ayrton/eurus-profile-s": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "large white-source profile moving head",
+    "notes": "Official product code 011540 identifies Eurus Profile S.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.2,
+    "yoke_compression": 0.18
+  },
+  "ayrton/eurus-profile-tc": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "high-CRI profile moving head",
+    "notes": "Official product code 011545 identifies Eurus Profile TC.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.2,
+    "yoke_compression": 0.18
+  },
+  "ayrton/bora-s": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "large spherical-lens wash with framing shutters",
+    "notes": "Official product code 010640 identifies Bora S.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.1,
+    "yoke_compression": 0.18
+  },
+  "ayrton/bora-tc": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "large spherical-lens high-CRI wash with framing shutters",
+    "notes": "Official product code 010650 identifies Bora TC.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.1,
+    "yoke_compression": 0.18
+  },
+  "ayrton/veloce-wash": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "large sealed Fresnel wash with framing and effects",
+    "notes": "Unlimited pan/tilt rotation is documented; physical axes must support the continuous-rotation mechanism.",
+    "generator": "catalog",
+    "shell": "faceted",
+    "head_depth": 1.2,
+    "fresnel": true,
+    "yoke_compression": 0.18
+  },
+  "ayrton/argo-6-fx": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "body_style": "compact 19-emitter RGBW effect head with LiquidEffect optical system",
+    "notes": "19 discrete 50 mm truncated lenses and glass light guides in 280 mm cluster; individual pixel control; unlimited pan/tilt."
+  },
+  "ayrton/argo-6-wash": {
+    "family": "moving_wash",
+    "lens_count": 19,
+    "body_style": "compact 19-emitter RGBW wash head with 280 mm cluster",
+    "notes": "19 discrete truncated lenses and glass light guides; independent pixel effects; unlimited pan/tilt."
+  },
+  "claypaky/volero-cube": {
+    "family": "moving_wash",
+    "lens_count": 4,
+    "body_style": "compact square multi-optic head with crossing strobe strips",
+    "notes": "Nonstandard square optics and crossed strip effects require geometry flags beyond current circular-head defaults; preserve explicit limitation.",
+    "generator": "catalog",
+    "square_optics": true,
+    "head_depth": 0.65
+  },
+  "ayrton/cobra": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "IP65 laser-phosphor beam moving head",
+    "notes": "Single front aperture; 13 internal optical elements. Continuous pan/tilt mechanism requires unlimited-axis support."
+  },
+  "ayrton/khamsin-s": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "profile moving head",
+    "notes": "Single front aperture; 13-element zoom optic. Pan 540°, tilt 262°."
+  },
+  "ayrton/khamsin-tc": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "high-CRI profile moving head",
+    "notes": "Single front aperture; 13-element zoom optic. Pan 540°, tilt 262°."
+  },
+  "ayrton/perseo-beam": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "IP65 profile/beam moving head",
+    "notes": "Single front aperture with 13-element zoom optic; 540° pan and 263° tilt."
+  },
+  "ayrton/perseo-profile-s": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "IP65 profile moving head",
+    "notes": "Single front aperture; 13-element 8:1 zoom optic. Four individually positionable shutter blades; pan 540°, tilt 263°."
+  },
+  "ayrton/perseo-profile-tc": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "high-CRI IP65 profile moving head",
+    "notes": "Single front aperture; 13-element 8:1 zoom optic. Four individually positionable shutter blades; pan 540°, tilt 263°."
+  },
+  "ayrton/veloce-profile": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "large IP65 profile moving head",
+    "notes": "13-element zoom optics and four-blade framing; continuous pan and tilt rotation require unlimited-axis support."
+  },
+  "antari/z-1200iii-fog-machine": {
+    "family": "fogger",
+    "body_style": "compact convex metal fogger with top reservoir, carry handle and front nozzle",
+    "notes": "Current embossed III-series shell; do not reuse Z-1000III dimensions or geometry blindly.",
+    "generator": "effects",
+    "enclosure": "silver_machine",
+    "hanging_bracket": true,
+    "manual_equipment_tilt": true,
+    "output_kind": "fog"
+  },
+  "antari/z-1500iii-fog-machine": {
+    "family": "fogger",
+    "body_style": "low rectangular embossed fogger with top fluid reservoir and front outlet",
+    "notes": "Distinct long low chassis from Antari Z-1000III. Product page and guide specify model-specific size and weight.",
+    "generator": "effects",
+    "enclosure": "silver_machine",
+    "hanging_bracket": false,
+    "output_kind": "fog"
+  },
+  "antari/hz-500-hazer": {
+    "family": "hazer",
+    "body_style": "black flight-case hazer with dual outlets and case latches",
+    "notes": "The built-in case is part of the machine enclosure, distinct from shipping case dimensions. Product image shows the small square access hatch open; preserve this visual detail while using the closed-case listed envelope.",
+    "generator": "effects",
+    "enclosure": "road_case",
+    "outlet_count": 2,
+    "output_kind": "haze"
+  },
+  "antari/hz-1000-hazer": {
+    "family": "hazer",
+    "body_style": "large wheeled flight-case hazer with dual outlets, adjustable fan diverter and control panel",
+    "notes": "Render the integrated wheeled enclosure; do not add separate flight-case geometry.",
+    "generator": "effects",
+    "enclosure": "road_case",
+    "outlet_count": 1,
+    "casters": true,
+    "output_kind": "haze"
+  },
+  "antari/s-200x-snow-machine": {
+    "family": "snow",
+    "body_style": "silver rectangular snow machine with top control panel, front hose outlet and suspension bracket",
+    "notes": "Do not include extension hose in enclosure bounds. The product guide's 3-pin note identifies the DMX connector; the current shared manual explicitly documents DMX512 and one channel for the S-200X.",
+    "generator": "effects",
+    "enclosure": "silver_machine",
+    "hanging_bracket": true,
+    "manual_equipment_tilt": true,
+    "output_kind": "snow"
+  },
+  "antari/sw-250-snow-machine": {
+    "family": "snow",
+    "body_style": "silver metal snow appliance with top LCD controls and front hose outlet",
+    "notes": "Current SW-250 wireless unit; retain W-1 transmitter as included accessory metadata, not enclosure geometry.",
+    "generator": "effects",
+    "enclosure": "silver_machine",
+    "hanging_bracket": true,
+    "manual_equipment_tilt": true,
+    "output_kind": "snow"
+  },
+  "antari/b-200-bubble-machine": {
+    "family": "bubble",
+    "body_style": "large black framed bubble appliance with triple wheel array and broad forward outlet",
+    "notes": "Current B-200 variant's three dual wheels differ from compact B-100 single double wheel.",
+    "generator": "effects",
+    "enclosure": "bubble_bank",
+    "bubble_rotor": true,
+    "output_kind": "bubbles"
+  },
+  "antari/w-101-wireless-bubble-machine": {
+    "family": "bubble",
+    "body_style": "compact silver bubble machine with top handle, single wheel opening and control switch",
+    "notes": "Do not confuse W-101 with B-100; dimensions, wireless package and model identity are separate.",
+    "generator": "equipment",
+    "output_kind": "bubbles"
+  },
+  "look-solutions/unique-2-1": {
+    "family": "hazer",
+    "body_style": "compact squared metal hazer with integrated fan, controls and removable fluid canister",
+    "notes": "Use the official manufacturer side view for enclosure geometry; optional hanging set, diverter, and flight case are excluded.",
+    "generator": "effects",
+    "enclosure": "unique_hazer",
+    "output_kind": "haze"
+  },
+  "look-solutions/tiny-s": {
+    "family": "fogger",
+    "body_style": "small cylindrical handheld fogger with screw-on battery and transparent fluid reservoir",
+    "notes": "Miniature scale; battery and reservoir contribute to modeled body. Exact current product still URL was located and captured locally.",
+    "generator": "effects",
+    "enclosure": "tiny_fogger",
+    "output_kind": "fog"
+  },
+  "adj/entour-venue": {
+    "family": "hazer",
+    "body_style": "portable rectangular all-metal faze machine with top handle, fluid window and adjustable nozzle",
+    "notes": "External anti-spill fluid tank is a separate dependency; do not model it as an internal compartment.",
+    "generator": "effects",
+    "enclosure": "venue_hazer",
+    "manual_equipment_tilt": true,
+    "output_kind": "haze"
+  },
+  "antari/hz-400-hazer": {
+    "family": "hazer",
+    "body_style": "medium metal hazer with top handle, control panel, twin front nozzles and adjustable diverter",
+    "notes": "Dual nozzle assembly is a meaningful visual distinction from HZ-350 and HZ-500.",
+    "generator": "effects",
+    "enclosure": "silver_hazer",
+    "output_kind": "haze"
+  },
+  "antari/f-1-fazer": {
+    "family": "hazer",
+    "body_style": "long low rectangular metal fazer with front nozzle, top carry handle and air-pump housing",
+    "notes": "Manufacturer describes both fog and haze output; model as equipment enclosure, not a light fixture.",
+    "generator": "effects",
+    "enclosure": "fazer_wedge",
+    "output_kind": "haze"
+  },
+  "antari/z-3000iii-fog-machine": {
+    "family": "fogger",
+    "body_style": "wide industrial fog machine with convex sheet-metal shell, LCD/dual controls and front outlet",
+    "notes": "Model current III generation. Do not carry over an older 735 mm length from earlier brochure.",
+    "generator": "effects",
+    "enclosure": "silver_machine",
+    "hanging_bracket": false,
+    "output_kind": "fog"
+  },
+  "showven/sparkular-mini": {
+    "family": "spark",
+    "lens_count": 0,
+    "body_style": "small square-base cold-spark fountain machine",
+    "notes": "One visible effect outlet; no optical lenses or spotlight emitter. Cold-spark effect is not a conventional pyrotechnic flare.",
+    "generator": "effects",
+    "enclosure": "spark_box",
+    "output_kind": "spark"
+  },
+  "showven/sparkular-max": {
+    "family": "spark",
+    "lens_count": 0,
+    "body_style": "large rectangular cold-spark machine",
+    "notes": "One visible effect outlet; no optical lens or spotlight emission.",
+    "generator": "effects",
+    "enclosure": "spark_box",
+    "output_kind": "spark"
+  },
+  "showven/sparkular-cyclone-ii": {
+    "family": "spark",
+    "lens_count": 0,
+    "body_style": "rotating cold-spark effect housing",
+    "notes": "No optical lens; rotating effect outlet direction is a physical feature. Do not approximate outlet count or positions from effect diagrams.",
+    "generator": "effects",
+    "enclosure": "spark_box",
+    "output_kind": "spark"
+  },
+  "showven/sparkular-jet-ii": {
+    "family": "spark",
+    "lens_count": 0,
+    "body_style": "stainless steel spark jet with integrated compressor",
+    "notes": "One visible effect outlet; no optical lens. Physical geometry only. Manufacturer's dedicated pyro-signal input is not DMX.",
+    "generator": "effects",
+    "enclosure": "spark_box",
+    "output_kind": "spark"
+  },
+  "robe-lighting/colorwash-250-at": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "discharge wash moving head",
+    "notes": "The official leaflet includes a still product photo and dimension views; dimensions exclude shipping packaging.",
+    "fresnel": true,
+    "head_depth": 0.72,
+    "base_height": 0.22
+  },
+  "robe-lighting/colorwash-575-at": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "575 W discharge wash moving head",
+    "notes": "Keep optional wide-angle lens modules separate from standard body envelope.",
+    "fresnel": true,
+    "head_depth": 0.72,
+    "base_height": 0.22
+  },
+  "mdg/atmosphere-aps": {
+    "family": "hazer",
+    "body_style": "long purple rectangular industrial haze generator with full-length side panel, top handle and brass cap; broad fan and outlet assembly at one end",
+    "notes": "The exact ATMOSPHERE APS full-body side view is available in official gallery image 2. CO2 and MDG Neutral fluid are separate operating supplies and are not enclosure geometry; optional DMX module is external. Do not use the separate fan-detail image as the only body reference.",
+    "generator": "equipment",
+    "output_kind": "haze"
+  },
+  "mdg/mse1": {
+    "family": "fogger",
+    "body_style": "grey closed industrial cabinet with weather-resistant face panel and service vents; external fluid/gas connections",
+    "notes": "The exact MSe1 product image shows a grey closed cabinet, not the purple ATMOSPHERE-series body. Model the enclosure only. Fluid container, gas supply and control wiring are external dependencies.",
+    "generator": "effects",
+    "enclosure": "sealed_cabinet",
+    "output_kind": "fog"
+  },
+  "antari/s-100x-snow-machine": {
+    "family": "snow",
+    "body_style": "compact rectangular snow machine with front outlet, top controls and hanging bracket",
+    "notes": "Distinguish current S-100X from legacy S-100II; dimensions and fluid/control data match current X-series page.",
+    "generator": "effects",
+    "enclosure": "silver_machine",
+    "hanging_bracket": true,
+    "manual_equipment_tilt": true,
+    "output_kind": "snow"
+  },
+  "chauvet-dj/scorpion-dual-rgb": {
+    "family": "laser",
+    "lens_count": 2,
+    "body_style": "compact rectangular dual-output laser projector",
+    "notes": "Two mirror output apertures are explicitly identified by the manufacturer. Model as laser apparatus; do not add ordinary spotlight emission.",
+    "generator": "effects",
+    "enclosure": "laser_box",
+    "dual_mirror_window": true,
+    "manual_equipment_tilt": true,
+    "output_kind": "laser_aperture"
+  },
+  "showven/sparkular": {
+    "family": "spark",
+    "lens_count": 0,
+    "body_style": "upright metal cold-spark fountain unit",
+    "notes": "One visible effect outlet; no optical lenses or spotlight emitter.",
+    "generator": "effects",
+    "enclosure": "spark_box",
+    "output_kind": "spark"
+  },
+  "showven/sparkular-wp": {
+    "family": "spark",
+    "lens_count": 0,
+    "body_style": "weather-rated metal cold-spark unit",
+    "notes": "One visible effect outlet; no optical lenses or spotlight emitter. Retain weather-rated enclosure as a visual distinction.",
+    "generator": "effects",
+    "enclosure": "spark_box",
+    "output_kind": "spark"
+  },
+  "martin-professional-harman/mac-2000-profile": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "large discharge profile moving head",
+    "notes": "Keep original Profile distinct from Profile II; ballast variants affect mass, not documented outer dimensions."
+  },
+  "martin-professional-harman/mac-2000-wash": {
+    "family": "moving_wash",
+    "lens_count": 1,
+    "body_style": "large discharge wash moving head",
+    "notes": "Manufacturer lists PC, Fresnel and super-wide lens options as included; micro-Fresnel is optional."
+  },
+  "robe-lighting/colorspot-250-at": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "body_style": "discharge spot moving head",
+    "notes": "Robe marks this exact model discontinued; use only official fixture still, not event photographs.",
+    "shell": "faceted",
+    "base_height": 0.22
+  },
+  "adj/x-move-laser": {
+    "family": "moving_spot",
+    "lens_count": 1,
+    "output_kind": "laser_aperture",
+    "body_style": "small yoke-mounted laser projector",
+    "notes": "Pan/tilt moving head (manufacturer lists 540° pan / 220° tilt and stepper motors). Retain dark/output-only laser_aperture semantics; do not create ordinary visible spotlight output.",
+    "category_id": "lighting.effects.laser",
+    "shell": "faceted",
+    "lens_ratio": 0.45
+  },
+  "le-maitre/gforce-3": {
+    "family": "fogger",
+    "lens_count": 0,
+    "body_style": "rectangular fogger with rear bottle carrier",
+    "notes": "Do not add optical emission. Carrier-equipped overall envelope used.",
+    "generator": "equipment",
+    "output_kind": "fog"
+  },
+  "le-maitre/g300": {
+    "family": "fogger",
+    "lens_count": 0,
+    "body_style": "large rectangular smoke machine",
+    "notes": "No optical emitter. Distinguish from G300-Smart due to built-in network/DMX differences.",
+    "generator": "equipment",
+    "output_kind": "fog"
+  }
+}

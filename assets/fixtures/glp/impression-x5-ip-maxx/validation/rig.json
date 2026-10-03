@@ -1,0 +1,17 @@
+{
+  "id": "glp/impression-x5-ip-maxx",
+  "passed": true,
+  "source_usdz_sha256": "3a17a04aee93ad9dccf71290c249b59c2e98a534b449c7473ea5814e2262c506",
+  "joints": 2,
+  "moving_meshes": 135,
+  "fixed_meshes": 4,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

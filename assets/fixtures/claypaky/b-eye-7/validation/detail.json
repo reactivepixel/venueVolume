@@ -1,0 +1,77 @@
+{
+  "mesh_count": 92,
+  "triangle_count": 25540,
+  "geometry_sha256": "f378d5889040f476f281161dfa33eec96d1f0357e480744530913d8e513de4d7",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.34248197078704834,
+      -0.05315505340695381
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0005038556992076337
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.07312098890542984,
+        0.0005038556992076337
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.34248197078704834,
+        0.0005038556992076337
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.34248197078704834,
+        -0.051194436848163605
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    1.0077168941497803,
+    0.9915516972541809
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.claypaky.it/products/b-eye-7/",
+    "https://www.claypaky.it/wp-content/uploads/2026/08/Claypaky_B-Eye7_featured.jpg"
+  ]
+}

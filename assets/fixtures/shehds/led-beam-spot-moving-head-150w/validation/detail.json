@@ -1,0 +1,78 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 18516,
+  "geometry_sha256": "e3f35e1547030371f31dda24749b79d91c138a1acf8c1f65cb3aeb63191b5742",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.33090001344680786,
+      -0.07526490092277527
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0024084991309791803
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.06719999760389328,
+        0.0024084991309791803
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.33090001344680786,
+        0.0024084991309791803
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.33090001344680786,
+        -0.07242684066295624
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852217435836792,
+    0.9762870669364929,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://shehds.com/products/new-arrival-led-beam-150w-good-moving-head-lighting",
+    "https://shehds.com/cdn/shop/files/f7d7c897f798fc44c391847188c3ac79.jpg?v=1752917692&width=416",
+    "https://shehds.com/cdn/shop/files/MG_4008_f7139f4f-c15c-4bf7-babd-4e14fb86c8e1.jpg?v=1752917692&width=416"
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "4ede12875f1fbb8a4ebe9c45e5d3f86bdca7535f20b34d86651b14f794b622fb",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "elation-professional/proteus-lucius",
+    "name": "PROTEUS LUCIUS",
+    "manufacturer": "Elation Professional",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/elation-professional/proteus-lucius/fixture.usdz",
+    "sha256": "4ede12875f1fbb8a4ebe9c45e5d3f86bdca7535f20b34d86651b14f794b622fb",
+    "boundsMin": [
+      -0.1850000023841858,
+      0.0,
+      -0.2340000155963935
+    ],
+    "boundsMax": [
+      0.1850000023841858,
+      0.6819999814033508,
+      0.23399999405955896
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.10911999642848969,
+          0.0005256798467598855
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5598999857902527,
+          0.0005256798467598855
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5598999857902527,
+          -0.21695391833782196
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

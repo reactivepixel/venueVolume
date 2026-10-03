@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "id": "glp/jdc-line-500",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "GLP",
+    "model": "JDC Line 500",
+    "variant": "JDC Line 500",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://glp.de/de/produkte/entertainment-lighting/strobes/jdc-line-500",
+      "title": "GLP JDC Line 500 official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://glp.de/files/products/jdc-line-500-product-data/GLP_JDC-Line.pdf",
+      "title": "GLP JDC Line 500 official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://glp.de/templates/yootheme/cache/a5/JDC-Line-500_Header-a55722e1.png",
+      "title": "GLP JDC Line 500 official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.png",
+      "sha256": "2e52481582ebf259ac27e34886f5958852de9b3b55fe8d68cd8c9af5b41ffae5"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.507,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "height": {
+      "value": 0.074,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "depth": {
+      "value": 0.2015,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "800 W max at 230 V; 100-240 VAC",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "6 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "Art-Net",
+          "sACN"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.2535000145435333,
+        0.0,
+        -0.10074999183416367
+      ],
+      "max": [
+        0.2535000145435333,
+        0.0740000014193356,
+        0.10074999183416367
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.005418234039098024,
+          -0.0039781853556632996
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.04822919890284538,
+          -0.0039781853556632996
+        ]
+      },
+      {
+        "name": "lens",
+        "prim_path": "/Fixture/Lens",
+        "pivot_m": [
+          0.0,
+          0.04822919890284538,
+          -0.0873643234372139
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.04822919890284538,
+          -0.08955869823694229
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer specifies H x W x D.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "65b0beb1b006d82ff9d620f38f91428067e95157d845a1fc561aefd396350499"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "085d4021eca000307462a1b5501be8fa870a6b13758e7f89f8a082988bb0a808"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "fe216600c6d41107059f1b11ec8f21e31a50fc5e8d856740dd4acde5acabfc13"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "bee67aeb0de1761a268a6db425e18dba263e0c16b1595dc1d1c16da62fb97b1b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "956b77dbc2a404726fe22be61fe5862f2fa2b39f1a37bee5dbf78db42ffbaf51"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "e291b9e59d366533c780777295d6a53f043f40fcbdf89453d84e0496a9186070"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "625733aecb8670afc222dc0cfa01dea43478f5f421253463bc92463163ca8875"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "28b3da8c8e601c8f618d3c354d951d6d57c7b7c55eff4c82f804ec627b2392ee"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "c4c96dbab5990c75c019616f3eeed67d6deaaa7da51dff77091664d8cb7d2269"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "7c3220f8eb6faf3199ae6dbbddc18d6ee25553963bc30d294109d185859db812"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "9db7b405981f43f5bb8da9dab382140bf0de022ca916c0403b4177d0456720cb",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "strobe",
+      "strip": true,
+      "cells": 24
+    },
+    "mesh_count": 111,
+    "triangle_count": 20884,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed strobe geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.effects.strobe",
+    "category_path": [
+      "Lighting fixtures",
+      "Visible and audience effects",
+      "Strobe"
+    ],
+    "use_tags": [
+      "strobe capable",
+      "blinder capable"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "91745c26b66d053b467c6ddaa463f0448aef1e0287d6535e53d20fae12d2b5f0",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "claypaky/sharpy",
+    "name": "Sharpy",
+    "manufacturer": "Claypaky",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/claypaky/sharpy/fixture.usdz",
+    "sha256": "91745c26b66d053b467c6ddaa463f0448aef1e0287d6535e53d20fae12d2b5f0",
+    "boundsMin": [
+      -0.20250000059604645,
+      0.0,
+      -0.16500001325039193
+    ],
+    "boundsMax": [
+      0.20250000059604645,
+      0.4749999940395355,
+      0.16499998496146873
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.07124999910593033,
+          0.0005053661880083382
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.351500004529953,
+          0.0005053661880083382
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.351500004529953,
+          -0.13825038075447083
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

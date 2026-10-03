@@ -1,0 +1,51 @@
+{
+  "mesh_count": 20,
+  "triangle_count": 2608,
+  "geometry_sha256": "900b8293ecb0ae888d65781fbe5a9cced55b2651403e1efea5e29f638eb76932",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      2.1855690590655286e-08,
+      -0.0
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        2.1855690590655286e-08,
+        -0.0
+      ]
+    }
+  ],
+  "family": "truss",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.963391125202179,
+    0.9999998211860657,
+    0.9999998211860657
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.globaltruss.com/sq-4110",
+    "https://d295jznhem2tn9.cloudfront.net/ItemRelatedFiles/11147/F34-SQ-4110.pdf",
+    "https://www.globaltruss.com/media/catalog/product/cache/6517c62f5899ad6aa0ba23ceb3eeff97/1/0/1000x1000-20f34-20straight-41866.jpg"
+  ]
+}

@@ -1,0 +1,312 @@
+{
+  "schema_version": 1,
+  "id": "astera/helios-tube",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Astera",
+    "model": "Helios Tube",
+    "variant": "FP2-BTB",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://astera-led.com/fr/products/helios-tube/specs/",
+      "title": "Helios Tube technical specifications",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "FP2/FP2-BTB comparison: 36 W total LED power, 24 W draw, eight pixels, 0.765 kg, L550 × Ø43 mm",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://astera-led.com/wp-content/uploads/Datasheet_Helios_Tube_V4-1.pdf",
+      "title": "Helios Datasheet V4, 3 July 2025",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Specifications: LED source/color/output, control and physical specification",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://astera-led.com/wp-content/uploads/FP2-BTB_HeliosTube_BTB_Manual_EN_DE_IT_ES_FR_PT.pdf",
+      "title": "BTB Helios Tube Manual",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Technical data and dimensions table",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://media.astera-led.com/wp-content/uploads/Helios-Tube_V2.png",
+      "title": "Helios Tube product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "ecc75b22482543035d58aefdaf39e1a181163ff16e333d8489cf814053f020d5"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.55,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer Datasheet V4 (3 July 2025): overall length 550 mm × Ø43 mm; horizontal tube orientation used for width."
+    },
+    "height": {
+      "value": 0.043,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer Datasheet V4 (3 July 2025): overall length 550 mm × Ø43 mm; horizontal tube orientation used for width."
+    },
+    "depth": {
+      "value": 0.043,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer Datasheet V4 (3 July 2025): overall length 550 mm × Ø43 mm; horizontal tube orientation used for width."
+    },
+    "reference_pose": "Tube horizontal; end caps fitted, no mounting accessories."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "8-pixel battery-powered Titan LED Engine tube; RGBMintAmber; 1285 lm at 3200 K / 1340 lm at 4000 K; up to 20 h runtime; IP65 only with FP1-SP end cap.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "36 W max; 24 W LED power draw; 24 VDC, 1.25 A",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "0.765 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512 (via Astera interface)",
+          "CRMX",
+          "UHF",
+          "Bluetooth",
+          "Wi-Fi"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Tube horizontal; end caps fitted, no mounting accessories.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.2750000059604645,
+        1.862645149230957e-09,
+        -0.0215000007301569
+      ],
+      "max": [
+        0.2750000059604645,
+        0.04300000471994281,
+        0.0215000007301569
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          -0.0008144793100655079,
+          -0.0
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.021500002592802048,
+          -0.022760769352316856
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer Datasheet V4 (3 July 2025): overall length 550 mm × Ø43 mm; horizontal tube orientation used for width.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "94d0f15691c2353ae9335e1318853f972fe9d51949fdc87f95913cbb837833bf"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "e77066a924d68da303d46696358f9ee2bf8ca9b88662749cd917d5e969d664a2"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "2ffb9cd77662d913219d5ad7a9ff81185bba16d2ba4d5e75de09a029ea91f3ec"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "ff4a2b91ac756989bf1a558a324f5917bc57eaa510c8754d9cd5bdfd13f12f53"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "4fd19e35db2ec2a0847fc3eb6ccc0234377dde389494a8bd12d56a0f67cafe09"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "a8c87ba891530c66e400f3fc208b0580b15b3b55d9569e47bd407f93652ef085"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "4bc0fded5b1e1b49474482fe65887c8ed2f50e288ec4e0f86e8e782da28978e9"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "681dd06c3d08af13af75004deaab5cf585762d153a2a959ef69fb2380c587cb8"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "519a78dc3e172e05700744266848d251e0218b311c8745f509e670c8987a22a0"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "ce3144ca8f82658b67d564d61b505cd81de8c680948acec64a0693f3d2a0cbdf"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "0e7ea21ae0e6a21f413baab10f8a706684262bc820cf7abae1eed44d9934d295",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "tube",
+      "body_style": "sealed cylindrical pixel tube with end caps and integrated battery/control end",
+      "notes": "Eight addressable pixels; 550 mm body length.",
+      "generator": "equipment",
+      "output_kind": "light"
+    },
+    "mesh_count": 3,
+    "triangle_count": 564,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed tube geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "4d8bfcc0ff0a51ba729b3fd03a17c32e97159d860def9eeff4cf9b249bfc6a23",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.static.tube",
+    "category_path": [
+      "Lighting fixtures",
+      "Static and manually focused",
+      "Luminous tube"
+    ],
+    "use_tags": [
+      "pixel control"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

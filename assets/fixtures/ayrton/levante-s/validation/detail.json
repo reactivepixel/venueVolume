@@ -1,0 +1,77 @@
+{
+  "mesh_count": 73,
+  "triangle_count": 18640,
+  "geometry_sha256": "7ac7224735e2552c375a12aae03f44ec6ac345901d2f7bfb6708c442c65db7ce",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.49199625849723816,
+      -0.09304466098546982
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.00917379092425108
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.1136709600687027,
+        0.00917379092425108
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.49199625849723816,
+        0.00917379092425108
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.49199625849723816,
+        -0.08930975943803787
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852217435836792,
+    0.9272356033325195,
+    1.1241194009780884
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.ayrton.eu/produit/levante/",
+    "https://www.ayrton.eu/wp-content/uploads/2019/02/Product-Levante-02.png"
+  ]
+}

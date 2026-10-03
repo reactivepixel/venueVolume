@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "recipe": "boxes-v1",
+  "id": "the-fortress",
+  "source_sha256": "78ea7d5664cff02be6cba4777eb15196b13442c09d047322f866f970b2d9b496",
+  "review": {
+    "status": "draft",
+    "reviewer": "",
+    "basis": ""
+  },
+  "units": "meters",
+  "coordinates": "Blender Z-up; origin at rear-left floor; front=+Y, rear=-Y, left=-X, right=+X",
+  "scale_status": "Unknown; supply measured or explicitly estimated dimensions",
+  "room": {
+    "width": null,
+    "depth": null,
+    "height": null,
+    "wall_thickness": null
+  },
+  "spawn": {
+    "eye": [
+      null,
+      null,
+      null
+    ],
+    "look_at": [
+      null,
+      null,
+      null
+    ]
+  },
+  "materials": {
+    "neutral": [
+      0.5,
+      0.5,
+      0.5
+    ]
+  },
+  "objects": [],
+  "assumptions": [
+    "User identifies all three videos as the same room, The Fortress.",
+    "For the future blockout, front denotes the stage end; no surveyed coordinate alignment exists yet.",
+    "Images are reused photographic references, not a registered photogrammetric reconstruction.",
+    "People, screen content and changing show lighting are transient, not permanent room geometry.",
+    "Dimensions and unseen geometry remain unknown; geometry review is still required."
+  ],
+  "title": "The Fortress",
+  "source_kind": "movie_set",
+  "source_identity": {
+    "kind": "movie_set",
+    "schema_version": 1,
+    "sources": [
+      {
+        "id": "movie-1",
+        "file": "1.MOV",
+        "sha256": "e3c80b7bff2c3cc97f53edaf5fb8c4aa4d5d5eb5f0cbf0797ede3a22aab71400",
+        "duration_seconds": 55.128333,
+        "bytes": 288303423
+      },
+      {
+        "id": "movie-2",
+        "file": "2.MOV",
+        "sha256": "72d99543f0e6f4ebe17b0d3c91bcfaf0307ab4dfd6c312aa81c609850938e91c",
+        "duration_seconds": 67.405,
+        "bytes": 282952283
+      },
+      {
+        "id": "movie-3",
+        "file": "3.MOV",
+        "sha256": "3667216d07033895e08f5414d05d9d4f1e8564fa2af919d4f6c588cdde72945f",
+        "duration_seconds": 71.705,
+        "bytes": 291904397
+      }
+    ]
+  },
+  "shell_evidence": {
+    "front": [
+      "movie-2-reference_11_0044.2s.jpg",
+      "movie-3-reference_04_0015.7s.jpg",
+      "movie-3-reference_11_0047.1s.jpg"
+    ],
+    "left": [
+      "movie-1-reference_13_0043.1s.jpg"
+    ],
+    "right": [
+      "movie-2-reference_04_0014.7s.jpg",
+      "movie-2-reference_05_0019.0s.jpg"
+    ],
+    "rear": [
+      "movie-2-reference_14_0056.9s.jpg",
+      "movie-2-reference_15_0061.1s.jpg"
+    ],
+    "ceiling": [
+      "movie-1-reference_04_0012.1s.jpg",
+      "movie-1-reference_14_0046.5s.jpg",
+      "movie-2-reference_01_0002.1s.jpg"
+    ]
+  },
+  "observations": [
+    {
+      "feature": "Stage and large rear stage display",
+      "evidence": [
+        "movie-3-reference_04_0015.7s.jpg",
+        "movie-3-reference_11_0047.1s.jpg"
+      ]
+    },
+    {
+      "feature": "Flat-floor audience seating and aisles",
+      "evidence": [
+        "movie-2-reference_06_0023.2s.jpg",
+        "movie-2-reference_07_0027.4s.jpg",
+        "movie-2-reference_15_0061.1s.jpg"
+      ]
+    },
+    {
+      "feature": "Tiered seating at the sides",
+      "evidence": [
+        "movie-1-reference_13_0043.1s.jpg",
+        "movie-2-reference_04_0014.7s.jpg",
+        "movie-2-reference_05_0019.0s.jpg"
+      ]
+    },
+    {
+      "feature": "Suspended lighting trusses and curved overhead display",
+      "evidence": [
+        "movie-1-reference_04_0012.1s.jpg",
+        "movie-1-reference_14_0046.5s.jpg",
+        "movie-2-reference_01_0002.1s.jpg"
+      ]
+    },
+    {
+      "feature": "Stage-front speaker boxes and access steps",
+      "evidence": [
+        "movie-3-reference_06_0024.6s.jpg",
+        "movie-3-reference_07_0029.1s.jpg",
+        "movie-3-reference_11_0047.1s.jpg",
+        "movie-3-reference_14_0060.5s.jpg"
+      ]
+    }
+  ],
+  "coverage_gaps": [
+    "No measured width, depth, clear height, stage dimensions or known scale reference.",
+    "Rear perimeter, concealed openings and behind-stage geometry are only partially visible.",
+    "Exact seat counts, truss heights and fixture models/positions are not established.",
+    "Some movie-3 overhead frames show ghosting; prefer clearer movie-1/movie-2 evidence."
+  ]
+}

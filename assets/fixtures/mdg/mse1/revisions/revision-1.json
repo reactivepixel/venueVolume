@@ -1,0 +1,144 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "mdg/mse1",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "MDG",
+      "model": "MSe1",
+      "variant": "MSe1",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.mdgfog.com/en/mse1-mse2",
+        "title": "MSe1 & MSe2 product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": "current manufacturer page",
+        "locator": "MSe1 specifications: output, consumption and source dependencies, unit dimensions, mass; separate shipping dimensions",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://mdgfog.s3.ca-central-1.amazonaws.com/uploads/img/MSe1_Face.png",
+        "title": "MSe1 product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "fe6dda77ff3a4ea2ce31141f78575d0068e2875becd8d5a70dff3643856cb02a"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.305,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer gives unit dimensions L229 × W305 × H356 mm, mapped to depth/width/height; shipping dimensions 305 × 406 × 736 mm excluded."
+      },
+      "height": {
+        "value": 0.356,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer gives unit dimensions L229 × W305 × H356 mm, mapped to depth/width/height; shipping dimensions 305 × 406 × 736 mm excluded."
+      },
+      "depth": {
+        "value": 0.229,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer gives unit dimensions L229 × W305 × H356 mm, mapped to depth/width/height; shipping dimensions 305 × 406 × 736 mm excluded."
+      },
+      "reference_pose": "Weather-resistant box mounted in its normal upright orientation; external reservoir, gas source and plumbing excluded."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Weather-resistant permanent-install fog generator; 100 m³/min output; consumes MDG Neutral fluid and CO2 or N2; external 6.5 L or 25 L fluid reservoir; 20–28 VDC isolated control, no DMX interface listed.",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "715 W; 115 or 230 VAC",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "13.1 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "isolated 20–28 VDC control signal"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Weather-resistant box mounted in its normal upright orientation; external reservoir, gas source and plumbing excluded.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer gives unit dimensions L229 × W305 × H356 mm, mapped to depth/width/height; shipping dimensions 305 × 406 × 736 mm excluded.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "059d11fab010574a5e4e8dbbf097881f930389557be5ca6348e4cddd74daeb63"
+  },
+  "git_commit": "bb21fc5b9dbed5ef07e9e56ce3e6be4e1c679285",
+  "note": "Initial research record before any generated model artifacts existed."
+}

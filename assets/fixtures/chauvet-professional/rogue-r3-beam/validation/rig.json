@@ -1,0 +1,17 @@
+{
+  "id": "chauvet-professional/rogue-r3-beam",
+  "passed": true,
+  "source_usdz_sha256": "dff4d851d28ba76d4ed6e03b1776724317bcebf8004a324a2919aa17b88862b5",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

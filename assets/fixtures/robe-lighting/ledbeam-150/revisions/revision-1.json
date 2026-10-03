@@ -1,0 +1,137 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "robe-lighting/ledbeam-150",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "ROBE Lighting",
+      "model": "LEDBeam 150",
+      "variant": "LEDBeam 150",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.robe.cz/ledbeam-150",
+        "title": "LEDBeam 150 product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Technical specifications: width, depth, height, weight and power; first gallery image URL in page markup",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://cdn.aws.robe.cz/v1/image/resize/371252fca4e93281166480433c3fbbc5635c6c8e",
+        "title": "LEDBeam 150 product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "657999cdd82e0064039495a66b353c3befbde93defd3ee0b23adef1753a8996e"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.244,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Product page dimensions; assembled orientation per page specification."
+      },
+      "height": {
+        "value": 0.337,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Product page dimensions; assembled orientation per page specification."
+      },
+      "depth": {
+        "value": 0.149,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Product page dimensions; assembled orientation per page specification."
+      },
+      "reference_pose": "Head vertical; base level."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "220 W max",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "5.7 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Head vertical; base level.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Product page dimensions; assembled orientation per page specification.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "58d25194db74cdbeb747b396438d4d44d490a075d290ed54e7990cd75578eba6"
+  },
+  "git_commit": "529393313efc84b984528b9491e9f5e230df9fd1",
+  "note": "Initial research record before any generated model artifacts existed."
+}

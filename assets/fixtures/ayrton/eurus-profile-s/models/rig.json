@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "ca55024b8491af1362f4f30cef393678f352c0070ddec077b356f67ca2694541",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "ayrton/eurus-profile-s",
+    "name": "Eurus Profile S",
+    "manufacturer": "Ayrton",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/ayrton/eurus-profile-s/fixture.usdz",
+    "sha256": "ca55024b8491af1362f4f30cef393678f352c0070ddec077b356f67ca2694541",
+    "boundsMin": [
+      -0.2224999964237213,
+      0.0,
+      -0.13649998791515827
+    ],
+    "boundsMax": [
+      0.2224999964237213,
+      0.7429999709129333,
+      0.13649999909102917
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.13442246615886688,
+          0.006257159635424614
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.57695072889328,
+          0.006257159635424614
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.57695072889328,
+          -0.12726990878582
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

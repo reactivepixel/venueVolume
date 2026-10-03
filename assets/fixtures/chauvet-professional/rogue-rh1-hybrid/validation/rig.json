@@ -1,0 +1,17 @@
+{
+  "id": "chauvet-professional/rogue-rh1-hybrid",
+  "passed": true,
+  "source_usdz_sha256": "42b29a71e443302f4007851e5a3a5ca40bb27846e4f38c614cd2c49ca6b03e63",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

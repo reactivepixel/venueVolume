@@ -1,0 +1,209 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "adj/jolt-300",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "ADJ",
+      "model": "JOLT 300",
+      "variant": "JOL300",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.adj.com/products/jolt-300",
+        "title": "JOLT 300 product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Downloads: dimensional drawing, user manual and DMX traits",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.adj.com/cdn/shop/files/24123b2ef30540e21651ee792a1dda543061fbbb_JOL300__IMG__001__fc31c3261e23.jpg?v=1776712495&width=800",
+        "title": "JOLT 300 product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Reference image; exact-model identity visually reviewed separately",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference.jpg",
+        "sha256": "d9c2f88bf34390f30ef8cb8dd197f9589a960018253f55d344479c648f5541f4"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.389,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer states length x width x height as 389 x 143 x 213 mm; long axis represented as width."
+      },
+      "height": {
+        "value": 0.213,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer states length x width x height as 389 x 143 x 213 mm; long axis represented as width."
+      },
+      "depth": {
+        "value": 0.143,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Manufacturer states length x width x height as 389 x 143 x 213 mm; long axis represented as width."
+      },
+      "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+      "source_reference_pose": "Assembled single-yoke fixture, emitting face forward and yoke centered below body, per product dimensional drawing."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "226 W maximum; 100–240 V AC, 50/60 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "10.5 lb (4.75 kg)",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "4-channel mode",
+        "footprint": 4,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "8-channel mode",
+        "footprint": 8,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "10-channel mode",
+        "footprint": 10,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "12-channel mode",
+        "footprint": 12,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "15-channel mode",
+        "footprint": 15,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "18-channel mode",
+        "footprint": 18,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer states length x width x height as 389 x 143 x 213 mm; long axis represented as width.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Acquired in expansion batch 1. Technical sources retained with locators; detailed model build pending."
+    ]
+  },
+  "git_commit": "4f96bdc0ec081c3756f42c22c8d181b776dab91a",
+  "note": "Initial research record before any generated model artifacts existed."
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "c7c50c699eb1d229c5e768d8bf6372d24187bb14081ce1ff1f0c80946827bbb5",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "robe-lighting/ledbeam-150",
+    "name": "LEDBeam 150",
+    "manufacturer": "ROBE Lighting",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/robe-lighting/ledbeam-150/fixture.usdz",
+    "sha256": "c7c50c699eb1d229c5e768d8bf6372d24187bb14081ce1ff1f0c80946827bbb5",
+    "boundsMin": [
+      -0.12199999392032623,
+      0.0,
+      -0.07449999527307227
+    ],
+    "boundsMax": [
+      0.12199999392032623,
+      0.3370000123977661,
+      0.07450000121025369
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.05348550155758858,
+          0.0004903070512227714
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.2544132471084595,
+          0.0004903070512227714
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.2544132471084595,
+          -0.037498608231544495
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

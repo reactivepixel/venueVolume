@@ -1,0 +1,17 @@
+{
+  "id": "magic-fx/sparxtar-ii",
+  "passed": true,
+  "source_usdz_sha256": "3dbbc30156ac54ba95658516404ad4ca2f11b0664daf90991015db4b393be804",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 57,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

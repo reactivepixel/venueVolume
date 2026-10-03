@@ -1,0 +1,319 @@
+{
+  "schema_version": 1,
+  "id": "martin-professional-harman/mac-viper-performance",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Martin Professional (HARMAN)",
+    "model": "MAC Viper Performance",
+    "variant": "MAC Viper Performance",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.martin.com/en-US/products/mac-viper-performance",
+      "title": "MAC Viper Performance",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Specifications / Physical explicitly list 472 mm base length, 566 mm head length, width 472 mm (335 mm base), height 731 mm head straight up / 748 mm maximum, mass 37.9 kg; downloads include 2D dimensions drawing",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://adn.harmanpro.com/product_attachments/product_attachments/4794_1728940667/macviperperformance_x_large.webp",
+      "title": "MAC Viper Performance product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.webp",
+      "sha256": "9eacbed95b540fcf4a870b712d5458214da03f8ab8fc17d1e72e285642a8fe7f"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.472,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Source values: width 472 mm (335 mm base), length 472 mm base / 566 mm head, height 731 mm with head straight up / 748 mm maximum. The product page and drawing list these distinct extents but do not define a single matching W×H×D box; depth uses the longer head length and height uses the head-straight-up pose. Treat this as an estimated envelope, not a fully documented pose."
+    },
+    "height": {
+      "value": 0.731,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Source values: width 472 mm (335 mm base), length 472 mm base / 566 mm head, height 731 mm with head straight up / 748 mm maximum. The product page and drawing list these distinct extents but do not define a single matching W×H×D box; depth uses the longer head length and height uses the head-straight-up pose. Treat this as an estimated envelope, not a fully documented pose."
+    },
+    "depth": {
+      "value": 0.566,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Source values: width 472 mm (335 mm base), length 472 mm base / 566 mm head, height 731 mm with head straight up / 748 mm maximum. The product page and drawing list these distinct extents but do not define a single matching W×H×D box; depth uses the longer head length and height uses the head-straight-up pose. Treat this as an estimated envelope, not a fully documented pose."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Head straight up; estimated bounding envelope assembled from manufacturer physical values"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "1225 W typical",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "37.9 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.23600000143051147,
+        0.0,
+        -0.2829999911482446
+      ],
+      "max": [
+        0.23600000143051147,
+        0.7310000061988831,
+        0.28299999359296635
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0003381681744940579
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.11695999652147293,
+          0.0003381681744940579
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.5752400159835815,
+          0.0003381681744940579
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.5752400159835815,
+          -0.2543875277042389
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.11695999652147293,
+          0.0003381681744940579
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.5752400159835815,
+          0.0003381681744940579
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.5752400159835815,
+          -0.264047771692276
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Source values: width 472 mm (335 mm base), length 472 mm base / 566 mm head, height 731 mm with head straight up / 748 mm maximum. The product page and drawing list these distinct extents but do not define a single matching W×H×D box; depth uses the longer head length and height uses the head-straight-up pose. Treat this as an estimated envelope, not a fully documented pose.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "679f84e0d5d1c9d25ebc6da803452cfef348d2272e8ae67e94812a4b4e7a9eaf"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "e2d64e7d7e21fa342fb2879665f36893dd375feb825f467e11343f5731a79cf9"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "5f441d87eb9e0253bdf41ea31724f5383d28ee4e8f920108bd14ae44ba1eb555"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "5e45a92ddac5f64e66f3652e0877a259d0fd845ff7b47eb71834bf85f09fe8bf"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "d1335119baa42e1c393cadd58d2e3a6c4ca4f0a03f01efe305e65311ef093563"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "20001e1da863909023da58459fc797ea3d451cee0edd2b4186656fe507e241db"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "8f55c19102076a80c5962636ea95a2614e72c5eb01abbbfc30363f5814e0a0ba"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "ed80850de8f856009c027c222f4e2ea078b19fba98fc3913f1140f55b32dd121"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "8e6b0cf30420c9f28afcd26aba28aff1c1f573e6cdd7027d3fc9263ce0fccc7c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "d4a527445b8841fe926b6ab5ca8d1fc6d2280ae2ce4eb9cb0c3151f529c39885"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "f01dc4bf4fe51e910d66f99eaed6dedea2d0b4391808882395993b9642c8ce62",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "discharge moving head with framing module, yoke",
+      "notes": "Estimate uses documented head-straight-up height, maximum width, and head length. Do not read as the bounding box from one manufacturer-dimensioned pose."
+    },
+    "mesh_count": 85,
+    "triangle_count": 18644,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion.",
+    "Source describes a vertical-head dimensional pose; modeled horizontal optical-axis pose fits that envelope. Verify pose-specific shape before placement/clearance use."
+  ],
+  "revision_notes": [
+    "Acquired in expansion batch 2. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.profile",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Framing profile"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

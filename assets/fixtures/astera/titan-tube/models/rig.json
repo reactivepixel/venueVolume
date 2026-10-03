@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "7ae281ec30e84f412967d38fc294472a370024287c99310d411ecac61e8556ff",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "astera/titan-tube",
+    "name": "Titan Tube",
+    "manufacturer": "Astera",
+    "family": "tube",
+    "resource": "FixtureAssets/Catalog/astera/titan-tube/fixture.usdz",
+    "sha256": "7ae281ec30e84f412967d38fc294472a370024287c99310d411ecac61e8556ff",
+    "boundsMin": [
+      -0.5174999833106995,
+      1.862645149230957e-09,
+      -0.0215000007301569
+    ],
+    "boundsMax": [
+      0.5174999833106995,
+      0.04300000495277345,
+      0.0215000007301569
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "parent": null,
+        "position": [
+          0.0,
+          0.021500002592802048,
+          -0.022760769352316856
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

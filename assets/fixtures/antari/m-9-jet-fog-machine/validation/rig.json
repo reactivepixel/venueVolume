@@ -1,0 +1,17 @@
+{
+  "id": "antari/m-9-jet-fog-machine",
+  "passed": true,
+  "source_usdz_sha256": "96587ec86c42f991cde545313f98261315a3f51ffdf9b4631d9902b653d5f6d1",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 88,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

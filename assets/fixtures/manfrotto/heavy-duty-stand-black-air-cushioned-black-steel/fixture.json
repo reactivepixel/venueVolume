@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "id": "manfrotto/heavy-duty-stand-black-air-cushioned-black-steel",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Manfrotto",
+    "model": "Heavy Duty Stand, Black, Air-Cushioned, Black Steel",
+    "variant": "126BSUAC",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.manfrotto.com/global-uk/black-steel-air-cushioned-heavy-duty-stand-126bsuac/",
+      "title": "Manfrotto 126BSUAC product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product overview/specifications: min/max height, closed length, load rating, attachment type",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.bhphotovideo.com/c/product/512653-REG/Manfrotto_126BSUAC_126BSUAC_Heavy_Duty_Air.html",
+      "title": "B&H Photo Video Manfrotto 126BSUAC listing",
+      "kind": "secondary",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Footprint Diameter: 49 in / 125 cm; secondary retailer dimension",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.manfrotto.com/media/catalog/product/m/a/manfrotto-heavy-duty-stand-air-cushioned-black-steel-126bsuac.jpg",
+      "title": "Heavy Duty Stand, Black, Air-Cushioned, Black Steel visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "9092c3e9bfda33a4a9cd04b8c980b85afbe45bf32d62f8d0e8e189d75ae30d59"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 1.25,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)"
+    },
+    "height": {
+      "value": 3.33,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)"
+    },
+    "depth": {
+      "value": 1.25,
+      "status": "estimated",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)"
+    },
+    "reference_pose": "Three legs fully deployed, stand vertical and fully extended to 3.33 m maximum height, leveling leg down; 1.25 m circular footprint envelope is secondary-source estimate; do not interpret as rectangular dimensions."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Three legs fully deployed, stand vertical and fully extended to 3.33 m maximum height, leveling leg down; 1.25 m circular footprint envelope is secondary-source estimate; do not interpret as rectangular dimensions.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.625,
+        0.0,
+        -0.6249999552965164
+      ],
+      "max": [
+        0.625,
+        3.3300000799354166,
+        0.624999925494194
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0025180948432534933,
+          0.1982029527425766
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "02de3a49a8dbed3606a883cd9840db9af4e33affb1e506fc19662bc985381218"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "03b4820934dce57a4a7a48cb7e3f8645dc16b98990ac518a5d8b4cfb4468250a"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "c1a4fcd0bb4357058c41d4e2b1792f601c286abe781b43448531163bd77c2da2"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "7b7d2c0e5d701a0ff658affc1240a07dcb72e047ee29fb9ffe64880d03c603ad"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "8910b3a79f7054fead23d438cec6af06143975f38dad2aa3df356e386b6ba70a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "3e53b52bdb77b3a3bab7438c46c80189623e4ea412efda91118845448955f7c4"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "271f415367ec3cca75c6faf5c80b6953f62928fe2129209638efd5e9ae740924"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "7c60113682e0d9c28e20871628d7328e91718598fbf56a548cfacbc55bc85ab4"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "45bc6ddc8cbe8a70a0a03d7b4811b743873b3684d20de9c3ad43e3b22c5b18a7"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "eaf371fa6e159804b2661db95dafc741ccdb6ebb9a225ffb17b5b137e674a5f0"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "1068e9f2b8592a27a3dbca3bb269d9b6761deb8873424e7e53e67316dfd6c2b5",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "stand",
+      "body_style": "three-leg base, telescoping upright risers and leveling leg",
+      "notes": "Footprint width/depth is the maximum deployed circle from secondary retail listing; keep that attribution visible and replace with manufacturer drawing evidence if available.",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 19,
+    "triangle_count": 2996,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed stand geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "rigging.stand",
+    "control_path": "Passive mechanical support; no electrical or DMX control.",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://www.manfrotto.com/global-uk/black-steel-air-cushioned-heavy-duty-stand-126bsuac/",
+        "https://www.bhphotovideo.com/c/product/512653-REG/Manfrotto_126BSUAC_126BSUAC_Heavy_Duty_Air.html"
+      ],
+      "dimensions": {
+        "width_m": 1.25,
+        "height_m": 3.33,
+        "depth_m": 1.25,
+        "source_order": "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)",
+        "axis_status": "estimated",
+        "axis_note": "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)",
+        "reference_pose": "Three legs fully deployed, stand vertical and fully extended to 3.33 m maximum height, leveling leg down; 1.25 m circular footprint envelope is secondary-source estimate; do not interpret as rectangular dimensions."
+      },
+      "dimensions_status": "estimated_envelope_with_secondary_footprint",
+      "dimension_notes": "Manfrotto official page documents min height 131 cm, max height 333 cm, closed length 131 cm, 8.3 kg mass, and attachment fittings. The 125 cm footprint diameter is from B&H Photo Video, a secondary retailer, and should be verified against manufacturer drawing before precision modeling.",
+      "control_path": "Passive mechanical support; no electrical or DMX control.",
+      "pose": "Three legs fully deployed, stand vertical and fully extended to 3.33 m maximum height, leveling leg down; 1.25 m circular footprint envelope from secondary source.",
+      "max_payload_kg": 40,
+      "attachment": "28 mm socket with 16 mm stud; verify the exact adapter/interface before attaching show equipment",
+      "research_evidence": [
+        {
+          "url": "https://www.manfrotto.com/global-uk/black-steel-air-cushioned-heavy-duty-stand-126bsuac/",
+          "title": "Manfrotto 126BSUAC product page",
+          "locator": "Product overview/specifications: min/max height, closed length, load rating, attachment type",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://www.bhphotovideo.com/c/product/512653-REG/Manfrotto_126BSUAC_126BSUAC_Heavy_Duty_Air.html",
+          "title": "B&H Photo Video Manfrotto 126BSUAC listing",
+          "locator": "Footprint Diameter: 49 in / 125 cm; secondary retailer dimension",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown",
+          "source_kind": "secondary"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "rigging.stand",
+    "category_path": [
+      "Rigging and support",
+      "Stand / tower / ground support"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -18,5 +18,5 @@
 ## Integration and patch tags
 
 - A single integration owner reviews and merges completed agent branches into `dev` sequentially. Resolve conflicts there and run the checks relevant to the changed apps.
-- For an integration batch, increment the patch version in both app `package.json` and `package-lock.json` files. Include that bump in the final merge commit, then create an annotated `vX.Y.Z` tag on that commit. Do not reuse or move a published tag.
+- For an integration batch, increment the patch version in both app `package.json` and `package-lock.json` files and in `apps/visionos/project.yml` as `MARKETING_VERSION`. Keep the visionOS Info.plist `CFBundleShortVersionString` bound to `$(MARKETING_VERSION)` and display that bundle value on the left-wrist Toolbox; do not hard-code the UI version. Include the bumps in the final merge commit, then create an annotated `vX.Y.Z` tag on that commit. The three numeric components must follow SemVer (no leading zeroes). Run `python3 apps/visionos/scripts/check-version.py --release` after tagging and before pushing; it must confirm the tag, app versions, and built version settings agree. Do not reuse or move a published tag.
 - Leave `master` untouched. The repository owner decides when to promote `dev` to `master`.

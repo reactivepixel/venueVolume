@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "id": "look-solutions/unique-2-1",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Look Solutions",
+    "model": "Unique 2.1",
+    "variant": "Unique 2.1",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.looksolutions.com/products/unique_2_1/8.html",
+      "title": "Unique 2.1 product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": "current page; Info Unique 2.1",
+      "locator": "Technical data: DMX/analog control, dimensions, power and canister mass",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.looksolutions.com/uploads/pdf/en_fr/info_unique21_e.pdf",
+      "title": "Info Unique 2.1",
+      "kind": "manufacturer_drawing",
+      "accessed_at": "2026-10-02",
+      "document_revision": "official information sheet",
+      "locator": "Technical specification and dimensional diagram, 47 × 25 × 25 cm",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.looksolutions.com/uploads/produkte/Unique2-1-Side.jpg",
+      "title": "Unique 2.1 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "b57106f9ccd114521081a9bf08ec2b75e421934a04f47cdb307424420865d931"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.25,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 470/250/250 mm; no flight case included."
+    },
+    "height": {
+      "value": 0.25,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 470/250/250 mm; no flight case included."
+    },
+    "depth": {
+      "value": 0.47,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 470/250/250 mm; no flight case included."
+    },
+    "reference_pose": "Machine resting on feet with outlet panel facing forward; optional hanging set, diverter and flight case excluded."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "1500 W haze generator; 2 L tank; internal 6000 L/min fan; pump and fan adjustable separately; DMX standard.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "1500 W",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "14 kg including canister",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "0–10 V analog",
+          "standalone",
+          "internal timer"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Machine resting on feet with outlet panel facing forward; optional hanging set, diverter and flight case excluded.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.1250000149011612,
+        0.0,
+        -0.23500001057982445
+      ],
+      "max": [
+        0.1250000149011612,
+        0.25,
+        0.23499998822808266
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.025666985660791397
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer L/W/H = 470/250/250 mm; no flight case included.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "cdd60dd1f4de07c65bc4f0af7047b1b0eaf7215e7fbedfee5339bf3b615c46ce"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "835fdb59425a96cc6cbd29e561af29f02b0a71a927a8fa19d331c523f7cb4baf"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "879d496ceccade65ca1ca64498d2ab7c7421641d00e7e3fc3c6476f25f76ab10"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "fadab9283778890e678c60bfa53bdb67e94ce3fd71ba990e1dd7a9d45d1d53ca"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "ecca95466befde7dd2dd20fa7f73e10a044a4c3a499f396fb93ec9ba95171533"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "b6e9a50c16a0b0ab94db55940c7e092161d396032be51b940ea1555199905a19"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "63fc6f21212817a484aaef47bc61a75f5b426119866d2b67c16e2ae8951bd4bd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "b4a8dee2e765267cafaf2f047dd449fbc96c87aac9346ccc31b047a2302d1d00"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "c29cc05e14e3cab3a6e6bc9b63b800ac4f85dce6f8b5eea07adbebcc489e5dd0"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "11c4320e2dc5055f6ce034e7e862498acd3bfe8bffa114e4f413af3b1e1bb137"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.15228426456451416,
+          -0.2480762004852295
+        ],
+        "kind": "haze",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "4dda3c91e055fef71b8587347e57003f3a1393f953a02cea2ae68b3b14baed59",
+    "generator_dependency": {
+      "file": "../../_shared/effects_fixture.py",
+      "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+    },
+    "profile": {
+      "family": "hazer",
+      "body_style": "compact squared metal hazer with integrated fan, controls and removable fluid canister",
+      "notes": "Use the official manufacturer side view for enclosure geometry; optional hanging set, diverter, and flight case are excluded.",
+      "generator": "effects",
+      "enclosure": "unique_hazer",
+      "output_kind": "haze"
+    },
+    "mesh_count": 48,
+    "triangle_count": 8640,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/effects_fixture.py",
+        "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      },
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed hazer geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "9514f3d253e5c59ebf8103245769ecc5098dd82e08d15552ef41419624506abf",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "atmosphere.haze_water",
+    "category_path": [
+      "Atmosphere and air movement",
+      "Water-based hazer / fazer"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

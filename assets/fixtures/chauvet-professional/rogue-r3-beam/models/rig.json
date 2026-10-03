@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "dff4d851d28ba76d4ed6e03b1776724317bcebf8004a324a2919aa17b88862b5",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "chauvet-professional/rogue-r3-beam",
+    "name": "Rogue R3 Beam",
+    "manufacturer": "CHAUVET Professional",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/chauvet-professional/rogue-r3-beam/fixture.usdz",
+    "sha256": "dff4d851d28ba76d4ed6e03b1776724317bcebf8004a324a2919aa17b88862b5",
+    "boundsMin": [
+      -0.16249999403953552,
+      0.0,
+      -0.10999999946216121
+    ],
+    "boundsMax": [
+      0.16249999403953552,
+      0.550000011920929,
+      0.10999999934574589
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.08799999952316284,
+          0.0005064382567070425
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.4427500069141388,
+          0.0005064382567070425
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.4427500069141388,
+          -0.09219251573085785
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

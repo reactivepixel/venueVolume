@@ -1,0 +1,312 @@
+{
+  "schema_version": 1,
+  "id": "roe-visual/black-pearl-bp2v2",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ROE Visual",
+    "model": "Black Pearl BP2V2",
+    "variant": "BP2V2",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.roevisual.com/en/products/black-pearl-2v2",
+      "title": "Black Pearl 2V2 product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "BP2V2 Specs: panel dimensions 500 x 500 x 90 mm, pixel pitch, weight and environment rating",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.roevisual.com/uploads/files/Product%20File/Black%20Pearl/bp2v2-brochure-en-feb.-3-2024.pdf",
+      "title": "Black Pearl BP2V2 brochure",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Specifications table and product-dimension diagram",
+      "reuse_status": "reference_only",
+      "file": "sources/roe-bp2v2-brochure.pdf",
+      "sha256": "92882d41a36713f248ad6ecafdf265a54cd3b053ef2d0f355a01080951d92583"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.roevisual.com/uploads/Images/Products/Black%20Pearl%202%20V2/bp2v2-list1.png",
+      "title": "Black Pearl BP2V2 visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.png",
+      "sha256": "39091e36e160dc5aeeee1cf2decf76f41be511e54ff1c2e852d16eba50c0d4c3"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.5,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "500 x 500 x 90 mm per panel"
+    },
+    "height": {
+      "value": 0.5,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "500 x 500 x 90 mm per panel"
+    },
+    "depth": {
+      "value": 0.09,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "500 x 500 x 90 mm per panel"
+    },
+    "reference_pose": "Panel face vertical, display surface forward and 500 mm square; 90 mm depth behind face; pose inferred from official product image and dimension specification."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Panel face vertical, display surface forward and 500 mm square; 90 mm depth behind face; pose inferred from official product image and dimension specification.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.25,
+        0.0,
+        -0.04500000178813934
+      ],
+      "max": [
+        0.25,
+        0.5,
+        0.045000001322478056
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          -0.007107366342097521
+        ]
+      },
+      {
+        "name": "surface",
+        "prim_path": "/Fixture/Surface",
+        "pivot_m": [
+          0.0,
+          0.25,
+          -0.0437622033059597
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "500 x 500 x 90 mm per panel",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "956649da3e39e40c8fb789ef6f12c8c8f7fce478d0cb7e7dff6db681567befea"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "679df6a7d09f646d41ce5b74fd1a431b46b32760b3d0dba16f3d68935a193f76"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "1cdf4b7a949ddc0b7fac8264962e65c891f3e050ce330cc32f979896f85311e1"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "be741784904c2319cefc09cb88dcfd568c2214028733d4cb8e550f35ba55070d"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "193624e0660ba245392d58c72f6fca5800e8abd4e9ea2b29469e1722f52560a3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "3f3efcff9deef4b94cf1d338b6160d242a1859da497a6c58674912eeb62f74e2"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "7ec82d989b8f9c716216ed9c34dcc16ea5439ee0eef1c288b0e6643eae25c183"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "dc228b66d322f1dcfe04d45217d3b6b3dda2152c802ec34cd0603e42cb2bccec"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "85eb21f48562b2293366a4dbdb18e33b9c0cbfe04153260e391445a7108cec6c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "5729f95345fed39f8e342700a97f1d816b9a09ceff8174a81810bcd959bb6dd6"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.25,
+          -0.04448092356324196
+        ],
+        "kind": "video_surface",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "45f50ff7d2d7f25770954b56470670c8bebc6e8073ebcb0f3c2b863f65bbd22e",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "led_panel",
+      "body_style": "500 mm square modular display with 90 mm rear housing",
+      "notes": "Optional visual-equipment example. Catalog inclusion should follow user-approved scope; one representative panel does not imply a full LED wall, processor, hanging hardware, or all vendors are included.",
+      "generator": "equipment",
+      "output_kind": "video_surface"
+    },
+    "mesh_count": 9,
+    "triangle_count": 1692,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed led_panel geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "video.panel",
+    "control_path": "Video content path through supported LED processing platform to panel data connection; panel power path is separate. Not DMX-controlled lighting.",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://www.roevisual.com/en/products/black-pearl-2v2",
+        "https://www.roevisual.com/uploads/files/Product%20File/Black%20Pearl/bp2v2-brochure-en-feb.-3-2024.pdf"
+      ],
+      "dimensions": {
+        "width_m": 0.5,
+        "height_m": 0.5,
+        "depth_m": 0.09,
+        "source_order": "500 x 500 x 90 mm per panel",
+        "axis_status": "documented",
+        "axis_note": "500 x 500 x 90 mm per panel",
+        "reference_pose": "Panel face vertical, display surface forward and 500 mm square; 90 mm depth behind face; pose inferred from official product image and dimension specification."
+      },
+      "dimensions_status": "documented",
+      "control_path": "Video content path through supported LED processing platform to panel data connection; panel power path is separate. Not DMX-controlled lighting.",
+      "pose": "Panel face vertical, display surface forward and 500 mm square; 90 mm depth behind face; pose inferred from official product image and dimension specification.",
+      "application_tags": [
+        "indoor display",
+        "broadcast",
+        "film/virtual production",
+        "event stage",
+        "theatre"
+      ],
+      "research_evidence": [
+        {
+          "url": "https://www.roevisual.com/en/products/black-pearl-2v2",
+          "title": "Black Pearl 2V2 product page",
+          "locator": "BP2V2 Specs: panel dimensions 500 x 500 x 90 mm, pixel pitch, weight and environment rating",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://www.roevisual.com/uploads/files/Product%20File/Black%20Pearl/bp2v2-brochure-en-feb.-3-2024.pdf",
+          "title": "Black Pearl BP2V2 brochure",
+          "locator": "Specifications table and product-dimension diagram",
+          "file": "research/fixtures/taxonomy/support-sources/roe-bp2v2-brochure.pdf",
+          "sha256": "92882d41a36713f248ad6ecafdf265a54cd3b053ef2d0f355a01080951d92583",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "video.panel",
+    "category_path": [
+      "Video and projected surfaces",
+      "LED display panel"
+    ],
+    "use_tags": [
+      "pixel control"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

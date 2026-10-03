@@ -1,0 +1,78 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 18580,
+  "geometry_sha256": "32b98499717b277e4d3c4287652ff9cab885908a58f915d0c33aa7c19fb1ae22",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.37268567085266113,
+      -0.14597336947917938
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.007483326364308596,
+        -0.00026783638168126345
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.08644599467515945,
+        -0.00026783638168126345
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.37268567085266113,
+        -0.00026783638168126345
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.37268567085266113,
+        -0.14064951241016388
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    1.0301579236984253,
+    0.9850631952285767
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.vari-lite.com/global/products/vl10-beamwash",
+    "https://www.vari-lite.com/b-dam/vari-lite/products/vl10-beamwash/guides-and-manuals/VariLite_VL10_BeamWash_UserManual.pd-revised.pdf-%28final%29.pdf",
+    "https://www.vari-lite.com/b-dam/vari-lite/products/vl10-beamwash/VLS_PRODUCTS_VL10FRONT_700x410px.jpg"
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "robert-juliat/lutin-306lpc",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Robert Juliat",
+      "model": "Lutin 306LPC",
+      "variant": "306LPC",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.robertjuliat.com/singlelenslum/lutin.html",
+        "title": "Robert Juliat Lutin 306LPC official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.robertjuliat.com/Product_Specifications/Fiches_EN/Standard/DSEN004_306LPC.pdf",
+        "title": "Lutin 306LPC product specification",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "306LPC variant; dimensional drawing and 1000W tungsten specification",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.robertjuliat.com/images/produits_pics/LUTIN_c08.png",
+        "title": "Lutin 306LPC visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.png",
+        "sha256": "75f11ee2120fc689dd212f90054f8a202af7f13f8d5a39fc288189c3b21b6a52"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.3,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer drawing for exact 306LPC variant."
+      },
+      "height": {
+        "value": 0.385,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer drawing for exact 306LPC variant."
+      },
+      "depth": {
+        "value": 0.43,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer drawing for exact 306LPC variant."
+      },
+      "reference_pose": "Yoke assembled, lens axis horizontal; accessory and lamp excluded unless listed."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "1000 W tungsten",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "7.2 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Yoke assembled, lens axis horizontal; accessory and lamp excluded unless listed.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "Manufacturer drawing for exact 306LPC variant.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "theatre_pc",
+      "control_path": "Mains-powered tungsten fixture; dimmer compatibility not transcribed from cited specification",
+      "physical_asset_only": true,
+      "source_data": {
+        "source_urls": [
+          "https://www.robertjuliat.com/singlelenslum/lutin.html",
+          "https://www.robertjuliat.com/Product_Specifications/Fiches_EN/Standard/DSEN004_306LPC.pdf"
+        ],
+        "control_path": "Mains-powered tungsten fixture; dimmer compatibility not transcribed from cited specification",
+        "protocols": [],
+        "power": "1000 W tungsten",
+        "weight": "7.2 kg",
+        "dimensions": {
+          "width_m": 0.3,
+          "height_m": 0.385,
+          "depth_m": 0.43,
+          "axis_status": "documented",
+          "axis_note": "Manufacturer drawing for exact 306LPC variant.",
+          "reference_pose": "Yoke assembled, lens axis horizontal; accessory and lamp excluded unless listed."
+        },
+        "research_evidence": [
+          {
+            "url": "https://www.robertjuliat.com/Product_Specifications/Fiches_EN/Standard/DSEN004_306LPC.pdf",
+            "title": "Lutin 306LPC product specification",
+            "locator": "306LPC variant; dimensional drawing and 1000W tungsten specification",
+            "accessed_at": "2026-09-30"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "c753c434774c5386e4b9f87fc3f00a1f589aad3c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

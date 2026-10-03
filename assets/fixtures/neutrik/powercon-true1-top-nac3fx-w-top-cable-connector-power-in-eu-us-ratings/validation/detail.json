@@ -1,0 +1,51 @@
+{
+  "mesh_count": 16,
+  "triangle_count": 7844,
+  "geometry_sha256": "358e813f2449aea9f7eb648d2ae267cb1d065719ada5ea77432dc1b98a68856c",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      -0.0006666667759418488,
+      2.0607130863936618e-05
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.01600000262260437,
+        2.0607130863936618e-05
+      ]
+    }
+  ],
+  "family": "power_connector",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0416667461395264,
+    1.0303966999053955,
+    1.0416667461395264
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.neutrik.com/en/product/nac3fx-w-top",
+    "https://www.neutrik.com/media/12872/download/st-nac3fx-w-top.PDF?v=1",
+    "https://www.neutrik.com/uploads/media/400x/02/12832-NAC3FX-W-TOP.jpg?v=1-0"
+  ]
+}

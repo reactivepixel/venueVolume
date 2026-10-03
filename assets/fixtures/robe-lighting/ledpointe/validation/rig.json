@@ -1,0 +1,17 @@
+{
+  "id": "robe-lighting/ledpointe",
+  "passed": true,
+  "source_usdz_sha256": "5d6d3615f7537a1a3e67a296339b2a3121150529dd107030032ff6703e97af2e",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

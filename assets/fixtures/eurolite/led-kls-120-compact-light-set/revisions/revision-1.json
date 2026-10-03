@@ -1,0 +1,202 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "eurolite/led-kls-120-compact-light-set",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Eurolite",
+      "model": "LED KLS-120 Compact Light Set",
+      "variant": "42109606",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.steinigke.de/mpn42109606-eurolite-led-kls-120-kompakt-lichtset.html",
+        "title": "EUROLITE LED KLS-120 Compact Light Set product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Technical data: power 30 W, DMX modes 4/7/16/19, dimensions W61.6 x H22.6 x D10.0 cm, weight 3.70 kg; four RGBW spots individually controlled",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://media.steinigke.de/images/7640p/09/42109606a.webp",
+        "title": "EUROLITE LED KLS-120 product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Official product gallery main image",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://media.steinigke.de/images/7640p/09/42109606a.webp",
+        "title": "LED KLS-120 Compact Light Set product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.webp",
+        "sha256": "f468e8621ba7672b26d08029c6123677d7ac9b9ab91af030585085ae93d437bb"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.616,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer page explicitly labels width, height and depth for the assembled crossbar."
+      },
+      "height": {
+        "value": 0.226,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer page explicitly labels width, height and depth for the assembled crossbar."
+      },
+      "depth": {
+        "value": 0.1,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer page explicitly labels width, height and depth for the assembled crossbar."
+      },
+      "reference_pose": "Crossbar assembled, front-facing, without stand"
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Four individually controlled 8 W RGBW spots on a crossbar; electronic dimmer and strobe effect.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "30 W",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "3.70 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "4-channel mode",
+        "footprint": 4,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "7-channel mode",
+        "footprint": 7,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "16-channel mode",
+        "footprint": 16,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "19-channel mode",
+        "footprint": 19,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Crossbar assembled, front-facing, without stand",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer page explicitly labels width, height and depth for the assembled crossbar.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "5673f2cc1870d973a35acc884d4952683501ec1d95a9abc76238fe12b3783a92"
+  },
+  "git_commit": "d55dda961571d5dee607a7716e8d764ae34254cb",
+  "note": "Initial research record before any generated model artifacts existed."
+}

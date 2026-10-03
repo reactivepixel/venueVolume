@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "id": "elation-professional/proteus-radius",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Elation Professional",
+    "model": "Proteus Radius",
+    "variant": "PRD013",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.elationlighting.com/products/proteus-radius",
+      "title": "Elation Professional Proteus Radius official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://www.elationlighting.com/cdn/shop/files/8a816888b19c597ff679c5fcb47dd7fcb4a0d392_PRD013__IMG__001__0d483618ed34.png?v=1776814959&width=1200",
+      "title": "Elation Professional Proteus Radius official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.png",
+      "sha256": "bf1d10f98906d6009e11163777858923d33929a5dff51497c6d356b7c6339500"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.395,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "height": {
+      "value": 0.516,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "depth": {
+      "value": 0.27,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": [
+          "100 W laser phosphor engine; 0.9° beam; IP66"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "300 W max; 100-240 V AC, 50/60 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "45.0 lb (20.4 kg)",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "Art-Net",
+          "sACN"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.19750000536441803,
+        0.0,
+        -0.13500001968350261
+      ],
+      "max": [
+        0.19750000536441803,
+        0.515999972820282,
+        0.13500000594649464
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0005130028584972024
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.08256000280380249,
+          0.0005130028584972024
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.38565000891685486,
+          0.0005130028584972024
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.38565000891685486,
+          -0.10912912338972092
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.08256000280380249,
+          0.0005130028584972024
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.38565000891685486,
+          0.0005130028584972024
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.38565000891685486,
+          -0.11328721791505814
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer lists length, width and height individually; runtime X/Y/Z uses width/height/length.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "eb64b3e021ab3696a07cdd7a36dd390a0f2c519c9dde8582126722292b93af4a"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "2ba699da940e62985dfd09ca558da1e83e2205a10d978f5fde505f4aa7a7d85c"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "f96543eca0cc80fba256b89b92e86420e842eea72596360e22a02e535e58455b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "4f0818216690f383382892592817dfe1530575d8f3dc7fcc6c4e2b9ce1a98bec"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "77f255ed142e30d7de43c03a8c1a588b113e171503fcb2571ce258e47bacb32a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "985ccf71a57b097eb498d83019c2dcb9c80ed5cbc42d55a902952d46886d97ac"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "0b41f8a5887912850a1e33d6f17656b7a3de083cdb1ce9c52daa80872e9440e8"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "850b740101d5572d75a40eee07441dc3e46b0210e756bcefe4e0e1e97877330e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "32163d1052bb92a6be6113ecbc2bf13f0ae889292524c5d4d45ad72b5f11c5a5"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "428eb2180aa31fef226739e37b432b922c95ef4c47b0ef47d5b9ac4bb827b001"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "8a341571bf3135ee2100549ba4902754e7e4b5ee232d8e53f86904ecf505cf4c",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "shell": "round",
+      "lens_ratio": 0.82,
+      "head_depth": 0.79
+    },
+    "mesh_count": 85,
+    "triangle_count": 18516,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.hybrid",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Beam / spot / wash hybrid"
+    ],
+    "use_tags": [
+      "multi-role optics"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

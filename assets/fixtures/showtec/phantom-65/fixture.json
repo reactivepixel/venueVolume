@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "id": "showtec/phantom-65",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Showtec",
+    "model": "Phantom 65",
+    "variant": "40070",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.highlite.com/media/attachments/MANUAL/40070_MANUAL_GB_V1.pdf",
+      "title": "Showtec Phantom 65 user manual",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Technical specifications pp. 6 and 26; dimensions figure p. 27",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.showtec-lights.com/media/catalog/product/cache/87bb4254b6bb8fe881d0a120867e629d/4/0/40070_43.png",
+      "title": "Phantom 65 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.png",
+      "sha256": "38984b53ed70c929f082db84b5828198a32df5d9106eb0a8ee0d9f3b56bf3911"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.23,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manual lists 230 x 200 x 365 mm, L x W x H."
+    },
+    "height": {
+      "value": 0.365,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manual lists 230 x 200 x 365 mm, L x W x H."
+    },
+    "depth": {
+      "value": 0.2,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manual lists 230 x 200 x 365 mm, L x W x H."
+    },
+    "reference_pose": "Head vertical and base level per manual dimension figure."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "65 W white LED, 16° beam, 540° pan / 270° tilt, 8 colors and rotating gobos.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "125 W",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "6.2 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "8-channel mode",
+      "footprint": 8,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "13-channel mode",
+      "footprint": 13,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Head vertical and base level per manual dimension figure.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.11500000208616257,
+        0.0,
+        -0.10000000218860805
+      ],
+      "max": [
+        0.11500000208616257,
+        0.36500000953674316,
+        0.10000000079162419
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.002108074026182294
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.058400001376867294,
+          0.002108074026182294
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.2890999913215637,
+          0.002108074026182294
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.2890999913215637,
+          -0.0821852758526802
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.058400001376867294,
+          0.002108074026182294
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.2890999913215637,
+          0.002108074026182294
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.2890999913215637,
+          -0.08538202941417694
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manual lists 230 x 200 x 365 mm, L x W x H.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "3046fc5f088fc127ffc0f9883a46043edb81e293824565d298a7bedf024ef883"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "b40326b82118e07d77f2a8eb90d78411d69d8b39ce40f0aa3c772253473bd3d8"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "c694e7ccfaa0d10e7542883af6545a91819414709ba16aba0e54364ca000297d"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "8cd22bf51263ce8ac33b144912119430e3ac9ddfc5cf9e8fe025c3789d3e033b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "c0b288754eefe050daa5b05e4239cb292e310a7b144b2607689324a5eb02a3d8"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "1add9c68e6088a9c65f90e0e9f5b828ce3df21a5ac020d132227d1cbbbae56f1"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "003e47b408af903421acb11c9cc121a4b3c812e13f9a91b5b197de1bd9ef7d86"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "ff46aa9adcaf8f920eebc5958aa7b16fc2de0c4ee12b12f78b051777611de393"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "5c004035f240d14827325fb504f01a0dc3b24f7fa8c818f2d496b1bb0853bab0"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "d6b8445a47d42547f79cb3fa7246610aa84db1255d63f21fe2040c7a32e177f0"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "1cbccd3ca55e92d6844a6f54c426dc82c74bfe7971326293853e0a6854105e24",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "compact LED spot head with yoke",
+      "notes": "Manufacturer documentation is Highlite manual; product identity is Showtec Phantom 65, order code 40070."
+    },
+    "mesh_count": 85,
+    "triangle_count": 18516,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "Asset build and native validation pending."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "3a98165d0c600db35058cba5ff0bcaefea5acc48c833608896a49d7e8ef40621",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.spot",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Spot / gobo projector"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

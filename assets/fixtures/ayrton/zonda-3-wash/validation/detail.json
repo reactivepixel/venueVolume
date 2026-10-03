@@ -1,0 +1,77 @@
+{
+  "mesh_count": 92,
+  "triangle_count": 25540,
+  "geometry_sha256": "a696658708b273660ef62fec149e8397818161a87e7acffcf97209c19f0480cb",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.29634034633636475,
+      -0.06108933314681053
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0005083971191197634
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.0640735924243927,
+        0.0005083971191197634
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.29634034633636475,
+        0.0005083971191197634
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.29634034633636475,
+        -0.05883864685893059
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852217435836792,
+    1.016799807548523,
+    0.991237461566925
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.ayrton.eu/produit/zonda-3-wash/",
+    "https://www.ayrton.eu/wp-content/uploads/2022/12/Zonda-3-Wash-3.png"
+  ]
+}

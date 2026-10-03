@@ -1,0 +1,77 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 18060,
+  "geometry_sha256": "7cf0b6a2799f014f013bf1255659e85bdcdd83fa4039a4ab12dfb7cfd063c4d7",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.5300899744033813,
+      -0.16636765003204346
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.000523136870469898
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.10208000242710114,
+        0.000523136870469898
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.5300899744033813,
+        0.000523136870469898
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.5300899744033813,
+        -0.16026972234249115
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852217435836792,
+    1.046271562576294,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://chauvetprofessional.com/product/rogue-rh1-hybrid/",
+    "https://chauvetprofessional.com/wp-content/uploads/2025/10/Rogue-R1-Hybrid-FRONT-FEAT.png"
+  ]
+}

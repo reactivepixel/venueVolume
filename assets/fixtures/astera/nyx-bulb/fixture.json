@@ -1,0 +1,323 @@
+{
+  "schema_version": 1,
+  "id": "astera/nyx-bulb",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Astera",
+    "model": "NYX Bulb",
+    "variant": "FP5-E27",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://nyx-for-filmmakers.astera-led.com/",
+      "title": "NYX Bulb official product microsite",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "10 W draw, 750 lm at 4000 K, built-in CRMX, full-color RGB Mint Amber engine",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.koto-jp.com/en/lighting/stage-studio/authorized-manufacturers/astera/1912/",
+      "title": "Koto Electric authorized Astera distributor",
+      "kind": "secondary",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "FP5-E27, Ø70 x 130 mm, 0.24 kg, input power and socket variants",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.koto-jp.com/en/wp-content/uploads/2022/03/NYX_en.jpg",
+      "title": "NYX Bulb visual reference",
+      "kind": "secondary",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "0d6edae6c2603b0bae4075f5c799bcf6a89e2c36db754155028415801e8d3b71"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.07,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Astera-authorized distributor supplies the bulb-only Ø70 x 130 mm and 0.24 kg dimensions."
+    },
+    "height": {
+      "value": 0.13,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Astera-authorized distributor supplies the bulb-only Ø70 x 130 mm and 0.24 kg dimensions."
+    },
+    "depth": {
+      "value": 0.07,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Astera-authorized distributor supplies the bulb-only Ø70 x 130 mm and 0.24 kg dimensions."
+    },
+    "reference_pose": "Bulb upright, threaded base down; socket and PowerStation excluded."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "10 W maximum draw (manufacturer microsite); 14 W total LED power",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "0.24 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "CRMX wireless DMX",
+          "UHF",
+          "Bluetooth"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Bulb upright, threaded base down; socket and PowerStation excluded.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.034999998286375344,
+        -9.313225746154785e-10,
+        -0.035000000149019606
+      ],
+      "max": [
+        0.03499999828635758,
+        0.12999999930616468,
+        0.03500000014900362
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          1.3038507162832502e-08,
+          -0.001313130953349173,
+          7.450572603318051e-09
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          1.3038507162832502e-08,
+          0.10373737663030624,
+          7.450572603318051e-09
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Astera-authorized distributor supplies the bulb-only Ø70 x 130 mm and 0.24 kg dimensions.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "d6f3878a103509411c9735e8892b1577e3af3e6b9f7ba032f94452bfd652d117"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "7f2db92665d52c7c393947b9b4623c420ea8c755ce938ed33f077219bf0eb4e5"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "d009afeec55f67b56d52e527ed2e625cbe1aee8b873193938d0d0caee89b9ed5"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "17f53b6070cebca7f2934d9e1a30e53451ec6e696fee27551d952e6c9ae2c5a9"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "8a91d4f09bb7cbdf1954a6717e04bae3a2ebe732469a07ba8fb0e66f5ff8c734"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "3f90fd1ef648253e5b6cdfd42c30d8b67886ec58661d8c3dcaa1f033cd0a809b"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "faf777af93933e8cd021657b7cf5cf4bd82521319a6759a381ff261e28f57a7e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "352c92e784873e1d8fc614ad0a0091aece3fe3669494a10b07409db9a6dff09a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "aedf599e763b125acc132b90fda03c606acd0d5ca960e8fa0a0047f37aa78e57"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "82395749ee597f5c199be97c6e7169ee7ab42727ad8ff6037ff229c23d3d625e"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "60eca581172819c8cef3712a90508c6cedf076643b21478db39a89924067b15c",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "practical",
+      "body_style": "compact color-tunable bulb with E27 base and translucent diffuser",
+      "notes": "Exact FP5-E27 variant; built-in wireless CRMX receiver, not passive mains-only bulb.",
+      "generator": "equipment",
+      "output_kind": "light"
+    },
+    "mesh_count": 11,
+    "triangle_count": 7520,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed practical geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "lighting.static.practical",
+    "control_path": "E27 mains socket or external 5–18 V DC input; wireless CRMX DMX, UHF and Bluetooth",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://nyx-for-filmmakers.astera-led.com/",
+        "https://www.koto-jp.com/en/lighting/stage-studio/authorized-manufacturers/astera/1912/"
+      ],
+      "control_path": "E27 mains socket or external 5–18 V DC input; wireless CRMX DMX, UHF and Bluetooth",
+      "protocols": [
+        "CRMX wireless DMX",
+        "UHF",
+        "Bluetooth"
+      ],
+      "power": "10 W maximum draw (manufacturer microsite); 14 W total LED power",
+      "weight": "0.24 kg",
+      "dimensions": {
+        "width_m": 0.07,
+        "height_m": 0.13,
+        "depth_m": 0.07,
+        "axis_status": "documented",
+        "axis_note": "Astera-authorized distributor supplies the bulb-only Ø70 x 130 mm and 0.24 kg dimensions.",
+        "reference_pose": "Bulb upright, threaded base down; socket and PowerStation excluded."
+      },
+      "socket": "E27 regional variant; E26 variant differs in input voltage",
+      "research_evidence": [
+        {
+          "url": "https://nyx-for-filmmakers.astera-led.com/",
+          "title": "NYX Bulb official product microsite",
+          "kind": "manufacturer_product",
+          "locator": "10 W draw, 750 lm at 4000 K, built-in CRMX, full-color RGB Mint Amber engine",
+          "accessed_at": "2026-09-30"
+        },
+        {
+          "url": "https://www.koto-jp.com/en/lighting/stage-studio/authorized-manufacturers/astera/1912/",
+          "title": "Koto Electric authorized Astera distributor",
+          "kind": "secondary",
+          "locator": "FP5-E27, Ø70 x 130 mm, 0.24 kg, input power and socket variants",
+          "accessed_at": "2026-09-30"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.static.practical",
+    "category_path": [
+      "Lighting fixtures",
+      "Static and manually focused",
+      "Practical / decorative / handheld"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

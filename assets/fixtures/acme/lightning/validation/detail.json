@@ -1,0 +1,68 @@
+{
+  "mesh_count": 341,
+  "triangle_count": 22364,
+  "geometry_sha256": "944d5b1c656fa77b7e7fc413877d1ee4321b52224c1633ca5c176920e3f5d60d",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.11573333293199539,
+      -0.09512821584939957
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.001866668462753296,
+        -0.004515301901847124
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.11573333293199539,
+        -0.004515301901847124
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        0.0,
+        0.11573333293199539,
+        -0.09280480444431305
+      ]
+    }
+  ],
+  "family": "strobe",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9436726570129395,
+    1.0959471464157104,
+    0.8333333134651184
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://en.acmelighting.com/item/LIGHTNING",
+    "https://en.acmelighting.com/upload/image/20250113/2dca5f7c2c24d4cefba4178a862171ec.png"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "adj/led-bar",
+  "passed": true,
+  "source_usdz_sha256": "2dff691bf30da4def7a970cd44045ebfe317bf7d55d89a9162e71a9c70f27cfa",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 122,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

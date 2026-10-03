@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "5b981fa8eeea8e9f5a02eb721582029706e7461680a28a3a720f91e51c8e5ed8",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "glp/impression-x5",
+    "name": "impression X5",
+    "manufacturer": "GLP",
+    "family": "moving_wash",
+    "resource": "FixtureAssets/Catalog/glp/impression-x5/fixture.usdz",
+    "sha256": "5b981fa8eeea8e9f5a02eb721582029706e7461680a28a3a720f91e51c8e5ed8",
+    "boundsMin": [
+      -0.20749998092651367,
+      0.0,
+      -0.14499999349936843
+    ],
+    "boundsMax": [
+      0.20749998092651367,
+      0.4339999854564667,
+      0.1449999981559813
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.030113793909549713,
+          0.005209075752645731
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.3183458149433136,
+          0.005209075752645731
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.3183458149433136,
+          -0.1157345399260521
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

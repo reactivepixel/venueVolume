@@ -1,0 +1,149 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "cameo/opus-x4-ip",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Cameo",
+      "model": "OPUS X4 IP",
+      "variant": "CLOX4PIP",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.cameolight.com/en/solutions/rental/moving-lights/profile-moving-heads/31933/opus-x4-ip",
+        "title": "OPUS X4 IP product specifications",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Control, mains, construction, environmental and dimensions & weight sections: protocols, 1780 W, 475 × 860 × 350 mm, 46 kg; optical features",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://cdn-shop.adamhall.com/ORIGINAL/media/MARKEN/CAMEO/CLOX4PIP/CLOX4PIP_1.jpg",
+        "title": "OPUS X4 IP product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "2faa5f4ac8a71efa9c8ec0ca1005ded9575f54e13846471693e0dba5de11cc90"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.475,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Cameo product page labels width 475 mm, height 860 mm, depth 350 mm."
+      },
+      "height": {
+        "value": 0.86,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Cameo product page labels width 475 mm, height 860 mm, depth 350 mm."
+      },
+      "depth": {
+        "value": 0.35,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Cameo product page labels width 475 mm, height 860 mm, depth 350 mm."
+      },
+      "reference_pose": "Overall assembled IP65 fixture; head pose not separately specified."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "IP65 version; 1400 W white LED engine, 50,000 lm, 5°–50° zoom, framing, dual gobo wheels and animation; three DMX modes (footprints not stated on product page).",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "1780 W rated",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "46 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM",
+            "Art-Net",
+            "sACN",
+            "W-DMX",
+            "CRMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Overall assembled IP65 fixture; head pose not separately specified.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Cameo product page labels width 475 mm, height 860 mm, depth 350 mm.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "b49a02ee85d7f92e0137e86975a9b5ed7fc8cb668e5fa46a025e4e4930e8474e"
+  },
+  "git_commit": "529393313efc84b984528b9491e9f5e230df9fd1",
+  "note": "Initial research record before any generated model artifacts existed."
+}

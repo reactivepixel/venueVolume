@@ -1,0 +1,345 @@
+{
+  "schema_version": 1,
+  "id": "elation-professional/dartz-360",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Elation Professional",
+    "model": "DARTZ 360",
+    "variant": "DAR880",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.elationlighting.com/products/dartz-360",
+      "title": "Elation Professional DARTZ 360 official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://www.elationlighting.com/cdn/shop/files/9a52b514f22cc4267d1a3efdd11897414280eec0_DAR880__IMG__001__cd987eea5c81.jpg?v=1776815066&width=850",
+      "title": "Elation Professional DARTZ 360 official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "4e69381c6a874f4b5fd5f6ac5a566e32ca0630b6871c0c41de4105d0f7c8ab02"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.19597,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "height": {
+      "value": 0.4547,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "depth": {
+      "value": 0.28415,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": [
+          "50 W RGB LED; continuous 360° pan/tilt; IP20"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "154 W max; 100-240 V AC, 50/60 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "Kling-Net",
+          "Art-Net",
+          "sACN"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "19-channel mode",
+      "footprint": 19,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "22-channel mode",
+      "footprint": 22,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "25-channel mode",
+      "footprint": 25,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.09798499941825867,
+        0.0,
+        -0.14207502425415441
+      ],
+      "max": [
+        0.09798499941825867,
+        0.4546999931335449,
+        0.14207500993506983
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.000514455430675298
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.07275199890136719,
+          0.000514455430675298
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.3900299072265625,
+          0.000514455430675298
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.3900299072265625,
+          -0.1064135804772377
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.07275199890136719,
+          0.000514455430675298
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.3900299072265625,
+          0.000514455430675298
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.3900299072265625,
+          -0.11046873033046722
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer lists length, width and height individually; runtime X/Y/Z uses width/height/length.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "b7b07f6304f19846d44a4e01110a50638af8c0811b67e2b88629676ac2aa5e03"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "3372fcf3700bc5d1e9216a227eab616596a24e9bedec1daa571f00ab4fb98540"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "1a0164b7e5c35cd69ccca19a3bb9de81146f792377aebaa935beb985c1953f5c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "0403c8f3768be753f090922d072c7bd451ecbd5baca3c6c751328d4838a7ea90"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "e7510b205a2e430301a5725b3592369be7999d8832999dc5ed96dfe284e9661d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "216a73815f63ee78171d590880dc9e83bcbb111580d3cd89ba59997b4a79d93f"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "e7cc8ca90f74e04e0581edf93f7c0e4cdab3b3b875768c24a0da46803574b618"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "d1fac88de40f4041055a557ef742829eaf9f1a34599bd786375c0838ad4bcc2d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "fc492185264b6101916049e1273d718f95f9caeac33c1026bddfe61f1fec4961"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "56471b547c76efee45c33176911841ad71cadc70b0ec40b500f9e8c9d80e8e41"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "af26399f2a953a158e7e369b368640220b0d15fc998aeb937ca64fbe52359f7f",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "shell": "round",
+      "lens_ratio": 0.78,
+      "head_depth": 0.73
+    },
+    "mesh_count": 85,
+    "triangle_count": 18580,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.beam",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Beam"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

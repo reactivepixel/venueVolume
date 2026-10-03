@@ -1,0 +1,77 @@
+{
+  "mesh_count": 182,
+  "triangle_count": 56980,
+  "geometry_sha256": "0651fdaab948db4dbdae8d9bf441c1cbe9b6b299db48a7237c4e82e91a2c6485",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.45891258120536804,
+      -0.08815242350101471
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0005182930617593229
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.09371033310890198,
+        0.0005182930617593229
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.45891258120536804,
+        0.0005182930617593229
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.45891258120536804,
+        -0.08491253852844238
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216243743896,
+    1.0365995168685913,
+    0.9926941990852356
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.claypaky.it/products/hy-b-eye-k25/",
+    "https://www.claypaky.it/wp-content/uploads/2022/10/Claypaky_HY_B-EYE_K25.jpg"
+  ]
+}

@@ -1,0 +1,310 @@
+{
+  "schema_version": 1,
+  "id": "antari/z-1500iii-fog-machine",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Antari",
+    "model": "Z-1500III Fog Machine",
+    "variant": "Z-1500III",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://antari.com/products/z-1500iii/",
+      "title": "Z-1500III Fog Machine product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": "current web product page; manual Rev.05",
+      "locator": "Specifications: L674 W235 H278 mm, 13.3 kg, 1500 W, 6 L tank, 1-channel DMX",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.antari.com/ProductGuide/2026/2026ProductGuide.pdf",
+      "title": "Antari 2026 Product Guide",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-10-02",
+      "document_revision": "2026",
+      "locator": "Z-1500III product panel: dimensions and mass",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://antari.com/wp-content/uploads/Z-1500III_01.jpg",
+      "title": "Z-1500III Fog Machine product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.jpg",
+      "sha256": "5c04c61dc31c4a64d4d628fe2c3d122ad8fc99490c1f39bea425f180cd818099"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.235,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 674/235/278 mm mapped to depth/width/height."
+    },
+    "height": {
+      "value": 0.278,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 674/235/278 mm mapped to depth/width/height."
+    },
+    "depth": {
+      "value": 0.674,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "Manufacturer L/W/H = 674/235/278 mm mapped to depth/width/height."
+    },
+    "reference_pose": "Machine resting on feet with front output facing forward; no flight case included."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "6 L onboard reservoir; 1-channel DMX; convex revised housing; current III generation.",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "1500 W",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "13.3 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "manual",
+          "timer",
+          "optional wireless"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "1-channel mode",
+      "footprint": 1,
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Machine resting on feet with front output facing forward; no flight case included.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.11750000715255737,
+        0.0,
+        -0.3369999825954437
+      ],
+      "max": [
+        0.11750000715255737,
+        0.27799999713897705,
+        0.3369999984279275
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.11226923763751984,
+          0.004483447410166264
+        ]
+      },
+      {
+        "name": "output",
+        "prim_path": "/Fixture/Output",
+        "pivot_m": [
+          0.0,
+          0.09623076766729355,
+          -0.32794100046157837
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer L/W/H = 674/235/278 mm mapped to depth/width/height.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "15de2d52048e55dbb1ee64492337566795f31ac394f139510d2e52c07a27f075"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "3f4ae94101d65674ddb41aaf22848340d93282d732b9ad1a24cf0141a7aace75"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "bc0464a2dc313d0c19ec160eacd1548167943491d2bda1a5d0a6a8a65e616dd8"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "1c559aa6f8e8da336cda868c9350ae9f4961ce58c655db9c7e74da373d01498f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "95a838a5f745ec03742a1f6af4f18267ee5ff70c9a629b8f5fd4f37bddeb4497"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "93d62b80f99df4dc538f157ea0a24ac302a0d1d543840fdbb31e95650b452145"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "2b3490e4fbdf4f1fb360c69c0b36de671ee2e63f29f50d18c5bf083ca05ff1c3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "ef09f132ac70d45948c253bdddd5f014a8a9fe0c55abd8711a25de821fe374ba"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "8add8bebbd491ce2fe7bb9526a150a58bb715d58d2d23f4fcc00ab9242a2bd24"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "f07549cd61cecc0f9d4d238da2d610210e49ffa5c9596c92c573a1bceb5c56aa"
+      }
+    ],
+    "effect_outlets": [
+      {
+        "prim_path": "/Fixture/Emitter",
+        "position_m": [
+          0.0,
+          0.09623076766729355,
+          -0.35507768392562866
+        ],
+        "kind": "fog",
+        "status": "estimated",
+        "note": "Visualization anchor only; no simulated emission, operational control, safety envelope or firing parameters."
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "159e104dbdbdf21e3a4f6fc11be538bd9a6192d546bb7a026b23c9a1aebf9331",
+    "generator_dependency": {
+      "file": "../../_shared/effects_fixture.py",
+      "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+    },
+    "profile": {
+      "family": "fogger",
+      "body_style": "low rectangular embossed fogger with top fluid reservoir and front outlet",
+      "notes": "Distinct long low chassis from Antari Z-1000III. Product page and guide specify model-specific size and weight.",
+      "generator": "effects",
+      "enclosure": "silver_machine",
+      "hanging_bracket": false,
+      "output_kind": "fog"
+    },
+    "mesh_count": 62,
+    "triangle_count": 10712,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/effects_fixture.py",
+        "sha256": "c950962725e54e5d2f137342c8ab392ae17d719615b5e1deec8eeeeeb1c6ffd6"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      },
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed catalog acquisition: legacy-effects-2026-10.",
+    "Revision 2: detailed fogger geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "f6ba516eaa92856a021734ddeec43a7cdc9cee38b0ad04607dd27afb886d3eb4",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "atmosphere.fog",
+    "category_path": [
+      "Atmosphere and air movement",
+      "Fog / smoke-look generator"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

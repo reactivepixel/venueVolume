@@ -1,0 +1,17 @@
+{
+  "id": "chauvet-dj/sentinel-wash-q120",
+  "passed": true,
+  "source_usdz_sha256": "0da2f4f410dfd9ef0ce811cf7e6cbd4a6001effb4b49f981f0619dfe53fdc184",
+  "joints": 2,
+  "moving_meshes": 35,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

@@ -1,0 +1,17 @@
+{
+  "id": "mdg/atmosphere-aps-haze-generator",
+  "passed": true,
+  "source_usdz_sha256": "e3613f2b3122ab01109a85d001b9c10c27e32325a7997508499f312f70a5de95",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 11,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

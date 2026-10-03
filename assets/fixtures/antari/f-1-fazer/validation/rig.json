@@ -1,0 +1,17 @@
+{
+  "id": "antari/f-1-fazer",
+  "passed": true,
+  "source_usdz_sha256": "427dba31aa9aeafb299786913df798be57afa6cdc593d1bc4c850f50ebd33415",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 13,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

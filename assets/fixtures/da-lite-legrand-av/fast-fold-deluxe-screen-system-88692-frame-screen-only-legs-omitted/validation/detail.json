@@ -1,0 +1,60 @@
+{
+  "mesh_count": 6,
+  "triangle_count": 776,
+  "geometry_sha256": "6d562ad69501b70ed641b6eb00c48df6c1ddc7f3fa3f833dcfe839eb5c1bc42c",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.8762999773025513,
+      -0.015225923620164394
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.000777463719714433
+      ]
+    },
+    {
+      "name": "surface",
+      "prim_path": "/Fixture/Surface",
+      "pivot_m": [
+        0.0,
+        0.8762999773025513,
+        -0.014923973940312862
+      ]
+    }
+  ],
+  "family": "screen",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0000001192092896,
+    0.9510259032249451,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.legrandav.com/products/screens/fastfold-portable-screens/fast-fold-deluxe-screen-system/88692",
+    "https://www.legrandav.com/-/media/images/dalite/product/series/resources/fastfold_deluxe_screen_system/fast-fold-deluxe-spec-data.pdf?sc_lang=en",
+    "https://www.legrandav.com/-/media/images/dalite/product/series/resources/fastfold_deluxe_screen_system/fast-fold-deluxe-spec-data.pdf?sc_lang=en"
+  ]
+}

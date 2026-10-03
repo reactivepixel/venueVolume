@@ -1,0 +1,17 @@
+{
+  "id": "chauvet-dj/cumulus-hp-low-lying-fog-machine",
+  "passed": true,
+  "source_usdz_sha256": "af1acba5d1bac9e845db1c46e35f6d94afbebe887661e9e4e9b009cdef2381fb",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 112,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

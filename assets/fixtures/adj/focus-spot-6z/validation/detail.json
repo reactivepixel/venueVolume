@@ -1,0 +1,78 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 18124,
+  "geometry_sha256": "2396ca0187a31b0708f4ad2da47ecdef24c2924f46f8a9b18e43973187c6fa3b",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.4698962867259979,
+      -0.17539258301258087
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.005316571798175573
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.1072515919804573,
+        0.005316571798175573
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.4698962867259979,
+        0.005316571798175573
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.4698962867259979,
+        -0.16878975927829742
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    0.6227914094924927,
+    1.1927446126937866
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/products/focus-spot-6z",
+    "https://www.adj.com/cdn/shop/files/95ee89cff1e445d51cb614ec245ed52d33baaae6_FOCUS_SPOT_6Z_red_RT.jpg?v=1778306534&width=2048",
+    "https://www.adj.com/cdn/shop/files/95ee89cff1e445d51cb614ec245ed52d33baaae6_FOCUS_SPOT_6Z_red_RT.jpg?v=1778306534&width=2048"
+  ]
+}

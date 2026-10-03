@@ -1,0 +1,235 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "etc/source-four-led-series-3-lustr-x8",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "ETC",
+      "model": "Source Four LED Series 3 Lustr X8",
+      "variant": "S4LEDS3LS-0",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.etcconnect.com/Products/Entertainment-Fixtures/Source-Four-LED-Series-3/Documentation.aspx",
+        "title": "ETC Source Four LED Series 3 Lustr X8 official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.etcconnect.com/Products/Lighting-Fixtures/",
+        "title": "ETC Source Four LED Series 3 Lustr X8 official source 2",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-3",
+        "url": "https://www.etcconnect.com/webdocs/Fixtures/SourceFourLED_Series3/Content/S4S3/ConnectPowerAndData.htm",
+        "title": "ETC Source Four LED Series 3 Lustr X8 official source 3",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-4",
+        "url": "https://www.etcconnect.com/workarea/DownloadAsset.aspx?id=10737507137",
+        "title": "ETC Source Four LED Series 3 Lustr X8 official source 4",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/Entertainment_Fixtures/Series3_Fresnel_Adapter_right_Red.png",
+        "title": "ETC Source Four LED Series 3 Lustr X8 official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.png",
+        "sha256": "0030d385151a7e4eb858a6eba18b32f950226f3f74ce7a40d0f16d72d2b85989"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.34,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Maximum lens-tube envelope is documented; long axis is assigned to runtime depth."
+      },
+      "height": {
+        "value": 0.34,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Maximum lens-tube envelope is documented; long axis is assigned to runtime depth."
+      },
+      "depth": {
+        "value": 0.721,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Maximum lens-tube envelope is documented; long axis is assigned to runtime depth."
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": {
+            "array": "Lustr X8",
+            "NFC": true
+          },
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM",
+            "wireless DMX/RDM (Multiverse)"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.17000000178813934,
+          0.0,
+          -0.3605000078678131
+        ],
+        "max": [
+          0.17000000178813934,
+          0.3400000035762787,
+          0.3605000078678131
+        ]
+      },
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Maximum lens-tube envelope is documented; long axis is assigned to runtime depth.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "053cd4aff20912f2b7966161b5d01659210ef50552bea3ac68dd53af4d1a5010"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "947cef89c3a28d47396e11c800e5eca31130ec6e078a8eb73337cbf2fd6ec50b"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "30f477967f3c9a54b8ac66f5aaba16a76d443b4efb601278cb079ef28a0055b6"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "ba7d89fd92b6f92a89e07fa089e09afd6e17969bd87e90ddf04ac81e57bdfd69"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "988c3ed82761a7776882e61d0205931a6612cc9b0ac511ed8ac96723e7d5485c"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "1ce600dbae130356b220abbe688131b5f6f1341a88aedc16054d113cfc46d2af"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "d55a149e9ff2d4ab76b7f34275a630b010af7bebc809e700b416680da4601182"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "96dfcfdde933f85fb2aea9fde9c27b980fa75562a31000c19005eaf7e206e7f3"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-1",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

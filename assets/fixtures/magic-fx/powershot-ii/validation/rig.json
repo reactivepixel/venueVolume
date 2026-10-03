@@ -1,0 +1,17 @@
+{
+  "id": "magic-fx/powershot-ii",
+  "passed": true,
+  "source_usdz_sha256": "06313e4fb13e4cbd3b7a875c7ff5130e951fc78b679d8cd7865276a3cd0e2077",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 5,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

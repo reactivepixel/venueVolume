@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "28ab647950e32c8d3dbebf0a496d30446b657ec019c8e66215a12a527ae775c0",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "adj/focus-spot-6z",
+    "name": "Focus Spot 6Z",
+    "manufacturer": "ADJ",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/adj/focus-spot-6z/fixture.usdz",
+    "sha256": "28ab647950e32c8d3dbebf0a496d30446b657ec019c8e66215a12a527ae775c0",
+    "boundsMin": [
+      -0.11699999868869781,
+      0.0,
+      -0.17999999085441232
+    ],
+    "boundsMax": [
+      0.11699999868869781,
+      0.5619999766349792,
+      0.18000000854954123
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.1072515919804573,
+          0.005316571798175573
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.4698962867259979,
+          0.005316571798175573
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.4698962867259979,
+          -0.17539258301258087
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

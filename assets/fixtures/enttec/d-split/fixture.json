@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "id": "enttec/d-split",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ENTTEC",
+    "model": "D-SPLIT",
+    "variant": "70574 / 70578 / 70579",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.enttec.com/es/product/dmx-isolated-splitter-din-rail/d-split-dmx-opto-splitter-isolator/",
+      "title": "ENTTEC D-SPLIT product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product identity, output count, SKU family and direct manufacturer product render",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "evidence-2",
+      "url": "https://cdn.enttec.com/pdf/assets/70574_70578_70579/70574_70578_70579_D-SPLIT_DATASHEET.pdf",
+      "reuse_status": "unknown",
+      "kind": "manufacturer_manual",
+      "title": "D-SPLIT datasheet",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Specification page: 116 x 87 x 52 mm dimensions; 1-to-4 DMX splitter; no RDM; 7-24 V DC",
+      "file": "sources/enttec-d-split.pdf",
+      "sha256": "1eb13c74c54e8ba92c07d9251a8b6bd789f19efbf9a697f8376d1dd13e345045"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://cdn.enttec.com/wp-content/uploads/2021/10/10015010/2024_0003_dsplit_Isometric-Top-view-A-3-pin.png",
+      "title": "D-SPLIT visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.png",
+      "sha256": "ccc3f7d2674b5aa6afcb49740a0bf7883d2368ee141ac4320e2f6822b9018db2"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.116,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "116 x 87 x 52 mm, manufacturer datasheet"
+    },
+    "height": {
+      "value": 0.052,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "116 x 87 x 52 mm, manufacturer datasheet"
+    },
+    "depth": {
+      "value": 0.087,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "evidence-2"
+      ],
+      "unit": "m",
+      "note": "116 x 87 x 52 mm, manufacturer datasheet"
+    },
+    "reference_pose": "Enclosure horizontal with logo face upward and connector edge toward viewer, inferred from official isometric product image; dimensions mapped long x short x overall depth."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Enclosure horizontal with logo face upward and connector edge toward viewer, inferred from official isometric product image; dimensions mapped long x short x overall depth.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.05799999682130874,
+        0.0,
+        -0.04349999874830246
+      ],
+      "max": [
+        0.05799999984083115,
+        0.052000004798173904,
+        0.04349999874830246
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          4.352780160843395e-05,
+          0.0,
+          -0.0
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "116 x 87 x 52 mm, manufacturer datasheet",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "96b673d873ba02e811e0bf60c9104aad5bc3548c41a9e8140544cd33faf37c5e"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "39987af982c418b598c82e0bcfee1a3b6a05bfffb2e0c14acf3f66e77cd3ace6"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "622d74ff197a8caca9d6460a31c1ab6b812d357ac49c525e5cb1a91a3f8c803b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "a19704d86c534844b035f09d9ae11ed7ebed9d5f2d41d1bf51be9557e9c493aa"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "fb2d3c10bfcb1134a7f5a72dcc72bf7eef8fca22f9b34174882c908003bec6a4"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "4c929b7e1a57f1d1769f6402b47a612d097d3a90aa0f6160ee2ffa82da9d7845"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "79c4670108051946204aa0db6019d7824654206b04a7619674405a0a8f63b4fe"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "89f611f8c97d6c364598a3d0ef3a6131a23b83793e667c21344bfdda88782f86"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "cab4c16ccc71c025178d9d08f7aedbf81e0fae450736573e35ebb4585c8233f6"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "65691d46f6692b185f76039451e543797345ae348d8743a7bed32a6091685177"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "d608d18404480a1768e3456b3d4dd985d79c365e808a6019c94b7978ef0bc0ff",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "splitter",
+      "body_style": "small rounded rectangular isolated splitter with DMX and DC connectors on end face",
+      "notes": "Use overall 116 x 87 x 52 mm. Datasheet supplies envelope dimensions but not a dimensioned orthographic drawing; pose is image-inferred.",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 14,
+    "triangle_count": 2248,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed splitter geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "control.distribution",
+    "control_path": "USITT DMX512-1990 input to four isolated DMX512 outputs; no RDM compatibility; powered separately at 7-24 V DC; not an Ethernet node.",
+    "physical_asset_only": true,
+    "source_data": {
+      "dimensions": {
+        "width_m": 0.116,
+        "height_m": 0.052,
+        "depth_m": 0.087,
+        "source_order": "116 x 87 x 52 mm, manufacturer datasheet",
+        "axis_status": "documented",
+        "axis_note": "116 x 87 x 52 mm, manufacturer datasheet",
+        "reference_pose": "Enclosure horizontal with logo face upward and connector edge toward viewer, inferred from official isometric product image; dimensions mapped long x short x overall depth."
+      },
+      "control_path": "USITT DMX512-1990 input to four isolated DMX512 outputs; no RDM compatibility; powered separately at 7-24 V DC; not an Ethernet node.",
+      "pose": "Enclosure horizontal with logo face upward and connector edge toward viewer, inferred from official isometric product image; dimensions mapped long x short x overall depth.",
+      "research_evidence": [
+        {
+          "url": "https://www.enttec.com/es/product/dmx-isolated-splitter-din-rail/d-split-dmx-opto-splitter-isolator/",
+          "title": "ENTTEC D-SPLIT product page",
+          "locator": "Product identity, output count, SKU family and direct manufacturer product render",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://cdn.enttec.com/pdf/assets/70574_70578_70579/70574_70578_70579_D-SPLIT_DATASHEET.pdf",
+          "title": "D-SPLIT datasheet",
+          "locator": "Specification page: 116 x 87 x 52 mm dimensions; 1-to-4 DMX splitter; no RDM; 7-24 V DC",
+          "file": "research/fixtures/taxonomy/support-sources/enttec-d-split.pdf",
+          "sha256": "1eb13c74c54e8ba92c07d9251a8b6bd789f19efbf9a697f8376d1dd13e345045",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "control.distribution",
+    "category_path": [
+      "Control and data",
+      "Data splitter / wireless bridge"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

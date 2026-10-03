@@ -1,0 +1,369 @@
+{
+  "schema_version": 1,
+  "id": "martin-professional-harman/mac-one-beam",
+  "revision": 2,
+  "updated_at": "2026-10-02",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Martin Professional (HARMAN)",
+    "model": "MAC One Beam",
+    "variant": "MAC One Beam",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.martin.com/en-US/products/mac-one-beam",
+      "title": "MAC One Beam product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Physical specs (width, height, depth, weight); Control (protocols, DMX modes/channels); Overview (120 mm light guides, 7 Mcd)",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://adn.harmanpro.com/productattachment/13642/product_attachment/x_large-e7dbe56ff717256b1331ad23914f76ad.webp",
+      "title": "MAC One Beam product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-10-02",
+      "document_revision": null,
+      "locator": "Exact-model reference image",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference-0.webp",
+      "sha256": "4979446c43ebd6b4f4f911bd6bad07a6814e6609fbfd67e6960f4ff91ce3e16c"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.254,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer physical specs: base width 254 mm, maximum height 350 mm, head depth 233 mm. Across-yoke width is 226 mm; dimensions intentionally use base width and maximum vertical envelope."
+    },
+    "height": {
+      "value": 0.35,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer physical specs: base width 254 mm, maximum height 350 mm, head depth 233 mm. Across-yoke width is 226 mm; dimensions intentionally use base width and maximum vertical envelope."
+    },
+    "depth": {
+      "value": 0.233,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer physical specs: base width 254 mm, maximum height 350 mm, head depth 233 mm. Across-yoke width is 226 mm; dimensions intentionally use base width and maximum vertical envelope."
+    },
+    "reference_pose": "Maximum-height dimension with head forward; base level."
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": "Laser illuminated light instrument; 7 million candela; 120 mm lens with individually controllable light guides.",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "55 W maximum",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "4.95 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "Art-Net",
+          "sACN",
+          "Martin P3"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "19-channel mode",
+      "footprint": 19,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "35-channel mode",
+      "footprint": 35,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "107-channel mode",
+      "footprint": 107,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Maximum-height dimension with head forward; base level.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.12700000405311584,
+        0.0,
+        -0.11649999092333019
+      ],
+      "max": [
+        0.12700000405311584,
+        0.3499999940395355,
+        0.11649998952634633
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0005083971191197634
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.0560000017285347,
+          0.0005083971191197634
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.26618000864982605,
+          0.0005083971191197634
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.26618000864982605,
+          -0.06477335095405579
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.0560000017285347,
+          0.0005083971191197634
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.26618000864982605,
+          0.0005083971191197634
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.26618000864982605,
+          -0.0672491043806076
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer physical specs: base width 254 mm, maximum height 350 mm, head depth 233 mm. Across-yoke width is 226 mm; dimensions intentionally use base width and maximum vertical envelope.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "78e83c69dced4f8ef5e9d97994e454a74a416d7fc63828fe84079a80389f7aa6"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "d97e15dc87f87e5b71c0c8072ca96b239e2c59d396a6c26e3cbbda95d1cd4323"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "89b274f1dd05ad4ad7318c8e228a1277b602f0df9e12bbbbe394738a626b6d40"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "5685cc830002907e284d8a880d6a452b508897bc3e3ecf46cbd413f1d25291ac"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "6646ca75af87542c8f4180140c0538ac5caa5e032816da45913eeb31cfa5a319"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "38a71bc3ab8556c6008614d6c657a48942ce411a71cf0eb8d34f8a9955bf6876"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "b36042d4a8706fb307fc18a0c9d074ce536a1e7e26fe86cc13db2cc2be9660ea"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "678469cec6ccc78389702a38aedbedd92ea2f0eb911f05c3a1e252f631b5b58c"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "a45240c7f3c97e1c7e1b545eb3185d5acef36f1705bcdd74f1743bf44fd79fbc"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "7e74d81b2871347877f68650d002f2fad3b7b5fc01fe3b3c1c780aca68170697"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-10-02",
+    "detail_build_token": "6edf055816134646626797eda092c18f145662d02160d4830701a61cddd437b0",
+    "generator_dependency": {
+      "file": "../../_shared/catalog_fixture.py",
+      "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "compact beam head with rear lens light-guide array",
+      "notes": "Light guides are individually addressable; nonstandard optic details need dedicated model research.",
+      "generator": "catalog",
+      "shell": "round",
+      "head_depth": 0.55,
+      "light_guide_rings": true,
+      "lens_ratio": 0.45
+    },
+    "mesh_count": 133,
+    "triangle_count": 27604,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/catalog_fixture.py",
+        "sha256": "f492b1f4a55f8737c031091c3e0641fe09960242944626c2538124f90cade20c"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Source-backed acquisition for expanded touring, mid-market and DJ catalog.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "acquisition_sha256": "b95e40bc3ce350f0607844ae30fed485bb93179c9840626d18b3da5b82051826",
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.beam",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Beam"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "mdg/mse1",
+  "passed": true,
+  "source_usdz_sha256": "8904fc26ab3981a155cadfb9b6d81066fe6993528eb25de1abaa33164422e8ed",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 11,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

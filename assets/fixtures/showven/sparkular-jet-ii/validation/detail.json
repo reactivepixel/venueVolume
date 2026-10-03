@@ -1,0 +1,59 @@
+{
+  "mesh_count": 208,
+  "triangle_count": 38144,
+  "geometry_sha256": "489490cc7b5c7a3446ac56d0d2ff9ca7657a3327bab45f2933b7b3a5b2ae049c",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0644141286611557,
+      0.29103365540504456,
+      -0.06816494464874268
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        -0.0
+      ]
+    },
+    {
+      "name": "output",
+      "prim_path": "/Fixture/Output",
+      "pivot_m": [
+        0.0644141286611557,
+        0.28812330961227417,
+        -0.06816494464874268
+      ]
+    }
+  ],
+  "family": "spark",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.974200427532196,
+    1.0309277772903442,
+    1.0035643577575684
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.showven.cn/product/sparkular-jet-ii/",
+    "https://www.showven.cn/wp-content/uploads/2025/02/JET-II-500x500.png"
+  ]
+}

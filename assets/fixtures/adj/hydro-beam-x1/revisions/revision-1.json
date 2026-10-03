@@ -1,0 +1,230 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "adj/hydro-beam-x1",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "ADJ",
+      "model": "Hydro Beam X1",
+      "variant": "HYD100",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.adj.com/products/hydro-beam-x1",
+        "title": "ADJ Hydro Beam X1 official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://www.adj.com/cdn/shop/files/2ca9d5892d774450aa191f321349e6f771ee8f18_HYDRO_BEAM_X1_red_RT.jpg?v=1778306536&width=800",
+        "title": "ADJ Hydro Beam X1 official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.jpg",
+        "sha256": "f3ae985bc01c59ecddf44d2c6b1cb26fff809684692db3d53ff5231ee923d4b1"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.21,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "height": {
+        "value": 0.43,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "depth": {
+        "value": 0.336,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": [
+            "100 W discharge lamp; 3° beam; IP65"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "235 W max; 100-240 V AC, 50/60 Hz",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM",
+            "W-DMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "11-channel mode",
+        "footprint": 11,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "14-channel mode",
+        "footprint": 14,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.10499999672174454,
+          0.0,
+          -0.1679999977350235
+        ],
+        "max": [
+          0.10499999672174454,
+          0.4300000071525574,
+          0.1679999977350235
+        ]
+      },
+      "parts": [
+        {
+          "name": "base",
+          "prim_path": "/Fixture/Base"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "head",
+          "prim_path": "/Fixture/Head"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Head/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Head/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer specifies L x W x H; runtime X/Y/Z uses W/H/L.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "a6d2104a2b7d85e510e8f35d6e017638bc06c2012f3f46471a1b9d37c9e99518"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "c53153ccc9f6c437e3d9a595c1f4dcc0b052a0865ae1302ebeb43dd94e75e4ad"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "6afcc375c5919e089962009688d14a36ac1f960c9985564667b49d9da09180e1"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "d7d1b6c9cab9a68ea19093197530473ce8084cd9f8e73a04674d1a9c94b199de"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "ea30d0c79857324c51c1af9d97bc3e91090870cbeedd8b0d44a344e594c9245a"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "d49ddcd045d099410ae3080e3c4bad0a0cdebcb29f75007972689ce079b140dd"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "0628fa0ba62e7c120c54bc949749491a32743c8ce3309b19bce6c0efb4929814"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "80a38ac395b9dcc9901c9d9a70ed03a90c5ff3def24cecd176b1c0ec2f9d077e"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-1",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

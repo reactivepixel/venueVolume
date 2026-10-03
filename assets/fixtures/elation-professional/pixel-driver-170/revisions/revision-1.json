@@ -1,0 +1,203 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "elation-professional/pixel-driver-170",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Elation Professional",
+      "model": "PIXEL DRIVER 170",
+      "variant": "PIX170",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.elationlighting.com/products/pixel-driver-170",
+        "title": "PIXEL DRIVER 170",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Size/weight, power, control/connectors and supported tape",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.elationlighting.com/products/pixel-tape-16ip",
+        "title": "Elation Professional PIXEL DRIVER 170 official source 2",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.elationlighting.com/cdn/shop/files/e09856f207a5349be7eb1cb57d0dab9e1b04f8c9_PIX170__IMG__001__35eed3f29864.jpg?v=1776815686&width=2048",
+        "title": "PIXEL DRIVER 170 visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.jpg",
+        "sha256": "730908a3072628dfa91a5e82abe164b9eb98fa4911346bbf27d3cc48f6baff11"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.101,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer body dimensions; side mounting tabs visible in photo but excluded from stated size. Display-forward axes rotated from the manufacturer L/W/H list using the photo; 50 mm is face height and 26.2 mm enclosure depth. Mounting tabs excluded."
+      },
+      "height": {
+        "value": 0.05,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer body dimensions; side mounting tabs visible in photo but excluded from stated size. Display-forward axes rotated from the manufacturer L/W/H list using the photo; 50 mm is face height and 26.2 mm enclosure depth. Mounting tabs excluded."
+      },
+      "depth": {
+        "value": 0.0262,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer body dimensions; side mounting tabs visible in photo but excluded from stated size. Display-forward axes rotated from the manufacturer L/W/H list using the photo; 50 mm is face height and 26.2 mm enclosure depth. Mounting tabs excluded."
+      },
+      "reference_pose": "Front/display face forward; body long axis horizontal, mounting flange plane vertical."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "48 W maximum; DC input 12–24 V, 2 A",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "0.133 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512 input/output",
+            "APA120C pixel output"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Front/display face forward; body long axis horizontal, mounting flange plane vertical.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "Manufacturer body dimensions; side mounting tabs visible in photo but excluded from stated size. Display-forward axes rotated from the manufacturer L/W/H list using the photo; 50 mm is face height and 26.2 mm enclosure depth. Mounting tabs excluded.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "pixel_power_driver",
+      "control_path": "DMX512 input to APA120C pixel tape; one universe up to 170 pixels; separate 12–24 V DC supply required",
+      "physical_asset_only": true,
+      "source_data": {
+        "source_urls": [
+          "https://www.elationlighting.com/products/pixel-driver-170",
+          "https://www.elationlighting.com/products/pixel-tape-16ip"
+        ],
+        "control_path": "DMX512 input to APA120C pixel tape; one universe up to 170 pixels; separate 12–24 V DC supply required",
+        "protocols": [
+          "DMX512 input/output",
+          "APA120C pixel output"
+        ],
+        "power": "48 W maximum; DC input 12–24 V, 2 A",
+        "weight": "0.133 kg",
+        "dimensions": {
+          "width_m": 0.101,
+          "height_m": 0.05,
+          "depth_m": 0.0262,
+          "axis_status": "estimated",
+          "axis_note": "Manufacturer body dimensions; side mounting tabs visible in photo but excluded from stated size. Display-forward axes rotated from the manufacturer L/W/H list using the photo; 50 mm is face height and 26.2 mm enclosure depth. Mounting tabs excluded.",
+          "reference_pose": "Front/display face forward; body long axis horizontal, mounting flange plane vertical."
+        },
+        "research_evidence": [
+          {
+            "url": "https://www.elationlighting.com/products/pixel-driver-170",
+            "title": "PIXEL DRIVER 170",
+            "locator": "Size/weight, power, control/connectors and supported tape",
+            "accessed_at": "2026-09-30"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "c753c434774c5386e4b9f87fc3f00a1f589aad3c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

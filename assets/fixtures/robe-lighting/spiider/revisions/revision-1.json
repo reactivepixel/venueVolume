@@ -1,0 +1,222 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "robe-lighting/spiider",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "ROBE Lighting",
+      "model": "Spiider",
+      "variant": "Spiider",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.robe.cz/spiider",
+        "title": "ROBE Lighting Spiider official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.robe.cz/res/downloads/exterior_dimensions/Robin_Spiider_dimensions.pdf",
+        "title": "ROBE Lighting Spiider official source 2",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-3",
+        "url": "https://www.robe.cz/res/downloads/catalogues/ROBE_Spiider_leaflet_online_version.pdf",
+        "title": "ROBE Lighting Spiider official source 3",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://cdn.aws.robe.cz/v1/image/resize/522fc31d583c077fe618dc267176f88d429255c2?fit=cover&height=452&width=452&withoutEnlargement=false",
+        "title": "ROBE Lighting Spiider official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.jpg",
+        "sha256": "f9248bfe411b7853a80e78f6e23275ee3d1859c5051ef5cd2efcaa2077c33702"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.39,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "height": {
+        "value": 0.477,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "depth": {
+        "value": 0.286,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "430 W",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM",
+            "Art-Net",
+            "sACN"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.19499999284744263,
+          0.0,
+          -0.14300000667572021
+        ],
+        "max": [
+          0.19499999284744263,
+          0.47699999809265137,
+          0.14300000667572021
+        ]
+      },
+      "parts": [
+        {
+          "name": "base",
+          "prim_path": "/Fixture/Base"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "head",
+          "prim_path": "/Fixture/Head"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Head/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Head/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer specifies H x W x D with head vertical.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "a4454446af8c4394480633cb2544cb0866d33df316a015ec055cb73335be3258"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "7e6aabf8f20dd619ff12c2d16ebda6132b62f03c848c53f4fd6399f404f05ce4"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "97a5a4a1d36885d54851ddac4a211773a03d4c147d55d11b8e8b0ca261603cbf"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "915106c05520e59565a339a866fd1d47ba94d63b6cb295e5cd24b1d01905ffa9"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "f309601498964d2d7bc38fcaa9819f7271edf9b2975f2862e5b8cc74ecfe14b3"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "bcbd69a7befbd15d6632c02b851e0b06171e6b118d62849e5096cb371fb08128"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "458de20f0ee06b712701d2bd2475e94b3c5d470f0cbe480f0f83e2df4fc8976c"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "4093beb88d0a42c91e64ec1e77c42d98c9706e4e9cb424dfdafaf1c41c127efb"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-1",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

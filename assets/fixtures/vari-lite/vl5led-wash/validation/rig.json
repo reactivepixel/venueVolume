@@ -1,0 +1,17 @@
+{
+  "id": "vari-lite/vl5led-wash",
+  "passed": true,
+  "source_usdz_sha256": "013313c2b12219698571508f3f940be579184857a7a8bfed4ebadbe6d22c028b",
+  "joints": 2,
+  "moving_meshes": 42,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

@@ -1,0 +1,60 @@
+{
+  "mesh_count": 61,
+  "triangle_count": 10524,
+  "geometry_sha256": "d813df645f84c81533f702c7f46beb2cd79bb3a0cd2ecbd2412879402b1b4050",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.06637168675661087,
+      -0.08839697390794754
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0018226797692477703
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.055309735238552094,
+        0.0018226797692477703
+      ]
+    }
+  ],
+  "family": "laser",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9478673338890076,
+    0.9378342628479004,
+    0.8849557638168335
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.laserworld.com/en/laserworld-ds/laserworld-ds-1000rgb-mk5",
+    "https://www.laserworld.com/pdf/generate.php?lang=en&productid=7640144997564",
+    "https://www.laserworld.com/images_product/7640144997564/200/Laserworld_DS-1000RGB_MK5_fr_s.png"
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "manfrotto/heavy-duty-stand-black-air-cushioned-black-steel",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Manfrotto",
+      "model": "Heavy Duty Stand, Black, Air-Cushioned, Black Steel",
+      "variant": "126BSUAC",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.manfrotto.com/global-uk/black-steel-air-cushioned-heavy-duty-stand-126bsuac/",
+        "title": "Manfrotto 126BSUAC product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product overview/specifications: min/max height, closed length, load rating, attachment type",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.bhphotovideo.com/c/product/512653-REG/Manfrotto_126BSUAC_126BSUAC_Heavy_Duty_Air.html",
+        "title": "B&H Photo Video Manfrotto 126BSUAC listing",
+        "kind": "secondary",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Footprint Diameter: 49 in / 125 cm; secondary retailer dimension",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.manfrotto.com/media/catalog/product/m/a/manfrotto-heavy-duty-stand-air-cushioned-black-steel-126bsuac.jpg",
+        "title": "Heavy Duty Stand, Black, Air-Cushioned, Black Steel visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.jpg",
+        "sha256": "9092c3e9bfda33a4a9cd04b8c980b85afbe45bf32d62f8d0e8e189d75ae30d59"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 1.25,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)"
+      },
+      "height": {
+        "value": 3.33,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)"
+      },
+      "depth": {
+        "value": 1.25,
+        "status": "estimated",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)"
+      },
+      "reference_pose": "Three legs fully deployed, stand vertical and fully extended to 3.33 m maximum height, leveling leg down; 1.25 m circular footprint envelope is secondary-source estimate; do not interpret as rectangular dimensions."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Three legs fully deployed, stand vertical and fully extended to 3.33 m maximum height, leveling leg down; 1.25 m circular footprint envelope is secondary-source estimate; do not interpret as rectangular dimensions.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "infrastructure_control.rigging_support",
+      "control_path": "Passive mechanical support; no electrical or DMX control.",
+      "physical_asset_only": true,
+      "source_data": {
+        "source_urls": [
+          "https://www.manfrotto.com/global-uk/black-steel-air-cushioned-heavy-duty-stand-126bsuac/",
+          "https://www.bhphotovideo.com/c/product/512653-REG/Manfrotto_126BSUAC_126BSUAC_Heavy_Duty_Air.html"
+        ],
+        "dimensions": {
+          "width_m": 1.25,
+          "height_m": 3.33,
+          "depth_m": 1.25,
+          "source_order": "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)",
+          "axis_status": "estimated",
+          "axis_note": "Tripod footprint diameter 1250 mm (secondary retailer); maximum height 3330 mm; minimum/closed height 1310 mm (manufacturer)",
+          "reference_pose": "Three legs fully deployed, stand vertical and fully extended to 3.33 m maximum height, leveling leg down; 1.25 m circular footprint envelope is secondary-source estimate; do not interpret as rectangular dimensions."
+        },
+        "dimensions_status": "estimated_envelope_with_secondary_footprint",
+        "dimension_notes": "Manfrotto official page documents min height 131 cm, max height 333 cm, closed length 131 cm, 8.3 kg mass, and attachment fittings. The 125 cm footprint diameter is from B&H Photo Video, a secondary retailer, and should be verified against manufacturer drawing before precision modeling.",
+        "control_path": "Passive mechanical support; no electrical or DMX control.",
+        "pose": "Three legs fully deployed, stand vertical and fully extended to 3.33 m maximum height, leveling leg down; 1.25 m circular footprint envelope from secondary source.",
+        "max_payload_kg": 40,
+        "attachment": "28 mm socket with 16 mm stud; verify the exact adapter/interface before attaching show equipment",
+        "research_evidence": [
+          {
+            "url": "https://www.manfrotto.com/global-uk/black-steel-air-cushioned-heavy-duty-stand-126bsuac/",
+            "title": "Manfrotto 126BSUAC product page",
+            "locator": "Product overview/specifications: min/max height, closed length, load rating, attachment type",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown"
+          },
+          {
+            "url": "https://www.bhphotovideo.com/c/product/512653-REG/Manfrotto_126BSUAC_126BSUAC_Heavy_Duty_Air.html",
+            "title": "B&H Photo Video Manfrotto 126BSUAC listing",
+            "locator": "Footprint Diameter: 49 in / 125 cm; secondary retailer dimension",
+            "accessed_at": "2026-09-30",
+            "reuse_status": "unknown",
+            "source_kind": "secondary"
+          }
+        ]
+      }
+    }
+  },
+  "git_commit": "65ee24e76027977f1cf6c26ca1ffb0c6472db854",
+  "note": "Initial research record before any generated model artifacts existed."
+}

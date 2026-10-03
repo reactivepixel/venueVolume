@@ -1,0 +1,221 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "mdg/atmosphere-aps-haze-generator",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "MDG",
+      "model": "ATMOSPHERE APS Haze Generator",
+      "variant": "ATMOSPHERE APS",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.mdgfog.com/en/atmosphereaps",
+        "title": "ATMOSPHERE APS product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Specifications: consumption, fluid, power, dimensions, machine weight; excludes 34 kg shipping weight",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.mdgfog.com/en/2-channel-dmx-interface",
+        "title": "2-channel DMX interface product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Interface compatible with ATMOSPHERE; separate accessory",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://mdgfog.s3.amazonaws.com/uploads/img-tiny/atmosphere-a-bb3c9a.png",
+        "title": "ATMOSPHERE APS Haze Generator visual reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+        "reuse_status": "unknown",
+        "file": "sources/product-reference.png",
+        "sha256": "9f8308e64e47ac5c7ba9dcf0de9c7ad9d1de0c7e9c5d266bded4ff9d8b03a616"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.18,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "MDG labels length, width and height explicitly; L mapped to depth. Front/angled official image inspected for body orientation."
+      },
+      "height": {
+        "value": 0.3,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "MDG labels length, width and height explicitly; L mapped to depth. Front/angled official image inspected for body orientation."
+      },
+      "depth": {
+        "value": 0.685,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "MDG labels length, width and height explicitly; L mapped to depth. Front/angled official image inspected for body orientation."
+      },
+      "reference_pose": "Machine resting horizontally on its base, fluid reservoir at the front end and carry handle above; MDG product page dimensions."
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "715 W; 115 or 230 VAC, 50/60 Hz single phase",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "19 kg (machine); shipping/flight case weight excluded",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX via optional 2-channel interface",
+            "remote timer"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "2-channel mode",
+        "footprint": 2,
+        "source_ids": [
+          "official-1"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Machine resting horizontally on its base, fluid reservoir at the front end and carry handle above; MDG product page dimensions.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Original image-informed procedural model, not manufacturer CAD.",
+        "MDG labels length, width and height explicitly; L mapped to depth. Front/angled official image inspected for body orientation.",
+        "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Model generation and OpenUSD validation pending. No device or hardware tests."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged."
+    ],
+    "equipment": {
+      "primary_category": "fx.atmosphere.hazer.oil_compressor",
+      "control_path": "See source-backed protocol list; compatibility and control system are not implemented.",
+      "physical_asset_only": true,
+      "source_data": {
+        "protocols": [
+          "DMX via optional 2-channel interface",
+          "remote timer"
+        ],
+        "source_urls": [
+          "https://www.mdgfog.com/en/atmosphereaps",
+          "https://www.mdgfog.com/en/2-channel-dmx-interface"
+        ],
+        "power": "715 W; 115 or 230 VAC, 50/60 Hz single phase",
+        "weight": "19 kg (machine); shipping/flight case weight excluded",
+        "dmx_channels": [
+          2
+        ],
+        "dimensions": {
+          "width_m": 0.18,
+          "height_m": 0.3,
+          "depth_m": 0.685,
+          "axis_status": "documented",
+          "axis_note": "MDG labels length, width and height explicitly; L mapped to depth. Front/angled official image inspected for body orientation.",
+          "reference_pose": "Machine resting horizontally on its base, fluid reservoir at the front end and carry handle above; MDG product page dimensions."
+        },
+        "process": "Mineral-oil fluid is atomized using compressed CO2 from a separate external supply; CO2 consumption is documented as 0.18 kg/h at 1.38 bar (20 psi). No onboard compressor is claimed; this is a haze atomizer, not a CO2 plume jet.",
+        "research_evidence": [
+          {
+            "url": "https://www.mdgfog.com/en/atmosphereaps",
+            "title": "ATMOSPHERE APS product page",
+            "locator": "Specifications: consumption, fluid, power, dimensions, machine weight; excludes 34 kg shipping weight",
+            "accessed_at": "2026-09-30"
+          },
+          {
+            "url": "https://www.mdgfog.com/en/2-channel-dmx-interface",
+            "title": "2-channel DMX interface product page",
+            "locator": "Interface compatible with ATMOSPHERE; separate accessory",
+            "accessed_at": "2026-09-30"
+          }
+        ],
+        "control_path": "See source-backed protocol list; compatibility and control system are not implemented."
+      }
+    }
+  },
+  "git_commit": "c753c434774c5386e4b9f87fc3f00a1f589aad3c",
+  "note": "Initial research record before any generated model artifacts existed."
+}

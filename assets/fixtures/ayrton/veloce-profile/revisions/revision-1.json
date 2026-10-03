@@ -1,0 +1,186 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "ayrton/veloce-profile",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Ayrton",
+      "model": "Veloce Profile",
+      "variant": "012521",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.ayrton.eu/produit/veloce-profile/",
+        "title": "Veloce Profile product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Optics, movement, control protocols and channel range, power, product size, weight and code 012521",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.ayrton.eu/wp-content/uploads/2024/09/VeloceProfileS-Specification-Sheet-V9.pdf",
+        "title": "Veloce Profile Specification Sheet V9",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Physical dimensions/weight and IP65/IP66 options",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.ayrton.eu/wp-content/uploads/2024/08/VeloceP-3.png",
+        "title": "Veloce Profile product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.png",
+        "sha256": "6f53e91e4399fa8c5a3451aba9a4b3bd37b8a432fd6936035a044ba833a895a8"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.404,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Product page lists 404 x 757 x 366 mm; 2024 sheet rounds length to 405 mm. Page value retained."
+      },
+      "height": {
+        "value": 0.757,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Product page lists 404 x 757 x 366 mm; 2024 sheet rounds length to 405 mm. Page value retained."
+      },
+      "depth": {
+        "value": 0.366,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Product page lists 404 x 757 x 366 mm; 2024 sheet rounds length to 405 mm. Page value retained."
+      },
+      "reference_pose": "Manufacturer reference dimensions; assembled fixture."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "850 W sealed LED module; 58,000 lm engine / 43,000 lm fixture output; 4°–52° zoom; 180 mm front lens; continuous pan and tilt; IP65.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "1300 W maximum",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "40.5 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM",
+            "Art-Net",
+            "sACN",
+            "CRMX wireless DMX"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "44-channel mode",
+        "footprint": 44,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "67-channel mode",
+        "footprint": 67,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Manufacturer reference dimensions; assembled fixture.",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Product page lists 404 x 757 x 366 mm; 2024 sheet rounds length to 405 mm. Page value retained.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "b0103fc9fd581731f370dee26113c51c05a03b6b586d9e9f420f6da2f0f6e85a"
+  },
+  "git_commit": "12c756a8b8dac8b0f1d5301b9ad05c17a0f1ef37",
+  "note": "Initial research record before any generated model artifacts existed."
+}

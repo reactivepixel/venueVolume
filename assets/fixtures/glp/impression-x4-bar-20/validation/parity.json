@@ -1,0 +1,19 @@
+{
+  "fixture_id": "glp/impression-x4-bar-20",
+  "passed": true,
+  "mesh_count": 79,
+  "triangle_count": 26468,
+  "max_vertex_deviation_m": 3.754281321679498e-09,
+  "tolerance_m": 1e-06,
+  "tests": [
+    "Saved Blender and USDZ reopened independently",
+    "World-space positions after unit/axis conversion",
+    "Exact ordered triangle topology",
+    "Material bindings and diffuse color",
+    "No missing or extra physical meshes",
+    "Finite coordinates",
+    "Outward closed-solid winding"
+  ],
+  "errors": [],
+  "realitykit_device_test": "not_run"
+}

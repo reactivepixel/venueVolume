@@ -1,0 +1,17 @@
+{
+  "id": "claypaky/tambora-flash",
+  "passed": true,
+  "source_usdz_sha256": "c13bb89f1ef5b6590ffdeefda333460ee91032732da2c896298b09a26d41a69d",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 48,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

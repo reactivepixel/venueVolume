@@ -1,0 +1,17 @@
+{
+  "id": "chauvet-dj/scorpion-dual-rgb",
+  "passed": true,
+  "source_usdz_sha256": "f4776a7c93e222e17fe63a2bc02361301a3ef70e280d7fb40fef9325c113bdba",
+  "joints": 1,
+  "moving_meshes": 53,
+  "fixed_meshes": 9,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

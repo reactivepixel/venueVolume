@@ -1,0 +1,193 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "martin-professional-harman/elp-cl",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Martin Professional (HARMAN)",
+      "model": "ELP CL",
+      "variant": "ELP CL",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.martin.com/en-US/products/elp-cl",
+        "title": "Martin Professional (HARMAN) ELP CL official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://adn.harmanpro.com/productattachment/7028/product_attachment/x_large-7585204fdcb485b9e58a0edf39e1a50a.webp",
+        "title": "Martin Professional (HARMAN) ELP CL official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.webp",
+        "sha256": "be4268f98923006536d6faf6cce5bb081442f1b79a1f90260c1540a06b985bc7"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.259,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Bracketed envelope is documented; long housing axis is assigned to runtime depth."
+      },
+      "height": {
+        "value": 0.427,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Bracketed envelope is documented; long housing axis is assigned to runtime depth."
+      },
+      "depth": {
+        "value": 0.648,
+        "status": "estimated",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m",
+        "note": "Bracketed envelope is documented; long housing axis is assigned to runtime depth."
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {},
+      "mechanical": {},
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.12950000166893005,
+          0.0,
+          -0.3240000009536743
+        ],
+        "max": [
+          0.12950000166893005,
+          0.4269999861717224,
+          0.3240000009536743
+        ]
+      },
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Bracketed envelope is documented; long housing axis is assigned to runtime depth.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "0a68d8e5ce6ef2e345430d74b446bf717dd5e75468d780bdba40c7ef1bb13cea"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "fb1b1cb1b5381ee1c6ee530fe11b1ab4703834375ac3e92b753fe5b277c3f95f"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "b7f090892064fc5108dfee98a892e3287bf4a8b90df426d5af750227ead4730f"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "f2dd15f8632e469128d92fc5eecee4075e84db98a1ccadc577203b1938420270"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "443808d65704fe105d8f79a650830cf4d355bd062ebec764eba3d6c3099a7f4d"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "a2cd747afb2c0c8878676b9990e53674b5171b54cfbec32f183601a1d2405a3c"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "618bd325ebcbba79427fc7f473c0c2f5caaeec666e746816807fa73709426db3"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "065786f35083cdd49624abc61257acdb6a0ef9f1f8f533196635ecec012ec1d7"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [
+      "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+    ],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-1",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}

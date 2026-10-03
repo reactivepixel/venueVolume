@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "3f175915c931167656cc2d9b04ceb368748785e7f6f45f464795f38cd483ca45",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "showtec/phantom-100-spot",
+    "name": "Phantom 100 Spot",
+    "manufacturer": "Showtec",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/showtec/phantom-100-spot/fixture.usdz",
+    "sha256": "3f175915c931167656cc2d9b04ceb368748785e7f6f45f464795f38cd483ca45",
+    "boundsMin": [
+      -0.16249999403953552,
+      0.0,
+      -0.10499999905005097
+    ],
+    "boundsMax": [
+      0.16249999403953552,
+      0.41999995708465576,
+      0.1049999943934381
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.0776400938630104,
+          0.005108905490487814
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.2960878014564514,
+          0.005108905490487814
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.2960878014564514,
+          -0.09711439162492752
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

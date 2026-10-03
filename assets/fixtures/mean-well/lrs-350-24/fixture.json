@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "id": "mean-well/lrs-350-24",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Mean Well",
+    "model": "LRS-350-24",
+    "variant": "LRS-350-24",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.meanwell.com/Upload/PDF/LRS-350/LRS-350-SPEC.PDF",
+      "title": "LRS-350 Series Specification",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Output table (LRS-350-24: 24 V, 14.6 A, 350.4 W); input table; Other/Dimension: 215 x 115 x 30 mm; first-page product image",
+      "reuse_status": "reference_only",
+      "file": "sources/meanwell-lrs350-spec.pdf",
+      "sha256": "ac3e7b8d27dcd72277b6bdbb208586a2343a635edf1ff578fffd131a31713f6f"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.meanwell.com/Upload/PDF/LRS-350/LRS-350-SPEC.PDF",
+      "title": "LRS-350-24 visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Exact-model reference reviewed during category acquisition; rights and reuse remain unknown.",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "d714d0acbdbf81c48d16e590f8fdac7421e5ee8d8e8077b08c9c93e179b2cbc8"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.215,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer's named L x W x H dimensions mapped to W x H x D for the broad enclosure face upward."
+    },
+    "height": {
+      "value": 0.03,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer's named L x W x H dimensions mapped to W x H x D for the broad enclosure face upward."
+    },
+    "depth": {
+      "value": 0.115,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Manufacturer's named L x W x H dimensions mapped to W x H x D for the broad enclosure face upward."
+    },
+    "reference_pose": "Enclosure base plane level, broad vented cover upward, terminal strip at one short end; pose follows the manufacturer's isometric product figure."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Enclosure base plane level, broad vented cover upward, terminal strip at one short end; pose follows the manufacturer's isometric product figure.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.10750000621192157,
+        0.0,
+        -0.05749999897670932
+      ],
+      "max": [
+        0.10749999736435711,
+        0.02999999839812517,
+        0.05749999938416295
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0026741281617432833,
+          -0.001232876442372799,
+          0.00037384239840321243
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "Manufacturer's named L x W x H dimensions mapped to W x H x D for the broad enclosure face upward.",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "c88e8468837a29abe4200cd0c05d9084d288ac0ac772eb2f0a789e8368f9d205"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "c64992758c3d55c88acaa55f4c9c49fb7fbb3a96a6e0f2a8ff73de10697db939"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "de84d609ac96215fc07a2abd8bfb3d3eb52d414220ca5624a7e30f1aac9c83d1"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "17df84577540f9c7ae99aa9682265c71ffaa7709294d50068de60652c13ef685"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "333a20154b8e04406c5864027d7f933e812527058b137cbb65f63233d52b84cb"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "3a4a7af978b7d4c0031b0d31320d5213c9e67c8d34bf42374d926cd7cf88c91e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "0c9b9b016e28a03371f84cc4171fb2c142634119263ea78032fb374d3e3032ce"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "75d4610342420b90784a19f0cb132189576bff27c5fa1b63d09446c4c94e37d3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "383fde64df81fe25faf53e84d8bd18c878e675c4a8f8cc6f4a3151a9b5f54df2"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "9f236e7c522034a674512e39f59e8da1e15d6e31a6c311f8ca00afb4adf4c061"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "46989945f9f74de62a47ed499b561d34d49bf6d011c6de73f80321c5639a17e6",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "power_supply",
+      "body_style": "low-profile vented metal enclosure with exposed terminal block and cooling fan",
+      "notes": "Chassis only. Internal components, terminal details and mounting slots can be simplified; electrical installation and safety clearances are outside the visual envelope.",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 46,
+    "triangle_count": 10220,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [
+    "No official product image URL was present in the research CSV."
+  ],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed power_supply geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "power.distribution",
+    "control_path": "Mains AC input to isolated 24 V DC output; not a control-data node and not a multi-circuit venue power distro.",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://www.meanwell.com/Upload/PDF/LRS-350/LRS-350-SPEC.PDF"
+      ],
+      "dimensions": {
+        "width_m": 0.215,
+        "height_m": 0.03,
+        "depth_m": 0.115,
+        "source_order": "215 L x 115 W x 30 H mm per manufacturer; terminal details included in overall envelope",
+        "axis_status": "documented",
+        "axis_note": "Manufacturer's named L x W x H dimensions mapped to W x H x D for the broad enclosure face upward.",
+        "reference_pose": "Enclosure base plane level, broad vented cover upward, terminal strip at one short end; pose follows the manufacturer's isometric product figure."
+      },
+      "dimensions_status": "documented_in_manufacturer_specification",
+      "control_path": "Mains AC input to isolated 24 V DC output; not a control-data node and not a multi-circuit venue power distro.",
+      "electrical": {
+        "output_voltage": "24 V DC nominal",
+        "rated_output_current": "14.6 A",
+        "rated_power": "350.4 W",
+        "input": "90–132 VAC or 180–264 VAC selected by switch; 240–370 VDC only in 230 VAC switch position"
+      },
+      "safety_note": "Industrial supply with accessible screw terminals; not a user-ready corded product, not weatherproof, and not a venue distro. Mains-side enclosure, overcurrent protection, earthing, wiring and installation require application-specific design by qualified personnel. Do not model as a plug-in fixture or treat rated DC output as available without that design.",
+      "pose": "Enclosure base plane level, broad vented cover upward, terminal strip at one short end; pose inferred from manufacturer product image/drawing.",
+      "research_evidence": [
+        {
+          "url": "https://www.meanwell.com/Upload/PDF/LRS-350/LRS-350-SPEC.PDF",
+          "title": "LRS-350 Series Specification",
+          "locator": "Output table (LRS-350-24: 24 V, 14.6 A, 350.4 W); input table; Other/Dimension: 215 x 115 x 30 mm; first-page product image",
+          "file": "research/fixtures/taxonomy/support-sources/meanwell-lrs350-spec.pdf",
+          "sha256": "ac3e7b8d27dcd72277b6bdbb208586a2343a635edf1ff578fffd131a31713f6f",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown",
+          "source_kind": "manufacturer_specification"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "power.distribution",
+    "category_path": [
+      "Power and dimming",
+      "Power distribution / supply / driver"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

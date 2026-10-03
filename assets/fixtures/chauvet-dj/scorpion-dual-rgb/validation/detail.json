@@ -1,0 +1,60 @@
+{
+  "mesh_count": 62,
+  "triangle_count": 11000,
+  "geometry_sha256": "cf0aadb86d898b193c22e584a2a993fd083611cda6cea724b9572d9f39af8066",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.0704275593161583,
+      -0.07593028247356415
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.1300201267004013,
+        0.0005360111244954169
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.1300201267004013,
+        0.0005360111244954169
+      ]
+    }
+  ],
+  "family": "laser",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.092586636543274,
+    0.9312664270401001,
+    1.0060361623764038
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.chauvetdj.com/products/scorpion-dual-rgb/",
+    "https://www.chauvetdj.com/wp-content/uploads/2019/01/Scorpion_Dual_RGB_UM_Rev5_ML3.pdf",
+    "https://www.chauvetdj.com/wp-content/uploads/2018/12/cat-Scorpion-Dual.jpg"
+  ]
+}

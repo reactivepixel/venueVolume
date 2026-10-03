@@ -1,0 +1,208 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "glp/impression-x5",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "GLP",
+      "model": "impression X5",
+      "variant": "7795",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://glp.de/en/products/entertainment-lighting/moving-lights/impression-x5-en",
+        "title": "GLP impression X5 official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://glp.de/templates/yootheme/cache/a9/impression-X5_Header-a92366da.png",
+        "title": "GLP impression X5 official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.png",
+        "sha256": "ee5f3720b40f59424764a888dba69c14718f4dd197f51f148cba7e44f79f9fbf"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.415,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "height": {
+        "value": 0.434,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "depth": {
+        "value": 0.29,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "710 W max at 230 V; 100-240 VAC",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "13.3 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "Art-Net",
+            "sACN"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.20749999582767487,
+          0.0,
+          -0.14499999582767487
+        ],
+        "max": [
+          0.20749999582767487,
+          0.4339999854564667,
+          0.14499999582767487
+        ]
+      },
+      "parts": [
+        {
+          "name": "base",
+          "prim_path": "/Fixture/Base"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "head",
+          "prim_path": "/Fixture/Head"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Head/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Head/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer specifies H x W x D; maximum documented height is used.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "2fe33fbcc373c874a0582bfc940c22eb79f3cdf4d2a8a7dc3e246278a4cef46d"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "332625de26a50939bb6498a5a94d126ec4bf5bd43f8b70d661bd1cd95f437e35"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "12245bf93197e88fa5e04df2662e159ea5aff3b10dffcff56b4c6aed6b5d9d9e"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "50c2a5613a8558c1073f8805b55c43fe60d0b978f0c0a88d0aaf8ae29b9db9b8"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "f51b64580130014c1ee84b09b8a6c876ee4ce724cf93cbdcdf311a27bebe8ab7"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "daae053a0c5f52a6de049254ddf957dbf9494dbbf5ae48eeac0ece47e0f017c2"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "695a9e0db03eb8748b2f8d139f24a66da07ec233a6befa363c65cedef8938e49"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "950733a8b5f7f0167f1ee849bcf320744e8216db88cc063216dea4badffc49aa"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "note": "Prior binaries are retained in Git at this commit and their original paths."
+}

@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "id": "global-truss/sq-4110-f34-straight-segment-natural-aluminium",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Global Truss",
+    "model": "SQ-4110 F34 Straight Segment, Natural Aluminium",
+    "variant": "F340066",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.globaltruss.com/sq-4110",
+      "title": "Global Truss SQ-4110",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "SKU F340066; 1 m overall length, 290 mm overall width, 50 mm tube, resources/dimensional drawing",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://d295jznhem2tn9.cloudfront.net/ItemRelatedFiles/11147/F34-SQ-4110.pdf",
+      "title": "F34-SQ-4110 dimensional drawing",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer linked dimensional drawing; supplied from product page",
+      "reuse_status": "reference_only",
+      "file": "sources/globaltruss-sq-4110-dimensions.pdf",
+      "sha256": "cdc6ba9f48af605f0ace545501cc5cb2aeb5f948e1e5c775df840694e3c629de"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.globaltruss.com/media/catalog/product/cache/6517c62f5899ad6aa0ba23ceb3eeff97/1/0/1000x1000-20f34-20straight-41866.jpg",
+      "title": "SQ-4110 F34 Straight Segment, Natural Aluminium visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.jpg",
+      "sha256": "92509d4ea633d1d1846a5787925478c07607240248ee8e26e312187e4d4dd9ef"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 1.0,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "1 m overall length x 290 x 290 mm external square section"
+    },
+    "height": {
+      "value": 0.29,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "1 m overall length x 290 x 290 mm external square section"
+    },
+    "depth": {
+      "value": 0.29,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2"
+      ],
+      "unit": "m",
+      "note": "1 m overall length x 290 x 290 mm external square section"
+    },
+    "reference_pose": "Long axis horizontal; square cross-section upright; convention inferred from manufacturer product image and segment geometry."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Long axis horizontal; square cross-section upright; convention inferred from manufacturer product image and segment geometry.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.5,
+        0.0,
+        -0.14499999582767487
+      ],
+      "max": [
+        0.5,
+        0.28999995390639555,
+        0.14499999582767487
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          2.1855690590655286e-08,
+          -0.0
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "1 m overall length x 290 x 290 mm external square section",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "d097eeaadcdd174a54e2fbe720d9786ed795515b4d6bdf640d7c693258b293d7"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "9958f87bc38fdea577ae0deaf8f3a15c4d5b153db846a6a548a456d5e8f5f2ad"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "64b6cbe15cb8cb449f33d208854e5d5e12310c21543f8bac755a11c9072f49dc"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "4c6e771aba5c21639b1ea6f28cc5a80e48dd27a02172741849dcc33db6975381"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "8380220704cf9aaaa76c3365144a6c0fb35f86ec243b1337440628d27d298595"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "d863dd4f492b529792f8c79df46c725780ccde9428d41a6d6988cccbc1f7fa7e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "d4ff717bead356c43a55219bca93e0b04df647c1441e55752f0769fe215ad560"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "665c708f99a3253ca34f6538352d1efd0e427b7950cb5063f47ebd75ecb8d9cc"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "bd9c442841127d923246134a89ed2b08207392f9f311dabcb4869a6061f3822f"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "fd7d0e16284fbe8f175b07e7539786666d404b10526e7bb898d505804efb5671"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "e174c634316a2ac6a72fc4841e2a1ed19dc5a18da0dfbde56083380c7b08217f",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "truss",
+      "body_style": "four-chord square truss module with diagonal bracing and end connector plates",
+      "notes": "Use as a visual planning component only; do not infer load capacity from the 3D model. Consult product-specific load tables and a qualified rigger for actual system design.",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 20,
+    "triangle_count": 2608,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed truss geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "rigging.truss",
+    "control_path": "Passive mechanical support; no DMX, network, or electrical control connection.",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://www.globaltruss.com/sq-4110",
+        "https://d295jznhem2tn9.cloudfront.net/ItemRelatedFiles/11147/F34-SQ-4110.pdf"
+      ],
+      "dimensions": {
+        "width_m": 1.0,
+        "height_m": 0.29,
+        "depth_m": 0.29,
+        "source_order": "1 m overall length x 290 x 290 mm external square section",
+        "axis_status": "documented",
+        "axis_note": "1 m overall length x 290 x 290 mm external square section",
+        "reference_pose": "Long axis horizontal; square cross-section upright; convention inferred from manufacturer product image and segment geometry."
+      },
+      "dimensions_status": "documented",
+      "control_path": "Passive mechanical support; no DMX, network, or electrical control connection.",
+      "pose": "Long axis horizontal; square cross-section upright; convention inferred from manufacturer product image and segment geometry.",
+      "materials": "50 x 2 mm main tubing, 20 x 2 mm diagonal bracing; connecting hardware included per manufacturer page",
+      "research_evidence": [
+        {
+          "url": "https://www.globaltruss.com/sq-4110",
+          "title": "Global Truss SQ-4110",
+          "locator": "SKU F340066; 1 m overall length, 290 mm overall width, 50 mm tube, resources/dimensional drawing",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://d295jznhem2tn9.cloudfront.net/ItemRelatedFiles/11147/F34-SQ-4110.pdf",
+          "title": "F34-SQ-4110 dimensional drawing",
+          "locator": "Manufacturer linked dimensional drawing; supplied from product page",
+          "file": "research/fixtures/taxonomy/support-sources/globaltruss-sq-4110-dimensions.pdf",
+          "sha256": "cdc6ba9f48af605f0ace545501cc5cb2aeb5f948e1e5c775df840694e3c629de",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "rigging.truss",
+    "category_path": [
+      "Rigging and support",
+      "Truss / pipe / structural module"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

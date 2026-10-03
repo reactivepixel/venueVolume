@@ -1,0 +1,81 @@
+{
+  "batch": "touring-dj-2026-10",
+  "reviewed_at": "2026-10-02",
+  "reviewer_scope": "Read-only visual and runtime QA of currently built ADJ, CHAUVET DJ, Eliminator Lighting, Eurolite, SHEHDS, and Showtec assets in the parent expansion worktree.",
+  "method": {
+    "visual_pairs": "Viewed each stored official product-reference image beside its rendered three-quarter preview. Rechecked Focus Spot 6Z, Phantom 100 Spot and Eurolite KLS-120; added a source/render review of Intimidator Spot Duo.",
+    "runtime_checks": "Compared documented fixture dimensions to exported USDZ bounds in fixture.json and reviewed articulated-part/joint metadata and generated runtime rig sidecars where present.",
+    "limitations": "This is a visual/source comparison, not physical measurement, DMX bench testing, RealityKit testing, or a check of entries that remain in research/blocked state."
+  },
+  "summary": {
+    "built_assets_reviewed": 16,
+    "documented_dimensions_match_exported_bounds": "All 16 reviewed fixtures match each documented outer axis within approximately 0.000001 m.",
+    "articulated_moving_heads": "Intimidator Spot Duo runtime sidecar defines separate pan/tilt chains and emitters for both heads. KLS-120 runtime sidecar defines four individual head pivots and emitters; these are manually aimable fixed spots, not moving-head joints. Other previously reviewed moving heads retain their prior QA status.",
+    "material_findings": 0,
+    "high_severity_blockers": 0
+  },
+  "reviewed_fixture_ids": [
+    "chauvet-dj/intimidator-spot-375zx",
+    "chauvet-dj/intimidator-wash-zoom-450-irc",
+    "eurolite/led-kls-120-compact-light-set",
+    "chauvet-dj/hurricane-haze-2d",
+    "eliminator-lighting/stealth-beam",
+    "eliminator-lighting/stealth-spot",
+    "shehds/led-beam-spot-moving-head-150w",
+    "eurolite/led-tmh-s30-moving-head-spot",
+    "adj/saber-spot-dtw",
+    "adj/focus-spot-6z",
+    "adj/focus-flex-l7",
+    "showtec/phantom-100-spot",
+    "chauvet-dj/intimidator-spot-360x",
+    "chauvet-dj/intimidator-spot-475zx",
+    "chauvet-dj/sentinel-wash-q120",
+    "chauvet-dj/intimidator-spot-duo"
+  ],
+  "findings": [
+    {
+      "finding_id": "DJ-QA-01",
+      "fixture_id": "adj/focus-spot-6z",
+      "status": "resolved",
+      "severity": "medium",
+      "category": "head silhouette / model identity",
+      "observation": "The updated preview now shows a longer angular/tapered housing that follows the product reference's overall shell silhouette and dimensions. It remains a procedural approximation and omits finer shell transitions, ventilation detail and exact surface contours, but the previous material silhouette mismatch is resolved.",
+      "evidence_paths": [
+        "assets/fixtures/adj/focus-spot-6z/sources/product-reference-0.jpg",
+        "assets/fixtures/adj/focus-spot-6z/previews/three-quarter.png",
+        "assets/fixtures/adj/focus-spot-6z/fixture.json"
+      ],
+      "concrete_fix": "No further material correction requested; optional refinement could add source-visible venting and shell transitions without changing the documented envelope."
+    },
+    {
+      "finding_id": "DJ-QA-02",
+      "fixture_id": "showtec/phantom-100-spot",
+      "status": "resolved",
+      "severity": "medium",
+      "category": "head silhouette / model identity",
+      "observation": "The latest preview reduces the front ring/optic by approximately 23%; its angular shell, tapered profile and smaller face now read consistently with the official reference within the documented outer envelope. Fine housing transitions and connector/vent details remain approximations.",
+      "evidence_paths": [
+        "assets/fixtures/showtec/phantom-100-spot/sources/product-reference-0.png",
+        "assets/fixtures/showtec/phantom-100-spot/previews/three-quarter.png",
+        "assets/fixtures/showtec/phantom-100-spot/fixture.json"
+      ],
+      "concrete_fix": "No further substantive geometry correction requested. Preserve the documented envelope; remaining contour, lens treatment and surface details are procedural approximations, not manufacturer CAD."
+    }
+  ],
+  "no_material_issue_observed": [
+    "chauvet-dj/intimidator-spot-375zx",
+    "chauvet-dj/intimidator-wash-zoom-450-irc",
+    "eurolite/led-kls-120-compact-light-set",
+    "chauvet-dj/hurricane-haze-2d",
+    "eliminator-lighting/stealth-beam",
+    "eliminator-lighting/stealth-spot",
+    "shehds/led-beam-spot-moving-head-150w",
+    "eurolite/led-tmh-s30-moving-head-spot",
+    "adj/saber-spot-dtw",
+    "adj/focus-flex-l7",
+    "chauvet-dj/intimidator-spot-360x",
+    "chauvet-dj/intimidator-spot-475zx",
+    "chauvet-dj/sentinel-wash-q120",
+    "chauvet-dj/intimidator-spot-duo"
+  ]
+}

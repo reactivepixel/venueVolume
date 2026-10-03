@@ -1,0 +1,77 @@
+{
+  "mesh_count": 164,
+  "triangle_count": 39700,
+  "geometry_sha256": "860f9a20052251adf16fb2585fa218ba02cc26f79f591ba76193518538ca117a",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.3001784384250641,
+      -0.034423187375068665
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0004864753573201597
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.07399077713489532,
+        0.0004864753573201597
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.3001784384250641,
+        0.0004864753573201597
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.3001784384250641,
+        -0.03314764052629471
+      ]
+    }
+  ],
+  "family": "moving_wash",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    0.9729560017585754,
+    1.1857496500015259
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.martin.com/en-US/products/mac-aura-xb",
+    "https://adn.harmanpro.com/productattachment/4821/product_attachment/x_large-c3352fc68c412cf3ff940047dbe67d37.webp"
+  ]
+}

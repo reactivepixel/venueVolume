@@ -1,0 +1,17 @@
+{
+  "id": "antari/b-200-bubble-machine",
+  "passed": true,
+  "source_usdz_sha256": "ceb2806675bcf81b0364faca0ec3e6e2b03b7d2fa5641c081d02f7bd46f15ef6",
+  "joints": 2,
+  "moving_meshes": 82,
+  "fixed_meshes": 13,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

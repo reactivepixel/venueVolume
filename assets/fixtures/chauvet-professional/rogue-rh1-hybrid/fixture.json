@@ -1,0 +1,347 @@
+{
+  "schema_version": 1,
+  "id": "chauvet-professional/rogue-rh1-hybrid",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "CHAUVET Professional",
+    "model": "Rogue RH1 Hybrid",
+    "variant": "ROGUERH1HYBRID",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://chauvetprofessional.com/product/rogue-rh1-hybrid/",
+      "title": "CHAUVET Professional Rogue RH1 Hybrid official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://chauvetprofessional.com/wp-content/uploads/2025/10/Rogue-R1-Hybrid-FRONT-FEAT.png",
+      "title": "CHAUVET Professional Rogue RH1 Hybrid official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.png",
+      "sha256": "ee4486a9a4eaf1e49e53b1e735b52abdcfe5cda470c9fdaccfcc394f3279611c"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.327,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; W/H/L axis assignment follows the manufacturer product-page order used for this moving head."
+    },
+    "height": {
+      "value": 0.638,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; W/H/L axis assignment follows the manufacturer product-page order used for this moving head."
+    },
+    "depth": {
+      "value": 0.409,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; W/H/L axis assignment follows the manufacturer product-page order used for this moving head."
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": [
+          "330 W discharge lamp; beam 2.5-8°, spot 5-19°, wash 18-38°"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "548 W; 100-240 V AC, 50/60 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "55.2 lb (25.1 kg)",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "20-channel mode",
+      "footprint": 20,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "25-channel mode",
+      "footprint": 25,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.16350001096725464,
+        0.0,
+        -0.2045000028447248
+      ],
+      "max": [
+        0.16350001096725464,
+        0.6380000114440918,
+        0.2044999915524386
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.000523136870469898
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.10208000242710114,
+          0.000523136870469898
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.5300899744033813,
+          0.000523136870469898
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.5300899744033813,
+          -0.16026972234249115
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.10208000242710114,
+          0.000523136870469898
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.5300899744033813,
+          0.000523136870469898
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.5300899744033813,
+          -0.16636765003204346
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Overall dimensions are documented; W/H/L axis assignment follows the manufacturer product-page order used for this moving head.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "ccd39ae945c76b140cd1d92e2486f1a6d3e10da7197b4a409e9eb4355fb2cf82"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "42b29a71e443302f4007851e5a3a5ca40bb27846e4f38c614cd2c49ca6b03e63"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "9082ddf79d13b18ab99dd1297817908b08895968afe29269dca41114254569a7"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "65a00afa98fad460eda23561f69a8987e8a04d6aaa7c384bc5fcad2f5481a40b"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "9e7b0fb0848e58a1ee921d5c6018a1320d1d83bc7695562619f429cea40a9608"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "32cfd7c68b6f8559a1d67c16ab351eb8c65080bdbe105bc98db4c3e63ee62be2"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "ebb38bddcf15d3f9e4def6915f0057bd9d98d7c239da04758838b5cf3d926638"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "ddfe5a20dd87023b332076d3ef686f58c8f7896b1299abb4f7dae88a9bb03e24"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "2796f0ff66a20c2c94044c5931c25bad57be7ab5cb3a02342a3ac1280a315b11"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "63f0ff28dd0efd04aaca8f197eebca44971f53d76ce85933fa8c7b389303f38e"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "d8f62423490924a824fd3dee714d30b52d9d95a04e08be54ac76ea89df95c6d1",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "shell": "faceted",
+      "lens_ratio": 0.72,
+      "head_depth": 0.75
+    },
+    "mesh_count": 85,
+    "triangle_count": 18060,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.hybrid",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Beam / spot / wash hybrid"
+    ],
+    "use_tags": [
+      "multi-role optics"
+    ],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

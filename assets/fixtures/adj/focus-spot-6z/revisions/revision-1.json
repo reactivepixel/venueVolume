@@ -1,0 +1,195 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "adj/focus-spot-6z",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "ADJ",
+      "model": "Focus Spot 6Z",
+      "variant": "FOC635",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.adj.com/products/focus-spot-6z",
+        "title": "ADJ Focus Spot 6Z product page",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Specifications: 21/25/29 DMX channels; DMX512, sACN, Art-Net; 300 W LED, 380 W max power, 20 kg, dimensions LxWxH 360x234x562 mm",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.adj.com/cdn/shop/files/95ee89cff1e445d51cb614ec245ed52d33baaae6_FOCUS_SPOT_6Z_red_RT.jpg?v=1778306534&width=2048",
+        "title": "ADJ Focus Spot 6Z product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Official product-page image asset",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.adj.com/cdn/shop/files/95ee89cff1e445d51cb614ec245ed52d33baaae6_FOCUS_SPOT_6Z_red_RT.jpg?v=1778306534&width=2048",
+        "title": "Focus Spot 6Z product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "a167813b97b58e41f404c1cb5fd9c11b0558a9939cb8d3ac86a76479ffd602dc"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.234,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "ADJ labels assembled dimensions L x W x H = 360 x 234 x 562 mm; long front-back axis is depth, 234 mm is width, and 562 mm is head-upright height."
+      },
+      "height": {
+        "value": 0.562,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "ADJ labels assembled dimensions L x W x H = 360 x 234 x 562 mm; long front-back axis is depth, 234 mm is width, and 562 mm is head-upright height."
+      },
+      "depth": {
+        "value": 0.36,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "ADJ labels assembled dimensions L x W x H = 360 x 234 x 562 mm; long front-back axis is depth, 234 mm is width, and 562 mm is head-upright height."
+      },
+      "reference_pose": "Base level, head upright as in dimensional drawing"
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "300 W cool-white LED, 9–28° motorized zoom, two color wheels, two gobo wheels, dual 6-facet prisms and two frost filters.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "380 W max",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "20 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX512",
+            "RDM",
+            "Art-Net",
+            "sACN"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [
+      {
+        "name": "21-channel mode",
+        "footprint": 21,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "25-channel mode",
+        "footprint": 25,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      },
+      {
+        "name": "29-channel mode",
+        "footprint": 29,
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "mapping_status": "not_transcribed",
+        "channels": []
+      }
+    ],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Base level, head upright as in dimensional drawing",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "ADJ labels assembled dimensions L x W x H = 360 x 234 x 562 mm; long front-back axis is depth, 234 mm is width, and 562 mm is head-upright height.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed acquisition for expanded touring, mid-market and DJ catalog."
+    ],
+    "acquisition_sha256": "e4a4e05041f6b138580567d2a1fdd6b39aaf2b0a4367f9276dbd7c50ea5ad374"
+  },
+  "git_commit": "d55dda961571d5dee607a7716e8d764ae34254cb",
+  "note": "Initial research record before any generated model artifacts existed."
+}

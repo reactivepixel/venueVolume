@@ -1,0 +1,17 @@
+{
+  "id": "chauvet-professional/rogue-r2-wash",
+  "passed": true,
+  "source_usdz_sha256": "eb830156e57c0efb5ccc88a6d6359545d19ebe3c897a9a96495412b4aa1ea625",
+  "joints": 2,
+  "moving_meshes": 81,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

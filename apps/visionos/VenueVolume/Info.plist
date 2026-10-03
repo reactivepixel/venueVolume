@@ -7,7 +7,7 @@
     <key>CFBundleIdentifier</key><string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
     <key>CFBundleName</key><string>$(PRODUCT_NAME)</string>
     <key>CFBundlePackageType</key><string>APPL</string>
-    <key>CFBundleShortVersionString</key><string>0.1.0</string>
+    <key>CFBundleShortVersionString</key><string>$(MARKETING_VERSION)</string>
     <key>CFBundleVersion</key><string>1</string>
     <key>LSRequiresIPhoneOS</key><true/>
     <key>UIApplicationSceneManifest</key>
@@ -15,6 +15,7 @@
         <key>UIApplicationSupportsMultipleScenes</key><true/>
         <key>UIApplicationPreferredDefaultSceneSessionRole</key><string>UIWindowSceneSessionRoleApplication</string>
     </dict>
-    <key>NSWorldSensingUsageDescription</key><string>Venue Volume uses your device position to place virtual DMX fixtures in your space.</string>
+    <key>NSHandsTrackingUsageDescription</key><string>Venue Volume uses your left palm to reveal and position the toolbox.</string>
+    <key>NSWorldSensingUsageDescription</key><string>Venue Volume scans room surfaces to save environments on this device and place virtual DMX fixtures in them.</string>
 </dict>
 </plist>

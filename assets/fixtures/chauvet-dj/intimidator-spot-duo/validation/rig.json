@@ -1,0 +1,17 @@
+{
+  "id": "chauvet-dj/intimidator-spot-duo",
+  "passed": true,
+  "source_usdz_sha256": "203356e0be1de41b0fb62179b56a8038b2ff5c287130445e1a6ffead8caf04b4",
+  "joints": 4,
+  "moving_meshes": 40,
+  "fixed_meshes": 31,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

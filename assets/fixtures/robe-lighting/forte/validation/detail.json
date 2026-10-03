@@ -1,0 +1,78 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 18124,
+  "geometry_sha256": "16eb542e88b32bc7a7c311d2a32e957a4ea6460053796b15346cfb56bdd7a612",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.47594499588012695,
+      -0.30438676476478577
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.00108431582339108
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.10168000310659409,
+        0.00108431582339108
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.47594499588012695,
+        0.00108431582339108
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.47594499588012695,
+        -0.29322531819343567
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    1.0569254159927368,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.robe.cz/forte",
+    "https://www.robe.cz/res/downloads/user_manuals/User_manual_Robin_Forte.pdf",
+    "https://cdn.aws.robe.cz/v1/image/resize/401bff822913a8182209a6ef40c594071b9596c2?fit=cover&height=452&width=452&withoutEnlargement=false"
+  ]
+}

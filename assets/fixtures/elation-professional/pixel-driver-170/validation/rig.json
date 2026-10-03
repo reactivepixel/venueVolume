@@ -1,0 +1,17 @@
+{
+  "id": "elation-professional/pixel-driver-170",
+  "passed": true,
+  "source_usdz_sha256": "dae000a3fc931c601b7d7a579b41810a85b806f597604875d3eada0bbf44147c",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 10,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

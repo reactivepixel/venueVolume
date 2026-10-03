@@ -1,0 +1,17 @@
+{
+  "id": "ayrton/rivale-profile",
+  "passed": true,
+  "source_usdz_sha256": "1d36fa18d1a54930d2ace39c9355fd8c9c6d91f92d88182fb26dee9be112879e",
+  "joints": 2,
+  "moving_meshes": 38,
+  "fixed_meshes": 47,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

@@ -1,0 +1,77 @@
+{
+  "mesh_count": 85,
+  "triangle_count": 18124,
+  "geometry_sha256": "fcc7f94be0dce3cdba1878dcdceaceed5a7509c49b0e5638642c02ec13608772",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Head/Emitter",
+    "position_m": [
+      0.0,
+      0.2222999930381775,
+      -0.08791794627904892
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "base",
+      "prim_path": "/Fixture/Base",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.0020308177918195724
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.04560000076889992,
+        0.0020308177918195724
+      ]
+    },
+    {
+      "name": "head",
+      "prim_path": "/Fixture/Head",
+      "pivot_m": [
+        0.0,
+        0.2222999930381775,
+        0.0020308177918195724
+      ]
+    },
+    {
+      "name": "head_lens",
+      "prim_path": "/Fixture/Head/Lens",
+      "pivot_m": [
+        0.0,
+        0.2222999930381775,
+        -0.08463136106729507
+      ]
+    }
+  ],
+  "family": "moving_spot",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9852216839790344,
+    0.9927024245262146,
+    1.0
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.adj.com/products/x-move-laser",
+    "https://www.adj.com/cdn/shop/files/e7333973f25e0385bc10441d2975406234e62f28_XMOVE_LASER__IMG__001__238d14f3295f.jpg?v=1776715879&width=350"
+  ]
+}

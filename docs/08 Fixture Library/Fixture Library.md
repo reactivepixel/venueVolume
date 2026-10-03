@@ -2,7 +2,7 @@
 type: map
 status: active
 owner: product-and-engineering
-updated: 2026-09-29
+updated: 2026-09-30
 ---
 
 # Fixture library
@@ -16,6 +16,7 @@ pin both its stable ID and revision.
 
 - [Fixture catalog](Catalog.md) — all entries and their research/model status.
 - [Machine catalog](../../assets/fixtures/catalog.json) — metadata for future library tooling.
+- [visionOS articulation rollout](Articulation.md) — runtime rigs, animation coverage, file locations and validation.
 - [Create Venue Fixture skill](skill/create-venue-fixture/SKILL.md) — canonical copy of the skill.
 - [Record contract](skill/create-venue-fixture/references/record-contract.md).
 - [Modeling and validation guide](skill/create-venue-fixture/references/modeling.md).
@@ -59,7 +60,12 @@ adding RealityKit lights and mapping DMX values to them is separate runtime work
 This milestone supplies the research/modeling skill and library contract. It does not add
 an app library picker, manufacturer profile importer, remote asset service, DMX compiler,
 or live hardware output. The existing Swift app still uses generic fixture cubes.
-No actual manufacturer model has been supplied for the first library entry yet.
+The library now includes source-backed manufacturer records, editable Blender models,
+full-detail USDZ files and rendered previews. Browse the
+[show equipment hierarchy](Show%20Equipment%20Hierarchy.md) for category coverage and
+remaining gaps, or the [visual explorer](../../assets/fixtures/research/show-equipment.html).
+The historical `assets/fixtures/` path now also holds atmosphere, visual effects and
+support-equipment records. Passive objects and effect outlets are not light emitters.
 
 ## Evidence and update rules
 

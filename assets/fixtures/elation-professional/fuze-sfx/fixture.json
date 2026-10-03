@@ -1,0 +1,331 @@
+{
+  "schema_version": 1,
+  "id": "elation-professional/fuze-sfx",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "Elation Professional",
+    "model": "Fuze SFX",
+    "variant": "FUZ406",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.elationlighting.com/products/fuze-sfx",
+      "title": "Elation Professional Fuze SFX official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://www.elationlighting.com/cdn/shop/files/89ae202fa3170c155988939b4acfa394ce85a29f_FUZ406__IMG__002__58ee88d3a569_51e85a0c-274f-454a-b2f6-ac00dc5f19c3.jpg?v=1783577951&width=1200",
+      "title": "Elation Professional Fuze SFX official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "c14af5471aca82ce0bca62ed5b4ce93355bc125ba541439efde9fa5c1fc064c6"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.233,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "height": {
+      "value": 0.595,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "depth": {
+      "value": 0.362,
+      "status": "documented",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m"
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {
+      "notable": {
+        "value": [
+          "300 W LED; 12,135 lumens; 4.5-38° zoom; IP20"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "432 W max; 100-240 V AC, 50/60 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "45.9 lb (20.8 kg)",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "31-channel mode",
+      "footprint": 31,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.11649999022483826,
+        0.0,
+        -0.18100000079721212
+      ],
+      "max": [
+        0.11649999022483826,
+        0.5950000286102295,
+        0.18099998775869608
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0005205357447266579
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.09520000219345093,
+          0.0005205357447266579
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.5181099772453308,
+          0.0005205357447266579
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.5181099772453308,
+          -0.1543063074350357
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.09520000219345093,
+          0.0005205357447266579
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.5181099772453308,
+          0.0005205357447266579
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.5181099772453308,
+          -0.16017797589302063
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer lists length, width and height individually; runtime X/Y/Z uses width/height/length.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "6bdde83e623efcfc217e0a6ebe829c0050df3e19886002a24c0afb0a5cc289fc"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "6863bbb2d149700654ad5a37ded88fd49ba51c3808689d12bd36485d6c4efa6c"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "082fdf0d7612bc428c2db143046d4a0fbbdcf7b13e4062c0e344b93812613e00"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "f083b86f4d21128702011361ab25446425996bab91e496940b483e17b489ee3d"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "f70aead3ab02ed55845343ae9c8882123b28ecc5051953a8fa475bf3cda2e59f"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "3d39f0b29f6ecf96b68d8bbf53aef58193a0100d2f66aa297b9e98b5ffa2de4d"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "36ab355a9459fa109a711e613b803ce794d171a2327ce314ca1ec2d8ddb88ccd"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "460ff052c7d7c12aa933a6914b2df07e8914ad5fe07c4028062135a94cf7f5b8"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "52adf5394f22a3d235408457763f3a9b67c8df0c4aa4b14f927a13931a8b5147"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "b814e1b0025d1650a904aab170acd3bd7b8f3357a2d41f0921d90dffb21f1605"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "76d199f2c67b2aa6e5c7b926ecc10f3c83a470474b51e8a0c99e55070d978052",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "shell": "faceted",
+      "lens_ratio": 0.84,
+      "head_depth": 0.82
+    },
+    "mesh_count": 85,
+    "triangle_count": 17996,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.spot",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Spot / gobo projector"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

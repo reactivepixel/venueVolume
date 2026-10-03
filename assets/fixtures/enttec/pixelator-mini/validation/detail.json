@@ -1,0 +1,51 @@
+{
+  "mesh_count": 20,
+  "triangle_count": 3376,
+  "geometry_sha256": "66ed05b27aae4d46be71ea9e6c25023f50f700a16353e1f1a79ff8e4a8e78b9b",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0016897099558264017,
+      0.0,
+      -6.245612894417718e-05
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0016897099558264017,
+        0.0,
+        -6.245612894417718e-05
+      ]
+    }
+  ],
+  "family": "pixel_controller",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0240654945373535,
+    1.0409437417984009,
+    1.08695650100708
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.enttec.com/product/led-pixel-control/pixelator-mini-lighting-controller-ethernet-to-spi-pixel-converter/",
+    "https://cdn.enttec.com/pdf/assets/70067/70067_PIXELATOR_MINI_DATASHEET.pdf",
+    "https://cdn.enttec.com/wp-content/uploads/2022/02/09060535/product_pixelatormini__004.png"
+  ]
+}

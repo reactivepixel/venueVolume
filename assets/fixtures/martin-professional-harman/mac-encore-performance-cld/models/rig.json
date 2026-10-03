@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "33bf7c7748961364c875180f66076114a7d55a284dcb57048fd60dc55465a01b",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "martin-professional-harman/mac-encore-performance-cld",
+    "name": "MAC Encore Performance CLD",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/mac-encore-performance-cld/fixture.usdz",
+    "sha256": "33bf7c7748961364c875180f66076114a7d55a284dcb57048fd60dc55465a01b",
+    "boundsMin": [
+      -0.23999999463558197,
+      0.0,
+      -0.225999993737787
+    ],
+    "boundsMax": [
+      0.23999999463558197,
+      0.7399999499320984,
+      0.22599999839439988
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.13730847835540771,
+          0.006208586040884256
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.5563035011291504,
+          0.006208586040884256
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.5563035011291504,
+          -0.22039657831192017
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

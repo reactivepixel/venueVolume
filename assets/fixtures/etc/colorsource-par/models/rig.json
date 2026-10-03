@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "44204b1bc15defee915b82a6553ec4a632fcf612f2240e6082fd19a7fe7c140e",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "etc/colorsource-par",
+    "name": "ColorSource PAR",
+    "manufacturer": "ETC",
+    "family": "par",
+    "resource": "FixtureAssets/Catalog/etc/colorsource-par/fixture.usdz",
+    "sha256": "44204b1bc15defee915b82a6553ec4a632fcf612f2240e6082fd19a7fe7c140e",
+    "boundsMin": [
+      -0.1014999970793724,
+      -7.450580596923828e-09,
+      -0.11999998241662979
+    ],
+    "boundsMax": [
+      0.1014999970793724,
+      0.3100000023841858,
+      0.11999997869133949
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.09032057225704193,
+          -0.007677357643842697
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.09032057225704193,
+          -0.12439961731433868
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "e4dc3aba2336f66128dbc151aab4fc8793e88dc275d080963430f5cb7e732b12",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "martin-professional-harman/elp-cl",
+    "name": "ELP CL",
+    "manufacturer": "Martin Professional (HARMAN)",
+    "family": "profile",
+    "resource": "FixtureAssets/Catalog/martin-professional-harman/elp-cl/fixture.usdz",
+    "sha256": "e4dc3aba2336f66128dbc151aab4fc8793e88dc275d080963430f5cb7e732b12",
+    "boundsMin": [
+      -0.12950000166893005,
+      0.0,
+      -0.3240000009536743
+    ],
+    "boundsMax": [
+      0.12950000166893005,
+      0.4269999787211418,
+      0.32400000328198075
+    ],
+    "joints": [
+      {
+        "id": "tilt",
+        "label": "Bracket tilt (manual)",
+        "parent": null,
+        "members": [
+          "/Fixture/Body",
+          "/Fixture/Lens"
+        ],
+        "pivot": [
+          0.0,
+          0.11550786346197128,
+          0.005890908185392618
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "manual"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.11550786346197128,
+          -0.3311590850353241
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": false,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

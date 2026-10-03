@@ -75,6 +75,7 @@ public struct EnvironmentManifest: Codable, Equatable, Sendable {
     public var asset: Asset
     public var colliders: [Collider]
     public var surfaces: [Surface]
+    public var assetTranslation: [Float]? = nil
 
     public func validate() throws {
         func require(_ value: Bool, _ reason: String) throws {
@@ -86,8 +87,9 @@ public struct EnvironmentManifest: Codable, Equatable, Sendable {
         try require(!id.isEmpty && id.utf8.count <= 80 && id.allSatisfy { $0.isASCII && ($0.isLetter || $0.isNumber || "-_".contains($0)) }, "invalid room ID")
         try require(hash(version) && hash(asset.sha256), "invalid content version or checksum")
         try require(units == "meters" && upAxis == "Y" && forwardAxis == "-Z", "expected meters, Y-up, -Z forward")
-        try require(asset.file == "environment.usdz" && asset.bytes > 0 && asset.bytes <= 256_000_000, "invalid asset path or size")
+        try require(["environment.usdz", "environment.mesh.json"].contains(asset.file) && asset.bytes > 0 && asset.bytes <= 256_000_000, "invalid asset path or size")
         try require(vector(bounds.min) && vector(bounds.max), "invalid bounds")
+        if let assetTranslation { try require(vector(assetTranslation), "invalid asset translation") }
         try require(zip(bounds.min, bounds.max).allSatisfy { $0 < $1 }, "empty bounds")
         try require(vector(spawn.position) && spawn.yaw.isFinite, "invalid spawn")
         try require(abs(spawn.position[1]) < 0.001 && (0..<3).allSatisfy {

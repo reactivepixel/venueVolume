@@ -1,0 +1,402 @@
+{
+  "schema_version": 1,
+  "id": "robe-lighting/iforte",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "ROBE Lighting",
+    "model": "iFORTE",
+    "variant": "iFORTE IP65",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.robe.cz/iforte",
+      "title": "iFORTE product page",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Technical Specification; mechanical and control sections",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.robe.cz/res/downloads/catalogues/ROBE_iFORTE_FS_leaflet_online_version.pdf",
+      "title": "ROBE iFORTE / iFORTE FS leaflet",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Mechanical Specification; iFORTE weight 42.5 kg and head-vertical height 837 mm",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://www.robe.cz/res/downloads/user_manuals/User_manual_Robin_iForte_iForte_FS.pdf",
+      "title": "User Manual Robin iFORTE / iFORTE FS",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Technical specifications; standard iFORTE 42.5 kg, 540° pan and 270° tilt",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://cdn.aws.robe.cz/v1/image/resize/6ee70f896810a7721c20db54b45105162a65661c?fit=cover&height=452&width=452&withoutEnlargement=false",
+      "title": "iFORTE product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.jpg",
+      "sha256": "e52ec69edf77a105bc4497a571861e76d99d8ebc7723cdfa6c98f9fdf4b9f8e5"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.48,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer mechanical specifications, head vertical; use the iFORTE base model, not FS or LTX. Published dimensional sketch gives slightly different heights depending on view; the catalog value of 837 mm is used."
+    },
+    "height": {
+      "value": 0.837,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer mechanical specifications, head vertical; use the iFORTE base model, not FS or LTX. Published dimensional sketch gives slightly different heights depending on view; the catalog value of 837 mm is used."
+    },
+    "depth": {
+      "value": 0.335,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer mechanical specifications, head vertical; use the iFORTE base model, not FS or LTX. Published dimensional sketch gives slightly different heights depending on view; the catalog value of 837 mm is used."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Head vertical; base level."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "1250 W max",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "42.5 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM",
+          "Art-Net",
+          "sACN",
+          "Kling-Net"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [
+    {
+      "name": "54-channel mode",
+      "footprint": 54,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "55-channel mode",
+      "footprint": 55,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "73-channel mode",
+      "footprint": 73,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "96-channel mode",
+      "footprint": 96,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "111-channel mode",
+      "footprint": 111,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    },
+    {
+      "name": "113-channel mode",
+      "footprint": 113,
+      "source_ids": [
+        "official-1"
+      ],
+      "mapping_status": "not_transcribed",
+      "channels": []
+    }
+  ],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.23999999463558197,
+        0.0,
+        -0.16750000152387656
+      ],
+      "max": [
+        0.23999999463558197,
+        0.8370000123977661,
+        0.1675000068207737
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0003108557721134275
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.13391999900341034,
+          0.0003108557721134275
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.678600013256073,
+          0.0003108557721134275
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.678600013256073,
+          -0.14751234650611877
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.13391999900341034,
+          0.0003108557721134275
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.678600013256073,
+          0.0003108557721134275
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.678600013256073,
+          -0.15311840176582336
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer mechanical specifications, head vertical; use the iFORTE base model, not FS or LTX. Published dimensional sketch gives slightly different heights depending on view; the catalog value of 837 mm is used.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "1bb5e052b028441d56f74cfcdaade61a46df616d722563c1cb417dd1290c20f9"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "f1eb1d3598834e4e6711d9383d406086294886d4a49c6dff855b7a69b4bc1f54"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "5eec95c8770b94c6b94bac50c10eb858093aa2607c3c684fdb222115ea9528db"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "5039b7ce81bb287c68730f47142542591ad7ce76ca1d79a23218f02cb0ac7576"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "88f3f5fa19934652400de6a50e2a7409f81cc0fe5dfb0be7a106a13cff03ec9a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "fdd4b35dafd66bf1bece0c8ee6b068084a47b77a732081d34139bb1ef58797aa"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "0ecfc89e43f8c586765c279207cb066ffa813d174bf8c01008f2517621336f7a"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "1d129b6b4613432c258c4ae22553db2072fa769f33c6428c9c2542e151f4fb82"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "23cc07ef6a967df5ba79a067f448ffa49aea13608de8a35d864283c4f6659f62"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "d5b34d0fdac112b45b6ec7f9f24e2d539c797f0bf49631fc05d907a43530495a"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "ea1c6382c0388de61ed417a72fc5fb1c11edb57c617ac7514e5f2167c0c0f76e",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "large sealed moving profile with yoke",
+      "notes": "iFORTE standard IP65 body; not FS, Fresnel, or LTX variant."
+    },
+    "mesh_count": 85,
+    "triangle_count": 18516,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Source describes a vertical-head dimensional pose; modeled horizontal optical-axis pose fits that envelope. Verify pose-specific shape before placement/clearance use."
+  ],
+  "revision_notes": [
+    "Acquired in expansion batch 1. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.profile",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Framing profile"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "robe-lighting/tetra1",
+  "passed": true,
+  "source_usdz_sha256": "5738bd16be7c748243f1d1abe01d4ea51a96529731ea1f782192974e1a0b57cd",
+  "joints": 1,
+  "moving_meshes": 52,
+  "fixed_meshes": 5,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

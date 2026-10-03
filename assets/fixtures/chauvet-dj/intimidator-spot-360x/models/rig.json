@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "ea18aa9f397ae4ab1caa4e0c51478ea836e372672bb1cb8a164c1a7e9cbb2551",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "chauvet-dj/intimidator-spot-360x",
+    "name": "Intimidator Spot 360X",
+    "manufacturer": "CHAUVET DJ",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/chauvet-dj/intimidator-spot-360x/fixture.usdz",
+    "sha256": "ea18aa9f397ae4ab1caa4e0c51478ea836e372672bb1cb8a164c1a7e9cbb2551",
+    "boundsMin": [
+      -0.16099999845027924,
+      0.0,
+      -0.11000000382773578
+    ],
+    "boundsMax": [
+      0.16099999845027924,
+      0.4230000078678131,
+      0.10999999498017132
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.0676800012588501,
+          0.002869214164093137
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.3167400062084198,
+          0.002869214164093137
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.3167400062084198,
+          -0.09576551616191864
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "id": "martin-professional-harman/mac-ultra-performance",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "Martin Professional (HARMAN)",
+    "model": "MAC Ultra Performance",
+    "variant": "MAC Ultra Performance",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.martin.com/en-US/products/mac-ultra-performance",
+      "title": "Martin Professional (HARMAN) MAC Ultra Performance official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.martin.com/en-US/site_elements/martin-specifications-mac-ultra-performance-spec-sheet",
+      "title": "Martin Professional (HARMAN) MAC Ultra Performance official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://adn.harmanpro.com/productattachment/10081/product_attachment/x_large-e6a233739fa59758d3debd9dd6ca02fb.webp",
+      "title": "Martin Professional (HARMAN) MAC Ultra Performance official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.webp",
+      "sha256": "206d08366b6a22cec680b0560f20b7b2b7f597ac673243f17317479f053a37a6"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.52,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Maximum envelope is documented; H/W/depth assignment follows the official product drawing."
+    },
+    "height": {
+      "value": 0.876,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Maximum envelope is documented; H/W/depth assignment follows the official product drawing."
+    },
+    "depth": {
+      "value": 0.66,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Maximum envelope is documented; H/W/depth assignment follows the official product drawing."
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM",
+          "Art-Net",
+          "sACN"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.25999999046325684,
+        0.0,
+        -0.33000000403262675
+      ],
+      "max": [
+        0.25999999046325684,
+        0.8759999871253967,
+        0.32999999239109457
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0027325840201228857
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.1401599943637848,
+          0.0027325840201228857
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.7044000029563904,
+          0.0027325840201228857
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.7044000029563904,
+          -0.3105253279209137
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.1401599943637848,
+          0.0027325840201228857
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.7044000029563904,
+          0.0027325840201228857
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.7044000029563904,
+          -0.3224053382873535
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Maximum envelope is documented; H/W/depth assignment follows the official product drawing.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "faae97eb98cd1dbc850f406ae80e88c74caf53912585fdcb679cc6fb01ff96d0"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "548fa8133951be970f951b773193b194cc74c6f2b542bfcd3c5998b6ce47f301"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "4a58a38d871da4e9d9cd60138b0c5cdb039534c0ea808c10759dc8f6ac547cd6"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "5ff17a40b3df76d4d2de23c049fa02825c94ebf39a14c4dc4e9320ed7960574e"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "d51757f8061aae69b64dae627b94b7fc6402c9c8ea46c5fccdc73285f990f3e7"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "a5d2a9e317d9caa6e5eee7e1d591ed1eac12aa08e94a093abf8afba39ee49e2e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "ef47cdfa85bf51988d9871249305aadd9ee575599a5b94c2e7b46fae2684ad74"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "3509675afa796242c535d77e39b18dbd0a45ef6bc0cbc184bd869e2a052cce43"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "6dbf0bf87391b0d4391f5ebb91f6e30c8d51a4302a1ad788b734a71d948d5a48"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "ab72075acf961798d3cc34b14500802c182d80e88db288ebcbc88bf7928d73d8"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "51223007773aadbc8b6ad34536e6dace2c296b43e8f7d9e0963826da9bf0a3fe",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "shell": "faceted",
+      "lens_ratio": 0.84,
+      "head_depth": 0.9
+    },
+    "mesh_count": 85,
+    "triangle_count": 18124,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.profile",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Framing profile"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

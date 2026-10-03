@@ -1,0 +1,17 @@
+{
+  "id": "enttec/ode-mk3",
+  "passed": true,
+  "source_usdz_sha256": "ed2e4e50b8c17b7610c31b8777603fc179fdca8476d84fc6c7505be8759c2a31",
+  "joints": 0,
+  "moving_meshes": 0,
+  "fixed_meshes": 12,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

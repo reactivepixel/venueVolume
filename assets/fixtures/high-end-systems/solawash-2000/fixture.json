@@ -1,0 +1,354 @@
+{
+  "schema_version": 1,
+  "id": "high-end-systems/solawash-2000",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "High End Systems",
+    "model": "SolaWash 2000",
+    "variant": "SolaWash 2000",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaWash/2000/Features.aspx",
+      "title": "High End Systems SolaWash 2000 official source 1",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/",
+      "title": "High End Systems SolaWash 2000 official source 2",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://www.highend.com/",
+      "title": "High End Systems SolaWash 2000 official source 3",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-4",
+      "url": "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaWash/2000/Documentation.aspx",
+      "title": "High End Systems SolaWash 2000 official source 4",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Product page/specification section",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-image",
+      "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/High_End_Systems_Images/Lighting_Fixtures/SolaWash/Solawash_2000_prod_left.jpg",
+      "title": "High End Systems SolaWash 2000 official product image",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer product image",
+      "reuse_status": "reference_only",
+      "file": "sources/official-product-image.jpg",
+      "sha256": "c5c143e3ac44167b8094394025496f96faa2e5da844c109f96ca59fdaefc3bf1"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.475,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; width/depth/height assignment follows the official dimensional drawing."
+    },
+    "height": {
+      "value": 0.886,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; width/depth/height assignment follows the official dimensional drawing."
+    },
+    "depth": {
+      "value": 0.32,
+      "status": "estimated",
+      "source_ids": [
+        "official-1"
+      ],
+      "unit": "m",
+      "note": "Overall dimensions are documented; width/depth/height assignment follows the official dimensional drawing."
+    },
+    "reference_pose": "shipping/upright reference pose; moving head centered"
+  },
+  "features": {
+    "optical": {
+      "zoom": {
+        "value": "5–55°",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      },
+      "output": {
+        "value": "26,000 lm",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "electrical": {
+      "power": {
+        "value": "600 W LED; 100–240 VAC, 50–60 Hz",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "shipping/upright reference pose; moving head centered",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.23749998211860657,
+        0.0,
+        -0.15999999549239874
+      ],
+      "max": [
+        0.23749998211860657,
+        0.8859999775886536,
+        0.1599999824538827
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.004528702236711979
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.14176000654697418,
+          0.004528702236711979
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.7292500138282776,
+          0.004528702236711979
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.7292500138282776,
+          -0.1391172707080841
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.14176000654697418,
+          0.004528702236711979
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.7292500138282776,
+          0.004528702236711979
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.7292500138282776,
+          -0.1445649117231369
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Overall dimensions are documented; width/depth/height assignment follows the official dimensional drawing.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "c2850ee97010d365571e9baa097106b0e0eef6e6e98b1b1857ffcc6ae3372bf8"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "350e5588de05978eae7da8c4ac7f9851a914e32c186ce740bd3f1510f9ac31c9"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "115afe94cf5bdb29067fc748d595c12030d32a906be1b8d7e0e73ce216499eb0"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "cd05d45afdea9fb9ea4907b3807193d5c3f9af70911c19f935e6afd60ae9cc27"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "ee97a4243cf4454ae65d2f6c5f1debf5ad7328d2d7fbfa4aed4c842cdd9469d1"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "949e6bc02bd16be9b01602b269d6fd7adb6270a0afecd0280da0a0695a75f242"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "8d79622a5294d0ddd44349c36c6476d7b30ca895b756f59bc718d25f12b95e33"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "8586a421a6d66cdd18c6a4bad89a30269a722f77932b765225dbe326853e6d82"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "335297bb274df8bf7320be728b95f53096d12478980a621484332d99c2ea4f29"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "544d02cfbf01c2cc5aa7b010b26ce322eeecac8ca49c1850057b31e1e2299342"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "bcc47fbea447bcebc6bff2cce912f676fe7550a4678754bbf4e99e7acc66f634",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "shell": "faceted",
+      "lens_ratio": 0.79,
+      "head_depth": 0.89,
+      "fresnel": true
+    },
+    "mesh_count": 94,
+    "triangle_count": 24908,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Confirm dimension axis assignment from a manufacturer dimensional drawing before promotion."
+  ],
+  "revision_notes": [
+    "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.wash",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Wash"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

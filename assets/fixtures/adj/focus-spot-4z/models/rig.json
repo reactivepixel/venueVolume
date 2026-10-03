@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "state": "runtime_integrated_native_validation_pending",
+  "source_usdz_sha256": "6980b4baa059236a071f8a05d2cb3cfa75521f29f53577309025bd5981513b0b",
+  "native_validation": "pending",
+  "descriptor": {
+    "id": "adj/focus-spot-4z",
+    "name": "Focus Spot 4Z",
+    "manufacturer": "ADJ",
+    "family": "moving_spot",
+    "resource": "FixtureAssets/Catalog/adj/focus-spot-4z/fixture.usdz",
+    "sha256": "6980b4baa059236a071f8a05d2cb3cfa75521f29f53577309025bd5981513b0b",
+    "boundsMin": [
+      -0.13930001854896545,
+      0.0,
+      -0.09075000043958426
+    ],
+    "boundsMax": [
+      0.13930001854896545,
+      0.45739999413490295,
+      0.0907500023022294
+    ],
+    "joints": [
+      {
+        "id": "pan",
+        "label": "Pan",
+        "parent": null,
+        "members": [
+          "/Fixture/Yoke"
+        ],
+        "pivot": [
+          0.0,
+          0.07318399846553802,
+          0.0004991302266716957
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "channel": 4,
+        "travel": 270,
+        "continuous": false,
+        "mode": "motor"
+      },
+      {
+        "id": "tilt",
+        "label": "Tilt",
+        "parent": "pan",
+        "members": [
+          "/Fixture/Head"
+        ],
+        "pivot": [
+          0.0,
+          0.3654620051383972,
+          0.0004991302266716957
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "channel": 5,
+        "travel": 120,
+        "continuous": false,
+        "mode": "motor"
+      }
+    ],
+    "emitters": [
+      {
+        "parent": "tilt",
+        "position": [
+          0.0,
+          0.3654620051383972,
+          -0.06545180827379227
+        ],
+        "axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "headAim": true,
+    "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  }
+}

@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "id": "high-end-systems/solaframe-2000",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "researched",
+  "identity": {
+    "manufacturer": "High End Systems",
+    "model": "SolaFrame 2000",
+    "variant": "SolaFrame 2000",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaFrame/2000/Features.aspx",
+      "title": "SolaFrame 2000 Features",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "High End Systems product page; official product image",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737503533",
+      "title": "SolaFrame 2000 Technical Datasheet",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Rev B pages 2 and 5; 838 × 475 × 320 mm, 43.5 kg; 855 W standard / 890 W with defogger",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-3",
+      "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737504840",
+      "title": "Dimensional Drawings & Physical Information",
+      "kind": "manufacturer_manual",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "SolaFrame family drawings; SolaFrame 2000 drawing page",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/High_End_Systems_Images/Lighting_Fixtures/SolaFrame/SolaFrame_2000_prod_right.jpg",
+      "title": "SolaFrame 2000 product reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Reference image; exact-model identity visually reviewed separately",
+      "reuse_status": "reference_only",
+      "file": "sources/product-reference.jpg",
+      "sha256": "af01e501ab14fb9f08734302a8f43e1a9d2bb38e57795789ab1202a3561d22fe"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.475,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer Rev B datasheet, overall assembled fixture dimensions excluding mounting hardware. Power is 864 W at 120 V input."
+    },
+    "height": {
+      "value": 0.838,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer Rev B datasheet, overall assembled fixture dimensions excluding mounting hardware. Power is 864 W at 120 V input."
+    },
+    "depth": {
+      "value": 0.32,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "official-3"
+      ],
+      "unit": "m",
+      "note": "Manufacturer Rev B datasheet, overall assembled fixture dimensions excluding mounting hardware. Power is 864 W at 120 V input."
+    },
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "source_reference_pose": "Head straight up, yoke centered; neutral pose per drawing"
+  },
+  "features": {
+    "optical": {},
+    "electrical": {
+      "power": {
+        "value": "855 W standard; 890 W with defogger",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "mechanical": {
+      "weight": {
+        "value": "43.5 kg",
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    },
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX",
+          "RDM"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.23749998211860657,
+        0.0,
+        -0.15999999819905497
+      ],
+      "max": [
+        0.23749998211860657,
+        0.8379999995231628,
+        0.15999997974722646
+      ]
+    },
+    "parts": [
+      {
+        "name": "base",
+        "prim_path": "/Fixture/Base",
+        "pivot_m": [
+          0.0,
+          0.0,
+          0.0003231150039937347
+        ]
+      },
+      {
+        "name": "yoke",
+        "prim_path": "/Fixture/Yoke",
+        "pivot_m": [
+          0.0,
+          0.13407999277114868,
+          0.0003231150039937347
+        ]
+      },
+      {
+        "name": "head",
+        "prim_path": "/Fixture/Head",
+        "pivot_m": [
+          0.0,
+          0.6812499761581421,
+          0.0003231150039937347
+        ]
+      },
+      {
+        "name": "head_lens",
+        "prim_path": "/Fixture/Head/Lens",
+        "pivot_m": [
+          0.0,
+          0.6812499761581421,
+          -0.14057791233062744
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "name": "pan",
+        "parent": "base",
+        "child": "yoke",
+        "pivot_m": [
+          0.0,
+          0.13407999277114868,
+          0.0003231150039937347
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      },
+      {
+        "name": "tilt",
+        "parent": "yoke",
+        "child": "head",
+        "pivot_m": [
+          0.0,
+          0.6812499761581421,
+          0.0003231150039937347
+        ],
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "status": "estimated",
+        "limits": null
+      }
+    ],
+    "emitters": [
+      {
+        "prim_path": "/Fixture/Head/Emitter",
+        "position_m": [
+          0.0,
+          0.6812499761581421,
+          -0.1459214687347412
+        ],
+        "quaternion": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "optical_axis": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "assumptions": [
+      "Procedural visualization proxy, not manufacturer CAD.",
+      "Manufacturer Rev B datasheet, overall assembled fixture dimensions excluding mounting hardware. Power is 864 W at 120 V input.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "179c2683b30593344702c243c00dd4f8d9a6bfbcdadf81ec8eaf173811677119"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "d728ee9f3b7acadfe66c1ac7328e6cc3e1fce4d9cb0c2a4c6227676bc15248bd"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "3460fdaaefab463e2a9c3d367c9faa961c4d675609e59ed934eb3894ec412967"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "fd7d36aebd5871ba67a2ec1299494274e09a0a49d9e9977e1a96ced21aee76b9"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "ce53629a555c5fa85dae01deae6e5ec465f8e5832d949b56e71032aa094d1dd6"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "c12cfda2dcdd493544e98485fa1a144d911c656271a51be207a4ead0dc2d230e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "fe6a23e6575b1d936f57307db1d483591d4d8c29d1cd0a9ef020d00cdfe2a473"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "671ab99fd1b58ae90ea62e7e4478fd97e0eb303ba77163b4c7d87194bc18f7f5"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "7babaa050faca326f088ac1970799200f1dec7cb61e2b8f366d12ff789e1b787"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "fd4eab1e34ee8fbc858dd4c4c493c6ccaf8b2331fd0a8a5ddb6b4da0c7c14085"
+      }
+    ],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "382cdcf54fb5d809cd39099cd23735fd2e8989a0d5478256e6b590690c874faf",
+    "generator_dependency": {
+      "file": "../../_shared/detailed_fixture.py",
+      "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+    },
+    "profile": {
+      "family": "moving_spot",
+      "lens_count": 1,
+      "body_style": "large LED framing head with yoke and circular lens",
+      "notes": "600 W light engine; overall input draw varies by line voltage. Multiple engine variants."
+    },
+    "mesh_count": 85,
+    "triangle_count": 18516,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y"
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+    ]
+  },
+  "unresolved": [
+    "Source describes a vertical-head dimensional pose; modeled horizontal optical-axis pose fits that envelope. Verify pose-specific shape before placement/clearance use."
+  ],
+  "revision_notes": [
+    "Acquired in expansion batch 1. Technical sources retained with locators; detailed model build pending.",
+    "Revision 2: detailed moving_spot geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "lighting.moving.profile",
+    "category_path": [
+      "Lighting fixtures",
+      "Automated lighting",
+      "Framing profile"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

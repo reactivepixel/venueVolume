@@ -1,0 +1,68 @@
+{
+  "mesh_count": 26,
+  "triangle_count": 2568,
+  "geometry_sha256": "7ee250a791382a9cf490407d34f1988d2230ea77f81b2ee0d24f5df3347b6bae",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.1120000034570694,
+      -0.21417751908302307
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        0.0,
+        0.014081567525863647
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.11466667056083679,
+        0.014081567525863647
+      ]
+    },
+    {
+      "name": "output",
+      "prim_path": "/Fixture/Output",
+      "pivot_m": [
+        0.0,
+        0.1120000034570694,
+        -0.21202413737773895
+      ]
+    }
+  ],
+  "family": "fogger",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    0.9756096601486206,
+    0.9946362972259521,
+    1.0025062561035156
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://antari.com/products/z-1000iii/",
+    "https://antari.com/wp-content/uploads/Z-1000III_01.jpg"
+  ]
+}

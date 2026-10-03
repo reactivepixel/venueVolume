@@ -1,0 +1,196 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "high-end-systems/solaframe-1000",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "High End Systems",
+      "model": "SolaFrame 1000",
+      "variant": "SolaFrame 1000",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaFrame/1000/Documentation.aspx",
+        "title": "SolaFrame 1000 Documentation",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Datasheet and dimensional information links; DMX channel map listed",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737503529",
+        "title": "SolaFrame 1000 Technical Datasheet",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Rev L, pages 2 and 6; protocols/RDM, 917 W standard or 958 W with defogger, 31.3 kg",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-3",
+        "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737504840",
+        "title": "Dimensional Drawings & Physical Information",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "SolaFrame 1000 drawing page; overall assembled envelope",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "evidence-4",
+        "url": "https://shop.etcconnect.com/solaframe-1000-black-molded-insert/",
+        "title": "SolaFrame 1000 official ETC store product image",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product image and overview",
+        "reuse_status": "reference_only",
+        "kind": "manufacturer_product"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://cdn11.bigcommerce.com/s-cr8amw/images/stencil/1280x1280/products/781/2244/SolaFrame_1000_prod_right_1__26691.1680192507.png?c=2",
+        "title": "SolaFrame 1000 product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Reference image; exact-model identity visually reviewed separately",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference.png",
+        "sha256": "3412a8b72f1565cd8e3a2a5552ceb78ac88c26946a6d801e258983ac0a123ee8"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.46,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3",
+          "evidence-4"
+        ],
+        "unit": "m",
+        "note": "Manufacturer dimensional drawing / Rev K datasheet, assembled dimensions excluding mounting hardware. Standard power draw is 917 W, 958 W with lens defogger."
+      },
+      "height": {
+        "value": 0.726,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3",
+          "evidence-4"
+        ],
+        "unit": "m",
+        "note": "Manufacturer dimensional drawing / Rev K datasheet, assembled dimensions excluding mounting hardware. Standard power draw is 917 W, 958 W with lens defogger."
+      },
+      "depth": {
+        "value": 0.324,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3",
+          "evidence-4"
+        ],
+        "unit": "m",
+        "note": "Manufacturer dimensional drawing / Rev K datasheet, assembled dimensions excluding mounting hardware. Standard power draw is 917 W, 958 W with lens defogger."
+      },
+      "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+      "source_reference_pose": "Head straight up, yoke centered; neutral pose per drawing"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "917 W standard; 958 W with defogger",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "31.3 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer dimensional drawing / Rev K datasheet, assembled dimensions excluding mounting hardware. Standard power draw is 917 W, 958 W with lens defogger.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [
+      "Source describes a vertical-head dimensional pose; modeled horizontal optical-axis pose fits that envelope. Verify pose-specific shape before placement/clearance use."
+    ],
+    "revision_notes": [
+      "Acquired in expansion batch 1. Technical sources retained with locators; detailed model build pending."
+    ]
+  },
+  "git_commit": "4f96bdc0ec081c3756f42c22c8d181b776dab91a",
+  "note": "Initial research record before any generated model artifacts existed."
+}

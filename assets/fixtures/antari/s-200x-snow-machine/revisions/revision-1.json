@@ -1,0 +1,162 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "antari/s-200x-snow-machine",
+    "revision": 1,
+    "updated_at": "2026-10-02",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "Antari",
+      "model": "S-200X Snow Machine",
+      "variant": "S-200X",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.antari.com/ProductGuide/2026/2026ProductGuide.pdf",
+        "title": "Antari 2026 Product Guide",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": "2026",
+        "locator": "Snow machines S-200X: 880 W, L505 W365 H409 mm, 11.5 kg and remote accessory; control line identifies manual / 3-pin",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://antari.com/usermanual/S/S-100X/",
+        "title": "S-100X/S-200X User Manual",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-10-02",
+        "document_revision": "manufacturer-hosted manual page",
+        "locator": "Product identification and family manual link",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://antari.com/wp-content/uploads/S-200X_01.jpg",
+        "title": "S-200X Snow Machine product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-10-02",
+        "document_revision": null,
+        "locator": "Exact-model reference image",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference-0.jpg",
+        "sha256": "6759abd68ed031a47c2aa74b8b13345294f3c8d1a064421a8bc31a67ecbcfbf0"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.365,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 505/365/409 mm, mapped to depth/width/height."
+      },
+      "height": {
+        "value": 0.409,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 505/365/409 mm, mapped to depth/width/height."
+      },
+      "depth": {
+        "value": 0.505,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2"
+        ],
+        "unit": "m",
+        "note": "Manufacturer L/W/H = 505/365/409 mm, mapped to depth/width/height."
+      },
+      "reference_pose": "Machine body upright, snow outlet toward front, hanging bracket included only if inseparable from body (not separately dimensioned)."
+    },
+    "features": {
+      "optical": {
+        "notable": {
+          "value": "Compact metal snow machine with hanging bracket and included SC-2 cable remote; product guide lists fixed L/W/H dimensions; exact revision DMX status not stated on current page.",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "electrical": {
+        "power": {
+          "value": "880 W",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "11.5 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "manual",
+            "optional wired remote"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1",
+            "official-2"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Machine body upright, snow outlet toward front, hanging bracket included only if inseparable from body (not separately dimensioned).",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [],
+      "joints": [],
+      "emitters": [],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer L/W/H = 505/365/409 mm, mapped to depth/width/height.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "Asset build and native validation pending."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Source-backed catalog acquisition: legacy-effects-2026-10."
+    ],
+    "acquisition_sha256": "d2d119b82c2f55b84196a66635bf06aabce7ce8bbdf6099c75ce758114897b4a"
+  },
+  "git_commit": "b54cf066890555aa4729a81cee9400883a874af3",
+  "note": "Initial research record before any generated model artifacts existed."
+}

@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "id": "etc/colorsource-20",
+  "revision": 2,
+  "updated_at": "2026-09-30",
+  "status": "ready_for_visualization",
+  "identity": {
+    "manufacturer": "ETC",
+    "model": "ColorSource 20",
+    "variant": "CS20",
+    "aliases": []
+  },
+  "sources": [
+    {
+      "id": "official-1",
+      "url": "https://www.etcconnect.com/products/consoles/colorsource/features.aspx",
+      "title": "ColorSource Consoles Features",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "ColorSource 20 feature list and comparison table (base CS20: 20 faders and one 5-pin DMX port)",
+      "reuse_status": "reference_only"
+    },
+    {
+      "id": "official-2",
+      "url": "https://www.etcconnect.com/about/drawing-library/consoles/colorsource.aspx",
+      "title": "ETC ColorSource console drawings",
+      "kind": "manufacturer_product",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Physical standard drawing library; ColorSource 20 EU drawing dated 10-2025 and US drawing dated 09-2024; US DWG downloaded as research/fixtures/taxonomy/support-sources/etc-colorsource20-dimensions.dwg",
+      "reuse_status": "reference_only",
+      "file": "sources/etc-colorsource20-dimensions.dwg",
+      "sha256": "3c4a5087a24fb0b6ec3ee835d58afc759b2738f4fe9c9296b96327eb6e80cb98"
+    },
+    {
+      "id": "evidence-3",
+      "url": "https://goknight.com/content/documentation/ColorSource_Console_Spec_Sheet_revG.pdf",
+      "reuse_status": "unknown",
+      "kind": "secondary",
+      "title": "ColorSource Console Spec Sheet rev G (ETC manufacturer document, distributor-hosted copy)",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Page 6, dimensions table: CS20/CS20AV height 60 mm, width 465 mm, depth 279 mm; dimension values called typical",
+      "file": "sources/colorsource-console-spec-revG.pdf",
+      "sha256": "169da1cb5c9679410b95dcaa2ed59852219d31aca08271bdf9b4e93f59738ee3"
+    },
+    {
+      "id": "product-reference",
+      "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/Products/ColorSource/CS20_CS40.png",
+      "title": "ColorSource 20 visual reference",
+      "kind": "manufacturer_asset",
+      "accessed_at": "2026-09-30",
+      "document_revision": null,
+      "locator": "Manufacturer-linked exact-model image; reviewed during category acquisition",
+      "reuse_status": "unknown",
+      "file": "sources/product-reference.png",
+      "sha256": "b11c73e5a2efefa88f400e023bface45a50cd3c59cd1775f1f033c9dcba4fb41"
+    }
+  ],
+  "dimensions": {
+    "width": {
+      "value": 0.465,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "evidence-3"
+      ],
+      "unit": "m",
+      "note": "465 W x 279 D x 60 H mm, ColorSource Console Spec Sheet rev G; values typical"
+    },
+    "height": {
+      "value": 0.06,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "evidence-3"
+      ],
+      "unit": "m",
+      "note": "465 W x 279 D x 60 H mm, ColorSource Console Spec Sheet rev G; values typical"
+    },
+    "depth": {
+      "value": 0.279,
+      "status": "documented",
+      "source_ids": [
+        "official-1",
+        "official-2",
+        "evidence-3"
+      ],
+      "unit": "m",
+      "note": "465 W x 279 D x 60 H mm, ColorSource Console Spec Sheet rev G; values typical"
+    },
+    "reference_pose": "Normal tabletop operating orientation: fader/touch surface upward, front edge toward operator; inferred from official product image."
+  },
+  "features": {
+    "optical": {},
+    "electrical": {},
+    "mechanical": {},
+    "control": {
+      "protocols": {
+        "value": [
+          "DMX512",
+          "RDM discovery/configuration"
+        ],
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ]
+      }
+    }
+  },
+  "dmx_modes": [],
+  "model": {
+    "status": "validated",
+    "representation": "procedural_approximation",
+    "units": "meters",
+    "up_axis": "Y",
+    "forward_axis": "-Z",
+    "origin": "floor center; X horizontal, Y up, optical forward -Z",
+    "reference_pose": "Normal tabletop operating orientation: fader/touch surface upward, front edge toward operator; inferred from official product image.",
+    "dimension_tolerance_m": 0.001,
+    "bounds_m": {
+      "min": [
+        -0.23250001668930054,
+        0.0,
+        -0.13950000703334808
+      ],
+      "max": [
+        0.23250001668930054,
+        0.05999999865889549,
+        0.13950000703334808
+      ]
+    },
+    "parts": [
+      {
+        "name": "body",
+        "prim_path": "/Fixture/Body",
+        "pivot_m": [
+          0.0,
+          0.0,
+          -0.0
+        ]
+      }
+    ],
+    "joints": [],
+    "emitters": [],
+    "assumptions": [
+      "Original image-informed procedural model, not manufacturer CAD.",
+      "465 W x 279 D x 60 H mm, ColorSource Console Spec Sheet rev G; values typical",
+      "Small details are estimates; neutral envelope is not a swept volume, safety distance or structural/electrical certification.",
+      "Detailed original procedural geometry; contours, bracket thickness, vent patterns, connectors and pivot positions are image-informed approximations.",
+      "Blender and USDZ use the same evaluated geometry, materials and part pivots. Pan/tilt metadata has estimated pivots, unknown limits and no authored physics joints."
+    ],
+    "artifacts": [
+      {
+        "role": "authoring",
+        "file": "models/fixture.blend",
+        "sha256": "afd464bfbcd0a82784339aac2a64a5835b86d6cd8651533cc450c03f843a26e9"
+      },
+      {
+        "role": "runtime",
+        "file": "models/fixture.usdz",
+        "sha256": "2831996d0597382b1414c8828ae6a2b7b61c18fa316fd2c1d321db14bc646b41"
+      },
+      {
+        "role": "generator",
+        "file": "models/build_fixture.py",
+        "sha256": "c3e14ef226d87fe69dc909dc6cc323be0c09b92e05b10513c535d4e3b99a138c"
+      },
+      {
+        "role": "validation",
+        "file": "validation/usdz.json",
+        "sha256": "2f8e0a4acf5e1ad7b37c6e54a096b0119cda501ce2622614cad7a3a0328c1c75"
+      },
+      {
+        "role": "validation",
+        "file": "validation/detail.json",
+        "sha256": "3b4746d68efd3591d6f6b0418c81b2d43fff9bc76f6bcc037c4d2b338e60421e"
+      },
+      {
+        "role": "preview",
+        "file": "previews/front.png",
+        "sha256": "a3eca3320d4fe5f65aa4a31d52b847351b5fe0ca7491d95aacb78acef38f7e82"
+      },
+      {
+        "role": "preview",
+        "file": "previews/side.png",
+        "sha256": "486d26174496893245e542eae38c640a5cfc3edf0f60cc89da53d3215c98cac3"
+      },
+      {
+        "role": "preview",
+        "file": "previews/rear.png",
+        "sha256": "e6a1db645c643f031303ec75cb30103509cad6bed242979e32dfb0a097187248"
+      },
+      {
+        "role": "preview",
+        "file": "previews/three-quarter.png",
+        "sha256": "6e1a0ac6c9aae0333f179a968d2789750094bd6732b7ac0dc8f5242103909095"
+      },
+      {
+        "role": "validation",
+        "file": "validation/parity.json",
+        "sha256": "77f701571f42b61d26d85fe2815829fa33482d08444f7a1a3b8ffe2a817083d8"
+      }
+    ],
+    "effect_outlets": [],
+    "detail_level": "high",
+    "detail_batch": "catalog-expansion-2026-09-30",
+    "detail_build_token": "ed45d00a8855af2efb8338721029ef940c90e0cf955e5c5508582d77e3b1ad52",
+    "generator_dependency": {
+      "file": "../../_shared/equipment_fixture.py",
+      "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+    },
+    "profile": {
+      "family": "console",
+      "body_style": "low tabletop console with 20 faders and central touchscreen",
+      "notes": "Official product image shows both CS20 and CS40; use the smaller upper CS20 image. Dimensions are typical values from ColorSource Console Spec Sheet rev G; exact physical drawing DWG retained but not parsed in this pass.",
+      "generator": "equipment",
+      "output_kind": "none"
+    },
+    "mesh_count": 81,
+    "triangle_count": 14844,
+    "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+    "generator_dependencies": [
+      {
+        "file": "../../_shared/equipment_fixture.py",
+        "sha256": "48faab88419bf25049687cc0b801670efaefc4f01c8fcbdf2f62fc40fb5d2dd1"
+      },
+      {
+        "file": "../../_shared/detailed_fixture.py",
+        "sha256": "625a3f4013926a6b250aeb64675bcf400f14d7d4b3f2b8b6393b5eb5a73d78b2"
+      }
+    ]
+  },
+  "verification": {
+    "realitykit": "not_tested",
+    "hardware": "not_tested",
+    "notes": [
+      "OpenUSD structure, dimensional envelope and declared hierarchy checked. Physical source truth, RealityKit rendering and hardware operation require separate review."
+    ]
+  },
+  "unresolved": [],
+  "revision_notes": [
+    "Category-coverage acquisition: exact product, technical evidence, control path and high-detail build profile staged.",
+    "Revision 2: detailed console geometry, editable part pivots, full-detail USDZ export and four refreshed previews."
+  ],
+  "equipment": {
+    "primary_category": "control.console",
+    "control_path": "Console outputs control over one 5-pin DMX port to DMX fixtures/nodes. Base ColorSource 20 feature table does not list sACN/Art-Net; do not conflate with the AV variant.",
+    "physical_asset_only": true,
+    "source_data": {
+      "source_urls": [
+        "https://www.etcconnect.com/products/consoles/colorsource/features.aspx",
+        "https://www.etcconnect.com/about/drawing-library/consoles/colorsource.aspx"
+      ],
+      "dimensions": {
+        "width_m": 0.465,
+        "height_m": 0.06,
+        "depth_m": 0.279,
+        "source_order": "465 W x 279 D x 60 H mm, ColorSource Console Spec Sheet rev G; values typical",
+        "axis_status": "documented",
+        "axis_note": "465 W x 279 D x 60 H mm, ColorSource Console Spec Sheet rev G; values typical",
+        "reference_pose": "Normal tabletop operating orientation: fader/touch surface upward, front edge toward operator; inferred from official product image."
+      },
+      "dimensions_status": "documented_in_manufacturer_spec_sheet_mirrored_by_distributor",
+      "control_path": "Console outputs control over one 5-pin DMX port to DMX fixtures/nodes. Base ColorSource 20 feature table does not list sACN/Art-Net; do not conflate with the AV variant.",
+      "protocols": [
+        "DMX512",
+        "RDM discovery/configuration"
+      ],
+      "pose": "Normal tabletop operating orientation: fader/touch surface upward, front edge toward operator; inferred from official product image.",
+      "research_evidence": [
+        {
+          "url": "https://www.etcconnect.com/products/consoles/colorsource/features.aspx",
+          "title": "ColorSource Consoles Features",
+          "locator": "ColorSource 20 feature list and comparison table (base CS20: 20 faders and one 5-pin DMX port)",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://www.etcconnect.com/about/drawing-library/consoles/colorsource.aspx",
+          "title": "ETC ColorSource console drawings",
+          "locator": "Physical standard drawing library; ColorSource 20 EU drawing dated 10-2025 and US drawing dated 09-2024; US DWG downloaded as research/fixtures/taxonomy/support-sources/etc-colorsource20-dimensions.dwg",
+          "file": "research/fixtures/taxonomy/support-sources/etc-colorsource20-dimensions.dwg",
+          "sha256": "3c4a5087a24fb0b6ec3ee835d58afc759b2738f4fe9c9296b96327eb6e80cb98",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown"
+        },
+        {
+          "url": "https://goknight.com/content/documentation/ColorSource_Console_Spec_Sheet_revG.pdf",
+          "title": "ColorSource Console Spec Sheet rev G (ETC manufacturer document, distributor-hosted copy)",
+          "locator": "Page 6, dimensions table: CS20/CS20AV height 60 mm, width 465 mm, depth 279 mm; dimension values called typical",
+          "file": "research/fixtures/taxonomy/support-sources/colorsource-console-spec-revG.pdf",
+          "sha256": "169da1cb5c9679410b95dcaa2ed59852219d31aca08271bdf9b4e93f59738ee3",
+          "accessed_at": "2026-09-30",
+          "reuse_status": "unknown",
+          "source_kind": "secondary_host_of_manufacturer_document"
+        }
+      ]
+    }
+  },
+  "classification": {
+    "taxonomy_version": 1,
+    "primary_category": "control.console",
+    "category_path": [
+      "Control and data",
+      "Lighting console / control surface"
+    ],
+    "use_tags": [],
+    "method": "Reviewed primary function; capabilities do not create duplicate inventory entries."
+  }
+}

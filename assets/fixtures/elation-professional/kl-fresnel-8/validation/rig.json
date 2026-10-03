@@ -1,0 +1,17 @@
+{
+  "id": "elation-professional/kl-fresnel-8",
+  "passed": true,
+  "source_usdz_sha256": "dd05c36d483c0c1aa041fc93aa625a9ffe4be1281097758be1b15035ee851f39",
+  "joints": 1,
+  "moving_meshes": 50,
+  "fixed_meshes": 6,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

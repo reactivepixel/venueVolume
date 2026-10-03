@@ -1,0 +1,17 @@
+{
+  "id": "adj/m-2020-mirror-ball",
+  "passed": true,
+  "source_usdz_sha256": "13278609cd720c50c4a84aad2f81c90217adc5286d5635bf6e0c7c7c82d815aa",
+  "joints": 1,
+  "moving_meshes": 33,
+  "fixed_meshes": 0,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

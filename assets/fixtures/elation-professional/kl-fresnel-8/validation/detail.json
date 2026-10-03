@@ -1,0 +1,68 @@
+{
+  "mesh_count": 56,
+  "triangle_count": 23496,
+  "geometry_sha256": "3aed2c61eb76728081505ea2a57938fdbf951912e207eed574428fac179319ea",
+  "runtime_matches_evaluated_authoring": true,
+  "emitter": {
+    "prim_path": "/Fixture/Emitter",
+    "position_m": [
+      0.0,
+      0.17904731631278992,
+      -0.3018433749675751
+    ],
+    "quaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "optical_axis": [
+      0,
+      0,
+      -1
+    ]
+  },
+  "parts": [
+    {
+      "name": "body",
+      "prim_path": "/Fixture/Body",
+      "pivot_m": [
+        0.0,
+        -0.028969518840312958,
+        -0.03126493841409683
+      ]
+    },
+    {
+      "name": "yoke",
+      "prim_path": "/Fixture/Yoke",
+      "pivot_m": [
+        0.0,
+        0.17904731631278992,
+        -0.03126493841409683
+      ]
+    },
+    {
+      "name": "lens",
+      "prim_path": "/Fixture/Lens",
+      "pivot_m": [
+        0.0,
+        0.17904731631278992,
+        -0.2725141942501068
+      ]
+    }
+  ],
+  "family": "fresnel",
+  "detail_level": "high",
+  "representation": "procedural_approximation",
+  "normalization_scale": [
+    1.0050251483917236,
+    1.1731675863265991,
+    1.0608774423599243
+  ],
+  "approximation": "Outer envelope follows recorded dimensions; contours, local spacing, fasteners and pivots are estimated from images.",
+  "authoring_to_runtime": "(x,y,z) -> (x,z,-y), Blender optical forward +Y",
+  "reference_sources": [
+    "https://www.elationlighting.com/products/kl-fresnel-8",
+    "https://www.elationlighting.com/cdn/shop/files/9182ac94ce3e7191a943e08811665c65e4c51157_KLF023__IMG__001__42d4bf9b406c.jpg?v=1776815436&width=850"
+  ]
+}

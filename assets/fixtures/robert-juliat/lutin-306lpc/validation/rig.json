@@ -1,0 +1,17 @@
+{
+  "id": "robert-juliat/lutin-306lpc",
+  "passed": true,
+  "source_usdz_sha256": "697f4ef83307213bda75637157722e2a0b827f8897b7ecb8fc8cd7b58500a737",
+  "joints": 1,
+  "moving_meshes": 31,
+  "fixed_meshes": 5,
+  "checks": [
+    "meter-scale rig paths",
+    "unique moving-part ownership",
+    "neutral pose preserved",
+    "rigid geometry at four non-neutral poses",
+    "emitter parent references"
+  ],
+  "realitykit": "not_run",
+  "note": "Mathematical rig validation; does not establish RealityKit import, appearance or physical accuracy."
+}

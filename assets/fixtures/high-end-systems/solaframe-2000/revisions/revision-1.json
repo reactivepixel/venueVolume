@@ -1,0 +1,183 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "high-end-systems/solaframe-2000",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "researched",
+    "identity": {
+      "manufacturer": "High End Systems",
+      "model": "SolaFrame 2000",
+      "variant": "SolaFrame 2000",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://www.etcconnect.com/Products/Legacy/Live-Events-High-End-Systems/Lighting-Fixtures/SolaFrame/2000/Features.aspx",
+        "title": "SolaFrame 2000 Features",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "High End Systems product page; official product image",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-2",
+        "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737503533",
+        "title": "SolaFrame 2000 Technical Datasheet",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Rev B pages 2 and 5; 838 × 475 × 320 mm, 43.5 kg; 855 W standard / 890 W with defogger",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-3",
+        "url": "https://www.etcconnect.com/WorkArea/DownloadAsset.aspx?id=10737504840",
+        "title": "Dimensional Drawings & Physical Information",
+        "kind": "manufacturer_manual",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "SolaFrame family drawings; SolaFrame 2000 drawing page",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "product-reference",
+        "url": "https://www.etcconnect.com/uploadedImages/Main_Site/Images/High_End_Systems_Images/Lighting_Fixtures/SolaFrame/SolaFrame_2000_prod_right.jpg",
+        "title": "SolaFrame 2000 product reference",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Reference image; exact-model identity visually reviewed separately",
+        "reuse_status": "reference_only",
+        "file": "sources/product-reference.jpg",
+        "sha256": "af01e501ab14fb9f08734302a8f43e1a9d2bb38e57795789ab1202a3561d22fe"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 0.475,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "unit": "m",
+        "note": "Manufacturer Rev B datasheet, overall assembled fixture dimensions excluding mounting hardware. Power is 864 W at 120 V input."
+      },
+      "height": {
+        "value": 0.838,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "unit": "m",
+        "note": "Manufacturer Rev B datasheet, overall assembled fixture dimensions excluding mounting hardware. Power is 864 W at 120 V input."
+      },
+      "depth": {
+        "value": 0.32,
+        "status": "documented",
+        "source_ids": [
+          "official-1",
+          "official-2",
+          "official-3"
+        ],
+        "unit": "m",
+        "note": "Manufacturer Rev B datasheet, overall assembled fixture dimensions excluding mounting hardware. Power is 864 W at 120 V input."
+      },
+      "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+      "source_reference_pose": "Head straight up, yoke centered; neutral pose per drawing"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "855 W standard; 890 W with defogger",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "43.5 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "not_built",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "Modeled neutral pose; horizontal optical axis, assembled envelope constrained to recorded dimensions",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": null,
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "yoke",
+          "prim_path": "/Fixture/Yoke"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer Rev B datasheet, overall assembled fixture dimensions excluding mounting hardware. Power is 864 W at 120 V input.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": []
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [
+      "Source describes a vertical-head dimensional pose; modeled horizontal optical-axis pose fits that envelope. Verify pose-specific shape before placement/clearance use."
+    ],
+    "revision_notes": [
+      "Acquired in expansion batch 1. Technical sources retained with locators; detailed model build pending."
+    ]
+  },
+  "git_commit": "4f96bdc0ec081c3756f42c22c8d181b776dab91a",
+  "note": "Initial research record before any generated model artifacts existed."
+}

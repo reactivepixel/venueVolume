@@ -1,0 +1,200 @@
+{
+  "record": {
+    "schema_version": 1,
+    "id": "glp/impression-x4-bar-20",
+    "revision": 1,
+    "updated_at": "2026-09-30",
+    "status": "ready_for_visualization",
+    "identity": {
+      "manufacturer": "GLP",
+      "model": "impression X4 Bar 20",
+      "variant": "7665",
+      "aliases": []
+    },
+    "sources": [
+      {
+        "id": "official-1",
+        "url": "https://glp.de/en/products/discontinued/impression-x4-bar-20-en",
+        "title": "GLP impression X4 Bar 20 official source 1",
+        "kind": "manufacturer_product",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Product page/specification section",
+        "reuse_status": "reference_only"
+      },
+      {
+        "id": "official-image",
+        "url": "https://glp.de/templates/yootheme/cache/86/impression-X4-Bar-20_Header-869049ce.png",
+        "title": "GLP impression X4 Bar 20 official product image",
+        "kind": "manufacturer_asset",
+        "accessed_at": "2026-09-30",
+        "document_revision": null,
+        "locator": "Manufacturer product image",
+        "reuse_status": "reference_only",
+        "file": "sources/official-product-image.png",
+        "sha256": "3f5e2284f8f83fb45e153ffc9913eaf2cdab6388b464feb7ac89d7203c845ffb"
+      }
+    ],
+    "dimensions": {
+      "width": {
+        "value": 1.0,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "height": {
+        "value": 0.24,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "depth": {
+        "value": 0.1,
+        "status": "documented",
+        "source_ids": [
+          "official-1"
+        ],
+        "unit": "m"
+      },
+      "reference_pose": "shipping/upright reference pose; moving head centered"
+    },
+    "features": {
+      "optical": {},
+      "electrical": {
+        "power": {
+          "value": "400 W typical at 230 V; 100-240 VAC",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "mechanical": {
+        "weight": {
+          "value": "16 kg",
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      },
+      "control": {
+        "protocols": {
+          "value": [
+            "DMX",
+            "RDM"
+          ],
+          "status": "documented",
+          "source_ids": [
+            "official-1"
+          ]
+        }
+      }
+    },
+    "dmx_modes": [],
+    "model": {
+      "status": "validated",
+      "representation": "procedural_approximation",
+      "units": "meters",
+      "up_axis": "Y",
+      "forward_axis": "-Z",
+      "origin": "floor center; X horizontal, Y up, optical forward -Z",
+      "reference_pose": "shipping/upright reference pose; moving head centered",
+      "dimension_tolerance_m": 0.001,
+      "bounds_m": {
+        "min": [
+          -0.5,
+          0.0,
+          -0.05000099912285805
+        ],
+        "max": [
+          0.5,
+          0.23999999463558197,
+          0.05000000074505806
+        ]
+      },
+      "parts": [
+        {
+          "name": "body",
+          "prim_path": "/Fixture/Body"
+        },
+        {
+          "name": "lens",
+          "prim_path": "/Fixture/Lens"
+        }
+      ],
+      "joints": [],
+      "emitters": [
+        {
+          "name": "primary light output",
+          "prim_path": "/Fixture/Emitter"
+        }
+      ],
+      "assumptions": [
+        "Procedural visualization proxy, not manufacturer CAD.",
+        "Manufacturer drawing identifies head height/width and yoke width.",
+        "Moving components are separated but no runtime articulation joints are authored."
+      ],
+      "artifacts": [
+        {
+          "role": "authoring",
+          "file": "models/fixture.blend",
+          "sha256": "bd3ae7b417af5b31bef7cda4c63b25d8151e58acbc986e2889ee788e5b379944"
+        },
+        {
+          "role": "runtime",
+          "file": "models/fixture.usdz",
+          "sha256": "bc55e8ec46d01d23260cdbf046f7bea3024f2a34b90b0bca9a158a6095530551"
+        },
+        {
+          "role": "generator",
+          "file": "models/build_fixture.py",
+          "sha256": "694ffcbe9fe74fde2f3ac0c91dc83267ffc80534531a3786064438e4e142f4cb"
+        },
+        {
+          "role": "preview",
+          "file": "previews/front.png",
+          "sha256": "0786b6ccbc1988472c3be9a707b3d60612691c470e45ca9cb2d50a85c8836397"
+        },
+        {
+          "role": "preview",
+          "file": "previews/rear.png",
+          "sha256": "7a162ee841936016bfbd73dd2960b0a9f188defc2fc161491d999c55f266c008"
+        },
+        {
+          "role": "preview",
+          "file": "previews/side.png",
+          "sha256": "fd11798e3b88cb49f57c11529208fe50516ea539af32445a49c23d582b7c3dd0"
+        },
+        {
+          "role": "preview",
+          "file": "previews/three-quarter.png",
+          "sha256": "43c0317907569b73657ffdd0717a1ce2df81d277b02bdf99e11c268eec7ede73"
+        },
+        {
+          "role": "validation",
+          "file": "validation/usdz.json",
+          "sha256": "7f5f4aff56460fe3bdb9418d88bd41878a948e59549c7ceec289940f38186f0d"
+        }
+      ]
+    },
+    "verification": {
+      "realitykit": "not_tested",
+      "hardware": "not_tested",
+      "notes": [
+        "OpenUSD structural validation passed; RealityKit and physical hardware were not tested."
+      ]
+    },
+    "unresolved": [],
+    "revision_notes": [
+      "Initial source-backed procedural asset package generated from the major-manufacturer fixture research CSV."
+    ]
+  },
+  "git_commit": "a5fe50a4a7bba6f8d114bf7a9b52c526d0e9e835",
+  "artifact_directory": "revisions/revision-1",
+  "note": "Prior artifact bytes preserved in artifact_directory."
+}
