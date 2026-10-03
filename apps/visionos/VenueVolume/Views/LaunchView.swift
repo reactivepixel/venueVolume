@@ -37,6 +37,9 @@ struct LaunchView: View {
         .presetEditorPresenter(when: !model.isImmersed)
         .task {
             await model.prepareLibrary()
+            #if DEBUG
+            if ProcessInfo.processInfo.arguments.contains("--show-new-venue") { model.requestNewVenue() }
+            #endif
             if model.consumeDemoAutoEntry() { await enter() }
         }
     }

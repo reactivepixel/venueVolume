@@ -32,7 +32,28 @@ import VenueVolumeCore
     }
     static func run(model: VenueModel) async {
         let arguments = ProcessInfo.processInfo.arguments
-        guard model.isDemoMode, arguments.contains("--library-smoke") || arguments.contains("--history-smoke") else { return }
+        guard model.isDemoMode else { return }
+        if arguments.contains("--venue-choices-smoke") {
+            do {
+                try await ready(model)
+                for roomID in ["img3153-classroom-v1", "mappedRoom", "the-fortress"] {
+                    guard let room = model.rooms.first(where: { $0.manifest.id == roomID }) else {
+                        throw EnvironmentError.invalid("Missing bundled venue \(roomID)")
+                    }
+                    model.requestRoom(room)
+                    try await ready(model, room: room)
+                    guard model.fixtures.isEmpty else { throw EnvironmentError.invalid("New venue contains fixtures") }
+                    guard model.whiteRoom == (roomID == "img3153-classroom-v1") else {
+                        throw EnvironmentError.invalid("Unexpected blank venue materials")
+                    }
+                    print("VENUE_CHOICES_ROOM_PASS \(roomID) blank=true materials=true")
+                    try await Task.sleep(for: .seconds(3))
+                }
+                print("VENUE_CHOICES_SMOKE_PASS")
+            } catch { print("VENUE_CHOICES_SMOKE_FAIL \(error)") }
+            return
+        }
+        guard arguments.contains("--library-smoke") || arguments.contains("--history-smoke") else { return }
         do {
             try await ready(model)
             guard let bundled = model.activeRoom, let resources = Bundle.main.resourceURL else { throw EnvironmentError.invalid("default room missing") }

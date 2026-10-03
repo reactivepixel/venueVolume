@@ -29,6 +29,8 @@ struct VenueLibraryPicker: View {
     @State private var confirming = false
     @State private var importing = false
     @State private var reading = false
+    @State private var importTask: Task<Void, Never>?
+    @State private var importIntent: UUID?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -74,18 +76,35 @@ struct VenueLibraryPicker: View {
         .fileImporter(isPresented: $importing, allowedContentTypes: [.venueVolumeSave, .json], allowsMultipleSelection: false) { result in
             switch result {
             case .success(let urls):
-                guard let url = urls.first else { return }
+                guard let url = urls.first, let intent = model.beginVenueImport() else { return }
+                importTask?.cancel()
+                importIntent = intent
                 reading = true
-                Task { @MainActor in
-                    defer { reading = false }
+                importTask = Task { @MainActor in
+                    defer {
+                        if importIntent == intent { reading = false; importIntent = nil; importTask = nil }
+                    }
                     do {
                         let document = try await VenueSaveDocument.read(url)
-                        let (room, setup) = try model.importVenueSave(document, assetChecksum: RoomAssets.checksum(document.asset))
+                        try Task.checkCancellation()
+                        guard model.venueIntentID == intent else { return }
+                        let (room, setup) = try model.importVenueSave(document, assetChecksum: RoomAssets.checksum(document.asset), intentID: intent)
                         request(room, setup: setup)
-                    } catch { model.libraryMessage = "Save could not be loaded: \(error.localizedDescription)" }
+                    } catch is CancellationError {
+                        // Closing the source window or choosing a newer venue is intentional.
+                    } catch {
+                        if !Task.isCancelled, model.venueIntentID == intent {
+                            model.libraryMessage = "Save could not be loaded: \(error.localizedDescription)"
+                        }
+                    }
                 }
             case .failure(let error): model.libraryMessage = "Save could not be loaded: \(error.localizedDescription)"
             }
+        }
+        .onDisappear {
+            importTask?.cancel(); importTask = nil
+            if let importIntent { model.cancelVenueImport(importIntent) }
+            importIntent = nil; reading = false
         }
     }
     private func venueButton(title: String, detail: String, symbol: String, action: @escaping () -> Void) -> some View {
@@ -109,15 +128,16 @@ struct VenueLibraryPicker: View {
         guard let (room, setup) = pending else { return }
         pending = nil
         model.requestRoom(room, setup: setup)
+        let requestID = model.roomLoadToken
         if model.isImmersed { didOpen(); return }
         Task { @MainActor in
             model.isTransitioning = true
             defer { model.isTransitioning = false }
             switch await openSpace(id: "VenueSpace") {
             case .opened: model.isImmersed = true; didOpen()
-            case .userCancelled: model.libraryBusy = false
-            case .error: model.libraryBusy = false; model.libraryMessage = "The venue could not open. Select it to try again."
-            @unknown default: model.libraryBusy = false; model.libraryMessage = "The system could not open the venue."
+            case .userCancelled: model.cancelRequestedRoom(requestID)
+            case .error: model.cancelRequestedRoom(requestID); model.libraryMessage = "The venue could not open. Select it to try again."
+            @unknown default: model.cancelRequestedRoom(requestID); model.libraryMessage = "The system could not open the venue."
             }
         }
     }

@@ -9,12 +9,21 @@ final class PresetEditorPresentation {
         let id: UUID
         let presetID: UUID?
     }
+    struct TaskID: Hashable {
+        let requestID: UUID
+        let attempt: UInt
+    }
 
     private(set) var latestRequest: Request?
     private(set) var windowIDs: Set<UUID> = []
     private(set) var handledRequestID: UUID?
     private var presentingRequestID: UUID?
+    private var presentationAttempt: UInt = 0
     var failureMessage: String?
+
+    var taskID: TaskID? {
+        latestRequest.map { TaskID(requestID: $0.id, attempt: presentationAttempt) }
+    }
 
     func request(presetID: UUID? = nil) {
         latestRequest = Request(id: UUID(), presetID: presetID)
@@ -34,8 +43,15 @@ final class PresetEditorPresentation {
         return true
     }
 
-    func release(_ request: Request) {
-        if presentingRequestID == request.id { presentingRequestID = nil }
+    func release(_ request: Request, retryIfUnfinished: Bool = true) {
+        guard presentingRequestID == request.id else { return }
+        presentingRequestID = nil
+        if retryIfUnfinished, latestRequest?.id == request.id, handledRequestID != request.id {
+            // A competing presenter may already have returned after losing its
+            // claim. Give it a new task identity when the owner disappears
+            // during a launch-to-immersive transition or window restoration.
+            presentationAttempt &+= 1
+        }
     }
 
     func didOpen(_ request: Request) {

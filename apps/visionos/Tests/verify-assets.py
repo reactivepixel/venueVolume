@@ -44,3 +44,13 @@ for file in ['environment.json', 'environment.usdz']:
 for key in ['colliders', 'surfaces', 'spawn', 'bounds', 'geometry']:
     assert metadata[key] == manifest[key], key
 print('Mapped room checks passed: separate identity, exact authoring copies, unchanged geometry/colliders/surfaces/spawn.')
+
+fortress = app / 'VenueVolume/Environments/Fortress'
+metadata = json.loads((fortress / 'environment.json').read_text())
+source = repo / 'outputs/the-fortress/runs/7a29dba87fcc594463a2518ab829a4e6056453804a27aab94905db42150cab13/output'
+assert metadata['id'] == 'the-fortress'
+assert metadata['asset']['bytes'] == (fortress / 'environment.usdz').stat().st_size
+assert hashlib.sha256((fortress / 'environment.usdz').read_bytes()).hexdigest() == metadata['asset']['sha256']
+for file in ['environment.json', 'environment.usdz']:
+    assert (fortress / file).read_bytes() == (source / file).read_bytes()
+print('Fortress checks passed: exact source manifest and USDZ, byte count and SHA-256.')

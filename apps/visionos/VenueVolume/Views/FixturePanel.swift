@@ -4,7 +4,6 @@ import VenueVolumeCore
 /// Object info is deliberately read-only. Channel editing belongs to presets.
 struct FixturePanel: View {
     @Environment(VenueModel.self) private var model
-    @Environment(\.openWindow) private var openWindow
     let fixture: Fixture
 
     var body: some View {
@@ -33,12 +32,11 @@ struct FixturePanel: View {
                 }
             }.frame(height: 132)
             Button {
-                model.openPreset(fixture.presetID)
+                model.presetEditor.request(presetID: fixture.presetID)
                 model.record(.presets)
-                openWindow(id: "presets")
                 model.controlsTab = 0
             } label: { Label(fixture.presetID == nil ? "Choose or create preset" : "Edit assigned preset", systemImage: "slider.horizontal.3") }
-            Text("Drag a preset from the toolbox onto this fixture to apply it.")
+            Text("Drag a preset using its handle in the wrist menu, or choose a fixture from the preset’s Apply menu.")
                 .font(.caption).foregroundStyle(.secondary)
         }.font(.callout)
     }

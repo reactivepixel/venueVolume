@@ -7,6 +7,7 @@ struct ToolboxView: View {
     @Environment(\.openWindow) private var openWindow
     @Environment(\.dismissWindow) private var dismissWindow
     @Environment(\.dismissImmersiveSpace) private var dismissSpace
+    @Environment(\.accessibilityPrefersHeadAnchorAlternative) private var prefersStationaryControls
     @State private var fixtureSearch = ""
     @State private var fixtureFamily = "all"
 
@@ -49,6 +50,9 @@ struct ToolboxView: View {
                     .accessibilityLabel("Close toolbox")
             }
             if !model.isImmersed { VenueEntryButton() }
+            if prefersStationaryControls && (model.isPickingRoom || model.gizmoVisible) {
+                TargetingPrompt().frame(maxWidth: .infinity)
+            }
             @Bindable var model = model
             Picker("Toolbox section", selection: $model.toolboxTab) {
                 Text("Fixtures & presets").tag(0)
@@ -72,6 +76,9 @@ struct ToolboxView: View {
                     }
                     ScrollView {
                         VStack(alignment: .leading, spacing: 8) {
+                            section("Presets · drag onto a fixture")
+                            ForEach(model.presets) { preset in item(.preset(preset.id)) }
+                            if model.presets.isEmpty { Text("Create a preset in the preset editor.").font(.caption).foregroundStyle(.secondary) }
                             section("Actions")
                             item(.addFixture)
                             item(.presets)
@@ -86,9 +93,6 @@ struct ToolboxView: View {
                             if model.isPlacing {
                                 Text("Look at a clear floor or tabletop and pinch to place the fixture.").font(.caption)
                             }
-                            section("Presets · drag onto a fixture")
-                            ForEach(model.presets) { preset in item(.preset(preset.id)) }
-                            if model.presets.isEmpty { Text("Create a preset in the preset editor.").font(.caption).foregroundStyle(.secondary) }
                         }.padding(.trailing, 6)
                     }
                 }.frame(maxWidth: .infinity, alignment: .leading)
@@ -193,7 +197,7 @@ struct SimulatorWristControl: View {
             Text(model.canSimulatePalm ? "SIMULATOR" : "HAND TRACKING UNAVAILABLE").font(.caption2.weight(.semibold)).foregroundStyle(.secondary)
             Button("Open / recall toolbox", systemImage: "rectangle.on.rectangle") { model.requestToolbox() }
             if model.canSimulatePalm {
-                Toggle("Left palm facing me", isOn: $model.simulatedPalm).font(.callout)
+                Toggle("Left hand facing me", isOn: $model.simulatedPalm).font(.callout)
             }
         }.padding(16).frame(width: 270).glassBackgroundEffect()
     }

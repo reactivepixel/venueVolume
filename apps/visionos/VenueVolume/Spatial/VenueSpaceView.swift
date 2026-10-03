@@ -1,11 +1,14 @@
 import RealityKit
 import SwiftUI
+import VenueVolumeCore
 
 struct VenueSpaceView: View {
     @Environment(VenueModel.self) private var model
     @Environment(\.dismissWindow) private var dismissWindow
     @Environment(\.openWindow) private var openWindow
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.accessibilityPrefersHeadAnchorAlternative) private var prefersStationaryControls
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var scene = VenueScene()
     @State private var lastSpatialDragEnd = Date.distantPast
     @State private var handledDrag = false
@@ -20,15 +23,17 @@ struct VenueSpaceView: View {
             content.add(scene.overlayRoot)
             content.add(scene.headAnchor)
             scene.update(model: model, attachments: attachments)
-        } update: { _, attachments in
+            scene.updatePresetDrag(model: model, content: content, reduceMotion: reduceMotion)
+        } update: { content, attachments in
             scene.update(model: model, attachments: attachments)
+            scene.updatePresetDrag(model: model, content: content, reduceMotion: reduceMotion)
         } attachments: {
-            Attachment(id: "targeting") { TargetingPrompt().environment(model) }
+            if !prefersStationaryControls { Attachment(id: "targeting") { TargetingPrompt().environment(model) } }
             ForEach(model.environment?.surfaces ?? [], id: \.id) { surface in
                 Attachment(id: "surface-drop-\(surface.id)") { FixtureSurfaceDrop(surface: surface).environment(model) }
             }
-            if model.canSimulatePalm || model.needsManualToolbox {
-                Attachment(id: "palm-preview") { SimulatorPalmControl().environment(model) }
+            if !prefersStationaryControls && (model.canSimulatePalm || model.needsManualToolbox) {
+                Attachment(id: "wrist-preview") { SimulatorWristControl().environment(model) }
             }
             ForEach(model.fixtures) { fixture in
                 Attachment(id: "label-\(fixture.id)") {
@@ -77,6 +82,12 @@ struct VenueSpaceView: View {
                 dismissWindow(id: "fixture-editor")
             }
         }
+        .onChange(of: prefersStationaryControls, initial: true) { _, enabled in
+            if enabled { model.requestToolbox() }
+        }
+        .onChange(of: model.isPickingRoom || model.gizmoVisible) { _, active in
+            if active && prefersStationaryControls { model.requestToolbox() }
+        }
         .task(id: model.toolboxRequestID) {
             guard let request = model.toolboxRequestID else { return }
             // A new window value recalls the toolbox near the viewer instead of
@@ -110,10 +121,10 @@ struct VenueSpaceView: View {
                 guard !Task.isCancelled else { return }
                 if arguments.contains("--position-tab") {
                     if let id = model.selectedID { model.beginTransform(id) }
-                    openWindow(id: "fixture-editor")
+                    openWindow(id: "fixture-editor", value: "selection")
                 } else if arguments.contains("--show-item-editor") {
-                    openWindow(id: "fixture-editor")
-                } else if !model.presetWindowVisible { openWindow(id: "presets") }
+                    openWindow(id: "fixture-editor", value: "selection")
+                } else { model.presetEditor.request() }
             }
         }
         .task {
@@ -145,6 +156,8 @@ struct VenueSpaceView: View {
         }
         .task {
             #if DEBUG
+            await scene.runPresetDragSmoke(model: model)
+            await runEditorRecallSmoke()
             await runToolboxWindowSmoke()
             await scene.runInputSmoke(model: model)
             await RoomLibrarySmoke.run(model: model)
@@ -168,11 +181,38 @@ struct VenueSpaceView: View {
             openWindow(id: "launch")
         }
         .onChange(of: scenePhase) { _, phase in
-            if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits() }
+            if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits(); model.endPresetDrag() }
         }
+        .presetEditorPresenter()
     }
 
     #if DEBUG
+    private func runEditorRecallSmoke() async {
+        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--editor-recall-smoke") else { return }
+        func waitForEditor(_ id: UUID) async throws {
+            for _ in 0..<200 {
+                try await Task.sleep(for: .milliseconds(50))
+                if model.presetEditor.windowIDs == [id] { return }
+            }
+            throw EnvironmentError.invalid("Editor window did not settle to the requested identity")
+        }
+        do {
+            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(50)) }
+            guard model.presets.count >= 2 else { throw EnvironmentError.invalid("Missing demo presets") }
+            model.presetEditor.request(presetID: model.presets[0].id)
+            try await waitForEditor(model.presetEditor.latestRequest!.id)
+            model.presetDraft.name = "Unsaved recall check"
+            let draft = model.presetDraft
+            model.presetEditor.request(presetID: model.presets[0].id)
+            model.presetEditor.request(presetID: model.presets[1].id)
+            try await waitForEditor(model.presetEditor.latestRequest!.id)
+            guard model.presetDraft == draft, model.presetWindowVisible else {
+                throw EnvironmentError.invalid("Recall lost the unsaved draft")
+            }
+            print("EDITOR_RECALL_SMOKE_PASS oneWindow=true latestRequest=true dirtyDraftPreserved=true")
+        } catch { print("EDITOR_RECALL_SMOKE_FAIL \(error)") }
+    }
+
     private func runToolboxWindowSmoke() async {
         guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--input-smoke") else { return }
         do {

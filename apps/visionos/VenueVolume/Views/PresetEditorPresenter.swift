@@ -7,16 +7,18 @@ private struct PresetEditorPresenter: ViewModifier {
     let enabled: Bool
 
     func body(content: Content) -> some View {
-        content.task(id: enabled ? model.presetEditor.latestRequest?.id : nil) {
+        content.task(id: enabled ? model.presetEditor.taskID : nil) {
             guard enabled, let request = model.presetEditor.latestRequest,
                   model.presetEditor.claim(request) else { return }
-            defer { model.presetEditor.release(request) }
+            var retryIfUnfinished = true
+            defer { model.presetEditor.release(request, retryIfUnfinished: retryIfUnfinished) }
             dismissWindow(id: "presets")
             for _ in 0..<60 where !model.presetEditor.windowIDs.isEmpty {
                 do { try await Task.sleep(for: .milliseconds(50)) } catch { return }
             }
             guard !Task.isCancelled, model.presetEditor.latestRequest?.id == request.id else { return }
             guard model.presetEditor.canPresent(request) else {
+                retryIfUnfinished = false
                 model.presetEditor.failureMessage = "The previous preset editor is still closing. Try opening it again."
                 return
             }

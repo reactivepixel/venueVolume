@@ -41,6 +41,37 @@ import Foundation
         check(presentation.unregisterWindow(recovery.id), "User closing the only editor ends simulation")
         presentation.request()
         check(presentation.latestRequest?.presetID == nil, "Generic recall retains the current draft instead of requesting another preset")
-        print("Editor presentation checks passed: single window, duplicate restoration, latest request wins, selected context and draft-session preservation.")
+
+        let handoff = PresetEditorPresentation()
+        let previousWindow = UUID()
+        handoff.registerWindow(previousWindow)
+        handoff.request(presetID: secondPreset)
+        let pending = handoff.latestRequest!, firstAttempt = handoff.taskID
+        check(handoff.claim(pending) && !handoff.claim(pending), "Launch owns the recall while immersive presenter waits")
+        handoff.release(pending)
+        check(handoff.taskID != firstAttempt && handoff.latestRequest == pending,
+              "Cancelled owner invalidates waiting presenter task without losing requested preset context")
+        check(handoff.claim(pending), "Surviving immersive presenter can take over the same request")
+        check(!handoff.canPresent(pending), "Handoff still waits for the old editor window to close")
+        check(!handoff.unregisterWindow(previousWindow) && handoff.canPresent(pending), "Handoff preserves the draft session")
+        let successfulAttempt = handoff.taskID
+        handoff.didOpen(pending)
+        handoff.release(pending)
+        check(handoff.taskID == successfulAttempt && !handoff.claim(pending), "Completed handoff does not retry or duplicate the editor")
+        check(handoff.requestedPreset(for: pending.id) == secondPreset, "Requested selection survives owner handoff")
+
+        handoff.request(presetID: firstPreset)
+        let timedOut = handoff.latestRequest!, timeoutAttempt = handoff.taskID
+        check(handoff.claim(timedOut), "Next recall owns presentation")
+        handoff.release(timedOut, retryIfUnfinished: false)
+        check(handoff.taskID == timeoutAttempt, "Explicit close timeout does not create an automatic retry loop")
+        check(handoff.claim(timedOut), "Retry can acquire the unfinished claim")
+        handoff.request(presetID: secondPreset)
+        let replacement = handoff.latestRequest!, replacementAttempt = handoff.taskID
+        check(handoff.claim(replacement), "A newer request supersedes an older presentation owner")
+        handoff.release(timedOut)
+        check(handoff.taskID == replacementAttempt && !handoff.claim(replacement), "Stale owner cleanup cannot release or restart the newer owner")
+        handoff.release(replacement)
+        print("Editor presentation checks passed: single window, duplicate restoration, latest request wins, owner handoff, selected context and draft-session preservation.")
     }
 }

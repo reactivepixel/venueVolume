@@ -206,5 +206,7 @@ struct SessionSmoke {
         print("Mapped-room session checks passed: upgrade, history, blank materials, saved overrides and benchmark isolation.")
         try await AuditSmoke.run(environment: environment)
         try InteractionSmoke.run(environment: environment)
+        try await StartupSmoke.run()
+        EditorPresentationSmoke.run()
     }
 }

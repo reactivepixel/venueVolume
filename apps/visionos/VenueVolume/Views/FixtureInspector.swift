@@ -21,7 +21,7 @@ struct SceneSelectionPane: View {
                     Label("Preset editor", systemImage: "slider.horizontal.3")
                         .frame(maxWidth: .infinity, minHeight: 60, alignment: .leading)
                 }
-                Button { openWindow(id: "fixture-editor") } label: {
+                Button { openWindow(id: "fixture-editor", value: "selection") } label: {
                     Label("Pop out item editor", systemImage: "arrow.up.right.square")
                         .frame(maxWidth: .infinity, minHeight: 60, alignment: .leading)
                 }

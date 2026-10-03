@@ -13,7 +13,7 @@ struct VenueVolumeApp: App {
                 .onChange(of: scenePhase) { _, phase in if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits() } }
         }
         .windowResizability(.contentSize)
-        .defaultSize(width: 620, height: 620)
+        .defaultSize(width: 680, height: 700)
 
         WindowGroup(id: "toolbox", for: UUID.self) { identity in
             ToolboxView(instanceID: identity.wrappedValue).environment(model)
@@ -27,7 +27,7 @@ struct VenueVolumeApp: App {
         .windowResizability(.contentSize)
         .defaultSize(width: 1040, height: 820)
 
-        WindowGroup(id: "fixture-editor") { FixtureEditorView().environment(model) }
+        WindowGroup(id: "fixture-editor", for: String.self) { _ in FixtureEditorView().environment(model) } defaultValue: { "selection" }
             .windowResizability(.contentSize)
             .defaultSize(width: 620, height: 760)
 

@@ -40,8 +40,30 @@ enum StartupSmoke {
         let fortress = relaunched.rooms.first { $0.manifest.id == "the-fortress" }!
         relaunched.requestRoom(fortress); relaunched.activate(environment: fortress.manifest)
         precondition(relaunched.fixtures.isEmpty && !relaunched.whiteRoom && !relaunched.hasUnsavedSetup)
+        relaunched.requestRoom(mapped)
+        let cancelledRequest = relaunched.roomLoadToken
+        relaunched.cancelRequestedRoom(cancelledRequest)
+        precondition(relaunched.roomRequest == nil && !relaunched.libraryBusy && relaunched.activeRoom == fortress,
+                     "Cancelled system entry must leave Resume pointed at the previous venue")
+        relaunched.requestRoom(classroom)
+        let newerRequest = relaunched.roomLoadToken
+        relaunched.cancelRequestedRoom(cancelledRequest)
+        precondition(relaunched.roomRequest?.room == classroom && relaunched.libraryBusy,
+                     "An old cancellation must not discard a newer room request")
+        relaunched.cancelRequestedRoom(newerRequest)
         let asset = try Data(contentsOf: resources.appendingPathComponent("Classroom/environment.usdz"))
         let document = VenueSave(room: classroom, setup: source.savedSetups[0], asset: asset)
+        let supersededImport = relaunched.beginVenueImport()!
+        relaunched.requestNewVenue()
+        do { _ = try relaunched.importVenueSave(document, assetChecksum: classroom.manifest.asset.sha256, intentID: supersededImport); preconditionFailure("Superseded import accepted") }
+        catch is CancellationError { precondition(relaunched.savedSetups.count == 1 && relaunched.activeRoom == fortress) }
+        let closedWindowImport = relaunched.beginVenueImport()!
+        relaunched.cancelVenueImport(closedWindowImport)
+        do { _ = try relaunched.importVenueSave(document, assetChecksum: classroom.manifest.asset.sha256, intentID: closedWindowImport); preconditionFailure("Closed-window import accepted") }
+        catch is CancellationError { precondition(relaunched.savedSetups.count == 1) }
+        let importedRoomFolder = try relaunched.library.roomDirectory(classroom)
+        precondition(!FileManager.default.fileExists(atPath: importedRoomFolder.path),
+                     "Cancelled imports must not install geometry")
         let unchanged = relaunched.fixtures
         do { _ = try relaunched.importVenueSave(document, assetChecksum: "invalid"); preconditionFailure("Corrupt import accepted") }
         catch { precondition(relaunched.fixtures == unchanged && relaunched.activeRoom == fortress && relaunched.savedSetups.count == 1) }

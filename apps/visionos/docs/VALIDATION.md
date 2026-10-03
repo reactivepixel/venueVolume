@@ -4,11 +4,13 @@ This is the current Mac and headset acceptance checklist. It replaces the tempor
 
 ## Recorded results
 
+The [2026-10-03 UX integration](validation/2026-10-03-ux.md) records the venue chooser, portable saves, Fortress import, spatial preset drag, single-editor recall, HIG audit and code-review fixes for v0.2.3. Physical gesture, accessibility and Crown acceptance remain open.
+
 The [2026-10-03 mapped-room comparison](validation/2026-10-03-mapped-room.md) records v0.2.2 native Simulator and Release device compilation, all 252 catalog import/rig checks, six imported mapped-room textures, and Simulator static/moving A/B workloads. Physical headset performance and wearer acceptance remain open; Simulator cadence is not a frame-rate measurement.
 
 The [dated Mac archive](validation/2026-10-01-to-03-mac-validation.md) preserves commands, fixes and screenshot links. Its final integration report, dated 2026-10-03 for v0.1.27, records 45 passing Core tests, five session check groups, verification of 252 bundled models and rig companions, and a successful Simulator build. Earlier pilot runtime and Toolbox window smoke checks passed. A signed headset install passed, but the latest recorded remote launch timed out; an earlier Toolbox build launched successfully.
 
-These results do not establish full-catalog RealityKit import, physical gesture acceptance or live scanning. The v0.2.0 version bump does not supply new validation evidence.
+The earlier archive does not establish physical gesture acceptance or live scanning; the later mapped-room report separately records full-catalog import. The v0.2.0 version bump does not supply new validation evidence.
 
 ## Mac validation
 
@@ -51,7 +53,7 @@ Rig companions drive preview joints; these are not baked USDZ animation clips or
 
 ## Fortress review
 
-The [Fortress review gallery](../../../outputs/the-fortress/index.html) contains an estimated venue blockout with four cutaways and a floor plan. Blender and USDZ structural checks are recorded, but physical dimensions are unmeasured and RealityKit import remains pending. Validate it separately; do not substitute it for live scanned-room acceptance or alter its evidence to make tests pass.
+The [Fortress review gallery](../../../outputs/the-fortress/index.html) contains an estimated venue blockout with four cutaways and a floor plan. Blender and USDZ structural checks are recorded, but physical dimensions are unmeasured. The v0.2.3 UX report records RealityKit import of all 135 meshes; physical scale and wearer acceptance remain pending. Validate it separately; do not substitute it for live scanned-room acceptance or alter its evidence to make tests pass.
 
 ## mappedRoom and expanded lighting budgets
 

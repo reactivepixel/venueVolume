@@ -35,6 +35,7 @@ final class VenueModel {
     private(set) var savedSetups: [VenueSetup] = []
     var roomRequest: RoomRequest?
     var roomLoadToken = UUID()
+    private(set) var venueIntentID = UUID()
     var libraryMessage: String?
     var libraryBusy = false
     var newVenuePresented = false
@@ -908,11 +909,35 @@ final class VenueModel {
     }
 
     var canResumeVenue: Bool { activeRoom != nil || historyDestination != nil }
-    func requestNewVenue() { guard !libraryBusy else { return }; newVenuePresented = true }
+    func requestNewVenue() {
+        guard !libraryBusy else { return }
+        venueIntentID = UUID()
+        newVenuePresented = true
+    }
+
+    /// Async file parsing belongs to the initiating window and selection intent.
+    /// Newer choices or a closed source window invalidate it before any writes.
+    func beginVenueImport() -> UUID? {
+        guard !libraryBusy, !isTransitioning else { return nil }
+        venueIntentID = UUID()
+        return venueIntentID
+    }
+
+    func cancelVenueImport(_ id: UUID) {
+        if venueIntentID == id { venueIntentID = UUID() }
+    }
+
+    func cancelRequestedRoom(_ id: UUID) {
+        guard roomLoadToken == id, roomRequest != nil else { return }
+        roomRequest = nil; libraryBusy = false
+        canPlace = isImmersed && environment != nil
+        roomLoadToken = UUID()
+    }
 
     /// Returns true only after full validation and durable import. The active scene
     /// is unchanged until the caller requests this setup and RealityKit loads it.
-    func importVenueSave(_ document: VenueSave, assetChecksum: String) throws -> (LibraryRoom, VenueSetup) {
+    func importVenueSave(_ document: VenueSave, assetChecksum: String, intentID: UUID? = nil) throws -> (LibraryRoom, VenueSetup) {
+        if let intentID, intentID != venueIntentID { throw CancellationError() }
         guard !libraryBusy else { throw EnvironmentError.invalid("wait for the current room to finish loading") }
         if let existing = rooms.first(where: { $0.id == document.room.id }), existing.manifest != document.room.manifest {
             throw EnvironmentError.invalid("different room metadata already uses this room version")
@@ -955,6 +980,7 @@ final class VenueModel {
         do { if let setup { try setup.validate(room: room) } }
         catch { libraryMessage = error.localizedDescription; return }
         // An explicit launch choice supersedes the remembered audit cursor.
+        venueIntentID = UUID()
         historyDestination = nil; preparedHistory = nil
         fixtureDragLease?.cancel(); draggingFixture = nil
         endPresetDrag()
