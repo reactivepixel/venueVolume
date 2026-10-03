@@ -38,7 +38,7 @@ struct VenueLibraryPicker: View {
                 HStack {
                     Button("New venue", systemImage: "plus") { model.requestNewVenue() }.buttonStyle(.borderedProminent)
                     Button("Load save from file", systemImage: "folder") { importing = true }
-                }.controlSize(.large)
+                }.controlSize(.large).disabled(reading)
                 Text("RECENT SAVES").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
             }
             ScrollView {
@@ -61,13 +61,20 @@ struct VenueLibraryPicker: View {
                         }
                     }
                 }
-            }.frame(maxHeight: .infinity)
-            if reading || model.libraryBusy { ProgressView(reading ? "Checking save…" : "Opening venue…") }
+            }.frame(maxHeight: .infinity).disabled(reading)
+            if reading {
+                HStack {
+                    ProgressView("Checking save…")
+                    Spacer()
+                    Button("Cancel checking", role: .cancel) { cancelImport() }
+                        .frame(minHeight: 60)
+                }
+            } else if model.libraryBusy { ProgressView("Opening venue…") }
             if let message = model.libraryMessage ?? model.message {
                 Text(message).font(.callout).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
             }
         }
-        .disabled(reading || model.libraryBusy || model.isTransitioning)
+        .disabled(model.libraryBusy || model.isTransitioning)
         .confirmationDialog("Save changes to the current setup?", isPresented: $confirming, titleVisibility: .visible) {
             Button("Save and continue") { if model.saveSetup() { continuePending() } }
             Button("Discard changes and continue", role: .destructive) { continuePending() }
@@ -88,7 +95,7 @@ struct VenueLibraryPicker: View {
                         let document = try await VenueSaveDocument.read(url)
                         try Task.checkCancellation()
                         guard model.venueIntentID == intent else { return }
-                        let (room, setup) = try model.importVenueSave(document, assetChecksum: RoomAssets.checksum(document.asset), intentID: intent)
+                        let (room, setup) = try await model.importVenueSave(document.save, assetChecksum: document.checksum, intentID: intent)
                         request(room, setup: setup)
                     } catch is CancellationError {
                         // Closing the source window or choosing a newer venue is intentional.
@@ -101,11 +108,12 @@ struct VenueLibraryPicker: View {
             case .failure(let error): model.libraryMessage = "Save could not be loaded: \(error.localizedDescription)"
             }
         }
-        .onDisappear {
-            importTask?.cancel(); importTask = nil
-            if let importIntent { model.cancelVenueImport(importIntent) }
-            importIntent = nil; reading = false
-        }
+        .onDisappear { cancelImport() }
+    }
+    private func cancelImport() {
+        importTask?.cancel(); importTask = nil
+        if let importIntent { model.cancelVenueImport(importIntent) }
+        importIntent = nil; reading = false
     }
     private func venueButton(title: String, detail: String, symbol: String, action: @escaping () -> Void) -> some View {
         Button(action: action) {
