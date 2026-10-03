@@ -1,0 +1,127 @@
+{
+  "passed": true,
+  "geometry_sha256": "4baafb2ceade98d6e1eb54eaf72935eca66c748cd4b7c7bfdee68f9d60e0c2db",
+  "blender_version": "4.5.14 LTS",
+  "mesh_triangles_before_unapplied_modifiers": 7620,
+  "dimension_accuracy": "unmeasured; not validated against a survey",
+  "checks": [
+    {
+      "check": "meters",
+      "passed": true,
+      "detail": "Blender units are meters; physical scale is still estimated"
+    },
+    {
+      "check": "review scenes",
+      "passed": true,
+      "detail": [
+        "01 | ROOM - walk and place assets",
+        "02 | CUTAWAY - front-left",
+        "03 | CUTAWAY - front-right",
+        "04 | CUTAWAY - rear-right",
+        "05 | CUTAWAY - rear-left",
+        "06 | PLAN - estimated dimensions"
+      ]
+    },
+    {
+      "check": "portable references",
+      "passed": true,
+      "detail": "48 images packed"
+    },
+    {
+      "check": "true isometry / front-left",
+      "passed": true,
+      "detail": [
+        0.5773503184318542,
+        -0.5773503184318542,
+        -0.5773501992225647
+      ]
+    },
+    {
+      "check": "cutaway wall selection / front-left",
+      "passed": true,
+      "detail": [
+        "front",
+        "left"
+      ]
+    },
+    {
+      "check": "true isometry / front-right",
+      "passed": true,
+      "detail": [
+        -0.5773503184318542,
+        -0.5773503184318542,
+        -0.5773501992225647
+      ]
+    },
+    {
+      "check": "cutaway wall selection / front-right",
+      "passed": true,
+      "detail": [
+        "front",
+        "right"
+      ]
+    },
+    {
+      "check": "true isometry / rear-right",
+      "passed": true,
+      "detail": [
+        -0.5773503184318542,
+        0.5773501992225647,
+        -0.5773503184318542
+      ]
+    },
+    {
+      "check": "cutaway wall selection / rear-right",
+      "passed": true,
+      "detail": [
+        "rear",
+        "right"
+      ]
+    },
+    {
+      "check": "true isometry / rear-left",
+      "passed": true,
+      "detail": [
+        0.5773503184318542,
+        0.5773501992225647,
+        -0.5773503184318542
+      ]
+    },
+    {
+      "check": "cutaway wall selection / rear-left",
+      "passed": true,
+      "detail": [
+        "left",
+        "rear"
+      ]
+    },
+    {
+      "check": "walk start over clear floor",
+      "passed": true,
+      "detail": "floor"
+    },
+    {
+      "check": "closed collision proxies",
+      "passed": true,
+      "detail": {
+        "count": 28,
+        "nonmanifold": []
+      }
+    },
+    {
+      "check": "proxies excluded from normal rendering",
+      "passed": true,
+      "detail": 28
+    },
+    {
+      "check": "finite transforms",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "saved asset positions survive reopening",
+      "passed": true,
+      "detail": []
+    }
+  ]
+}

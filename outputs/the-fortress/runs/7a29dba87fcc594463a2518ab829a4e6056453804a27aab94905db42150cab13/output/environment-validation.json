@@ -1,0 +1,96 @@
+{
+  "authoringBlendSHA256": "e6482aaecedec80991264fd2765c73109db205933e5980de44339403152e762d",
+  "blenderVersion": "4.5.14 LTS",
+  "checks": [
+    {
+      "check": "collision proxies match source object bounds",
+      "detail": [],
+      "passed": true
+    },
+    {
+      "check": "OpenUSD ARKit compatibility rules",
+      "detail": {
+        "errors": [],
+        "failed": [],
+        "warnings": []
+      },
+      "passed": true
+    },
+    {
+      "check": "USDZ opens with meter Y-up root",
+      "detail": "Geometry converted once; root is identity",
+      "passed": true
+    },
+    {
+      "check": "round-trip mesh and triangle counts",
+      "detail": {
+        "materials": 11,
+        "meshes": 135,
+        "sourceObjects": 635,
+        "triangles": 7620
+      },
+      "passed": true
+    },
+    {
+      "check": "normals and materials survive export",
+      "detail": 135,
+      "passed": true
+    },
+    {
+      "check": "exported spawn is over floor",
+      "detail": [
+        10.0,
+        -1.1920928955078125e-07,
+        -2.0
+      ],
+      "passed": true
+    },
+    {
+      "check": "exported placement / stage-platform",
+      "detail": [
+        10.0,
+        0.800000011920929,
+        -21.200000762939453
+      ],
+      "passed": true
+    },
+    {
+      "check": "no cameras lights or test props",
+      "detail": "Only explicit runtime mesh/material hierarchy exported",
+      "passed": true
+    },
+    {
+      "check": "Blender USDZ import preserves hierarchy and dimensions",
+      "detail": {
+        "expectedZUpBounds": [
+          -0.20000000298023224,
+          -0.20000000298023224,
+          -0.23999999463558197,
+          20.200000762939453,
+          24.200000762939453,
+          7.699999809265137
+        ],
+        "importedZUpBounds": [
+          -0.19999998807907104,
+          -0.20000001788139343,
+          -0.2400018274784088,
+          20.19999885559082,
+          24.200000762939453,
+          7.699999809265137
+        ]
+      },
+      "passed": true
+    }
+  ],
+  "exportScriptSHA256": "2f06650a9576a718864731fad1e98434bad04c8951749c8d40600ca21edb6ca2",
+  "geometry": {
+    "materials": 11,
+    "meshes": 135,
+    "sourceObjects": 635,
+    "triangles": 7620
+  },
+  "materialNotes": [],
+  "passed": true,
+  "realityKitValidation": "pending Mac simulator/device import; not available in Blender",
+  "version": "a26ca971f8b594a5bca21a97032887a8fea58d80a600f9a14f66fcf6d84226bf"
+}
