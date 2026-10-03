@@ -1,0 +1,151 @@
+{
+  "method": "reviewed crop, linear luminance high-pass, restrained contrast, mirrored repeat, sRGB encoding",
+  "limitations": "Approximate photo-derived surface detail. Not camera projection, measured albedo, or de-lighting ground truth. Scale remains provisional.",
+  "textures": [
+    {
+      "material": "Carpet / procedural gray weave",
+      "file": "carpet.png",
+      "source": "references/reference_04_0070.0s.jpg",
+      "sourceSHA256": "f60c5c0d2aa0c9e1364e3ccd74b958493da3708c5e3b4a2d1c02ededcc7cbcfa",
+      "cropPixels": [
+        600,
+        440,
+        1200,
+        860
+      ],
+      "size": [
+        512,
+        512
+      ],
+      "repeatMeters": 0.8,
+      "linearMean": [
+        0.18,
+        0.17,
+        0.16
+      ],
+      "detailStd": 0.09,
+      "sha256": "ea1a13064d465f8796aeba2cd5007928adf6225a1b5fcf744e8472d91ef5f77c"
+    },
+    {
+      "material": "Paint / sage green",
+      "file": "sage.png",
+      "source": "references/reference_04_0070.0s.jpg",
+      "sourceSHA256": "f60c5c0d2aa0c9e1364e3ccd74b958493da3708c5e3b4a2d1c02ededcc7cbcfa",
+      "cropPixels": [
+        520,
+        30,
+        950,
+        225
+      ],
+      "size": [
+        256,
+        256
+      ],
+      "repeatMeters": 1.2,
+      "linearMean": [
+        0.43,
+        0.51,
+        0.36
+      ],
+      "detailStd": 0.008,
+      "sha256": "9f434c396bfa42504f7ae3a04328f10b7afd53ec9599513b1e538675e84ef057"
+    },
+    {
+      "material": "Paint / warm ivory",
+      "file": "ivory.png",
+      "source": "references/reference_02_0022.0s.jpg",
+      "sourceSHA256": "f2ebb2840da423906f84342379d4880a3f40c5b2c2a8b8c864f56284abac096e",
+      "cropPixels": [
+        430,
+        220,
+        1000,
+        550
+      ],
+      "size": [
+        256,
+        256
+      ],
+      "repeatMeters": 1.2,
+      "linearMean": [
+        0.66,
+        0.61,
+        0.46
+      ],
+      "detailStd": 0.008,
+      "sha256": "f5463d2703aa842a3231c222caeebba0997c8ef1427d0e89c66e26c9e4c10aed"
+    },
+    {
+      "material": "Acoustic ceiling / off white",
+      "file": "ceiling.png",
+      "source": "references/reference_08_0177.0s.jpg",
+      "sourceSHA256": "b11e1201a06235068f0b7b9efbe6148839012b17b7d06ae349834a89df6a8066",
+      "cropPixels": [
+        330,
+        20,
+        530,
+        130
+      ],
+      "size": [
+        512,
+        512
+      ],
+      "repeatMeters": 0.61,
+      "linearMean": [
+        0.68,
+        0.68,
+        0.63
+      ],
+      "detailStd": 0.045,
+      "sha256": "e1bb60db675d53ffff2ce7983555f60243b9121bf6eae766aabfa84bb24e7cbb"
+    },
+    {
+      "material": "Desk / pale maple",
+      "file": "maple.png",
+      "source": "references/reference_05_0100.0s.jpg",
+      "sourceSHA256": "c1cc5b1dbfe1126caa32e30e90f0ed71424c2e3caf474d718ad04eb55637dfe4",
+      "cropPixels": [
+        480,
+        837,
+        880,
+        892
+      ],
+      "size": [
+        256,
+        256
+      ],
+      "repeatMeters": 0.6,
+      "linearMean": [
+        0.6,
+        0.39,
+        0.17
+      ],
+      "detailStd": 0.025,
+      "sha256": "2f52e404122517e126e124d3ad34126f8ec17a9c730cc4c7ddb0ad6e12ac6580"
+    },
+    {
+      "material": "Table / light laminate",
+      "file": "laminate.png",
+      "source": "references/reference_02_0022.0s.jpg",
+      "sourceSHA256": "f2ebb2840da423906f84342379d4880a3f40c5b2c2a8b8c864f56284abac096e",
+      "cropPixels": [
+        475,
+        735,
+        705,
+        760
+      ],
+      "size": [
+        256,
+        256
+      ],
+      "repeatMeters": 0.6,
+      "linearMean": [
+        0.73,
+        0.71,
+        0.64
+      ],
+      "detailStd": 0.004,
+      "sha256": "068de65a9566ae2c8f7becc7d9cece1ecdc5e58f9bd48e241e1d40d239789669"
+    }
+  ],
+  "estimatedRGBA8WithMipBytes": 4194302
+}

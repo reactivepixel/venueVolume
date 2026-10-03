@@ -1,6 +1,6 @@
 # Venue Volume for visionOS
 
-A runnable RealityKit lighting proof of concept for Simulator and Vision Pro (visionOS 2+). Start in the white classroom, import another room, or capture a local mesh on Vision Pro. The fixture library contains all 127 existing models, with 128 preview joints across 72 articulated assets. Search by model or manufacturer, filter by category, place models, preview supported motion and light, and save setups for each environment.
+A runnable RealityKit lighting proof of concept for Simulator and Vision Pro (visionOS 2+). Start in the white classroom, choose its photo-textured **mappedRoom** sibling, import another room, or capture a local mesh on Vision Pro. The fixture library contains all 127 existing models, with 128 preview joints across 72 articulated assets. Search by model or manufacturer, filter by category, place models, preview supported motion and light, and save setups for each environment.
 
 ## Run
 
@@ -19,7 +19,7 @@ The palm-activated Toolbox header shows the app's `CFBundleShortVersionString`, 
 ## Use
 
 1. Raise your **left palm** toward you to open **Toolbox** as a normal visionOS window. Lower your hand: the window stays where it opened. Move it with the system window bar, or close it with the header **X** or system close control. Lower and raise your palm again to reopen or recall it near your current view. A held palm requests the window only once, so closing it does not immediately reopen it. Simulator supplies a **Left palm facing me** toggle and **Open / recall toolbox** button; the button also appears if hand tracking is unavailable. The trigger uses hand pose and head direction, not raw eye gaze.
-2. In **Fixtures & presets**, search the catalog or choose a category, then drag a model onto a highlighted floor/table surface. Alternatively select its row and pinch a clear surface. **Add selected model** repeats that model. Initial light output and continuous motion are zero, with angular joints centered. Setups support 64 objects. Eight simultaneous beam previews are allocated to lit fixtures, with the selected fixture first; all placed models remain visible and articulated. The Toolbox remains a stationary window during drags.
+2. In **Fixtures & presets**, search the catalog or choose a category, then drag a model onto a highlighted floor/table surface. Alternatively select its row and pinch a clear surface. **Add selected model** repeats that model. Initial light output and continuous motion are zero, with angular joints centered. Setups support 64 objects. The default budget is eight shadowed beam previews, with the selected fixture first; Diagnostics offers experimental budgets up to 64 on supported GPUs, with thermal backoff; all placed models remain visible and articulated. The Toolbox remains a stationary window during drags.
 3. Drag a preset from the library onto the fixture or label. This commits the saved preset and lights the scene. The right toolbox column shows a scene breakdown with each fixture's patch and preset, individual delete buttons, and **Clear all**. Clearing is undoable; room geometry and named setups remain available. Empty scenes show a placement guide.
 4. Select a fixture for **Info**, **Delete**, **Move**, **Retarget**, and **Transform**. The right toolbox column becomes its info pane. **Pop out item editor** opens the full selected-item window, including name/patch editing and a Transform tab. Both panes follow the current selection. Click an unoccupied room surface/background, or the pane's deselect button, to clear selection, close the item window and return to the scene breakdown. **Move** arms a floor/table pick while preserving orientation, patch, and DMX values.
 5. In **DMX preset**, **Simulate on selected fixture** starts enabled. Channel edits appear immediately without changing saved values. **Blackout simulation** temporarily mutes only that selected fixture, preserving draft and saved channels. Disable simulation or close the window to restore the committed look. **Save preset** updates all assigned fixtures. **Save as new** starts with an empty name field and clears it after a successful save; **New preset** also starts unnamed. **Apply saved** assigns the saved preset.
@@ -31,7 +31,7 @@ The editor also supports previous/next, New, clear draft, revert, delete, clear 
 
 ## Rooms and saved setups
 
-Open **Rooms & saved setups** in the Toolbox window. The left column lists environments; the right lists saved fixture setups across those environments. The bundled white classroom is the default on first launch. Subsequent normal sessions resume the active room and state from audit history.
+Open **Rooms & saved setups** in the Toolbox window. The left column lists environments; the right lists saved fixture setups across those environments. The bundled white classroom is the default on first launch. **mappedRoom** is a separate copy with six small photo-derived PBR textures, the same mesh/occlusion and placement surfaces, and independent setups. A blank mappedRoom opens with **White model** off; saved setups retain their material override. Subsequent normal sessions resume the active room and state from audit history.
 
 - **Import** accepts a folder containing `environment.json` and its referenced `environment.usdz` or `environment.mesh.json`, or a standalone meter-scale USDZ. Bundles retain their reviewed placement surfaces, spawn pose, version, and checksum. Standalone USDZ imports infer a rectangular floor from the lowest visual bounds; provide a prepared room bundle for accurate floor/table placement metadata.
 - **Scan** is available on Vision Pro. It opens a mixed-immersion capture view, requests World Sensing permission, and displays the observed mesh over passthrough. Look around to capture floor, walls, and furniture, including the floor beneath you. Name it and choose **Save room & open**. The scan becomes a selectable environment stored on this device. Cancel returns to the previous scene.
@@ -82,7 +82,7 @@ Each bundled USDZ is an exact copy of its existing library model. `assets/fixtur
 
 The item editor's **Transform → Moving parts** controls are specific to the selected model. A gesture makes one Undo step and stores a per-instance override. **Use preset motion** restores its preset values or neutral pose. Preset application preserves those overrides. Static equipment has placement and mount transforms. Atmosphere and effects equipment use their existing models and outlet metadata; particle effects and operational firing are not simulated.
 
-Assets load on demand and their bytes are checked against the catalog hash. Selection targets use each model's bounds. Spot lights follow the rig's emitter transforms and share the eight-beam budget; each multi-head model divides its illustrative intensity across its emitters. Light fixture meshes do not cast shadows, avoiding lens self-occlusion; room meshes do. The original Rogue R1X pilot remains available and old saved setups retain their stable asset IDs.
+Assets load on demand and their bytes are checked against the catalog hash. Selection targets use each model's bounds. Spot lights follow the rig's emitter transforms and share the selected shadow-beam budget (eight by default); each multi-head model divides its illustrative intensity across its emitters. Light fixture meshes do not cast shadows, avoiding lens self-occlusion; room meshes do. The original Rogue R1X pilot remains available and old saved setups retain their stable asset IDs.
 
 ## Preview personality
 
@@ -152,3 +152,7 @@ References: [Apple dynamic lights and shadows](https://developer.apple.com/video
 Capture references: [Applying mesh to real-world surroundings](https://developer.apple.com/documentation/visionOS/applying-mesh-to-real-world-surroundings), [SceneReconstructionProvider](https://developer.apple.com/documentation/arkit/scenereconstructionprovider), and [MeshAnchor](https://developer.apple.com/documentation/arkit/meshanchor).
 
 Toolbox window capture: [normal repositionable window with X and move bar](Screenshots/toolbox-window.png).
+
+## Mapped room and lighting performance
+
+See the [asset review and desktop comparison](../room2blender/mappedRoom/README.md) and [native benchmark runbook](docs/MAPPED_ROOM_LIGHTING.md). The packaged room is small; the maximum smooth shadow-light count has **not** been measured on Vision Pro. Experimental 16/32/64 budgets are candidates for testing, not capacity claims.

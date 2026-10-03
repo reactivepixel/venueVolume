@@ -255,3 +255,7 @@ placement membership require corresponding metadata edits. Keep proxy geometry a
 with visual edits. Blender's authoring file is never saved by the exporter.
 
 For app integration and future downloaded bundles, see [the visionOS README](../visionos/README.md).
+
+## Photo-textured classroom variant
+
+The [mappedRoom review](mappedRoom/README.md) clones the existing classroom into a separate Blender/USDZ environment. Its six small photo-detail tiles are mapped to the opaque mesh and remain responsive to dynamic lights. Rebuild with `./scripts/mapped-room.sh --render --benchmark` from this app directory. The script verifies geometry parity and updates the second bundled room in visionOS. It does not alter The Fortress.

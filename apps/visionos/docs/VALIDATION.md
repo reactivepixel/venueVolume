@@ -50,3 +50,13 @@ Rig companions drive preview joints; these are not baked USDZ animation clips or
 ## Fortress review
 
 The [Fortress review gallery](../../../outputs/the-fortress/index.html) contains an estimated venue blockout with four cutaways and a floor plan. Blender and USDZ structural checks are recorded, but physical dimensions are unmeasured and RealityKit import remains pending. Validate it separately; do not substitute it for live scanned-room acceptance or alter its evidence to make tests pass.
+
+## mappedRoom and expanded lighting budgets
+
+The [mappedRoom lighting runbook](MAPPED_ROOM_LIGHTING.md) records the new work and the exact A/B procedure. Linux Core/session checks and Blender tests do not replace the unchecked native acceptance below.
+
+- [ ] Build this revision in Xcode for Simulator and device; confirm both bundled rooms import, including all six mapped textures.
+- [ ] Open mappedRoom on an existing installation; confirm old history does not hide it, placements remain isolated, and saved white/material overrides persist.
+- [ ] Test static and moving 64-fixture scenes in both rooms at 0/1/2/4/8/16/32/64 requested shadow beams. Verify the visible active count, not just component allocation.
+- [ ] Record RealityKit Trace GPU/CPU timing, compositor misses, memory, ten-minute thermal soak and visual shadow/occlusion correctness. Select the highest repeatably smooth budget on the oldest supported headset.
+- [ ] Verify selection priority, multi-emitter budget, blackout, non-emitting fixtures, and thermal reduction/recovery without losing fixture data.
