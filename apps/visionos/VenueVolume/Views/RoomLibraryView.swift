@@ -2,6 +2,127 @@ import SwiftUI
 import UniformTypeIdentifiers
 import VenueVolumeCore
 
+struct NewVenueSheet: View {
+    @Environment(VenueModel.self) private var model
+    @Environment(\.dismiss) private var dismiss
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            HStack {
+                Text("New venue").font(.title.bold())
+                Spacer()
+                Button("Cancel") { model.newVenuePresented = false; dismiss() }
+            }
+            Text("Choose an environment. Each new instance starts with no fixtures.").foregroundStyle(.secondary)
+            VenueLibraryPicker(showsNewVenues: true) { model.newVenuePresented = false; dismiss() }
+        }.padding(28).frame(width: 620, height: 550)
+            .task { await model.prepareLibrary() }
+    }
+}
+
+/// Shared launch/chooser flow keeps confirmation and file loading consistent.
+struct VenueLibraryPicker: View {
+    @Environment(VenueModel.self) private var model
+    @Environment(\.openImmersiveSpace) private var openSpace
+    let showsNewVenues: Bool
+    var didOpen: () -> Void = {}
+    @State private var pending: (LibraryRoom, VenueSetup?)?
+    @State private var confirming = false
+    @State private var importing = false
+    @State private var reading = false
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            if !showsNewVenues {
+                HStack {
+                    Button("New venue", systemImage: "plus") { model.requestNewVenue() }.buttonStyle(.borderedProminent)
+                    Button("Load save from file", systemImage: "folder") { importing = true }
+                }.controlSize(.large)
+                Text("RECENT SAVES").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
+            }
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 8) {
+                    if showsNewVenues {
+                        ForEach(model.rooms) { room in
+                            venueButton(title: room.displayName, detail: room.detail, symbol: room.origin == .scanned ? "viewfinder" : "building.2") {
+                                request(room, setup: nil)
+                            }
+                        }
+                    } else if model.savedSetups.isEmpty {
+                        ContentUnavailableView("No saved venues yet", systemImage: "square.stack.3d.up", description: Text("Choose New venue, add fixtures, then save your setup from the wrist toolbox."))
+                    } else {
+                        ForEach(model.savedSetups) { setup in
+                            if let room = model.rooms.first(where: { $0.id == setup.roomID }) {
+                                venueButton(title: setup.name, detail: "\(room.displayName) · \(setup.placements.fixtures.count) fixtures · \(setup.modified.formatted(date: .abbreviated, time: .shortened))", symbol: "clock") {
+                                    request(room, setup: setup)
+                                }
+                            }
+                        }
+                    }
+                }
+            }.frame(maxHeight: .infinity)
+            if reading || model.libraryBusy { ProgressView(reading ? "Checking save…" : "Opening venue…") }
+            if let message = model.libraryMessage ?? model.message {
+                Text(message).font(.callout).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .disabled(reading || model.libraryBusy || model.isTransitioning)
+        .confirmationDialog("Save changes to the current setup?", isPresented: $confirming, titleVisibility: .visible) {
+            Button("Save and continue") { if model.saveSetup() { continuePending() } }
+            Button("Discard changes and continue", role: .destructive) { continuePending() }
+            Button("Cancel", role: .cancel) { pending = nil }
+        } message: { Text("Opening another venue replaces the current fixture arrangement.") }
+        .fileImporter(isPresented: $importing, allowedContentTypes: [.venueVolumeSave, .json], allowsMultipleSelection: false) { result in
+            switch result {
+            case .success(let urls):
+                guard let url = urls.first else { return }
+                reading = true
+                Task { @MainActor in
+                    defer { reading = false }
+                    do {
+                        let document = try await VenueSaveDocument.read(url)
+                        let (room, setup) = try model.importVenueSave(document, assetChecksum: RoomAssets.checksum(document.asset))
+                        request(room, setup: setup)
+                    } catch { model.libraryMessage = "Save could not be loaded: \(error.localizedDescription)" }
+                }
+            case .failure(let error): model.libraryMessage = "Save could not be loaded: \(error.localizedDescription)"
+            }
+        }
+    }
+    private func venueButton(title: String, detail: String, symbol: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack(spacing: 16) {
+                Image(systemName: symbol).font(.title2).frame(width: 32).accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(title).font(.headline)
+                    Text(detail).font(.callout).foregroundStyle(.secondary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right").foregroundStyle(.secondary).accessibilityHidden(true)
+            }.padding(14).frame(maxWidth: .infinity, minHeight: 64, alignment: .leading)
+        }.buttonStyle(.plain).hoverEffect(.highlight)
+    }
+    private func request(_ room: LibraryRoom, setup: VenueSetup?) {
+        pending = (room, setup)
+        if model.hasUnsavedSetup { confirming = true } else { continuePending() }
+    }
+    private func continuePending() {
+        guard let (room, setup) = pending else { return }
+        pending = nil
+        model.requestRoom(room, setup: setup)
+        if model.isImmersed { didOpen(); return }
+        Task { @MainActor in
+            model.isTransitioning = true
+            defer { model.isTransitioning = false }
+            switch await openSpace(id: "VenueSpace") {
+            case .opened: model.isImmersed = true; didOpen()
+            case .userCancelled: model.libraryBusy = false
+            case .error: model.libraryBusy = false; model.libraryMessage = "The venue could not open. Select it to try again."
+            @unknown default: model.libraryBusy = false; model.libraryMessage = "The system could not open the venue."
+            }
+        }
+    }
+}
+
 struct RoomLibraryView: View {
     @Environment(VenueModel.self) private var model
     @Environment(\.dismissImmersiveSpace) private var dismissSpace
@@ -28,7 +149,8 @@ struct RoomLibraryView: View {
                 TextField("Setup name", text: $model.setupName).textFieldStyle(.roundedBorder)
                 Button("Save") { model.saveSetup() }
                 Button("Save as new") { model.saveSetup(asNew: true) }
-                Button("New blank") { if let room = model.activeRoom { request(.open(room, nil)) } }
+                ExportVenueSaveButton()
+                Button("New") { model.requestNewVenue() }
             }
             HStack(alignment: .top, spacing: 20) {
                 VStack(alignment: .leading, spacing: 8) {
@@ -38,8 +160,8 @@ struct RoomLibraryView: View {
                             ForEach(model.rooms) { room in
                                 Button { request(.open(room, nil)) } label: {
                                     VStack(alignment: .leading, spacing: 5) {
-                                        Label(room.manifest.title, systemImage: room.origin == .scanned ? "viewfinder" : "cube.transparent")
-                                        Text(room.origin == .bundled ? "Default · white classroom" : room.origin.rawValue.capitalized)
+                                        Label(room.displayName, systemImage: room.origin == .scanned ? "viewfinder" : "cube.transparent")
+                                        Text(room.detail)
                                             .font(.caption).foregroundStyle(.secondary)
                                     }.frame(maxWidth: .infinity, alignment: .leading).padding(10)
                                 }.buttonStyle(.plain).hoverEffect(.highlight)
@@ -53,7 +175,7 @@ struct RoomLibraryView: View {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 8) {
                             if model.savedSetups.isEmpty {
-                                Text("Build a fixture layout and save it here. New blank starts another layout in the same room.")
+                                Text("Build a fixture layout and save it here. New starts another setup in any available venue.")
                                     .font(.callout).foregroundStyle(.secondary).padding(.top, 12)
                             }
                             ForEach(model.savedSetups) { setup in

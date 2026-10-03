@@ -1,0 +1,684 @@
+{
+  "asset": {
+    "bytes": 390565,
+    "file": "environment.usdz",
+    "sha256": "4950fed10bd99647588e538fdcfa50c21db8c57b2550e14900ef01d0d7c7fff5"
+  },
+  "bounds": {
+    "max": [
+      20,
+      7.5,
+      0
+    ],
+    "min": [
+      0,
+      0,
+      -24
+    ]
+  },
+  "colliders": [
+    {
+      "center": [
+        10.0,
+        7.6,
+        -12.0
+      ],
+      "id": "COL_ceiling",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        20.0,
+        24.0,
+        0.2
+      ],
+      "sourceID": "ceiling"
+    },
+    {
+      "center": [
+        10.0,
+        -0.12,
+        -12.0
+      ],
+      "id": "COL_floor",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        20.4,
+        24.4,
+        0.24
+      ],
+      "sourceID": "floor"
+    },
+    {
+      "center": [
+        10.0,
+        3.75,
+        -24.1
+      ],
+      "id": "COL_front-wall",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        20.0,
+        0.2,
+        7.5
+      ],
+      "sourceID": "front-wall"
+    },
+    {
+      "center": [
+        3.6,
+        0.1,
+        -18.1
+      ],
+      "id": "COL_left-stage-step-0",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.3,
+        0.28,
+        0.2
+      ],
+      "sourceID": "left-stage-step-0"
+    },
+    {
+      "center": [
+        3.6,
+        0.2,
+        -18.379999
+      ],
+      "id": "COL_left-stage-step-1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.3,
+        0.28,
+        0.4
+      ],
+      "sourceID": "left-stage-step-1"
+    },
+    {
+      "center": [
+        3.6,
+        0.3,
+        -18.66
+      ],
+      "id": "COL_left-stage-step-2",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.3,
+        0.28,
+        0.6
+      ],
+      "sourceID": "left-stage-step-2"
+    },
+    {
+      "center": [
+        3.6,
+        0.4,
+        -18.940001
+      ],
+      "id": "COL_left-stage-step-3",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.3,
+        0.28,
+        0.8
+      ],
+      "sourceID": "left-stage-step-3"
+    },
+    {
+      "center": [
+        0.55,
+        0.66,
+        -10.9
+      ],
+      "id": "COL_left-tier-0",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.72,
+        13.8,
+        1.32
+      ],
+      "sourceID": "left-tier-0"
+    },
+    {
+      "center": [
+        1.27,
+        0.495,
+        -10.9
+      ],
+      "id": "COL_left-tier-1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.72,
+        13.8,
+        0.99
+      ],
+      "sourceID": "left-tier-1"
+    },
+    {
+      "center": [
+        1.99,
+        0.33,
+        -10.9
+      ],
+      "id": "COL_left-tier-2",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.72,
+        13.8,
+        0.66
+      ],
+      "sourceID": "left-tier-2"
+    },
+    {
+      "center": [
+        2.71,
+        0.165,
+        -10.9
+      ],
+      "id": "COL_left-tier-3",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.72,
+        13.8,
+        0.33
+      ],
+      "sourceID": "left-tier-3"
+    },
+    {
+      "center": [
+        -0.1,
+        3.75,
+        -12.0
+      ],
+      "id": "COL_left-wall",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.2,
+        24.0,
+        7.5
+      ],
+      "sourceID": "left-wall"
+    },
+    {
+      "center": [
+        10.0,
+        3.75,
+        0.1
+      ],
+      "id": "COL_rear-wall",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        20.0,
+        0.2,
+        7.5
+      ],
+      "sourceID": "rear-wall"
+    },
+    {
+      "center": [
+        16.4,
+        0.1,
+        -18.1
+      ],
+      "id": "COL_right-stage-step-0",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.3,
+        0.28,
+        0.2
+      ],
+      "sourceID": "right-stage-step-0"
+    },
+    {
+      "center": [
+        16.4,
+        0.2,
+        -18.379999
+      ],
+      "id": "COL_right-stage-step-1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.3,
+        0.28,
+        0.4
+      ],
+      "sourceID": "right-stage-step-1"
+    },
+    {
+      "center": [
+        16.4,
+        0.3,
+        -18.66
+      ],
+      "id": "COL_right-stage-step-2",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.3,
+        0.28,
+        0.6
+      ],
+      "sourceID": "right-stage-step-2"
+    },
+    {
+      "center": [
+        16.4,
+        0.4,
+        -18.940001
+      ],
+      "id": "COL_right-stage-step-3",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        1.3,
+        0.28,
+        0.8
+      ],
+      "sourceID": "right-stage-step-3"
+    },
+    {
+      "center": [
+        19.450001,
+        0.66,
+        -10.9
+      ],
+      "id": "COL_right-tier-0",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.72,
+        13.8,
+        1.32
+      ],
+      "sourceID": "right-tier-0"
+    },
+    {
+      "center": [
+        18.73,
+        0.495,
+        -10.9
+      ],
+      "id": "COL_right-tier-1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.72,
+        13.8,
+        0.99
+      ],
+      "sourceID": "right-tier-1"
+    },
+    {
+      "center": [
+        18.01,
+        0.33,
+        -10.9
+      ],
+      "id": "COL_right-tier-2",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.72,
+        13.8,
+        0.66
+      ],
+      "sourceID": "right-tier-2"
+    },
+    {
+      "center": [
+        17.290001,
+        0.165,
+        -10.9
+      ],
+      "id": "COL_right-tier-3",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.72,
+        13.8,
+        0.33
+      ],
+      "sourceID": "right-tier-3"
+    },
+    {
+      "center": [
+        20.1,
+        3.75,
+        -12.0
+      ],
+      "id": "COL_right-wall",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.2,
+        24.0,
+        7.5
+      ],
+      "sourceID": "right-wall"
+    },
+    {
+      "center": [
+        10.0,
+        0.4,
+        -21.200001
+      ],
+      "id": "COL_stage-platform",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        14.0,
+        4.2,
+        0.8
+      ],
+      "sourceID": "stage-platform"
+    },
+    {
+      "center": [
+        4.8,
+        0.42,
+        -18.65
+      ],
+      "id": "COL_stage-speaker-0",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.85,
+        0.62,
+        0.84
+      ],
+      "sourceID": "stage-speaker-0"
+    },
+    {
+      "center": [
+        7.4,
+        0.42,
+        -18.65
+      ],
+      "id": "COL_stage-speaker-1",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.85,
+        0.62,
+        0.84
+      ],
+      "sourceID": "stage-speaker-1"
+    },
+    {
+      "center": [
+        10.0,
+        0.42,
+        -18.65
+      ],
+      "id": "COL_stage-speaker-2",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.85,
+        0.62,
+        0.84
+      ],
+      "sourceID": "stage-speaker-2"
+    },
+    {
+      "center": [
+        12.6,
+        0.42,
+        -18.65
+      ],
+      "id": "COL_stage-speaker-3",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.85,
+        0.62,
+        0.84
+      ],
+      "sourceID": "stage-speaker-3"
+    },
+    {
+      "center": [
+        15.2,
+        0.42,
+        -18.65
+      ],
+      "id": "COL_stage-speaker-4",
+      "rotation": [
+        -0.707107,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "shape": "box",
+      "size": [
+        0.85,
+        0.62,
+        0.84
+      ],
+      "sourceID": "stage-speaker-4"
+    }
+  ],
+  "exporterVersion": "1.0.0",
+  "forwardAxis": "-Z",
+  "geometry": {
+    "materials": 11,
+    "meshes": 135,
+    "sourceObjects": 635,
+    "triangles": 7620
+  },
+  "id": "the-fortress",
+  "materialNotes": [],
+  "scaleStatus": "PROVISIONAL / estimated 20 \u00d7 24 \u00d7 7.5 m envelope; dimensions, positions and counts are not measured.",
+  "schemaVersion": 1,
+  "sourceSHA256": "78ea7d5664cff02be6cba4777eb15196b13442c09d047322f866f970b2d9b496",
+  "spawn": {
+    "position": [
+      10.0,
+      0.0,
+      -2.0
+    ],
+    "yaw": -0.0
+  },
+  "surfaces": [
+    {
+      "allowedAssetCategories": [
+        "fixture"
+      ],
+      "center": [
+        10.0,
+        0.0,
+        -12.0
+      ],
+      "id": "floor",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "primPaths": [
+        "/Environment/Geometry/chunk_035"
+      ],
+      "role": "floor",
+      "size": [
+        20.0,
+        24.0
+      ]
+    },
+    {
+      "allowedAssetCategories": [
+        "fixture"
+      ],
+      "center": [
+        10.0,
+        0.8,
+        -21.200001
+      ],
+      "id": "stage-platform",
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "primPaths": [
+        "/Environment/Geometry/chunk_106"
+      ],
+      "role": "tabletop",
+      "size": [
+        14.0,
+        4.200001
+      ]
+    }
+  ],
+  "title": "The Fortress \u2014 provisional venue blockout",
+  "units": "meters",
+  "upAxis": "Y",
+  "version": "a26ca971f8b594a5bca21a97032887a8fea58d80a600f9a14f66fcf6d84226bf"
+}

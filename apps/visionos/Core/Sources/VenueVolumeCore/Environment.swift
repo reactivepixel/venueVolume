@@ -159,7 +159,7 @@ public struct DirectoryEnvironmentRepository: EnvironmentRepository {
 
 /// Bundled assets use the same immutable manifest/resolver boundary as downloads.
 public struct BundledEnvironmentRepository: EnvironmentRepository {
-    public static let folders = ["img3153-classroom-v1": "Classroom", "mappedRoom": "MappedRoom"]
+    public static let folders = ["img3153-classroom-v1": "Classroom", "mappedRoom": "MappedRoom", "the-fortress": "Fortress"]
     public let directory: URL
     public init(directory: URL) { self.directory = directory }
     public func resolve(id: String) async throws -> ResolvedEnvironment {
