@@ -490,6 +490,7 @@ final class VenueModel {
         do {
             let updated = try PresetOperations.applying(preset, to: fixtureID, fixtures: fixtures)
             if updated != fixtures { fixtures = updated; revision += 1; persist() }
+            previewDraft = false
             select(fixtureID)
             recent.use(.preset(presetID))
             message = "Applied \(preset.name) to \(fixture(fixtureID)?.name ?? "fixture")."
@@ -913,6 +914,9 @@ final class VenueModel {
     /// is unchanged until the caller requests this setup and RealityKit loads it.
     func importVenueSave(_ document: VenueSave, assetChecksum: String) throws -> (LibraryRoom, VenueSetup) {
         guard !libraryBusy else { throw EnvironmentError.invalid("wait for the current room to finish loading") }
+        if let existing = rooms.first(where: { $0.id == document.room.id }), existing.manifest != document.room.manifest {
+            throw EnvironmentError.invalid("different room metadata already uses this room version")
+        }
         let imported = try library.importSave(document, assetChecksum: assetChecksum)
         let room = rooms.first(where: { $0.manifest == imported.room.manifest }) ?? imported.room
         beginHistoryAction("Import save · \(imported.setup.name)"); defer { endHistoryAction() }
