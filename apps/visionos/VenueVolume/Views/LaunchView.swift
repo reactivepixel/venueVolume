@@ -32,7 +32,7 @@ struct LaunchView: View {
                 .font(.caption).foregroundStyle(.secondary)
             Text("Estimated venue dimensions · No physical DMX output").font(.caption).foregroundStyle(.secondary)
         }
-        .padding(32).frame(width: 680, height: 700)
+        .padding(32).frame(minWidth: 680, minHeight: 700)
         .sheet(isPresented: Binding(get: { model.newVenuePresented && !model.isImmersed }, set: { model.newVenuePresented = $0 })) { NewVenueSheet() }
         .presetEditorPresenter(when: !model.isImmersed)
         .task {

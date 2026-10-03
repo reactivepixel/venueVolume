@@ -73,8 +73,10 @@ struct SceneSelectionPane: View {
 struct FixtureActions: View {
     @Environment(VenueModel.self) private var model
     let fixture: Fixture
+    @Environment(\.dynamicTypeSize) private var textSize
     var body: some View {
-        HStack {
+        let layout = textSize >= .xxLarge ? AnyLayout(VStackLayout(alignment: .leading, spacing: 16)) : AnyLayout(HStackLayout(spacing: 16))
+        layout {
             Button("Retarget DMX", systemImage: "scope") { model.beginRetarget(fixture.id) }.disabled(!model.canPlace || fixture.asset?.headAim != true)
             Button("Axes", systemImage: "rotate.3d") { model.beginTransform(fixture.id) }.disabled(!model.canPlace)
             Button(role: .destructive) { model.remove(fixture.id) } label: { Image(systemName: "trash").frame(minWidth: 60, minHeight: 60) }
@@ -121,7 +123,7 @@ struct FixtureEditorView: View {
             // visionOS may restore this companion window as the only scene.
             // Keep entry reachable until the room has restored selection.
             if !model.isImmersed { VenueEntryButton() }
-        }.padding(28).frame(width: 620, height: 760)
+        }.padding(28).frame(minWidth: 620, minHeight: 600)
         .presetEditorPresenter(when: !model.isImmersed)
         .onAppear {
             if model.isImmersed && model.selectedID == nil { dismissWindow(id: "fixture-editor") }

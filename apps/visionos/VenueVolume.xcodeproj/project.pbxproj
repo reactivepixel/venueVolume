@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0AAFA831C65D19BFAD1B3037 /* ToolboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A77C35DB1F4AA96F5DAE3C /* ToolboxView.swift */; };
+		0AD799F45280996D383A05B9 /* UXPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E68505DBBA6EEE51BDB540 /* UXPreview.swift */; };
 		0CA2049D9B473E27E6BEC71F /* PresetEditorPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A096039BA75A5E69F7F5AE /* PresetEditorPresentation.swift */; };
 		0F6BD67A81CC019A84C0DDF5 /* PresetDragSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F9AB0517B709A3147A42E0 /* PresetDragSource.swift */; };
 		17B9C89384D24C90C414BF8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A216CAA2CDE7F26E599DD5EF /* Assets.xcassets */; };
@@ -62,6 +63,7 @@
 		A216CAA2CDE7F26E599DD5EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD38AEB3AC858868B97CE99D /* FixturePlacementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturePlacementView.swift; sourceTree = "<group>"; };
 		CDAD85CBEF3AD8C985E74BDC /* FixturePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturePanel.swift; sourceTree = "<group>"; };
+		D6E68505DBBA6EEE51BDB540 /* UXPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UXPreview.swift; sourceTree = "<group>"; };
 		E260FA10C86461CAC4469D57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E5F9AB0517B709A3147A42E0 /* PresetDragSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetDragSource.swift; sourceTree = "<group>"; };
 		F58C9AC408DE096B035A72DE /* DebugPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPanel.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				16DE72BEDB41CF8A53707C9C /* PresetEditorView.swift */,
 				9926915861960E1C383B16B3 /* RoomLibraryView.swift */,
 				97A77C35DB1F4AA96F5DAE3C /* ToolboxView.swift */,
+				D6E68505DBBA6EEE51BDB540 /* UXPreview.swift */,
 				F949E3AA522D9D9A396D62E4 /* VenueSaveDocument.swift */,
 			);
 			path = Views;
@@ -262,6 +265,7 @@
 				8FC4C74944432D3BD74698FB /* RoomLibraryView.swift in Sources */,
 				3B0F47C7CCF1063038398EAF /* RoomScanner.swift in Sources */,
 				0AAFA831C65D19BFAD1B3037 /* ToolboxView.swift in Sources */,
+				0AD799F45280996D383A05B9 /* UXPreview.swift in Sources */,
 				565250CAD4D6DA1BD98FB1BE /* VenueModel.swift in Sources */,
 				D02D890DB2F4055B0A1AEEA3 /* VenueSaveDocument.swift in Sources */,
 				82005BDBC395435482A872C4 /* VenueScene.swift in Sources */,

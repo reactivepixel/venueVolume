@@ -42,6 +42,8 @@ final class VenueModel {
     let presetEditor = PresetEditorPresentation()
     let presetDrag = PresetDragState()
     var toolboxTab = 0
+    var toolboxLibraryTab = 0
+    var venueControlsVisible = false
     var setupName = "Untitled setup" { didSet { queueHistoryEdit("Rename setup") } }
     private(set) var activeSetupID: UUID?
     private var savedSetup: VenueSetup?

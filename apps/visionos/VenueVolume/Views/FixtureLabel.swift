@@ -4,6 +4,7 @@ import VenueVolumeCore
 /// One attachment grows upward, keeping the object and its label together.
 struct FixtureLabel: View {
     @Environment(VenueModel.self) private var model
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let fixture: Fixture
     private var selected: Bool { model.selectedID == fixture.id }
 
@@ -14,14 +15,14 @@ struct FixtureLabel: View {
                 Button { withAnimation { model.select(fixture.id) } } label: {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(fixture.name).font(.headline)
-                        if fixture.asset?.headAim == true {
-                            Text("MOVING HEAD PILOT · VV PREVIEW 16")
-                                .font(.caption2.weight(.semibold)).foregroundStyle(.cyan)
+                        if selected {
+                            Text(model.presets.first(where: { $0.id == fixture.presetID })?.name ?? "No preset")
+                                .font(.callout).foregroundStyle(.secondary)
                         }
-                        Text(model.presets.first(where: { $0.id == fixture.presetID })?.name ?? "No preset")
-                            .font(.caption).foregroundStyle(.secondary)
                     }
-                }.buttonStyle(.plain).frame(minHeight: 60)
+                }.buttonStyle(.plain).frame(minHeight: 60).hoverEffect(.highlight)
+                    .accessibilityLabel("Select \(fixture.name)")
+                    .accessibilityAddTraits(selected ? .isSelected : [])
                 if selected {
                     Spacer()
                     Button {
@@ -36,25 +37,18 @@ struct FixtureLabel: View {
                 }
             }
             if selected {
-                HStack {
-                    Button("Move", systemImage: "arrow.up.and.down.and.arrow.left.and.right") { model.beginReposition(fixture.id) }
-                        .disabled(!model.canPlace)
+                Menu("Fixture actions", systemImage: "ellipsis.circle") {
+                    Button("Move", systemImage: "arrow.up.and.down.and.arrow.left.and.right") { model.beginReposition(fixture.id) }.disabled(!model.canPlace)
                     Button("Retarget DMX", systemImage: "scope") { model.beginRetarget(fixture.id) }.disabled(!model.canPlace || fixture.asset?.headAim != true)
-                    Button("Transform", systemImage: "rotate.3d") { model.beginTransform(fixture.id) }
-                }.font(.callout).frame(minHeight: 60)
-                if let aim = fixture.aimOverride {
-                    HStack {
-                        Text("Aim override · Pan \(aim.pan) · Tilt \(aim.tilt)").font(.caption2)
-                        Spacer()
-                        Button("Reset") { model.resetAim(fixture.id) }.font(.caption2)
-                    }
-                }
+                    Button("Transform", systemImage: "rotate.3d") { model.beginTransform(fixture.id) }.disabled(!model.canPlace)
+                    if fixture.aimOverride != nil { Button("Use preset aim") { model.resetAim(fixture.id) } }
+                }.frame(minHeight: 60)
             }
         }
         .padding(18)
-        .frame(width: selected ? 510 : 280)
+        .frame(width: selected ? 420 : 280)
         .glassBackgroundEffect(in: RoundedRectangle(cornerRadius: 24))
-        .animation(.smooth(duration: 0.2), value: selected)
+        .animation(reduceMotion ? nil : .smooth(duration: 0.2), value: selected)
         .dropDestination(for: String.self) { tokens, _ in
             guard let token = tokens.first, let id = DMXPreset.id(from: token) else { return false }
             return model.applyPreset(id, to: fixture.id)
@@ -64,11 +58,13 @@ struct FixtureLabel: View {
 
 struct TargetingPrompt: View {
     @Environment(VenueModel.self) private var model
+    @Environment(\.dynamicTypeSize) private var textSize
     var body: some View {
         @Bindable var model = model
-        VStack(alignment: .leading, spacing: 10) {
+        let layout = textSize >= .xxLarge ? AnyLayout(VStackLayout(alignment: .leading, spacing: 16)) : AnyLayout(HStackLayout(spacing: 16))
+        VStack(alignment: .leading, spacing: 18) {
             if !model.isPickingRoom && model.gizmoVisible {
-                HStack {
+                layout {
                     Label("Transform selected fixture", systemImage: "rotate.3d").font(.headline)
                     Spacer()
                     Button("Done") { model.endTransformDrag(); model.gizmoVisible = false }
@@ -79,7 +75,7 @@ struct TargetingPrompt: View {
                 Text(model.transformMode == .rotate ? "Hold and drag a ring: X red · Y green · Z blue." : "Hold and drag an arrow along its axis: X red · Y green · Z blue.")
                     .font(.callout)
             } else {
-            HStack {
+            layout {
                 Label(model.isRetargeting ? "Retarget preset" : "Position fixture", systemImage: "scope").font(.headline)
                 Spacer()
                 Button("Cancel") { model.cancelPicking() }
@@ -90,6 +86,6 @@ struct TargetingPrompt: View {
             }
             Text(model.message ?? model.pickingInstruction).font(.callout)
             }
-        }.padding(20).frame(width: 560).glassBackgroundEffect()
+        }.padding(.vertical, 8).frame(maxWidth: .infinity, alignment: .leading)
     }
 }

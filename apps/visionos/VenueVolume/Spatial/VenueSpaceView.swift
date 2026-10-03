@@ -7,7 +7,6 @@ struct VenueSpaceView: View {
     @Environment(\.dismissWindow) private var dismissWindow
     @Environment(\.openWindow) private var openWindow
     @Environment(\.scenePhase) private var scenePhase
-    @Environment(\.accessibilityPrefersHeadAnchorAlternative) private var prefersStationaryControls
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var scene = VenueScene()
     @State private var lastSpatialDragEnd = Date.distantPast
@@ -28,12 +27,8 @@ struct VenueSpaceView: View {
             scene.update(model: model, attachments: attachments)
             scene.updatePresetDrag(model: model, content: content, reduceMotion: reduceMotion)
         } attachments: {
-            if !prefersStationaryControls { Attachment(id: "targeting") { TargetingPrompt().environment(model) } }
             ForEach(model.environment?.surfaces ?? [], id: \.id) { surface in
                 Attachment(id: "surface-drop-\(surface.id)") { FixtureSurfaceDrop(surface: surface).environment(model) }
-            }
-            if !prefersStationaryControls && (model.canSimulatePalm || model.needsManualToolbox) {
-                Attachment(id: "wrist-preview") { SimulatorWristControl().environment(model) }
             }
             ForEach(model.fixtures) { fixture in
                 Attachment(id: "label-\(fixture.id)") {
@@ -82,11 +77,11 @@ struct VenueSpaceView: View {
                 dismissWindow(id: "fixture-editor")
             }
         }
-        .onChange(of: prefersStationaryControls, initial: true) { _, enabled in
-            if enabled { model.requestToolbox() }
+        .onChange(of: model.canSimulatePalm || model.needsManualToolbox, initial: true) { _, needed in
+            if needed { openWindow(id: "venue-controls", value: "controls") }
         }
         .onChange(of: model.isPickingRoom || model.gizmoVisible) { _, active in
-            if active && prefersStationaryControls { model.requestToolbox() }
+            if active { openWindow(id: "venue-controls", value: "controls") }
         }
         .task(id: model.toolboxRequestID) {
             guard let request = model.toolboxRequestID else { return }
@@ -174,6 +169,7 @@ struct VenueSpaceView: View {
             model.gizmoVisible = false
             dismissWindow(id: "fixture-editor")
             dismissWindow(id: "toolbox")
+            dismissWindow(id: "venue-controls")
             model.resetToolboxActivation()
             model.endPresetDrag()
             model.previewDraft = false

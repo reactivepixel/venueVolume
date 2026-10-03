@@ -14,7 +14,7 @@ struct NewVenueSheet: View {
             }
             Text("Choose an environment. Each new instance starts with no fixtures.").foregroundStyle(.secondary)
             VenueLibraryPicker(showsNewVenues: true) { model.newVenuePresented = false; dismiss() }
-        }.padding(28).frame(width: 620, height: 550)
+        }.padding(28).frame(minWidth: 620, idealWidth: 680, minHeight: 550, idealHeight: 700)
             .task { await model.prepareLibrary() }
     }
 }
@@ -147,6 +147,8 @@ struct RoomLibraryView: View {
     @Environment(VenueModel.self) private var model
     @Environment(\.dismissImmersiveSpace) private var dismissSpace
     @Environment(\.openImmersiveSpace) private var openSpace
+    @Environment(\.dynamicTypeSize) private var textSize
+    @ScaledMetric(relativeTo: .body) private var listHeight = 320.0
     @State private var importing = false
     @State private var pending: Action?
     @State private var confirm = false
@@ -155,24 +157,28 @@ struct RoomLibraryView: View {
     var body: some View {
         @Bindable var model = model
         VStack(alignment: .leading, spacing: 14) {
-            HStack {
+            VStack(alignment: .leading, spacing: 16) {
                 VStack(alignment: .leading, spacing: 3) {
                     Text(model.activeRoom?.manifest.title ?? "Default classroom").font(.headline)
                     Text(model.hasUnsavedSetup ? "Unsaved setup changes" : "Room geometry + independent fixture setups")
                         .font(.caption).foregroundStyle(.secondary)
                 }
-                Spacer()
+                HStack(spacing: 16) {
                 Button("Import", systemImage: "square.and.arrow.down") { importing = true }
                 Button("Scan", systemImage: "viewfinder") { request(.scan) }.disabled(!RoomScanner.supported)
+                }
             }
-            HStack {
-                TextField("Setup name", text: $model.setupName).textFieldStyle(.roundedBorder)
+            VStack(alignment: .leading, spacing: 16) {
+                TextField("Setup name", text: $model.setupName).textFieldStyle(.roundedBorder).accessibilityLabel("Setup name")
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: textSize.isAccessibilitySize ? 320 : 180))], alignment: .leading, spacing: 16) {
                 Button("Save") { model.saveSetup() }
                 Button("Save as new") { model.saveSetup(asNew: true) }
                 ExportVenueSaveButton()
-                Button("New") { model.requestNewVenue() }
+                Button("New venue") { model.requestNewVenue() }
+                }
             }
-            HStack(alignment: .top, spacing: 20) {
+            let layout = textSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 24)) : AnyLayout(HStackLayout(alignment: .top, spacing: 24))
+            layout {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("ENVIRONMENTS").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
                     ScrollView {
@@ -183,13 +189,13 @@ struct RoomLibraryView: View {
                                         Label(room.displayName, systemImage: room.origin == .scanned ? "viewfinder" : "cube.transparent")
                                         Text(room.detail)
                                             .font(.caption).foregroundStyle(.secondary)
-                                    }.frame(maxWidth: .infinity, alignment: .leading).padding(10)
+                                    }.frame(maxWidth: .infinity, alignment: .leading).padding(14).frame(minHeight: 60)
                                 }.buttonStyle(.plain).hoverEffect(.highlight)
                             }
                         }
                     }
-                }.frame(maxWidth: .infinity)
-                Divider()
+                }.frame(maxWidth: .infinity).frame(height: listHeight)
+                if !textSize.isAccessibilitySize { Divider() }
                 VStack(alignment: .leading, spacing: 8) {
                     Text("SAVED SETUPS · \(model.savedSetups.count)").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
                     ScrollView {
@@ -204,16 +210,16 @@ struct RoomLibraryView: View {
                                         VStack(alignment: .leading, spacing: 5) {
                                             Text(setup.name).font(.callout.weight(.semibold))
                                             Text("\(room.manifest.title) · \(setup.placements.fixtures.count) fixtures").font(.caption).foregroundStyle(.secondary)
-                                        }.frame(maxWidth: .infinity, alignment: .leading).padding(10)
+                                        }.frame(maxWidth: .infinity, alignment: .leading).padding(14).frame(minHeight: 60)
                                     }.buttonStyle(.plain).hoverEffect(.highlight)
                                 }
                             }
                         }
                     }
-                }.frame(maxWidth: .infinity)
-            }.frame(height: 245)
+                }.frame(maxWidth: .infinity).frame(height: listHeight)
+            }
             Text(model.libraryMessage ?? "Import a room bundle folder or a meter-scale USDZ. Live scanning is available on Vision Pro.")
-                .font(.caption).foregroundStyle(.secondary).lineLimit(3)
+                .font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
         }
         .disabled(model.libraryBusy)
         .overlay { if model.libraryBusy { ProgressView("Loading room…").padding(24).glassBackgroundEffect() } }

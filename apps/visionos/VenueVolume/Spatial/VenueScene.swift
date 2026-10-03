@@ -50,6 +50,7 @@ final class VenueScene {
     private var palmGate = PalmRevealGate()
     private var latestLeftHand: HandAnchor?
     private var lastHandUpdate: Double = 0
+    private var labelLayoutElapsed: Double = 0
     private var deviceTransform = matrix_identity_float4x4
 
     init(repository: (any EnvironmentRepository)? = nil, environmentID: String = "img3153-classroom-v1") {
@@ -188,6 +189,11 @@ final class VenueScene {
             guard let self else { return }
             self.rigs.values.forEach { $0.tick(deltaTime: event.deltaTime) }
             self.presetDragVisual.tick()
+            self.labelLayoutElapsed += event.deltaTime
+            if self.labelLayoutElapsed >= 0.1 {
+                self.labelLayoutElapsed = 0
+                self.layoutFixtureLabels()
+            }
             self.updateLightingDiagnostics(deltaTime: event.deltaTime)
         }
     }
@@ -354,6 +360,7 @@ final class VenueScene {
         guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--preset-drag-smoke") else { return }
         do {
             for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
+            model.toolboxLibraryTab = 1
             model.requestToolbox()
             guard let fixture = model.fixtures.first,
                   let preset = model.presets.first(where: { $0.id != fixture.presetID }) else {
@@ -489,10 +496,6 @@ final class VenueScene {
 
     func update(model: VenueModel, attachments: RealityViewAttachments) {
         _ = model.fixtureRenderRevision // Rebuild placeholders when an asynchronous catalog asset becomes ready.
-        if let hud = attachments.entity(for: "targeting") {
-            if hud.parent == nil { hud.position = [0, -0.42, -1.2]; headAnchor.addChild(hud) }
-            hud.isEnabled = model.isPickingRoom || (model.gizmoVisible && model.selectedID != nil)
-        }
         if targetMarker.parent == nil { root.addChild(targetMarker) }
         targetMarker.components.set(DynamicLightShadowComponent(castsShadow: false))
         let marker = model.pendingTarget ?? model.lastTarget
@@ -519,11 +522,6 @@ final class VenueScene {
                 zone.isEnabled = model.draggingFixture != nil
             }
         }
-        if let preview = attachments.entity(for: "wrist-preview"), preview.parent == nil {
-            preview.position = [0.57, -0.30, -1.3]
-            headAnchor.addChild(preview)
-        }
-
         if displayedWhiteRoom != model.whiteRoom {
             var white = PhysicallyBasedMaterial()
             white.baseColor = .init(tint: UIColor(white: 0.82, alpha: 1))
@@ -606,6 +604,32 @@ final class VenueScene {
                 drops[fixture.id] = drop
             }
         }
+    }
+
+    /// Selected labels retain a readable angular size; nearby names yield when
+    /// their projected rectangles overlap. Every object remains in the wrist list.
+    private func layoutFixtureLabels() {
+        guard let model else { return }
+        let eye = SIMD3(deviceTransform.columns.3.x, deviceTransform.columns.3.y, deviceTransform.columns.3.z)
+        let view = simd_inverse(deviceTransform)
+        var candidates: [SpatialLabelLayout.Candidate] = []
+        for fixture in model.fixtures {
+            guard let label = labels[fixture.id] else { continue }
+            let localSize = label.visualBounds(relativeTo: label, excludeInactive: false).extents
+            let world = label.position(relativeTo: nil)
+            let distance = simd_distance(eye, world)
+            let scale = max(1, distance / 2)
+            label.scale = SIMD3(repeating: scale)
+            let base = FixtureAiming.vector(fixture.position)
+            label.position = base + [0, (fixture.assetID == nil ? 0.18 : fixture.visualHeight + 0.10) + localSize.y * scale / 2, 0.04]
+            let center = view * SIMD4<Float>(label.position(relativeTo: nil), 1)
+            guard center.z < -0.05 else { label.isEnabled = false; continue }
+            candidates.append(.init(id: fixture.id, center: [center.x / -center.z, center.y / -center.z],
+                halfSize: [max(localSize.x, 0.1) * scale / (-2 * center.z), max(localSize.y, 0.06) * scale / (-2 * center.z)],
+                distance: distance, selected: model.selectedID == fixture.id))
+        }
+        let visible = SpatialLabelLayout.visible(candidates)
+        for (id, label) in labels { label.isEnabled = visible.contains(id) }
     }
 
     /// SwiftUI window coordinates are converted by the system into this scene;
