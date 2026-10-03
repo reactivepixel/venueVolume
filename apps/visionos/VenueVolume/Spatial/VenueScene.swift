@@ -1,5 +1,6 @@
 import ARKit
 import CryptoKit
+import Metal
 import QuartzCore
 import RealityKit
 import SwiftUI
@@ -13,6 +14,18 @@ final class VenueScene {
     let root = Entity()
     let overlayRoot = Entity()
     private var frameSubscription: EventSubscription?
+    private weak var model: VenueModel?
+    private var thermalPoll: Double = 0
+    private var benchmarkElapsed: Double = 0
+    private var benchmarkCadence = SceneCadence()
+    private var benchmarkFinished = false
+    private var benchmarkBudgets: [UUID: Int] = [:]
+    private var benchmarkThermals: Set<String> = []
+    private var benchmarkAllocated: Set<Int> = []
+    private var benchmarkInitialThermal = ""
+    private var benchmarkFixtures: [Fixture] = []
+    private var benchmarkRevision = 0
+    private let metalDevice = MTLCreateSystemDefaultDevice()
     private let targetMarker = ModelEntity(mesh: .generateSphere(radius: 0.025), materials: [UnlitMaterial(color: .cyan)])
     private var roomMaterials: [(Entity, ModelComponent)] = []
     private var displayedWhiteRoom: Bool?
@@ -50,18 +63,33 @@ final class VenueScene {
                 guard let resources = Bundle.main.resourceURL else {
                     throw EnvironmentError.invalid("application resources are missing")
                 }
-                source = DirectoryEnvironmentRepository(directory: resources.appendingPathComponent("Environments/Classroom"))
+                source = BundledEnvironmentRepository(directory: resources.appendingPathComponent("Environments"))
             }
-            model.environmentStatus = "Loading classroom…"
+            self.model = model
+            model.supportsExtendedLights = metalDevice?.supportsFamily(.apple6) == true
+            model.environmentStatus = "Loading room…"
             if model.rooms.isEmpty {
                 let bundled = try await source.resolve(id: environmentID)
-                model.bootstrapLibrary(defaultRoom: bundled.manifest)
+                var additional: [EnvironmentManifest] = []
+                if repository == nil {
+                    for id in BundledEnvironmentRepository.folders.keys.sorted() where id != environmentID {
+                        additional.append(try await source.resolve(id: id).manifest)
+                    }
+                }
+                model.bootstrapLibrary(defaultRoom: bundled.manifest, additionalRooms: additional)
+                if let benchmark = model.lightingBenchmark,
+                   let room = model.rooms.first(where: { $0.manifest.id == benchmark.roomID }) {
+                    model.roomRequest = .init(room: room, setup: nil, blank: true)
+                }
             }
             guard let selected = model.roomRequest?.room ?? model.activeRoom ?? model.rooms.first else { throw EnvironmentError.invalid("room library is empty") }
             let resolved: ResolvedEnvironment
             if selected.origin == .bundled { resolved = try await source.resolve(id: selected.manifest.id) }
             else { resolved = try await DirectoryEnvironmentRepository(directory: model.library.roomDirectory(selected)).resolve(id: selected.manifest.id) }
             try resolved.manifest.validate()
+            guard selected.manifest == resolved.manifest else {
+                throw EnvironmentError.invalid("this saved room version is unavailable; open the current room as a new setup")
+            }
             guard resolved.assetURL.isFileURL else { throw EnvironmentError.invalid("asset must be local") }
             let checksum = try await Task.detached {
                 let data = try Data(contentsOf: resolved.assetURL, options: .mappedIfSafe)
@@ -126,7 +154,11 @@ final class VenueScene {
             model.scannedMesh = scan
             // Imported opaque PBR meshes receive dynamic light and write depth.
             manifest = resolved.manifest
+            benchmarkElapsed = 0; benchmarkCadence = SceneCadence(); benchmarkFinished = false
+            benchmarkThermals = []; benchmarkAllocated = []; benchmarkInitialThermal = ""
             model.activate(environment: resolved.manifest)
+            benchmarkFixtures = model.lightingBenchmark == nil ? [] : model.fixtures
+            benchmarkRevision = model.revision
             return true
         } catch is CancellationError {
             return false
@@ -146,7 +178,86 @@ final class VenueScene {
 
     func startAnimation(in content: RealityViewContent) {
         frameSubscription = content.subscribe(to: SceneEvents.Update.self) { [weak self] event in
-            self?.rigs.values.forEach { $0.tick(deltaTime: event.deltaTime) }
+            guard let self else { return }
+            self.rigs.values.forEach { $0.tick(deltaTime: event.deltaTime) }
+            self.updateLightingDiagnostics(deltaTime: event.deltaTime)
+        }
+    }
+
+    private func updateLightingDiagnostics(deltaTime: Double) {
+        guard let model else { return }
+        thermalPoll += deltaTime
+        if thermalPoll >= 1 || benchmarkInitialThermal.isEmpty {
+            thermalPoll = 0
+            let thermal: LightingBudget.Thermal
+            switch ProcessInfo.processInfo.thermalState {
+            case .nominal: thermal = .nominal
+            case .fair: thermal = .fair
+            case .serious: thermal = .serious
+            case .critical: thermal = .critical
+            @unknown default: thermal = .serious
+            }
+            if model.lightingThermal != thermal { model.lightingThermal = thermal }
+            if benchmarkInitialThermal.isEmpty { benchmarkInitialThermal = thermal.rawValue }
+        }
+        guard let benchmark = model.lightingBenchmark, !benchmarkFinished,
+              aligned, root.isEnabled, model.isImmersed, rigs.count == 64 else { return }
+        guard manifest?.id == benchmark.roomID, !model.whiteRoom, !model.blackout, model.houseLight == 0.05,
+              model.selectedID == nil, !model.previewDraft, model.revision == benchmarkRevision else {
+            benchmarkFinished = true
+            model.lightingBenchmarkStatus = "Benchmark invalidated by scene edits. Relaunch to repeat the controlled comparison."
+            return
+        }
+        benchmarkElapsed += deltaTime
+        if benchmark.moving {
+            for (index, fixture) in benchmarkFixtures.enumerated() {
+                var channels = fixture.channels
+                channels[4] = 128 + Int(sin(benchmarkElapsed * 0.65 + Double(index)*0.3) * 65)
+                channels[5] = 158 + Int(sin(benchmarkElapsed * 0.4 + Double(index)*0.2) * 25)
+                rigs[fixture.id]?.update(fixture: fixture, channels: channels, selected: false, blackout: false,
+                                         placing: false, lightBudget: benchmarkBudgets[fixture.id] ?? 0)
+            }
+        }
+        // Exclude cold imports, pipeline compilation and the first five seconds.
+        guard benchmarkElapsed > 5 else { return }
+        benchmarkCadence.append(seconds: deltaTime)
+        benchmarkThermals.insert(model.lightingThermal.rawValue)
+        benchmarkAllocated.insert(benchmarkBudgets.values.reduce(0,+))
+        guard benchmarkElapsed >= 5 + benchmark.seconds, let cadence = benchmarkCadence.summary else { return }
+        benchmarkFinished = true
+        do {
+            let data = try JSONEncoder().encode(cadence)
+            let summary = try JSONSerialization.jsonObject(with: data)
+            #if targetEnvironment(simulator)
+            let execution = "simulator"
+            #else
+            let execution = "device"
+            #endif
+            let report: [String: Any] = [
+                "schemaVersion": 1, "execution": execution, "roomID": manifest?.id ?? "",
+                "roomVersion": manifest?.version ?? "", "assetSHA256": manifest?.asset.sha256 ?? "",
+                "appVersion": Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "unknown",
+                "os": ProcessInfo.processInfo.operatingSystemVersionString, "gpu": metalDevice?.name ?? "unavailable",
+                "requestedShadowLights": benchmark.lights, "allocatedShadowLights": benchmarkAllocated.sorted(),
+                "fixtureObjects": rigs.count, "moving": benchmark.moving, "whiteRoom": model.whiteRoom,
+                "houseLight": model.houseLight, "measurementSeconds": benchmarkElapsed-5,
+                "thermalStart": benchmarkInitialThermal, "thermalStates": benchmarkThermals.sorted(),
+                "sceneUpdateCadence": summary,
+                "lightComponentWritesIncludingWarmup": rigs.values.reduce(0) { $0+$1.lightComponentWrites },
+                "jointTransformWritesIncludingWarmup": rigs.values.reduce(0) { $0+$1.jointTransformWrites },
+                "displayedFPS": NSNull(), "gpuFrameTimeMS": NSNull(),
+                "conclusion": "Cadence diagnostic only. Verify visible light count, shadows, GPU deadlines and thermal stability with RealityKit Trace on device."
+            ]
+            let output = try JSONSerialization.data(withJSONObject: report, options: [.prettyPrinted, .sortedKeys])
+            model.lightingBenchmarkJSON = String(decoding: output, as: UTF8.self)
+            let folder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("Benchmarks")
+            try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+            let file = folder.appendingPathComponent("lighting-" + UUID().uuidString + ".json")
+            try output.write(to: file, options: .atomic)
+            model.lightingBenchmarkStatus = "Recorded cadence · \(benchmark.lights) requested shadow beams. GPU profiling still required."
+            print("VV_LIGHTING_BENCHMARK " + model.lightingBenchmarkJSON)
+        } catch {
+            model.lightingBenchmarkStatus = "Benchmark report could not be saved: " + error.localizedDescription
         }
     }
 
@@ -310,13 +421,12 @@ final class VenueScene {
         }
         // Bound expensive shadow lights; selected fixtures receive preview priority.
         // Geometry and articulation continue for every placed asset.
-        var budgets: [UUID: Int] = [:], remaining = 8
-        let priority = model.fixtures.filter { $0.id == model.selectedID } + model.fixtures.filter { $0.id != model.selectedID }
-        for fixture in priority where !model.blackout {
-            guard LightingPreview(channels: model.renderedChannels(for: fixture)).intensity > 0 else { continue }
-            let count = min(remaining, fixture.asset?.emitters.count ?? 0)
-            budgets[fixture.id] = count; remaining -= count
-        }
+        let budgets = LightingBudget.allocate(model.fixtures.map { fixture in
+            let look = LightingPreview(channels: model.renderedChannels(for: fixture), blackout: model.isBlackedOut(fixture))
+            return .init(id: fixture.id, emitters: fixtureTemplates[fixture.assetID ?? ""] == nil ? 0 : fixture.asset?.emitters.count ?? 0,
+                         emitting: look.intensity > 0 && look.rgb.contains { $0 > 0 })
+        }, selected: model.selectedID, limit: model.effectiveLightLimit)
+        benchmarkBudgets = budgets
         for fixture in model.fixtures {
             let displayed = model.renderedFixture(fixture)
             let position = FixtureAiming.vector(displayed.position)

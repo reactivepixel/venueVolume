@@ -33,3 +33,14 @@ for asset in catalog:
     assert json.loads((source / 'models/rig.json').read_text())['descriptor'] == asset
     assert json.loads((source / 'validation/rig.json').read_text())['passed']
 print(f'Catalog checks passed: {len(catalog)} exact bundled models, rig companions, generated Swift catalog and validation reports.')
+
+mapped = app / 'VenueVolume/Environments/MappedRoom'
+metadata = json.loads((mapped/'environment.json').read_text())
+assert metadata['id'] == metadata['title'] == 'mappedRoom'
+assert metadata['asset']['bytes'] == (mapped/'environment.usdz').stat().st_size
+assert hashlib.sha256((mapped/'environment.usdz').read_bytes()).hexdigest() == metadata['asset']['sha256']
+for file in ['environment.json', 'environment.usdz']:
+    assert (mapped/file).read_bytes() == (repo/'apps/room2blender/mappedRoom/output'/file).read_bytes()
+for key in ['colliders', 'surfaces', 'spawn', 'bounds', 'geometry']:
+    assert metadata[key] == manifest[key], key
+print('Mapped room checks passed: separate identity, exact authoring copies, unchanged geometry/colliders/surfaces/spawn.')

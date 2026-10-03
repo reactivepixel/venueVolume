@@ -1,4 +1,5 @@
 import SwiftUI
+import VenueVolumeCore
 
 struct DebugPanel: View {
     @Environment(VenueModel.self) private var model
@@ -23,6 +24,20 @@ struct DebugPanel: View {
             Text(model.environmentStatus).font(.headline)
             Text(model.fixtureAssetStatus).font(.caption).foregroundStyle(.secondary)
             Text(model.persistenceStatus).font(.caption).foregroundStyle(.secondary)
+            Picker("Shadow beam budget", selection: $model.requestedLightLimit) {
+                ForEach(LightingBudget.options, id: \.self) { count in Text("\(count)").tag(count) }
+            }.disabled(model.lightingBenchmark != nil)
+            Text("Active budget: \(model.effectiveLightLimit) · \(model.lightingThermal.rawValue)")
+                .font(.caption)
+            Text("Above 8 is experimental; profile on your headset. All active beams cast shadows.")
+                .font(.caption2).foregroundStyle(.secondary)
+            if model.lightingBenchmark != nil {
+                Text(model.lightingBenchmarkStatus.isEmpty ? "Benchmark warms for 5 seconds after entering, then records update cadence." : model.lightingBenchmarkStatus)
+                    .font(.caption)
+                if !model.lightingBenchmarkJSON.isEmpty {
+                    ShareLink("Share benchmark JSON", item: model.lightingBenchmarkJSON)
+                }
+            }
             Text(model.trackingStatus).font(.caption).foregroundStyle(.secondary)
             if let message = model.message {
                 Text(message).font(.caption).foregroundStyle(.orange)

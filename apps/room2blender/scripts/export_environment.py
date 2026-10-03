@@ -8,6 +8,7 @@ from collections import defaultdict
 import hashlib
 import json
 import math
+import shutil
 from pathlib import Path
 import tempfile
 import sys
@@ -18,7 +19,7 @@ from mathutils.bvhtree import BVHTree
 from pxr import Gf, Sdf, Usd, UsdGeom, UsdShade, UsdUtils
 
 CONVERSION = Matrix(((1, 0, 0, 0), (0, 0, 1, 0), (0, -1, 0, 0), (0, 0, 0, 1)))
-EXPORT_VERSION = '1.0.0'
+EXPORT_VERSION = '1.1.0'
 
 
 def numbers(values):
@@ -44,12 +45,24 @@ def material_values(mat):
         raise ValueError(f'Expected a Principled material: {mat}')
     fallback = []
     linked = [i.name for i in node.inputs if i.is_linked]
+    texture = None
+    if linked == ['Base Color']:
+        source = node.inputs['Base Color'].links[0].from_node
+        if source.type == 'TEX_IMAGE' and source.image and source.extension == 'REPEAT':
+            vector = source.inputs['Vector']
+            if vector.is_linked and vector.links[0].from_node.type != 'UVMAP':
+                raise ValueError(f'Only explicit UV image mapping is supported: {mat.name}')
+            file = Path(bpy.path.abspath(source.image.filepath)).resolve()
+            if not file.is_file() or file.suffix.lower() != '.png' or source.image.colorspace_settings.name != 'sRGB':
+                raise ValueError(f'Expected an external sRGB PNG: {mat.name}')
+            texture = {'file': file.name, 'sha256': sha(file), 'size': list(source.image.size)}
+            linked = []
     if linked:
         # Deliberate portable fallback for the reviewed classroom, never an implicit bake.
         if mat.name != 'Carpet / procedural gray weave' or linked != ['Base Color']:
             raise ValueError(f'Bake or replace unsupported material nodes before export: {mat.name}: {linked}')
         fallback.append('Carpet procedural weave replaced with constant gray PBR; source .blend retains weave')
-    return {'color': numbers(node.inputs['Base Color'].default_value[:3]),
+    return {'color': numbers(node.inputs['Base Color'].default_value[:3]), 'texture': texture,
             'roughness': float(node.inputs['Roughness'].default_value),
             'metallic': float(node.inputs['Metallic'].default_value)}, fallback
 
@@ -72,7 +85,7 @@ def export(project):
                       and not o.get('synthetic')], key=lambda o: o.name)
     if not objects:
         raise ValueError('No runtime geometry')
-    batches = defaultdict(lambda: {'points': [], 'indices': [], 'normals': [], 'sources': []})
+    batches = defaultdict(lambda: {'points': [], 'indices': [], 'normals': [], 'uvs': [], 'sources': []})
     materials, notes = {}, []
     # Material + 3m spatial cells reduce tiny entities without flattening the entire room.
     for obj in objects:
@@ -96,6 +109,10 @@ def export(project):
                 group['indices'].append(len(group['points']))
                 group['points'].append(numbers(transform @ mesh.vertices[vi].co))
                 group['normals'].append(numbers((normal_transform @ mesh.corner_normals[li].vector).normalized()))
+                if materials[mat.name]['texture']:
+                    if mesh.uv_layers.active is None:
+                        raise ValueError(f'Textured mesh has no UVs: {obj.name}')
+                    group['uvs'].append(numbers(mesh.uv_layers.active.data[li].uv))
         evaluated.to_mesh_clear()
     proxies = []
     proxy_errors = []
@@ -169,6 +186,28 @@ def export(project):
             shader.CreateInput('diffuseColor', Sdf.ValueTypeNames.Color3f).Set(Gf.Vec3f(*value['color']))
             shader.CreateInput('roughness', Sdf.ValueTypeNames.Float).Set(value['roughness'])
             shader.CreateInput('metallic', Sdf.ValueTypeNames.Float).Set(value['metallic'])
+            if value['texture']:
+                info = value['texture']
+                source = bpy.data.materials[name].node_tree.nodes.get('Principled BSDF').inputs['Base Color'].links[0].from_node.image
+                texture_dir = Path(directory)/'textures'
+                texture_dir.mkdir(exist_ok=True)
+                destination = texture_dir/info['file']
+                if destination.exists() and sha(destination) != info['sha256']:
+                    raise ValueError('Conflicting texture filenames')
+                shutil.copyfile(bpy.path.abspath(source.filepath), destination)
+                reader = UsdShade.Shader.Define(stage, str(mat.GetPath())+'/UV')
+                reader.CreateIdAttr('UsdPrimvarReader_float2')
+                reader.CreateInput('varname', Sdf.ValueTypeNames.String).Set('st')
+                reader.CreateOutput('result', Sdf.ValueTypeNames.Float2)
+                tex = UsdShade.Shader.Define(stage, str(mat.GetPath())+'/BaseColor')
+                tex.CreateIdAttr('UsdUVTexture')
+                tex.CreateInput('file', Sdf.ValueTypeNames.Asset).Set(Sdf.AssetPath('textures/'+info['file']))
+                tex.CreateInput('sourceColorSpace', Sdf.ValueTypeNames.Token).Set('sRGB')
+                for axis in ('S', 'T'):
+                    tex.CreateInput('wrap'+axis, Sdf.ValueTypeNames.Token).Set('repeat')
+                tex.CreateInput('st', Sdf.ValueTypeNames.Float2).ConnectToSource(reader.ConnectableAPI(), 'result')
+                tex.CreateOutput('rgb', Sdf.ValueTypeNames.Float3)
+                shader.GetInput('diffuseColor').ConnectToSource(tex.ConnectableAPI(), 'rgb')
             shader.CreateOutput('surface', Sdf.ValueTypeNames.Token)
             mat.CreateSurfaceOutput().ConnectToSource(shader.ConnectableAPI(), 'surface')
             usd_materials[name] = mat
@@ -181,6 +220,9 @@ def export(project):
             mesh.CreateFaceVertexIndicesAttr(data['indices'])
             mesh.CreateNormalsAttr(data['normals'])
             mesh.SetNormalsInterpolation(UsdGeom.Tokens.vertex)
+            if data['uvs']:
+                UsdGeom.PrimvarsAPI(mesh).CreatePrimvar('st', Sdf.ValueTypeNames.TexCoord2fArray,
+                                                     UsdGeom.Tokens.vertex).Set(data['uvs'])
             mesh.CreateSubdivisionSchemeAttr(UsdGeom.Tokens.none)
             mesh.CreateOrientationAttr(UsdGeom.Tokens.rightHanded)
             mesh.CreateDoubleSidedAttr(False)
@@ -205,10 +247,22 @@ def export(project):
         # The USD library emits the required uncompressed, 64-byte-aligned USDZ archive.
         if not UsdUtils.CreateNewUsdzPackage(Sdf.AssetPath(str(stage_path)), str(package)):
             raise ValueError('USDZ packaging failed')
-        compliance = UsdUtils.ComplianceChecker(arkit=True)
-        compliance.CheckCompliance(str(package))
-        check('OpenUSD ARKit compatibility rules', not compliance.GetErrors() and not compliance.GetFailedChecks(),
-              {'errors': compliance.GetErrors(), 'failed': compliance.GetFailedChecks(), 'warnings': compliance.GetWarnings()})
+        if hasattr(UsdUtils, 'ComplianceChecker'):
+            compliance = UsdUtils.ComplianceChecker(arkit=True)
+            compliance.CheckCompliance(str(package))
+            check('OpenUSD ARKit compatibility rules', not compliance.GetErrors() and not compliance.GetFailedChecks(),
+                  {'errors': compliance.GetErrors(), 'failed': compliance.GetFailedChecks(), 'warnings': compliance.GetWarnings()})
+        else:
+            # OpenUSD 26.08 removed the legacy checker. Run the replacement
+            # validators, accurately reporting that these are not Apple's importer.
+            from pxr import UsdValidation
+            registry = UsdValidation.ValidationRegistry()
+            context = UsdValidation.ValidationContext(registry.GetOrLoadAllValidators())
+            issues = context.Validate(Usd.Stage.Open(str(package)))
+            errors = [e.GetErrorAsString() for e in issues if e.GetType() == UsdValidation.ValidationErrorType.Error]
+            check('OpenUSD validation framework', not errors,
+                  {'errors': errors, 'issues': [e.GetErrorAsString() for e in issues],
+                   'appleImporter': 'requires native RealityKit validation'})
         reopened = Usd.Stage.Open(str(package))
         check('USDZ opens with meter Y-up root', reopened is not None and
               UsdGeom.GetStageUpAxis(reopened) == 'Y' and UsdGeom.GetStageMetersPerUnit(reopened) == 1 and
@@ -219,6 +273,10 @@ def export(project):
         check('normals and materials survive export', all(
             len(m.GetNormalsAttr().Get()) == len(m.GetPointsAttr().Get()) and
             bool(UsdShade.MaterialBindingAPI(m).ComputeBoundMaterial()[0]) for m in imported), len(imported))
+        textured = [m for m in imported if UsdShade.MaterialBindingAPI(m).ComputeBoundMaterial()[0].GetPrim().GetChild('BaseColor')]
+        check('texture UVs survive export', all(
+            len(UsdGeom.PrimvarsAPI(m).GetPrimvar('st').Get() or []) == len(m.GetPointsAttr().Get())
+            for m in textured), {'texturedMeshes': len(textured)})
         # Test the reopened mesh, not the Blender source or original in-memory geometry.
         points, faces = [], []
         for mesh in imported:

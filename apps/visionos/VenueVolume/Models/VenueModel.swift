@@ -84,6 +84,16 @@ final class VenueModel {
     var blackout = false { didSet { queueHistoryEdit("Change blackout") } }
     var houseLight: Float = 0.15 { didSet { queueHistoryEdit("Adjust room light") } }
     var whiteRoom = true { didSet { queueHistoryEdit("Change room materials") } }
+    let lightingBenchmark: LightingBenchmark?
+    var requestedLightLimit = 8
+    var supportsExtendedLights = false
+    var lightingThermal = LightingBudget.Thermal.nominal
+    var lightingBenchmarkJSON = ""
+    var lightingBenchmarkStatus = ""
+    var effectiveLightLimit: Int {
+        LightingBudget.effective(requested: requestedLightLimit, extendedHardware: supportsExtendedLights, thermal: lightingThermal)
+    }
+    private var bundledRooms: [LibraryRoom] = []
     var scenePick: ScenePick?
     var lastTarget: Position3D?
     private(set) var pendingTarget: Position3D?
@@ -145,9 +155,11 @@ final class VenueModel {
     init(arguments: [String] = ProcessInfo.processInfo.arguments, defaults: UserDefaults = .standard, placementDirectory: URL? = nil) {
         self.defaults = defaults
         self.arguments = arguments
+        lightingBenchmark = LightingBenchmark(arguments: arguments)
+        requestedLightLimit = lightingBenchmark?.lights ?? 8
         placements = PlacementStore(directory: placementDirectory ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("VenueVolume/Placements"))
         library = RoomLibraryStore(directory: placements.directory.appendingPathComponent(isDemoModeDirectory(arguments) ? "DemoLibrary" : "Library"))
-        isDemoMode = arguments.contains("--demo")
+        isDemoMode = isDemoModeDirectory(arguments)
         if !isDemoMode, let data = defaults.data(forKey: "venue.presets.v1"),
            let saved = try? JSONDecoder().decode([DMXPreset].self, from: data),
            saved.allSatisfy({ $0.validationIssue == nil }), Set(saved.map(\.id)).count == saved.count {
@@ -170,6 +182,15 @@ final class VenueModel {
             applyHistoryState(state)
             return
         }
+        if let benchmark = lightingBenchmark {
+            self.environment = environment
+            fixtures = benchmark.fixtures(); selectedID = nil; expandedID = nil
+            whiteRoom = false; houseLight = 0.05; blackout = false
+            environmentStatus = environment.title
+            roomRequest = nil; libraryBusy = false
+            persistenceStatus = "Lighting benchmark · temporary placements"
+            return
+        }
         beginHistoryAction(roomRequest?.setup.map { "Load setup · \($0.name)" } ?? "Open blank room · \(environment.title)")
         defer { endHistoryAction(); startHistoryIfNeeded() }
         if let request = roomRequest {
@@ -188,6 +209,8 @@ final class VenueModel {
                 }
                 if !isDemoMode, let data = try? JSONEncoder().encode(presets) { defaults.set(data, forKey: "venue.presets.v1") }
                 whiteRoom = setup.whiteRoom; houseLight = setup.houseLight
+            } else {
+                whiteRoom = environment.id != "mappedRoom"
             }
             persistenceBlocked = false
             if !isDemoMode {
@@ -217,6 +240,7 @@ final class VenueModel {
         environmentStatus = environment.title
         if self.environment?.id == environment.id && self.environment?.version == environment.version { return }
         self.environment = environment
+        whiteRoom = environment.id != "mappedRoom"
         environmentStatus = environment.title
         isPlacing = false
         selectedID = nil
@@ -833,9 +857,10 @@ final class VenueModel {
         }
     }
 
-    func bootstrapLibrary(defaultRoom: EnvironmentManifest) {
+    func bootstrapLibrary(defaultRoom: EnvironmentManifest, additionalRooms: [EnvironmentManifest] = []) {
         guard rooms.isEmpty else { return }
-        rooms = [LibraryRoom(manifest: defaultRoom, origin: .bundled)]
+        bundledRooms = ([defaultRoom] + additionalRooms).map { LibraryRoom(manifest: $0, origin: .bundled) }
+        rooms = bundledRooms
         refreshLibrary()
         guard !isDemoMode else { return }
         do {
@@ -843,7 +868,7 @@ final class VenueModel {
                 for node in saved.nodes { try node.state.validate() }
                 history = saved
                 let state = saved.current.state
-                rooms = state.rooms; savedSetups = state.setups
+                rooms = state.rooms; mergeBundledRooms(); savedSetups = state.setups
                 if let room = rooms.first(where: { $0.id == state.roomID }) {
                     historyDestination = (saved.cursor, nil)
                     roomRequest = .init(room: room, setup: nil, blank: true)
@@ -853,6 +878,10 @@ final class VenueModel {
             historyBlocked = true
             historyMessage = "History could not be read. Existing log preserved; history recording is disabled: \(error.localizedDescription)"
         }
+    }
+
+    private func mergeBundledRooms() {
+        for room in bundledRooms where !rooms.contains(where: { $0.id == room.id }) { rooms.append(room) }
     }
 
     func refreshLibrary() {
@@ -1008,7 +1037,7 @@ extension VenueModel {
         restoringHistory = true
         defer { restoringHistory = false }
         cancelPicking(); endPresetDrag(); gizmoVisible = false; lastTarget = nil; recent = RecentItems()
-        rooms = state.rooms; savedSetups = state.setups
+        rooms = state.rooms; mergeBundledRooms(); savedSetups = state.setups
         environment = state.rooms.first { $0.id == state.roomID }!.manifest
         fixtures = state.fixtures; presets = state.presets; presetDraft = state.draft; editingPresetID = state.editingPresetID
         setupName = state.setupName; activeSetupID = state.activeSetupID; savedSetup = state.savedSetup
@@ -1024,4 +1053,6 @@ extension VenueModel {
     }
 }
 
-private func isDemoModeDirectory(_ arguments: [String]) -> Bool { arguments.contains("--demo") }
+private func isDemoModeDirectory(_ arguments: [String]) -> Bool {
+    arguments.contains("--demo") || LightingBenchmark(arguments: arguments) != nil
+}

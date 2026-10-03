@@ -183,6 +183,27 @@ struct SessionSmoke {
         check(preservedWorkingFile == unreadable, "Loading a named setup preserves a damaged working file")
         check(relaunched.saveSetup(asNew: true), "Named setup save remains available when working autosave is blocked")
         print("Room session checks passed: fixture drop, named save/save-as, blank setup, load, preset isolation and relaunch.")
+        let mapped = try JSONDecoder().decode(EnvironmentManifest.self, from: Data(contentsOf: URL(fileURLWithPath: "VenueVolume/Environments/MappedRoom/environment.json")))
+        let upgraded = VenueModel(arguments: [], defaults: defaults, placementDirectory: directory.appendingPathComponent("room-tests"))
+        upgraded.bootstrapLibrary(defaultRoom: environment, additionalRooms: [mapped])
+        upgraded.activate(environment: environment)
+        check(upgraded.rooms.contains { $0.manifest.id == "mappedRoom" }, "New bundled room survives old audit-history restoration")
+        let mappedEntry = upgraded.rooms.first { $0.manifest.id == "mappedRoom" }!
+        upgraded.requestRoom(mappedEntry); upgraded.activate(environment: mapped)
+        check(!upgraded.whiteRoom && upgraded.fixtures.isEmpty, "Blank mappedRoom opens textured with separate placements")
+        upgraded.whiteRoom = true; upgraded.setupName = "White mapped setup"
+        check(upgraded.saveSetup(asNew: true), "Save mapped room material override")
+        let whiteSetup = upgraded.savedSetups.first { $0.name == "White mapped setup" }!
+        upgraded.requestRoom(mappedEntry, setup: whiteSetup); upgraded.activate(environment: mapped)
+        check(upgraded.whiteRoom, "Saved white override survives mapped-room reopening")
+        upgraded.undo()
+        check(upgraded.rooms.contains { $0.manifest.id == "mappedRoom" }, "Undo cannot hide a newly shipped bundled room")
+        let benchFolder = directory.appendingPathComponent("benchmark-isolation")
+        let bench = VenueModel(arguments: ["--lighting-benchmark=mappedRoom", "--benchmark-lights=32"], defaults: defaults, placementDirectory: benchFolder)
+        bench.bootstrapLibrary(defaultRoom: environment, additionalRooms: [mapped]); bench.activate(environment: mapped)
+        check(bench.isDemoMode && bench.fixtures.count == 64 && !bench.whiteRoom, "Benchmark uses temporary identical rigs")
+        check(!FileManager.default.fileExists(atPath: benchFolder.path), "Benchmark does not write user placements or history")
+        print("Mapped-room session checks passed: upgrade, history, blank materials, saved overrides and benchmark isolation.")
         try await AuditSmoke.run(environment: environment)
         try InteractionSmoke.run(environment: environment)
     }

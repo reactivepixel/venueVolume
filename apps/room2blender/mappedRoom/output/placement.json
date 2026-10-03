@@ -1,0 +1,69 @@
+{
+  "room_id": "img3153-classroom-v1",
+  "units": "meters",
+  "up_axis": "Z",
+  "scale_status": "UNMEASURED: all dimensions are modeling assumptions, not recovered measurements",
+  "origin": "rear-left floor corner; +X toward windows, +Y toward teaching wall",
+  "spawn": {
+    "eye": [
+      2.6600000858306885,
+      1.100000023841858,
+      1.649999976158142
+    ],
+    "look_at": [
+      3.5,
+      7.599999904632568,
+      1.4500000476837158
+    ]
+  },
+  "assets": [
+    {
+      "id": "TEST_fixture_on_instructor_desk",
+      "location": [
+        5.269999980926514,
+        6.550000190734863,
+        0.7400000095367432
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "TEST_occlusion_cube",
+      "location": [
+        0.30000001192092896,
+        2.2300000190734863,
+        0.30000001192092896
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  ],
+  "placement_surfaces": [
+    "table-r1-c1-top",
+    "table-r1-c2-top",
+    "table-r1-c3-top",
+    "table-r2-c1-top",
+    "table-r2-c2-top",
+    "table-r2-c3-top",
+    "table-r3-c1-top",
+    "table-r3-c2-top",
+    "table-r3-c3-top"
+  ],
+  "conversion_to_y_up": "For future RealityKit ingestion map (x, y, z) to (x, z, -y). No native app integration in this prototype."
+}

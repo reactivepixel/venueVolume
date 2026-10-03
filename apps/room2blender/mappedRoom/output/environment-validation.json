@@ -1,0 +1,193 @@
+{
+  "authoringBlendSHA256": "b429719d0c0a0ac197c21a6836fbeb25acb9933775449effa7f93208c9aaf333",
+  "blenderVersion": "5.2.1 LTS",
+  "checks": [
+    {
+      "check": "collision proxies match source object bounds",
+      "detail": [],
+      "passed": true
+    },
+    {
+      "check": "OpenUSD validation framework",
+      "detail": {
+        "appleImporter": "requires native RealityKit validation",
+        "errors": [],
+        "issues": []
+      },
+      "passed": true
+    },
+    {
+      "check": "USDZ opens with meter Y-up root",
+      "detail": "Geometry converted once; root is identity",
+      "passed": true
+    },
+    {
+      "check": "round-trip mesh and triangle counts",
+      "detail": {
+        "materials": 13,
+        "meshes": 68,
+        "sourceObjects": 490,
+        "triangles": 18744
+      },
+      "passed": true
+    },
+    {
+      "check": "normals and materials survive export",
+      "detail": 68,
+      "passed": true
+    },
+    {
+      "check": "texture UVs survive export",
+      "detail": {
+        "texturedMeshes": 23
+      },
+      "passed": true
+    },
+    {
+      "check": "exported spawn is over floor",
+      "detail": [
+        2.6600000858306885,
+        0.0,
+        -1.100000023841858
+      ],
+      "passed": true
+    },
+    {
+      "check": "exported placement / instructor-desk-top",
+      "detail": [
+        5.650000095367432,
+        0.7400000095367432,
+        -6.550000190734863
+      ],
+      "passed": true
+    },
+    {
+      "check": "exported placement / table-r1-c1-top",
+      "detail": [
+        1.5,
+        0.7400000095367432,
+        -5.150000095367432
+      ],
+      "passed": true
+    },
+    {
+      "check": "exported placement / table-r1-c2-top",
+      "detail": [
+        4.039999961853027,
+        0.7400000095367432,
+        -5.150000095367432
+      ],
+      "passed": true
+    },
+    {
+      "check": "exported placement / table-r1-c3-top",
+      "detail": [
+        5.760000228881836,
+        0.7400000095367432,
+        -5.150000095367432
+      ],
+      "passed": true
+    },
+    {
+      "check": "exported placement / table-r2-c1-top",
+      "detail": [
+        1.5,
+        0.7400000095367432,
+        -3.680000066757202
+      ],
+      "passed": true
+    },
+    {
+      "check": "exported placement / table-r2-c2-top",
+      "detail": [
+        4.039999961853027,
+        0.7400000095367432,
+        -3.680000066757202
+      ],
+      "passed": true
+    },
+    {
+      "check": "exported placement / table-r2-c3-top",
+      "detail": [
+        5.760000228881836,
+        0.7400000095367432,
+        -3.680000066757202
+      ],
+      "passed": true
+    },
+    {
+      "check": "exported placement / table-r3-c1-top",
+      "detail": [
+        1.5,
+        0.7400000095367432,
+        -2.2100000381469727
+      ],
+      "passed": true
+    },
+    {
+      "check": "exported placement / table-r3-c2-top",
+      "detail": [
+        4.039999961853027,
+        0.7400000095367432,
+        -2.2100000381469727
+      ],
+      "passed": true
+    },
+    {
+      "check": "exported placement / table-r3-c3-top",
+      "detail": [
+        5.760000228881836,
+        0.7400000095367432,
+        -2.2100000381469727
+      ],
+      "passed": true
+    },
+    {
+      "check": "exported wall occludes outward ray",
+      "detail": [
+        7.199999809265137,
+        1.7000000476837158,
+        -3.9000000953674316
+      ],
+      "passed": true
+    },
+    {
+      "check": "no cameras lights or test props",
+      "detail": "Only explicit runtime mesh/material hierarchy exported",
+      "passed": true
+    },
+    {
+      "check": "Blender USDZ import preserves hierarchy and dimensions",
+      "detail": {
+        "expectedZUpBounds": [
+          -0.1599999964237213,
+          -0.1599999964237213,
+          -0.18000000715255737,
+          7.360000133514404,
+          7.960000038146973,
+          2.8499999046325684
+        ],
+        "importedZUpBounds": [
+          -0.1599999964237213,
+          -0.1600000113248825,
+          -0.18000060319900513,
+          7.360000133514404,
+          7.960000038146973,
+          2.8499999046325684
+        ]
+      },
+      "passed": true
+    }
+  ],
+  "exportScriptSHA256": "76159700b4c86bdae996aba2afab18cfafd959d22aa6979bf070828f4def89fb",
+  "geometry": {
+    "materials": 13,
+    "meshes": 68,
+    "sourceObjects": 490,
+    "triangles": 18744
+  },
+  "materialNotes": [],
+  "passed": true,
+  "realityKitValidation": "pending Mac simulator/device import; not available in Blender",
+  "version": "b8d6a2c6cfdf8c27b9d94288969e89dfe5e16fd6ed711a70592a8e55bf6cc048"
+}

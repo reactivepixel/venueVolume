@@ -101,7 +101,7 @@ struct ToolboxView: View {
                     if editing { model.beginHistoryAction("Adjust room light") } else { model.endHistoryAction() }
                 }).frame(width: 150).accessibilityLabel("Room light")
                 Spacer()
-                Text("8 beam previews · selection first").font(.caption).foregroundStyle(.secondary)
+                Text("\(model.effectiveLightLimit) shadow beams · selection first").font(.caption).foregroundStyle(.secondary)
             }
             HStack {
                 Text(model.historyMessage ?? model.message ?? model.handTrackingStatus).lineLimit(2)

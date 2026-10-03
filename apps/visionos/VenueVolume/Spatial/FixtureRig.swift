@@ -14,6 +14,17 @@ import VenueVolumeCore
     private var starts: [String: Float] = [:]
     private var elapsed: [String: Double] = [:]
     private var lastBase: Transform?
+    private struct LightState: Equatable {
+        var intensity: Float
+        var rgb: [Float]
+        var angle: Float
+        var budget: Int
+    }
+    private var lastLight: LightState?
+    private var appliedAngles: [String: Float] = [:]
+    private var lastPlacing: Bool?
+    private(set) var lightComponentWrites = 0
+    private(set) var jointTransformWrites = 0
     private let duration: Double = 0.6
     private let selection: ModelEntity
 
@@ -93,24 +104,39 @@ import VenueVolumeCore
         }
         tick(deltaTime: 0)
         let look = LightingPreview(channels: channels, blackout: blackout)
-        for (index, emitter) in lights.enumerated() {
-            if index >= lightBudget || look.intensity == 0 {
-                emitter.components.remove(SpotLightComponent.self)
-                emitter.components.remove(SpotLightComponent.Shadow.self)
-                continue
+        let state = LightState(intensity: look.intensity, rgb: look.rgb, angle: look.outerAngle, budget: lightBudget)
+        if lastLight != state {
+            for (index, emitter) in lights.enumerated() {
+                if index >= lightBudget || look.intensity == 0 || !look.rgb.contains(where: { $0 > 0 }) {
+                    if emitter.components.has(SpotLightComponent.self) {
+                        emitter.components.remove(SpotLightComponent.self)
+                        emitter.components.remove(SpotLightComponent.Shadow.self)
+                        lightComponentWrites += 1
+                    }
+                    continue
+                }
+                var light = SpotLightComponent()
+                light.intensity = look.intensity / Float(max(1, lights.count))
+                light.color = UIColor(red: CGFloat(look.rgb[0]), green: CGFloat(look.rgb[1]), blue: CGFloat(look.rgb[2]), alpha: 1)
+                light.attenuationRadius = 12
+                light.innerAngleInDegrees = look.outerAngle * 0.7
+                light.outerAngleInDegrees = look.outerAngle
+                emitter.components.set(light)
+                lightComponentWrites += 1
+                if !emitter.components.has(SpotLightComponent.Shadow.self) {
+                    var shadow = SpotLightComponent.Shadow()
+                    shadow.zFar = .automatic // Matches attenuationRadius (12m); no shadow beyond the beam.
+                    emitter.components.set(shadow)
+                }
             }
-            var light = SpotLightComponent()
-            light.intensity = look.intensity / Float(max(1, lights.count))
-            light.color = UIColor(red: CGFloat(look.rgb[0]), green: CGFloat(look.rgb[1]), blue: CGFloat(look.rgb[2]), alpha: 1)
-            light.attenuationRadius = 12
-            light.innerAngleInDegrees = look.outerAngle * 0.7
-            light.outerAngleInDegrees = look.outerAngle
-            emitter.components.set(light)
-            emitter.components.set(SpotLightComponent.Shadow())
+            lastLight = state
         }
         selection.isEnabled = selected && !placing
-        for child in entity.children where child.components.has(InputTargetComponent.self) {
-            child.components.set(InputTargetComponent(allowedInputTypes: placing ? [] : [.indirect]))
+        if lastPlacing != placing {
+            for child in entity.children where child.components.has(InputTargetComponent.self) {
+                child.components.set(InputTargetComponent(allowedInputTypes: placing ? [] : [.indirect]))
+            }
+            lastPlacing = placing
         }
     }
 
@@ -126,7 +152,12 @@ import VenueVolumeCore
                 let t = Float(time/duration), eased = t*t*(3-2*t), start = starts[id] ?? value
                 current[id] = start + (value-start)*eased
             }
-            joint.orientation = simd_quatf(angle: (current[id] ?? 0) * .pi/180, axis: Self.vector(definition.axis))
+            let angle = current[id] ?? 0
+            if appliedAngles[id] != angle {
+                joint.orientation = simd_quatf(angle: angle * .pi/180, axis: Self.vector(definition.axis))
+                appliedAngles[id] = angle
+                jointTransformWrites += 1
+            }
         }
     }
 

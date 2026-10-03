@@ -60,7 +60,9 @@ Blender; Docker, COLMAP and Gaussian training are not required.
 ```
 
 A new capture stops for geometry/specification review before building. See the app guide
-for the review step, dependencies, and the existing classroom example.
+for the review step, dependencies, and the existing classroom example. The separate
+[mappedRoom](apps/room2blender/mappedRoom/README.md) variant adds compact photo-derived
+textures and a controlled lighting comparison against the original room.
 
 ## Optional mov2splat experiment
 
