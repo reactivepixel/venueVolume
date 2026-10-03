@@ -1,4 +1,5 @@
 import SwiftUI
+import VenueVolumeCore
 
 struct LaunchView: View {
     @Environment(VenueModel.self) private var model
@@ -6,68 +7,48 @@ struct LaunchView: View {
     @Environment(\.dismissImmersiveSpace) private var dismissSpace
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 24) {
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 8) {
+        @Bindable var model = model
+        VStack(alignment: .leading, spacing: 20) {
+            HStack {
+                VStack(alignment: .leading, spacing: 6) {
                     Text("VENUE VOLUME").font(.caption.weight(.bold)).tracking(3).foregroundStyle(.cyan)
-                    Text("White room.\nLive light.").font(.system(size: 44, weight: .semibold, design: .rounded))
+                    Text("Your venues").font(.largeTitle.bold())
                 }
                 Spacer()
-                Image(systemName: "cube.transparent").font(.system(size: 76, weight: .ultraLight)).foregroundStyle(.cyan)
-                    .accessibilityHidden(true)
+                Image(systemName: "cube.transparent").font(.system(size: 48, weight: .light)).foregroundStyle(.cyan).accessibilityHidden(true)
             }
-            Text("Start in the white classroom, import a room, or scan with Vision Pro. Save independent fixture setups and reopen them from the wrist toolbox.")
+            Text("Open a recent save, load a shared save, or start with a blank venue.")
                 .foregroundStyle(.secondary)
-            Divider()
-            VStack(alignment: .leading, spacing: 16) {
-                Label("Raise your left palm to reveal the toolbox", systemImage: "hand.raised")
-                Label("Drag fixtures into the room and presets onto fixtures", systemImage: "cube")
-                Label("Open Rooms & saved setups to import, scan, save and load", systemImage: "square.stack.3d.up")
+            VenueLibraryPicker(showsNewVenues: false)
+            if model.canResumeVenue {
+                Button {
+                    Task { if model.isImmersed { await dismissSpace(); model.isImmersed = false } else { await enter() } }
+                } label: {
+                    Label(model.isImmersed ? "Leave venue" : "Resume current venue", systemImage: model.isImmersed ? "arrow.down.right.and.arrow.up.left" : "viewfinder")
+                        .frame(maxWidth: .infinity).padding(.vertical, 8)
+                }.disabled(model.isTransitioning || model.libraryBusy)
             }
-            HStack {
-                Text("\(model.fixtures.count) fixtures · \(model.totalChannels) channels").monospacedDigit()
-                Spacer()
-                Text("MOCK OUTPUT").font(.caption.weight(.semibold)).foregroundStyle(.cyan)
-            }
-            Spacer(minLength: 0)
-            if let message = model.message {
-                Text(message).font(.callout).foregroundStyle(.orange)
-            }
-            Button {
-                Task { await toggleSpace() }
-            } label: {
-                Label(model.isImmersed ? "Leave venue" : "Enter venue", systemImage: model.isImmersed ? "arrow.down.right.and.arrow.up.left" : "viewfinder")
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 8)
-            }
-            .buttonStyle(.borderedProminent)
-            .disabled(model.isTransitioning)
-            Text("Classroom dimensions are estimated · Placements saved locally · No physical DMX output")
+            Text("Turn your left hand toward you to open the wrist menu. Placements stay on this device until you export a save.")
                 .font(.caption).foregroundStyle(.secondary)
+            Text("Estimated venue dimensions · No physical DMX output").font(.caption).foregroundStyle(.secondary)
         }
-        .padding(36)
-        .frame(width: 620, height: 620)
+        .padding(32).frame(width: 680, height: 700)
+        .sheet(isPresented: Binding(get: { model.newVenuePresented && !model.isImmersed }, set: { model.newVenuePresented = $0 })) { NewVenueSheet() }
+        .presetEditorPresenter(when: !model.isImmersed)
         .task {
-            if model.consumeDemoAutoEntry() {
-                await toggleSpace()
-            }
+            await model.prepareLibrary()
+            if model.consumeDemoAutoEntry() { await enter() }
         }
     }
-
-    @MainActor private func toggleSpace() async {
+    private func enter() async {
+        guard !model.isImmersed, !model.isTransitioning else { return }
         model.isTransitioning = true
-        model.message = nil
         defer { model.isTransitioning = false }
-        if model.isImmersed {
-            await dismissSpace()
-            model.isImmersed = false
-        } else {
-            switch await openSpace(id: "VenueSpace") {
-            case .opened: model.isImmersed = true
-            case .userCancelled: break
-            case .error: model.message = "The venue could not open. Try entering again."
-            @unknown default: model.message = "The system could not open the venue."
-            }
+        switch await openSpace(id: "VenueSpace") {
+        case .opened: model.isImmersed = true
+        case .userCancelled: break
+        case .error: model.message = "The venue could not open. Try again."
+        @unknown default: model.message = "The system could not open the venue."
         }
     }
 }
@@ -77,8 +58,12 @@ struct LaunchView: View {
 struct VenueEntryButton: View {
     @Environment(VenueModel.self) private var model
     @Environment(\.openImmersiveSpace) private var openSpace
+    @Environment(\.openWindow) private var openWindow
     var body: some View {
-        Button("Enter venue", systemImage: "viewfinder") { Task { await enter() } }
+        Button(model.isDemoMode ? "Enter venue" : "Choose venue", systemImage: "viewfinder") {
+            if model.isDemoMode { Task { await enter() } }
+            else { openWindow(id: "launch") }
+        }
             .disabled(model.isTransitioning)
             .task { if model.consumeDemoAutoEntry() { await enter() } }
     }

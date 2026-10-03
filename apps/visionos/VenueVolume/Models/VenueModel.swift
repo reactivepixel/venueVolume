@@ -37,6 +37,9 @@ final class VenueModel {
     var roomLoadToken = UUID()
     var libraryMessage: String?
     var libraryBusy = false
+    var newVenuePresented = false
+    let presetEditor = PresetEditorPresentation()
+    let presetDrag = PresetDragState()
     var toolboxTab = 0
     var setupName = "Untitled setup" { didSet { queueHistoryEdit("Rename setup") } }
     private(set) var activeSetupID: UUID?
@@ -46,8 +49,12 @@ final class VenueModel {
     var draggingFixture: FixtureKind?
     var activeRoom: LibraryRoom? { rooms.first { $0.manifest.id == environment?.id && $0.manifest.version == environment?.version } }
     var hasUnsavedSetup: Bool {
-        guard let savedSetup else { return !fixtures.isEmpty }
-        return fixtures != savedSetup.placements.fixtures || setupName != savedSetup.name || whiteRoom != savedSetup.whiteRoom || houseLight != savedSetup.houseLight
+        guard let savedSetup else {
+            guard let activeRoom else { return !fixtures.isEmpty }
+            return !fixtures.isEmpty || setupName != "Untitled setup" || houseLight != 0.15 || whiteRoom != (activeRoom.manifest.id != "mappedRoom" && activeRoom.manifest.id != "the-fortress")
+        }
+        let assignedPresets = presets.filter { preset in fixtures.contains { $0.presetID == preset.id } }
+        return fixtures != savedSetup.placements.fixtures || assignedPresets != savedSetup.presets || setupName != savedSetup.name || whiteRoom != savedSetup.whiteRoom || houseLight != savedSetup.houseLight
     }
     private(set) var fixtures: [Fixture] = []
     var selectedID: UUID?
@@ -72,9 +79,9 @@ final class VenueModel {
     func resetToolboxActivation() { palmActivationHeld = false }
     var simulatedPalm = true
     var needsManualToolbox = false
-    var handTrackingStatus = "Raise your left palm toward you"
+    var handTrackingStatus = "Turn your left hand toward you to open the wrist menu"
     private(set) var draggingPresetID: UUID?
-    private var dragLease: Task<Void, Never>?
+    private var fixtureDragLease: Task<Void, Never>?
     private let defaults: UserDefaults
     private let arguments: [String]
     var previewDraft = false { didSet { queueHistoryEdit("Change draft preview") } }
@@ -210,7 +217,8 @@ final class VenueModel {
                 if !isDemoMode, let data = try? JSONEncoder().encode(presets) { defaults.set(data, forKey: "venue.presets.v1") }
                 whiteRoom = setup.whiteRoom; houseLight = setup.houseLight
             } else {
-                whiteRoom = environment.id != "mappedRoom"
+                whiteRoom = environment.id != "mappedRoom" && environment.id != "the-fortress"
+                houseLight = 0.15
             }
             persistenceBlocked = false
             if !isDemoMode {
@@ -240,7 +248,7 @@ final class VenueModel {
         environmentStatus = environment.title
         if self.environment?.id == environment.id && self.environment?.version == environment.version { return }
         self.environment = environment
-        whiteRoom = environment.id != "mappedRoom"
+        whiteRoom = environment.id != "mappedRoom" && environment.id != "the-fortress"
         environmentStatus = environment.title
         isPlacing = false
         selectedID = nil
@@ -384,8 +392,8 @@ final class VenueModel {
     func beginFixtureDrag(_ kind: FixtureKind) {
         endTransformDrag(); gizmoVisible = false; cancelPicking()
         fixtureKind = kind; draggingFixture = kind; isPlacing = true; scenePick = nil
-        dragLease?.cancel()
-        dragLease = Task { [weak self] in
+        fixtureDragLease?.cancel()
+        fixtureDragLease = Task { [weak self] in
             do { try await Task.sleep(for: .seconds(30)) } catch { return }
             self?.draggingFixture = nil; self?.isPlacing = false
         }
@@ -396,7 +404,7 @@ final class VenueModel {
         fixtureKind = kind; isPlacing = true
         let count = fixtures.count
         place(at: FixtureAiming.vector(point), surfaceID: surfaceID)
-        draggingFixture = nil; dragLease?.cancel()
+        draggingFixture = nil; fixtureDragLease?.cancel()
         if fixtures.count == count { isPlacing = false }
         return fixtures.count > count
     }
@@ -792,19 +800,11 @@ final class VenueModel {
 
     func beginPresetDrag(_ id: UUID) {
         draggingPresetID = id
-        dragLease?.cancel()
-        // Preserve the source while the wearer looks away toward the destination.
-        // A cancelled system drag cannot leave the toolbox pinned indefinitely.
-        dragLease = Task { [weak self] in
-            do { try await Task.sleep(for: .seconds(15)) } catch { return }
-            self?.draggingPresetID = nil
-        }
     }
 
     func endPresetDrag() {
-        dragLease?.cancel()
-        dragLease = nil
         draggingPresetID = nil
+        presetDrag.cancel()
     }
 
     func record(_ item: ToolboxItem) { recent.use(item) }
@@ -880,6 +880,56 @@ final class VenueModel {
         }
     }
 
+    /// The launch window needs the room/save library before an immersive scene exists.
+    func prepareLibrary(repository providedRepository: (any EnvironmentRepository)? = nil) async {
+        guard rooms.isEmpty else { return }
+        do {
+            let repository: any EnvironmentRepository
+            if let providedRepository { repository = providedRepository }
+            else {
+                guard let resources = Bundle.main.resourceURL else { throw EnvironmentError.invalid("application resources are missing") }
+                repository = BundledEnvironmentRepository(directory: resources.appendingPathComponent("Environments"))
+            }
+            let defaultRoom = try await repository.resolve(id: "img3153-classroom-v1").manifest
+            var additional: [EnvironmentManifest] = []
+            for id in ["mappedRoom", "the-fortress"] { additional.append(try await repository.resolve(id: id).manifest) }
+            bootstrapLibrary(defaultRoom: defaultRoom, additionalRooms: additional)
+            // Present the remembered working setup in the launch UI so replacing
+            // unsaved work requires the same confirmation as an in-venue switch.
+            if let destination = historyDestination, let state = history?.node(destination.id)?.state {
+                applyHistoryState(state)
+                historyDestination = nil; roomRequest = nil
+            }
+            if let benchmark = lightingBenchmark, let room = rooms.first(where: { $0.manifest.id == benchmark.roomID }) {
+                roomRequest = .init(room: room, setup: nil, blank: true)
+            }
+        } catch { libraryMessage = "The venue library could not open: \(error.localizedDescription)" }
+    }
+
+    var canResumeVenue: Bool { activeRoom != nil || historyDestination != nil }
+    func requestNewVenue() { guard !libraryBusy else { return }; newVenuePresented = true }
+
+    /// Returns true only after full validation and durable import. The active scene
+    /// is unchanged until the caller requests this setup and RealityKit loads it.
+    func importVenueSave(_ document: VenueSave, assetChecksum: String) throws -> (LibraryRoom, VenueSetup) {
+        guard !libraryBusy else { throw EnvironmentError.invalid("wait for the current room to finish loading") }
+        let imported = try library.importSave(document, assetChecksum: assetChecksum)
+        let room = rooms.first(where: { $0.manifest == imported.room.manifest }) ?? imported.room
+        beginHistoryAction("Import save · \(imported.setup.name)"); defer { endHistoryAction() }
+        if !rooms.contains(where: { $0.id == room.id }) { rooms.append(room) }
+        savedSetups.insert(imported.setup, at: 0)
+        libraryMessage = "Imported \(imported.setup.name)."
+        return (room, imported.setup)
+    }
+
+    func currentSetupSnapshot() throws -> VenueSetup {
+        guard let room = activeRoom, !libraryBusy else { throw EnvironmentError.invalid("open a venue before exporting") }
+        let snapshot = VenueSetup(id: activeSetupID ?? UUID(), name: setupName.trimmingCharacters(in: .whitespacesAndNewlines), room: room,
+                                  fixtures: fixtures, presets: presets, revision: revision, whiteRoom: whiteRoom, houseLight: houseLight)
+        try snapshot.validate(room: room)
+        return snapshot
+    }
+
     private func mergeBundledRooms() {
         for room in bundledRooms where !rooms.contains(where: { $0.id == room.id }) { rooms.append(room) }
     }
@@ -900,6 +950,10 @@ final class VenueModel {
         flushHistoryEdits()
         do { if let setup { try setup.validate(room: room) } }
         catch { libraryMessage = error.localizedDescription; return }
+        // An explicit launch choice supersedes the remembered audit cursor.
+        historyDestination = nil; preparedHistory = nil
+        fixtureDragLease?.cancel(); draggingFixture = nil
+        endPresetDrag()
         libraryBusy = true; canPlace = false; previewDraft = false; cancelPicking()
         roomRequest = .init(room: room, setup: setup, blank: blank)
         roomLoadToken = UUID()

@@ -6,6 +6,22 @@ public struct LibraryRoom: Codable, Equatable, Identifiable, Sendable {
     public var manifest: EnvironmentManifest
     public var origin: Origin
     public init(manifest: EnvironmentManifest, origin: Origin) { self.manifest = manifest; self.origin = origin }
+    public var displayName: String {
+        switch manifest.id {
+        case "img3153-classroom-v1": "Empty classroom"
+        case "mappedRoom": "Empty classroom (mapped)"
+        case "the-fortress": "The Fortress"
+        default: manifest.title
+        }
+    }
+    public var detail: String {
+        switch manifest.id {
+        case "img3153-classroom-v1": "Neutral room materials · no fixtures"
+        case "mappedRoom": "Photo-derived room materials · no fixtures"
+        case "the-fortress": "Provisional venue blockout · estimated dimensions"
+        default: origin == .scanned ? "Your local room scan" : "Imported venue"
+        }
+    }
 }
 
 /// A named snapshot owns its resolved fixture values and the preset definitions
