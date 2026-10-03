@@ -21,13 +21,17 @@ struct FixtureLabel: View {
                         Text(model.presets.first(where: { $0.id == fixture.presetID })?.name ?? "No preset")
                             .font(.caption).foregroundStyle(.secondary)
                     }
-                }.buttonStyle(.plain)
+                }.buttonStyle(.plain).frame(minHeight: 60)
                 if selected {
                     Spacer()
-                    Button { withAnimation(.smooth(duration: 0.2)) { model.select(fixture.id) } } label: {
-                        Image(systemName: "info.circle")
+                    Button {
+                        model.select(fixture.id)
+                        model.toolboxTab = 0
+                        model.requestToolbox()
+                    } label: {
+                        Image(systemName: "info.circle").frame(minWidth: 60, minHeight: 60)
                     }.accessibilityLabel("Info for \(fixture.name)")
-                    Button(role: .destructive) { model.remove(fixture.id) } label: { Image(systemName: "trash") }
+                    Button(role: .destructive) { model.remove(fixture.id) } label: { Image(systemName: "trash").frame(minWidth: 60, minHeight: 60) }
                         .accessibilityLabel("Delete \(fixture.name)")
                 }
             }
@@ -37,7 +41,7 @@ struct FixtureLabel: View {
                         .disabled(!model.canPlace)
                     Button("Retarget DMX", systemImage: "scope") { model.beginRetarget(fixture.id) }.disabled(!model.canPlace || fixture.asset?.headAim != true)
                     Button("Transform", systemImage: "rotate.3d") { model.beginTransform(fixture.id) }
-                }.font(.caption)
+                }.font(.callout).frame(minHeight: 60)
                 if let aim = fixture.aimOverride {
                     HStack {
                         Text("Aim override · Pan \(aim.pan) · Tilt \(aim.tilt)").font(.caption2)
@@ -48,7 +52,7 @@ struct FixtureLabel: View {
             }
         }
         .padding(18)
-        .frame(width: selected ? 410 : 250)
+        .frame(width: selected ? 510 : 280)
         .glassBackgroundEffect(in: RoundedRectangle(cornerRadius: 24))
         .animation(.smooth(duration: 0.2), value: selected)
         .dropDestination(for: String.self) { tokens, _ in

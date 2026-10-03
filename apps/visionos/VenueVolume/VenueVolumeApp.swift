@@ -3,6 +3,7 @@ import SwiftUI
 @main
 struct VenueVolumeApp: App {
     @State private var model = VenueModel()
+    @State private var venueImmersion: ImmersionStyle = .progressive(0...1, initialAmount: 1)
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
@@ -18,13 +19,13 @@ struct VenueVolumeApp: App {
             ToolboxView(instanceID: identity.wrappedValue).environment(model)
         }
         .windowResizability(.contentSize)
-        .defaultSize(width: 720, height: 650)
+        .defaultSize(width: 820, height: 650)
 
-        WindowGroup(id: "presets") {
-            PresetEditorView().environment(model)
+        WindowGroup(id: "presets", for: UUID.self) { identity in
+            PresetEditorView(instanceID: identity.wrappedValue).environment(model)
         }
         .windowResizability(.contentSize)
-        .defaultSize(width: 1040, height: 740)
+        .defaultSize(width: 1040, height: 820)
 
         WindowGroup(id: "fixture-editor") { FixtureEditorView().environment(model) }
             .windowResizability(.contentSize)
@@ -39,7 +40,8 @@ struct VenueVolumeApp: App {
             VenueSpaceView()
                 .environment(model)
         }
-        .immersionStyle(selection: .constant(.full), in: .full)
+        // visionOS owns Digital Crown input and smoothly reveals passthrough.
+        .immersionStyle(selection: $venueImmersion, in: .progressive(0...1, initialAmount: 1))
 
         ImmersiveSpace(id: "RoomScan") { RoomScanView().environment(model) }
             .immersionStyle(selection: .constant(.mixed), in: .mixed)

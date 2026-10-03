@@ -13,12 +13,17 @@ struct SceneSelectionPane: View {
                 HStack {
                     Text("SELECTED ITEM").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
                     Spacer()
-                    Button { model.deselect() } label: { Image(systemName: "xmark") }
+                    Button { model.deselect() } label: { Image(systemName: "xmark").frame(minWidth: 60, minHeight: 60) }
                         .accessibilityLabel("Deselect \(fixture.name)")
                 }
                 Text(fixture.name).font(.title3.weight(.semibold))
+                Button { model.presetEditor.request(presetID: fixture.presetID) } label: {
+                    Label("Preset editor", systemImage: "slider.horizontal.3")
+                        .frame(maxWidth: .infinity, minHeight: 60, alignment: .leading)
+                }
                 Button { openWindow(id: "fixture-editor") } label: {
                     Label("Pop out item editor", systemImage: "arrow.up.right.square")
+                        .frame(maxWidth: .infinity, minHeight: 60, alignment: .leading)
                 }
                 ScrollView {
                     VStack(alignment: .leading, spacing: 14) {
@@ -50,7 +55,7 @@ struct SceneSelectionPane: View {
                                             Text(model.presets.first { $0.id == fixture.presetID }?.name ?? "No preset · dark")
                                         }.font(.caption).frame(maxWidth: .infinity, alignment: .leading)
                                     }.buttonStyle(.plain)
-                                    Button(role: .destructive) { model.remove(fixture.id) } label: { Image(systemName: "trash") }
+                                    Button(role: .destructive) { model.remove(fixture.id) } label: { Image(systemName: "trash").frame(minWidth: 60, minHeight: 60) }
                                         .accessibilityLabel("Clear \(fixture.name) from scene")
                                 }.padding(12).background(.white.opacity(0.05), in: RoundedRectangle(cornerRadius: 14))
                             }
@@ -72,7 +77,7 @@ struct FixtureActions: View {
         HStack {
             Button("Retarget DMX", systemImage: "scope") { model.beginRetarget(fixture.id) }.disabled(!model.canPlace || fixture.asset?.headAim != true)
             Button("Axes", systemImage: "rotate.3d") { model.beginTransform(fixture.id) }.disabled(!model.canPlace)
-            Button(role: .destructive) { model.remove(fixture.id) } label: { Image(systemName: "trash") }
+            Button(role: .destructive) { model.remove(fixture.id) } label: { Image(systemName: "trash").frame(minWidth: 60, minHeight: 60) }
                 .accessibilityLabel("Delete \(fixture.name)")
         }.font(.caption)
     }
@@ -100,6 +105,9 @@ struct FixtureEditorView: View {
                 if tab == 0 {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 20) {
+                            Button("Preset editor", systemImage: "slider.horizontal.3") {
+                                model.presetEditor.request(presetID: fixture.presetID)
+                            }.frame(minHeight: 60)
                             FixtureActions(fixture: fixture)
                             FixtureDetailsEditor(fixture: fixture).id(fixture.id)
                             Divider()
@@ -114,6 +122,7 @@ struct FixtureEditorView: View {
             // Keep entry reachable until the room has restored selection.
             if !model.isImmersed { VenueEntryButton() }
         }.padding(28).frame(width: 620, height: 760)
+        .presetEditorPresenter(when: !model.isImmersed)
         .onAppear {
             if model.isImmersed && model.selectedID == nil { dismissWindow(id: "fixture-editor") }
             if model.controlsTab == 1 { tab = 1 }
