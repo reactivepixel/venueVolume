@@ -45,6 +45,10 @@ enum StartupSmoke {
         let unchanged = relaunched.fixtures
         do { _ = try relaunched.importVenueSave(document, assetChecksum: "invalid"); preconditionFailure("Corrupt import accepted") }
         catch { precondition(relaunched.fixtures == unchanged && relaunched.activeRoom == fortress && relaunched.savedSetups.count == 1) }
+        var conflictingRoom = document
+        conflictingRoom.room.manifest.title = "Contradictory metadata"
+        do { _ = try relaunched.importVenueSave(conflictingRoom, assetChecksum: classroom.manifest.asset.sha256); preconditionFailure("Conflicting bundled room metadata accepted") }
+        catch { precondition(relaunched.savedSetups.count == 1 && relaunched.activeRoom == fortress) }
         let (_, imported) = try relaunched.importVenueSave(document, assetChecksum: classroom.manifest.asset.sha256)
         precondition(imported.id != document.setup.id && relaunched.savedSetups.count == 2)
         precondition(relaunched.fixtures.isEmpty && relaunched.activeRoom == fortress, "Successful import waits for explicit setup switch")
