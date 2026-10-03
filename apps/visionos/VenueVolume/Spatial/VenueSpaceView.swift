@@ -152,6 +152,7 @@ struct VenueSpaceView: View {
         .task {
             #if DEBUG
             await scene.runPresetDragSmoke(model: model)
+            await runStationaryControlsSmoke()
             await runEditorRecallSmoke()
             await runToolboxWindowSmoke()
             await scene.runInputSmoke(model: model)
@@ -183,6 +184,29 @@ struct VenueSpaceView: View {
     }
 
     #if DEBUG
+    private func runStationaryControlsSmoke() async {
+        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--audit-controls-smoke") else { return }
+        do {
+            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
+            guard let fixture = model.fixtures.first else { throw EnvironmentError.invalid("Missing fixture") }
+            model.beginRetarget(fixture.id)
+            for _ in 0..<100 where !model.venueControlsVisible { try await Task.sleep(for: .milliseconds(50)) }
+            guard model.venueControlsVisible, scene.headAnchor.children.isEmpty else {
+                throw EnvironmentError.invalid("Targeting did not use the stationary control window")
+            }
+            guard model.acceptTarget(.init(x: 2.9, y: 1.8, z: -7.67)) else { throw EnvironmentError.invalid("Preview failed") }
+            model.cancelPicking()
+            guard model.fixture(fixture.id)?.channels == fixture.channels else { throw EnvironmentError.invalid("Cancel changed saved channels") }
+            model.beginRetarget(fixture.id)
+            guard model.acceptTarget(.init(x: 2.9, y: 1.8, z: -7.67)), model.saveTarget() else { throw EnvironmentError.invalid("Save target failed") }
+            model.undo()
+            guard model.fixture(fixture.id)?.channels == fixture.channels else { throw EnvironmentError.invalid("Target undo failed") }
+            model.beginRetarget(fixture.id)
+            _ = model.acceptTarget(.init(x: 2.9, y: 1.8, z: -7.67))
+            print("STATIONARY_CONTROLS_SMOKE_PASS normalWindow=true headControls=0 cancel=true save=true undo=true")
+        } catch { print("STATIONARY_CONTROLS_SMOKE_FAIL \(error)") }
+    }
+
     private func runEditorRecallSmoke() async {
         guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--editor-recall-smoke") else { return }
         func waitForEditor(_ id: UUID) async throws {

@@ -7,6 +7,7 @@ import VenueVolumeCore
 /// spatial path while the explicit Apply menu remains usable.
 struct PresetDragSource: View {
     @Environment(VenueModel.self) private var model
+    @Environment(\.dynamicTypeSize) private var textSize
     @Environment(\.scenePhase) private var scenePhase
     let preset: DMXPreset
     let openEditor: () -> Void
@@ -27,7 +28,8 @@ struct PresetDragSource: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            HStack(spacing: 12) {
+            let layout = textSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12)) : AnyLayout(HStackLayout(spacing: 12))
+            layout {
                 Button(action: openEditor) {
                     HStack(spacing: 12) {
                         Image(systemName: "slider.horizontal.3").frame(width: 28)
@@ -39,6 +41,7 @@ struct PresetDragSource: View {
                         Spacer(minLength: 0)
                     }.frame(minHeight: 60).contentShape(Rectangle())
                 }.buttonStyle(.plain)
+                HStack(spacing: 16) {
                 Image(systemName: "point.topleft.down.to.point.bottomright.curvepath")
                     .font(.title3)
                     .frame(width: 60, height: 60)
@@ -73,6 +76,7 @@ struct PresetDragSource: View {
                     Image(systemName: "arrow.up.right.circle").frame(width: 60, height: 60)
                 }
                 .accessibilityLabel("Apply \(preset.name) to fixture")
+                }
             }
             if let reason = unavailableReason {
                 Text(reason).font(.caption).foregroundStyle(.secondary)

@@ -17,7 +17,8 @@ public enum SpatialLabelLayout {
         let eligible = candidates.filter {
             $0.distance.isFinite && $0.distance > 0 && ($0.selected || $0.distance <= 4) &&
             $0.center.x.isFinite && $0.center.y.isFinite && $0.halfSize.x.isFinite && $0.halfSize.y.isFinite &&
-            $0.halfSize.x > 0 && $0.halfSize.y > 0
+            $0.halfSize.x > 0 && $0.halfSize.y > 0 &&
+            abs($0.center.x) - $0.halfSize.x < 1.4 && abs($0.center.y) - $0.halfSize.y < 1.1
         }.sorted {
             if $0.selected != $1.selected { return $0.selected }
             if $0.distance != $1.distance { return $0.distance < $1.distance }

@@ -68,3 +68,109 @@ private func portableSave() throws -> VenueSave {
     #expect(fortress.manifest.asset.sha256 == "4950fed10bd99647588e538fdcfa50c21db8c57b2550e14900ef01d0d7c7fff5")
     #expect(LibraryRoom(manifest: fortress.manifest, origin: .bundled).displayName == "The Fortress")
 }
+
+@Test @MainActor func portableSaveWorkerDoesHeavyWorkAwayFromMainActor() async throws {
+    let source = try portableSave()
+    let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+    defer { try? FileManager.default.removeItem(at: folder) }
+    try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+    let file = folder.appendingPathComponent("test.venuevolume")
+    try JSONEncoder().encode(source).write(to: file)
+    let worker = VenueSaveWorker()
+    let read = try await worker.read(file) { _ in
+        #expect(!Thread.isMainThread, "Reading, hashing and validation must not block the UI actor")
+        return source.room.manifest.asset.sha256
+    }
+    #expect(read.save == source)
+    let resources = URL(fileURLWithPath: #filePath).deletingLastPathComponent()
+        .appendingPathComponent("../../../VenueVolume/Environments").standardizedFileURL
+    let encoded = try await worker.encode(room: source.room, setup: source.setup,
+                                         repository: BundledEnvironmentRepository(directory: resources)) { _ in
+        #expect(!Thread.isMainThread, "Export hashing and encoding must not block the UI actor")
+        return source.room.manifest.asset.sha256
+    }
+    #expect(try JSONDecoder().decode(VenueSave.self, from: encoded) == source)
+    await #expect(throws: EnvironmentError.self) {
+        try await worker.read(file) { _ in "wrong checksum" }
+    }
+}
+
+@Test func portableImportPreparationDoesNotPublishUntilCommit() async throws {
+    let source = try portableSave()
+    let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+    defer { try? FileManager.default.removeItem(at: folder) }
+    let store = RoomLibraryStore(directory: folder)
+    let worker = VenueSaveWorker()
+    let first = try await worker.prepareImport(source, assetChecksum: source.room.manifest.asset.sha256, store: store)
+    #expect(try store.rooms().isEmpty)
+    #expect(try store.setups(rooms: []).isEmpty)
+    first.discard()
+    #expect(try FileManager.default.contentsOfDirectory(atPath: folder.path).isEmpty)
+    let prepared = try await worker.prepareImport(source, assetChecksum: source.room.manifest.asset.sha256, store: store)
+    try prepared.commit()
+    #expect(try store.setups(rooms: [prepared.room]).map(\.id) == [prepared.setup.id])
+    let repeated = try await worker.prepareImport(source, assetChecksum: source.room.manifest.asset.sha256, store: store)
+    try repeated.commit()
+    #expect(try store.setups(rooms: [prepared.room]).count == 2)
+}
+
+@Test func portableImportRejectsExistingGeometryChangedAfterPreparation() async throws {
+    let source = try portableSave()
+    let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+    defer { try? FileManager.default.removeItem(at: folder) }
+    let store = RoomLibraryStore(directory: folder)
+    let worker = VenueSaveWorker()
+    let initial = try await worker.prepareImport(source, assetChecksum: source.room.manifest.asset.sha256, store: store)
+    try initial.commit()
+    let prepared = try await worker.prepareImport(source, assetChecksum: source.room.manifest.asset.sha256, store: store)
+    let asset = try store.roomDirectory(initial.room).appendingPathComponent(initial.room.manifest.asset.file)
+    try Data(repeating: 0, count: source.asset.count).write(to: asset, options: .atomic)
+    #expect(throws: EnvironmentError.self) { try prepared.commit() }
+    #expect(try store.setups(rooms: [initial.room]).count == 1)
+    #expect(try FileManager.default.contentsOfDirectory(atPath: folder.path).allSatisfy { !$0.hasPrefix(".save-") })
+}
+
+@Test func portableSaveCancellationDoesNotPublishStagedFiles() async throws {
+    let source = try portableSave()
+    let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+    defer { try? FileManager.default.removeItem(at: folder) }
+    let store = RoomLibraryStore(directory: folder)
+    let worker = VenueSaveWorker()
+    let cancelledRead = Task {
+        withUnsafeCurrentTask { $0?.cancel() }
+        return try await worker.read(folder.appendingPathComponent("missing")) { _ in "unused" }
+    }
+    await #expect(throws: CancellationError.self) { try await cancelledRead.value }
+    let encodedFile = folder.appendingPathExtension("venuevolume")
+    defer { try? FileManager.default.removeItem(at: encodedFile) }
+    try JSONEncoder().encode(source).write(to: encodedFile)
+    let cancelledDuringWork = Task {
+        try await worker.read(encodedFile) { _ in
+            withUnsafeCurrentTask { $0?.cancel() }
+            return source.room.manifest.asset.sha256
+        }
+    }
+    await #expect(throws: CancellationError.self) { try await cancelledDuringWork.value }
+    let prepared = try await worker.prepareImport(source, assetChecksum: source.room.manifest.asset.sha256, store: store)
+    let cancelledCommit = Task {
+        withUnsafeCurrentTask { $0?.cancel() }
+        try prepared.commit()
+    }
+    await #expect(throws: CancellationError.self) { try await cancelledCommit.value }
+    #expect(try store.rooms().isEmpty)
+    #expect(try store.setups(rooms: []).isEmpty)
+    #expect(try FileManager.default.contentsOfDirectory(atPath: folder.path).isEmpty)
+}
+
+@Test func stagedPortableImportPreservesLibraryWhenPublicationFails() async throws {
+    let source = try portableSave()
+    let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+    defer { try? FileManager.default.removeItem(at: folder) }
+    let store = RoomLibraryStore(directory: folder)
+    let prepared = try await VenueSaveWorker().prepareImport(source, assetChecksum: source.room.manifest.asset.sha256, store: store)
+    try Data("preserve".utf8).write(to: folder.appendingPathComponent("Setups"))
+    #expect(throws: (any Error).self) { try prepared.commit() }
+    #expect(try store.rooms().isEmpty)
+    #expect(try Data(contentsOf: folder.appendingPathComponent("Setups")) == Data("preserve".utf8))
+    #expect(try FileManager.default.contentsOfDirectory(atPath: folder.path).allSatisfy { !$0.hasPrefix(".save-") })
+}

@@ -8,6 +8,7 @@ struct SceneSelectionPane: View {
     @State private var confirmClear = false
 
     var body: some View {
+        ScrollView {
         VStack(alignment: .leading, spacing: 12) {
             if let id = model.selectedID, let fixture = model.fixture(id) {
                 HStack {
@@ -25,7 +26,7 @@ struct SceneSelectionPane: View {
                     Label("Pop out item editor", systemImage: "arrow.up.right.square")
                         .frame(maxWidth: .infinity, minHeight: 60, alignment: .leading)
                 }
-                ScrollView {
+                Group {
                     VStack(alignment: .leading, spacing: 14) {
                         FixtureActions(fixture: fixture)
                         Divider()
@@ -44,7 +45,7 @@ struct SceneSelectionPane: View {
                     ContentUnavailableView("Empty scene", systemImage: "cube.transparent",
                         description: Text("Drag a fixture from the library into the room. Select it here or in the scene to inspect and edit it."))
                 } else {
-                    ScrollView {
+                    Group {
                         VStack(spacing: 10) {
                             ForEach(model.fixtures) { fixture in
                                 HStack {
@@ -63,6 +64,7 @@ struct SceneSelectionPane: View {
                     }
                 }
             }
+        }
         }
         .confirmationDialog("Clear all scene fixtures?", isPresented: $confirmClear, titleVisibility: .visible) {
             Button("Clear all fixtures", role: .destructive) { model.clearScene() }

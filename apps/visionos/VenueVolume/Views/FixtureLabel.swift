@@ -4,15 +4,16 @@ import VenueVolumeCore
 /// One attachment grows upward, keeping the object and its label together.
 struct FixtureLabel: View {
     @Environment(VenueModel.self) private var model
+    @Environment(\.dynamicTypeSize) private var textSize
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let fixture: Fixture
     private var selected: Bool { model.selectedID == fixture.id }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
-            HStack(spacing: 12) {
-                Circle().fill(selected ? .cyan : .white.opacity(0.5)).frame(width: 7, height: 7)
-                Button { withAnimation { model.select(fixture.id) } } label: {
+            let layout = textSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12)) : AnyLayout(HStackLayout(spacing: 12))
+            layout {
+                Button { withAnimation(reduceMotion ? nil : .smooth) { model.select(fixture.id) } } label: {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(fixture.name).font(.headline)
                         if selected {
@@ -24,7 +25,7 @@ struct FixtureLabel: View {
                     .accessibilityLabel("Select \(fixture.name)")
                     .accessibilityAddTraits(selected ? .isSelected : [])
                 if selected {
-                    Spacer()
+                    HStack(spacing: 12) {
                     Button {
                         model.select(fixture.id)
                         model.toolboxTab = 0
@@ -34,6 +35,7 @@ struct FixtureLabel: View {
                     }.accessibilityLabel("Info for \(fixture.name)")
                     Button(role: .destructive) { model.remove(fixture.id) } label: { Image(systemName: "trash").frame(minWidth: 60, minHeight: 60) }
                         .accessibilityLabel("Delete \(fixture.name)")
+                    }
                 }
             }
             if selected {

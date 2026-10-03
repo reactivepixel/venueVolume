@@ -6,8 +6,11 @@ struct LaunchView: View {
     @Environment(\.openImmersiveSpace) private var openSpace
     @Environment(\.dismissImmersiveSpace) private var dismissSpace
 
+    @ScaledMetric(relativeTo: .body) private var pickerHeight = 340.0
+
     var body: some View {
         @Bindable var model = model
+        ScrollView {
         VStack(alignment: .leading, spacing: 20) {
             HStack {
                 VStack(alignment: .leading, spacing: 6) {
@@ -19,7 +22,7 @@ struct LaunchView: View {
             }
             Text("Open a recent save, load a shared save, or start with a blank venue.")
                 .foregroundStyle(.secondary)
-            VenueLibraryPicker(showsNewVenues: false)
+            VenueLibraryPicker(showsNewVenues: false).frame(height: pickerHeight)
             if model.canResumeVenue {
                 Button {
                     Task { if model.isImmersed { await dismissSpace(); model.isImmersed = false } else { await enter() } }
@@ -32,7 +35,8 @@ struct LaunchView: View {
                 .font(.caption).foregroundStyle(.secondary)
             Text("Estimated venue dimensions · No physical DMX output").font(.caption).foregroundStyle(.secondary)
         }
-        .padding(32).frame(minWidth: 680, minHeight: 700)
+        .padding(32)
+        }.frame(minWidth: 680, minHeight: 700)
         .sheet(isPresented: Binding(get: { model.newVenuePresented && !model.isImmersed }, set: { model.newVenuePresented = $0 })) { NewVenueSheet() }
         .presetEditorPresenter(when: !model.isImmersed)
         .task {

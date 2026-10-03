@@ -23,6 +23,7 @@ struct VenueVolumeApp: App {
 
         WindowGroup(id: "presets", for: UUID.self) { identity in
             PresetEditorView(instanceID: identity.wrappedValue).environment(model).auditTextSize().controlSize(.large)
+                .frame(minWidth: 680, minHeight: 500)
         }
         .windowResizability(.contentMinSize)
         .defaultSize(width: 1040, height: 820)

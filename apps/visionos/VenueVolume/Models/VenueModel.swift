@@ -938,13 +938,22 @@ final class VenueModel {
 
     /// Returns true only after full validation and durable import. The active scene
     /// is unchanged until the caller requests this setup and RealityKit loads it.
-    func importVenueSave(_ document: VenueSave, assetChecksum: String, intentID: UUID? = nil) throws -> (LibraryRoom, VenueSetup) {
+    func importVenueSave(_ document: VenueSave, assetChecksum: String, intentID: UUID? = nil) async throws -> (LibraryRoom, VenueSetup) {
         if let intentID, intentID != venueIntentID { throw CancellationError() }
         guard !libraryBusy else { throw EnvironmentError.invalid("wait for the current room to finish loading") }
         if let existing = rooms.first(where: { $0.id == document.room.id }), existing.manifest != document.room.manifest {
             throw EnvironmentError.invalid("different room metadata already uses this room version")
         }
-        let imported = try library.importSave(document, assetChecksum: assetChecksum)
+        let prepared = try await VenueSaveWorker.shared.prepareImport(document, assetChecksum: assetChecksum, store: library)
+        defer { prepared.discard() }
+        try Task.checkCancellation()
+        if let intentID, intentID != venueIntentID { throw CancellationError() }
+        guard !libraryBusy else { throw EnvironmentError.invalid("wait for the current room to finish loading") }
+        if let existing = rooms.first(where: { $0.id == document.room.id }), existing.manifest != document.room.manifest {
+            throw EnvironmentError.invalid("different room metadata already uses this room version")
+        }
+        try prepared.commit()
+        let imported = (room: prepared.room, setup: prepared.setup)
         let room = rooms.first(where: { $0.manifest == imported.room.manifest }) ?? imported.room
         beginHistoryAction("Import save · \(imported.setup.name)"); defer { endHistoryAction() }
         if !rooms.contains(where: { $0.id == room.id }) { rooms.append(room) }

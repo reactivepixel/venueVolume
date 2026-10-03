@@ -592,7 +592,7 @@ final class VenueScene {
                 if label.parent == nil { root.addChild(label) }
                 // Pin the lower edge above the cube so Info expands upward.
                 let height = label.visualBounds(relativeTo: label).extents.y
-                label.position = position + [0, (fixture.assetID == nil ? 0.18 : fixture.visualHeight+0.10) + height / 2, 0.04]
+                label.position = position + [0, (fixture.assetID == nil ? 0.18 : fixture.visualHeight+0.10) + height * label.scale.x / 2, 0.04]
                 label.components.set(BillboardComponent())
                 labels[fixture.id] = label
             }
@@ -616,11 +616,11 @@ final class VenueScene {
         for fixture in model.fixtures {
             guard let label = labels[fixture.id] else { continue }
             let localSize = label.visualBounds(relativeTo: label, excludeInactive: false).extents
-            let world = label.position(relativeTo: nil)
-            let distance = simd_distance(eye, world)
+            let base = FixtureAiming.vector(fixture.position)
+            let world = root.transformMatrix(relativeTo: nil) * SIMD4<Float>(base, 1)
+            let distance = simd_distance(eye, SIMD3(world.x, world.y, world.z))
             let scale = max(1, distance / 2)
             label.scale = SIMD3(repeating: scale)
-            let base = FixtureAiming.vector(fixture.position)
             label.position = base + [0, (fixture.assetID == nil ? 0.18 : fixture.visualHeight + 0.10) + localSize.y * scale / 2, 0.04]
             let center = view * SIMD4<Float>(label.position(relativeTo: nil), 1)
             guard center.z < -0.05 else { label.isEnabled = false; continue }

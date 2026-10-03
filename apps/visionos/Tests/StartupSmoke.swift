@@ -55,23 +55,23 @@ enum StartupSmoke {
         let document = VenueSave(room: classroom, setup: source.savedSetups[0], asset: asset)
         let supersededImport = relaunched.beginVenueImport()!
         relaunched.requestNewVenue()
-        do { _ = try relaunched.importVenueSave(document, assetChecksum: classroom.manifest.asset.sha256, intentID: supersededImport); preconditionFailure("Superseded import accepted") }
+        do { _ = try await relaunched.importVenueSave(document, assetChecksum: classroom.manifest.asset.sha256, intentID: supersededImport); preconditionFailure("Superseded import accepted") }
         catch is CancellationError { precondition(relaunched.savedSetups.count == 1 && relaunched.activeRoom == fortress) }
         let closedWindowImport = relaunched.beginVenueImport()!
         relaunched.cancelVenueImport(closedWindowImport)
-        do { _ = try relaunched.importVenueSave(document, assetChecksum: classroom.manifest.asset.sha256, intentID: closedWindowImport); preconditionFailure("Closed-window import accepted") }
+        do { _ = try await relaunched.importVenueSave(document, assetChecksum: classroom.manifest.asset.sha256, intentID: closedWindowImport); preconditionFailure("Closed-window import accepted") }
         catch is CancellationError { precondition(relaunched.savedSetups.count == 1) }
         let importedRoomFolder = try relaunched.library.roomDirectory(classroom)
         precondition(!FileManager.default.fileExists(atPath: importedRoomFolder.path),
                      "Cancelled imports must not install geometry")
         let unchanged = relaunched.fixtures
-        do { _ = try relaunched.importVenueSave(document, assetChecksum: "invalid"); preconditionFailure("Corrupt import accepted") }
+        do { _ = try await relaunched.importVenueSave(document, assetChecksum: "invalid"); preconditionFailure("Corrupt import accepted") }
         catch { precondition(relaunched.fixtures == unchanged && relaunched.activeRoom == fortress && relaunched.savedSetups.count == 1) }
         var conflictingRoom = document
         conflictingRoom.room.manifest.title = "Contradictory metadata"
-        do { _ = try relaunched.importVenueSave(conflictingRoom, assetChecksum: classroom.manifest.asset.sha256); preconditionFailure("Conflicting bundled room metadata accepted") }
+        do { _ = try await relaunched.importVenueSave(conflictingRoom, assetChecksum: classroom.manifest.asset.sha256); preconditionFailure("Conflicting bundled room metadata accepted") }
         catch { precondition(relaunched.savedSetups.count == 1 && relaunched.activeRoom == fortress) }
-        let (_, imported) = try relaunched.importVenueSave(document, assetChecksum: classroom.manifest.asset.sha256)
+        let (_, imported) = try await relaunched.importVenueSave(document, assetChecksum: classroom.manifest.asset.sha256)
         precondition(imported.id != document.setup.id && relaunched.savedSetups.count == 2)
         precondition(relaunched.fixtures.isEmpty && relaunched.activeRoom == fortress, "Successful import waits for explicit setup switch")
         print("Startup and portable save checks passed")
