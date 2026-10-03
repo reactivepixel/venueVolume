@@ -1,4 +1,8 @@
-# Temporary Mac handoff: expanded catalog validation
+# Mac validation archive for October 2026
+
+Archived on 2026-10-03 from the temporary Mac handoff. This preserves the original dated results and pickup context; commands, versions, counts, device identifiers and instructions below are historical, not current directions. Use [the current validation checklist](../VALIDATION.md) for new work. Screenshots remain in their original repository location. Referenced `/tmp` logs were on the Mac and have not been verified or archived on this Linux host.
+
+## Historical handoff
 
 Status: Catalog rollout awaits native validation. The earlier pilot and interaction results are preserved below; they do not validate the new catalog integration.
 
@@ -166,13 +170,13 @@ Project regeneration used `xcodegen generate`, then `perl -pi -e 's/BuildableNam
 
 **Evidence.** Captured with `xcrun simctl io 37FB51A4-DFF5-40C0-BFE1-32F8AA69EE4F screenshot Screenshots/<name>.png`, inspected visually:
 
-- [Scene breakdown](../Screenshots/interaction-scene-overview.png)
-- [Selected wrist item pane](../Screenshots/interaction-selected-item.png)
-- [Colored rotation rings](../Screenshots/interaction-axis-rings.png)
-- [Target preview with Save/Cancel](../Screenshots/interaction-target-preview.png)
-- [Pop-out Transform editor](../Screenshots/interaction-item-editor.png)
-- [Full Info/patch editor](../Screenshots/interaction-full-item-editor.png)
-- [Native history smoke result](../Screenshots/interaction-history-smoke.png)
+- [Scene breakdown](../../Screenshots/interaction-scene-overview.png)
+- [Selected wrist item pane](../../Screenshots/interaction-selected-item.png)
+- [Colored rotation rings](../../Screenshots/interaction-axis-rings.png)
+- [Target preview with Save/Cancel](../../Screenshots/interaction-target-preview.png)
+- [Pop-out Transform editor](../../Screenshots/interaction-item-editor.png)
+- [Full Info/patch editor](../../Screenshots/interaction-full-item-editor.png)
+- [Native history smoke result](../../Screenshots/interaction-history-smoke.png)
 
 These are seeded native presentation states and real model/renderer command checks. They do not simulate a user's pinch or mouse gesture. No recording was made.
 
@@ -183,7 +187,7 @@ These are seeded native presentation states and real model/renderer command chec
 
 The integration was prepared in the assigned worktree from current `dev` `bda9e09` using `git switch --detach dev` and `git merge --no-ff --no-commit agent/fixture-interaction`. No conflicts occurred. The final merge includes patch bumps to both npm package/lockfile versions, `project.yml` and the regenerated Xcode project. Info.plist remains bound to `$(MARKETING_VERSION)`.
 
-Re-ran `swift test --package-path Core` (39 tests), `./scripts/test-session.sh` (all four smoke groups), and `python3 Tests/verify-assets.py`: PASS. `./scripts/run-demo.sh --blue --transform-gizmo` built, installed and launched the release candidate; the unsigned generic visionOS device build passed too. Reading both built app Info.plist files with Python `plistlib` confirmed `CFBundleShortVersionString` is `0.1.22` for `Debug-xrsimulator` and `Debug-xros`. [Updated wrist version capture](../Screenshots/toolbox-version.png) displays v0.1.22 alongside the rings and inspector. Capture command: `xcrun simctl io 37FB51A4-DFF5-40C0-BFE1-32F8AA69EE4F screenshot Screenshots/toolbox-version.png`.
+Re-ran `swift test --package-path Core` (39 tests), `./scripts/test-session.sh` (all four smoke groups), and `python3 Tests/verify-assets.py`: PASS. `./scripts/run-demo.sh --blue --transform-gizmo` built, installed and launched the release candidate; the unsigned generic visionOS device build passed too. Reading both built app Info.plist files with Python `plistlib` confirmed `CFBundleShortVersionString` is `0.1.22` for `Debug-xrsimulator` and `Debug-xros`. [Updated wrist version capture](../../Screenshots/toolbox-version.png) displays v0.1.22 alongside the rings and inspector. Capture command: `xcrun simctl io 37FB51A4-DFF5-40C0-BFE1-32F8AA69EE4F screenshot Screenshots/toolbox-version.png`.
 
 The release uses an annotated `v0.1.22` tag on the final merge commit, with `python3 apps/visionos/scripts/check-version.py --release` required before publishing `dev` and the tag. Direct Simulator gestures and physical headset acceptance remain open as described above.
 
@@ -214,7 +218,7 @@ Commands run from `apps/visionos` in the assigned worktree:
 | `python3 scripts/check-version.py` | PASS for the current v0.1.22 baseline. |
 | `git diff --check` | PASS. |
 
-[Native Toolbox window capture](../Screenshots/toolbox-window.png), captured with `xcrun simctl io 37FB51A4-DFF5-40C0-BFE1-32F8AA69EE4F screenshot Screenshots/toolbox-window.png`, shows the header X, system movement bar, selected fixture pane and manual recall control. This is a Simulator capture, not a headset screenshot. The Simulator emits an appearance-transition warning during rapid scripted window recall, but window lifecycle and spatial input assertions pass. Native builds emit the routine unused AppIntents metadata warning.
+[Native Toolbox window capture](../../Screenshots/toolbox-window.png), captured with `xcrun simctl io 37FB51A4-DFF5-40C0-BFE1-32F8AA69EE4F screenshot Screenshots/toolbox-window.png`, shows the header X, system movement bar, selected fixture pane and manual recall control. This is a Simulator capture, not a headset screenshot. The Simulator emits an appearance-transition warning during rapid scripted window recall, but window lifecycle and spatial input assertions pass. Native builds emit the routine unused AppIntents metadata warning.
 
 **Acceptance boundary.** Signed hardware installation and foreground launch are now verified. Physical palm activation, positioning the window by hand, fixture gaze/pinch selection and sustained held targeting still require the wearer's confirmation; the user was asked to try those behaviors after launch. Live room scanning was not exercised in this repair. The demo launch uses its separate demo data and does not replace the normal saved arrangement.
 
@@ -247,7 +251,7 @@ Preset editing defaults to simulation. **Blackout simulation** mutes the selecte
 
 **Test repair.** Retargeting now changes the shared preset, so reopening the original classroom setup correctly gives it an independent preset definition to preserve its saved look. The old smoke expected an identical preset UUID and failed. It now checks every fixture property (including fixture identity, pose and channels) while allowing only that assignment remap, and separately verifies the remapped library preset resolves to the original saved channels. The final replay and history checks pass. The axis gesture test also flushes the newly default-enabled simulation toggle before counting gesture events, keeping its one-Undo assertion scoped to the gesture.
 
-**Evidence.** Native Simulator captures: [Blackout Toolbox](../Screenshots/preset-editor-blackout.png), [preset editor Target and simulation](../Screenshots/preset-editor-target.png), [room/history replay result](../Screenshots/preset-target-history.png). Captured with `xcrun simctl io 37FB51A4-DFF5-40C0-BFE1-32F8AA69EE4F screenshot Screenshots/<name>.png`. Editor presentation uses `--demo -ApplePersistenceIgnoreState YES --blue --show-preset-editor --palm-hidden`; these are seeded states, not simulated user gestures. No recording made.
+**Evidence.** Native Simulator captures: [Blackout Toolbox](../../Screenshots/preset-editor-blackout.png), [preset editor Target and simulation](../../Screenshots/preset-editor-target.png), [room/history replay result](../../Screenshots/preset-target-history.png). Captured with `xcrun simctl io 37FB51A4-DFF5-40C0-BFE1-32F8AA69EE4F screenshot Screenshots/<name>.png`. Editor presentation uses `--demo -ApplePersistenceIgnoreState YES --blue --show-preset-editor --palm-hidden`; these are seeded states, not simulated user gestures. No recording made.
 
 **Remaining device validation.** The app is installed, but remote launch timed out. Asked the user to wear/unlock the headset and return to Home View; launch requires retry or manually opening Venue Volume there. CUA reported the Mac locked, blocking direct Simulator input testing. Physical gaze/pinch selection, held-hand Target adjustment, Save/Cancel activation, preset-name entry, palm recall, blackout animation comfort/Reduce Motion, live World Sensing scan and placement on a real scan are **not tested in this validation**. Simulator screenshots and command smoke checks do not establish those device behaviors.
 
