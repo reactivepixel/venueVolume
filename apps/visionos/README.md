@@ -110,6 +110,8 @@ This is a standalone visualization spike. The production research's immutable pr
 
 ## Validation
 
+Latest native room comparison: [2026-10-03 results and evidence](docs/validation/2026-10-03-mapped-room.md). This records v0.2.2 builds, actual RealityKit texture bindings, the full-catalog import smoke, and static/moving Simulator A/B runs. Headset performance and physical interaction acceptance remain pending.
+
 Use the [current Mac and headset checklist](docs/VALIDATION.md) for acceptance and the [dated validation archive](docs/validation/2026-10-01-to-03-mac-validation.md) for completed results. Run these reusable checks from `apps/visionos` in the assigned worktree:
 
 ```sh

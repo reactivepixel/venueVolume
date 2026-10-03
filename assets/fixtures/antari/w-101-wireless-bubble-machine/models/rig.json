@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "state": "runtime_integrated_native_validation_pending",
+  "state": "runtime_integrated_native_validation_passed",
   "source_usdz_sha256": "d59c88f19b737d2b58e694a73fd9d6c866e5fcd5d7d02c787af9822f033fe717",
-  "native_validation": "pending",
+  "native_validation": "passed",
   "descriptor": {
     "id": "antari/w-101-wireless-bubble-machine",
     "name": "W-101 Wireless Bubble Machine",
@@ -24,5 +24,21 @@
     "emitters": [],
     "headAim": false,
     "notes": "Static equipment model."
+  },
+  "native_validation_evidence": {
+    "date": "2026-10-03",
+    "source_commit": "d8e6f13e568add6a74b32114c88aa45275a93321",
+    "platform": "visionOS 26.5 Simulator / Xcode 27.0",
+    "checks": [
+      "RealityKit USDZ import",
+      "FixtureRig construction",
+      "Joint byte endpoints 0/128/255 and emitter pose consistency"
+    ],
+    "not_tested": [
+      "Model fidelity against manufacturer references",
+      "Physical gestures",
+      "Headset performance"
+    ],
+    "evidence": "apps/visionos/docs/validation/2026-10-03-mapped-room/evidence/catalog-smoke.log"
   }
 }

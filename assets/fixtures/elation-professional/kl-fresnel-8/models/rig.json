@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "state": "runtime_integrated_native_validation_pending",
+  "state": "runtime_integrated_native_validation_passed",
   "source_usdz_sha256": "dd05c36d483c0c1aa041fc93aa625a9ffe4be1281097758be1b15035ee851f39",
-  "native_validation": "pending",
+  "native_validation": "passed",
   "descriptor": {
     "id": "elation-professional/kl-fresnel-8",
     "name": "KL Fresnel 8",
@@ -62,5 +62,21 @@
     ],
     "headAim": false,
     "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative."
+  },
+  "native_validation_evidence": {
+    "date": "2026-10-03",
+    "source_commit": "d8e6f13e568add6a74b32114c88aa45275a93321",
+    "platform": "visionOS 26.5 Simulator / Xcode 27.0",
+    "checks": [
+      "RealityKit USDZ import",
+      "FixtureRig construction",
+      "Joint byte endpoints 0/128/255 and emitter pose consistency"
+    ],
+    "not_tested": [
+      "Model fidelity against manufacturer references",
+      "Physical gestures",
+      "Headset performance"
+    ],
+    "evidence": "apps/visionos/docs/validation/2026-10-03-mapped-room/evidence/catalog-smoke.log"
   }
 }

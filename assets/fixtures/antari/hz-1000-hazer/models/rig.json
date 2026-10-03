@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "state": "runtime_integrated_native_validation_pending",
+  "state": "runtime_integrated_native_validation_passed",
   "source_usdz_sha256": "6a3eef08660ca2621759790ccdcc6df1b4a63e1f49b446cf8a4c7de5f0837837",
-  "native_validation": "pending",
+  "native_validation": "passed",
   "descriptor": {
     "id": "antari/hz-1000-hazer",
     "name": "HZ-1000 Hazer",
@@ -24,5 +24,21 @@
     "emitters": [],
     "headAim": false,
     "notes": "Static equipment model. Visual correction pending: The open upper assembly, sloped controls deck and caster base need a model-specific revision; the current closed-case approximation is not visually approved."
+  },
+  "native_validation_evidence": {
+    "date": "2026-10-03",
+    "source_commit": "d8e6f13e568add6a74b32114c88aa45275a93321",
+    "platform": "visionOS 26.5 Simulator / Xcode 27.0",
+    "checks": [
+      "RealityKit USDZ import",
+      "FixtureRig construction",
+      "Joint byte endpoints 0/128/255 and emitter pose consistency"
+    ],
+    "not_tested": [
+      "Model fidelity against manufacturer references",
+      "Physical gestures",
+      "Headset performance"
+    ],
+    "evidence": "apps/visionos/docs/validation/2026-10-03-mapped-room/evidence/catalog-smoke.log"
   }
 }

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "state": "runtime_integrated_native_validation_pending",
+  "state": "runtime_integrated_native_validation_passed",
   "source_usdz_sha256": "a6fa7da62fcea7abc80d8f9f647387a50f6167f8f56bf3dfd8f8be38d4da5522",
-  "native_validation": "pending",
+  "native_validation": "passed",
   "descriptor": {
     "id": "georgia-stage/prestige-velour-border-curtain-black-sku-7676",
     "name": "Prestige Velour Border Curtain, Black, SKU 7676",
@@ -24,5 +24,21 @@
     "emitters": [],
     "headAim": false,
     "notes": "Static equipment model."
+  },
+  "native_validation_evidence": {
+    "date": "2026-10-03",
+    "source_commit": "d8e6f13e568add6a74b32114c88aa45275a93321",
+    "platform": "visionOS 26.5 Simulator / Xcode 27.0",
+    "checks": [
+      "RealityKit USDZ import",
+      "FixtureRig construction",
+      "Joint byte endpoints 0/128/255 and emitter pose consistency"
+    ],
+    "not_tested": [
+      "Model fidelity against manufacturer references",
+      "Physical gestures",
+      "Headset performance"
+    ],
+    "evidence": "apps/visionos/docs/validation/2026-10-03-mapped-room/evidence/catalog-smoke.log"
   }
 }

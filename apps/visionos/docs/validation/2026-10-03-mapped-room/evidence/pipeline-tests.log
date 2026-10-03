@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/Users/chapman/projects/venueVolume/.worktree/mapped-room-native-validation/research/fixtures/test_expansion_pipeline.py", line 9, in <module>
+    import expand_catalog as acquisition
+  File "/Users/chapman/projects/venueVolume/.worktree/mapped-room-native-validation/research/fixtures/expand_catalog.py", line 19, in <module>
+    import generate_fixture_assets as base
+  File "/Users/chapman/projects/venueVolume/.worktree/mapped-room-native-validation/research/fixtures/generate_fixture_assets.py", line 102
+    d"]}/models/fixture.blend)\n- [USDZ model](../../../../assets/fixtures/{record["id"]}/models/fixture.usdz)\n- [USDZ validation](../../../../assets/fixtures/{record["id"]}/validation/usdz.json)\n\n## Assumptions and follow-up\n\n{''.join(f'- {x}\n' for x in record["model"]["assumptions"]+record["unresolved"])}''')
+                                                                                                                                                                                                                                                                                                                              ^
+SyntaxError: f-string expression part cannot include a backslash

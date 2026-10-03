@@ -1,0 +1,38 @@
+ROOM_IMPORT_SMOKE_PASS {"assetSHA256":"d2fe021e211a4fb5f7d98fdb774ad452d60d95484e2e3b7a27e9cdfaba4f4e26","bindings":[],"modelCount":68,"opaquePBR":true,"roomID":"img3153-classroom-v1","textureCount":0,"textures":[]}
+VV_LIGHTING_BENCHMARK {
+  "allocatedShadowLights" : [
+    8
+  ],
+  "appVersion" : "0.2.2",
+  "assetSHA256" : "d2fe021e211a4fb5f7d98fdb774ad452d60d95484e2e3b7a27e9cdfaba4f4e26",
+  "conclusion" : "Cadence diagnostic only. Verify visible light count, shadows, GPU deadlines and thermal stability with RealityKit Trace on device.",
+  "displayedFPS" : null,
+  "execution" : "simulator",
+  "fixtureObjects" : 64,
+  "gpu" : "Apple xrOS simulator GPU",
+  "gpuFrameTimeMS" : null,
+  "houseLight" : 0.05000000074505806,
+  "jointTransformWritesIncludingWarmup" : 336049,
+  "lightComponentWritesIncludingWarmup" : 8,
+  "measurementSeconds" : 30.005469076801091,
+  "moving" : true,
+  "os" : "Version 26.5 (Build 23O470)",
+  "requestedShadowLights" : 8,
+  "roomID" : "img3153-classroom-v1",
+  "roomVersion" : "4e5b4de0c9592a7b83a13eebe6f866966152a843cfbd6382a43e7756c159b8d6",
+  "sceneUpdateCadence" : {
+    "intervalsOver16_67MS" : 3,
+    "maximumMS" : 738.8872504234314,
+    "meanMS" : 10.966208937305691,
+    "p95MS" : 11.111125349998474,
+    "p99MS" : 11.111125349998474,
+    "samples" : 2761
+  },
+  "schemaVersion" : 1,
+  "thermalStart" : "nominal",
+  "thermalStates" : [
+    "nominal"
+  ],
+  "whiteRoom" : false
+}
+com.venuevolume.VenueVolume: 12279

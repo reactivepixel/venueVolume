@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "state": "runtime_integrated_native_validation_pending",
+  "state": "runtime_integrated_native_validation_passed",
   "source_usdz_sha256": "5f6e31cc477d3b23092d4bfd8e6cb7593ff4cb9e4081c3148e36669f7748b4c5",
-  "native_validation": "pending",
+  "native_validation": "passed",
   "descriptor": {
     "id": "astera/ax5-triplepar",
     "name": "AX5 TriplePAR",
@@ -62,5 +62,21 @@
     ],
     "headAim": false,
     "notes": "VV Preview 16 simulation. Pivots and travel are visual estimates; manufacturer DMX and mechanical limits are not mapped. Light output is illustrative. Visual correction pending: Visual review found a vertically stretched optical housing despite the correct three reflector cups and floor yoke; the source envelope needs a neutral-pose proportion correction."
+  },
+  "native_validation_evidence": {
+    "date": "2026-10-03",
+    "source_commit": "d8e6f13e568add6a74b32114c88aa45275a93321",
+    "platform": "visionOS 26.5 Simulator / Xcode 27.0",
+    "checks": [
+      "RealityKit USDZ import",
+      "FixtureRig construction",
+      "Joint byte endpoints 0/128/255 and emitter pose consistency"
+    ],
+    "not_tested": [
+      "Model fidelity against manufacturer references",
+      "Physical gestures",
+      "Headset performance"
+    ],
+    "evidence": "apps/visionos/docs/validation/2026-10-03-mapped-room/evidence/catalog-smoke.log"
   }
 }

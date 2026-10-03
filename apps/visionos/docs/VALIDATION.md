@@ -4,6 +4,8 @@ This is the current Mac and headset acceptance checklist. It replaces the tempor
 
 ## Recorded results
 
+The [2026-10-03 mapped-room comparison](validation/2026-10-03-mapped-room.md) records v0.2.2 native Simulator and Release device compilation, all 252 catalog import/rig checks, six imported mapped-room textures, and Simulator static/moving A/B workloads. Physical headset performance and wearer acceptance remain open; Simulator cadence is not a frame-rate measurement.
+
 The [dated Mac archive](validation/2026-10-01-to-03-mac-validation.md) preserves commands, fixes and screenshot links. Its final integration report, dated 2026-10-03 for v0.1.27, records 45 passing Core tests, five session check groups, verification of 252 bundled models and rig companions, and a successful Simulator build. Earlier pilot runtime and Toolbox window smoke checks passed. A signed headset install passed, but the latest recorded remote launch timed out; an earlier Toolbox build launched successfully.
 
 These results do not establish full-catalog RealityKit import, physical gesture acceptance or live scanning. The v0.2.0 version bump does not supply new validation evidence.

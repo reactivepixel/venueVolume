@@ -1,0 +1,36 @@
+{
+  "allocatedShadowLights": [
+    8
+  ],
+  "appVersion": "0.2.2",
+  "assetSHA256": "d2fe021e211a4fb5f7d98fdb774ad452d60d95484e2e3b7a27e9cdfaba4f4e26",
+  "conclusion": "Cadence diagnostic only. Verify visible light count, shadows, GPU deadlines and thermal stability with RealityKit Trace on device.",
+  "displayedFPS": null,
+  "execution": "simulator",
+  "fixtureObjects": 64,
+  "gpu": "Apple xrOS simulator GPU",
+  "gpuFrameTimeMS": null,
+  "houseLight": 0.05000000074505806,
+  "jointTransformWritesIncludingWarmup": 128,
+  "lightComponentWritesIncludingWarmup": 8,
+  "measurementSeconds": 30.011024677194655,
+  "moving": false,
+  "os": "Version 26.5 (Build 23O470)",
+  "requestedShadowLights": 8,
+  "roomID": "img3153-classroom-v1",
+  "roomVersion": "4e5b4de0c9592a7b83a13eebe6f866966152a843cfbd6382a43e7756c159b8d6",
+  "sceneUpdateCadence": {
+    "intervalsOver16_67MS": 2,
+    "maximumMS": 705.5538892745972,
+    "meanMS": 10.66236675869986,
+    "p95MS": 11.111125349998474,
+    "p99MS": 11.111125349998474,
+    "samples": 2860
+  },
+  "schemaVersion": 1,
+  "thermalStart": "nominal",
+  "thermalStates": [
+    "nominal"
+  ],
+  "whiteRoom": false
+}

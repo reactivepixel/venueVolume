@@ -21,6 +21,10 @@ Run from `apps/visionos` on a Mac with Xcode. Simulator is an import/UI smoke te
 ./scripts/run-demo.sh --lighting-benchmark=mappedRoom --benchmark-lights=8
 ```
 
+For a Debug native material regression check, add `--room-import-smoke` to either command. It checks RealityKit's imported material bindings before runtime overrides: both rooms must have 68 opaque PBR meshes; the original must have no base-color textures, while mappedRoom must have exactly six unique base-color textures (two 512², four 256²). Capture `ROOM_IMPORT_SMOKE_PASS` and fail on `ROOM_IMPORT_SMOKE_FAIL`. This check does not establish visual fidelity or device performance.
+
+The [2026-10-03 Mac comparison](validation/2026-10-03-mapped-room.md) records native builds, imported texture bindings, Simulator A/B runs and outstanding headset acceptance.
+
 For a paired, worn Vision Pro, build/sign the Release configuration in Xcode and launch with these arguments (or add them to the scheme). The benchmark flag selects temporary demo state and automatically enters the room. `VV_DEVICE` is the identifier from `xcrun devicectl list devices`:
 
 ```sh

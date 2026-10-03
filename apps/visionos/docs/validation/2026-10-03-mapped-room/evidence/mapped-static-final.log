@@ -1,0 +1,37 @@
+ROOM_IMPORT_SMOKE_PASS {"assetSHA256":"898898a1ee75dce5fac319974ce533ddc15c48db69b98cbc40367679770f9655","bindings":[{"entity":"chunk_000","textureIndex":0},{"entity":"chunk_001","textureIndex":0},{"entity":"chunk_002","textureIndex":0},{"entity":"chunk_003","textureIndex":0},{"entity":"chunk_004","textureIndex":0},{"entity":"chunk_005","textureIndex":1},{"entity":"chunk_021","textureIndex":2},{"entity":"chunk_022","textureIndex":2},{"entity":"chunk_023","textureIndex":2},{"entity":"chunk_036","textureIndex":3},{"entity":"chunk_037","textureIndex":3},{"entity":"chunk_038","textureIndex":3},{"entity":"chunk_039","textureIndex":3},{"entity":"chunk_040","textureIndex":3},{"entity":"chunk_041","textureIndex":4},{"entity":"chunk_042","textureIndex":4},{"entity":"chunk_043","textureIndex":4},{"entity":"chunk_044","textureIndex":4},{"entity":"chunk_045","textureIndex":4},{"entity":"chunk_056","textureIndex":5},{"entity":"chunk_057","textureIndex":5},{"entity":"chunk_058","textureIndex":5},{"entity":"chunk_059","textureIndex":5}],"modelCount":68,"opaquePBR":true,"roomID":"mappedRoom","textureCount":6,"textures":[{"height":512,"mipLevels":10,"width":512},{"height":512,"mipLevels":10,"width":512},{"height":256,"mipLevels":9,"width":256},{"height":256,"mipLevels":9,"width":256},{"height":256,"mipLevels":9,"width":256},{"height":256,"mipLevels":9,"width":256}]}
+VV_LIGHTING_BENCHMARK {
+  "allocatedShadowLights" : [
+    8
+  ],
+  "appVersion" : "0.2.2",
+  "assetSHA256" : "898898a1ee75dce5fac319974ce533ddc15c48db69b98cbc40367679770f9655",
+  "conclusion" : "Cadence diagnostic only. Verify visible light count, shadows, GPU deadlines and thermal stability with RealityKit Trace on device.",
+  "displayedFPS" : null,
+  "execution" : "simulator",
+  "fixtureObjects" : 64,
+  "gpu" : "Apple xrOS simulator GPU",
+  "gpuFrameTimeMS" : null,
+  "houseLight" : 0.05000000074505806,
+  "jointTransformWritesIncludingWarmup" : 128,
+  "lightComponentWritesIncludingWarmup" : 8,
+  "measurementSeconds" : 30.005469146184623,
+  "moving" : false,
+  "os" : "Version 26.5 (Build 23O470)",
+  "requestedShadowLights" : 8,
+  "roomID" : "mappedRoom",
+  "roomVersion" : "b8d6a2c6cfdf8c27b9d94288969e89dfe5e16fd6ed711a70592a8e55bf6cc048",
+  "sceneUpdateCadence" : {
+    "intervalsOver16_67MS" : 3,
+    "maximumMS" : 3905.5461883544922,
+    "meanMS" : 12.653214287660379,
+    "p95MS" : 11.111125349998474,
+    "p99MS" : 11.111125349998474,
+    "samples" : 2583
+  },
+  "schemaVersion" : 1,
+  "thermalStart" : "nominal",
+  "thermalStates" : [
+    "nominal"
+  ],
+  "whiteRoom" : false
+}

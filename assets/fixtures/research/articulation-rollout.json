@@ -60,7 +60,7 @@
     "followspot": 1,
     "led_panel": 1
   },
-  "native_validation": "pending",
+  "native_validation": "passed",
   "rig_files": [
     "assets/fixtures/acme/lightning/models/rig.json",
     "assets/fixtures/acme/mana-profile/models/rig.json",
@@ -314,5 +314,21 @@
     "assets/fixtures/vari-lite/vl3600-profile-ip/models/rig.json",
     "assets/fixtures/vari-lite/vl5led-wash/models/rig.json",
     "assets/fixtures/vari-lite/vl800-eventprofile/models/rig.json"
-  ]
+  ],
+  "native_validation_evidence": {
+    "date": "2026-10-03",
+    "source_commit": "d8e6f13e568add6a74b32114c88aa45275a93321",
+    "platform": "visionOS 26.5 Simulator / Xcode 27.0",
+    "checks": [
+      "RealityKit USDZ import",
+      "FixtureRig construction",
+      "Joint byte endpoints 0/128/255 and emitter pose consistency"
+    ],
+    "not_tested": [
+      "Model fidelity against manufacturer references",
+      "Physical gestures",
+      "Headset performance"
+    ],
+    "evidence": "apps/visionos/docs/validation/2026-10-03-mapped-room/evidence/catalog-smoke.log"
+  }
 }

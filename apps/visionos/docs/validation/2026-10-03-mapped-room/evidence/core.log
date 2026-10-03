@@ -1,0 +1,134 @@
+Building for debugging...
+[Planning 1 / 95]
+[Planning deferred tasks]
+[28 / 52]
+[29 / 53] VenueVolumeCore
+[38 / 96]
+[41 / 96]
+[46 / 96]
+[48 / 96]
+[52 / 96]
+[54 / 96]
+[57 / 96]
+[60 / 96]
+[62 / 96]
+[63 / 96]
+[72 / 96] VenueVolumeCore
+[82 / 96] VenueVolumeCore
+[86 / 97] VenueVolumeCoreTests-product
+[87 / 108]
+[97 / 108] VenueVolumeCoreTests-product
+[98 / 108] VenueVolumeCoreTests-product
+[102 / 108] VenueVolumeCoreTests-product
+[104 / 108] VenueVolumeCoreTests-product
+[107 / 108] VenueVolumeCoreTests-product
+Build complete! (10.49 sec)
+Test Suite 'All tests' started at 2026-10-03 08:25:56.453.
+Test Suite 'All tests' passed at 2026-10-03 08:25:56.456.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.003) seconds
+◇ Test run started.
+↳ Testing Library Version: 2084
+↳ Target Platform: arm64e-apple-macos14.0
+◇ Test mockHTTPTransportAcceptsEntireSnapshot() started.
+◇ Test copiedPresetDoesNotUpdateOriginalAssignments() started.
+◇ Test unreachableHeadTargetsFailInsteadOfClamping() started.
+◇ Test conflictingFootprintRejectsEntireSaveAndDrop() started.
+◇ Test headAimSolvesInFixtureCoordinatesWithQuantizedDmx() started.
+◇ Test invalidPatchCannotBeSynced() started.
+◇ Test presetPayloadAndAssignmentsRoundTrip() started.
+◇ Suite AuditHistoryTests started.
+◇ Test allocatorFillsGapsAndRollsToNextUniverse() started.
+◇ Test channelCountBounds(count:) started.
+◇ Test mountAnglesRoundTripIncludingGimbalLock() started.
+◇ Test everyMovingHeadTargetsUsingItsOwnPivots() started.
+◇ Test footprintMustFitUniverse() started.
+◇ Test panTiltAndBeamRespondIndependently() started.
+◇ Test cadenceRetainsHitchesAndRejectsNonFiniteSamples() started.
+◇ Test localRepositoryResolvesAndRejectsWrongIDAndTruncation() started.
+◇ Test corruptPlacementsRemainUntouched() started.
+◇ Test completePayloadRoundTripsAndIncludesEveryConfiguration() started.
+◇ Test incompatibleAndMalformedManifestsFailBeforeLoading() started.
+◇ Test presetDropPreservesObjectIdentityAndPatch() started.
+◇ Test aimOverrideSurvivesPresetOperationsAndPersistence() started.
+◇ Test compoundFixturesKeepIndependentControlsAndEmitters() started.
+◇ Test budgetsRespectHardwareThermalAndSelection() started.
+◇ Test effectsUseVisualMechanismsWithoutSpotlightEmission() started.
+◇ Test pilotHeadSliderAnglesEncodeToPreviewValues() started.
+◇ Test moduleOverridesSurvivePresetChangesAndOldSaves() started.
+◇ Test previewPersonalityDecodesDmxAndClamps() started.
+◇ Test namesValuesAndUniverseMustBeValid() started.
+◇ Test roomLibraryKeepsGeometryAndIndependentSetupsAcrossRelaunch() started.
+◇ Test exportedClassroomContractAndDeskPlacement() started.
+◇ Test scannedMeshValidatesAndRejectsUnsupportedEdgesAndHoles() started.
+◇ Test mappedRoomPreservesClassroomInteractionAndResolvesSeparately() started.
+◇ Test fixtureAssetAndTransformRoundTripWithPresets() started.
+◇ Test recentItemsAreUniqueOrderedAndCappedAtTen() started.
+◇ Test emptySnapshotCanClearRemoteConfiguration() started.
+◇ Test catalogControlsAreAddressableAndNeutralAtRest() started.
+◇ Test palmRevealDebouncesAndDismissesAfterTrackingLoss() started.
+◇ Test mountAimUsesStaticAndMultiEmitterGeometry() started.
+◇ Test saveUpdatesEveryAssignedObjectButNotOtherPresets() started.
+◇ Test mountAimAccountsForEmitterParallaxAndPreservesArticulation() started.
+◇ Test patchesCannotOverlapButMayShareAddressesAcrossUniverses() started.
+◇ Test placementsSurviveNewStoreAndAreIsolatedByRoomVersion() started.
+◇ Test setupRejectsInvalidSnapshotsWithoutOverwritingGoodSave() started.
+◇ Test benchmarkKeepsIdenticalGeometryAndPatchAcrossRooms() started.
+◇ Test mockFailureCanBeRetried() started.
+◇ Test gizmoWorldAxesComposeMountRotation() started.
+◇ Test deletingPresetClearsAssignmentsAndZerosChannels() started.
+◇ Test case passing 1 argument count → 0 to channelCountBounds(count:) started.
+◇ Test case passing 1 argument count → 17 to channelCountBounds(count:) started.
+◇ Test corruptedAuditDoesNotOverwriteTheFile() started.
+◇ Test auditNavigationPersistsWithoutReplayingExternalEffects() started.
+◇ Test undoRedoBranchesKeepAbandonedEvents() started.
+✔ Test copiedPresetDoesNotUpdateOriginalAssignments() passed after 0.015 seconds.
+✔ Test presetPayloadAndAssignmentsRoundTrip() passed after 0.015 seconds.
+✔ Test headAimSolvesInFixtureCoordinatesWithQuantizedDmx() passed after 0.015 seconds.
+✔ Test footprintMustFitUniverse() passed after 0.015 seconds.
+✔ Test mountAnglesRoundTripIncludingGimbalLock() passed after 0.015 seconds.
+✔ Test panTiltAndBeamRespondIndependently() passed after 0.015 seconds.
+✔ Test conflictingFootprintRejectsEntireSaveAndDrop() passed after 0.015 seconds.
+✔ Test cadenceRetainsHitchesAndRejectsNonFiniteSamples() passed after 0.015 seconds.
+✔ Test unreachableHeadTargetsFailInsteadOfClamping() passed after 0.015 seconds.
+✔ Test allocatorFillsGapsAndRollsToNextUniverse() passed after 0.015 seconds.
+✔ Test presetDropPreservesObjectIdentityAndPatch() passed after 0.015 seconds.
+✔ Test aimOverrideSurvivesPresetOperationsAndPersistence() passed after 0.015 seconds.
+✔ Test completePayloadRoundTripsAndIncludesEveryConfiguration() passed after 0.015 seconds.
+✔ Test budgetsRespectHardwareThermalAndSelection() passed after 0.015 seconds.
+✔ Test pilotHeadSliderAnglesEncodeToPreviewValues() passed after 0.015 seconds.
+✔ Test previewPersonalityDecodesDmxAndClamps() passed after 0.015 seconds.
+✔ Test incompatibleAndMalformedManifestsFailBeforeLoading() passed after 0.015 seconds.
+✔ Test namesValuesAndUniverseMustBeValid() passed after 0.015 seconds.
+✔ Test effectsUseVisualMechanismsWithoutSpotlightEmission() passed after 0.015 seconds.
+✔ Test compoundFixturesKeepIndependentControlsAndEmitters() passed after 0.015 seconds.
+✔ Test moduleOverridesSurvivePresetChangesAndOldSaves() passed after 0.015 seconds.
+✔ Test scannedMeshValidatesAndRejectsUnsupportedEdgesAndHoles() passed after 0.015 seconds.
+✔ Test exportedClassroomContractAndDeskPlacement() passed after 0.015 seconds.
+✔ Test fixtureAssetAndTransformRoundTripWithPresets() passed after 0.015 seconds.
+✔ Test recentItemsAreUniqueOrderedAndCappedAtTen() passed after 0.015 seconds.
+✔ Test invalidPatchCannotBeSynced() passed after 0.016 seconds.
+✔ Test corruptPlacementsRemainUntouched() passed after 0.015 seconds.
+✔ Test channelCountBounds(count:) with 2 test cases passed after 0.015 seconds.
+✔ Test palmRevealDebouncesAndDismissesAfterTrackingLoss() passed after 0.015 seconds.
+✔ Test saveUpdatesEveryAssignedObjectButNotOtherPresets() passed after 0.015 seconds.
+✔ Test patchesCannotOverlapButMayShareAddressesAcrossUniverses() passed after 0.015 seconds.
+✔ Test setupRejectsInvalidSnapshotsWithoutOverwritingGoodSave() passed after 0.015 seconds.
+✔ Test mountAimAccountsForEmitterParallaxAndPreservesArticulation() passed after 0.015 seconds.
+✔ Test roomLibraryKeepsGeometryAndIndependentSetupsAcrossRelaunch() passed after 0.016 seconds.
+✔ Test mappedRoomPreservesClassroomInteractionAndResolvesSeparately() passed after 0.016 seconds.
+✔ Test gizmoWorldAxesComposeMountRotation() passed after 0.016 seconds.
+✔ Test deletingPresetClearsAssignmentsAndZerosChannels() passed after 0.015 seconds.
+✔ Test localRepositoryResolvesAndRejectsWrongIDAndTruncation() passed after 0.016 seconds.
+✔ Test undoRedoBranchesKeepAbandonedEvents() passed after 0.004 seconds.
+✔ Test catalogControlsAreAddressableAndNeutralAtRest() passed after 0.018 seconds.
+✔ Test corruptedAuditDoesNotOverwriteTheFile() passed after 0.007 seconds.
+✔ Test auditNavigationPersistsWithoutReplayingExternalEffects() passed after 0.006 seconds.
+✔ Suite AuditHistoryTests passed after 0.018 seconds.
+✔ Test placementsSurviveNewStoreAndAreIsolatedByRoomVersion() passed after 0.018 seconds.
+✔ Test mountAimUsesStaticAndMultiEmitterGeometry() passed after 0.020 seconds.
+✔ Test everyMovingHeadTargetsUsingItsOwnPivots() passed after 0.021 seconds.
+✔ Test benchmarkKeepsIdenticalGeometryAndPatchAcrossRooms() passed after 0.034 seconds.
+✔ Test emptySnapshotCanClearRemoteConfiguration() passed after 0.480 seconds.
+✔ Test mockHTTPTransportAcceptsEntireSnapshot() passed after 0.481 seconds.
+✔ Test mockFailureCanBeRetried() passed after 0.961 seconds.
+✔ Test run with 49 tests in 1 suite passed after 0.963 seconds.

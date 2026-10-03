@@ -111,6 +111,9 @@ final class VenueScene {
                 for child in entity.children { collect(child) }
             }
             collect(room)
+            #if DEBUG
+            try validateRoomImport(newMaterials, manifest: resolved.manifest)
+            #endif
             model.environmentStatus = "Preparing room targeting…"
             for (entity, component) in newMaterials {
                 let shape = try await ShapeResource.generateStaticMesh(from: component.mesh)
@@ -335,6 +338,51 @@ final class VenueScene {
             guard !surface.components.has(SpatialDragTarget.self) else { throw EnvironmentError.invalid("aim drag target survived cancellation") }
             print("SPATIAL_INPUT_SMOKE_PASS")
         } catch { print("SPATIAL_INPUT_SMOKE_FAIL: \(error)") }
+    }
+    #endif
+
+    #if DEBUG
+    /// Checks the material bindings produced by RealityKit, not just USDZ bytes.
+    private func validateRoomImport(_ imported: [(Entity, ModelComponent)], manifest: EnvironmentManifest) throws {
+        guard ProcessInfo.processInfo.arguments.contains("--room-import-smoke"),
+              ["img3153-classroom-v1", "mappedRoom"].contains(manifest.id) else { return }
+        do {
+            var textures: [MaterialParameters.Texture] = []
+            var bindings: [[String: Any]] = []
+            for (entity, component) in imported {
+                for material in component.materials {
+                    guard let pbr = material as? PhysicallyBasedMaterial else {
+                        throw EnvironmentError.invalid("Room material did not import as PBR: \(entity.name)")
+                    }
+                    guard case .opaque = pbr.blending else {
+                        throw EnvironmentError.invalid("Room material is not opaque: \(entity.name)")
+                    }
+                    if let texture = pbr.baseColor.texture {
+                        if !textures.contains(texture) { textures.append(texture) }
+                        let index = textures.firstIndex(of: texture)!
+                        bindings.append(["entity": entity.name, "textureIndex": index])
+                    }
+                }
+            }
+            let sizes = textures.map { ["width": $0.resource.width, "height": $0.resource.height,
+                                        "mipLevels": $0.resource.mipmapLevelCount] }
+            guard imported.count == 68 else { throw EnvironmentError.invalid("Expected 68 imported room meshes") }
+            if manifest.id == "mappedRoom" {
+                guard textures.count == 6,
+                      sizes.filter({ $0["width"] == 512 && $0["height"] == 512 }).count == 2,
+                      sizes.filter({ $0["width"] == 256 && $0["height"] == 256 }).count == 4 else {
+                    throw EnvironmentError.invalid("Expected six native base-color textures: two 512² and four 256²; imported \(sizes)")
+                }
+            } else if !textures.isEmpty { throw EnvironmentError.invalid("Baseline unexpectedly has base-color textures") }
+            let report: [String: Any] = ["roomID": manifest.id, "assetSHA256": manifest.asset.sha256,
+                "modelCount": imported.count, "textureCount": textures.count,
+                "textures": sizes, "bindings": bindings, "opaquePBR": true]
+            let json = try JSONSerialization.data(withJSONObject: report, options: [.sortedKeys])
+            print("ROOM_IMPORT_SMOKE_PASS " + String(decoding: json, as: UTF8.self))
+        } catch {
+            print("ROOM_IMPORT_SMOKE_FAIL \(manifest.id): \(error)")
+            throw error
+        }
     }
     #endif
 
