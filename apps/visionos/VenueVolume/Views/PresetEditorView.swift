@@ -6,6 +6,7 @@ struct PresetEditorView: View {
     @State private var restoredWindowID = UUID()
     @Environment(VenueModel.self) private var model
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.openWindow) private var openWindow
     @State private var pendingNavigation: Navigation?
     @State private var showUnsaved = false
     @State private var showDelete = false
@@ -28,6 +29,11 @@ struct PresetEditorView: View {
         .disabled(model.libraryBusy)
         .onAppear {
             model.presetEditor.registerWindow(windowID)
+            if !model.isImmersed && model.presetEditor.windowIDs.count > 1 {
+                // A relaunch can restore only companion windows. The launch
+                // scene hosts the presenter that safely consolidates them.
+                openWindow(id: "launch")
+            }
             model.presetWindowVisible = true
             model.previewDraft = true
             model.previewBlackout = false
