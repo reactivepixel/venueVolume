@@ -39,6 +39,7 @@ struct VenueSaveDocument: FileDocument {
             try save.asset.write(to: assetURL)
             _ = try await Entity(contentsOf: assetURL)
         }
+        try Task.checkCancellation()
         return save
     }
 
