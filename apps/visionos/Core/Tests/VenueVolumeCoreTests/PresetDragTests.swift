@@ -66,3 +66,41 @@ import Testing
     #expect(PresetDropSnap.target(cursor: [0,0,-1], rayOrigin: .zero, rayPoint: [0,0,-1],
         targets: [.init(id: id, center: [0,0,-30], radius: 0.2)], previous: nil) == id)
 }
+
+@Test func presetSnapUsesVisibleEndsOfLongFixtures() throws {
+    let id = UUID()
+    // The bundled Pixel Tape 16IP is 2.72m wide. Its visible ends used to
+    // fall outside the 0.6m capped center sphere.
+    let tape = PresetDropSnap.Target(id: id, minimum: [-1.36,0,-5.006], maximum: [1.36,0.003,-4.994])
+    #expect(PresetDropSnap.target(cursor: [1.3,0.0015,-5], rayOrigin: nil, rayPoint: nil,
+        targets: [tape], previous: nil) == id)
+    let hit = try #require(PresetDropSnap.match(cursor: [1.3,0.0015,-1], rayOrigin: [1.3,0.0015,0],
+        rayPoint: [1.3,0.0015,-1], targets: [tape], previous: nil))
+    #expect(hit.id == id)
+    #expect(abs(hit.point.x-1.3) < 0.0001)
+    #expect(abs(hit.point.z-tape.maximum.z) < 0.0001)
+    #expect(hit.distance > 4.7 && hit.distance < 5)
+}
+
+@Test func presetBoundsRayUsesNearestForwardSurface() throws {
+    let near = UUID(), far = UUID()
+    let targets = [PresetDropSnap.Target(id: far, minimum: [-1,-1,-12], maximum: [1,1,-10]),
+                   .init(id: near, minimum: [-1,-1,-5], maximum: [1,1,-4])]
+    #expect(PresetDropSnap.target(cursor: [0,0,-1], rayOrigin: .zero, rayPoint: [0,0,-1], targets: targets, previous: nil) == near)
+    #expect(PresetDropSnap.entryDistance(from: .zero, through: [0,0,-4], target: targets[1]) == 4)
+    #expect(PresetDropSnap.entryDistance(from: [0,0,-4.5], through: [0,0,-5], target: targets[1]) == 0)
+    #expect(PresetDropSnap.entryDistance(from: .zero, through: [0,0,1], target: targets[1]) == nil)
+    #expect(PresetDropSnap.entryDistance(from: [2,0,0], through: [2,0,-1], target: targets[1]) == nil)
+    #expect(PresetDropSnap.entryDistance(from: .zero, through: .zero, target: targets[1]) == nil)
+}
+
+@Test func wideBoundsDoNotSubtractWidthFromWallOcclusion() throws {
+    let screen = PresetDropSnap.Target(id: UUID(), minimum: [-5.7,0,-5.01], maximum: [5.7,1,-4.99])
+    let entry = try #require(PresetDropSnap.entryDistance(from: [0,0.5,0], through: [0,0.5,-4.99], target: screen))
+    #expect(abs(entry-4.99) < 0.0001)
+    // A wall at 3m is in front of the screen; subtracting its 5.7m
+    // half-width from center distance incorrectly treated this as visible.
+    #expect(Float(3) < entry-0.015)
+    let invalid = PresetDropSnap.Target(id: UUID(), minimum: [1,1,1], maximum: [-1,-1,-1])
+    #expect(PresetDropSnap.target(cursor: .zero, rayOrigin: .zero, rayPoint: [0,0,-1], targets: [invalid], previous: nil) == nil)
+}

@@ -80,49 +80,100 @@ public final class PresetDragState {
     }
 }
 
-/// Snap in physical scene meters, with a wider release boundary to prevent
-/// flicker between neighboring targets. Occluded fixtures are filtered by caller.
+/// Snap in physical scene meters. The authored world bounds remain intact;
+/// only the *additional* input tolerance is bounded. Occluded targets are
+/// filtered by the renderer using the actual bounds entry distance.
 public enum PresetDropSnap {
     public struct Target: Equatable, Sendable {
         public let id: UUID
-        public let center: SIMD3<Float>
-        public let radius: Float
-        public init(id: UUID, center: SIMD3<Float>, radius: Float) {
-            self.id = id; self.center = center; self.radius = radius
+        public let minimum: SIMD3<Float>
+        public let maximum: SIMD3<Float>
+        public var center: SIMD3<Float> { (minimum+maximum)/2 }
+        public init(id: UUID, minimum: SIMD3<Float>, maximum: SIMD3<Float>) {
+            self.id = id; self.minimum = minimum; self.maximum = maximum
         }
+        /// Convenience for small cube-like targets, including legacy tests.
+        public init(id: UUID, center: SIMD3<Float>, radius: Float) {
+            self.init(id: id, minimum: center-SIMD3(repeating: radius), maximum: center+SIMD3(repeating: radius))
+        }
+        fileprivate var isValid: Bool {
+            finite(minimum) && finite(maximum) && (0..<3).allSatisfy { minimum[$0] <= maximum[$0] }
+        }
+        fileprivate func closest(to point: SIMD3<Float>) -> SIMD3<Float> {
+            SIMD3((0..<3).map { min(maximum[$0], max(minimum[$0], point[$0])) })
+        }
+    }
+    public struct Match: Equatable, Sendable {
+        public let id: UUID
+        /// Point on/in the actual fixture bounds, not the expanded input halo.
+        public let point: SIMD3<Float>
+        /// Forward ray entry in meters, or cursor distance for direct input.
+        public let distance: Float
+        fileprivate let score: Float
     }
     public static func target(cursor: SIMD3<Float>, rayOrigin: SIMD3<Float>?, rayPoint: SIMD3<Float>?,
                               targets: [Target], previous: UUID?) -> UUID? {
+        match(cursor: cursor, rayOrigin: rayOrigin, rayPoint: rayPoint, targets: targets, previous: previous)?.id
+    }
+    public static func match(cursor: SIMD3<Float>, rayOrigin: SIMD3<Float>?, rayPoint: SIMD3<Float>?,
+                             targets: [Target], previous: UUID?) -> Match? {
         guard finite(cursor) else { return nil }
         let ray: (origin: SIMD3<Float>, direction: SIMD3<Float>)?
         if let origin = rayOrigin, let point = rayPoint, finite(origin), finite(point), length(point-origin) > 0.0001 {
             ray = (origin, (point-origin)/length(point-origin))
         } else { ray = nil }
-        var matches: [(id: UUID, score: Float)] = []
-        for target in targets where finite(target.center) && target.radius.isFinite {
+        var matches: [Match] = []
+        for target in targets where target.isValid {
             let extra: Float = target.id == previous ? 0.12 : 0
-            let radius = max(0.08, min(target.radius, 0.6))
-            let direct = length(cursor-target.center)
-            var score: Float?
-            if direct <= radius + 0.18 + extra { score = direct }
+            let directPoint = target.closest(to: cursor)
+            let directDistance = length(cursor-directPoint)
+            var candidate: Match?
+            if directDistance <= 0.18+extra {
+                candidate = .init(id: target.id, point: directPoint, distance: directDistance, score: directDistance)
+            }
             if let ray {
-                let delta = target.center-ray.origin
-                let distance = dot(delta, ray.direction)
-                let miss = length(delta-ray.direction*distance)
-                // A small angular allowance allows relaxed indirect input. Do
-                // not select behind the ray or beyond the supported room range.
-                let tolerance = radius + min(distance*0.025, 0.16) + extra
-                if distance >= 0, distance <= 60, miss <= tolerance {
-                    let rayScore = 1 + distance + miss
-                    score = min(score ?? rayScore, rayScore)
+                let distance = max(0, dot(target.center-ray.origin, ray.direction))
+                let tolerance = min(distance*0.025, 0.16)+extra
+                let inset = SIMD3<Float>(repeating: tolerance)
+                // A slab intersection honors long fixtures and scaled models;
+                // a center sphere would reject hits at their visible ends.
+                if let entry = intersection(origin: ray.origin, direction: ray.direction,
+                                            minimum: target.minimum-inset, maximum: target.maximum+inset), entry <= 60 {
+                    let contact = target.closest(to: ray.origin+ray.direction*entry)
+                    let rayMatch = Match(id: target.id, point: contact, distance: entry, score: 1+entry)
+                    if candidate == nil || rayMatch.score < candidate!.score { candidate = rayMatch }
                 }
             }
-            if let score { matches.append((target.id, score)) }
+            if let candidate { matches.append(candidate) }
         }
         let best = matches.min { a, b in a.score == b.score ? a.id.uuidString < b.id.uuidString : a.score < b.score }
         if let previous, let retained = matches.first(where: { $0.id == previous }),
-           let best, best.score >= retained.score * 0.75 { return previous }
-        return best?.id
+           let best, best.score >= retained.score*0.75 { return retained }
+        return best
+    }
+
+    /// First nonnegative ray distance into the real bounds. A wall before this
+    /// point occludes the fixture, regardless of the fixture's width or height.
+    public static func entryDistance(from origin: SIMD3<Float>, through point: SIMD3<Float>, target: Target) -> Float? {
+        guard target.isValid, finite(origin), finite(point), length(point-origin) > 0.0001 else { return nil }
+        return intersection(origin: origin, direction: (point-origin)/length(point-origin),
+                            minimum: target.minimum, maximum: target.maximum)
+    }
+
+    private static func intersection(origin: SIMD3<Float>, direction: SIMD3<Float>,
+                                     minimum: SIMD3<Float>, maximum: SIMD3<Float>) -> Float? {
+        var entry: Float = 0, exit = Float.infinity
+        for axis in 0..<3 {
+            if abs(direction[axis]) < 0.00001 {
+                guard origin[axis] >= minimum[axis], origin[axis] <= maximum[axis] else { return nil }
+            } else {
+                let first = (minimum[axis]-origin[axis])/direction[axis]
+                let second = (maximum[axis]-origin[axis])/direction[axis]
+                entry = max(entry, min(first, second)); exit = min(exit, max(first, second))
+                guard entry <= exit else { return nil }
+            }
+        }
+        return exit >= 0 ? entry : nil
     }
     private static func finite(_ p: SIMD3<Float>) -> Bool { p.x.isFinite && p.y.isFinite && p.z.isFinite }
     private static func dot(_ a: SIMD3<Float>, _ b: SIMD3<Float>) -> Float { a.x*b.x+a.y*b.y+a.z*b.z }

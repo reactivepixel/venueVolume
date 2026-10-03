@@ -618,33 +618,35 @@ final class VenueScene {
         let hand = sample.hand.map(point), rayOrigin = sample.rayOrigin.map(point), rayPoint = sample.rayPoint.map(point)
         var targets = model.fixtures.compactMap { fixture -> PresetDropSnap.Target? in
             guard let box = bounds(fixture.id) else { return nil }
-            return .init(id: fixture.id, center: box.center, radius: simd_length(box.extents)/2)
+            return .init(id: fixture.id, minimum: box.min, maximum: box.max)
         }
         var proposed: UUID?
+        var contactPoint: SIMD3<Float>?
         if session.armed {
             // Only raycast candidates that can actually snap, rather than one
             // expensive scene query per fixture for every pointer update.
-            while let candidate = PresetDropSnap.target(cursor: cursor, rayOrigin: rayOrigin, rayPoint: rayPoint,
+            while let candidate = PresetDropSnap.match(cursor: cursor, rayOrigin: rayOrigin, rayPoint: rayPoint,
                                                        targets: targets, previous: model.presetDrag.proposedFixtureID),
-                  let target = targets.first(where: { $0.id == candidate }) {
+                  let target = targets.first(where: { $0.id == candidate.id }) {
                 let origin = rayOrigin ?? hand ?? cursor
-                let delta = target.center-origin, length = simd_length(delta)
+                let delta = candidate.point-origin, length = simd_length(delta)
                 var blocked = false
                 if length > 0.001, let scene = root.scene {
-                    let firstWall = scene.raycast(origin: origin, direction: delta/length, length: length, query: .all,
+                    let entry = PresetDropSnap.entryDistance(from: origin, through: candidate.point, target: target) ?? length
+                    let firstWall = scene.raycast(origin: origin, direction: delta/length, length: entry, query: .all,
                                                  mask: .all, relativeTo: nil).filter {
                         $0.entity.name.hasPrefix("aim-surface:") || $0.entity.name.hasPrefix("room-collider:")
                     }.map(\.distance).min()
-                    blocked = firstWall.map { $0 < length-max(0.08, target.radius) } ?? false
+                    blocked = firstWall.map { $0 < entry-0.015 } ?? false
                 }
-                if !blocked { proposed = candidate; break }
-                targets.removeAll { $0.id == candidate }
+                if !blocked { proposed = candidate.id; contactPoint = candidate.point; break }
+                targets.removeAll { $0.id == candidate.id }
             }
         }
         model.presetDrag.propose(proposed)
         var points = [source]
         if let hand { points.append(hand) }
-        points.append(proposed.flatMap { bounds($0)?.center } ?? cursor)
+        points.append(contactPoint ?? cursor)
         presetDragVisual.tether(points: points, snapped: proposed != nil, target: proposed.flatMap(bounds))
         if let release = model.presetDrag.takeRelease() {
             if let fixtureID = release.fixtureID {
