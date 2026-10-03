@@ -4,7 +4,7 @@ A runnable RealityKit lighting proof of concept for Simulator and Vision Pro (vi
 
 ## Run
 
-Open `VenueVolume.xcodeproj` in Xcode. Choose **VenueVolume Demo** for an immediately populated room, or **VenueVolume** for your saved arrangement. On a development Vision Pro, select your signing team, pair/unlock the headset, choose it as the destination, and run. Allow hand tracking for palm activation of the Toolbox window; manual access is available if permission is denied.
+Open `VenueVolume.xcodeproj` in Xcode. Choose **VenueVolume Demo** for an immediately populated room, or **VenueVolume** for your saved arrangement. On a development Vision Pro, select your signing team, pair/unlock the headset, choose it as the destination, and run. Allow hand tracking for activation of the wrist menu; manual access is available if permission is denied.
 
 For an already booted visionOS Simulator, from this directory:
 
@@ -14,7 +14,7 @@ For an already booted visionOS Simulator, from this directory:
 
 The script builds, installs, and launches the demo. `VV_SIMULATOR_ID` selects a particular booted device. Extra arguments are forwarded, for example `./scripts/run-demo.sh --blue --palm-hidden`. Demo mode is available on both Simulator and hardware and never writes normal placements or presets.
 
-The palm-activated Toolbox header shows the app's `CFBundleShortVersionString`, sourced from Xcode `MARKETING_VERSION` ([Simulator capture](Screenshots/toolbox-version.png)). Run `python3 scripts/check-version.py` from this directory to confirm it matches the latest reachable `vMAJOR.MINOR.PATCH` Git tag and both npm app versions. Release integration runs the check with `--release` after tagging to require an annotated tag at `HEAD`.
+The wrist menu header shows the app's `CFBundleShortVersionString`, sourced from Xcode `MARKETING_VERSION` ([Simulator capture](Screenshots/toolbox-version.png)). Run `python3 scripts/check-version.py` from this directory to confirm it matches the latest reachable `vMAJOR.MINOR.PATCH` Git tag and both npm app versions. Release integration runs the check with `--release` after tagging to require an annotated tag at `HEAD`.
 
 ## Use
 
@@ -70,7 +70,7 @@ Older saved fixtures with aim overrides remain readable. Existing preset applica
 
 ## The room and asset
 
-This task was based on GitHub `reactivepixel/venueVolume`, `origin/dev` **619f0d7** (v0.1.15), combined with the palm-toolbox branch **e29e107**.
+This task was based on GitHub `reactivepixel/venueVolume`, `origin/dev` **619f0d7** (v0.1.15), combined with the earlier wrist-toolbox branch **e29e107**.
 
 The room is the existing **IMG_3153 classroom**, not a newly reconstructed scan. The current documented pipeline is movie references → reviewed room specification → Blender mesh → USDZ + environment manifest (`apps/room2blender`). `mov2splat` is a separate optional Gaussian experiment. This proof does not run movie reconstruction or automatically convert arbitrary splats into meshes.
 
@@ -131,7 +131,7 @@ xcodebuild -project VenueVolume.xcodeproj -scheme VenueVolume \
 
 The final recorded integration check on **2026-10-03**, Xcode 27, passed 45 Core tests, five session groups, bundle verification for 252 catalog models and a Simulator build. The model checks cover catalog articulation, room/setup persistence, preset targeting, Undo/Redo and input routing. Earlier native checks exercised pilot import, synthetic mesh replay, history and Toolbox window callbacks. Full-catalog runtime import and interactive visual review remain open; neither bundle verification nor compilation establishes them.
 
-The earlier Toolbox repair was signed, installed and launched on a physical Vision Pro. The later preset-target build installed successfully, but its remote launch timed out. Wearer acceptance remains open: actual gaze/pinch and drag gestures, palm recall and movement of the normal Toolbox window, live scan/save/reopen, tracking alignment, comfort and performance. The Toolbox no longer follows the wrist. Synthetic replay and seeded Simulator screenshots do not establish physical headset behavior.
+The earlier Toolbox repair was signed, installed and launched on a physical Vision Pro. The later preset-target build installed successfully, but its remote launch timed out. Wearer acceptance remains open: actual gaze/pinch and drag gestures, wrist menu recall and movement of the normal Toolbox window, live scan/save/reopen, tracking alignment, comfort and performance. The Toolbox no longer follows the wrist. Synthetic replay and seeded Simulator screenshots do not establish physical headset behavior.
 
 Run `./scripts/run-demo.sh --blue --input-smoke` for native window lifecycle and rendered collision/input routing checks. Its console markers are `TOOLBOX_WINDOW_SMOKE_PASS` and `SPATIAL_INPUT_SMOKE_PASS`; these exercise application commands and RealityKit collisions, not physical hand gestures.
 

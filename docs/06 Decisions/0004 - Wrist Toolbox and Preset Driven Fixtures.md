@@ -5,11 +5,11 @@ owner: engineering
 updated: 2026-09-25
 ---
 
-# 0004 — Palm Toolbox and Preset Driven Fixtures
+# 0004 — Wrist Toolbox and Preset Driven Fixtures
 
 ## Context
 
-The visionOS prototype now needs an on-demand left-palm toolbox, contextual object controls, and reusable presets. Direct object-channel editing and the continuously visible head-following debug pane from decision 0003 no longer describe the desired interaction.
+The visionOS prototype now needs an on-demand left-wrist toolbox, contextual object controls, and reusable presets. Direct object-channel editing and the continuously visible head-following debug pane from decision 0003 no longer describe the desired interaction.
 
 ## Decision
 

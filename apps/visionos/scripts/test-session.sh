@@ -12,6 +12,6 @@ swiftc -swift-version 6 -parse-as-library -emit-library -emit-module -module-nam
 swiftc -swift-version 6 -parse-as-library \
     -I "$venue_test_build" -L "$venue_test_build" -lVenueVolumeCore \
     -Xlinker -rpath -Xlinker "$venue_test_build" \
-    VenueVolume/Models/VenueModel.swift Tests/SessionSmoke.swift Tests/AuditSmoke.swift Tests/InteractionSmoke.swift \
+    VenueVolume/Models/*.swift Tests/SessionSmoke.swift Tests/AuditSmoke.swift Tests/InteractionSmoke.swift \
     -o "$venue_test_build/session-tests"
 "$venue_test_build/session-tests"

@@ -7,7 +7,7 @@ updated: 2026-10-01
 
 # 0005 — Mesh room lighting proof of concept
 
-The visionOS proof of concept combines the palm toolbox/preset workflow with the current reconstructed classroom and a catalog moving-head asset. It uses the GitHub dev research baseline at `619f0d7` and the earlier spatial prototype at `e29e107`.
+The visionOS proof of concept combines the wrist toolbox/preset workflow with the current reconstructed classroom and a catalog moving-head asset. It uses the GitHub dev research baseline at `619f0d7` and the earlier spatial prototype at `e29e107`.
 
 ## Evidence and choice
 
@@ -23,7 +23,7 @@ The catalog Rogue R1X Spot proxy supplies editable Base/Yoke/Head transforms and
 - Preset edits remain drafts; optional temporary preview affects only the selected fixture's rendering. Saving updates assigned fixtures; Save as New preserves prior assignments.
 - Blackout is a temporary renderer override. Room light and original/white materials remain independent of presets.
 - Persist placements by room version, including resolved values and asset IDs; retain compatibility with existing cube saves.
-- Keep the left-palm Toolbox, ten Recent items, read-only object Info, and separate preset editor. Add a Fixture position tab to that editor.
+- Keep the left-wrist Toolbox, ten Recent items, read-only object Info, and separate preset editor. Add a Fixture position tab to that editor.
 
 ## Proof and limits
 

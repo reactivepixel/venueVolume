@@ -15,7 +15,17 @@
         <key>UIApplicationSupportsMultipleScenes</key><true/>
         <key>UIApplicationPreferredDefaultSceneSessionRole</key><string>UIWindowSceneSessionRoleApplication</string>
     </dict>
-    <key>NSHandsTrackingUsageDescription</key><string>Venue Volume uses your left palm to reveal and position the toolbox.</string>
+    <key>UTExportedTypeDeclarations</key>
+    <array>
+        <dict>
+            <key>UTTypeIdentifier</key><string>com.venuevolume.save</string>
+            <key>UTTypeDescription</key><string>Venue Volume Save</string>
+            <key>UTTypeConformsTo</key><array><string>public.json</string></array>
+            <key>UTTypeTagSpecification</key>
+            <dict><key>public.filename-extension</key><array><string>venuevolume</string></array></dict>
+        </dict>
+    </array>
+    <key>NSHandsTrackingUsageDescription</key><string>Venue Volume uses your left hand pose to open the wrist menu. You can also open it with a button.</string>
     <key>NSWorldSensingUsageDescription</key><string>Venue Volume scans room surfaces to save environments on this device and place virtual DMX fixtures in them.</string>
 </dict>
 </plist>

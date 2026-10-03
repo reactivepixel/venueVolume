@@ -38,7 +38,7 @@ The checkpoint contains 323 research rows, 252 packaged models, 175 articulated 
 
 - [ ] Confirm actual fixture gaze/pinch selection, background deselection, axis drags, preset drops, item editing, naming and Clear all confirmation.
 - [ ] Test held Target preview and Save/Cancel. Current Save writes Pan/Tilt to the shared preset and updates affected assignments; legacy per-fixture overrides are cleared. Test new drafts, shared assignments, selection changes, Undo/Redo and saved setup restoration. Mount targeting menus were removed; use axis controls for mount transforms.
-- [ ] Confirm palm recall opens the normal repositionable Toolbox window once per raised-hand edge. Lowering the hand leaves it open; close while raised stays closed; lowering and raising recalls it. Verify manual recall and movement. Wrist-following is obsolete, not an acceptance requirement.
+- [ ] Confirm wrist menu recall opens the normal repositionable Toolbox window once per raised-hand edge. Lowering the hand leaves it open; close while raised stays closed; lowering and raising recalls it. Verify manual recall and movement. Wrist-following is obsolete, not an acceptance requirement.
 - [ ] Retry or manually confirm normal-mode launch on a worn, unlocked headset without demo/reset flags. Preserve existing user arrangements.
 - [ ] Grant World Sensing permission, capture a real room, save and reopen the scan, place fixtures on scanned surfaces, target them and verify relaunch persistence. Synthetic mesh replay is not live scan evidence.
 - [ ] Exercise search/filter, cold loading and selection during loading, room switching, old Rogue setups, joint overrides and grouped Undo/Redo.
