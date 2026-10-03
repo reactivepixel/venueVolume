@@ -6,6 +6,7 @@ struct NewVenueSheet: View {
     @Environment(VenueModel.self) private var model
     @Environment(\.dismiss) private var dismiss
     @ScaledMetric(relativeTo: .body) private var pickerHeight = 380.0
+    @State private var configurationID: UUID?
     var body: some View {
         ScrollView {
         VStack(alignment: .leading, spacing: 20) {
@@ -14,8 +15,16 @@ struct NewVenueSheet: View {
                 Spacer()
                 Button("Cancel") { model.newVenuePresented = false; dismiss() }
             }
-            Text("Choose an environment. Each new instance starts with no fixtures.").foregroundStyle(.secondary)
-            VenueLibraryPicker(showsNewVenues: true) { model.newVenuePresented = false; dismiss() }.frame(height: pickerHeight)
+            Text("Choose an environment. Each new instance starts with no placements.").foregroundStyle(.secondary)
+            if let tour = model.tour {
+                Text("\(tour.show.name) · \(tour.configuration?.name ?? "Configuration") · inventory, groups and shared presets retained").font(.callout)
+                Picker("Configuration for the new venue", selection: $configurationID) {
+                    Text("Current · \(tour.configuration?.name ?? "Tour rig")").tag(nil as UUID?)
+                    ForEach(tour.show.configurations) { Text($0.name).tag(Optional($0.id)) }
+                }
+                Text("Use Adapt configuration layout in the wrist menu after opening to align a saved arrangement.").font(.caption).foregroundStyle(.secondary)
+            }
+            VenueLibraryPicker(showsNewVenues: true, configurationID: configurationID) { model.newVenuePresented = false; dismiss() }.frame(height: pickerHeight)
         }.padding(28)
         }.frame(minWidth: 620, idealWidth: 680, minHeight: 550, idealHeight: 700)
             .task { await model.prepareLibrary() }
@@ -28,6 +37,7 @@ struct VenueLibraryPicker: View {
     @Environment(\.openImmersiveSpace) private var openSpace
     @Environment(\.dynamicTypeSize) private var textSize
     let showsNewVenues: Bool
+    var configurationID: UUID? = nil
     var didOpen: () -> Void = {}
     @State private var pending: (LibraryRoom, VenueSetup?)?
     @State private var confirming = false
@@ -140,7 +150,7 @@ struct VenueLibraryPicker: View {
     private func continuePending() {
         guard let (room, setup) = pending else { return }
         pending = nil
-        model.requestRoom(room, setup: setup)
+        model.requestRoom(room, setup: setup, configurationID: setup == nil ? configurationID : nil)
         let requestID = model.roomLoadToken
         if model.isImmersed { didOpen(); return }
         Task { @MainActor in

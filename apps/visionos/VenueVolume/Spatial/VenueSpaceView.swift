@@ -30,7 +30,7 @@ struct VenueSpaceView: View {
             ForEach(model.environment?.surfaces ?? [], id: \.id) { surface in
                 Attachment(id: "surface-drop-\(surface.id)") { FixtureSurfaceDrop(surface: surface).environment(model) }
             }
-            ForEach(model.fixtures) { fixture in
+            ForEach(model.sceneFixtures) { fixture in
                 Attachment(id: "label-\(fixture.id)") {
                     FixtureLabel(fixture: fixture).environment(model)
                 }
@@ -80,7 +80,7 @@ struct VenueSpaceView: View {
         .onChange(of: model.canSimulatePalm || model.needsManualToolbox, initial: true) { _, needed in
             if needed { openWindow(id: "venue-controls", value: "controls") }
         }
-        .onChange(of: model.isPickingRoom || model.gizmoVisible) { _, active in
+        .onChange(of: model.isPickingRoom || model.gizmoVisible || model.tourPreview != nil) { _, active in
             if active { openWindow(id: "venue-controls", value: "controls") }
         }
         .task(id: model.toolboxRequestID) {
@@ -158,6 +158,13 @@ struct VenueSpaceView: View {
             await scene.runInputSmoke(model: model)
             await RoomLibrarySmoke.run(model: model)
             await RoomLibrarySmoke.catalog(model: model)
+            await RoomLibrarySmoke.touring(model: model)
+            if model.isDemoMode && ProcessInfo.processInfo.arguments.contains("--touring-editor") {
+                // Presentation-only capture: expose the editor instead of leaving
+                // it behind the automatically recalled wrist/controls windows.
+                try? await Task.sleep(for: .seconds(2))
+                if !Task.isCancelled { dismissWindow(id: "toolbox"); dismissWindow(id: "venue-controls") }
+            }
             #endif
         }
         .onDisappear {

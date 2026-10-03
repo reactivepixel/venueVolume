@@ -4,6 +4,8 @@ This is the current Mac and headset acceptance checklist. It replaces the tempor
 
 ## Recorded results
 
+The [2026-10-03 touring implementation](validation/2026-10-03-touring.md) records inventory, hierarchy, scoped partial presets, group placement/transforms, named focus, portable shows and pinned venue adoption. Simulator command checks are separate from physical gesture acceptance.
+
 The [2026-10-03 UX integration](validation/2026-10-03-ux.md) records the venue chooser, portable saves, Fortress import, spatial preset drag, single-editor recall, HIG audit and code-review fixes for v0.2.3. Physical gesture, accessibility and Crown acceptance remain open.
 
 The [2026-10-03 mapped-room comparison](validation/2026-10-03-mapped-room.md) records v0.2.2 native Simulator and Release device compilation, all 252 catalog import/rig checks, six imported mapped-room textures, and Simulator static/moving A/B workloads. Physical headset performance and wearer acceptance remain open; Simulator cadence is not a frame-rate measurement.

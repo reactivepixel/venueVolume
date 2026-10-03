@@ -137,10 +137,14 @@ public struct VenueAuditState: Codable, Equatable, Sendable {
     public var expandedID: UUID?
     public var previewDraft: Bool
     public var previewBlackout: Bool?
+    public var touring: TouringArchive?
+    public var selectedUnitIDs: Set<UUID>?
+    public var selectedGroupID: UUID?
 
     public init(rooms: [LibraryRoom], setups: [VenueSetup], roomID: String, fixtures: [Fixture], presets: [DMXPreset],
                 draft: DMXPreset, editingPresetID: UUID?, setupName: String, activeSetupID: UUID?, savedSetup: VenueSetup?,
-                whiteRoom: Bool, houseLight: Float, blackout: Bool, selectedID: UUID?, expandedID: UUID?, previewDraft: Bool, previewBlackout: Bool? = nil) {
+                whiteRoom: Bool, houseLight: Float, blackout: Bool, selectedID: UUID?, expandedID: UUID?, previewDraft: Bool, previewBlackout: Bool? = nil, touring: TouringArchive? = nil, selectedUnitIDs: Set<UUID>? = nil, selectedGroupID: UUID? = nil) {
+        self.touring = touring; self.selectedUnitIDs = selectedUnitIDs; self.selectedGroupID = selectedGroupID
         self.rooms = rooms; self.setups = setups; self.roomID = roomID; self.fixtures = fixtures; self.presets = presets
         self.draft = draft; self.editingPresetID = editingPresetID; self.setupName = setupName; self.activeSetupID = activeSetupID
         self.savedSetup = savedSetup; self.whiteRoom = whiteRoom; self.houseLight = houseLight; self.blackout = blackout
@@ -159,6 +163,11 @@ public struct VenueAuditState: Codable, Equatable, Sendable {
               (1...16).contains(draft.channels.count), draft.channels.allSatisfy({ (0...255).contains($0) }) else {
             throw EnvironmentError.invalid("invalid audit snapshot")
         }
+        if let tour = touring?.active {
+            guard (selectedUnitIDs ?? []).isSubset(of: tour.eligibleIDs), selectedGroupID == nil || tour.show.groups.contains(where: { $0.id == selectedGroupID }) else { throw PresetError("Invalid inventory selection.") }
+        }
+        try touring?.validate()
+        try touring?.active?.validate(fixtures: fixtures)
         for room in rooms { try room.manifest.validate() }
         try RoomPlacements(environment: room.manifest, fixtures: fixtures, revision: 0).validate(environment: room.manifest)
         for setup in setups {
