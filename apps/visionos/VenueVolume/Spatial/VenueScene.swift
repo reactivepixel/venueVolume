@@ -359,10 +359,16 @@ final class VenueScene {
                   let preset = model.presets.first(where: { $0.id != fixture.presetID }) else {
                 throw EnvironmentError.invalid("Missing smoke fixture or alternate preset")
             }
-            for _ in 0..<100 where model.presetDrag.sources[preset.id] == nil {
+            for _ in 0..<100 where model.presetDrag.sources[preset.id] == nil ||
+                model.toolboxPresentedID != model.toolboxRequestID || !model.toolboxVisible {
                 try await Task.sleep(for: .milliseconds(100))
             }
+            // Window geometry is available before its presentation fade ends.
+            // Wait for the recalled window, then sample the current row origin.
+            try await Task.sleep(for: .seconds(3))
             guard let source = model.presetDrag.sources[preset.id], let transform = presetInputFromScene,
+                  let inverse = transform.inverse, model.toolboxVisible,
+                  model.toolboxPresentedID == model.toolboxRequestID,
                   let entity = rigs[fixture.id]?.entity ?? cubes[fixture.id] else {
                 throw EnvironmentError.invalid("Wrist preset source geometry unavailable")
             }
@@ -371,17 +377,29 @@ final class VenueScene {
                 return [Float(result.x), Float(result.y), Float(result.z)]
             }
             let target = entity.visualBounds(relativeTo: nil, excludeInactive: true).center
-            let initial = PresetDragState.Sample(source: source, cursor: input(target + [1.5,0.5,0]))
+            let row = Point3D(x: Double(source.x), y: Double(source.y), z: Double(source.z)).applying(inverse)
+            let rowWorld = SIMD3<Float>(Float(row.x), Float(row.y), Float(row.z))
+            let right = SIMD3<Float>(deviceTransform.columns.0.x, deviceTransform.columns.0.y, deviceTransform.columns.0.z)
+            let up = SIMD3<Float>(deviceTransform.columns.1.x, deviceTransform.columns.1.y, deviceTransform.columns.1.z)
+            let towardViewer = SIMD3<Float>(deviceTransform.columns.2.x, deviceTransform.columns.2.y, deviceTransform.columns.2.z)
+            // Explicitly synthetic hand data lets the two-segment tether leave
+            // the window's silhouette. A straight source-to-fixture segment is
+            // normally hidden by the system window, even at correct coordinates.
+            let hand = input(rowWorld + right*0.85 + up*0.45 + towardViewer*0.10)
+            let initial = PresetDragState.Sample(source: source, cursor: input(target + right + up*0.6), hand: hand)
             guard let id = model.presetDrag.begin(presetID: preset.id, sample: initial) else { throw CancellationError() }
             model.beginPresetDrag(preset.id)
             model.presetDrag.update(id, sample: initial, armed: true)
-            print("PRESET_DRAG_SMOKE_DOTTED")
-            try await Task.sleep(for: .seconds(3))
-            let snapped = PresetDragState.Sample(source: source, cursor: input(target))
+            try await Task.sleep(for: .seconds(1))
+            guard model.presetDrag.proposedFixtureID == nil else { throw EnvironmentError.invalid("Unsnapped presentation unexpectedly selected a fixture") }
+            print("PRESET_DRAG_SMOKE_DOTTED settled=true syntheticHand=true")
+            try await Task.sleep(for: .seconds(6))
+            let snapped = PresetDragState.Sample(source: source, cursor: input(target), hand: hand)
             model.presetDrag.update(id, sample: snapped, armed: true)
-            try await Task.sleep(for: .seconds(3))
+            try await Task.sleep(for: .seconds(1))
             guard model.presetDrag.proposedFixtureID == fixture.id else { throw EnvironmentError.invalid("Fixture did not snap") }
-            print("PRESET_DRAG_SMOKE_SOLID")
+            print("PRESET_DRAG_SMOKE_SOLID settled=true syntheticHand=true")
+            try await Task.sleep(for: .seconds(6))
             let oldCount = model.history?.entries.count ?? 0
             model.presetDrag.release(id)
             try await Task.sleep(for: .milliseconds(200))
