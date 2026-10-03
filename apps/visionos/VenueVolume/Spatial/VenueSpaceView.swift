@@ -1,11 +1,13 @@
 import RealityKit
 import SwiftUI
+import VenueVolumeCore
 
 struct VenueSpaceView: View {
     @Environment(VenueModel.self) private var model
     @Environment(\.dismissWindow) private var dismissWindow
     @Environment(\.openWindow) private var openWindow
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var scene = VenueScene()
     @State private var lastSpatialDragEnd = Date.distantPast
     @State private var handledDrag = false
@@ -20,15 +22,17 @@ struct VenueSpaceView: View {
             content.add(scene.overlayRoot)
             content.add(scene.headAnchor)
             scene.update(model: model, attachments: attachments)
-        } update: { _, attachments in
+            scene.updatePresetDrag(model: model, content: content, reduceMotion: reduceMotion)
+        } update: { content, attachments in
             scene.update(model: model, attachments: attachments)
+            scene.updatePresetDrag(model: model, content: content, reduceMotion: reduceMotion)
         } attachments: {
             Attachment(id: "targeting") { TargetingPrompt().environment(model) }
             ForEach(model.environment?.surfaces ?? [], id: \.id) { surface in
                 Attachment(id: "surface-drop-\(surface.id)") { FixtureSurfaceDrop(surface: surface).environment(model) }
             }
             if model.canSimulatePalm || model.needsManualToolbox {
-                Attachment(id: "palm-preview") { SimulatorPalmControl().environment(model) }
+                Attachment(id: "wrist-preview") { SimulatorWristControl().environment(model) }
             }
             ForEach(model.fixtures) { fixture in
                 Attachment(id: "label-\(fixture.id)") {
@@ -113,7 +117,7 @@ struct VenueSpaceView: View {
                     openWindow(id: "fixture-editor")
                 } else if arguments.contains("--show-item-editor") {
                     openWindow(id: "fixture-editor")
-                } else if !model.presetWindowVisible { openWindow(id: "presets") }
+                } else { model.presetEditor.request() }
             }
         }
         .task {
@@ -145,6 +149,7 @@ struct VenueSpaceView: View {
         }
         .task {
             #if DEBUG
+            await scene.runPresetDragSmoke(model: model)
             await runToolboxWindowSmoke()
             await scene.runInputSmoke(model: model)
             await RoomLibrarySmoke.run(model: model)
@@ -168,8 +173,9 @@ struct VenueSpaceView: View {
             openWindow(id: "launch")
         }
         .onChange(of: scenePhase) { _, phase in
-            if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits() }
+            if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits(); model.endPresetDrag() }
         }
+        .presetEditorPresenter()
     }
 
     #if DEBUG
