@@ -2,14 +2,18 @@ import SwiftUI
 import VenueVolumeCore
 
 struct PresetEditorView: View {
+    let instanceID: UUID?
+    @State private var restoredWindowID = UUID()
     @Environment(VenueModel.self) private var model
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.openWindow) private var openWindow
     @State private var pendingNavigation: Navigation?
     @State private var showUnsaved = false
     @State private var showDelete = false
     @State private var showSaveAs = false
     @State private var copyName = ""
     private enum Navigation { case preset(UUID), new }
+    private var windowID: UUID { instanceID ?? restoredWindowID }
 
     var body: some View {
         HStack(spacing: 0) {
@@ -23,8 +27,34 @@ struct PresetEditorView: View {
             }.padding(28).frame(maxWidth: .infinity)
         }.frame(width: 1040, height: 820)
         .disabled(model.libraryBusy)
-        .onAppear { model.presetWindowVisible = true; model.previewDraft = true; model.previewBlackout = false }
-        .onDisappear { model.finishHistoryGesture(); model.previewDraft = false; model.previewBlackout = false; model.cancelPicking(); model.presetWindowVisible = false; model.flushHistoryEdits() }
+        .onAppear {
+            model.presetEditor.registerWindow(windowID)
+            if !model.isImmersed && model.presetEditor.windowIDs.count > 1 {
+                // A relaunch can restore only companion windows. The launch
+                // scene hosts the presenter that safely consolidates them.
+                openWindow(id: "launch")
+            }
+            model.presetWindowVisible = true
+            model.previewDraft = true
+            model.previewBlackout = false
+            if let presetID = model.presetEditor.requestedPreset(for: windowID), presetID != model.editingPresetID {
+                request(.preset(presetID))
+            }
+        }
+        .onDisappear {
+            model.finishHistoryGesture()
+            if model.presetEditor.unregisterWindow(windowID) {
+                model.previewDraft = false
+                model.previewBlackout = false
+                model.cancelPicking()
+            }
+            model.presetWindowVisible = !model.presetEditor.windowIDs.isEmpty
+            model.flushHistoryEdits()
+        }
+        .onChange(of: model.selectedID) { _, id in
+            guard let id, let presetID = model.fixture(id)?.presetID, presetID != model.editingPresetID else { return }
+            request(.preset(presetID))
+        }
         .onChange(of: scenePhase) { _, phase in
             if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits() }
         }
@@ -32,7 +62,7 @@ struct PresetEditorView: View {
             Button("Save and continue") { if model.savePreset() { navigate() } }
             Button("Discard changes", role: .destructive) { navigate() }
             Button("Keep editing", role: .cancel) { pendingNavigation = nil }
-        } message: { Text("Save or discard your draft before switching presets.") }
+        } message: { Text("Save or discard your draft before switching presets. Simulation is paused until you choose a preset or turn it back on.") }
         .confirmationDialog("Delete this preset?", isPresented: $showDelete, titleVisibility: .visible) {
             Button("Delete preset", role: .destructive) {
                 if let id = model.editingPresetID { model.deletePreset(id) }
@@ -80,9 +110,9 @@ struct PresetEditorView: View {
         HStack {
             Label("Preset editor", systemImage: "slider.horizontal.3").font(.title2.weight(.semibold))
             Spacer()
-            Button { adjacent(-1) } label: { Image(systemName: "chevron.left") }
+            Button { adjacent(-1) } label: { Image(systemName: "chevron.left").frame(minWidth: 60, minHeight: 60) }
                 .disabled(adjacentID(-1) == nil).accessibilityLabel("Previous preset")
-            Button { adjacent(1) } label: { Image(systemName: "chevron.right") }
+            Button { adjacent(1) } label: { Image(systemName: "chevron.right").frame(minWidth: 60, minHeight: 60) }
                 .disabled(adjacentID(1) == nil).accessibilityLabel("Next preset")
             Menu {
                 Button("Clear channel values") {
@@ -94,7 +124,7 @@ struct PresetEditorView: View {
                 }.disabled(model.editingPresetID == nil)
                 Divider()
                 Button("Delete preset", role: .destructive) { showDelete = true }.disabled(model.editingPresetID == nil)
-            } label: { Image(systemName: "ellipsis") }.accessibilityLabel("Manage preset")
+            } label: { Image(systemName: "ellipsis").frame(minWidth: 60, minHeight: 60) }.accessibilityLabel("Manage preset")
         }
     }
 
@@ -190,7 +220,12 @@ struct PresetEditorView: View {
 
     private func request(_ destination: Navigation) {
         pendingNavigation = destination
-        if model.draftHasChanges { showUnsaved = true } else { navigate() }
+        if model.draftHasChanges {
+            // Keep the draft intact without projecting it onto a newly selected
+            // fixture while the user is deciding which preset to edit.
+            model.previewDraft = false
+            showUnsaved = true
+        } else { navigate() }
     }
     private func navigate() {
         switch pendingNavigation {

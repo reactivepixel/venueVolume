@@ -32,15 +32,20 @@ struct ToolboxView: View {
                 Spacer()
                 HistoryControls()
                 VStack(alignment: .trailing, spacing: 2) {
-                    Label("Palm activated", systemImage: "hand.raised")
+                    Label("Wrist menu", systemImage: "hand.raised")
                     Text(appVersion).font(.caption.weight(.semibold)).foregroundStyle(.cyan).monospacedDigit()
                         .accessibilityLabel("Venue Volume version \(appVersion)")
                 }.font(.caption).foregroundStyle(.secondary)
                 Menu {
+                    Button("New venue…", systemImage: "plus") {
+                        model.requestNewVenue()
+                        if !model.isImmersed { openWindow(id: "launch") }
+                    }
                     Button("Diagnostics & sync") { openWindow(id: "diagnostics") }
                     Button("Leave venue") { model.flushHistoryEdits(); model.auditExternal("Leave venue"); Task { await dismissSpace() } }
-                } label: { Image(systemName: "ellipsis") }
-                Button { dismissWindow(id: "toolbox") } label: { Image(systemName: "xmark") }
+                } label: { Image(systemName: "ellipsis").frame(minWidth: 60, minHeight: 60) }
+                    .accessibilityLabel("Wrist menu options")
+                Button { dismissWindow(id: "toolbox") } label: { Image(systemName: "xmark").frame(minWidth: 60, minHeight: 60) }
                     .accessibilityLabel("Close toolbox")
             }
             if !model.isImmersed { VenueEntryButton() }
@@ -104,15 +109,20 @@ struct ToolboxView: View {
                 Text("\(model.effectiveLightLimit) shadow beams · selection first").font(.caption).foregroundStyle(.secondary)
             }
             HStack {
-                Text(model.historyMessage ?? model.message ?? model.handTrackingStatus).lineLimit(2)
+                Text(model.presetEditor.failureMessage ?? model.historyMessage ?? model.message ?? model.handTrackingStatus).lineLimit(2)
                 Spacer()
                 Text("\(model.fixtures.count) objects · \(model.totalChannels) channels").monospacedDigit()
             }.font(.caption).foregroundStyle(.secondary)
         }
-        .padding(26).frame(width: 720)
+        .padding(26).frame(width: 820)
         .background { if model.toolboxBlackout { BlackoutStarfield().allowsHitTesting(false).accessibilityHidden(true) } }
         .clipShape(RoundedRectangle(cornerRadius: 28))
         .disabled(model.libraryBusy)
+        .presetEditorPresenter(when: !model.isImmersed)
+        .sheet(isPresented: Binding(
+            get: { model.isImmersed && model.newVenuePresented },
+            set: { model.newVenuePresented = $0 }
+        )) { NewVenueSheet().environment(model) }
         .onAppear { model.toolboxVisible = true; model.toolboxPresentedID = instanceID }
         .onDisappear {
             if model.toolboxPresentedID == instanceID {
@@ -135,20 +145,10 @@ struct ToolboxView: View {
         switch entry {
         case .preset(let id):
             if let preset = model.presets.first(where: { $0.id == id }) {
-                Button {
-                    model.openPreset(id)
+                PresetDragSource(preset: preset, openEditor: {
                     model.record(.preset(id))
-                    openWindow(id: "presets")
-                } label: {
-                    row(preset.name, subtitle: "\(preset.channels.count) channels · drag to apply", icon: "slider.horizontal.3")
-                }
-                .buttonStyle(.plain)
-                .onDrag {
-                    model.beginPresetDrag(id)
-                    return NSItemProvider(object: preset.dragToken as NSString)
-                } preview: {
-                    Label(preset.name, systemImage: "slider.horizontal.3").padding(16).glassBackgroundEffect()
-                }
+                    model.presetEditor.request(presetID: id)
+                })
             }
         case .fixture(let id):
             if let fixture = model.fixture(id) {
@@ -161,7 +161,7 @@ struct ToolboxView: View {
                 row(model.isPlacing ? "Cancel placement" : "Add selected model", subtitle: model.fixtureKind.name, icon: "plus")
             }.buttonStyle(.plain).disabled(!model.canPlace && !model.isPlacing)
         case .presets:
-            Button { model.record(.presets); openWindow(id: "presets") } label: {
+            Button { model.record(.presets); model.presetEditor.request() } label: {
                 row("Preset editor", subtitle: "Create and edit saved DMX presets", icon: "slider.horizontal.3")
             }.buttonStyle(.plain)
         case .sync:
@@ -180,12 +180,12 @@ struct ToolboxView: View {
             }
             Spacer(minLength: 0)
         }
-        .padding(10).frame(maxWidth: .infinity, minHeight: 56, alignment: .leading)
+        .padding(10).frame(maxWidth: .infinity, minHeight: 60, alignment: .leading)
         .contentShape(RoundedRectangle(cornerRadius: 12)).hoverEffect(.highlight)
     }
 }
 
-struct SimulatorPalmControl: View {
+struct SimulatorWristControl: View {
     @Environment(VenueModel.self) private var model
     var body: some View {
         @Bindable var model = model
