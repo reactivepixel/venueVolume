@@ -166,3 +166,7 @@ See the [asset review and desktop comparison](../room2blender/mappedRoom/README.
 Windows are resizable. The preset editor switches to a compact preset picker and one channel column at narrow widths or large text sizes; the wrist workspace stacks at accessibility text sizes. Room controls wrap and inspectors scroll. Unselected fixture labels show names only; nearby, non-overlapping labels are prioritized, with the selected label first. Labels scale with distance; all fixtures remain available in the wrist scene list.
 
 Portable save decoding, checksums, native asset validation and export encoding run on a background actor. Cancel checking remains available while importing; cancelled or superseded requests cannot publish a room. Final publication uses metadata checks and atomic file moves. See [UX fixes and validation](docs/validation/2026-10-03-ux-fixes.md) for evidence and remaining device acceptance.
+
+## Touring inventory and groups plan
+
+The [touring workflow plan](../../docs/02%20Product/Design/Touring%20Inventory%20and%20Fixture%20Workflows.md) defines reusable equipment quantities and identities, named hierarchical groups, faster placement, semantic presets and adaptation across rooms. It includes migration, persistence and acceptance criteria. These features are planned; the current app does not yet implement touring inventory or hierarchical groups.

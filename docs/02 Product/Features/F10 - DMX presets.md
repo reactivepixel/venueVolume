@@ -3,7 +3,7 @@ type: feature
 id: F10
 status: specified
 owner: product-and-engineering
-updated: 2026-09-19
+updated: 2026-10-03
 ---
 
 # F10 — DMX presets
@@ -39,6 +39,10 @@ Compile resolved presets through venue role/instance mapping. Excluded parameter
 Editing one role preset updates every compatible target in the compiled draft; a venue intensity override affects only that venue; deleting a referenced preset cannot silently break published cues.
 
 Apply tenant isolation, revision conflicts, invalid input, empty/loading/error, and permission checks where relevant. Test against resolved data rather than only the presentation.
+
+## Native implementation plan
+
+See [[../Design/Touring Inventory and Fixture Workflows|Touring Inventory and Fixture Workflows]] for the planned visionOS workflow, group semantics, persistence and acceptance checks. The plan distinguishes current native behavior from proposed implementation.
 
 ## Relationships
 
