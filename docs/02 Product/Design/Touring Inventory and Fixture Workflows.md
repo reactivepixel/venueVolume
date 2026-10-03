@@ -1,6 +1,6 @@
 ---
 type: implementation-plan
-status: planned
+status: implemented-native-poc
 owner: product-and-engineering
 updated: 2026-10-03
 ---
@@ -9,7 +9,7 @@ updated: 2026-10-03
 
 Build the rig once, then adapt it at each venue. A reusable show carries equipment identities, named fixture groups, presets and focus targets. Each venue setup stores its room, fixture placement, patch and local programming adjustments. The purpose of this plan is to reduce repeated searching, placement and programming while preserving predictable edits and Undo.
 
-The requested direction is persistent touring inventory, hierarchical groups, and presets that can be applied to individuals or all members of a group. The workflow and resolution policies below are the proposed implementation design. This document does not claim these features are implemented. The native baseline is v0.2.4; the web design study already illustrates parts of the broader show model.
+The requested direction is persistent touring inventory, hierarchical groups, and presets that can be applied to individuals or all members of a group. The native implementation ships in v0.2.6. The workflow and resolution policies below remain the design contract; implementation details and test evidence are recorded in the [native README](../../../apps/visionos/README.md) and [dated validation report](../../../apps/visionos/docs/validation/2026-10-03-touring.md). Simulator checks establish deterministic behavior, while headset gesture, comfort and performance acceptance remain pending.
 
 ## Relationship to the existing product
 
@@ -23,7 +23,7 @@ Follow the accepted [[../../06 Decisions/0002 - Show and Venue Product Domain|sh
 | Named focus targets such as Lead vocal | Locations of those targets in the room |
 | Configuration templates and optional relative layouts | Explicit venue overrides and pinned source revisions |
 
-The native app currently creates a new `Fixture` identity during placement, maintains one selected fixture, and stores presets as complete arrays of 1–16 channel values. Its saved setups include referenced presets rather than an entire show. Inventory, persistent groups, multi-selection and semantic partial presets need new model and persistence support; they cannot be implemented as palette filters alone.
+Before v0.2.6, the native app created a new `Fixture` identity during placement, maintains one selected fixture, and stores presets as complete arrays of 1–16 channel values. Its saved setups include referenced presets rather than an entire show. The implementation adds a pinned show/session model rather than treating inventory as a palette filter. Legacy saves remain readable and migration is explicit.
 
 ## Prepare the touring inventory
 
@@ -135,6 +135,15 @@ Group placement, bulk application, membership changes and revision adoption are 
 | Portability and adoption | Show export/import, pinned revisions and reviewed adoption | Round trip retains unused presets, unplaced members and historical venue setups |
 
 Legacy migration must preserve current saves and recorded history. Existing fixture IDs can become equipment-unit IDs within an imported legacy setup; matching names or models across unrelated saves are insufficient evidence that they represent the same physical unit. Provide explicit mapping when consolidating those saves into one touring rig. Keep full-array legacy presets readable and do not silently reinterpret them as partial semantic presets.
+
+
+## Implementation checkpoint — v0.2.6
+
+All six native phases have working model and UI paths: independent show preparation, stable units/configurations, hierarchy/multi-selection, partial presets and scoped bindings, repeat/batch placement and group transforms, named per-fixture focus, portable shows and reviewed revision adoption. The single shared editor and existing spatial preset tether remain in use. Each batch commits an exact snapshot for Undo/Redo; previews do not enter persistence.
+
+The first implementation provides numeric row placement on supported surfaces, group offsets/axes, equal X spacing, coordinate alignment and X mirroring. Saved configuration layouts are aligned by numeric translation and yaw. It retains the 64-object scene and synthetic preview personality limits. Physical inventory labels, arbitrary overlapping selection sets, inter-fixture collision/rigging validation, generalized manufacturer profiles and interactive legacy-unit consolidation are deferred. The app never guesses that equally named units in unrelated legacy saves are the same hardware.
+
+Set-up time improvements have not been measured on a wearer. This checkpoint does not close the acceptance walkthrough's physical interaction, accessibility, comfort, scan or performance gates.
 
 ## Acceptance walkthrough and measurement
 

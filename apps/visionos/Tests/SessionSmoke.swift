@@ -208,5 +208,6 @@ struct SessionSmoke {
         try InteractionSmoke.run(environment: environment)
         try await StartupSmoke.run()
         EditorPresentationSmoke.run()
+        try TouringSmoke.run(environment: environment)
     }
 }

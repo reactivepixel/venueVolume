@@ -21,6 +21,7 @@ struct PresetDragSource: View {
     private var unavailableReason: String? {
         if !model.isImmersed { return "Enter a venue to drag presets." }
         if model.libraryBusy || !model.canPlace { return "Wait for the venue to finish loading." }
+        if model.tourPreview != nil { return "Save or cancel the current preview before dragging a preset." }
         if model.isPickingRoom || model.isTransformDragging { return "Finish positioning or targeting before dragging a preset." }
         if windowTransform == nil { return "Spatial dragging is unavailable. Use Apply to choose a fixture." }
         return nil
@@ -68,7 +69,16 @@ struct PresetDragSource: View {
                     .accessibilityLabel("Drag \(preset.name) to a fixture")
                     .accessibilityHint("Pinch and move toward a fixture. A solid line confirms the target. Release to apply. Use the Apply menu as an alternative.")
                 Menu {
-                    if model.fixtures.isEmpty { Text("Add a fixture first") }
+                    if model.tour != nil {
+                        Button("Preview on selected \(model.tourSelection.count) units") { model.applyTourPreset(preset.id, preview: true) }.disabled(model.tourSelection.isEmpty)
+                        ForEach(model.tour?.show.groups ?? []) { group in
+                            Button("Preview group · \(group.name)") {
+                                model.selectGroup(group.id); model.applyTourPreset(preset.id, group: group.id, preview: true)
+                            }
+                        }
+                        Divider()
+                    }
+                    if model.fixtures.isEmpty { Text("Place a fixture for spatial dragging") }
                     ForEach(model.fixtures) { fixture in
                         Button("Apply to \(fixture.name)") { apply(to: fixture.id) }
                     }

@@ -6,6 +6,71 @@ import VenueVolumeCore
 /// Opt-in runtime integration check. Uses the real import, save and room-switch
 /// paths in Simulator; its synthetic mesh is explicitly not a headset scan.
 @MainActor enum RoomLibrarySmoke {
+    /// Runs real model commands after room assets load; does not simulate hand input.
+    static func touring(model: VenueModel) async {
+        let args = ProcessInfo.processInfo.arguments
+        guard model.isDemoMode, args.contains("--touring-smoke") else { return }
+        do {
+            try await ready(model)
+            model.clearScene(); model.createTouringShow(name: "Touring lighting example")
+            model.addInventory(.movingHead, quantity: 4)
+            if let wash = FixtureCatalog.all.first(where: { $0.family.contains("wash") && !$0.emitters.isEmpty }), let kind = FixtureKind(rawValue: wash.id) {
+                model.addInventory(kind, quantity: 8)
+            }
+            let ids = Set(model.tourUnits.prefix(4).map(\.id))
+            model.saveGroup(name: "Front light", parentID: nil)
+            guard let group = model.tour?.show.groups.first?.id else { throw PresetError("Group creation failed") }
+            model.selectedUnitIDs = ids; model.assignSelectionToGroup(group)
+            guard model.commitTourPreview() else { throw PresetError(model.message ?? "Group assignment failed") }
+            model.selectGroup(group); model.newPreset(); model.presetDraft.name = "Warm front"
+            model.presetDraft.includedChannels = [0,1,2,3,6]
+            model.presetDraft.channels[0] = 255; model.presetDraft.channels[1] = 255
+            model.presetDraft.channels[2] = 170; model.presetDraft.channels[3] = 90; model.presetDraft.channels[6] = 70
+            model.tourEditShow = true
+            guard model.savePreset(), let look = model.editingPresetID,
+                  model.applyTourPreset(look, group: group, toShow: true) else { throw PresetError(model.message ?? "Shared look failed") }
+            let roomIDs = args.contains("--touring-screenshot") ? ["img3153-classroom-v1"] : ["img3153-classroom-v1", "mappedRoom", "the-fortress"]
+            var original: (LibraryRoom, VenueSetup)?
+            for roomID in roomIDs {
+                guard let room = model.rooms.first(where: { $0.manifest.id == roomID }) else { throw PresetError("Missing room") }
+                model.requestRoom(room); try await ready(model, room: room)
+                let spawn = room.manifest.spawn.position
+                guard let first = model.availableUnits.first(where: { ids.contains($0.id) }) else { throw PresetError("Inventory missing") }
+                model.beginInventoryPlacement(first.id, repeatAll: true)
+                for offset: Float in [-1.1,-0.35,0.4,1.15] {
+                    model.place(at: [spawn[0]+offset,0,spawn[2]-1.5], surfaceID: "floor")
+                }
+                guard model.fixtures.count == 4, Set(model.fixtures.map(\.id)) == ids else { throw PresetError("Repeated placement failed: \(model.message ?? "unknown")") }
+                model.selectGroup(group); model.newPreset(); model.presetDraft.name = "Lead vocal focus"; model.presetDraft.includedChannels = [4,5]
+                model.tourEditShow = false; model.beginPresetTarget()
+                guard model.acceptTarget(.init(x: spawn[0], y: 1.5, z: spawn[2]-5)), model.saveTarget() else { throw PresetError(model.message ?? "Target solve failed") }
+                let snapshot = model.fixtures
+                model.previewGroupTransform(translation: .init(x: 0.1,y: 0,z: 0))
+                guard model.commitTourPreview() else { throw PresetError("Group transform failed") }
+                model.undo(); guard model.fixtures == snapshot else { throw PresetError("Group Undo differs") }
+                model.redo(); model.refocusSelection(); guard model.commitTourPreview() else { throw PresetError("Group refocus failed") }
+                model.setupName = "Tour · \(room.displayName)"
+                guard model.saveSetup(asNew: true), let setup = model.savedSetups.first(where: { $0.id == model.activeSetupID }) else { throw PresetError("Tour save failed") }
+                if original == nil { original = (room, setup) }
+                model.previewDraft = false; model.requestToolbox()
+                print("TOURING_ROOM_PASS \(roomID) inventory=\(model.tourUnits.count) placed=4 group=true partialPreset=true focus=true undoRedo=true save=true")
+                try await Task.sleep(for: .seconds(3))
+            }
+            if let (room, setup) = original, roomIDs.count > 1 {
+                model.requestRoom(room, setup: setup); try await ready(model, room: room)
+                guard model.tour == setup.tour, model.fixtures == setup.placements.fixtures else { throw PresetError("Pinned venue restore differs") }
+                model.selectGroup(group)
+            }
+            model.previewDraft = false; model.requestToolbox()
+            if args.contains("--touring-preview") { model.previewGroupTransform(translation: .init(x: 0.2,y: 0,z: 0)) }
+            if args.contains("--touring-editor") { model.presetEditor.request() }
+            try model.auditState?.validate()
+            guard model.historyMessage?.contains("failed") != true else { throw PresetError(model.historyMessage!) }
+            model.message = "Touring runtime checks passed · inventory, groups, focus and saved venue restore."
+            print("TOURING_SMOKE_PASS")
+        } catch { model.message = "Touring runtime check failed: \(error.localizedDescription)"; print("TOURING_SMOKE_FAIL \(error)") }
+    }
+
     static func catalog(model: VenueModel) async {
         guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--catalog-smoke") else { return }
         do {

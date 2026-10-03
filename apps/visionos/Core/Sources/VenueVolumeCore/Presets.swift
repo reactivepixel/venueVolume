@@ -4,6 +4,9 @@ public struct DMXPreset: Identifiable, Codable, Equatable, Sendable {
     public var id: UUID
     public var name: String
     public var channels: [Int]
+    public var includedChannels: [Int]?
+    public var focusTargetID: UUID?
+    public var channelMask: Set<Int> { Set(includedChannels ?? Array(channels.indices)) }
 
     public init(id: UUID = UUID(), name: String, channels: [Int] = Array(repeating: 0, count: 16)) {
         self.id = id
@@ -12,6 +15,9 @@ public struct DMXPreset: Identifiable, Codable, Equatable, Sendable {
     }
 
     public var validationIssue: String? {
+        if let includedChannels, includedChannels.contains(4) != includedChannels.contains(5) { return "Include Pan and Tilt together for Focus." }
+        if let includedChannels, includedChannels.isEmpty || Set(includedChannels).count != includedChannels.count || !includedChannels.allSatisfy({ channels.indices.contains($0) }) { return "Choose valid included parameters." }
+        if focusTargetID != nil && !Set([4, 5]).isSubset(of: channelMask) { return "Focus includes Pan and Tilt." }
         if name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { return "Give this preset a name." }
         if !(1...16).contains(channels.count) { return "A preset needs 1–16 channels." }
         if channels.contains(where: { !(0...255).contains($0) }) { return "Channel values must be 0–255." }

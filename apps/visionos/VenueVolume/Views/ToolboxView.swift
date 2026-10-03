@@ -28,6 +28,7 @@ struct ToolboxView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
                     header(compact: compact)
+                    TourPreviewControls()
                     if !model.isImmersed { VenueEntryButton() }
                     @Bindable var model = model
                     Picker("Toolbox section", selection: $model.toolboxTab) {
@@ -45,15 +46,18 @@ struct ToolboxView: View {
                             layout {
                                 library.frame(maxWidth: .infinity).frame(height: columnHeight)
                                 if !compact { Divider() }
-                                SceneSelectionPane().frame(maxWidth: .infinity).frame(height: columnHeight)
+                                Group { if model.tour != nil { TourSelectionPane() } else { SceneSelectionPane() } }.frame(maxWidth: .infinity).frame(height: columnHeight)
                             }
                         }
-                    }.disabled(model.libraryBusy)
+                    }.disabled(model.libraryBusy || model.tourPreview != nil)
                     Divider()
                     roomControls(compact: compact).disabled(model.libraryBusy)
                     VStack(alignment: .leading, spacing: 8) {
                         if model.libraryBusy { ProgressView("Loading venue…") }
-                        Text(model.presetEditor.failureMessage ?? model.historyMessage ?? model.message ?? model.handTrackingStatus)
+                        if let historyMessage = model.historyMessage, historyMessage.localizedCaseInsensitiveContains("failed") || historyMessage.localizedCaseInsensitiveContains("disabled") {
+                            Text(historyMessage).fixedSize(horizontal: false, vertical: true)
+                        }
+                        Text(model.presetEditor.failureMessage ?? model.message ?? model.historyMessage ?? model.handTrackingStatus)
                             .fixedSize(horizontal: false, vertical: true)
                         Text("\(model.fixtures.count) objects · \(model.totalChannels) channels · \(model.effectiveLightLimit) shadow beams")
                             .monospacedDigit()
@@ -68,6 +72,7 @@ struct ToolboxView: View {
         .sheet(isPresented: Binding(get: { model.isImmersed && model.newVenuePresented }, set: { model.newVenuePresented = $0 })) {
             NewVenueSheet().environment(model)
         }
+        .sheet(isPresented: Binding(get: { model.touringPanelPresented }, set: { model.touringPanelPresented = $0 })) { TouringLibrarySheet() }
         .onAppear { model.toolboxVisible = true; model.toolboxPresentedID = instanceID }
         .onDisappear {
             if model.toolboxPresentedID == instanceID { model.toolboxVisible = false; model.toolboxPresentedID = nil }
@@ -86,6 +91,7 @@ struct ToolboxView: View {
                 }
                 Spacer(minLength: 12)
                 Menu {
+                    Button("Touring shows…", systemImage: "shippingbox") { model.touringPanelPresented = true }
                     Button("New venue…", systemImage: "plus") { model.requestNewVenue(); if !model.isImmersed { openWindow(id: "launch") } }
                     Button("Venue controls", systemImage: "scope") { openWindow(id: "venue-controls", value: "controls") }
                     Button("Diagnostics & sync") { openWindow(id: "diagnostics") }
@@ -94,6 +100,7 @@ struct ToolboxView: View {
                 Button { dismissWindow(id: "toolbox") } label: { Image(systemName: "xmark").frame(minWidth: 60, minHeight: 60) }.accessibilityLabel("Close toolbox")
             }
             HistoryControls()
+            TouringContextButton()
         }
     }
 
@@ -104,7 +111,9 @@ struct ToolboxView: View {
                 Text("Fixtures").tag(0)
                 Text("Presets").tag(1)
             }.pickerStyle(.segmented)
-            if model.toolboxLibraryTab == 0 {
+            if model.toolboxLibraryTab == 0, model.tour != nil {
+                InventoryLibraryView()
+            } else if model.toolboxLibraryTab == 0 {
                 TextField("Search \(FixtureCatalog.all.count) fixtures", text: $fixtureSearch)
                     .textFieldStyle(.roundedBorder).accessibilityLabel("Search fixture models or manufacturers")
                 Picker("Category", selection: $fixtureFamily) {
@@ -187,6 +196,7 @@ struct VenueControlsView: View {
                 Text("Venue controls").font(.title).accessibilityAddTraits(.isHeader)
                 if model.isImmersed {
                     Button("Open / recall wrist menu", systemImage: "rectangle.on.rectangle") { model.requestToolbox() }.frame(minHeight: 60)
+                    TourPreviewControls()
                     if model.isPickingRoom || model.gizmoVisible { TargetingPrompt() }
                     else { Text("Select a fixture to move, transform or retarget it.").foregroundStyle(.secondary) }
                     if model.canSimulatePalm { Toggle("Left hand facing me", isOn: $model.simulatedPalm).frame(minHeight: 60) }
@@ -196,7 +206,7 @@ struct VenueControlsView: View {
         .onAppear { model.venueControlsVisible = true }
         .onDisappear {
             model.venueControlsVisible = false
-            model.cancelPicking(); model.endTransformDrag(); model.gizmoVisible = false
+            model.cancelPicking(); model.cancelTourPreview(); model.endTransformDrag(); model.gizmoVisible = false
         }
     }
 }

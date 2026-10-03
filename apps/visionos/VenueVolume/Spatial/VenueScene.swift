@@ -510,7 +510,7 @@ final class VenueScene {
             child.components.set(InputTargetComponent(allowedInputTypes: model.isPickingRoom && !model.isRetargeting && model.scannedMesh == nil ? [.indirect] : []))
         }
         if transformGizmo.entity.parent == nil { root.addChild(transformGizmo.entity) }
-        transformGizmo.update(fixture: model.selectedID.flatMap { model.fixture($0) },
+        transformGizmo.update(fixture: model.transformFixtureContext,
                               visible: model.gizmoVisible && !model.isPickingRoom, mode: model.transformMode)
         for surface in model.environment?.surfaces ?? [] {
             if let zone = attachments.entity(for: "surface-drop-\(surface.id)") {
@@ -534,8 +534,8 @@ final class VenueScene {
             displayedWhiteRoom = model.whiteRoom
         }
         root.components.set(EnvironmentLightingConfigurationComponent(environmentLightingWeight: model.houseLight))
-        let ids = Set(model.fixtures.map(\.id))
-        let activeAssets = Set(model.fixtures.compactMap(\.assetID))
+        let ids = Set(model.sceneFixtures.map(\.id))
+        let activeAssets = Set(model.sceneFixtures.compactMap(\.assetID))
         for id in Array(fixtureTemplates.keys) where id != LightingPreview.assetID && !activeAssets.contains(id) {
             fixtureTemplates[id] = nil
         }
@@ -551,16 +551,16 @@ final class VenueScene {
         }
         // Bound expensive shadow lights; selected fixtures receive preview priority.
         // Geometry and articulation continue for every placed asset.
-        let budgets = LightingBudget.allocate(model.fixtures.map { fixture in
+        let budgets = LightingBudget.allocate(model.sceneFixtures.map { fixture in
             let look = LightingPreview(channels: model.renderedChannels(for: fixture), blackout: model.isBlackedOut(fixture))
             return .init(id: fixture.id, emitters: fixtureTemplates[fixture.assetID ?? ""] == nil ? 0 : fixture.asset?.emitters.count ?? 0,
                          emitting: look.intensity > 0 && look.rgb.contains { $0 > 0 })
         }, selected: model.selectedID, limit: model.effectiveLightLimit)
         benchmarkBudgets = budgets
-        for fixture in model.fixtures {
+        for fixture in model.sceneFixtures {
             let displayed = model.renderedFixture(fixture)
             let position = FixtureAiming.vector(displayed.position)
-            let selected = model.selectedID == fixture.id
+            let selected = model.selectedID == fixture.id || model.tourSelection.contains(fixture.id)
             if let descriptor = fixture.asset {
                 if let template = fixtureTemplates[descriptor.id] {
                 cubes.removeValue(forKey: fixture.id)?.removeFromParent()
@@ -613,10 +613,10 @@ final class VenueScene {
         let eye = SIMD3(deviceTransform.columns.3.x, deviceTransform.columns.3.y, deviceTransform.columns.3.z)
         let view = simd_inverse(deviceTransform)
         var candidates: [SpatialLabelLayout.Candidate] = []
-        for fixture in model.fixtures {
+        for fixture in model.sceneFixtures {
             guard let label = labels[fixture.id] else { continue }
             let localSize = label.visualBounds(relativeTo: label, excludeInactive: false).extents
-            let base = FixtureAiming.vector(fixture.position)
+            let base = FixtureAiming.vector(model.renderedFixture(fixture).position)
             let world = root.transformMatrix(relativeTo: nil) * SIMD4<Float>(base, 1)
             let distance = simd_distance(eye, SIMD3(world.x, world.y, world.z))
             let scale = max(1, distance / 2)
@@ -719,7 +719,7 @@ final class VenueScene {
                 let template = try await Entity(contentsOf: url)
                 try Task.checkCancellation()
                 guard self.fixtureLoadGeneration == generation else { return }
-                guard model.fixtures.contains(where: { $0.assetID == descriptor.id }) else { return }
+                guard model.sceneFixtures.contains(where: { $0.assetID == descriptor.id }) else { return }
                 _ = try FixtureRig(template: template, id: UUID(), descriptor: descriptor)
                 self.fixtureTemplates[descriptor.id] = template
                 model.fixtureAssetStatus = "\(FixtureCatalog.all.count) catalog assets · loaded \(descriptor.name)"

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03DAFB7D5CE1B2CD30C5EF3B /* TouringViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9884C7646F7F1557F4C9008 /* TouringViews.swift */; };
 		0AAFA831C65D19BFAD1B3037 /* ToolboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A77C35DB1F4AA96F5DAE3C /* ToolboxView.swift */; };
 		0AD799F45280996D383A05B9 /* UXPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E68505DBBA6EEE51BDB540 /* UXPreview.swift */; };
 		0CA2049D9B473E27E6BEC71F /* PresetEditorPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A096039BA75A5E69F7F5AE /* PresetEditorPresentation.swift */; };
@@ -61,6 +62,7 @@
 		9926915861960E1C383B16B3 /* RoomLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomLibraryView.swift; sourceTree = "<group>"; };
 		9C8A9C441DF185E732E8E41E /* FixtureRig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureRig.swift; sourceTree = "<group>"; };
 		A216CAA2CDE7F26E599DD5EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A9884C7646F7F1557F4C9008 /* TouringViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouringViews.swift; sourceTree = "<group>"; };
 		AD38AEB3AC858868B97CE99D /* FixturePlacementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturePlacementView.swift; sourceTree = "<group>"; };
 		CDAD85CBEF3AD8C985E74BDC /* FixturePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturePanel.swift; sourceTree = "<group>"; };
 		D6E68505DBBA6EEE51BDB540 /* UXPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UXPreview.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				16DE72BEDB41CF8A53707C9C /* PresetEditorView.swift */,
 				9926915861960E1C383B16B3 /* RoomLibraryView.swift */,
 				97A77C35DB1F4AA96F5DAE3C /* ToolboxView.swift */,
+				A9884C7646F7F1557F4C9008 /* TouringViews.swift */,
 				D6E68505DBBA6EEE51BDB540 /* UXPreview.swift */,
 				F949E3AA522D9D9A396D62E4 /* VenueSaveDocument.swift */,
 			);
@@ -265,6 +268,7 @@
 				8FC4C74944432D3BD74698FB /* RoomLibraryView.swift in Sources */,
 				3B0F47C7CCF1063038398EAF /* RoomScanner.swift in Sources */,
 				0AAFA831C65D19BFAD1B3037 /* ToolboxView.swift in Sources */,
+				03DAFB7D5CE1B2CD30C5EF3B /* TouringViews.swift in Sources */,
 				0AD799F45280996D383A05B9 /* UXPreview.swift in Sources */,
 				565250CAD4D6DA1BD98FB1BE /* VenueModel.swift in Sources */,
 				D02D890DB2F4055B0A1AEEA3 /* VenueSaveDocument.swift in Sources */,
@@ -409,7 +413,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.5;
+				MARKETING_VERSION = 0.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.venuevolume.VenueVolume;
 				PRODUCT_NAME = "Venue Volume";
 				SDKROOT = xros;
@@ -428,7 +432,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.5;
+				MARKETING_VERSION = 0.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.venuevolume.VenueVolume;
 				PRODUCT_NAME = "Venue Volume";
 				SDKROOT = xros;

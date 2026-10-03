@@ -27,14 +27,14 @@ struct FixtureLabel: View {
                 if selected {
                     HStack(spacing: 12) {
                     Button {
-                        model.select(fixture.id)
+                        model.select(fixture.id, extendSelection: false)
                         model.toolboxTab = 0
                         model.requestToolbox()
                     } label: {
                         Image(systemName: "info.circle").frame(minWidth: 60, minHeight: 60)
                     }.accessibilityLabel("Info for \(fixture.name)")
                     Button(role: .destructive) { model.remove(fixture.id) } label: { Image(systemName: "trash").frame(minWidth: 60, minHeight: 60) }
-                        .accessibilityLabel("Delete \(fixture.name)")
+                        .accessibilityLabel(model.tour == nil ? "Delete \(fixture.name)" : "Return \(fixture.name) to inventory")
                     }
                 }
             }
