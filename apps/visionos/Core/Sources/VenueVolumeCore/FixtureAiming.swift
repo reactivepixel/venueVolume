@@ -39,7 +39,7 @@ public enum FixtureAiming {
 
     public static func articulated(_ fixture: Fixture, target: Position3D) throws -> PanTiltOverride {
         let asset = fixture.asset
-        guard asset == nil || asset?.headAim == true else { throw PresetError("Use the joint controls or aim the mount for this model.") }
+        guard asset == nil || asset?.headAim == true else { throw PresetError("Use the joint controls or rotate the mount with the axes for this model.") }
         let headPivot = asset?.tilt.map { SIMD3<Float>($0.pivot[0], $0.pivot[1], $0.pivot[2]) } ?? Self.headPivot
         let panRange = asset?.pan?.range ?? Self.panRange
         let tiltRange = asset?.tilt?.range ?? Self.tiltRange
@@ -54,7 +54,7 @@ public enum FixtureAiming {
         let epsilon: Float = 0.0001
         guard pan >= panRange.lowerBound-epsilon, pan <= panRange.upperBound+epsilon,
               tilt >= tiltRange.lowerBound-epsilon, tilt <= tiltRange.upperBound+epsilon else {
-            throw PresetError("That point is outside the preview head's pan/tilt range. Rotate the mount or choose Aim mount.")
+            throw PresetError("That point is outside the preview head's pan/tilt range. Rotate the mount with the axes or choose another target.")
         }
         return .init(pan: asset?.pan?.byte(for: pan) ?? panByte(for: pan), tilt: asset?.tilt?.byte(for: tilt) ?? tiltByte(for: tilt))
     }

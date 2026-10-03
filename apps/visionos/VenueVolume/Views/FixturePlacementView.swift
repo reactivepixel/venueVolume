@@ -58,13 +58,9 @@ struct FixturePlacementView: View {
                     if let asset = fixture.asset, !asset.emitters.isEmpty {
                         Divider()
                         Text("Light targeting").font(.headline)
-                        Text(asset.headAim
-                             ? "Preview a head or mount target. Save to keep it, or Cancel to restore the previous look."
-                             : "Aim the mount using this model's first emitter. Save to keep it, or Cancel to restore the previous look.")
-                        Menu("Retarget", systemImage: "scope") {
-                            Button("Aim head (preview)") { model.beginRetarget(id, method: .head) }.disabled(!asset.headAim)
-                            Button("Aim mount") { model.beginRetarget(id, method: .mount) }
-                        }.disabled(!model.canPlace)
+                        Text("Retarget saves Pan/Tilt into the assigned preset and updates its fixtures. Cancel restores the previous look.")
+                        Button("Retarget DMX", systemImage: "scope") { model.beginRetarget(id) }
+                            .disabled(!model.canPlace || !asset.headAim)
                     }
                     if let message = model.message { Text(message).font(.caption).foregroundStyle(.orange) }
                 }.padding(.trailing, 4)

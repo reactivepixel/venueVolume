@@ -9,19 +9,38 @@ import VenueVolumeCore
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent(suite)
         defer { defaults.removePersistentDomain(forName: suite); try? FileManager.default.removeItem(at: folder) }
         let model = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder)
+        model.updateToolboxActivation(raised: true)
+        let firstRecall = model.toolboxRequestID
+        check(firstRecall != nil, "Raising palm requests the toolbox")
+        model.toolboxVisible = true
+        model.updateToolboxActivation(raised: true)
+        check(model.toolboxRequestID == firstRecall, "Held palm does not repeatedly recall the window")
+        model.updateToolboxActivation(raised: false)
+        check(model.toolboxVisible, "Lowering the palm leaves the normal window open")
+        model.updateToolboxActivation(raised: true)
+        let secondRecall = model.toolboxRequestID
+        check(secondRecall != firstRecall, "A new raise recalls with a fresh window identity")
+        model.toolboxVisible = false
+        model.updateToolboxActivation(raised: true)
+        check(model.toolboxRequestID == secondRecall && !model.toolboxVisible, "Closing while palm is raised stays closed")
+        model.updateToolboxActivation(raised: false); model.updateToolboxActivation(raised: true)
+        check(model.toolboxRequestID != secondRecall, "Lower then raise reopens a closed toolbox")
+        let thirdRecall = model.toolboxRequestID
+        model.requestToolbox()
+        check(model.toolboxRequestID != thirdRecall, "Manual fallback can recall repeatedly without a hand toggle")
         model.activate(environment: environment); model.canPlace = true
         check(model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 2.66,y: 0,z: -2), surfaceID: "floor"), "First pilot")
         let first = model.fixtures[0].id
         check(model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 5,y: 0,z: -2), surfaceID: "floor"), "Second pilot")
         let second = model.fixtures[1].id, preset = model.presets[1]
         check(model.applyPreset(preset.id, to: first) && model.applyPreset(preset.id, to: second), "Shared preset")
-        model.beginRetarget(first, method: .head)
+        model.beginRetarget(first)
         let before = model.auditState!, revision = model.revision, nodeCount = model.history!.nodes.count
         let original = model.fixture(first)!, other = model.fixture(second)!
         for x: Float in [2.5,2.2,2] {
             check(model.acceptTarget(.init(x: x,y: 1.5,z: -7)), "Held target preview follows updated points")
         }
-        check(model.canSaveTarget && model.renderedFixture(original).aimOverride != nil, "Renderer previews target")
+        check(model.canSaveTarget && model.renderedFixture(original).channels != original.channels, "Renderer previews target")
         check(model.auditState == before && model.revision == revision && model.history!.nodes.count == nodeCount,
               "Held preview does not change committed state, revision or journal")
         let relaunched = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder)
@@ -29,24 +48,32 @@ import VenueVolumeCore
         check(relaunched.fixtures == model.fixtures && relaunched.targetPreview == nil, "Unsaved target never persists")
         model.cancelPicking()
         check(model.fixture(first) == original && model.renderedFixture(original) == original && !model.canSaveTarget, "Cancel restores head preview")
-        model.beginRetarget(first, method: .head)
+        model.beginRetarget(first)
         check(model.acceptTarget(.init(x: 2,y: 1.5,z: -7)) && model.saveTarget(), "Save target")
         let aimed = model.fixture(first)!
-        check(model.history!.nodes.count == nodeCount+1 && model.fixture(second) == other && model.presets.contains(preset),
-              "Save creates one step and isolates shared preset")
+        check(model.history!.nodes.count == nodeCount+1 && model.fixture(second)!.channels == aimed.channels && model.presets.first { $0.id == preset.id }?.channels == aimed.channels,
+              "Save creates one step and updates shared preset assignments")
         model.undo(); check(model.fixture(first) == original, "Undo saved target")
         model.redo(); check(model.fixture(first) == aimed, "Redo saved target")
-        model.beginRetarget(first, method: .head)
-        check(model.acceptTarget(.init(x: 2.2,y: 1.5,z: -7)), "Preview before concurrent preset edit")
-        model.choosePreset(preset)
+        model.choosePreset(model.presets.first { $0.id == preset.id }!)
+        check(model.previewDraft, "Choosing a preset defaults to simulation")
         model.presetDraft.channels[0] = 177
-        check(model.savePreset() && model.saveTarget(), "Save preset while target dialogue remains open")
-        check(model.fixture(first)!.channels[0] == 177 && model.fixture(second)!.channels[0] == 177,
-              "Target save preserves fresh preset channels instead of overwriting them from preview")
+        let draftBeforeTarget = model.presetDraft
+        model.beginPresetTarget()
+        check(model.acceptTarget(.init(x: 2.2,y: 1.5,z: -7)), "Target from editor uses draft")
+        check(model.renderedChannels(for: model.fixture(first)!)[0] == 177, "Target simulates edited non-aim channels")
+        model.cancelPicking()
+        check(model.presetDraft == draftBeforeTarget && model.fixture(first) == aimed, "Cancel keeps unsaved draft and committed fixture")
+        model.beginPresetTarget()
+        check(model.acceptTarget(.init(x: 2.2,y: 1.5,z: -7)), "Restart editor target")
+        model.presetDraft.channels[0] = 178
+        check(model.renderedChannels(for: model.fixture(first)!)[0] == 178, "Staged target keeps live non-aim edits visible")
+        check(model.saveTarget(), "Save draft target")
+        check(model.fixture(first)!.channels[0] == 178 && model.fixture(second)!.channels[0] == 178 && !model.draftHasChanges,
+              "Target save uses latest draft, saves preset and updates assignments")
         let freshAim = model.fixture(first)!
-        model.beginRetarget(first, method: .mount)
-        check(model.acceptTarget(.init(x: 4,y: 2,z: -1)), "Mount preview")
-        check(model.renderedFixture(freshAim).orientation != freshAim.orientation && model.fixture(first) == freshAim, "Mount preview is transient")
+        model.beginRetarget(first)
+        check(model.acceptTarget(.init(x: 2.4,y: 1.5,z: -7)), "Second transient DMX preview")
         model.select(second)
         check(model.selectedID == second && model.targetPreview == nil && !model.isPickingRoom && model.fixture(first) == freshAim,
               "Selecting another item switches context and cancels unsaved aim")
@@ -60,7 +87,43 @@ import VenueVolumeCore
         model.undo(); check(model.fixture(first) == freshAim, "Undo item details")
         model.redo()
 
-        model.beginTransform(first)
+        model.select(first)
+        model.newPreset()
+        check(model.presetDraft.name.isEmpty && model.previewDraft, "New preset starts with blank name and simulation enabled")
+        model.beginPresetTarget()
+        check(!model.isRetargeting, "Unnamed new preset cannot start targeting")
+        model.presetDraft.name = "Solo target"
+        model.presetDraft.channels = preset.channels
+        let secondBefore = model.fixture(second)!, libraryBefore = model.presets
+        model.previewBlackout = true; model.flushHistoryEdits()
+        check(model.isBlackedOut(model.fixture(first)!) && !model.isBlackedOut(secondBefore) && model.toolboxBlackout,
+              "Preset simulation blackout affects only selected fixture and signals Toolbox")
+        check(model.fixtures.contains(secondBefore) && model.presets == libraryBefore && model.presetDraft.channels == preset.channels,
+              "Blackout preserves saved and draft channel values")
+        model.undo(); check(!model.previewBlackout, "Undo simulation blackout")
+        model.redo(); check(model.previewBlackout, "Redo simulation blackout")
+        model.blackout = true
+        check(model.isBlackedOut(secondBefore), "Global blackout still overrides all outputs")
+        model.blackout = false; model.previewBlackout = false
+        model.beginPresetTarget()
+        check(model.acceptTarget(.init(x: 2.2,y: 1.5,z: -7)) && model.saveTarget(), "Named new draft can target, save and assign")
+        check(model.fixture(first)!.presetID == model.editingPresetID && model.fixture(second) == secondBefore,
+              "New preset target assignment leaves original preset fixtures alone")
+        let targetRestored = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder)
+        targetRestored.activate(environment: environment)
+        check(targetRestored.fixtures == model.fixtures && targetRestored.presets == model.presets,
+              "Preset targets and assignments persist together")
+        model.beginRetarget(first)
+        check(model.acceptTarget(.init(x: 2.5,y: 1.5,z: -7)), "Start before navigation")
+        model.choosePreset(preset)
+        check(!model.isRetargeting && !model.saveTarget(), "Switching presets cancels stale target context")
+
+        model.beginRetarget(first)
+        check(model.acceptTarget(.init(x: 2.5,y: 1.5,z: -7)), "Start before clear assignment")
+        model.clearAssignment(first)
+        check(!model.isRetargeting && !model.saveTarget(), "Clearing assignment cancels the old preset target")
+        model.undo()
+        model.beginTransform(first); model.flushHistoryEdits()
         let transformBefore = model.fixture(first)!, transformNodes = model.history!.nodes.count
         let center = FixtureAiming.vector(transformBefore.position) + [0,LightingPreview.height/2,0]
         model.beginTransformDrag(axis: .y, mode: .rotate, at: center+[0,0,0.42])
@@ -90,7 +153,7 @@ import VenueVolumeCore
         check(model.fixtures.isEmpty && model.selectedID == nil && model.presets == presets && model.activeRoom == room, "Clear all affects scene items only")
         model.undo(); check(model.fixtures == fixtures, "Undo restores all scene items")
         model.redo(); check(model.fixtures.isEmpty, "Redo clears scene items")
-        print("Interaction checks passed: target preview/save/cancel, held updates, selection, axis gestures, grouped history, scene clearing and persistence.")
+        print("Interaction checks passed: toolbox activation/close/reopen, target preview/save/cancel, held updates, selection, axis gestures, grouped history, scene clearing and persistence.")
         let waveKind = FixtureKind(rawValue: "claypaky/volero-wave")!
         check(model.dropFixture([waveKind.dragToken], at: .init(x: 2.66,y: 0,z: -2), surfaceID: "floor"), "Place eight-module bar")
         let wave = model.fixtures[0], joint = wave.asset!.joints[0]
@@ -114,8 +177,25 @@ import VenueVolumeCore
         let fan = model.fixtures[1]
         model.setJoint(fan.id, jointID: "rotor", value: 360)
         check(model.fixture(fan.id)!.channels[7] > 0 && fan.asset!.emitters.isEmpty, "Fan has speed and no light")
-        model.beginRetarget(fan.id, method: .head)
+        model.beginRetarget(fan.id)
         check(!model.isRetargeting, "Fan cannot enter light targeting")
+        model.clearScene()
+        let catalogHead = FixtureKind(rawValue: "chauvet-professional/rogue-r3-beam")!
+        check(model.dropFixture([catalogHead.dragToken], at: .init(x: 2.66,y: 0,z: -2), surfaceID: "floor"), "Place catalog moving head")
+        let catalogID = model.fixtures[0].id
+        check(model.applyPreset(preset.id, to: catalogID), "Assign catalog head preset")
+        model.setJoint(catalogID, jointID: "pan", value: 20)
+        model.setJoint(catalogID, jointID: "tilt", value: 10)
+        let catalogBefore = model.fixture(catalogID)!
+        model.beginRetarget(catalogID)
+        check(model.isRetargeting && model.acceptTarget(.init(x: 2,y: 1.5,z: -7)), "Catalog head supports preset DMX targeting")
+        check(model.saveTarget(), "Save catalog head target over legacy joint overrides")
+        let catalogAfter = model.fixture(catalogID)!
+        check(catalogAfter.aimOverride == nil && catalogAfter.jointOverrides?["pan"] == nil && catalogAfter.jointOverrides?["tilt"] == nil,
+              "Preset target clears conflicting legacy pan/tilt overrides")
+        check(catalogAfter.channels == model.presets.first { $0.id == preset.id }?.channels, "Catalog head follows saved preset")
+        model.undo(); check(model.fixture(catalogID) == catalogBefore, "Undo restores catalog joint overrides and target preset")
+        model.redo(); check(model.fixture(catalogID) == catalogAfter, "Redo restores catalog preset target")
         print("Catalog session checks passed: module isolation, grouped undo/redo, saved poses, preset preservation and fan controls.")
     }
 }

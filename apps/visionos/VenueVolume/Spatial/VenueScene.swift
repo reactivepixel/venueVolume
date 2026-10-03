@@ -5,6 +5,9 @@ import RealityKit
 import SwiftUI
 import VenueVolumeCore
 
+/// Only these entities can begin a held spatial manipulation.
+struct SpatialDragTarget: Component {}
+
 @MainActor
 final class VenueScene {
     let root = Entity()
@@ -27,11 +30,9 @@ final class VenueScene {
     private var cubes: [UUID: ModelEntity] = [:]
     private var labels: [UUID: Entity] = [:]
     private var drops: [UUID: Entity] = [:]
-    private var toolbox: Entity?
     private var palmGate = PalmRevealGate()
     private var latestLeftHand: HandAnchor?
     private var lastHandUpdate: Double = 0
-    private var palmPosition = SIMD3<Float>(-0.5, 1.3, -1.2)
     private var deviceTransform = matrix_identity_float4x4
 
     init(repository: (any EnvironmentRepository)? = nil, environmentID: String = "img3153-classroom-v1") {
@@ -118,14 +119,6 @@ final class VenueScene {
             root.children.removeAll(); cubes.removeAll(); rigs.removeAll(); labels.removeAll(); drops.removeAll()
             aligned = false; root.transform = Transform(); root.isEnabled = false
             root.addChild(room); proxies.forEach { root.addChild($0) }
-            let background = Entity()
-            background.name = "scene-background"
-            background.position = SIMD3(resolved.manifest.bounds.min[0]+resolved.manifest.bounds.max[0],
-                                        resolved.manifest.bounds.min[1]+resolved.manifest.bounds.max[1],
-                                        resolved.manifest.bounds.min[2]+resolved.manifest.bounds.max[2]) / 2
-            background.components.set(CollisionComponent(shapes: [.generateSphere(radius: 40)]))
-            background.components.set(InputTargetComponent(allowedInputTypes: [.indirect]))
-            root.addChild(background)
             roomMaterials = newMaterials; displayedWhiteRoom = nil
             fixtureLoadGeneration = UUID()
             fixtureLoads.values.forEach { $0.cancel() }; fixtureLoads.removeAll(); fixtureFailures.removeAll()
@@ -144,7 +137,7 @@ final class VenueScene {
             model.message = error.localizedDescription + " Leave and re-enter to retry."
             model.canPlace = false
             model.needsManualToolbox = true
-            model.toolboxVisible = true
+            model.requestToolbox()
             model.libraryMessage = error.localizedDescription
             model.roomRequest = nil; model.libraryBusy = false
             return false
@@ -162,7 +155,7 @@ final class VenueScene {
         if !model.isPickingRoom {
             if FixtureTransformGizmo.handle(entity) != nil { return }
             if let id = UUID(uuidString: entity.name) { model.select(id) }
-            else if entity.name.hasPrefix("aim-surface:") || entity.name.hasPrefix("room-collider:") || entity.name == "scene-background" {
+            else if entity.name.hasPrefix("aim-surface:") || entity.name.hasPrefix("room-collider:") {
                 model.deselect()
             }
         } else if entity.name.hasPrefix("aim-surface:"), model.isRetargeting {
@@ -191,6 +184,49 @@ final class VenueScene {
         return false
     }
 
+    #if DEBUG
+    /// Native renderer routing check, separate from human pinch acceptance.
+    func runInputSmoke(model: VenueModel) async {
+        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--input-smoke") else { return }
+        while !model.canPlace {
+            do { try await Task.sleep(for: .milliseconds(100)) } catch { return }
+        }
+        do {
+            try await Task.sleep(for: .seconds(2))
+            guard let fixture = model.fixtures.first, let fixtureRoot = root.findEntity(named: fixture.id.uuidString),
+                  let target = fixtureRoot.components.has(CollisionComponent.self) ? fixtureRoot : fixtureRoot.children.first(where: { $0.components.has(InputTargetComponent.self) }),
+                  let scene = root.scene, let surface = roomMaterials.first?.0 else {
+                throw EnvironmentError.invalid("missing rendered input targets")
+            }
+            let center = target.position(relativeTo: root)
+            let origin = center + [0,0,0.8]
+            let hits = scene.raycast(origin: origin, direction: [0,0,-1], length: 1,
+                                     query: .all, mask: .all, relativeTo: root)
+            let nearestInput = hits.sorted { $0.distance < $1.distance }.first {
+                $0.entity.components[InputTargetComponent.self]?.allowedInputTypes.contains(.indirect) == true
+            }
+            guard nearestInput?.entity == target,
+                  !target.components.has(SpatialDragTarget.self),
+                  !handleDrag(entity: target, position: center, start: center, model: model),
+                  drops.values.allSatisfy({ !$0.isEnabled }) else {
+                throw EnvironmentError.invalid("fixture collision or tap/drag isolation failed")
+            }
+            model.deselect()
+            handleTap(entity: target, position: center, model: model)
+            guard model.selectedID == fixture.id else { throw EnvironmentError.invalid("fixture tap did not select") }
+            handleTap(entity: surface, position: center, model: model)
+            guard model.selectedID == nil else { throw EnvironmentError.invalid("room tap did not deselect") }
+            model.beginRetarget(fixture.id)
+            try await Task.sleep(for: .milliseconds(250))
+            guard surface.components.has(SpatialDragTarget.self) else { throw EnvironmentError.invalid("aim surface did not enable held targeting") }
+            model.cancelPicking()
+            try await Task.sleep(for: .milliseconds(250))
+            guard !surface.components.has(SpatialDragTarget.self) else { throw EnvironmentError.invalid("aim drag target survived cancellation") }
+            print("SPATIAL_INPUT_SMOKE_PASS")
+        } catch { print("SPATIAL_INPUT_SMOKE_FAIL: \(error)") }
+    }
+    #endif
+
     private func rememberMaterials(_ entity: Entity) {
         if let model = entity.components[ModelComponent.self] { roomMaterials.append((entity, model)) }
         for child in entity.children { rememberMaterials(child) }
@@ -209,16 +245,7 @@ final class VenueScene {
     }
 
     func update(model: VenueModel, attachments: RealityViewAttachments) {
-        if let pane = attachments.entity(for: "toolbox"), pane.parent == nil {
-            overlayRoot.addChild(pane)
-            pane.position = [-0.68, 1.35, -1.45]
-            pane.components.set(BillboardComponent())
-            #if !targetEnvironment(simulator)
-            pane.scale = .init(repeating: 0.6)
-            #endif
-            toolbox = pane
-        }
-        toolbox?.isEnabled = model.toolboxVisible
+        _ = model.fixtureRenderRevision // Rebuild placeholders when an asynchronous catalog asset becomes ready.
         if let hud = attachments.entity(for: "targeting") {
             if hud.parent == nil { hud.position = [0, -0.42, -1.2]; headAnchor.addChild(hud) }
             hud.isEnabled = model.isPickingRoom || (model.gizmoVisible && model.selectedID != nil)
@@ -230,11 +257,12 @@ final class VenueScene {
         if let target = marker { targetMarker.position = FixtureAiming.vector(target) }
         for (entity, _) in roomMaterials {
             entity.components.set(InputTargetComponent(allowedInputTypes: !model.isPickingRoom || model.isRetargeting || (model.scannedMesh != nil && model.isPickingRoom) ? [.indirect] : []))
+            if model.isRetargeting { entity.components.set(SpatialDragTarget()) }
+            else { entity.components.remove(SpatialDragTarget.self) }
         }
         for child in root.children where child.name.hasPrefix("room-collider:") {
-            child.components.set(InputTargetComponent(allowedInputTypes: model.isRetargeting || model.scannedMesh != nil ? [] : [.indirect]))
+            child.components.set(InputTargetComponent(allowedInputTypes: model.isPickingRoom && !model.isRetargeting && model.scannedMesh == nil ? [.indirect] : []))
         }
-        root.findEntity(named: "scene-background")?.components.set(InputTargetComponent(allowedInputTypes: model.isPickingRoom ? [] : [.indirect]))
         if transformGizmo.entity.parent == nil { root.addChild(transformGizmo.entity) }
         transformGizmo.update(fixture: model.selectedID.flatMap { model.fixture($0) },
                               visible: model.gizmoVisible && !model.isPickingRoom, mode: model.transformMode)
@@ -303,7 +331,7 @@ final class VenueScene {
                     } catch { model.message = error.localizedDescription }
                 }
                 rigs[fixture.id]?.update(fixture: displayed, channels: model.renderedChannels(for: fixture),
-                                         selected: selected, blackout: model.blackout, placing: model.isPickingRoom,
+                                         selected: selected, blackout: model.isBlackedOut(fixture), placing: model.isPickingRoom,
                                          interactive: model.isTransformDragging, lightBudget: budgets[fixture.id] ?? 0)
                 } else {
                     requestFixture(descriptor, model: model)
@@ -318,7 +346,7 @@ final class VenueScene {
                 cube.orientation = simd_quatf(ix: fixture.orientation.x, iy: fixture.orientation.y, iz: fixture.orientation.z, r: fixture.orientation.w)
                 cube.scale = FixtureAiming.vector(fixture.scale)
                 cube.model?.materials = [Self.glass(opacity: selected ? 0.16 : 0.07)]
-                cube.components.set(InputTargetComponent(allowedInputTypes: model.isPickingRoom ? [] : [.indirect, .direct]))
+                cube.components.set(InputTargetComponent(allowedInputTypes: model.isPickingRoom ? [] : [.indirect]))
             }
             if let label = attachments.entity(for: "label-\(fixture.id)") {
                 if label.parent == nil { root.addChild(label) }
@@ -332,7 +360,7 @@ final class VenueScene {
                 if drop.parent == nil { root.addChild(drop) }
                 drop.position = position + [0, fixture.assetID == nil ? 0 : fixture.visualHeight/2, 0.20]
                 drop.components.set(BillboardComponent())
-                drop.isEnabled = !model.isPickingRoom
+                drop.isEnabled = model.draggingPresetID != nil && !model.isPickingRoom
                 drops[fixture.id] = drop
             }
         }
@@ -359,7 +387,7 @@ final class VenueScene {
                 _ = try FixtureRig(template: template, id: UUID(), descriptor: descriptor)
                 self.fixtureTemplates[descriptor.id] = template
                 model.fixtureAssetStatus = "\(FixtureCatalog.all.count) catalog assets · loaded \(descriptor.name)"
-                model.revision += 1
+                model.fixtureRenderRevision += 1
             } catch is CancellationError {
             } catch {
                 guard self.fixtureLoadGeneration == generation, !Task.isCancelled else { return }
@@ -373,7 +401,7 @@ final class VenueScene {
     func runTracking(model: VenueModel) async {
         defer {
             model.canPlace = false
-            model.toolboxVisible = false
+            model.resetToolboxActivation()
             palmGate = PalmRevealGate()
         }
         #if targetEnvironment(simulator)
@@ -383,7 +411,7 @@ final class VenueScene {
         // ARKit device tracking is unavailable in Simulator; use its floor origin and forward direction.
         while !Task.isCancelled {
             model.handTrackingStatus = "Simulator palm preview"
-            setToolboxVisible(model.simulatedPalm || model.draggingPresetID != nil || model.draggingFixture != nil, model: model)
+            model.updateToolboxActivation(raised: model.simulatedPalm)
             try? await Task.sleep(for: .milliseconds(33))
         }
         #else
@@ -438,8 +466,7 @@ final class VenueScene {
                     model.handTrackingStatus = "Hand tracking stopped · use Show toolbox or re-enter to retry"
                 }
                 let revealed = palmGate.update(eligible: eligible, now: now)
-                let visible = model.needsManualToolbox ? model.simulatedPalm : revealed
-                setToolboxVisible(visible || model.draggingPresetID != nil || model.draggingFixture != nil, model: model)
+                model.updateToolboxActivation(raised: revealed)
                 try await Task.sleep(for: .milliseconds(33))
             }
         } catch is CancellationError {
@@ -449,7 +476,6 @@ final class VenueScene {
             model.handTrackingStatus = "Use Show toolbox or re-enter the venue to retry tracking."
             // Keep the explicit fallback responsive even after authorization/session failure.
             while !Task.isCancelled {
-                setToolboxVisible(model.simulatedPalm, model: model)
                 try? await Task.sleep(for: .milliseconds(33))
             }
         }
@@ -477,22 +503,7 @@ final class VenueScene {
         let visible = simd_dot(simd_normalize(towardPalm), forward) > 0.72
         let facing = simd_dot(simd_normalize(normal), -simd_normalize(towardPalm)) > 0.55
         // Use head orientation as a viewing-area approximation; no eye gaze is read.
-        if visible && facing {
-            palmPosition = center + [0, 0.16, 0]
-        }
         return visible && facing
-    }
-
-    private func setToolboxVisible(_ visible: Bool, model: VenueModel) {
-        #if !targetEnvironment(simulator)
-        if visible && !model.toolboxVisible {
-            toolbox?.position = palmPosition
-        } else if visible && model.draggingFixture == nil && model.draggingPresetID == nil, let toolbox {
-            toolbox.position += (palmPosition-toolbox.position)*0.15
-        }
-        #endif
-        if model.toolboxVisible != visible { model.toolboxVisible = visible }
-        toolbox?.isEnabled = visible
     }
 
     func clearAttachments() {
@@ -502,8 +513,6 @@ final class VenueScene {
         for entity in drops.values { entity.removeFromParent() }
         labels.removeAll()
         drops.removeAll()
-        toolbox?.removeFromParent()
-        toolbox = nil
         headAnchor.children.removeAll()
         frameSubscription?.cancel(); frameSubscription = nil
     }

@@ -23,8 +23,8 @@ struct PresetEditorView: View {
             }.padding(28).frame(maxWidth: .infinity)
         }.frame(width: 1040, height: 820)
         .disabled(model.libraryBusy)
-        .onAppear { model.presetWindowVisible = true }
-        .onDisappear { model.finishHistoryGesture(); model.previewDraft = false; model.presetWindowVisible = false; model.flushHistoryEdits() }
+        .onAppear { model.presetWindowVisible = true; model.previewDraft = true; model.previewBlackout = false }
+        .onDisappear { model.finishHistoryGesture(); model.previewDraft = false; model.previewBlackout = false; model.cancelPicking(); model.presetWindowVisible = false; model.flushHistoryEdits() }
         .onChange(of: scenePhase) { _, phase in
             if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits() }
         }
@@ -40,7 +40,12 @@ struct PresetEditorView: View {
         } message: { Text("Assigned objects will be unassigned and their channels set to zero. Unsaved edits will be discarded.") }
         .alert("Save as new preset", isPresented: $showSaveAs) {
             TextField("Preset name", text: $copyName)
-            Button("Save new preset") { model.presetDraft.name = copyName; model.savePreset(asNew: true) }
+            Button("Save new preset") {
+                let previousName = model.presetDraft.name
+                model.presetDraft.name = copyName
+                if model.savePreset(asNew: true) { copyName = "" }
+                else { model.presetDraft.name = previousName }
+            }.disabled(copyName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             Button("Cancel", role: .cancel) { }
         } message: { Text("Creates an independent preset. Existing object assignments stay on the original.") }
     }
@@ -110,9 +115,10 @@ struct PresetEditorView: View {
                 Text("VV PREVIEW 16 · SIMULATION").foregroundStyle(.secondary)
             }.font(.caption)
             HStack {
-                Toggle("Preview draft on selected fixture", isOn: $model.previewDraft)
+                Toggle("Simulate on selected fixture", isOn: $model.previewDraft)
                     .disabled(model.selectedID == nil)
-                if model.previewDraft { Text("Unsaved preview").font(.caption).foregroundStyle(.orange) }
+                Toggle("Blackout simulation", isOn: $model.previewBlackout)
+                    .toggleStyle(.button).disabled(!model.previewDraft || model.selectedID == nil)
             }.font(.caption)
             ScrollView {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
@@ -122,10 +128,11 @@ struct PresetEditorView: View {
                 }.padding(.vertical, 6)
             }.frame(maxHeight: .infinity)
             Divider()
-            if let selected = model.selectedID.flatMap(model.fixture), let aim = selected.aimOverride {
+            if model.isRetargeting {
                 HStack {
-                    Text("Selected fixture aim: Pan \(aim.pan) / Tilt \(aim.tilt). Saved presets preserve this override.").font(.caption)
-                    Button("Use preset aim") { model.resetAim(selected.id) }.font(.caption)
+                    Text(model.message ?? model.pickingInstruction).font(.caption)
+                    Button("Cancel target") { model.cancelPicking() }
+                    Button("Save target") { model.saveTarget() }.disabled(!model.canSaveTarget)
                 }
             }
             if let id = model.selectedID, let fixture = model.fixture(id) {
@@ -136,6 +143,8 @@ struct PresetEditorView: View {
                             .font(.caption).foregroundStyle(.secondary)
                     }
                     Spacer()
+                    Button("Target", systemImage: "scope") { model.beginPresetTarget() }
+                        .disabled(!model.canPlace || fixture.asset?.headAim != true || model.isRetargeting)
                     Button("Clear assignment") { model.clearAssignment(id) }.disabled(fixture.presetID == nil)
                     Button("Apply saved") {
                         if let presetID = model.editingPresetID {
@@ -172,9 +181,9 @@ struct PresetEditorView: View {
             Text(model.presetMessage ?? "Saving updates all objects assigned to this preset.")
                 .font(.caption).foregroundStyle(.secondary).frame(height: 32, alignment: .topLeading)
             HStack {
-                Button("Save as new…") { copyName = model.presetDraft.name + " Copy"; showSaveAs = true }
+                Button("Save as new…") { copyName = ""; showSaveAs = true }.disabled(model.isRetargeting)
                 Spacer()
-                Button("Save preset") { model.savePreset() }.buttonStyle(.borderedProminent).disabled(!model.draftHasChanges)
+                Button("Save preset") { model.savePreset() }.buttonStyle(.borderedProminent).disabled(!model.draftHasChanges || model.isRetargeting)
             }
         }
     }

@@ -70,10 +70,11 @@ import VenueVolumeCore
             model.fixtureKind = .movingHead; model.beginPlacement(); model.placeOnMesh(at: .init(x: 0,y: 0,z: -2))
             guard model.scannedMesh != nil, model.fixtures.count == 1 else { throw EnvironmentError.invalid("mesh replay placement failed") }
             _ = model.applyPreset(model.presets[1].id, to: model.fixtures[0].id)
-            model.beginRetarget(model.fixtures[0].id, method: .head)
+            model.beginRetarget(model.fixtures[0].id)
             guard model.acceptTarget(.init(x: 1,y: 1.5,z: -4)), model.fixtures[0].aimOverride == nil,
                   model.saveTarget() else { throw EnvironmentError.invalid("mesh target preview/save failed") }
-            guard model.fixtures[0].aimOverride != nil else { throw EnvironmentError.invalid("moving head pilot did not aim in the mesh room") }
+            guard model.fixtures[0].aimOverride == nil,
+                  model.presets.first(where: { $0.id == model.fixtures[0].presetID })?.channels == model.fixtures[0].channels else { throw EnvironmentError.invalid("moving head pilot did not aim in the mesh room") }
             model.setupName = "Mesh replay · test light"
             guard model.saveSetup(), let meshSetup = model.savedSetups.first(where: { $0.id == model.activeSetupID }) else {
                 throw EnvironmentError.invalid("mesh setup save failed")
@@ -83,7 +84,7 @@ import VenueVolumeCore
 
             model.requestRoom(bundled, setup: original)
             try await ready(model, room: bundled)
-            guard model.fixtures == savedFixtures, model.activeSetupID == original.id else { throw EnvironmentError.invalid("saved classroom restore failed") }
+            guard restoresSavedLook(model, fixtures: savedFixtures), model.activeSetupID == original.id else { throw EnvironmentError.invalid("saved classroom restore failed") }
             model.requestRoom(replay, setup: meshSetup)
             try await ready(model, room: replay)
             guard model.scannedMesh != nil, model.fixtures == [savedMeshFixture], model.activeSetupID == meshSetup.id else {
@@ -103,7 +104,7 @@ import VenueVolumeCore
             guard model.fixtures == [changedMeshFixture] else { throw EnvironmentError.invalid("mesh pilot aim redo failed") }
             model.requestRoom(bundled, setup: original)
             try await ready(model, room: bundled)
-            guard model.fixtures == savedFixtures else { throw EnvironmentError.invalid("classroom did not reopen after mesh replay") }
+            guard restoresSavedLook(model, fixtures: savedFixtures) else { throw EnvironmentError.invalid("classroom did not reopen after mesh replay") }
             model.toolboxTab = 1
             model.libraryMessage = "Runtime check passed · mesh target preview/save, pose reopen, axis Undo/Redo and classroom restore."
             print("ROOM_LIBRARY_SMOKE_PASS")
@@ -126,6 +127,21 @@ import VenueVolumeCore
             model.libraryMessage = "Runtime check failed: \(error.localizedDescription)"
             model.historyMessage = model.libraryMessage
             print("ROOM_LIBRARY_SMOKE_FAIL: \(error)")
+        }
+    }
+
+    // A saved setup receives an independent preset when its shared definition
+    // changed in another room. Preserve all fixture data while checking the
+    // remapped assignment resolves to the original saved DMX look.
+    private static func restoresSavedLook(_ model: VenueModel, fixtures: [Fixture]) -> Bool {
+        guard model.fixtures.count == fixtures.count else { return false }
+        return zip(model.fixtures, fixtures).allSatisfy { current, saved in
+            var normalized = current
+            if saved.presetID != nil {
+                guard model.presets.first(where: { $0.id == current.presetID })?.channels == saved.channels else { return false }
+            } else if current.presetID != nil { return false }
+            normalized.presetID = saved.presetID
+            return normalized == saved
         }
     }
 
