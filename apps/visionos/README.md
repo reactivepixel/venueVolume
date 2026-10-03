@@ -110,7 +110,7 @@ This is a standalone visualization spike. The production research's immutable pr
 
 ## Validation
 
-Verified **2026-10-01**, Xcode 27:
+Use the [current Mac and headset checklist](docs/VALIDATION.md) for acceptance and the [dated validation archive](docs/validation/2026-10-01-to-03-mac-validation.md) for completed results. Run these reusable checks from `apps/visionos` in the assigned worktree:
 
 ```sh
 swift test --package-path Core
@@ -122,11 +122,14 @@ xcodebuild -project VenueVolume.xcodeproj -scheme VenueVolume \
 xcodebuild -project VenueVolume.xcodeproj -scheme VenueVolume \
   -destination 'generic/platform=visionOS' \
   -derivedDataPath DerivedData-device CODE_SIGNING_ALLOWED=NO build
+./scripts/run-demo.sh --blue --catalog-smoke
+./scripts/run-demo.sh --blue --history-smoke
+./scripts/run-demo.sh --blue --input-smoke
 ```
 
-39 Core tests and model/session checks cover room/setup round trips, immutable room versions, snapshot validation, mesh support, fixture drop commands, blank setups, save/save-as, restore/relaunch, preset conflict isolation, corrupt working-file preservation, and the existing aiming, placement, preview, patch, and sync behavior. Interaction checks cover held target updates without persistence, Save/Cancel, concurrent preset saving, selected-item context, validated name/patch editing, grouped ring/arrow transforms, bounds rejection, scene clearing and its Undo/Redo. Audit checks exercise exact undo/redo, gesture grouping, branching, draft/preset and aim restoration, catalog/save reversal, cross-room load failure, relaunch, external sync logging, and corrupt journal preservation. Asset checks compare bundled room/fixture hashes with the source artifacts. Both simulator and unsigned device targets compile. Native Simulator integration exercises bundle import, synthetic mesh replay, named setups, cross-room Undo/Redo, and undoing fixture deletion through the real model and renderer.
+The final recorded integration check on **2026-10-03**, Xcode 27, passed 45 Core tests, five session groups, bundle verification for 252 catalog models and a Simulator build. The model checks cover catalog articulation, room/setup persistence, preset targeting, Undo/Redo and input routing. Earlier native checks exercised pilot import, synthetic mesh replay, history and Toolbox window callbacks. Full-catalog runtime import and interactive visual review remain open; neither bundle verification nor compilation establishes them.
 
-The Toolbox window repair was built, signed, installed and launched on Chris’s Vision Pro (visionOS 27.0); see the dated handoff note. Earlier native-control attempts timed out reading Xcode 27 Device Hub. Rendered presentation states and model/runtime commands were verified; actual pinch/drag/drop and background clicks remain unverified. Signed deployment is verified; wearer testing is awaiting confirmation. Native drag gestures, live mesh capture, wrist following, tracking alignment, comfort, frame time, and thermal performance still require acceptance on the headset. Compilation and synthetic mesh replay do not establish that live headset capture works correctly.
+The earlier Toolbox repair was signed, installed and launched on a physical Vision Pro. The later preset-target build installed successfully, but its remote launch timed out. Wearer acceptance remains open: actual gaze/pinch and drag gestures, palm recall and movement of the normal Toolbox window, live scan/save/reopen, tracking alignment, comfort and performance. The Toolbox no longer follows the wrist. Synthetic replay and seeded Simulator screenshots do not establish physical headset behavior.
 
 Run `./scripts/run-demo.sh --blue --input-smoke` for native window lifecycle and rendered collision/input routing checks. Its console markers are `TOOLBOX_WINDOW_SMOKE_PASS` and `SPATIAL_INPUT_SMOKE_PASS`; these exercise application commands and RealityKit collisions, not physical hand gestures.
 
