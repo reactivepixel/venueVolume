@@ -1,45 +1,46 @@
-# Venue Volume design studio
+# Venue Volume SaaS design studio
 
-An interactive React design study with 35 product screens in both wireframe and high fidelity, plus a standalone movie upload page. Venue movie uploads use a real local intake service and Movie2Splat queue. Authentication, billing, cloud storage, CAD conversion, and DMX/Art-Net output are not implemented.
+The active product prototype uses a shared scanned-venue library, physical fixture inventory, multiple **Load Outs** per venue and **Tours** with base inventory and a dedicated Load Out per stop. Blank room and template-created venue workflows have been removed. See the [whole-product UX review](../../docs/02%20Product/Design/SaaS%20UX%20Review%20-%20Scanned%20Venues%20and%20Load%20Outs.md).
 
-## Run
+## Run and verify
 
-Requires Node.js 22 or newer and npm.
+Requires Node.js 22+ and npm. Check the intended port before launching.
 
 ```sh
 npm ci
-npm run dev
-```
-
-Open the URL printed by Vite. Start at the show overview, use the **35 screens** browser, and switch between **01 Wireframes** and **02 High fidelity**. The state selector shows shared empty/loading/error/permission patterns. Links are shareable locally, for example `/?screen=live&mode=hifi&state=ready`.
-
-```sh
+npm run dev -- --port 5175 --strictPort
 npm test
 npm run build
-npx playwright install chromium
-npm run test:browser
-npm run test:live
-npm run test:slots
-npm run test:venues
-npm run export:screens
+VV_BASE_URL=http://127.0.0.1:5175 npm run test:browser
+VV_BASE_URL=http://127.0.0.1:5175 npm run test:live
+VV_BASE_URL=http://127.0.0.1:5175 npm run test:slots
+VV_CHROMIUM_EXECUTABLE=/usr/bin/chromium npm run test:venues
 ```
 
-Browser checks and export expect the dev server on `http://127.0.0.1:5173`; set `VV_BASE_URL` to use another address. Screenshots and the static gallery are generated under `assets/design/venue-volume` at the repository root. Font loading uses Google Fonts with local sans-serif fallbacks; production bundling is otherwise local.
+Set `VV_CHROMIUM_EXECUTABLE` for your installed Chromium. Workspace, live and slot tests default to `/usr/bin/chromium`; venue tests use Playwright's bundled browser if unset. The main browser test defaults to port 5175; legacy console test defaults remain 5173, so use `VV_BASE_URL` consistently.
 
-The demo persists selected sample data under `vv-design-v1` in localStorage. Remove that single key in browser developer tools to restore the sample dataset. Exports use isolated browser contexts so local edits do not change baseline screenshots.
+The workspace browser test also exports actual UI screenshots to ignored `tmp/saas-ux-review/` at the repository root. `npm run export:screens` runs that same workflow. It uses an isolated browser and synthetic scan API responses, and never starts Movie2Splat. The old `tests/browser.mjs` and `tests/export.mjs` describe the retired 35-screen study and are retained as historical references, not current entry points. Old tracked screenshots under `assets/design/venue-volume` are historical.
 
-## Venue movie uploads
+## Preparation workflow
 
-Start `python3 services/venue-ingest/server.py --port 8788` from the repository root after checking that port is free. Vite proxies `/api/venues` to this service; set `VV_INTAKE_URL` for a different port. Movie2Splat processing needs the existing Docker/NVIDIA setup. The UI reports service and pipeline failures with retry actions.
+1. **Scanned venues** → upload a movie → monitor processing in the inbox → import the ready scan.
+2. **Fixture inventory** → add actual physical units with model, footprint, role and ownership.
+3. **Load Outs** → choose an imported scan → select inventory → enter placement coordinates → patch → review.
+4. Optional: **Tours** → choose shared base units → add venue stops. Every stop creates its own unplaced/unpatched Load Out. Add local inventory at that stop without changing the base. Review subsequent base changes explicitly.
+5. **Programming** and **Rehearsal & live** open the existing design previews in a selected Load Out context. They retain sample programming and simulated output.
 
-In **Venues → Add venue → From a movie**, choose the movie, name and starting configuration. `/upload` is a standalone page requiring only a movie; it creates an inbox venue marked **Needs setup**. After processing, open it from the venue inbox and choose **Import venue into show**. Both paths retain the actual movie bytes, status and resulting PLY across browser sessions. Uploaded records are separate from the sample localStorage model and remain linked by UUID when imported or renamed.
+Placement currently uses numeric X/Y/Z/yaw controls and a clearly labeled schematic with a link to the scan. It does not render the Gaussian splat or calibrate scale. This remains a release blocker for finished spatial preparation UX.
 
-See the [intake service guide](../../services/venue-ingest/README.md) for startup, storage, API, restart/retry behavior and deployment limits. `npm run test:venues` runs the browser workflow against a real temporary service with a fixture GPU launcher, without requiring Docker or a GPU.
+Preparation uses `vv-workspace-v2` in localStorage; exports contain unit IDs, Tours, Load Outs and scan references. Programming previews use `vv-programming-preview:<loadoutId>`; simulated live/rehearsal sessions are also scoped by Load Out ID. Old `vv-design-v1` sample data is not automatically interpreted as scanned rooms or physical units. Cloud preparation persistence, authentication, membership, billing, hardware output and native sync are not implemented.
 
-See the Obsidian vault's `02 Product/Design` and `02 Product/Features` directories for screen coverage, prototype limits, and requirements beyond the UI.
+## Venue movie intake
 
-Script entries appear in vertical numbered slots. In the script editor, drag a grip with mouse or touch to another slot, use arrow keys on the focused grip, or use the move buttons. Escape or dropping outside cancels. Slot numbers change; entry IDs, cue IDs, timing, notes, and MIDI mappings do not. The live console's **Edit running order** opens the editor; live slots are not draggable, and armed draft reorders use **Review & apply**.
+After checking its port, start `python3 services/venue-ingest/server.py --port 8788` from the repository root. Vite proxies `/api/venues` to it; `VV_INTAKE_URL` selects a different service. Real Movie2Splat processing requires Docker/NVIDIA as documented by that pipeline.
 
-The revised live console includes stage/group selection, a manual programmer, masters, a merged bottom script timeline, song restart, MIDI mapping/test input, and a synchronized pop-out. **Back / Next** immediately step through script occurrences. **Hold** retains the cue and becomes **Play**, which resumes cue intake without advancing or replaying buffered triggers. Secondary **House** restarts from the configured house cue (demo: House open); it is not independent house-light control. **Blackout** retains its separate latch. Use **Pop out console**, then edit the venue in the original window. Run state is stored separately under `vv-live-v2:` keys. **Review & apply** accepts edits for future calls without replacing the active look. Rehearsal has its own session.
+Both workspace upload and `/upload` save a movie as an inbox venue marked **Needs setup**. The standalone page requires only a movie. Processing continues server-side after upload. Import a completed scan by naming it; no show or configuration is required. Multiple Load Outs can then reference that venue UUID. Movie bytes, processing state and splat are persisted by the service, independently of browser preparation state.
 
-Optional physical input uses Web MIDI after **Connect MIDI device** permission. Test triggers need no hardware. **Keep awake** requests a visible-window wake lock when supported; browsers cannot guarantee OS always-on-top or background execution. Lighting output remains simulated and physical MIDI is unvalidated.
+`npm run test:venues` builds the app and tests against a temporary actual intake service using a fixture processor. It covers upload validation, persistence, import, failed/interrupted uploads, retry and mobile layout without Docker/GPU use. See the [intake guide](../../services/venue-ingest/README.md).
+
+## Programming previews
+
+Existing script occurrence ordering, cue transport, programmer controls, MIDI test input, hold/blackout, hot-update review and synchronized pop-out remain available for design review. They do not represent production cue/profile binding or hardware output. A later visionOS release will refine the same Load Out; JSON export does not synchronize a headset.

@@ -131,6 +131,18 @@ class IntakeTests(unittest.TestCase):
         finally:
             reopened.db.close()
 
+    def test_import_shared_scan_without_show_or_template(self):
+        record, _ = self.create()
+        self.upload(record)
+        self.worker.start()
+        self.wait_status(record, "ready")
+        status, imported = self.request("POST", f"/api/venues/{record['id']}/setup", dict(name="Shared room", city="Boston"))
+        self.assertEqual(status, 200)
+        self.assertEqual(imported["setupStatus"], "configured")
+        self.assertEqual(imported["show"], "")
+        self.assertEqual(imported["template"], "")
+        self.assertTrue(imported["assetUrl"])
+
     def test_saas_upload_keeps_configuration_and_serializes_gpu_jobs(self):
         records = [self.create(name=f"Room {i}", show="Tour", template="Rig")[0] for i in range(3)]
         for record in records:

@@ -105,7 +105,7 @@ export function MovieUploadForm({ library, show = "", templates = [], resumeReco
       </>}
     </fieldset>
     <div className="movie-destination"><Building2 size={17} /><p>{deferred
-      ? "Saved as a new venue that needs setup. Assign its show and configuration later."
+      ? "Saved in the venue inbox. Import the scan later, then create one or more Load Outs."
       : <>Added to <strong>{resumeRecord?.show || show}</strong> with its movie and processed splat.</>}</p></div>
     {busy && <div className="movie-transfer" role="status">
       <div><strong>{progress === 100 ? "Saving movie…" : `Uploading movie · ${progress}%`}</strong><span>Keep this page open until the movie is saved.</span></div>
@@ -164,7 +164,7 @@ export function VenueMovieDetail({ record, library, shows = [], templates = [], 
   }
   return <div className="movie-detail">
     <IntakeConnection library={library} />
-    <Panel title={record.name} subtitle={`${record.filename} · ${formatBytes(record.size)}`} action={<Badge tone={record.setupStatus === "needs_setup" ? "amber" : "green"}>{record.setupStatus === "needs_setup" ? "Needs setup" : "Added to show"}</Badge>}>
+    <Panel title={record.name} subtitle={`${record.filename} · ${formatBytes(record.size)}`} action={<Badge tone={record.setupStatus === "needs_setup" ? "amber" : "green"}>{record.setupStatus === "needs_setup" ? "Needs setup" : "Imported scan"}</Badge>}>
       <div className="movie-job-status" role="status">
         {record.status === "ready" ? <CheckCircle2 size={28} /> : <Film size={28} />}
         <div><h2>{processingLabel(record)}</h2><p>{record.status === "ready"
@@ -194,17 +194,13 @@ export function VenueMovieDetail({ record, library, shows = [], templates = [], 
     </Panel>}
     {record.setupStatus === "needs_setup" && (standalone
       ? <a className="button" href={`/?screen=venue-detail&venueId=${record.id}`}>Open venue setup <ArrowRight size={16} /></a>
-      : <Panel title="Set up this venue" subtitle="Name the room and choose where it belongs. The original movie and splat stay linked to this venue.">
+      : <Panel title="Set up this venue" subtitle="Name this scanned venue and add it to the shared library. Choose fixture inventory separately in a Load Out.">
         {record.status !== "ready" && <p className="panel-copy">Setup becomes available when processing is complete.</p>}
         <form className="movie-setup-form" onSubmit={setup}>
           <fieldset disabled={record.status !== "ready" || busy || !!library.error}>
             <Field label="Venue name"><input name="name" defaultValue={record.name} required maxLength={160} /></Field>
             <Field label="City (optional)"><input name="city" defaultValue={record.city} maxLength={160} /></Field>
-            <div className="field-grid">
-              <Field label="Show"><select name="show" defaultValue={currentShow || shows[0]} required>{shows.map((show) => <option key={show}>{show}</option>)}</select></Field>
-              <Field label="Starting configuration"><select name="template" defaultValue={templates[0]} required>{templates.map((template) => <option key={template}>{template}</option>)}</select></Field>
-            </div>
-            <Button type="submit" primary>{busy ? "Saving…" : "Import venue into show"}<ArrowRight size={15} /></Button>
+            <Button type="submit" primary>{busy ? "Saving…" : "Import scanned venue"}<ArrowRight size={15} /></Button>
           </fieldset>
         </form>
       </Panel>)}
@@ -229,12 +225,12 @@ export function StandaloneMovieUpload() {
         {record ? <VenueMovieDetail key={record.id} record={record} library={library} standalone />
           : <><IntakeConnection library={library} /><p role="status">{library.loading ? "Loading your venue…" : library.error ? "Reconnect to load your saved venue." : "This venue could not be found. Check the link or upload another movie."}</p></>}
       </> : <div className="movie-upload-layout">
-        <Panel title="Upload your movie" subtitle="No show or configuration needed."><MovieUploadForm library={library} onReserved={(item) => history.replaceState({}, "", `/upload?venue=${item.id}`)} onQueued={queued} /></Panel>
+        <Panel title="Upload your movie" subtitle="No Tour or Load Out needed."><MovieUploadForm library={library} onReserved={(item) => history.replaceState({}, "", `/upload?venue=${item.id}`)} onQueued={queued} /></Panel>
         <aside className="movie-guide">
           <span className="eyebrow">FROM CAMERA TO ROOM</span>
           <ol><li><span>01</span><div><h2>Walk the room</h2><p>Move slowly through a static space. Keep views overlapping and exposure steady.</p></div></li>
             <li><span>02</span><div><h2>Upload & process</h2><p>Movie2Splat reconstructs the room and creates a 3D Gaussian splat. Processing may take a while.</p></div></li>
-            <li><span>03</span><div><h2>Set up when ready</h2><p>Your venue waits in the inbox. Add its details and assign a show later.</p></div></li></ol>
+            <li><span>03</span><div><h2>Set up when ready</h2><p>Your venue waits in the inbox. Import the scan later, then prepare its Load Outs.</p></div></li></ol>
           <p className="movie-guide-note">For a reliable capture, use your phone’s standard camera mode and avoid moving people, mirrors and sudden turns.</p>
         </aside>
       </div>}

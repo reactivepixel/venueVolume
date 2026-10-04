@@ -17,9 +17,11 @@ A software-first DMX controller can combine a visual, learnable workflow with th
 
 ## Confirmed product scope
 
-Venue Volume is a React-based SaaS DMX/Art-Net controller. A project is called a **show**. A show owns multiple configuration templates, each containing a saved CAD drawing and inventory covering lighting fixtures and other production equipment. It also owns venues, reusable DMX presets, cues, and scripts.
+Venue Volume is a React-based SaaS tool for preparing fixture inventory, placement and programming for scanned venues. A venue is selected from a library of already scanned rooms; the product does not create raw areas. A **Load Out** is the selected fixture inventory and its placement inside one venue. Multiple Load Outs can be defined per venue.
 
-A venue can start from a configuration template and adapt it locally. Presets reduce repetitive fixture programming. Cues represent moments/states and assign presets and other configuration to the venue's fixtures. Scripts define the expected cue sequence. Show-level defaults apply unless a venue overrides them.
+A **Tour** visits multiple venues using shared base inventory, augmented per venue as needed. Each stop has its own Load Out for placement and patching. SaaS is the primary preparation interface. Fine-tuning the same Load Out in visionOS is planned for a later release.
+
+Presets, cues and scripts remain programming concepts. Reusable show programming is separate from the physical room, Tour and Load Out. This clarification supersedes the earlier model in which a show-owned configuration template created a venue. See [[Design/SaaS UX Review - Scanned Venues and Load Outs]] for the complete product review and implementation limits.
 
 The full application contracts are in [[Features/Feature Catalog]]. [[Design/Screen Inventory]] maps 35 proposed screens to those contracts, and [[Design/Interaction Coverage]] records the limits of the interactive mockups.
 

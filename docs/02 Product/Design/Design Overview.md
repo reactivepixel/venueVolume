@@ -7,6 +7,9 @@ updated: 2026-10-03
 
 # Design Overview
 
+> **2026-10-04 update:** The active SaaS workflow now uses scanned venues → Load Outs and Tours. See [[SaaS UX Review - Scanned Venues and Load Outs]] for the whole-product review, current navigation, implemented preparation flows and remaining release gates. The earlier 35-screen study described below is historical; programming/console components remain explicitly labeled previews.
+
+
 ## Deliverables
 
 The local React design study lives in `apps/design-studio`. It contains 35 named screens, each with a wireframe and a high-fidelity rendering. The screen browser links the complete first-pass product surface. See [[Screen Inventory]] for coverage and [[Interaction Coverage]] for functional limits.

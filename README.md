@@ -4,6 +4,8 @@ Venue Volume is an early-stage company researching and developing a software-bas
 
 This repository is the top-level workspace for the company's software services, shared packages, documentation, research, and supporting assets.
 
+The SaaS preparation workflow now uses **scanned venues → Load Outs**, with **Tours** supplying shared base inventory and a dedicated Load Out per stop. See the [whole-product UX review](docs/02%20Product/Design/SaaS%20UX%20Review%20-%20Scanned%20Venues%20and%20Load%20Outs.md) and [design studio guide](apps/design-studio/README.md) for current behavior and prototype limits.
+
 ## Repository map
 
 ```text

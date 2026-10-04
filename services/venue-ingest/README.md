@@ -1,3 +1,5 @@
+> **2026-10-04 product update:** Both active upload interfaces create inbox venues. Import a processed scan with `POST /api/venues/:id/setup` and `{ "name": "Room", "city": "City" }`; `show` and `template` are optional legacy fields. Import adds the scan to the shared venue library. Fixture inventory, placement and Tour membership belong to separate Load Outs in the SaaS preparation model. Earlier show/configuration examples below remain API compatibility examples, not the active UX.
+
 # Venue movie intake
 
 The design studio can now save actual venue movies and process them through

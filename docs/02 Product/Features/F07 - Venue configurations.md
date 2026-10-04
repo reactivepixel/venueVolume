@@ -1,52 +1,16 @@
 ---
 type: feature
 id: F07
-status: specified
-owner: product-and-engineering
-updated: 2026-10-03
+status: revised
+updated: 2026-10-04
 ---
 
-# F07 — Venue configurations
+# F07 — Scanned venues
 
-## Intent and basis
+A venue is a captured physical room in the shared workspace library. It is not a show-owned copy of a rig template. No blank areas or CAD-created rooms are supported. The historical filename is retained for existing links.
 
-Confirmed domain. Give a show any number of venues, starting from a configuration template and adapting locally.
+The workspace and standalone `/upload` page accept a movie, preserve its UUID/source/checksum, submit it to Movie2Splat and show progress, failure and retry. Processing leaves the record in the inbox marked **Needs setup**. Import names the ready scan and adds it to the shared library without requiring a show, Tour or configuration. Each imported venue can then have multiple Load Outs, each with separate selected inventory, placement and patch.
 
-The domain requested by the founder is authoritative. Detailed policies below are proposed requirements pending R&D validation, not evidence of implemented production behavior.
+A Tour can visit the venue more than once; each stop needs a dedicated Load Out. Renaming a scan must not change IDs or orphan plans. Future scan replacement must use explicit revisions and coordinate review.
 
-## Data and rules
-
-Entities: Venue, VenueRevision, TemplatePin, VenueEquipmentDelta, VenueDrawingOverride, RoleBinding.
-
-Each venue belongs to one show and pins a template revision. A venue can change layout, inventory, patch, preset values, cue assignments, and script sequencing. The product imposes no fixed conceptual venue count; service limits, if any, require an explicit commercial decision.
-
-A movie capture can create an unassigned venue before show setup. Preserve its stable venue ID, original movie, checksum, processing lifecycle and Gaussian splat. The standalone capture page requires only the movie and marks the new venue **Needs setup**. Successful processing must not silently assign it to a show. Later import assigns the name, show and starting configuration to that same record. In-workspace uploads can supply these details at creation.
-
-## Interface responsibilities
-
-Provide venue list, creation with template/revision selection, venue overview, drawing, patch, readiness, and inherited/local badges.
-
-Provide movie upload from venue creation and a standalone `/upload` page, upload progress, a shared venue inbox, pipeline status, failure/retry, processed-asset download and deferred import/setup. The current local implementation is described in the [venue intake service guide](../../../services/venue-ingest/README.md); production tenant identity and revision binding remain to implement.
-
-Wireframe and high-fidelity screens are mapped in [[../Design/Screen Inventory|Screen Inventory]]. See [[../Design/Interaction Coverage|Interaction Coverage]] for what the prototype actually implements.
-
-## API, storage, and service responsibilities
-
-Store local changes separately from inherited sources. Use stable IDs and transactional venue creation. Rebase/adopt operations preview conflicts and preserve removals via tombstones.
-
-## Runtime and operational responsibilities
-
-A run identifies show ID, venue ID, resolved revision, role map, and output routing. Switching venues is an explicit stop/recompile/re-arm operation.
-
-## Acceptance scenarios
-
-A venue addition does not modify the show template; renaming a venue preserves its references; switching venue context cannot leak one venue's overrides into another.
-
-Apply tenant isolation, revision conflicts, invalid input, empty/loading/error, and permission checks where relevant. Test against resolved data rather than only the presentation.
-
-## Relationships
-
-- [[Feature Catalog]]
-- [[../../03 Engineering/Domain Model|Domain Model]]
-- [[../../03 Engineering/Service and Runtime Boundaries|Service and Runtime Boundaries]]
-- [[../Design/Screen Inventory|Screen Inventory]]
+The local intake service persists movies and splats; preparation records remain browser-local. See [service guide](../../../services/venue-ingest/README.md), [[../Design/SaaS UX Review - Scanned Venues and Load Outs]] and [[../../03 Engineering/Domain Model]].

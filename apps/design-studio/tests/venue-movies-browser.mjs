@@ -90,27 +90,26 @@ try {
   await page.getByRole("link", { name: "Open venue setup" }).click();
   await page.getByRole("textbox", { name: "Venue name", exact: true }).fill("The Atrium");
   await page.getByRole("textbox", { name: "City (optional)", exact: true }).fill("Brooklyn");
-  await page.getByRole("combobox", { name: "Starting configuration" }).selectOption("Intimate room");
-  await page.getByRole("button", { name: "Import venue into show" }).click();
-  await expect(page.getByText("Added to show", { exact: true })).toBeVisible();
-  await page.getByRole("button", { name: "All venues", exact: true }).click();
-  await expect(page.getByRole("button", { name: /The Atrium.*Splat ready.*Intimate room/ })).toBeVisible();
+  await page.getByRole("button", { name: "Import scanned venue" }).click();
+  await expect(page.getByText("Imported scan", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "All scanned venues", exact: true }).click();
+  await expect(page.getByRole("button", { name: /The Atrium.*Scan ready/ })).toBeVisible();
   assert.equal((await (await page.request.get(`${base}/api/venues`)).json()).venues.length, 1);
   await page.reload();
-  await expect(page.getByRole("button", { name: /The Atrium.*Splat ready/ })).toBeVisible();
+  await expect(page.getByRole("button", { name: /The Atrium.*Scan ready/ })).toBeVisible();
   checks += 3;
 
-  await page.getByRole("button", { name: "Add venue", exact: true }).click();
-  await page.getByRole("textbox", { name: "Venue name", exact: true }).fill("Mercury movie venue");
+  await page.getByRole("button", { name: "Upload venue movie", exact: true }).click();
+  await page.getByRole("textbox", { name: /Venue name \(optional\)/ }).fill("Mercury movie venue");
   await page.getByLabel("Venue movie", { exact: true }).setInputFiles(fixture());
   await page.getByRole("button", { name: "Upload & process movie", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Splat ready", exact: true })).toBeVisible({ timeout: 12000 });
-  await expect(page.getByText("Added to show", { exact: true })).toBeVisible();
+  await expect(page.getByText("Needs setup", { exact: true })).toBeVisible();
   const directId = new URL(page.url()).searchParams.get("venueId");
   assert.notEqual(directId, standaloneId, "Same filename is allowed for different venues");
   const direct = await (await page.request.get(`${base}/api/venues/${directId}`)).json();
-  assert.equal(direct.show, "Afterglow · Fall tour");
-  assert.equal(direct.template, "Touring rig");
+  assert.equal(direct.show, "");
+  assert.equal(direct.template, "");
   checks += 2;
 
   // Complete an interrupted reservation, fail the GPU job, then retry the
@@ -171,7 +170,7 @@ try {
   checks++;
 
   await page.goto(`${base}/?screen=venues`);
-  await expect(page.getByRole("button", { name: /Retry.*Splat ready.*Needs setup/ })).toBeVisible();
+  await expect(page.getByRole("button", { name: /Retry.*Splat ready/ })).toBeVisible();
   await page.screenshot({ path: `${screenshotDir}/venue-inbox-desktop.png`, fullPage: true });
   await noOverflow();
   await page.setViewportSize({ width: 390, height: 844 });
@@ -184,7 +183,7 @@ try {
   await noOverflow();
   await page.screenshot({ path: `${screenshotDir}/workspace-upload-mobile.png`, fullPage: true });
   await page.goto(`${base}/?screen=venue-detail&venueId=${reservation.id}`);
-  await expect(page.getByRole("button", { name: "Import venue into show" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Import scanned venue" })).toBeVisible();
   await noOverflow();
   await page.screenshot({ path: `${screenshotDir}/venue-setup-mobile.png`, fullPage: true });
   assert.deepEqual(errors, [], "Browser runtime errors");

@@ -6,6 +6,9 @@ updated: 2026-10-03
 
 # Interaction Coverage
 
+> **2026-10-04 update:** The active SaaS workflow now uses scanned venues → Load Outs and Tours. See [[SaaS UX Review - Scanned Venues and Load Outs]] for the whole-product review, current navigation, implemented preparation flows and remaining release gates. The earlier 35-screen study described below is historical; programming/console components remain explicitly labeled previews.
+
+
 Revision 05: script editor and live playback use vertical numbered cue slots. Editor grips support mouse/touch drag to insert at a destination slot, source/target feedback, edge scrolling, Escape/outside-drop cancellation, arrow-key movement, and up/down alternatives. Live slots are inspection-only; Edit running order opens the draft editor. Stable entry IDs retain MIDI, timing, notes, and cue references through moves. Armed sequence changes require review and do not fire a cue. Full server concurrency and venue sequence-override persistence remain outside this prototype.
 
 This is a design prototype. The screen catalog represents intended production surfaces; it does not mean each service exists.

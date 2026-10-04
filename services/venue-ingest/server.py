@@ -317,7 +317,7 @@ class Handler(BaseHTTPRequestHandler):
                     return self.reply(202, store.public(record))
                 if self.command == "POST" and action == "setup":
                     data = self.json_body()
-                    changes = {key: text_field(data, key, required=key != "city") for key in ("name", "city", "show", "template")}
+                    changes = {key: text_field(data, key, required=key == "name") for key in ("name", "city", "show", "template")}
                     record = store.update(identifier, dict(**changes, setupStatus="configured"), allowed={"ready"})
                     return self.reply(200, store.public(record))
                 if self.command == "GET" and action in {"splat", "log"}:
