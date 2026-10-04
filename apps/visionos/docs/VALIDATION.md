@@ -4,6 +4,8 @@ This is the current Mac and headset acceptance checklist. It replaces the tempor
 
 ## Recorded results
 
+The [2026-10-04 fixture movement update](validation/2026-10-04-fixture-movement.md) records second-click Move activation, surface-plane dragging and normal alignment, the bottom controls strip, compact fixture discovery and wrist-window cleanup. Native routing checks passed; installation on Chris's headset passed, but remote launch timed out. Worn-headset gesture and comfort acceptance remain open.
+
 The [2026-10-03 touring implementation](validation/2026-10-03-touring.md) records inventory, hierarchy, scoped partial presets, group placement/transforms, named focus, portable shows and pinned venue adoption. Simulator command checks are separate from physical gesture acceptance.
 
 The [2026-10-03 UX integration](validation/2026-10-03-ux.md) records the venue chooser, portable saves, Fortress import, spatial preset drag, single-editor recall, HIG audit and code-review fixes for v0.2.3. Physical gesture, accessibility and Crown acceptance remain open.

@@ -5,6 +5,7 @@ struct LaunchView: View {
     @Environment(VenueModel.self) private var model
     @Environment(\.openImmersiveSpace) private var openSpace
     @Environment(\.dismissImmersiveSpace) private var dismissSpace
+    @Environment(\.dismissWindow) private var dismissWindow
 
     @ScaledMetric(relativeTo: .body) private var pickerHeight = 340.0
 
@@ -41,6 +42,21 @@ struct LaunchView: View {
         .sheet(isPresented: Binding(get: { model.newVenuePresented && !model.isImmersed }, set: { model.newVenuePresented = $0 })) { NewVenueSheet() }
         .sheet(isPresented: Binding(get: { model.touringPanelPresented && !model.isImmersed }, set: { model.touringPanelPresented = $0 })) { TouringLibrarySheet() }
         .presetEditorPresenter(when: !model.isImmersed)
+        .onChange(of: model.isImmersed, initial: true) { _, immersed in
+            // Restoration can present this window after the immersive view's
+            // initial dismissal. The chooser belongs outside the venue.
+            if immersed { dismissWindow(id: "launch") }
+        }
+        .task(id: model.isImmersed ? nil : model.toolboxWindowIDs) {
+            guard !model.isImmersed else { return }
+            // Dismissal from the disappearing immersive scene can be ignored
+            // during the transition. Finish it from the active chooser scene.
+            for _ in 0..<30 where !model.isImmersed && model.toolboxVisible {
+                for identity in model.toolboxWindowIDs { dismissWindow(id: "toolbox", value: identity) }
+                if model.unvaluedToolboxVisible { dismissWindow(id: "toolbox") }
+                do { try await Task.sleep(for: .milliseconds(100)) } catch { return }
+            }
+        }
         .task {
             await model.prepareLibrary()
             #if DEBUG

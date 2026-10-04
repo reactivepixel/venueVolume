@@ -277,22 +277,57 @@ final class VenueScene {
 
     func handleTap(entity: Entity, position: SIMD3<Float>, model: VenueModel) {
         let point = Position3D(x: position.x, y: position.y, z: position.z)
-        if !model.isPickingRoom {
-            if FixtureTransformGizmo.handle(entity) != nil { return }
-            if let id = UUID(uuidString: entity.name) { model.select(id) }
-            else if entity.name.hasPrefix("aim-surface:") || entity.name.hasPrefix("room-collider:") {
-                model.deselect()
+        if FixtureTransformGizmo.handle(entity) != nil { return }
+        if let id = UUID(uuidString: entity.name), !model.isPlacing && !model.isRetargeting {
+            model.tapFixture(id)
+        } else if model.isSurfaceMoveActive, isRoomSurface(entity) {
+            guard let hit = surfaceHit(entity: entity, point: position),
+                  let fixture = model.selectedID.flatMap({ model.fixture($0) }),
+                  supportsSurface(at: hit.point, normal: hit.normal, radius: fixture.footprintRadius) else {
+                model.message = "Choose a solid surface with enough room for this fixture."; return
             }
+            let surface = model.environment?.surfaces.first { $0.fixturePosition(hit: .init(x: hit.point.x,y: hit.point.y,z: hit.point.z), halfSize: fixture.footprintRadius) != nil && hit.normal.y > 0.98 }
+            _ = model.moveToSurface(at: .init(x: hit.point.x,y: hit.point.y,z: hit.point.z),
+                                   normal: .init(x: hit.normal.x,y: hit.normal.y,z: hit.normal.z), surfaceID: surface?.id)
+        } else if !model.isPickingRoom {
+            if isRoomSurface(entity) { model.deselect() }
         } else if entity.name.hasPrefix("aim-surface:"), model.isRetargeting {
             _ = model.acceptTarget(point)
         } else if entity.name.hasPrefix("aim-surface:"), model.scannedMesh != nil, model.isPlacing {
             model.placeOnMesh(at: point)
-        } else if entity.name.hasPrefix("aim-surface:"), model.scannedMesh != nil, model.scenePick != nil {
-            model.repositionOnMesh(at: point)
-        } else if entity.name.hasPrefix("room-collider:") {
-            let id = String(entity.name.dropFirst("room-collider:".count))
-            if model.isPlacing { model.place(at: position, surfaceID: id) }
-            else if model.scenePick != nil { model.reposition(at: point, surfaceID: id) }
+        } else if entity.name.hasPrefix("room-collider:"), model.isPlacing {
+            model.place(at: position, surfaceID: String(entity.name.dropFirst("room-collider:".count)))
+        }
+    }
+
+    private func isRoomSurface(_ entity: Entity) -> Bool {
+        entity.name.hasPrefix("aim-surface:") || entity.name.hasPrefix("room-collider:")
+    }
+
+    private func surfaceHit(entity: Entity, point: SIMD3<Float>) -> (point: SIMD3<Float>, normal: SIMD3<Float>)? {
+        guard let scene = root.scene else { return nil }
+        let eye = root.convert(position: SIMD3(deviceTransform.columns.3.x, deviceTransform.columns.3.y, deviceTransform.columns.3.z), from: nil)
+        let direction = point-eye, distance = simd_length(direction)
+        guard distance > 0.001 else { return nil }
+        let hits = scene.raycast(origin: eye, direction: direction/distance, length: distance+0.08,
+                                 query: .all, mask: .all, relativeTo: root)
+        guard let hit = hits.filter({ $0.entity == entity }).min(by: { abs($0.distance-distance) < abs($1.distance-distance) }),
+              simd_length(hit.normal) > 0.001 else { return nil }
+        let normal = simd_normalize(hit.normal)
+        return (hit.position, simd_dot(normal, eye-hit.position) < 0 ? -normal : normal)
+    }
+
+    /// Check the rendered room beneath the mount's center and four corners.
+    private func supportsSurface(at point: SIMD3<Float>, normal: SIMD3<Float>, radius: Float) -> Bool {
+        guard let scene = root.scene else { return false }
+        let orientation = FixtureAiming.alignedMount(.init(), normal: normal)
+        return [(Float(0),Float(0)),(-radius,-radius),(-radius,radius),(radius,-radius),(radius,radius)].allSatisfy { x,z in
+            let sample = point + FixtureAiming.rotate(orientation, [x,0,z])
+            return scene.raycast(origin: sample+normal*0.04, direction: -normal, length: 0.08,
+                                 query: .all, mask: .all, relativeTo: root).contains {
+                $0.entity.name.hasPrefix("aim-surface:") && simd_distance($0.position,sample) < 0.025
+                    && abs(simd_dot(simd_normalize($0.normal),normal)) > 0.98
+            }
         }
     }
 
@@ -306,8 +341,92 @@ final class VenueScene {
             model.updateTransformDrag(to: position)
             return true
         }
+        if let id = UUID(uuidString: entity.name), id == model.selectedID, model.gizmoVisible,
+           !model.isRetargeting && !model.isPlacing {
+            if !model.isTransformDragging { model.beginSurfaceDrag(id, at: start) }
+            if let candidate = model.surfaceDragDestination(to: position),
+               supportsSurface(at: FixtureAiming.vector(candidate.point), normal: FixtureAiming.vector(candidate.normal), radius: candidate.radius) {
+                _ = model.updateSurfaceDrag(to: position)
+            } else { model.message = "Keep the fixture on a solid part of its current plane." }
+            return true
+        }
         return false
     }
+
+    #if DEBUG
+    /// Exercises real collision normals and body-drag routing, not hand input.
+    func runFixtureMovementSmoke(model: VenueModel) async {
+        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--movement-smoke") else { return }
+        do {
+            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
+            model.clearScene()
+            guard model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 2.66,y: 0,z: -2.3), surfaceID: "floor"),
+                  let fixture = model.fixtures.first else { throw EnvironmentError.invalid("Pilot placement failed") }
+            try await Task.sleep(for: .milliseconds(700))
+            model.deselect()
+            guard let fixtureRoot = root.findEntity(named: fixture.id.uuidString),
+                  let target = fixtureRoot.children.first(where: { $0.components.has(InputTargetComponent.self) }) else { throw EnvironmentError.invalid("Fixture input target missing") }
+            let start = target.position(relativeTo: root)
+            handleTap(entity: target,position: start,model: model)
+            guard !model.gizmoVisible else { throw EnvironmentError.invalid("First tap did not stay selection-only") }
+            handleTap(entity: target,position: start,model: model)
+            try await Task.sleep(for: .milliseconds(250))
+            guard model.gizmoVisible, target.components.has(SpatialDragTarget.self),
+                  handleDrag(entity: target,position: start+[0.1,0.2,0.1],start: start,model: model) else { throw EnvironmentError.invalid("Second click/body drag routing failed") }
+            model.endTransformDrag()
+            guard let slid = model.fixture(fixture.id), abs(slid.position.x-fixture.position.x-0.1) < 0.001,
+                  slid.position.y == fixture.position.y, slid.channels == fixture.channels else { throw EnvironmentError.invalid("Rendered body drag left its plane or failed: \(model.message ?? "unknown")") }
+            model.undo(); guard model.fixture(fixture.id) == fixture else { throw EnvironmentError.invalid("Body drag Undo failed") }
+            model.redo(); model.beginTransform(fixture.id)
+            guard let physics = root.scene else { throw EnvironmentError.invalid("Physics scene missing") }
+            let floorPoint = SIMD3<Float>(2.9,0,-2.7)
+            guard let floor = physics.raycast(origin: floorPoint+[0,0.1,0],direction: [0,-1,0],length: 0.2,query: .all,mask: .all,relativeTo: root).first(where: { $0.entity.name.hasPrefix("aim-surface:") }) else { throw EnvironmentError.invalid("Rendered floor missing") }
+            handleTap(entity: floor.entity,position: floor.position,model: model)
+            guard let onFloor = model.fixture(fixture.id), simd_distance(FixtureAiming.vector(onFloor.position),floor.position) < 0.001,
+                  onFloor.mountPlane != nil else { throw EnvironmentError.invalid("Surface tap did not move to rendered floor: \(model.message ?? "unknown")") }
+            var onWall: Fixture?
+            for collider in model.environment?.colliders ?? [] where collider.size[1] > 1 {
+                let axis = collider.size[0] < collider.size[2] ? 0 : 2
+                guard collider.size[axis] < 0.5 else { continue }
+                let rotation = Quaternion3D(x: collider.rotation[0],y: collider.rotation[1],z: collider.rotation[2],w: collider.rotation[3])
+                for sign: Float in [-1,1] {
+                    var local = SIMD3<Float>.zero; local[axis] = sign
+                    let normal = FixtureAiming.rotate(rotation,local)
+                    let face = SIMD3<Float>(collider.center[0],collider.center[1],collider.center[2]) + normal*collider.size[axis]/2
+                    let hits = physics.raycast(origin: face+normal*0.15,direction: -normal,length: 0.3,query: .all,mask: .all,relativeTo: root)
+                    guard let hit = hits.first(where: { $0.entity.name.hasPrefix("aim-surface:") && abs($0.normal.y) < 0.1 }) else { continue }
+                    handleTap(entity: hit.entity,position: hit.position,model: model)
+                    if let candidate = model.fixture(fixture.id), let plane = candidate.mountPlane, abs(plane.normal.y) < 0.1 {
+                        onWall = candidate; break
+                    }
+                }
+                if onWall != nil { break }
+            }
+            guard let onWall, let plane = onWall.mountPlane,
+                  FixtureAiming.length(FixtureAiming.rotate(onWall.orientation,[0,1,0])-FixtureAiming.vector(plane.normal)) < 0.001,
+                  onWall.channels == fixture.channels else { throw EnvironmentError.invalid("No rendered wall accepted mount alignment: \(model.message ?? "unknown")") }
+            model.undo(); guard model.fixture(fixture.id) == onFloor else { throw EnvironmentError.invalid("Wall move Undo failed") }
+            model.redo(); guard model.fixture(fixture.id) == onWall else { throw EnvironmentError.invalid("Wall move Redo failed") }
+            model.deselect()
+            try await Task.sleep(for: .milliseconds(200))
+            guard !target.components.has(SpatialDragTarget.self),
+                  let dock = headAnchor.children.first(where: { $0.name == "venue-controls-dock" }),
+                  dock.visualBounds(relativeTo: dock).extents.x > dock.visualBounds(relativeTo: dock).extents.y*4 else { throw EnvironmentError.invalid("Deselection or horizontal controls dock failed") }
+            // Presentation follows the same user commands after assertions.
+            model.beginTransform(fixture.id)
+            handleTap(entity: floor.entity,position: floor.position,model: model)
+            if ProcessInfo.processInfo.arguments.contains("--movement-screenshot") {
+                let tablePoint = SIMD3<Float>(1.5,0.74,-3.68)
+                if let table = physics.raycast(origin: tablePoint+[0,0.1,0],direction: [0,-1,0],length: 0.2,query: .all,mask: .all,relativeTo: root).first(where: { $0.entity.name.hasPrefix("aim-surface:") }) {
+                    handleTap(entity: table.entity,position: table.position,model: model)
+                }
+            }
+            for kind in FixtureKind.allCases.filter({ $0 != .movingHead }).prefix(5) { model.rememberFixtureKind(kind) }
+            model.message = "Movement runtime checks passed."
+            print("FIXTURE_MOVEMENT_SMOKE_PASS secondClick=true bodySlide=true floorHit=true wallNormal=true undoRedo=true horizontalDock=true")
+        } catch { print("FIXTURE_MOVEMENT_SMOKE_FAIL \(error)") }
+    }
+    #endif
 
     #if DEBUG
     /// Native renderer routing check, separate from human pinch acceptance.
@@ -495,6 +614,12 @@ final class VenueScene {
     }
 
     func update(model: VenueModel, attachments: RealityViewAttachments) {
+        if let controls = attachments.entity(for: "venue-controls-dock") {
+            if controls.parent != headAnchor { headAnchor.addChild(controls) }
+            controls.name = "venue-controls-dock"
+            controls.position = [0,-0.42,-1.15]
+            controls.scale = [1,1,1]
+        }
         _ = model.fixtureRenderRevision // Rebuild placeholders when an asynchronous catalog asset becomes ready.
         if targetMarker.parent == nil { root.addChild(targetMarker) }
         targetMarker.components.set(DynamicLightShadowComponent(castsShadow: false))
@@ -502,16 +627,16 @@ final class VenueScene {
         targetMarker.isEnabled = marker != nil
         if let target = marker { targetMarker.position = FixtureAiming.vector(target) }
         for (entity, _) in roomMaterials {
-            entity.components.set(InputTargetComponent(allowedInputTypes: !model.isPickingRoom || model.isRetargeting || (model.scannedMesh != nil && model.isPickingRoom) ? [.indirect] : []))
+            entity.components.set(InputTargetComponent(allowedInputTypes: !model.isPickingRoom || model.isRetargeting || model.isSurfaceMoveActive || (model.scannedMesh != nil && model.isPickingRoom) ? [.indirect] : []))
             if model.isRetargeting { entity.components.set(SpatialDragTarget()) }
             else { entity.components.remove(SpatialDragTarget.self) }
         }
         for child in root.children where child.name.hasPrefix("room-collider:") {
-            child.components.set(InputTargetComponent(allowedInputTypes: model.isPickingRoom && !model.isRetargeting && model.scannedMesh == nil ? [.indirect] : []))
+            child.components.set(InputTargetComponent(allowedInputTypes: model.isPlacing && model.scannedMesh == nil ? [.indirect] : []))
         }
         if transformGizmo.entity.parent == nil { root.addChild(transformGizmo.entity) }
         transformGizmo.update(fixture: model.transformFixtureContext,
-                              visible: model.gizmoVisible && !model.isPickingRoom, mode: model.transformMode)
+                              visible: model.gizmoVisible && (!model.isPickingRoom || model.isSurfaceMoveActive), mode: model.transformMode)
         for surface in model.environment?.surfaces ?? [] {
             if let zone = attachments.entity(for: "surface-drop-\(surface.id)") {
                 if zone.parent == nil { root.addChild(zone) }
@@ -572,7 +697,7 @@ final class VenueScene {
                 }
                 rigs[fixture.id]?.update(fixture: displayed, channels: model.renderedChannels(for: fixture),
                                          selected: selected, blackout: model.isBlackedOut(fixture), placing: model.isPickingRoom,
-                                         interactive: model.isTransformDragging, lightBudget: budgets[fixture.id] ?? 0)
+                                         interactive: model.isTransformDragging, bodyDraggable: model.gizmoVisible && model.selectedID == fixture.id && !model.isRetargeting && !model.isPlacing, lightBudget: budgets[fixture.id] ?? 0)
                 } else {
                     requestFixture(descriptor, model: model)
                     let placeholder = cubes[fixture.id] ?? Self.makeCube(id: fixture.id)
@@ -586,7 +711,9 @@ final class VenueScene {
                 cube.orientation = simd_quatf(ix: fixture.orientation.x, iy: fixture.orientation.y, iz: fixture.orientation.z, r: fixture.orientation.w)
                 cube.scale = FixtureAiming.vector(fixture.scale)
                 cube.model?.materials = [Self.glass(opacity: selected ? 0.16 : 0.07)]
-                cube.components.set(InputTargetComponent(allowedInputTypes: model.isPickingRoom ? [] : [.indirect]))
+                cube.components.set(InputTargetComponent(allowedInputTypes: model.isPickingRoom && !model.isSurfaceMoveActive ? [] : [.indirect]))
+                if model.gizmoVisible && model.selectedID == fixture.id && !model.isRetargeting && !model.isPlacing { cube.components.set(SpatialDragTarget()) }
+                else { cube.components.remove(SpatialDragTarget.self) }
             }
             if let label = attachments.entity(for: "label-\(fixture.id)") {
                 if label.parent == nil { root.addChild(label) }
@@ -598,7 +725,7 @@ final class VenueScene {
             }
             if let drop = attachments.entity(for: "drop-\(fixture.id)") {
                 if drop.parent == nil { root.addChild(drop) }
-                drop.position = position + [0, fixture.assetID == nil ? 0 : fixture.visualHeight/2, 0.20]
+                drop.position = FixtureAiming.vector(fixture.visualCenter) + [0,0,0.20]
                 drop.components.set(BillboardComponent())
                 drop.isEnabled = model.draggingPresetID != nil && !model.presetDrag.isActive && !model.isPickingRoom
                 drops[fixture.id] = drop

@@ -81,6 +81,13 @@ extension Fixture {
     public var asset: FixtureAsset? { FixtureCatalog.asset(assetID) }
     public var footprintRadius: Float { (asset?.radius ?? 0.12) * max(scale.x, scale.z) }
     public var visualHeight: Float { (asset?.height ?? 0.24) * scale.y }
+    public var visualCenter: Position3D {
+        let low = asset?.boundsMin ?? [-0.12,-0.12,-0.12]
+        let high = asset?.boundsMax ?? [0.12,0.12,0.12]
+        let local = SIMD3<Float>((low[0]+high[0])/2, (low[1]+high[1])/2, (low[2]+high[2])/2)
+        let point = FixtureAiming.vector(position) + FixtureAiming.rotate(orientation, local * FixtureAiming.vector(scale))
+        return .init(x: point.x,y: point.y,z: point.z)
+    }
     public func placementIssue(in room: EnvironmentManifest) -> String? {
         let low = asset?.boundsMin ?? [-0.12,-0.12,-0.12]
         let high = asset?.boundsMax ?? [0.12,0.12,0.12]

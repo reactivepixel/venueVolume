@@ -48,6 +48,35 @@ public struct ScannedMesh: Codable, Equatable, Sendable {
             }
         }
     }
+
+    /// Validate center/corners on an arbitrary captured plane, including walls.
+    public func supports(_ point: Position3D, normal: Position3D, radius: Float) -> Bool {
+        guard FixtureMountPlane(origin: point, normal: normal).isValid, radius.isFinite, radius >= 0 else { return false }
+        let n = FixtureAiming.vector(normal)
+        let orientation = FixtureAiming.alignedMount(.init(), normal: n)
+        let origin = FixtureAiming.vector(point)
+        return [(Float(0),Float(0)),(-radius,-radius),(-radius,radius),(radius,-radius),(radius,radius)].allSatisfy { x,z in
+            let sample = origin + FixtureAiming.rotate(orientation, [x,0,z])
+            return chunks.contains { chunk in
+                stride(from: 0, to: chunk.triangles.count, by: 3).contains { i in
+                    let a = FixtureAiming.vector(chunk.vertices[Int(chunk.triangles[i])])
+                    let b = FixtureAiming.vector(chunk.vertices[Int(chunk.triangles[i+1])])
+                    let c = FixtureAiming.vector(chunk.vertices[Int(chunk.triangles[i+2])])
+                    let ab = b-a, ac = c-a
+                    func dot(_ u: SIMD3<Float>, _ v: SIMD3<Float>) -> Float { u.x*v.x+u.y*v.y+u.z*v.z }
+                    let cross = SIMD3<Float>(ab.y*ac.z-ab.z*ac.y, ab.z*ac.x-ab.x*ac.z, ab.x*ac.y-ab.y*ac.x)
+                    let length = FixtureAiming.length(cross)
+                    guard length > 0.000001, abs(dot(cross/length,n)) > 0.98,
+                          abs(dot(sample-a,cross/length)) < 0.025 else { return false }
+                    let aa = dot(ab,ab), cc = dot(ac,ac), bc = dot(ab,ac), den = aa*cc-bc*bc
+                    guard abs(den) > 0.00000001 else { return false }
+                    let d = sample-a, u = (cc*dot(d,ab)-bc*dot(d,ac))/den
+                    let v = (aa*dot(d,ac)-bc*dot(d,ab))/den
+                    return u >= -0.001 && v >= -0.001 && u+v <= 1.001
+                }
+            }
+        }
+    }
 }
 
 public struct FixtureKind: RawRepresentable, CaseIterable, Identifiable, Equatable, Hashable, Sendable {

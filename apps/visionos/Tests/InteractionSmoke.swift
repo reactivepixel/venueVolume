@@ -25,6 +25,12 @@ import VenueVolumeCore
         check(model.toolboxRequestID == secondRecall && !model.toolboxVisible, "Closing while palm is raised stays closed")
         model.updateToolboxActivation(raised: false); model.updateToolboxActivation(raised: true)
         check(model.toolboxRequestID != secondRecall, "Lower then raise reopens a closed toolbox")
+        let a = UUID(), b = UUID()
+        model.toolboxAppeared(a); model.toolboxAppeared(b); model.toolboxDisappeared(a)
+        check(model.toolboxVisible && model.toolboxWindowIDs == [b] && model.toolboxPresentedID == b,
+              "A closing old Toolbox cannot hide the replacement window")
+        model.toolboxDisappeared(b)
+        check(!model.toolboxVisible && model.toolboxWindowIDs.isEmpty,"Closing all instances clears Toolbox visibility")
         let thirdRecall = model.toolboxRequestID
         model.requestToolbox()
         check(model.toolboxRequestID != thirdRecall, "Manual fallback can recall repeatedly without a hand toggle")
@@ -202,5 +208,73 @@ import VenueVolumeCore
         model.undo(); check(model.fixture(catalogID) == catalogBefore, "Undo restores catalog joint overrides and target preset")
         model.redo(); check(model.fixture(catalogID) == catalogAfter, "Redo restores catalog preset target")
         print("Catalog session checks passed: module isolation, grouped undo/redo, saved poses, preset preservation and fan controls.")
+    }
+}
+
+
+@MainActor enum FixtureMovementSmoke {
+    static func run(environment: EnvironmentManifest) throws {
+        func check(_ condition: @autoclosure () -> Bool, _ message: String) { precondition(condition(),message) }
+        let defaults = UserDefaults(suiteName: "fixture-movement-" + UUID().uuidString)!
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let model = VenueModel(arguments: [],defaults: defaults,placementDirectory: folder)
+        model.activate(environment: environment); model.canPlace = true
+        check(model.dropFixture([FixtureKind.movingHead.dragToken],at: .init(x: 2.66,y: 0,z: -2),surfaceID: "floor"),"Place pilot")
+        let id = model.fixtures[0].id
+        model.deselect(); model.tapFixture(id)
+        check(model.selectedID == id && !model.gizmoVisible,"First click selects")
+        model.tapFixture(id)
+        check(model.gizmoVisible && model.transformMode == .move && model.isSurfaceMoveActive,"Second click enables surface movement and rings")
+        let original = model.fixtures[0], nodes = model.history!.nodes.count
+        let start = FixtureAiming.vector(original.position)
+        model.beginSurfaceDrag(id,at: start)
+        check(model.updateSurfaceDrag(to: start+[0.12,4,0.1]),"Slide floor")
+        check(model.updateSurfaceDrag(to: start+[0.25,-3,0.2]),"Continue same drag")
+        model.endTransformDrag()
+        let moved = model.fixtures[0]
+        check(moved.position.y == original.position.y && abs(moved.position.x-original.position.x-0.25) < 0.001,"Body drag stays on floor and uses the original gesture position")
+        check(moved.orientation == original.orientation && moved.channels == original.channels,"Body drag preserves mount and DMX")
+        check(model.history!.nodes.count == nodes+1,"Body drag is one Undo step")
+        model.undo(); check(model.fixtures[0] == original,"Undo restores body drag")
+        model.redo(); check(model.fixtures[0] == moved,"Redo restores plane and position")
+        model.beginTransform(id)
+        let beforeBad = model.fixtures
+        model.beginSurfaceDrag(id,at: FixtureAiming.vector(moved.position))
+        check(!model.updateSurfaceDrag(to: [-30,0,-2]),"Reject off-plane support bounds")
+        model.endTransformDrag(); check(model.fixtures == beforeBad,"Rejected drag keeps last valid position")
+        model.beginTransform(id)
+        let max = environment.bounds.max, min = environment.bounds.min
+        let wall = Position3D(x: min[0],y: 1.3,z: (min[2]+max[2])/2)
+        check(model.moveToSurface(at: wall,normal: .init(x: 1,y: 0,z: 0)),"Move to wall")
+        let wallFixture = model.fixtures[0]
+        check(FixtureAiming.length(FixtureAiming.rotate(wallFixture.orientation,[0,1,0])-SIMD3<Float>(1,0,0)) < 0.001 && wallFixture.channels == original.channels,"Wall aligns mount while preserving DMX")
+        model.beginSurfaceDrag(id,at: [0,1,0])
+        check(model.updateSurfaceDrag(to: [5,1.2,0.1]),"Slide wall")
+        model.endTransformDrag()
+        check(abs(model.fixtures[0].position.x-wall.x) < 0.001 && abs(model.fixtures[0].position.y-wall.y-0.2) < 0.001,"Wall drag ignores normal movement")
+        model.beginTransform(id)
+        check(model.moveToSurface(at: .init(x: 3,y: max[1],z: -3),normal: .init(x: 0,y: -1,z: 0)),"Move to ceiling")
+        let ceiling = model.fixtures[0]
+        check(FixtureAiming.length(FixtureAiming.rotate(ceiling.orientation,[0,1,0])-SIMD3<Float>(0,-1,0)) < 0.001,"Ceiling mount faces into room")
+        let restored = VenueModel(arguments: [],defaults: defaults,placementDirectory: folder)
+        restored.activate(environment: environment)
+        check(restored.fixtures[0] == ceiling,"Mount plane survives relaunch")
+        model.deselect(); check(!model.isSurfaceMoveActive && !model.gizmoVisible,"Deselect ends movement")
+        let kinds = Array(FixtureKind.allCases.filter { $0 != .movingHead }.prefix(7))
+        for kind in kinds { model.selectFixtureKind(kind) }
+        model.selectFixtureKind(kinds[4])
+        check(model.quickFixtureKinds.first == .movingHead && model.quickFixtureKinds.count == 6,"Pinned pilot plus five recent models")
+        check(model.quickFixtureKinds[1] == kinds[4] && Set(model.quickFixtureKinds).count == 6,"Recents deduplicate and reorder")
+        let relaunched = VenueModel(arguments: [],defaults: defaults,placementDirectory: folder)
+        check(relaunched.quickFixtureKinds == model.quickFixtureKinds,"Recent model choices persist independently of venues")
+        model.toolboxVisible = false; model.showVenueControls()
+        let recall = model.toolboxRequestID
+        check(recall != nil && model.venueControlsVisible,"Appearing controls exposes a closed Toolbox")
+        model.showVenueControls()
+        check(model.toolboxRequestID == recall,"Repeated appearance callbacks do not queue duplicate Toolboxes")
+        model.toolboxVisible = true; model.showVenueControls()
+        check(model.toolboxRequestID == recall,"An open Toolbox is not recalled or repositioned")
+        print("Fixture movement checks passed: second click, floor/wall/ceiling moves, plane dragging, atomic Undo/Redo, persistence, compact recents and dock wrist reveal.")
     }
 }

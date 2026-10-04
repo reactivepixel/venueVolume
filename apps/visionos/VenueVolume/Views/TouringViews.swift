@@ -161,6 +161,7 @@ private actor TouringFileReader {
 struct InventoryLibraryView: View {
     @Environment(VenueModel.self) private var model
     @State private var search = ""
+    @State private var browseAll = false
     @State private var adding = false
     @State private var groups = false
     @State private var renameID: UUID?
@@ -173,7 +174,8 @@ struct InventoryLibraryView: View {
     private var modelIDs: [String] {
         var ids: [String] = []
         for unit in visible { let id = unit.fixture.assetID ?? "cube"; if !ids.contains(id) { ids.append(id) } }
-        return ids
+        if browseAll || !search.isEmpty { return ids }
+        return model.quickFixtureKinds.compactMap { $0.assetID ?? "cube" }.filter { ids.contains($0) }
     }
     var body: some View {
         @Bindable var model = model
@@ -182,6 +184,7 @@ struct InventoryLibraryView: View {
                 Button("Add equipment", systemImage: "plus") { adding = true }
                 Button("Groups", systemImage: "folder") { groups = true }
             }.frame(minHeight: 60)
+            Button(browseAll ? "Show recent fixtures" : "Browse all inventory", systemImage: "square.grid.2x2") { browseAll.toggle() }.frame(minHeight: 60)
             TextField("Search inventory", text: $search).textFieldStyle(.roundedBorder)
             Toggle("Select multiple", isOn: $model.multiSelection).toggleStyle(.button).frame(minHeight: 60)
             ScrollView {
@@ -253,7 +256,7 @@ struct InventoryLibraryView: View {
 private struct AddEquipmentSheet: View {
     @Environment(VenueModel.self) private var model
     @Environment(\.dismiss) private var dismiss
-    @State private var search = ""
+    @State private var browsing = false
     @State private var kind = FixtureKind.movingHead
     @State private var quantity = 1
     @State private var venueOnly = false
@@ -271,16 +274,17 @@ private struct AddEquipmentSheet: View {
                         if let group = model.tour?.show.groups.first(where: { $0.id == model.selectedGroupID }) {
                             Toggle("Add to \(group.name)", isOn: $useSelectedGroup)
                         }
-                        TextField("Search catalog", text: $search)
                         Picker("Fixture model", selection: $kind) {
-                            ForEach(FixtureKind.allCases.filter { search.isEmpty || $0.name.localizedCaseInsensitiveContains(search) || $0 == kind }) { Text($0.name).tag($0) }
+                            ForEach(model.quickFixtureKinds.contains(kind) ? model.quickFixtureKinds : model.quickFixtureKinds + [kind]) { Text($0.name).tag($0) }
                         }
+                        Button("Browse all fixtures", systemImage: "square.grid.2x2") { browsing = true }
                         Text("VV Preview 16 · Simulated personality. Manufacturer DMX modes are not provided.").font(.caption).foregroundStyle(.secondary)
                     }
                     Stepper("Quantity: \(quantity)", value: $quantity, in: 1...64)
                 }
                 if let message = model.message { Text(message).foregroundStyle(.secondary) }
             }.navigationTitle("Add equipment")
+                .sheet(isPresented: $browsing) { FixtureCatalogBrowser { chosen in kind = chosen; model.rememberFixtureKind(chosen) } }
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
                     ToolbarItem(placement: .confirmationAction) {
@@ -523,7 +527,7 @@ private struct FocusTargetList: View {
             HStack { Text("Venue focus targets").font(.headline); Spacer(); Button { name = ""; newTarget = true } label: { Image(systemName: "plus").frame(minWidth: 60, minHeight: 60) }.accessibilityLabel("New focus target") }
             ForEach(model.tour?.show.targets ?? []) { target in
                 Button {
-                    model.beginFocusLocation(target.id); openWindow(id: "venue-controls", value: "controls")
+                    model.beginFocusLocation(target.id); model.showVenueControls()
                 } label: {
                     HStack {
                         Text(target.name); Spacer()

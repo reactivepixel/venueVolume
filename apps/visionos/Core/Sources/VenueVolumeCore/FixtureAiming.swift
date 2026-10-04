@@ -23,6 +23,24 @@ public struct PanTiltOverride: Codable, Equatable, Sendable {
 
 /// Geometry uses the catalog's authored meter-scale pivots and -Z optical axis.
 public enum FixtureAiming {
+    /// Align local +Y to the surface while retaining the mount's heading on it.
+    public static func alignedMount(_ orientation: Quaternion3D, normal: SIMD3<Float>) -> Quaternion3D {
+        guard finite(normal), length(normal) > 0.001 else { return orientation }
+        let from = normalized(rotate(orientation, [0,1,0])), to = normalized(normal)
+        let cosine = max(-1, min(1, dot(from, to)))
+        let axis: SIMD3<Float>
+        let q: Quaternion3D
+        if cosine < -0.99999 {
+            axis = normalized(rotate(orientation, [1,0,0]))
+            q = .init(x: axis.x, y: axis.y, z: axis.z, w: 0)
+        } else {
+            axis = cross(from, to)
+            let divisor = sqrt(2 * (1 + cosine))
+            q = .init(x: axis.x/divisor, y: axis.y/divisor, z: axis.z/divisor, w: divisor/2)
+        }
+        return multiply(q, orientation)
+    }
+
     public static func rotatedMount(_ orientation: Quaternion3D, around axis: FixtureAxis, radians: Float) -> Quaternion3D {
         guard radians.isFinite else { return orientation }
         let v = axis.vector * sin(radians/2)

@@ -6,6 +6,7 @@ struct VenueSpaceView: View {
     @Environment(VenueModel.self) private var model
     @Environment(\.dismissWindow) private var dismissWindow
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.dismissImmersiveSpace) private var dismissSpace
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var scene = VenueScene()
@@ -27,6 +28,7 @@ struct VenueSpaceView: View {
             scene.update(model: model, attachments: attachments)
             scene.updatePresetDrag(model: model, content: content, reduceMotion: reduceMotion)
         } attachments: {
+            Attachment(id: "venue-controls-dock") { VenueControlsView().environment(model).auditTextSize().controlSize(.large) }
             ForEach(model.environment?.surfaces ?? [], id: \.id) { surface in
                 Attachment(id: "surface-drop-\(surface.id)") { FixtureSurfaceDrop(surface: surface).environment(model) }
             }
@@ -77,23 +79,18 @@ struct VenueSpaceView: View {
                 dismissWindow(id: "fixture-editor")
             }
         }
-        .onChange(of: model.canSimulatePalm || model.needsManualToolbox, initial: true) { _, needed in
-            if needed { openWindow(id: "venue-controls", value: "controls") }
-        }
-        .onChange(of: model.isPickingRoom || model.gizmoVisible || model.tourPreview != nil) { _, active in
-            if active { openWindow(id: "venue-controls", value: "controls") }
-        }
         .task(id: model.toolboxRequestID) {
             guard let request = model.toolboxRequestID, model.isImmersed else { return }
             // A new window value recalls the toolbox near the viewer instead of
             // refocusing an existing window at its old, possibly distant position.
             if model.toolboxVisible {
-                dismissWindow(id: "toolbox")
+                for identity in model.toolboxWindowIDs { dismissWindow(id: "toolbox", value: identity) }
+                if model.unvaluedToolboxVisible { dismissWindow(id: "toolbox") }
                 for _ in 0..<30 where model.toolboxVisible {
                     do { try await Task.sleep(for: .milliseconds(50)) } catch { return }
                 }
             }
-            guard !Task.isCancelled, model.isImmersed,
+            guard !Task.isCancelled, model.isImmersed, !model.toolboxVisible,
                   model.toolboxRequestID == request else { return }
             openWindow(id: "toolbox", value: request)
         }
@@ -141,6 +138,7 @@ struct VenueSpaceView: View {
         }
         .onAppear {
             model.isImmersed = true
+            model.showVenueControls()
             dismissWindow(id: "launch")
             let arguments = ProcessInfo.processInfo.arguments
             if model.isDemoMode && !arguments.contains("--show-preset-editor") && !arguments.contains("--position-tab") {
@@ -153,18 +151,23 @@ struct VenueSpaceView: View {
         .task {
             #if DEBUG
             await scene.runPresetDragSmoke(model: model)
-            await runStationaryControlsSmoke()
+            await runBottomControlsSmoke()
             await runEditorRecallSmoke()
             await runToolboxWindowSmoke()
             await scene.runInputSmoke(model: model)
+            await scene.runFixtureMovementSmoke(model: model)
             await RoomLibrarySmoke.run(model: model)
             await RoomLibrarySmoke.catalog(model: model)
             await RoomLibrarySmoke.touring(model: model)
+            runVenueExitSmoke()
+            if model.isDemoMode && ProcessInfo.processInfo.arguments.contains("--movement-screenshot") {
+                for identity in model.toolboxWindowIDs { dismissWindow(id: "toolbox", value: identity) }
+            }
             if model.isDemoMode && ProcessInfo.processInfo.arguments.contains("--touring-editor") {
                 // Presentation-only capture: expose the editor instead of leaving
                 // it behind the automatically recalled wrist/controls windows.
                 try? await Task.sleep(for: .seconds(2))
-                if !Task.isCancelled { dismissWindow(id: "toolbox"); dismissWindow(id: "venue-controls") }
+                if !Task.isCancelled { dismissWindow(id: "toolbox") }
             }
             #endif
         }
@@ -177,8 +180,9 @@ struct VenueSpaceView: View {
             model.expandedID = nil
             model.gizmoVisible = false
             dismissWindow(id: "fixture-editor")
-            dismissWindow(id: "toolbox")
-            dismissWindow(id: "venue-controls")
+            for identity in model.toolboxWindowIDs { dismissWindow(id: "toolbox", value: identity) }
+            if model.unvaluedToolboxVisible { dismissWindow(id: "toolbox") }
+            model.venueControlsVisible = false
             model.resetToolboxActivation()
             model.endPresetDrag()
             model.previewDraft = false
@@ -192,15 +196,35 @@ struct VenueSpaceView: View {
     }
 
     #if DEBUG
-    private func runStationaryControlsSmoke() async {
+    private func runVenueExitSmoke() {
+        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--venue-exit-smoke") else { return }
+        // Outlive this view's task cancellation when the immersive space closes.
+        Task { @MainActor in
+            do {
+                model.requestToolbox()
+                try await waitForToolbox(model.toolboxRequestID)
+                await dismissSpace()
+                for _ in 0..<100 where model.isImmersed || model.toolboxVisible {
+                    try await Task.sleep(for: .milliseconds(50))
+                }
+                guard !model.isImmersed, !model.toolboxVisible, model.toolboxWindowIDs.isEmpty,
+                      !model.unvaluedToolboxVisible, model.toolboxRequestID == nil else {
+                    throw EnvironmentError.invalid("Venue exit left wrist window or recall active")
+                }
+                print("VENUE_EXIT_SMOKE_PASS immersed=false toolboxWindows=0 pendingRecall=false")
+            } catch { print("VENUE_EXIT_SMOKE_FAIL \(error)") }
+        }
+    }
+
+    private func runBottomControlsSmoke() async {
         guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--audit-controls-smoke") else { return }
         do {
             for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
             guard let fixture = model.fixtures.first else { throw EnvironmentError.invalid("Missing fixture") }
             model.beginRetarget(fixture.id)
             for _ in 0..<100 where !model.venueControlsVisible { try await Task.sleep(for: .milliseconds(50)) }
-            guard model.venueControlsVisible, scene.headAnchor.children.isEmpty else {
-                throw EnvironmentError.invalid("Targeting did not use the stationary control window")
+            guard model.venueControlsVisible, scene.headAnchor.children.contains(where: { $0.name == "venue-controls-dock" }) else {
+                throw EnvironmentError.invalid("Targeting did not use the bottom controls attachment")
             }
             guard model.acceptTarget(.init(x: 2.9, y: 1.8, z: -7.67)) else { throw EnvironmentError.invalid("Preview failed") }
             model.cancelPicking()
@@ -211,8 +235,8 @@ struct VenueSpaceView: View {
             guard model.fixture(fixture.id)?.channels == fixture.channels else { throw EnvironmentError.invalid("Target undo failed") }
             model.beginRetarget(fixture.id)
             _ = model.acceptTarget(.init(x: 2.9, y: 1.8, z: -7.67))
-            print("STATIONARY_CONTROLS_SMOKE_PASS normalWindow=true headControls=0 cancel=true save=true undo=true")
-        } catch { print("STATIONARY_CONTROLS_SMOKE_FAIL \(error)") }
+            print("VENUE_CONTROLS_DOCK_SMOKE_PASS bottomAttachment=true wristReveal=true cancel=true save=true undo=true")
+        } catch { print("VENUE_CONTROLS_DOCK_SMOKE_FAIL \(error)") }
     }
 
     private func runEditorRecallSmoke() async {
@@ -248,7 +272,7 @@ struct VenueSpaceView: View {
             model.requestToolbox()
             try await waitForToolbox(model.toolboxRequestID)
             let heldRequest = model.toolboxRequestID
-            dismissWindow(id: "toolbox")
+            if let identity = model.toolboxPresentedID { dismissWindow(id: "toolbox", value: identity) }
             try await waitForToolbox(nil)
             try await Task.sleep(for: .milliseconds(300))
             guard !model.toolboxVisible, model.toolboxRequestID == heldRequest else {

@@ -32,12 +32,6 @@ struct VenueVolumeApp: App {
             .windowResizability(.contentMinSize)
             .defaultSize(width: 620, height: 760)
 
-        WindowGroup(id: "venue-controls", for: String.self) { _ in
-            VenueControlsView().environment(model).auditTextSize().controlSize(.large)
-        } defaultValue: { "controls" }
-        .windowResizability(.contentMinSize)
-        .defaultSize(width: 620, height: 480)
-
         WindowGroup(id: "diagnostics") {
             DebugPanel().environment(model).auditTextSize().controlSize(.large)
         }

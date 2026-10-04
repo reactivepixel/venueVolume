@@ -15,6 +15,11 @@ private struct FixtureTransformDrag {
     var members: [Fixture] = []
     var pivot: Position3D?
 }
+private struct FixtureSurfaceDrag {
+    var fixture: Fixture
+    var plane: FixtureMountPlane
+    var start: SIMD3<Float>
+}
 struct RoomRequest { var room: LibraryRoom; var setup: VenueSetup?; var blank: Bool; var configurationID: UUID? = nil }
 
 @MainActor @Observable
@@ -72,6 +77,21 @@ final class VenueModel {
     private var savedSetup: VenueSetup?
     var scannedMesh: ScannedMesh?
     var fixtureKind = FixtureKind.movingHead
+    private(set) var recentFixtureKinds: [FixtureKind] = []
+    var quickFixtureKinds: [FixtureKind] { [.movingHead] + recentFixtureKinds.filter { $0 != .movingHead }.prefix(5) }
+    func rememberFixtureKind(_ proposed: FixtureKind) {
+        let kind: FixtureKind = proposed.assetID == LightingPreview.assetID ? .movingHead : proposed
+        recentFixtureKinds.removeAll { $0 == kind }
+        recentFixtureKinds.insert(kind, at: 0)
+        recentFixtureKinds = Array(recentFixtureKinds.prefix(6))
+        if !isDemoMode { defaults.set(recentFixtureKinds.map(\.rawValue), forKey: "venue.fixture-recents.v1") }
+    }
+    func selectFixtureKind(_ kind: FixtureKind) { fixtureKind = kind; rememberFixtureKind(kind) }
+    func showVenueControls() {
+        let appearing = !venueControlsVisible
+        venueControlsVisible = true
+        if appearing && !toolboxVisible { requestToolbox() }
+    }
     var draggingFixture: FixtureKind?
     var activeRoom: LibraryRoom? { rooms.first { $0.manifest.id == environment?.id && $0.manifest.version == environment?.version } }
     var hasUnsavedSetup: Bool {
@@ -94,6 +114,17 @@ final class VenueModel {
     var presetMessage: String?
     var toolboxVisible = false
     var toolboxPresentedID: UUID?
+    private(set) var toolboxWindowIDs = Set<UUID>()
+    private(set) var unvaluedToolboxVisible = false
+    func toolboxAppeared(_ id: UUID?) {
+        if let id { toolboxWindowIDs.insert(id) } else { unvaluedToolboxVisible = true }
+        toolboxVisible = true; toolboxPresentedID = id
+    }
+    func toolboxDisappeared(_ id: UUID?) {
+        if let id { toolboxWindowIDs.remove(id) } else { unvaluedToolboxVisible = false }
+        toolboxVisible = !toolboxWindowIDs.isEmpty || unvaluedToolboxVisible
+        if toolboxPresentedID == id { toolboxPresentedID = toolboxWindowIDs.first }
+    }
     private(set) var toolboxRequestID: UUID?
     private var palmActivationHeld = false
 
@@ -140,12 +171,17 @@ final class VenueModel {
     var gizmoVisible = false
     var transformMode = FixtureTransformMode.rotate
     private var transformDrag: FixtureTransformDrag?
-    var isTransformDragging: Bool { transformDrag != nil }
+    private var surfaceDrag: FixtureSurfaceDrag?
+    var isTransformDragging: Bool { transformDrag != nil || surfaceDrag != nil }
+    var isSurfaceMoveActive: Bool {
+        if case .move = scenePick { return true }
+        return gizmoVisible && transformMode == .move && selectedID != nil && !isRetargeting
+    }
     var isRetargeting: Bool { if case .aim = scenePick { true } else { focusPickID != nil } }
     var isPickingRoom: Bool { isPlacing || scenePick != nil || focusPickID != nil }
     var pickingInstruction: String {
         switch scenePick {
-        case .move: "Look at a clear floor or tabletop, then pinch to reposition."
+        case .move: "Click a surface to move and align the fixture, or drag its body along its current plane."
         case .aim: "Look and click to preview DMX aim. Hold and move your hand to adjust. Save updates this preset and its assigned fixtures; Cancel restores."
         case nil: "Look at a clear floor or tabletop, then pinch to place."
         }
@@ -204,6 +240,8 @@ final class VenueModel {
         placements = PlacementStore(directory: placementDirectory ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("VenueVolume/Placements"))
         library = RoomLibraryStore(directory: placements.directory.appendingPathComponent(isDemoModeDirectory(arguments) ? "DemoLibrary" : "Library"))
         isDemoMode = isDemoModeDirectory(arguments)
+        var seenKinds = Set<FixtureKind>()
+        recentFixtureKinds = Array((defaults.stringArray(forKey: "venue.fixture-recents.v1") ?? []).compactMap(FixtureKind.init(rawValue:)).filter { seenKinds.insert($0).inserted }.prefix(6))
         if !isDemoMode, let data = defaults.data(forKey: "venue.presets.v1"),
            let saved = try? JSONDecoder().decode([DMXPreset].self, from: data),
            saved.allSatisfy({ $0.validationIssue == nil }), Set(saved.map(\.id)).count == saved.count {
@@ -420,11 +458,12 @@ final class VenueModel {
         guard fixture(id) != nil else { return }
         if extendSelection, multiSelection, touring.active != nil { toggleUnitSelection(id); return }
         cancelTourPreview(); selectedUnitIDs = [id]; selectedGroupID = nil
-        if selectedID != id { expandedID = nil; lastTarget = nil }
+        if selectedID != id { expandedID = nil; lastTarget = nil; gizmoVisible = false }
         cancelPicking()
         selectedID = id
         toolboxTab = 0
         recent.use(.fixture(id))
+        if let fixture = fixture(id) { rememberFixtureKind(fixture.assetID.flatMap { $0 == LightingPreview.assetID ? .movingHead : FixtureKind(rawValue: $0) } ?? .cube) }
         isPlacing = false
         if expand { expandedID = expandedID == id ? nil : id }
     }
@@ -439,6 +478,7 @@ final class VenueModel {
     }
 
     func beginPlacement() {
+        rememberFixtureKind(fixtureKind)
         endTransformDrag(); gizmoVisible = false
         targetPreview = nil; pendingTarget = nil
         scenePick = nil
@@ -450,7 +490,7 @@ final class VenueModel {
 
     func beginFixtureDrag(_ kind: FixtureKind) {
         endTransformDrag(); gizmoVisible = false; cancelPicking()
-        fixtureKind = kind; draggingFixture = kind; isPlacing = true; scenePick = nil
+        selectFixtureKind(kind); draggingFixture = kind; isPlacing = true; scenePick = nil
         fixtureDragLease?.cancel()
         fixtureDragLease = Task { [weak self] in
             do { try await Task.sleep(for: .seconds(30)) } catch { return }
@@ -460,7 +500,7 @@ final class VenueModel {
 
     func dropFixture(_ tokens: [String], at point: Position3D, surfaceID: String) -> Bool {
         guard let token = tokens.first, let kind = FixtureKind(token: token), canPlace else { return false }
-        fixtureKind = kind; isPlacing = true
+        selectFixtureKind(kind); isPlacing = true
         let count = fixtures.count
         place(at: FixtureAiming.vector(point), surfaceID: surfaceID)
         draggingFixture = nil; fixtureDragLease?.cancel()
@@ -713,15 +753,7 @@ final class VenueModel {
         }
     }
 
-    func beginReposition(_ id: UUID) {
-        guard canPlace, fixture(id) != nil else { return }
-        select(id, extendSelection: false)
-        gizmoVisible = false
-        scenePick = .move(id)
-        previewDraft = false
-        lastTarget = nil
-        message = nil
-    }
+    func beginReposition(_ id: UUID) { beginTransform(id) }
 
     func cancelPicking() {
         fixtureDragLease?.cancel(); fixtureDragLease = nil
@@ -792,7 +824,12 @@ final class VenueModel {
 
     func beginTransform(_ id: UUID) {
         guard canPlace, fixture(id) != nil else { return }
-        select(id, extendSelection: false); gizmoVisible = true; previewDraft = false
+        select(id, extendSelection: false); gizmoVisible = true; transformMode = .move; previewDraft = false
+    }
+
+    func tapFixture(_ id: UUID) {
+        if selectedID == id && !multiSelection { beginTransform(id) }
+        else { select(id) }
     }
 
     @discardableResult func updateFixtureDetails(_ id: UUID, name: String, universe: Int, address: Int) -> Bool {
@@ -845,9 +882,10 @@ final class VenueModel {
     }
 
     func beginTransformDrag(axis: FixtureAxis, mode: FixtureTransformMode, at point: SIMD3<Float>) {
-        guard canPlace, gizmoVisible, transformDrag == nil, let id = selectedID, let fixture = fixture(id) else { return }
+        guard canPlace, gizmoVisible, !isTransformDragging, let id = selectedID, let fixture = fixture(id) else { return }
         let pivot = transformFixtureContext?.position ?? fixture.position
-        let center = FixtureAiming.vector(pivot) + [0, fixture.assetID == nil ? 0 : fixture.visualHeight/2, 0]
+        var context = fixture; context.position = pivot
+        let center = FixtureAiming.vector(context.visualCenter)
         let angle = axis.angle(at: point, about: center)
         guard mode == .move || angle != nil else { return }
         cancelPicking(); previewDraft = false
@@ -865,12 +903,15 @@ final class VenueModel {
             candidate.position = .init(x: position.x, y: position.y, z: position.z)
             if let issue = candidate.placementIssue(in: environment) { message = issue; return }
         } else {
-            let center = FixtureAiming.vector(drag.pivot ?? candidate.position) + [0, candidate.assetID == nil ? 0 : candidate.visualHeight/2, 0]
+            var context = drag.fixture; context.position = drag.pivot ?? candidate.position
+            let center = FixtureAiming.vector(context.visualCenter)
             guard let next = drag.axis.angle(at: point, about: center), let previous = drag.lastAngle else { return }
             drag.totalAngle += FixtureAiming.angleDelta(from: previous, to: next); drag.lastAngle = next
             candidate.orientation = FixtureAiming.rotatedMount(candidate.orientation, around: drag.axis, radians: drag.totalAngle)
         }
         transformDrag = drag; candidate.surfaceID = nil
+        if drag.mode == .move { candidate.mountPlane = nil }
+        else { candidate.mountPlane = candidate.mountPlane ?? supportingPlane(for: drag.fixture) }
         guard candidate != fixtures[i], candidate.validationIssue(among: fixtures) == nil else { return }
         if drag.members.count > 1 {
             let pivot = FixtureAiming.vector(drag.pivot ?? drag.fixture.position)
@@ -889,6 +930,8 @@ final class VenueModel {
                     member.orientation = FixtureAiming.rotatedMount(original.orientation, around: drag.axis, radians: drag.totalAngle)
                 }
                 member.surfaceID = nil
+                if drag.mode == .move { member.mountPlane = nil }
+                else { member.mountPlane = member.mountPlane ?? supportingPlane(for: original) }
                 if let issue = member.placementIssue(in: environment) { message = issue; return }
                 updates[index] = member
             }
@@ -899,35 +942,92 @@ final class VenueModel {
     }
 
     func endTransformDrag() {
-        guard transformDrag != nil else { return }
-        transformDrag = nil; endHistoryAction()
+        guard isTransformDragging else { return }
+        transformDrag = nil; surfaceDrag = nil; endHistoryAction()
+    }
+
+    func supportingPlane(for fixture: Fixture) -> FixtureMountPlane {
+        if let plane = fixture.mountPlane { return plane }
+        let offset: Float = fixture.assetID == nil ? fixture.footprintRadius : 0
+        return .init(origin: .init(x: fixture.position.x, y: fixture.position.y-offset, z: fixture.position.z), normal: .init(x: 0,y: 1,z: 0))
+    }
+
+    func beginSurfaceDrag(_ id: UUID, at point: SIMD3<Float>) {
+        guard canPlace, !libraryBusy, gizmoVisible, selectedID == id, !isTransformDragging,
+              !isRetargeting, !isPlacing, let fixture = fixture(id) else { return }
+        cancelPicking(); previewDraft = false; transformMode = .move
+        beginHistoryAction("Slide fixture on its surface")
+        surfaceDrag = .init(fixture: fixture, plane: supportingPlane(for: fixture), start: point)
+    }
+
+    func surfaceDragDestination(to point: SIMD3<Float>) -> (point: Position3D, normal: Position3D, radius: Float)? {
+        guard let drag = surfaceDrag else { return nil }
+        var fixture = drag.fixture
+        let moved = FixtureAiming.vector(fixture.position) + drag.plane.projected(point-drag.start)
+        fixture.position = .init(x: moved.x,y: moved.y,z: moved.z)
+        return (mountingPoint(for: fixture), drag.plane.normal, fixture.footprintRadius)
+    }
+
+    @discardableResult func updateSurfaceDrag(to point: SIMD3<Float>) -> Bool {
+        guard let drag = surfaceDrag, selectedID == drag.fixture.id, let environment,
+              let i = fixtures.firstIndex(where: { $0.id == drag.fixture.id }),
+              [point.x,point.y,point.z].allSatisfy(\.isFinite) else { return false }
+        let delta = drag.plane.projected(point-drag.start)
+        if FixtureAiming.length(delta) < 0.0001 { return true }
+        var candidate = drag.fixture
+        let moved = FixtureAiming.vector(candidate.position) + delta
+        candidate.position = .init(x: moved.x,y: moved.y,z: moved.z); candidate.mountPlane = drag.plane
+        let base = mountingPoint(for: candidate)
+        if let surfaceID = candidate.surfaceID, let surface = environment.surfaces.first(where: { $0.id == surfaceID }),
+           surface.fixturePosition(hit: base, halfSize: candidate.footprintRadius) == nil {
+            message = "Keep the fixture on its current surface, or click a different surface."; return false
+        }
+        if let scannedMesh, !scannedMesh.supports(base, normal: drag.plane.normal, radius: candidate.footprintRadius) {
+            message = "The scan has no support here. Choose a captured surface."; return false
+        }
+        if let issue = candidate.placementIssue(in: environment) ?? candidate.validationIssue(among: fixtures) { message = issue; return false }
+        guard candidate != fixtures[i] else { return true }
+        fixtures[i] = candidate; revision += 1; persist(); message = nil
+        return true
+    }
+
+    func mountingPoint(for fixture: Fixture) -> Position3D {
+        let p = FixtureAiming.vector(fixture.position)
+            - (fixture.assetID == nil ? FixtureAiming.rotate(fixture.orientation, [0,fixture.footprintRadius,0]) : .zero)
+        return .init(x: p.x,y: p.y,z: p.z)
+    }
+
+    @discardableResult func moveToSurface(at point: Position3D, normal: Position3D, surfaceID: String? = nil) -> Bool {
+        guard canPlace, !libraryBusy, isSurfaceMoveActive, let id = selectedID,
+              let i = fixtures.firstIndex(where: { $0.id == id }), let environment else { return false }
+        let plane = FixtureMountPlane(origin: point, normal: normal)
+        guard plane.isValid else { message = "Choose a valid surface."; return false }
+        var candidate = fixtures[i]
+        if let surfaceID, let surface = environment.surfaces.first(where: { $0.id == surfaceID }),
+           surface.fixturePosition(hit: point, halfSize: candidate.footprintRadius) == nil {
+            message = "Choose a surface with enough space for the fixture."; return false
+        }
+        if let scannedMesh, !scannedMesh.supports(point, normal: normal, radius: candidate.footprintRadius) {
+            message = "Choose a captured surface with enough space."; return false
+        }
+        candidate.orientation = FixtureAiming.alignedMount(candidate.orientation, normal: FixtureAiming.vector(normal))
+        let position = FixtureAiming.vector(point) + (candidate.assetID == nil ? FixtureAiming.vector(normal)*candidate.footprintRadius : .zero)
+        candidate.position = .init(x: position.x,y: position.y,z: position.z)
+        candidate.surfaceID = surfaceID; candidate.mountPlane = plane
+        if let issue = candidate.placementIssue(in: environment) ?? candidate.validationIssue(among: fixtures) { message = issue; return false }
+        endTransformDrag(); beginHistoryAction("Move fixture to surface"); defer { endHistoryAction() }
+        fixtures[i] = candidate; scenePick = nil; gizmoVisible = true; transformMode = .move; lastTarget = nil
+        revision += 1; persist(); message = "Fixture moved and aligned to the surface."
+        return true
     }
 
     func reposition(at hit: Position3D, surfaceID: String) {
-        guard !libraryBusy else { return }
-        beginHistoryAction("Reposition fixture"); defer { endHistoryAction() }
-        guard canPlace, case .move(let id) = scenePick,
-              let index = fixtures.firstIndex(where: { $0.id == id }),
-              let surface = environment?.surfaces.first(where: { $0.id == surfaceID }) else { return }
-        let radius = fixtures[index].footprintRadius
-        guard let center = surface.fixturePosition(hit: hit, halfSize: radius) else {
-            message = "Choose a top surface with enough space for the fixture."; return
-        }
-        fixtures[index].position = .init(x: center.x, y: center.y-(fixtures[index].assetID == nil ? 0 : radius), z: center.z)
-        fixtures[index].surfaceID = surfaceID
-        scenePick = nil; lastTarget = nil
-        revision += 1; persist(); message = "Fixture repositioned. Its orientation and DMX values are preserved."
+        guard let surface = environment?.surfaces.first(where: { $0.id == surfaceID }) else { return }
+        _ = moveToSurface(at: hit, normal: .init(x: surface.normal[0],y: surface.normal[1],z: surface.normal[2]), surfaceID: surfaceID)
     }
 
     func repositionOnMesh(at point: Position3D) {
-        guard !libraryBusy else { return }
-        beginHistoryAction("Reposition fixture on mesh"); defer { endHistoryAction() }
-        guard canPlace, case .move(let id) = scenePick, let i = fixtures.firstIndex(where: { $0.id == id }), let scannedMesh else { return }
-        let radius = fixtures[i].footprintRadius
-        guard scannedMesh.supports(point, radius: radius) else { message = "Choose a scanned horizontal surface with enough space."; return }
-        fixtures[i].position = .init(x: point.x, y: point.y+(fixtures[i].assetID == nil ? radius : 0), z: point.z)
-        fixtures[i].surfaceID = nil; scenePick = nil; lastTarget = nil
-        revision += 1; persist()
+        _ = moveToSurface(at: point, normal: .init(x: 0,y: 1,z: 0))
     }
 
     func resetAim(_ id: UUID) {
@@ -1443,7 +1543,7 @@ extension VenueModel {
             }
         }
         if !venueOnly { session.show.revision += 1 }
-        _ = commitTour(session, fixtures: fixtures, title: "Add \(quantity) × \(kind.name) · \(venueOnly ? "venue" : "show")", publish: !venueOnly)
+        if commitTour(session, fixtures: fixtures, title: "Add \(quantity) × \(kind.name) · \(venueOnly ? "venue" : "show")", publish: !venueOnly) { rememberFixtureKind(kind) }
     }
     func addQuantity(name: String, quantity: Int) {
         editTourShow("Add quantity equipment · \(name)") { $0.show.quantities.append(EquipmentQuantity(name: name, quantity: quantity)) }
@@ -1527,6 +1627,9 @@ extension VenueModel {
         selectedID = fixtures.first { selectedUnitIDs.contains($0.id) }?.id; expandedID = nil
     }
     func selectInventory(_ id: UUID) {
+        if let unit = tour?.allUnits.first(where: { $0.id == id }) {
+            rememberFixtureKind(unit.fixture.assetID.flatMap { $0 == LightingPreview.assetID ? .movingHead : FixtureKind(rawValue: $0) } ?? .cube)
+        }
         if multiSelection { toggleUnitSelection(id); return }
         beginHistoryAction("Select inventory unit"); defer { endHistoryAction() }
         deselect(); selectedUnitIDs = [id]; selectedID = fixture(id)?.id
@@ -1534,7 +1637,7 @@ extension VenueModel {
     func beginInventoryPlacement(_ id: UUID, repeatAll: Bool = false) {
         guard canPlace, let unit = availableUnits.first(where: { $0.id == id }) else { message = "This unit is already placed or unavailable."; return }
         cancelTourPreview(); cancelPicking(); gizmoVisible = false
-        fixtureKind = unit.fixture.assetID.flatMap { FixtureKind(rawValue: $0) } ?? .cube
+        selectFixtureKind(unit.fixture.assetID.flatMap { $0 == LightingPreview.assetID ? .movingHead : FixtureKind(rawValue: $0) } ?? .cube)
         placementUnitID = id; repeatPlacement = repeatAll
         placementQueue = [id] + (repeatAll ? availableUnits.filter { $0.id != id && $0.fixture.assetID == unit.fixture.assetID }.map(\.id) : [])
         isPlacing = true; message = "Place \(unit.fixture.name) · \(placementQueue.count) remaining"
@@ -1554,7 +1657,7 @@ extension VenueModel {
               let unit = availableUnits.first(where: { placementUnitID == nil ? $0.fixture.assetID == fixtureKind.assetID : $0.id == placementUnitID }) else { message = "No available unit. Add equipment to the show first."; isPlacing = false; return }
         do {
             var fixture = unit.fixture
-            fixture.position = .init(x: base.x, y: base.y + (fixture.assetID == nil ? fixtureKind.radius : 0), z: base.z); fixture.surfaceID = surfaceID
+            fixture.position = .init(x: base.x, y: base.y + (fixture.assetID == nil ? fixtureKind.radius : 0), z: base.z); fixture.surfaceID = surfaceID; fixture.mountPlane = nil
             if fixture.validationIssue(among: fixtures + [fixture]) != nil {
                 guard let patch = Fixture.nextAvailablePatch(in: fixtures, footprint: fixture.channels.count) else { throw PresetError("No free patch is available.") }
                 fixture.universe = patch.universe; fixture.startAddress = patch.address
