@@ -1,16 +1,32 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { PointerLockControls } from "three/addons/controls/PointerLockControls.js";
 import { ISOMETRIC_VIEWS, isometricCamera } from "./venue-scene";
 
-export default function SceneViewer({ model, ghost, view, onReady, onError }) {
+export default function SceneViewer({
+  model,
+  ghost,
+  hideCeiling,
+  spawn,
+  view,
+  onReady,
+  onError,
+}) {
   const host = useRef(null),
     api = useRef(null);
+  const [position, setPosition] = useState(null);
   useEffect(() => {
     let renderer,
       controls,
+      walkControls,
       observer,
-      disposed = false;
+      disposed = false,
+      frame,
+      previousFrame = performance.now(),
+      lastPositionUpdate = 0;
+    const keys = new Set();
+    let onClick, onKeyDown, onKeyUp, onBlur;
     const originals = new Map(),
       faded = new Map();
     try {
@@ -39,6 +55,10 @@ export default function SceneViewer({ model, ghost, view, onReady, onError }) {
       let camera = isometricCamera(bounds, ISOMETRIC_VIEWS[0].direction);
       const draw = () => renderer.render(scene, camera);
       function setCamera(next, target) {
+        walkControls?.unlock();
+        walkControls?.dispose();
+        walkControls = null;
+        setPosition(null);
         controls?.dispose();
         camera = next;
         controls = new OrbitControls(camera, renderer.domElement);
@@ -49,6 +69,30 @@ export default function SceneViewer({ model, ghost, view, onReady, onError }) {
         draw();
       }
       let fittedTarget = model;
+      function walk() {
+        if (!spawn) return;
+        controls?.dispose();
+        controls = null;
+        walkControls?.unlock();
+        walkControls?.dispose();
+        const size = renderer.getSize(new THREE.Vector2());
+        camera = new THREE.PerspectiveCamera(70, size.x / size.y, 0.05, 250);
+        const eyeHeight = Math.min(
+          1.65,
+          (spawn.bounds.max[1] - spawn.position[1]) * 0.7,
+        );
+        camera.position.set(
+          spawn.position[0],
+          spawn.position[1] + eyeHeight,
+          spawn.position[2],
+        );
+        camera.rotation.set(0, spawn.yaw, 0, "YXZ");
+        walkControls = new PointerLockControls(camera, renderer.domElement);
+        walkControls.addEventListener("change", draw);
+        keys.clear();
+        setPosition(camera.position.toArray());
+        draw();
+      }
       function fit(direction, target = model) {
         fittedTarget = target;
         const box = new THREE.Box3().setFromObject(target);
@@ -61,6 +105,12 @@ export default function SceneViewer({ model, ghost, view, onReady, onError }) {
       const resize = () => {
         const { width, height } = host.current.getBoundingClientRect();
         renderer.setSize(width, height);
+        if (camera.isPerspectiveCamera) {
+          camera.aspect = width / height;
+          camera.updateProjectionMatrix();
+          draw();
+          return;
+        }
         if (controls) {
           const direction = camera.position
             .clone()
@@ -100,7 +150,79 @@ export default function SceneViewer({ model, ghost, view, onReady, onError }) {
             );
           });
       });
+      onClick = function () {
+        if (walkControls && !walkControls.isLocked) walkControls.lock();
+      };
+      onKeyDown = function (event) {
+        if (!walkControls?.isLocked) return;
+        if (event.code === "Escape") {
+          walkControls.unlock();
+          keys.clear();
+          return;
+        }
+        if (
+          [
+            "KeyW",
+            "KeyA",
+            "KeyS",
+            "KeyD",
+            "ArrowUp",
+            "ArrowDown",
+            "ArrowLeft",
+            "ArrowRight",
+          ].includes(event.code)
+        ) {
+          event.preventDefault();
+          keys.add(event.code);
+        }
+      };
+      onKeyUp = function (event) {
+        keys.delete(event.code);
+      };
+      onBlur = function () {
+        keys.clear();
+      };
+      renderer.domElement.addEventListener("click", onClick);
+      window.addEventListener("keydown", onKeyDown);
+      window.addEventListener("keyup", onKeyUp);
+      window.addEventListener("blur", onBlur);
+      function animate(now) {
+        const delta = Math.min((now - previousFrame) / 1000, 0.05);
+        previousFrame = now;
+        if (walkControls?.isLocked) {
+          const forward =
+            Number(keys.has("KeyW") || keys.has("ArrowUp")) -
+            Number(keys.has("KeyS") || keys.has("ArrowDown"));
+          const right =
+            Number(keys.has("KeyD") || keys.has("ArrowRight")) -
+            Number(keys.has("KeyA") || keys.has("ArrowLeft"));
+          if (forward || right) {
+            const speed = (2 * delta) / Math.hypot(forward, right);
+            walkControls.moveForward(forward * speed);
+            walkControls.moveRight(right * speed);
+            const margin = 0.1;
+            camera.position.x = THREE.MathUtils.clamp(
+              camera.position.x,
+              spawn.bounds.min[0] + margin,
+              spawn.bounds.max[0] - margin,
+            );
+            camera.position.z = THREE.MathUtils.clamp(
+              camera.position.z,
+              spawn.bounds.min[2] + margin,
+              spawn.bounds.max[2] - margin,
+            );
+            draw();
+            if (now - lastPositionUpdate > 250) {
+              setPosition(camera.position.toArray());
+              lastPositionUpdate = now;
+            }
+          }
+        }
+        frame = requestAnimationFrame(animate);
+      }
+      frame = requestAnimationFrame(animate);
       api.current = {
+        walk,
         fit: (id) =>
           fit(
             ISOMETRIC_VIEWS.find((v) => v.id === id)?.direction ||
@@ -116,6 +238,12 @@ export default function SceneViewer({ model, ghost, view, onReady, onError }) {
         ghost: (enabled) => {
           originals.forEach((m, o) => {
             o.material = enabled ? faded.get(o) : m;
+          });
+          draw();
+        },
+        ceiling: (hidden) => {
+          model.traverse((o) => {
+            if (o.userData.venuePart === "ceiling") o.visible = !hidden;
           });
           draw();
         },
@@ -178,10 +306,17 @@ export default function SceneViewer({ model, ghost, view, onReady, onError }) {
     }
     return () => {
       disposed = true;
+      cancelAnimationFrame(frame);
+      if (onClick) renderer?.domElement.removeEventListener("click", onClick);
+      if (onKeyDown) window.removeEventListener("keydown", onKeyDown);
+      if (onKeyUp) window.removeEventListener("keyup", onKeyUp);
+      if (onBlur) window.removeEventListener("blur", onBlur);
       onReady(null);
       api.current = null;
       observer?.disconnect();
       controls?.dispose();
+      walkControls?.unlock();
+      walkControls?.dispose();
       originals.forEach((m, o) => {
         o.material = m;
       });
@@ -197,7 +332,20 @@ export default function SceneViewer({ model, ghost, view, onReady, onError }) {
     api.current?.ghost(ghost);
   }, [ghost, model]);
   useEffect(() => {
-    api.current?.fit(view);
+    if (view === "walk") api.current?.walk();
+    else if (view !== "focus") api.current?.fit(view);
   }, [view, model]);
-  return <div className="venue-scene-canvas" ref={host} />;
+  useEffect(() => {
+    api.current?.ceiling(hideCeiling);
+  }, [hideCeiling, model]);
+  return (
+    <div className="venue-scene-canvas" ref={host}>
+      {position && (
+        <output className="venue-walk-position" aria-label="Viewer position">
+          X {position[0].toFixed(2)} · Y {position[1].toFixed(2)} · Z{" "}
+          {position[2].toFixed(2)} m
+        </output>
+      )}
+    </div>
+  );
 }

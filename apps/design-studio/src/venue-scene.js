@@ -10,6 +10,7 @@ import {
   sha256,
   MAX_SAVE_BYTES,
 } from "./venue-save.js";
+import { separateCeiling } from "./venue-ceiling.js";
 
 // Axes are room-local: right +X, up +Y, front −Z. All eight cube corners.
 export const ISOMETRIC_VIEWS = [1, -1].flatMap((y) =>
@@ -199,6 +200,13 @@ export async function sceneFromSave(file, progress = () => {}) {
     forwardAxis: "-Z",
     assetSHA256: manifest.asset.sha256,
     fixtureCount: save.setup.placements.fixtures.length,
+    spawn: manifest.spawn
+      ? {
+          position: manifest.spawn.position,
+          yaw: manifest.spawn.yaw,
+          bounds: manifest.bounds,
+        }
+      : null,
     notes:
       "Static placement snapshot. Continuous joints use their rest phase. Live lighting and cues are not baked.",
   };
@@ -240,6 +248,7 @@ export async function sceneFromSave(file, progress = () => {}) {
     if (manifest.assetTranslation)
       roomRoot.position.fromArray(manifest.assetTranslation);
     scene.add(roomRoot);
+    scene.userData.ceilingTriangles = separateCeiling(roomRoot, manifest);
     let index = 0;
     for (const f of save.setup.placements.fixtures) {
       progress(
@@ -375,6 +384,8 @@ export async function readExportedGLB(file) {
     name: metadata.name,
     roomName: metadata.extras.roomName || metadata.extras.roomID,
     setupID: metadata.extras.setupID,
+    spawn: metadata.extras.spawn || null,
+    ceilingTriangles: metadata.extras.ceilingTriangles || 0,
     roomID: metadata.extras.roomID,
     fixtures,
     glb: new Blob([bytes], { type: "model/gltf-binary" }),

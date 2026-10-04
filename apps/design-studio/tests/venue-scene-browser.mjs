@@ -86,6 +86,55 @@ try {
     page.getByRole("button", { name: "Export all 8 views" }),
   ).toBeEnabled({ timeout: 90000 });
   await expect(page.getByRole("alert")).toHaveCount(0);
+  const startPosition = await page.getByLabel("Viewer position").innerText();
+  assert.match(startPosition, /X 2\.66.*Y 1\.65.*Z -1\.10/);
+  await page
+    .locator(".venue-scene-canvas canvas")
+    .click({ position: { x: 120, y: 120 } });
+  await page.waitForFunction(
+    () => document.pointerLockElement?.tagName === "CANVAS",
+  );
+  await page.waitForTimeout(100);
+  await page.keyboard.down("w");
+  await page.waitForTimeout(550);
+  await page.keyboard.up("w");
+  await expect(page.getByLabel("Viewer position")).not.toHaveText(
+    startPosition,
+  );
+  await page.keyboard.press("Escape");
+  await page.getByRole("button", { name: "Walk from spawn" }).click();
+  await expect(page.getByLabel("Viewer position")).toHaveText(startPosition);
+  await page
+    .getByRole("button", { name: "upper front right", exact: true })
+    .click();
+  await expect(page.getByLabel("Viewer position")).toHaveCount(0);
+  const hiddenEvent = page.waitForEvent("download");
+  await page
+    .getByRole("button", { name: "Export selected view (.png)" })
+    .click();
+  const hiddenImage = await hiddenEvent;
+  await hiddenImage.saveAs(new URL("ceiling-hidden.png", output).pathname);
+  await page.getByLabel("Hide ceiling").uncheck();
+  const visibleEvent = page.waitForEvent("download");
+  await page
+    .getByRole("button", { name: "Export selected view (.png)" })
+    .click();
+  const visibleImage = await visibleEvent;
+  await visibleImage.saveAs(new URL("ceiling-visible.png", output).pathname);
+  assert.notEqual(
+    createHash("sha256")
+      .update(await readFile(new URL("ceiling-hidden.png", output)))
+      .digest("hex"),
+    createHash("sha256")
+      .update(await readFile(new URL("ceiling-visible.png", output)))
+      .digest("hex"),
+    "Ceiling toggle must change rendered geometry",
+  );
+  await page.getByLabel("Hide ceiling").check();
+  await page.screenshot({
+    path: new URL("02-open-isometric.png", output).pathname,
+    fullPage: true,
+  });
   await page.screenshot({
     path: new URL("01-3d-review.png", output).pathname,
     fullPage: true,
@@ -102,6 +151,12 @@ try {
   const gltf = JSON.parse(
     bytes.subarray(20, 20 + bytes.readUInt32LE(12)).toString(),
   );
+  const source = gltf.nodes.find(
+    (n) => n.extras?.format === "com.venuevolume.web-scene",
+  );
+  assert.deepEqual(source.extras.spawn.position, manifest.spawn.position);
+  assert.equal(source.extras.spawn.yaw, manifest.spawn.yaw);
+  assert.ok(source.extras.ceilingTriangles > 0);
   assert.equal(
     gltf.nodes.filter((n) => n.extras?.kind === "fixture").length,
     fixtures.length,
@@ -114,6 +169,10 @@ try {
       Object.values(fixture.position),
     );
   }
+  assert.ok(
+    gltf.nodes.some((n) => n.extras?.venuePart === "ceiling"),
+    "The GLB retains hidden roof geometry",
+  );
   assert.ok(
     gltf.nodes.some((n) => n.name === "vv-joint:tilt"),
     "Articulated fixture hierarchy retained",
@@ -215,6 +274,7 @@ try {
   const views = JSON.parse(new TextDecoder().decode(zipped["views.json"]));
   assert.equal(views.views.length, 8);
   assert.equal(views.transparentVenue, true);
+  assert.equal(views.ceilingHidden, true);
   await page
     .getByRole("button", { name: fixtures[1].name, exact: true })
     .click();
@@ -241,6 +301,7 @@ try {
     page.getByRole("button", { name: "Export all 8 views" }),
   ).toBeEnabled();
   await expect(page.getByRole("alert")).toHaveCount(0);
+  await expect(page.getByLabel("Viewer position")).toHaveText(startPosition);
   await page.getByLabel("See fixtures through venue").uncheck();
   await page.screenshot({
     path: new URL("03-full-venue.png", output).pathname,

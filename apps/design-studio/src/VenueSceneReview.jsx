@@ -28,6 +28,7 @@ export default function VenueSceneReview() {
     [busy, setBusy] = useState(""),
     [error, setError] = useState("");
   const [ghost, setGhost] = useState(true),
+    [hideCeiling, setHideCeiling] = useState(true),
     [view, setView] = useState(ISOMETRIC_VIEWS[0].id),
     [viewer, setViewer] = useState(null);
   const mounted = useRef(true),
@@ -59,7 +60,7 @@ export default function VenueSceneReview() {
     const previous = current.current;
     current.current = next;
     setActive(next);
-    setView(ISOMETRIC_VIEWS[0].id);
+    setView(next.spawn ? "walk" : ISOMETRIC_VIEWS[0].id);
     // React cleans up the old viewer before releasing its scene resources.
     if (previous) setTimeout(() => disposeScene(previous.model), 0);
   }
@@ -81,6 +82,8 @@ export default function VenueSceneReview() {
         roomName:
           result.save.room.manifest.title || result.save.room.manifest.id,
         setupID: result.save.setup.id,
+        spawn: model.userData.spawn,
+        ceilingTriangles: model.userData.ceilingTriangles,
         roomID: result.save.setup.roomID,
         created: Date.now(),
         fixtures: result.save.setup.placements.fixtures.map((f) => ({
@@ -163,9 +166,12 @@ export default function VenueSceneReview() {
     setBusy("Rendering isometric views…");
     try {
       if (!all) {
-        const png = await viewer.capture(view, active.name);
+        const imageView =
+          ISOMETRIC_VIEWS.find((v) => v.id === view)?.id ||
+          ISOMETRIC_VIEWS[0].id;
+        const png = await viewer.capture(imageView, active.name);
         if (mounted.current)
-          download(png, `${fileName(active.name)}-${view}.png`);
+          download(png, `${fileName(active.name)}-${imageView}.png`);
       } else {
         const files = {};
         for (const v of ISOMETRIC_VIEWS) {
@@ -187,6 +193,7 @@ export default function VenueSceneReview() {
               frontAxis: "-Z",
               upAxis: "Y",
               transparentVenue: ghost,
+              ceilingHidden: hideCeiling,
               resolution: [1600, 1200],
               views: ISOMETRIC_VIEWS,
             },
@@ -306,11 +313,30 @@ export default function VenueSceneReview() {
             <SceneViewer
               model={active.model}
               ghost={ghost}
+              hideCeiling={hideCeiling}
+              spawn={active.spawn}
               view={view}
               onReady={viewerReady}
               onError={viewerError}
             />
             <aside>
+              <h3>Navigation</h3>
+              <button
+                className="button"
+                disabled={!!busy || !viewer || !active.spawn}
+                aria-pressed={view === "walk"}
+                onClick={() => {
+                  setView("walk");
+                  viewer?.walk();
+                }}
+              >
+                Walk from spawn
+              </button>
+              <p className="venue-small">
+                Walk starts at the saved spawn point and heading. Click the
+                scene to look, use W/A/S/D to move, and Esc to release the
+                pointer.
+              </p>
               <h3>Isometric views</h3>
               <div className="venue-view-grid">
                 {ISOMETRIC_VIEWS.map((v) => (
@@ -330,6 +356,15 @@ export default function VenueSceneReview() {
               <label className="venue-ghost">
                 <input
                   type="checkbox"
+                  checked={hideCeiling}
+                  disabled={!!busy || !active.ceilingTriangles}
+                  onChange={(e) => setHideCeiling(e.target.checked)}
+                />{" "}
+                Hide ceiling {active.ceilingTriangles ? "" : "(none detected)"}
+              </label>
+              <label className="venue-ghost">
+                <input
+                  type="checkbox"
                   checked={ghost}
                   disabled={!!busy}
                   onChange={(e) => setGhost(e.target.checked)}
@@ -341,7 +376,9 @@ export default function VenueSceneReview() {
                 disabled={!!busy || !viewer}
                 onClick={() => images(false)}
               >
-                Export selected view (.png)
+                {ISOMETRIC_VIEWS.some((v) => v.id === view)
+                  ? "Export selected view (.png)"
+                  : "Export upper front right (.png)"}
               </button>
               <h3>Fixtures</h3>
               <p className="venue-small">
@@ -352,7 +389,10 @@ export default function VenueSceneReview() {
                   <button
                     key={f.id}
                     disabled={!!busy || !viewer}
-                    onClick={() => viewer?.focus(f.id)}
+                    onClick={() => {
+                      setView("focus");
+                      viewer?.focus(f.id);
+                    }}
                   >
                     {f.name}
                   </button>
@@ -361,14 +401,18 @@ export default function VenueSceneReview() {
               <button
                 className="button"
                 disabled={!!busy || !viewer}
-                onClick={() => viewer?.fit(view)}
+                onClick={() => {
+                  setView(ISOMETRIC_VIEWS[0].id);
+                  viewer?.fit(ISOMETRIC_VIEWS[0].id);
+                }}
               >
                 Fit entire venue
               </button>
             </aside>
           </div>
           <p className="venue-review-note">
-            Drag to orbit · scroll to zoom · right-drag to pan. PNGs use the
+            Isometric: drag to orbit · scroll to zoom · right-drag to pan. Walk:
+            click the scene, W/A/S/D to move, Esc to release. PNGs use the
             selected venue transparency; the GLB retains the full venue
             materials. Exports preserve placement and saved pan/tilt. Continuous
             motors use their rest phase; live lighting, beams and cues are not

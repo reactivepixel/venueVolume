@@ -236,3 +236,19 @@
   outline: 3px solid #167481;
   outline-offset: 3px;
 }
+
+.venue-scene-canvas {
+  position: relative;
+}
+.venue-walk-position {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  background: #101925dd;
+  border: 1px solid #95b2ba;
+  color: #eef7f5;
+  padding: 8px 12px;
+  border-radius: 7px;
+  font-size: 12px;
+  pointer-events: none;
+}
