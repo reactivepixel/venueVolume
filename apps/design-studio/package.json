@@ -7,20 +7,25 @@
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "test": "node --test tests/model.test.mjs tests/live-model.test.mjs tests/workspace-model.test.mjs tests/vision-pro-link.test.mjs",
+    "test": "node --test tests/model.test.mjs tests/live-model.test.mjs tests/workspace-model.test.mjs tests/vision-pro-link.test.mjs tests/venue-save.test.mjs",
     "test:browser": "node tests/workspace-browser.mjs",
     "test:live": "node tests/live-browser.mjs",
     "test:slots": "node tests/script-slots-browser.mjs",
     "test:venues": "npm run build && node tests/venue-movies-browser.mjs",
-    "export:screens": "node tests/workspace-browser.mjs"
+    "export:screens": "node tests/workspace-browser.mjs",
+    "test:scenes": "node tests/venue-scene-browser.mjs",
+    "test:scene-catalog": "node tests/venue-catalog-browser.mjs",
+    "test:scene-rooms": "node tests/venue-rooms-browser.mjs"
   },
   "dependencies": {
+    "fflate": "0.8.3",
+    "lucide-react": "0.468.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "lucide-react": "0.468.0"
+    "three": "0.186.1"
   },
   "devDependencies": {
-    "vite": "6.4.1",
-    "@playwright/test": "1.58.2"
+    "@playwright/test": "1.58.2",
+    "vite": "6.4.1"
   }
 }

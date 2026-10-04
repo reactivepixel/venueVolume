@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import {
   ArrowRight,
   Box,
@@ -41,6 +41,8 @@ import {
 import "./workspace.css";
 import VisionProHandoff from "./VisionProHandoff";
 
+const VenueSceneReview = lazy(() => import("./VenueSceneReview"));
+
 const navigation = [
   ["overview", "Overview"],
   ["venues", "Scanned venues"],
@@ -49,6 +51,7 @@ const navigation = [
   ["tours", "Tours"],
   ["programming", "Programming"],
   ["operations", "Rehearsal & live"],
+  ["scene-review", "3D review"],
   ["assets", "Files"],
   ["activity", "Activity"],
   ["team", "Team & access"],
@@ -880,6 +883,12 @@ export default function Workspace({ ProgrammingPreview }) {
             {chooseContext(true)}
           </>
         );
+      case "scene-review":
+        return (
+          <Suspense fallback={<p>Loading 3D review…</p>}>
+            <VenueSceneReview />
+          </Suspense>
+        );
       case "assets":
         return (
           <>
@@ -887,6 +896,13 @@ export default function Workspace({ ProgrammingPreview }) {
               "Files",
               "Venue scan assets stay linked to their source recordings. Supporting drawings never create a room.",
             )}
+            <Panel title="VisionOS venue saves">
+              <p className="panel-copy">
+                Import a saved venue and its fixtures to review in 3D, download
+                a GLB, or export all eight isometric views.
+              </p>
+              <Button onClick={() => go("scene-review")}>Open 3D review</Button>
+            </Panel>
             <Panel title="Scan assets">
               {available.map((v) => (
                 <div className="workspace-list-row" key={v.id}>

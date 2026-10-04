@@ -47,3 +47,27 @@ Both workspace upload and `/upload` save a movie as an inbox venue marked **Need
 ## Programming previews
 
 Existing script occurrence ordering, cue transport, programmer controls, MIDI test input, hold/blackout, hot-update review and synchronized pop-out remain available for design review. They do not represent production cue/profile binding or hardware output. A later visionOS release will refine the same Load Out; JSON export does not synchronize a headset.
+
+## VisionOS save → web 3D export
+
+In visionOS, use **Export save**. In the SaaS app, open **3D review** (also linked from **Files**) and select that `.venuevolume` file. It becomes an immutable review snapshot with its embedded venue geometry and the actual catalog fixture models. Orbit, pan, zoom, focus a fixture, or choose an isometric corner.
+
+- **Download 3D (.glb)** exports a self-contained glTF 2.0 binary with room geometry, materials, fixture identities, transforms, patch metadata and static articulation. **Open exported GLB** lets another browser review the shared file without fetching the fixture library again.
+- **Export all 8 views** produces a ZIP of eight 1600×1200 PNGs plus `views.json`: upper/lower × front/rear × left/right. Each uses an orthographic camera along an equal XYZ direction (35.264° elevation). Front is room-local −Z, right +X, up +Y, in metres. Every view frames the complete room and fixture bounds.
+- **See fixtures through venue** makes the room translucent for review and PNG export. It does not change the GLB's full materials or saved geometry. A selected isometric PNG is also available separately. Orbiting or focusing a fixture does not change the standard export cameras.
+- Saved snapshots use IndexedDB (`vv-venue-scenes`), separate from editable SaaS preparation. Importing does not overwrite inventory, Tours or Load Outs and does not upload a file to a server. Re-import a newer native save to review changed placement. Browser storage is not a cloud backup; storage failures leave the scene available for immediate download.
+
+Supported room assets are embedded `environment.usdz` and native `environment.mesh.json`. Checks cover save/placement versions, room association, fixture transforms and identity, embedded byte count and SHA-256, mesh indices and catalog-model SHA-256. Missing fixture models or rig parts fail the import explicitly. Failed imports retain the previously open snapshot. The native 350 MB file limit and 64-fixture limit also apply here.
+
+Static joints use the same pivots, axes and channel-to-angle formula as native `FixtureRig`; aim and joint overrides are retained. Continuous motors store speed rather than elapsed phase and are exported at their rest phase. USD PBR material conversion supports the bundled assets; arbitrary USD features may require conversion before import. Live lighting, beams, cues, photometric simulation and visionOS presentation overrides (white room/house-light level) are not baked. Gaussian-splat PLY viewing and automatic SaaS/native Load Out synchronization remain separate work.
+
+The 3D module is lazy-loaded. `fixture-assets.js` serves an allowlist of catalog USDZ models in development and copies them into `dist/fixture-models` for static deployments (~196 MB total). Models download only when a save references their fixture type, once per import. Deploy that directory together with the built app; no Blender, Python converter, GPU pipeline or external CDN is required for export. WebGL2 and a secure context (HTTPS or localhost for checksum validation) are required.
+
+```sh
+# With a checked, available Vite port:
+VV_BASE_URL=http://127.0.0.1:5177 npm run test:scenes
+VV_BASE_URL=http://127.0.0.1:5177 npm run test:scene-catalog
+VV_BASE_URL=http://127.0.0.1:5177 npm run test:scene-rooms
+```
+
+The scene browser test uses real bundled classroom/fixture assets and a generated native-format save. It checks saved joint poses, GLB transforms/reload/re-import, all eight distinct PNGs, persistence, malformed input, missing assets and mobile layout. The catalog test loads every catalog model, resolves its native rig hierarchy, checks authored metre bounds, exercises a native scanned mesh and checks camera framing. These tests do not start Movie2Splat or modify real venue data. Screenshots, a sample GLB, the source save and the isometric ZIP are written to ignored `tmp/venue-web-export/`.

@@ -1,6 +1,8 @@
 import { defineConfig } from "vite";
+import fixtureAssets from "./fixture-assets.js";
 
 export default defineConfig({
+  plugins: [fixtureAssets()],
   server: {
     proxy: {
       "/api/venues": {
