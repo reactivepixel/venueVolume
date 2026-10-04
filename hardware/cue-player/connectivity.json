@@ -1,0 +1,1407 @@
+{
+  "revision": "A",
+  "date": "2026-10-03",
+  "status": "Unbuilt reference; not native ECAD",
+  "components": [
+    {
+      "ref": "U1",
+      "value": "Teensy 4.1 with Ethernet PHY",
+      "package": "Module / two 1x24 rows",
+      "pins": {
+        "VIN": "+5V_SYS",
+        "GND_L": "GND_LOGIC",
+        "GND_R1": "GND_LOGIC",
+        "GND_R2": "GND_LOGIC",
+        "3V3_L": "+3V3_MCU",
+        "3V3_R": "+3V3_MCU",
+        "0": null,
+        "1": "DMXA_TX",
+        "2": "DMXA_REQ",
+        "3": "DMXB_REQ",
+        "4": "ARM_SENSE",
+        "5": "BTN_GO",
+        "6": "BTN_HOLD",
+        "7": "BTN_BACK",
+        "8": "DMXB_TX",
+        "9": "BTN_NEXT",
+        "10": "BTN_BLACKOUT",
+        "11": "BTN_PAIR",
+        "12": null,
+        "13": null,
+        "14": "LED_RUN",
+        "15": "LED_FAULT",
+        "16": null,
+        "17": null,
+        "18": "I2C_SDA",
+        "19": "I2C_SCL",
+        "20": null,
+        "21": null,
+        "22": null,
+        "23": null,
+        "24": null,
+        "25": null,
+        "26": null,
+        "27": null,
+        "28": null,
+        "29": null,
+        "30": null,
+        "31": null,
+        "32": null,
+        "33": null,
+        "34": null,
+        "35": null,
+        "36": null,
+        "37": null,
+        "38": null,
+        "39": null,
+        "40": null,
+        "41": null
+      },
+      "category": "carrier",
+      "mpn": "PJRC TEENSY41 (PHY populated)",
+      "note": "Cut VUSB-VIN link. USB device, SDIO and Ethernet kit remain on module. Unused GPIO NC."
+    },
+    {
+      "ref": "U2",
+      "value": "3.3 V / 1 A LDO",
+      "package": "DGN HVSSOP-8 exposed pad",
+      "pins": {
+        "1": "+3V3_DMX",
+        "2": "+3V3_DMX",
+        "3": null,
+        "4": "GND_LOGIC",
+        "5": "+5V_SYS",
+        "6": "GND_LOGIC",
+        "7": null,
+        "8": "+5V_SYS",
+        "EP": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "TLV76733DGNR",
+      "note": "SNS at OUT; EP to thermal ground plane."
+    },
+    {
+      "ref": "U5",
+      "value": "Schmitt AND gates",
+      "package": "TSSOP-14",
+      "pins": {
+        "1": "DMXA_REQ",
+        "2": "ARM_SENSE",
+        "3": "DMXA_DE",
+        "4": "DMXB_REQ",
+        "5": "ARM_SENSE",
+        "6": "DMXB_DE",
+        "7": "GND_LOGIC",
+        "8": null,
+        "9": "GND_LOGIC",
+        "10": "GND_LOGIC",
+        "11": null,
+        "12": "GND_LOGIC",
+        "13": "GND_LOGIC",
+        "14": "+3V3_MCU"
+      },
+      "category": "carrier",
+      "mpn": "SN74HCS08PWR",
+      "note": ""
+    },
+    {
+      "ref": "F1",
+      "value": "1.5 A hold / 16 V PPTC",
+      "package": "1812",
+      "pins": {
+        "1": "DC_IN",
+        "2": "DC_FUSED"
+      },
+      "category": "carrier",
+      "mpn": "1812L150/16DR",
+      "note": "Check ambient derating and fault clearing."
+    },
+    {
+      "ref": "Q1",
+      "value": "P-channel reverse polarity MOSFET",
+      "package": "SOT-23",
+      "pins": {
+        "1": "PWR_GATE",
+        "2": "+5V_SYS",
+        "3": "DC_FUSED"
+      },
+      "category": "carrier",
+      "mpn": "AO3401A",
+      "note": "Pin 1 gate, 2 source, 3 drain. Drain faces incoming supply."
+    },
+    {
+      "ref": "R1",
+      "value": "100 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "PWR_GATE",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "C1",
+      "value": "100 uF / 10 V",
+      "package": "Radial electrolytic",
+      "pins": {
+        "1": "+5V_SYS",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "Positive terminal pin 1; reserve exact lead pitch after procurement."
+    },
+    {
+      "ref": "C2",
+      "value": "1 uF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "+5V_SYS",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "C3",
+      "value": "10 uF / 16 V X7R",
+      "package": "0805",
+      "pins": {
+        "1": "+5V_SYS",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "C4",
+      "value": "10 uF / 16 V X7R",
+      "package": "0805",
+      "pins": {
+        "1": "+3V3_DMX",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "Check effective capacitance after bias derating."
+    },
+    {
+      "ref": "C5",
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "+3V3_MCU",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "C6",
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "+3V3_MCU",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "C7",
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "ARM_SENSE",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "R2",
+      "value": "1 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "ARM_RAW",
+        "2": "ARM_SENSE"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "R3",
+      "value": "10 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "ARM_SENSE",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "R4",
+      "value": "10 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "DMXA_REQ",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "R5",
+      "value": "10 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "DMXB_REQ",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "R6",
+      "value": "10 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "DMXA_DE",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "R7",
+      "value": "10 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "DMXB_DE",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "R8",
+      "value": "10 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "DMXA_TX",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "R9",
+      "value": "10 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "DMXB_TX",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "U3",
+      "value": "Isolated DMX output",
+      "package": "SOIC-20 wide body",
+      "pins": {
+        "1": "GND_LOGIC",
+        "2": "+3V3_DMX",
+        "3": "GND_LOGIC",
+        "4": null,
+        "5": "+3V3_DMX",
+        "6": "DMXA_DE",
+        "7": "DMXA_TX",
+        "8": "+3V3_DMX",
+        "9": "GND_LOGIC",
+        "10": "GND_LOGIC",
+        "11": "ISOA_CONV_GND",
+        "12": "ISOA_RAW_3V3",
+        "13": "DMXA_P_DRV",
+        "14": "ISOA_CONV_GND",
+        "15": "DMXA_N_DRV",
+        "16": "ISOA_GND",
+        "17": "DMXA_N_DRV",
+        "18": "DMXA_P_DRV",
+        "19": "ISOA_3V3",
+        "20": "ISOA_GND"
+      },
+      "category": "carrier",
+      "mpn": "ADM2587EBRWZ",
+      "note": "Output only. /RE high, RxD NC. Separate isolated supply per port."
+    },
+    {
+      "ref": "FB1",
+      "value": "600 ohm at 100 MHz ferrite",
+      "package": "0603",
+      "pins": {
+        "1": "ISOA_RAW_3V3",
+        "2": "ISOA_3V3"
+      },
+      "category": "carrier",
+      "mpn": "BLM18AG601SN1D",
+      "note": "Initial EMI candidate; verify high-frequency curve, current and DCR before release."
+    },
+    {
+      "ref": "FB2",
+      "value": "600 ohm at 100 MHz ferrite",
+      "package": "0603",
+      "pins": {
+        "1": "ISOA_CONV_GND",
+        "2": "ISOA_GND"
+      },
+      "category": "carrier",
+      "mpn": "BLM18AG601SN1D",
+      "note": "Initial EMI candidate; verify high-frequency curve, current and DCR before release."
+    },
+    {
+      "ref": "C10",
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "+3V3_DMX",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "IC pins 2/1"
+    },
+    {
+      "ref": "C11",
+      "value": "10 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "+3V3_DMX",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "IC pins 2/1"
+    },
+    {
+      "ref": "C12",
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "+3V3_DMX",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "IC pins 8/9"
+    },
+    {
+      "ref": "C13",
+      "value": "10 uF / 16 V X7R",
+      "package": "0805",
+      "pins": {
+        "1": "+3V3_DMX",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "IC pins 8/9"
+    },
+    {
+      "ref": "C14",
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "ISOA_RAW_3V3",
+        "2": "ISOA_CONV_GND"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "IC pins 12/11"
+    },
+    {
+      "ref": "C15",
+      "value": "10 uF / 16 V X7R",
+      "package": "0805",
+      "pins": {
+        "1": "ISOA_RAW_3V3",
+        "2": "ISOA_CONV_GND"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "IC pins 12/11"
+    },
+    {
+      "ref": "C16",
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "ISOA_3V3",
+        "2": "ISOA_GND"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "IC pins 19/20"
+    },
+    {
+      "ref": "C17",
+      "value": "10 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "ISOA_3V3",
+        "2": "ISOA_GND"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "IC pins 19/20"
+    },
+    {
+      "ref": "R10",
+      "value": "0 ohm",
+      "package": "0805",
+      "pins": {
+        "1": "DMXA_P_DRV",
+        "2": "DMXA_P_CABLE"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "Tuning link. Default 0 ohm; added resistance requires loaded DMX tests."
+    },
+    {
+      "ref": "R11",
+      "value": "0 ohm",
+      "package": "0805",
+      "pins": {
+        "1": "DMXA_N_DRV",
+        "2": "DMXA_N_CABLE"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "Tuning link. Default 0 ohm; added resistance requires loaded DMX tests."
+    },
+    {
+      "ref": "D1",
+      "value": "RS-485 transient array",
+      "package": "SOT-23",
+      "pins": {
+        "1": "DMXA_P_CABLE",
+        "2": "DMXA_N_CABLE",
+        "3": "ISOA_GND"
+      },
+      "category": "carrier",
+      "mpn": "SM712-02HTG",
+      "note": "Protection coordination requires bench validation; no claimed surge rating."
+    },
+    {
+      "ref": "J2",
+      "value": "DMX harness",
+      "package": "JST-XH 3-pin 2.5 mm",
+      "pins": {
+        "1": "ISOA_GND",
+        "2": "DMXA_N_CABLE",
+        "3": "DMXA_P_CABLE"
+      },
+      "category": "carrier",
+      "mpn": "B3B-XH-A(LF)(SN)",
+      "note": ""
+    },
+    {
+      "ref": "XLR1",
+      "value": "5-pin DMX output socket",
+      "package": "Panel D series",
+      "pins": {
+        "1": "ISOA_GND",
+        "2": "DMXA_N_CABLE",
+        "3": "DMXA_P_CABLE",
+        "4": null,
+        "5": null,
+        "shell": "CHASSIS"
+      },
+      "category": "off-board",
+      "mpn": "NC5FD-LX",
+      "note": ""
+    },
+    {
+      "ref": "U4",
+      "value": "Isolated DMX output",
+      "package": "SOIC-20 wide body",
+      "pins": {
+        "1": "GND_LOGIC",
+        "2": "+3V3_DMX",
+        "3": "GND_LOGIC",
+        "4": null,
+        "5": "+3V3_DMX",
+        "6": "DMXB_DE",
+        "7": "DMXB_TX",
+        "8": "+3V3_DMX",
+        "9": "GND_LOGIC",
+        "10": "GND_LOGIC",
+        "11": "ISOB_CONV_GND",
+        "12": "ISOB_RAW_3V3",
+        "13": "DMXB_P_DRV",
+        "14": "ISOB_CONV_GND",
+        "15": "DMXB_N_DRV",
+        "16": "ISOB_GND",
+        "17": "DMXB_N_DRV",
+        "18": "DMXB_P_DRV",
+        "19": "ISOB_3V3",
+        "20": "ISOB_GND"
+      },
+      "category": "carrier",
+      "mpn": "ADM2587EBRWZ",
+      "note": "Output only. /RE high, RxD NC. Separate isolated supply per port."
+    },
+    {
+      "ref": "FB3",
+      "value": "600 ohm at 100 MHz ferrite",
+      "package": "0603",
+      "pins": {
+        "1": "ISOB_RAW_3V3",
+        "2": "ISOB_3V3"
+      },
+      "category": "carrier",
+      "mpn": "BLM18AG601SN1D",
+      "note": "Initial EMI candidate; verify high-frequency curve, current and DCR before release."
+    },
+    {
+      "ref": "FB4",
+      "value": "600 ohm at 100 MHz ferrite",
+      "package": "0603",
+      "pins": {
+        "1": "ISOB_CONV_GND",
+        "2": "ISOB_GND"
+      },
+      "category": "carrier",
+      "mpn": "BLM18AG601SN1D",
+      "note": "Initial EMI candidate; verify high-frequency curve, current and DCR before release."
+    },
+    {
+      "ref": "C20",
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "+3V3_DMX",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "IC pins 2/1"
+    },
+    {
+      "ref": "C21",
+      "value": "10 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "+3V3_DMX",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "IC pins 2/1"
+    },
+    {
+      "ref": "C22",
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "+3V3_DMX",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "IC pins 8/9"
+    },
+    {
+      "ref": "C23",
+      "value": "10 uF / 16 V X7R",
+      "package": "0805",
+      "pins": {
+        "1": "+3V3_DMX",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "IC pins 8/9"
+    },
+    {
+      "ref": "C24",
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "ISOB_RAW_3V3",
+        "2": "ISOB_CONV_GND"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "IC pins 12/11"
+    },
+    {
+      "ref": "C25",
+      "value": "10 uF / 16 V X7R",
+      "package": "0805",
+      "pins": {
+        "1": "ISOB_RAW_3V3",
+        "2": "ISOB_CONV_GND"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "IC pins 12/11"
+    },
+    {
+      "ref": "C26",
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "ISOB_3V3",
+        "2": "ISOB_GND"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "IC pins 19/20"
+    },
+    {
+      "ref": "C27",
+      "value": "10 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "ISOB_3V3",
+        "2": "ISOB_GND"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "IC pins 19/20"
+    },
+    {
+      "ref": "R12",
+      "value": "0 ohm",
+      "package": "0805",
+      "pins": {
+        "1": "DMXB_P_DRV",
+        "2": "DMXB_P_CABLE"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "Tuning link. Default 0 ohm; added resistance requires loaded DMX tests."
+    },
+    {
+      "ref": "R13",
+      "value": "0 ohm",
+      "package": "0805",
+      "pins": {
+        "1": "DMXB_N_DRV",
+        "2": "DMXB_N_CABLE"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "Tuning link. Default 0 ohm; added resistance requires loaded DMX tests."
+    },
+    {
+      "ref": "D2",
+      "value": "RS-485 transient array",
+      "package": "SOT-23",
+      "pins": {
+        "1": "DMXB_P_CABLE",
+        "2": "DMXB_N_CABLE",
+        "3": "ISOB_GND"
+      },
+      "category": "carrier",
+      "mpn": "SM712-02HTG",
+      "note": "Protection coordination requires bench validation; no claimed surge rating."
+    },
+    {
+      "ref": "J3",
+      "value": "DMX harness",
+      "package": "JST-XH 3-pin 2.5 mm",
+      "pins": {
+        "1": "ISOB_GND",
+        "2": "DMXB_N_CABLE",
+        "3": "DMXB_P_CABLE"
+      },
+      "category": "carrier",
+      "mpn": "B3B-XH-A(LF)(SN)",
+      "note": ""
+    },
+    {
+      "ref": "XLR2",
+      "value": "5-pin DMX output socket",
+      "package": "Panel D series",
+      "pins": {
+        "1": "ISOB_GND",
+        "2": "DMXB_N_CABLE",
+        "3": "DMXB_P_CABLE",
+        "4": null,
+        "5": null,
+        "shell": "CHASSIS"
+      },
+      "category": "off-board",
+      "mpn": "NC5FD-LX",
+      "note": ""
+    },
+    {
+      "ref": "R20",
+      "value": "1 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "GO_RAW",
+        "2": "BTN_GO"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "R30",
+      "value": "10 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "BTN_GO",
+        "2": "+3V3_MCU"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "C30",
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "BTN_GO",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "SW2",
+      "value": "GO momentary switch",
+      "package": "12 mm panel; low-current gold contacts",
+      "pins": {
+        "NO": "GO_RAW",
+        "COM": "GND_LOGIC"
+      },
+      "category": "off-board",
+      "mpn": "Specification controlled",
+      "note": "SPST-NO; final mechanical SKU and button color selected before panel machining."
+    },
+    {
+      "ref": "R21",
+      "value": "1 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "HOLD_RAW",
+        "2": "BTN_HOLD"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "R31",
+      "value": "10 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "BTN_HOLD",
+        "2": "+3V3_MCU"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "C31",
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "BTN_HOLD",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "SW3",
+      "value": "HOLD momentary switch",
+      "package": "12 mm panel; low-current gold contacts",
+      "pins": {
+        "NO": "HOLD_RAW",
+        "COM": "GND_LOGIC"
+      },
+      "category": "off-board",
+      "mpn": "Specification controlled",
+      "note": "SPST-NO; final mechanical SKU and button color selected before panel machining."
+    },
+    {
+      "ref": "R22",
+      "value": "1 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "BACK_RAW",
+        "2": "BTN_BACK"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "R32",
+      "value": "10 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "BTN_BACK",
+        "2": "+3V3_MCU"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "C32",
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "BTN_BACK",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "SW4",
+      "value": "BACK momentary switch",
+      "package": "12 mm panel; low-current gold contacts",
+      "pins": {
+        "NO": "BACK_RAW",
+        "COM": "GND_LOGIC"
+      },
+      "category": "off-board",
+      "mpn": "Specification controlled",
+      "note": "SPST-NO; final mechanical SKU and button color selected before panel machining."
+    },
+    {
+      "ref": "R23",
+      "value": "1 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "NEXT_RAW",
+        "2": "BTN_NEXT"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "R33",
+      "value": "10 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "BTN_NEXT",
+        "2": "+3V3_MCU"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "C33",
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "BTN_NEXT",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "SW5",
+      "value": "NEXT momentary switch",
+      "package": "12 mm panel; low-current gold contacts",
+      "pins": {
+        "NO": "NEXT_RAW",
+        "COM": "GND_LOGIC"
+      },
+      "category": "off-board",
+      "mpn": "Specification controlled",
+      "note": "SPST-NO; final mechanical SKU and button color selected before panel machining."
+    },
+    {
+      "ref": "R24",
+      "value": "1 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "BLACKOUT_RAW",
+        "2": "BTN_BLACKOUT"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "R34",
+      "value": "10 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "BTN_BLACKOUT",
+        "2": "+3V3_MCU"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "C34",
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "BTN_BLACKOUT",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "SW6",
+      "value": "BLACKOUT momentary switch",
+      "package": "12 mm panel; low-current gold contacts",
+      "pins": {
+        "NO": "BLACKOUT_RAW",
+        "COM": "GND_LOGIC"
+      },
+      "category": "off-board",
+      "mpn": "Specification controlled",
+      "note": "SPST-NO; final mechanical SKU and button color selected before panel machining."
+    },
+    {
+      "ref": "R25",
+      "value": "1 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "PAIR_RAW",
+        "2": "BTN_PAIR"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "R35",
+      "value": "10 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "BTN_PAIR",
+        "2": "+3V3_MCU"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "C35",
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "pins": {
+        "1": "BTN_PAIR",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "SW7",
+      "value": "PAIR momentary switch",
+      "package": "12 mm panel; low-current gold contacts",
+      "pins": {
+        "NO": "PAIR_RAW",
+        "COM": "GND_LOGIC"
+      },
+      "category": "off-board",
+      "mpn": "Specification controlled",
+      "note": "SPST-NO; final mechanical SKU and button color selected before panel machining."
+    },
+    {
+      "ref": "SW1",
+      "value": "ARM maintained switch + guard",
+      "package": "Panel SPST",
+      "pins": {
+        "1": "+3V3_MCU",
+        "2": "ARM_RAW"
+      },
+      "category": "off-board",
+      "mpn": "Specification controlled",
+      "note": "Low-current gold contacts. Guard envelope checked in panel CAD."
+    },
+    {
+      "ref": "LED1",
+      "value": "green panel LED",
+      "package": "3 mm LED + insulating bezel",
+      "pins": {
+        "A": "RUN_LED_A",
+        "K": "GND_LOGIC"
+      },
+      "category": "off-board",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "LED2",
+      "value": "red panel LED",
+      "package": "3 mm LED + insulating bezel",
+      "pins": {
+        "A": "FAULT_LED_A",
+        "K": "GND_LOGIC"
+      },
+      "category": "off-board",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "R16",
+      "value": "1 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "LED_RUN",
+        "2": "RUN_LED_A"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "R17",
+      "value": "1 kohm 1%",
+      "package": "0603",
+      "pins": {
+        "1": "LED_FAULT",
+        "2": "FAULT_LED_A"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "J1",
+      "value": "Power harness",
+      "package": "JST-XH 2-pin 2.5 mm",
+      "pins": {
+        "1": "DC_IN",
+        "2": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "B2B-XH-A(LF)(SN)",
+      "note": ""
+    },
+    {
+      "ref": "J4",
+      "value": "OLED interface",
+      "package": "JST-SH 4-pin 1 mm",
+      "pins": {
+        "1": "GND_LOGIC",
+        "2": "+3V3_MCU",
+        "3": "I2C_SDA",
+        "4": "I2C_SCL"
+      },
+      "category": "carrier",
+      "mpn": "SM04B-SRSS-TB(LF)(SN)",
+      "note": ""
+    },
+    {
+      "ref": "J5",
+      "value": "Panel controls harness",
+      "package": "JST-XH 12-pin 2.5 mm",
+      "pins": {
+        "1": "GND_LOGIC",
+        "2": "+3V3_MCU",
+        "3": "GO_RAW",
+        "4": "HOLD_RAW",
+        "5": "BACK_RAW",
+        "6": "NEXT_RAW",
+        "7": "BLACKOUT_RAW",
+        "8": "PAIR_RAW",
+        "9": "ARM_RAW",
+        "10": "RUN_LED_A",
+        "11": "FAULT_LED_A",
+        "12": "GND_LOGIC"
+      },
+      "category": "carrier",
+      "mpn": "B12B-XH-A(LF)(SN)",
+      "note": ""
+    },
+    {
+      "ref": "J6",
+      "value": "Chassis bond point",
+      "package": "M3 ring lug / bond pad",
+      "pins": {
+        "1": "CHASSIS"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": ""
+    },
+    {
+      "ref": "R40",
+      "value": "0 ohm",
+      "package": "0805",
+      "pins": {
+        "1": "GND_LOGIC",
+        "2": "CHASSIS"
+      },
+      "category": "carrier",
+      "mpn": "Specification controlled",
+      "note": "Single initial logic/chassis bond; never bridge an isolated DMX common."
+    },
+    {
+      "ref": "OLED1",
+      "value": "128x64 I2C OLED",
+      "package": "29.2 x 26.7 mm module",
+      "pins": {
+        "GND": "GND_LOGIC",
+        "VIN": "+3V3_MCU",
+        "SDA": "I2C_SDA",
+        "SCL": "I2C_SCL"
+      },
+      "category": "off-board",
+      "mpn": "Adafruit 326 current STEMMA QT version",
+      "note": "Module supplies I2C pullups; verify address."
+    },
+    {
+      "ref": "TP1",
+      "value": "+5V_SYS",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "+5V_SYS"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP2",
+      "value": "+3V3_MCU",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "+3V3_MCU"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP3",
+      "value": "+3V3_DMX",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "+3V3_DMX"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP4",
+      "value": "GND_LOGIC",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "GND_LOGIC"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP5",
+      "value": "ARM_SENSE",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "ARM_SENSE"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP6",
+      "value": "DMXA_REQ",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "DMXA_REQ"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP7",
+      "value": "DMXB_REQ",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "DMXB_REQ"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP8",
+      "value": "DMXA_DE",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "DMXA_DE"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP9",
+      "value": "DMXB_DE",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "DMXB_DE"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP10",
+      "value": "DMXA_TX",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "DMXA_TX"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP11",
+      "value": "DMXB_TX",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "DMXB_TX"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP12",
+      "value": "ISOA_3V3",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "ISOA_3V3"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP13",
+      "value": "ISOA_GND",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "ISOA_GND"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP14",
+      "value": "DMXA_P_CABLE",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "DMXA_P_CABLE"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP15",
+      "value": "DMXA_N_CABLE",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "DMXA_N_CABLE"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP16",
+      "value": "ISOB_3V3",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "ISOB_3V3"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP17",
+      "value": "ISOB_GND",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "ISOB_GND"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP18",
+      "value": "DMXB_P_CABLE",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "DMXB_P_CABLE"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "ref": "TP19",
+      "value": "DMXB_N_CABLE",
+      "package": "1.5 mm exposed test pad",
+      "pins": {
+        "1": "DMXB_N_CABLE"
+      },
+      "category": "PCB feature",
+      "mpn": "Specification controlled",
+      "note": "Copper feature; no purchased component."
+    }
+  ],
+  "checks": {
+    "component_records": 107,
+    "test_pads": 19,
+    "named_nets": 50,
+    "dmx_active_us": 22708,
+    "dmx_idle_us": 2292,
+    "checks": "Reference/pin coverage, named-net isolation, rail separation, polarity and frame arithmetic only; not ERC or physical validation"
+  }
+}
