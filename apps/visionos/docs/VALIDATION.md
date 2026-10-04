@@ -4,6 +4,8 @@ This is the current Mac and headset acceptance checklist. It replaces the tempor
 
 ## Recorded results
 
+The [2026-10-04 left-hand navigation](validation/2026-10-04-left-hand-navigation.md) replaces palm-facing activation with thumb/index travel, thumb/middle rotation and double-pinch resets. Physical gesture recognition and left/right UI arbitration require worn-headset acceptance.
+
 The [2026-10-04 fixture movement update](validation/2026-10-04-fixture-movement.md) records second-click Move activation, surface-plane dragging and normal alignment, the bottom controls strip, compact fixture discovery and wrist-window cleanup. Native routing checks passed; installation on Chris's headset passed, but remote launch timed out. Worn-headset gesture and comfort acceptance remain open.
 
 The [2026-10-03 touring implementation](validation/2026-10-03-touring.md) records inventory, hierarchy, scoped partial presets, group placement/transforms, named focus, portable shows and pinned venue adoption. Simulator command checks are separate from physical gesture acceptance.
@@ -44,7 +46,8 @@ The checkpoint contains 323 research rows, 252 packaged models, 175 articulated 
 
 - [ ] Confirm actual fixture gaze/pinch selection, background deselection, axis drags, preset drops, item editing, naming and Clear all confirmation.
 - [ ] Test held Target preview and Save/Cancel. Current Save writes Pan/Tilt to the shared preset and updates affected assignments; legacy per-fixture overrides are cleared. Test new drafts, shared assignments, selection changes, Undo/Redo and saved setup restoration. Mount targeting menus were removed; use axis controls for mount transforms.
-- [ ] Confirm wrist menu recall opens the normal repositionable Toolbox window once per raised-hand edge. Lowering the hand leaves it open; close while raised stays closed; lowering and raising recalls it. Verify manual recall and movement. Wrist-following is obsolete, not an acceptance requirement.
+- [ ] Verify left thumb/index dragging moves in six directions through virtual geometry; thumb/middle dragging changes yaw/pitch/roll around the viewpoint; release/lost tracking stops immediately. Double middle resets orientation only; double index returns to default spawn and resets orientation. Confirm left pinches do not edit fixtures or activate app buttons, and right-hand editing recovers after release.
+- [ ] Toolbox opens on entry and remains a normal movable window. Test right-hand **… → Toolbox**, closing and venue exit; left-hand facing no longer activates it. Physical comfort, step controls and permission-denied recovery remain acceptance requirements.
 - [ ] Retry or manually confirm normal-mode launch on a worn, unlocked headset without demo/reset flags. Preserve existing user arrangements.
 - [ ] Grant World Sensing permission, capture a real room, save and reopen the scan, place fixtures on scanned surfaces, target them and verify relaunch persistence. Synthetic mesh replay is not live scan evidence.
 - [ ] Exercise search/filter, cold loading and selection during loading, room switching, old Rogue setups, joint overrides and grouped Undo/Redo.

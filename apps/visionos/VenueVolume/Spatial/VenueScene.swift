@@ -47,7 +47,10 @@ final class VenueScene {
     private var cubes: [UUID: ModelEntity] = [:]
     private var labels: [UUID: Entity] = [:]
     private var drops: [UUID: Entity] = [:]
-    private var palmGate = PalmRevealGate()
+    private var leftNavigation = LeftHandNavigation()
+    private var spawnRootTransform = Transform()
+    private var spawnFrameRotation = simd_quatf(angle: 0,axis: [0,1,0])
+    private var viewerResetToken: UUID?
     private var latestLeftHand: HandAnchor?
     private var lastHandUpdate: Double = 0
     private var labelLayoutElapsed: Double = 0
@@ -153,6 +156,7 @@ final class VenueScene {
             try Task.checkCancellation()
             try model.prepareHistoryRestore()
             root.children.removeAll(); cubes.removeAll(); rigs.removeAll(); labels.removeAll(); drops.removeAll()
+            leftNavigation.cancel(at: ProcessInfo.processInfo.systemUptime); model.endViewerNavigation()
             aligned = false; root.transform = Transform(); root.isEnabled = false
             root.addChild(room); proxies.forEach { root.addChild($0) }
             roomMaterials = newMaterials; displayedWhiteRoom = nil
@@ -187,6 +191,7 @@ final class VenueScene {
     func startAnimation(in content: RealityViewContent) {
         frameSubscription = content.subscribe(to: SceneEvents.Update.self) { [weak self] event in
             guard let self else { return }
+            if let model = self.model { self.applyViewerNavigation(model: model) }
             self.rigs.values.forEach { $0.tick(deltaTime: event.deltaTime) }
             self.presetDragVisual.tick()
             self.labelLayoutElapsed += event.deltaTime
@@ -354,6 +359,44 @@ final class VenueScene {
     }
 
     #if DEBUG
+    func runNavigationSmoke(model: VenueModel) async {
+        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--navigation-smoke") else { return }
+        do {
+            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
+            model.resetViewerToSpawn(); applyViewerNavigation(model: model)
+            let fixtures = model.fixtures, presets = model.presets
+            let eye = SIMD3<Float>(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
+            let initialEye = root.convert(position: eye,from: nil)
+            var time = ProcessInfo.processInfo.systemUptime
+            func send(_ finger: NavigationFinger? = nil, point: SIMD3<Float> = .zero) {
+                time += 0.04
+                updateLeftNavigation(.init(thumb: point,index: point+[finger == .index ? 0.01 : 0.1,0,0],middle: point+[0,finger == .middle ? 0.01 : 0.1,0]),at: time,model: model)
+            }
+            send(); send(.index); send(.index,point: [10,4,-10]); send(); send()
+            try await Task.sleep(for: .milliseconds(100))
+            let moved = model.viewerPose, movedEye = root.convert(position: eye,from: nil)
+            guard simd_distance(movedEye,initialEye) > 30, model.fixtures == fixtures, model.presets == presets else { throw EnvironmentError.invalid("Travel failed: distance=\(simd_distance(movedEye,initialEye)) offset=\(moved.offset) fixturesEqual=\(model.fixtures == fixtures) presetsEqual=\(model.presets == presets)") }
+            model.undo(); applyViewerNavigation(model: model)
+            try await Task.sleep(for: .milliseconds(100))
+            guard simd_distance(root.convert(position: eye,from: nil),initialEye) < 0.001 else { throw EnvironmentError.invalid("Navigation Undo failed") }
+            model.redo(); applyViewerNavigation(model: model)
+            guard model.viewerPose == moved else { throw EnvironmentError.invalid("Navigation Redo failed") }
+            send(.middle); send(.middle,point: [0.1,0.2,0.1]); send(); send()
+            try await Task.sleep(for: .milliseconds(100))
+            guard model.viewerPose.orientation != .init(), model.viewerPose.offset == moved.offset,
+                  simd_distance(root.convert(position: eye,from: nil),movedEye) < 0.001 else { throw EnvironmentError.invalid("Rotation moved viewer position") }
+            send(.middle); send(); send(); send(.middle); send(); send()
+            guard model.viewerPose.orientation == .init(), model.viewerPose.offset == moved.offset else { throw EnvironmentError.invalid("Double middle reset failed") }
+            send(.index); send(); send(); send(.index); send(); send()
+            try await Task.sleep(for: .milliseconds(100))
+            guard model.viewerPose == .init(), simd_distance(root.convert(position: eye,from: nil),initialEye) < 0.001 else { throw EnvironmentError.invalid("Double index spawn reset failed") }
+            time += 0.5; send()
+            guard !model.navigationInputReserved else { throw EnvironmentError.invalid("Navigation release kept editing blocked") }
+            model.message = "Left index moves · left middle rotates · double pinch resets."
+            print("VIEWER_NAVIGATION_SMOKE_PASS freeTravel=true fixedFixtures=true rotationPivot=true doubleMiddle=true doubleIndex=true undoRedo=true release=true")
+        } catch { print("VIEWER_NAVIGATION_SMOKE_FAIL \(error)") }
+    }
+
     /// Exercises real collision normals and body-drag routing, not hand input.
     func runFixtureMovementSmoke(model: VenueModel) async {
         guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--movement-smoke") else { return }
@@ -609,8 +652,58 @@ final class VenueScene {
         // Room floor stays at the immersive space floor; tracked eye height is never overridden.
         root.position = SIMD3(deviceTransform.columns.3.x, 0, deviceTransform.columns.3.z)
             - rotation.act(SIMD3(spawn.position[0], spawn.position[1], spawn.position[2]))
+        spawnRootTransform = root.transform
+        spawnFrameRotation = simd_quatf(angle: heading,axis: [0,1,0])
         root.isEnabled = true
         aligned = true
+    }
+
+    private func applyViewerNavigation(model: VenueModel) {
+        guard aligned else { return }
+        if viewerResetToken != model.viewerResetToken {
+            viewerResetToken = model.viewerResetToken
+            // An explicit full reset reanchors spawn under the current tracked head.
+            if model.viewerPose == ViewerNavigationPose() {
+                aligned = false; alignToSpawn()
+            }
+        }
+        let pose = model.viewerPose
+        let q = simd_quatf(ix: pose.orientation.x,iy: pose.orientation.y,iz: pose.orientation.z,r: pose.orientation.w)
+        let inverseView = (spawnFrameRotation*q*spawnFrameRotation.inverse).inverse
+        let eye = SIMD3<Float>(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
+        let offset = spawnFrameRotation.act(FixtureAiming.vector(pose.offset))
+        let rotation = inverseView*spawnRootTransform.rotation
+        let position = pose.orientation == Quaternion3D() ? spawnRootTransform.translation-offset : eye + inverseView.act(spawnRootTransform.translation-eye-offset)
+        if root.orientation.vector != rotation.vector { root.orientation = rotation }
+        if root.position != position { root.position = position }
+    }
+
+    func updateLeftNavigation(_ sample: NavigationHandSample?, at time: Double, model: VenueModel) {
+        guard aligned, model.canPlace, !model.libraryBusy else {
+            leftNavigation.cancel(at: time); model.endViewerNavigation(); model.navigationInputReserved = false; return
+        }
+        if leftNavigation.activeFinger == nil { leftNavigation.restore(model.viewerPose) }
+        let previous = leftNavigation.activeFinger
+        let head = spawnFrameRotation.inverse*simd_quatf(deviceTransform)
+        leftNavigation.update(sample, headBasis: .init(x: head.imag.x,y: head.imag.y,z: head.imag.z,w: head.real),at: time)
+        if previous == nil, let finger = leftNavigation.activeFinger { model.beginViewerNavigation(finger) }
+        model.updateViewerNavigation(leftNavigation.pose)
+        if let reset = leftNavigation.reset, reset == .spawn { model.viewerResetToken = UUID() }
+        if previous != nil && leftNavigation.activeFinger == nil { model.endViewerNavigation() }
+        let reserved = leftNavigation.reservesInput(at: time) || time < model.leftUIReservedUntil
+        if model.navigationInputReserved != reserved { model.navigationInputReserved = reserved }
+        applyViewerNavigation(model: model)
+    }
+
+    private func navigationSample(_ hand: HandAnchor) -> NavigationHandSample? {
+        guard hand.chirality == .left, hand.isTracked, let skeleton = hand.handSkeleton else { return nil }
+        let joints = [HandSkeleton.JointName.thumbTip,.indexFingerTip,.middleFingerTip].map { skeleton.joint($0) }
+        guard joints.allSatisfy(\.isTracked) else { return nil }
+        let points = joints.map { joint -> SIMD3<Float> in
+            let t = hand.originFromAnchorTransform*joint.anchorFromJointTransform
+            return spawnFrameRotation.inverse.act([t.columns.3.x,t.columns.3.y,t.columns.3.z])
+        }
+        return .init(thumb: points[0],index: points[1],middle: points[2])
     }
 
     func update(model: VenueModel, attachments: RealityViewAttachments) {
@@ -865,7 +958,8 @@ final class VenueScene {
         defer {
             model.canPlace = false
             model.resetToolboxActivation()
-            palmGate = PalmRevealGate()
+            leftNavigation.cancel(at: ProcessInfo.processInfo.systemUptime)
+            model.endViewerNavigation(); model.navigationInputReserved = false
         }
         #if targetEnvironment(simulator)
         model.trackingStatus = "Simulator · room-relative placement"
@@ -873,8 +967,10 @@ final class VenueScene {
         model.canPlace = manifest != nil
         // ARKit device tracking is unavailable in Simulator; use its floor origin and forward direction.
         while !Task.isCancelled {
-            model.handTrackingStatus = "Simulator wrist menu"
-            model.updateToolboxActivation(raised: model.simulatedPalm)
+            model.handTrackingStatus = "Left index: move · left middle: rotate · double pinch: reset"
+            let reserved = ProcessInfo.processInfo.systemUptime < model.leftUIReservedUntil
+            if model.navigationInputReserved != reserved { model.navigationInputReserved = reserved }
+            applyViewerNavigation(model: model)
             try? await Task.sleep(for: .milliseconds(33))
         }
         #else
@@ -892,12 +988,12 @@ final class VenueScene {
             handAccess = status[.handTracking] == .allowed
         }
         model.needsManualToolbox = !handAccess
-        model.handTrackingStatus = handAccess ? "Turn your left hand toward you to open the wrist menu" : "Hand tracking unavailable · use Show toolbox"
+        model.handTrackingStatus = handAccess ? "Left index: move · left middle: rotate · double pinch: reset" : "Hand tracking unavailable · use navigation controls"
         do {
             if handAccess { try await session.run([world, hands]) }
             else { try await session.run([world]) }
             // Cache the update stream instead of consuming latestAnchors every frame;
-            // missing a provider tick must not restart the reveal debounce.
+            // briefly missing a provider tick must not restart an active pinch.
             let handTask: Task<Void, Never>? = handAccess ? Task { @MainActor in
                 for await update in hands.anchorUpdates {
                     guard !Task.isCancelled else { return }
@@ -910,7 +1006,7 @@ final class VenueScene {
             defer { handTask?.cancel() }
             while !Task.isCancelled {
                 let now = CACurrentMediaTime()
-                var eligible = false
+                var navigation: NavigationHandSample?
                 if world.state == .running,
                    let device = world.queryDeviceAnchor(atTimestamp: now), device.isTracked {
                     deviceTransform = device.originFromAnchorTransform
@@ -918,7 +1014,7 @@ final class VenueScene {
                     model.canPlace = manifest != nil
                     model.trackingStatus = "World tracking active"
                     if handAccess, hands.state == .running, now - lastHandUpdate < 0.25, let hand = latestLeftHand {
-                        eligible = palmFacesViewer(hand)
+                        navigation = navigationSample(hand)
                     }
                 } else {
                     model.canPlace = false
@@ -926,47 +1022,22 @@ final class VenueScene {
                 }
                 if handAccess && hands.state == .stopped {
                     model.needsManualToolbox = true
-                    model.handTrackingStatus = "Hand tracking stopped · use Show toolbox or re-enter to retry"
+                    model.handTrackingStatus = "Hand tracking stopped · use navigation controls or re-enter to retry"
                 }
-                let revealed = palmGate.update(eligible: eligible, now: now)
-                model.updateToolboxActivation(raised: revealed)
+                updateLeftNavigation(navigation, at: ProcessInfo.processInfo.systemUptime, model: model)
                 try await Task.sleep(for: .milliseconds(33))
             }
         } catch is CancellationError {
         } catch {
             model.trackingStatus = "Tracking unavailable: \(error.localizedDescription)"
             model.needsManualToolbox = true
-            model.handTrackingStatus = "Use Show toolbox or re-enter the venue to retry tracking."
+            model.handTrackingStatus = "Use navigation controls or re-enter the venue to retry tracking."
             // Keep the explicit fallback responsive even after authorization/session failure.
             while !Task.isCancelled {
                 try? await Task.sleep(for: .milliseconds(33))
             }
         }
         #endif
-    }
-
-    private func palmFacesViewer(_ hand: HandAnchor) -> Bool {
-        guard hand.chirality == .left, hand.isTracked, let skeleton = hand.handSkeleton else { return false }
-        let names: [HandSkeleton.JointName] = [.wrist, .indexFingerKnuckle, .littleFingerKnuckle]
-        let joints = names.map { skeleton.joint($0) }
-        guard joints.allSatisfy(\.isTracked) else { return false }
-        let points = joints.map { joint -> SIMD3<Float> in
-            let t = hand.originFromAnchorTransform * joint.anchorFromJointTransform
-            return SIMD3(t.columns.3.x, t.columns.3.y, t.columns.3.z)
-        }
-        let wrist = points[0], index = points[1], little = points[2]
-        let normal = simd_cross(index - wrist, little - wrist)
-        guard simd_length(normal) > 0.0001 else { return false }
-        let center = (wrist + index + little) / 3
-        let head = SIMD3(deviceTransform.columns.3.x, deviceTransform.columns.3.y, deviceTransform.columns.3.z)
-        let towardPalm = center - head
-        let distance = simd_length(towardPalm)
-        guard distance > 0.15, distance < 1.0 else { return false }
-        let forward = -SIMD3(deviceTransform.columns.2.x, deviceTransform.columns.2.y, deviceTransform.columns.2.z)
-        let visible = simd_dot(simd_normalize(towardPalm), forward) > 0.72
-        let facing = simd_dot(simd_normalize(normal), -simd_normalize(towardPalm)) > 0.55
-        // Use head orientation as a viewing-area approximation; no eye gaze is read.
-        return visible && facing
     }
 
     func clearAttachments() {

@@ -10,11 +10,14 @@ struct VenueSpaceView: View {
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var scene = VenueScene()
-    @State private var lastSpatialDragEnd = Date.distantPast
-    @State private var handledDrag = false
-    @State private var dragFixtureID: UUID?
-    @State private var cancelledDrag = false
-    @GestureState private var spatialDragActive = false
+    private struct SpatialInput {
+        var entity: Entity
+        var start: SIMD3<Float>
+        var point: SIMD3<Float>
+        var dragged = false
+        var fixtureID: UUID?
+    }
+    @State private var activeSpatialEvents: [SpatialEventCollection.Event.ID: SpatialInput] = [:]
 
     var body: some View {
         RealityView { content, attachments in
@@ -28,53 +31,27 @@ struct VenueSpaceView: View {
             scene.update(model: model, attachments: attachments)
             scene.updatePresetDrag(model: model, content: content, reduceMotion: reduceMotion)
         } attachments: {
-            Attachment(id: "venue-controls-dock") { VenueControlsView().environment(model).auditTextSize().controlSize(.large) }
+            Attachment(id: "venue-controls-dock") { VenueControlsView().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model) }
             ForEach(model.environment?.surfaces ?? [], id: \.id) { surface in
                 Attachment(id: "surface-drop-\(surface.id)") { FixtureSurfaceDrop(surface: surface).environment(model) }
             }
             ForEach(model.sceneFixtures) { fixture in
                 Attachment(id: "label-\(fixture.id)") {
-                    FixtureLabel(fixture: fixture).environment(model)
+                    FixtureLabel(fixture: fixture).environment(model).navigationInputShield(model: model)
                 }
                 Attachment(id: "drop-\(fixture.id)") {
-                    FixtureDropTarget(fixture: fixture).environment(model)
+                    FixtureDropTarget(fixture: fixture).environment(model).navigationInputShield(model: model)
                 }
             }
         }
-        .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded { value in
-            guard Date().timeIntervalSince(lastSpatialDragEnd) > 0.25, !handledDrag else { return }
-            let position = value.convert(value.location3D, from: .local, to: scene.root)
-            scene.handleTap(entity: value.entity, position: position, model: model)
-        })
-        .simultaneousGesture(DragGesture(minimumDistance: 0).targetedToEntity(where: .has(SpatialDragTarget.self))
-            .updating($spatialDragActive) { _, active, _ in active = true }
-            .onChanged { value in
-                guard !cancelledDrag, !handledDrag || dragFixtureID == model.selectedID else { return }
-                let start = value.convert(value.startLocation3D, from: .local, to: scene.root)
-                let point = value.convert(value.location3D, from: .local, to: scene.root)
-                if scene.handleDrag(entity: value.entity, position: point, start: start, model: model) {
-                    if !handledDrag { dragFixtureID = model.selectedID }
-                    handledDrag = true
-                }
-            }
+        .gesture(SpatialEventGesture().targetedToAnyEntity()
+            .onChanged { value in routeSpatialEvents(value) }
             .onEnded { value in
-                if handledDrag && !cancelledDrag && dragFixtureID == model.selectedID {
-                    let point = value.convert(value.location3D, from: .local, to: scene.root)
-                    let start = value.convert(value.startLocation3D, from: .local, to: scene.root)
-                    _ = scene.handleDrag(entity: value.entity, position: point, start: start, model: model)
-                    model.endTransformDrag(); lastSpatialDragEnd = Date()
-                }
-                handledDrag = false; dragFixtureID = nil; cancelledDrag = false
+                routeSpatialEvents(value)
+                model.endTransformDrag(); activeSpatialEvents.removeAll()
             })
-        .onChange(of: spatialDragActive) { _, active in
-            if !active && handledDrag {
-                model.endTransformDrag(); lastSpatialDragEnd = Date(); handledDrag = false
-            }
-            if !active { dragFixtureID = nil; cancelledDrag = false }
-        }
         .onChange(of: model.selectedID) { _, selected in
-            if handledDrag { cancelledDrag = true; lastSpatialDragEnd = Date() }
-            handledDrag = false; dragFixtureID = nil
+            activeSpatialEvents.removeAll(); model.endTransformDrag()
             if selected == nil {
                 dismissWindow(id: "fixture-editor")
             }
@@ -156,6 +133,7 @@ struct VenueSpaceView: View {
             await runToolboxWindowSmoke()
             await scene.runInputSmoke(model: model)
             await scene.runFixtureMovementSmoke(model: model)
+            await scene.runNavigationSmoke(model: model)
             await RoomLibrarySmoke.run(model: model)
             await RoomLibrarySmoke.catalog(model: model)
             await RoomLibrarySmoke.touring(model: model)
@@ -193,6 +171,38 @@ struct VenueSpaceView: View {
             if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits(); model.endPresetDrag() }
         }
         .presetEditorPresenter()
+    }
+
+    private func routeSpatialEvents(_ value: EntityTargetValue<SpatialEventCollection>) {
+        for event in value.gestureValue {
+            // ARKit handles left navigation even when looking at empty space.
+            // Never route a left-hand system pinch into fixture editing.
+            if event.chirality == .left {
+                model.reserveLeftHandInput(); activeSpatialEvents[event.id] = nil; continue
+            }
+            if model.navigationInputReserved { continue }
+            let entity = event.targetedEntity ?? value.entity
+            let point = value.convert(event.location3D, from: .local, to: scene.root)
+            switch event.phase {
+            case .active:
+                var input = activeSpatialEvents[event.id] ?? SpatialInput(entity: entity,start: point,point: point,fixtureID: model.selectedID)
+                input.point = point
+                if input.fixtureID == model.selectedID, FixtureAiming.length(point-input.start) > 0.015 || input.dragged {
+                    if input.entity.components.has(SpatialDragTarget.self),
+                       scene.handleDrag(entity: input.entity,position: point,start: input.start,model: model) { input.dragged = true }
+                }
+                activeSpatialEvents[event.id] = input
+            case .ended:
+                guard let input = activeSpatialEvents.removeValue(forKey: event.id) else { continue }
+                if input.dragged {
+                    if input.fixtureID == model.selectedID { _ = scene.handleDrag(entity: input.entity,position: point,start: input.start,model: model) }
+                    model.endTransformDrag()
+                } else { scene.handleTap(entity: input.entity,position: point,model: model) }
+            case .cancelled:
+                if activeSpatialEvents.removeValue(forKey: event.id)?.dragged == true { model.endTransformDrag() }
+            @unknown default: break
+            }
+        }
     }
 
     #if DEBUG

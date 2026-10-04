@@ -278,3 +278,41 @@ import VenueVolumeCore
         print("Fixture movement checks passed: second click, floor/wall/ceiling moves, plane dragging, atomic Undo/Redo, persistence, compact recents and dock wrist reveal.")
     }
 }
+
+@MainActor enum ViewerNavigationSmoke {
+    static func run(environment: EnvironmentManifest) throws {
+        func check(_ condition: @autoclosure () -> Bool, _ message: String) { precondition(condition(),message) }
+        let suite = "viewer-navigation-"+UUID().uuidString
+        let defaults = UserDefaults(suiteName: suite)!
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: folder); defaults.removePersistentDomain(forName: suite) }
+        let model = VenueModel(arguments: [],defaults: defaults,placementDirectory: folder)
+        model.activate(environment: environment); model.canPlace = true; model.isImmersed = true
+        _ = model.dropFixture([FixtureKind.movingHead.dragToken],at: .init(x: 2.66,y: 0,z: -2),surfaceID: "floor")
+        let fixtures = model.fixtures, presets = model.presets, count = model.history!.nodes.count
+        let moved = ViewerNavigationPose(offset: .init(x: -30,y: 20,z: -100),orientation: FixtureAiming.euler(yaw: 25,pitch: 10,roll: 5))
+        model.beginTransform(model.fixtures[0].id)
+        model.beginViewerNavigation(.index)
+        check(model.gizmoVisible,"Viewer movement keeps mount controls available")
+        model.updateViewerNavigation(.init(offset: .init(x: 1,y: 2,z: 3)))
+        model.updateViewerNavigation(moved); model.endViewerNavigation()
+        check(model.history!.nodes.count == count+1,"Navigation drag is one history action")
+        check(model.fixtures == fixtures && model.presets == presets,"Navigation never edits fixture mounts or DMX")
+        model.undo(); check(model.viewerPose == .init(),"Undo navigation")
+        model.redo(); check(model.viewerPose == moved,"Redo navigation")
+        let restored = VenueModel(arguments: [],defaults: defaults,placementDirectory: folder)
+        restored.activate(environment: environment)
+        check(restored.viewerPose == moved,"Virtual navigation resumes from history")
+        model.resetViewerToSpawn(); check(model.viewerPose == .init(),"Full reset")
+        model.undo(); check(model.viewerPose == moved,"Reset is undoable")
+        let encoded = try JSONEncoder().encode(model.auditState!)
+        var legacy = try JSONSerialization.jsonObject(with: encoded) as! [String:Any]
+        legacy.removeValue(forKey: "viewerPose")
+        let old = try JSONDecoder().decode(VenueAuditState.self,from: JSONSerialization.data(withJSONObject: legacy))
+        try old.validate(); check(old.viewerPose == nil,"Legacy audit snapshots remain readable")
+        model.stepViewer(offset: [0,0,-0.5],yaw: 15)
+        check(model.viewerPose != moved && model.viewerPose.isValid,"Simulator/fallback navigation")
+        model.undo(); check(model.viewerPose == moved,"Fallback navigation is undoable")
+        print("Viewer navigation checks passed: unbounded movement, fixture isolation, atomic Undo/Redo, reset, history resume, legacy audit decoding and fallback controls.")
+    }
+}

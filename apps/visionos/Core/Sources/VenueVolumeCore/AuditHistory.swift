@@ -140,10 +140,12 @@ public struct VenueAuditState: Codable, Equatable, Sendable {
     public var touring: TouringArchive?
     public var selectedUnitIDs: Set<UUID>?
     public var selectedGroupID: UUID?
+    public var viewerPose: ViewerNavigationPose?
 
     public init(rooms: [LibraryRoom], setups: [VenueSetup], roomID: String, fixtures: [Fixture], presets: [DMXPreset],
                 draft: DMXPreset, editingPresetID: UUID?, setupName: String, activeSetupID: UUID?, savedSetup: VenueSetup?,
-                whiteRoom: Bool, houseLight: Float, blackout: Bool, selectedID: UUID?, expandedID: UUID?, previewDraft: Bool, previewBlackout: Bool? = nil, touring: TouringArchive? = nil, selectedUnitIDs: Set<UUID>? = nil, selectedGroupID: UUID? = nil) {
+                whiteRoom: Bool, houseLight: Float, blackout: Bool, selectedID: UUID?, expandedID: UUID?, previewDraft: Bool, previewBlackout: Bool? = nil, touring: TouringArchive? = nil, selectedUnitIDs: Set<UUID>? = nil, selectedGroupID: UUID? = nil, viewerPose: ViewerNavigationPose? = nil) {
+        self.viewerPose = viewerPose
         self.touring = touring; self.selectedUnitIDs = selectedUnitIDs; self.selectedGroupID = selectedGroupID
         self.rooms = rooms; self.setups = setups; self.roomID = roomID; self.fixtures = fixtures; self.presets = presets
         self.draft = draft; self.editingPresetID = editingPresetID; self.setupName = setupName; self.activeSetupID = activeSetupID
@@ -153,7 +155,7 @@ public struct VenueAuditState: Codable, Equatable, Sendable {
     public func validate() throws {
         guard let room = rooms.first(where: { $0.id == roomID }), Set(rooms.map(\.id)).count == rooms.count,
               Set(setups.map(\.id)).count == setups.count, Set(presets.map(\.id)).count == presets.count,
-              presets.allSatisfy({ $0.validationIssue == nil }), houseLight.isFinite, (0...1).contains(houseLight),
+              presets.allSatisfy({ $0.validationIssue == nil }), viewerPose?.isValid != false, houseLight.isFinite, (0...1).contains(houseLight),
               fixtures.allSatisfy({ fixture in fixture.presetID == nil || presets.contains { $0.id == fixture.presetID } }),
               editingPresetID == nil || presets.contains(where: { $0.id == editingPresetID }),
               activeSetupID == nil || setups.contains(where: { $0.id == activeSetupID }),

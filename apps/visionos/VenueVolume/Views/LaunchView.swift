@@ -33,7 +33,7 @@ struct LaunchView: View {
                         .frame(maxWidth: .infinity).padding(.vertical, 8)
                 }.disabled(model.isTransitioning || model.libraryBusy)
             }
-            Text("Turn your left hand toward you to open the wrist menu. Placements stay on this device until you export a save.")
+            Text("The Toolbox opens when you enter. Use your right hand for venue controls; left index moves you and left middle rotates your view. Placements stay on this device until you export a save.")
                 .font(.caption).foregroundStyle(.secondary)
             Text("Estimated venue dimensions · No physical DMX output").font(.caption).foregroundStyle(.secondary)
         }

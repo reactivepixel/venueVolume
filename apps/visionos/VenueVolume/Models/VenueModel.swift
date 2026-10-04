@@ -141,7 +141,40 @@ final class VenueModel {
     }
     var simulatedPalm = true
     var needsManualToolbox = false
-    var handTrackingStatus = "Turn your left hand toward you to open the wrist menu"
+    var handTrackingStatus = "Left index: move · left middle: rotate · double pinch: reset"
+    var viewerPose = ViewerNavigationPose()
+    var navigationInputReserved = false
+    @ObservationIgnored var leftUIReservedUntil: Double = 0
+    func reserveLeftHandInput() {
+        leftUIReservedUntil = ProcessInfo.processInfo.systemUptime+0.35; navigationInputReserved = true
+        Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .milliseconds(360))
+            if let self, !self.viewerNavigationActive, ProcessInfo.processInfo.systemUptime >= self.leftUIReservedUntil { self.navigationInputReserved = false }
+        }
+    }
+    private(set) var viewerNavigationActive = false
+    var viewerResetToken = UUID()
+    func beginViewerNavigation(_ finger: NavigationFinger) {
+        guard !viewerNavigationActive, !libraryBusy else { return }
+        finishHistoryGesture(); endPresetDrag()
+        beginHistoryAction(finger == .index ? "Move viewer" : "Rotate viewer")
+        viewerNavigationActive = true
+    }
+    func updateViewerNavigation(_ pose: ViewerNavigationPose) { if pose != viewerPose && pose.isValid { viewerPose = pose } }
+    func endViewerNavigation() {
+        guard viewerNavigationActive else { return }
+        viewerNavigationActive = false; endHistoryAction()
+    }
+    func stepViewer(offset: SIMD3<Float> = .zero, yaw: Float = 0,pitch: Float = 0,roll: Float = 0) {
+        guard isImmersed, !libraryBusy else { return }
+        endViewerNavigation(); beginHistoryAction("Navigate viewer"); defer { endHistoryAction() }
+        let p = FixtureAiming.vector(viewerPose.offset)+FixtureAiming.rotate(viewerPose.orientation,offset)
+        viewerPose = .init(offset: .init(x: p.x,y: p.y,z: p.z),orientation: ViewerNavigationPose.compose(viewerPose.orientation,FixtureAiming.euler(yaw: yaw,pitch: pitch,roll: roll)))
+    }
+    func resetViewerToSpawn() {
+        endViewerNavigation(); beginHistoryAction("Return viewer to spawn"); defer { endHistoryAction() }
+        viewerPose = .init(); viewerResetToken = UUID()
+    }
     private(set) var draggingPresetID: UUID?
     private var fixtureDragLease: Task<Void, Never>?
     private let defaults: UserDefaults
@@ -278,6 +311,7 @@ final class VenueModel {
         defer { endHistoryAction(); startHistoryIfNeeded() }
         if let request = roomRequest {
             guard request.room.manifest == environment else { return }
+            viewerPose = .init()
             let preserveDirtyDraft = draftHasChanges
             self.environment = environment
             fixtures = request.setup?.placements.fixtures ?? []
@@ -1271,7 +1305,7 @@ extension VenueModel {
         return .init(rooms: rooms, setups: savedSetups, roomID: room.id, fixtures: fixtures, presets: presets,
                      draft: presetDraft, editingPresetID: editingPresetID, setupName: setupName, activeSetupID: activeSetupID,
                      savedSetup: savedSetup, whiteRoom: whiteRoom, houseLight: houseLight, blackout: blackout,
-                     selectedID: selectedID, expandedID: expandedID, previewDraft: previewDraft, previewBlackout: previewBlackout, touring: touring, selectedUnitIDs: tour == nil ? nil : selectedUnitIDs, selectedGroupID: selectedGroupID)
+                     selectedID: selectedID, expandedID: expandedID, previewDraft: previewDraft, previewBlackout: previewBlackout, touring: touring, selectedUnitIDs: tour == nil ? nil : selectedUnitIDs, selectedGroupID: selectedGroupID, viewerPose: viewerPose == .init() ? nil : viewerPose)
     }
 
     private func startHistoryIfNeeded() {
@@ -1371,6 +1405,7 @@ extension VenueModel {
     }
 
     func finishHistoryGesture() {
+        endViewerNavigation()
         endTransformDrag()
         if actionDepth > 0 { actionDepth = 1; endHistoryAction() }
     }
@@ -1395,6 +1430,7 @@ extension VenueModel {
         environment = state.rooms.first { $0.id == state.roomID }!.manifest
         fixtures = state.fixtures; presets = state.presets; presetDraft = state.draft; editingPresetID = state.editingPresetID
         setupName = state.setupName; activeSetupID = state.activeSetupID; savedSetup = state.savedSetup
+        viewerPose = state.viewerPose ?? .init()
         whiteRoom = state.whiteRoom; houseLight = state.houseLight; blackout = state.blackout
         selectedID = state.selectedID; expandedID = state.expandedID; previewDraft = state.previewDraft; previewBlackout = state.previewBlackout ?? false
         revision += 1; syncedRevision = nil; nextFixtureNumber = fixtures.count+1

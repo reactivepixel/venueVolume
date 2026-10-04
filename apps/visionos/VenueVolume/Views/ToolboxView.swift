@@ -220,9 +220,28 @@ struct VenueControlsView: View {
                         .font(.callout).foregroundStyle(.secondary).frame(width: 460, alignment: .leading)
                 }
                 Spacer(minLength: 12)
-                if model.canSimulatePalm {
-                    Toggle("Left hand facing me", isOn: $model.simulatedPalm).toggleStyle(.button).frame(minHeight: 60)
-                }
+                Menu {
+                    Button("Toolbox", systemImage: "rectangle.on.rectangle") { model.requestToolbox() }
+                    Button("Return to spawn", systemImage: "location") { model.resetViewerToSpawn() }
+                    Menu("Navigation controls") {
+                        Button("Forward") { model.stepViewer(offset: [0,0,-0.5]) }
+                        Button("Backward") { model.stepViewer(offset: [0,0,0.5]) }
+                        Button("Left") { model.stepViewer(offset: [-0.5,0,0]) }
+                        Button("Right") { model.stepViewer(offset: [0.5,0,0]) }
+                        Button("Up") { model.stepViewer(offset: [0,0.5,0]) }
+                        Button("Down") { model.stepViewer(offset: [0,-0.5,0]) }
+                        Button("Turn left") { model.stepViewer(yaw: 15) }
+                        Button("Turn right") { model.stepViewer(yaw: -15) }
+                        Button("Look up") { model.stepViewer(pitch: 15) }
+                        Button("Look down") { model.stepViewer(pitch: -15) }
+                        Button("Roll left") { model.stepViewer(roll: 15) }
+                        Button("Roll right") { model.stepViewer(roll: -15) }
+                    }
+                    Text("Left index pinch + drag: move")
+                    Text("Left middle pinch + drag: rotate")
+                    Text("Double index: spawn · double middle: orientation")
+                } label: { Image(systemName: "ellipsis").frame(minWidth: 60,minHeight: 60) }
+                    .accessibilityLabel("Venue and navigation options")
                 HistoryControls()
             }.padding(20).frame(minWidth: 1560, minHeight: 100)
         }.frame(width: 1560)
@@ -230,6 +249,22 @@ struct VenueControlsView: View {
         .onAppear { model.showVenueControls() }
         .onDisappear { model.venueControlsVisible = false }
     }
+}
+
+/// Left pinches are reserved for navigation; avoid activating a button on release.
+struct NavigationInputShield: ViewModifier {
+    var model: VenueModel
+    func body(content: Content) -> some View {
+        content
+            .disabled(model.isImmersed && model.navigationInputReserved)
+            .allowsHitTesting(!model.isImmersed || !model.navigationInputReserved)
+            .simultaneousGesture(SpatialEventGesture().onChanged { events in
+                if model.isImmersed && events.contains(where: { $0.chirality == .left }) { model.reserveLeftHandInput() }
+            })
+    }
+}
+extension View {
+    func navigationInputShield(model: VenueModel) -> some View { modifier(NavigationInputShield(model: model)) }
 }
 
 /// Full discovery is one explicit step away from the compact placement list.
