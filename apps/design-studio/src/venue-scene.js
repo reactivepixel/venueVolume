@@ -11,6 +11,7 @@ import {
   MAX_SAVE_BYTES,
 } from "./venue-save.js";
 import { separateCeiling } from "./venue-ceiling.js";
+import { separateExteriorWalls } from "./venue-walls.js";
 
 // Axes are room-local: right +X, up +Y, front −Z. All eight cube corners.
 export const ISOMETRIC_VIEWS = [1, -1].flatMap((y) =>
@@ -249,6 +250,7 @@ export async function sceneFromSave(file, progress = () => {}) {
       roomRoot.position.fromArray(manifest.assetTranslation);
     scene.add(roomRoot);
     scene.userData.ceilingTriangles = separateCeiling(roomRoot, manifest);
+    scene.userData.wallTrianglesBySide = separateExteriorWalls(roomRoot, manifest);
     let index = 0;
     for (const f of save.setup.placements.fixtures) {
       progress(
@@ -386,6 +388,7 @@ export async function readExportedGLB(file) {
     setupID: metadata.extras.setupID,
     spawn: metadata.extras.spawn || null,
     ceilingTriangles: metadata.extras.ceilingTriangles || 0,
+    wallTrianglesBySide: metadata.extras.wallTrianglesBySide || {},
     roomID: metadata.extras.roomID,
     fixtures,
     glb: new Blob([bytes], { type: "model/gltf-binary" }),

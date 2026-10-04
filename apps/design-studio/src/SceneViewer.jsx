@@ -8,6 +8,7 @@ export default function SceneViewer({
   model,
   ghost,
   hideCeiling,
+  hideForegroundWalls,
   spawn,
   view,
   onReady,
@@ -54,6 +55,19 @@ export default function SceneViewer({
       const bounds = new THREE.Box3().setFromObject(model);
       let camera = isometricCamera(bounds, ISOMETRIC_VIEWS[0].direction);
       const draw = () => renderer.render(scene, camera);
+      let wallCutaway = false;
+      function updateWalls(target = controls?.target || bounds.getCenter(new THREE.Vector3())) {
+        const direction = camera.isOrthographicCamera
+          ? camera.position.clone().sub(target)
+          : null;
+        const foreground = direction
+          ? new Set([direction.x >= 0 ? "+x" : "-x", direction.z >= 0 ? "+z" : "-z"])
+          : new Set();
+        model.traverse((o) => {
+          if (o.userData.venuePart === "wall")
+            o.visible = !(wallCutaway && foreground.has(o.userData.venueSide));
+        });
+      }
       function setCamera(next, target) {
         walkControls?.unlock();
         walkControls?.dispose();
@@ -64,8 +78,9 @@ export default function SceneViewer({
         controls = new OrbitControls(camera, renderer.domElement);
         controls.target.copy(target);
         controls.enableDamping = false;
-        controls.addEventListener("change", draw);
+        controls.addEventListener("change", () => { updateWalls(); draw(); });
         controls.update();
+        updateWalls();
         draw();
       }
       let fittedTarget = model;
@@ -91,6 +106,7 @@ export default function SceneViewer({
         walkControls.addEventListener("change", draw);
         keys.clear();
         setPosition(camera.position.toArray());
+        updateWalls();
         draw();
       }
       function fit(direction, target = model) {
@@ -247,6 +263,11 @@ export default function SceneViewer({
           });
           draw();
         },
+        walls: (hidden) => {
+          wallCutaway = hidden;
+          updateWalls();
+          draw();
+        },
         async capture(viewID, title) {
           if (disposed) throw new Error("The viewer is closed.");
           const previousCamera = camera,
@@ -260,6 +281,7 @@ export default function SceneViewer({
               ISOMETRIC_VIEWS.find((v) => v.id === viewID).direction,
               4 / 3,
             );
+            updateWalls(bounds.getCenter(new THREE.Vector3()));
             draw();
             const canvas = document.createElement("canvas");
             canvas.width = 1600;
@@ -285,6 +307,7 @@ export default function SceneViewer({
           } finally {
             if (!disposed) {
               camera = previousCamera;
+              updateWalls();
               renderer.setPixelRatio(pixelRatio);
               renderer.setSize(size.x, size.y, false);
               draw();
@@ -338,6 +361,9 @@ export default function SceneViewer({
   useEffect(() => {
     api.current?.ceiling(hideCeiling);
   }, [hideCeiling, model]);
+  useEffect(() => {
+    api.current?.walls(hideForegroundWalls);
+  }, [hideForegroundWalls, model]);
   return (
     <div className="venue-scene-canvas" ref={host}>
       {position && (

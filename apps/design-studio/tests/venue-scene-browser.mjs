@@ -131,6 +131,20 @@ try {
     "Ceiling toggle must change rendered geometry",
   );
   await page.getByLabel("Hide ceiling").check();
+  await expect(page.getByLabel("Hide foreground walls")).toBeChecked();
+  const wallsHiddenEvent = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Export selected view (.png)" }).click();
+  await (await wallsHiddenEvent).saveAs(new URL("walls-hidden.png", output).pathname);
+  await page.getByLabel("Hide foreground walls").uncheck();
+  const wallsVisibleEvent = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Export selected view (.png)" }).click();
+  await (await wallsVisibleEvent).saveAs(new URL("walls-visible.png", output).pathname);
+  assert.notEqual(
+    createHash("sha256").update(await readFile(new URL("walls-hidden.png", output))).digest("hex"),
+    createHash("sha256").update(await readFile(new URL("walls-visible.png", output))).digest("hex"),
+    "Foreground wall toggle must change the isometric image",
+  );
+  await page.getByLabel("Hide foreground walls").check();
   await page.screenshot({
     path: new URL("02-open-isometric.png", output).pathname,
     fullPage: true,
@@ -157,6 +171,7 @@ try {
   assert.deepEqual(source.extras.spawn.position, manifest.spawn.position);
   assert.equal(source.extras.spawn.yaw, manifest.spawn.yaw);
   assert.ok(source.extras.ceilingTriangles > 0);
+  assert.ok(Object.values(source.extras.wallTrianglesBySide).every((count) => count > 0));
   assert.equal(
     gltf.nodes.filter((n) => n.extras?.kind === "fixture").length,
     fixtures.length,
@@ -172,6 +187,10 @@ try {
   assert.ok(
     gltf.nodes.some((n) => n.extras?.venuePart === "ceiling"),
     "The GLB retains hidden roof geometry",
+  );
+  assert.ok(
+    gltf.nodes.some((n) => n.extras?.venuePart === "wall"),
+    "The GLB retains cutaway wall geometry",
   );
   assert.ok(
     gltf.nodes.some((n) => n.name === "vv-joint:tilt"),
@@ -275,6 +294,7 @@ try {
   assert.equal(views.views.length, 8);
   assert.equal(views.transparentVenue, true);
   assert.equal(views.ceilingHidden, true);
+  assert.equal(views.foregroundWallsHidden, true);
   await page
     .getByRole("button", { name: fixtures[1].name, exact: true })
     .click();

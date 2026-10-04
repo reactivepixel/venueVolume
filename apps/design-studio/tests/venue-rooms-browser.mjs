@@ -49,6 +49,7 @@ try {
       let triangles = 0,
         meshes = 0,
         ceilingTriangles = 0,
+        wallTriangles = 0,
         textures = 0;
       scene.traverse((o) => {
         if (o.isMesh) {
@@ -58,6 +59,7 @@ try {
             3;
           triangles += count;
           if (o.userData.venuePart === "ceiling") ceilingTriangles += count;
+          if (o.userData.venuePart === "wall") wallTriangles += count;
           for (const m of Array.isArray(o.material) ? o.material : [o.material])
             if (m.map) textures++;
         }
@@ -65,7 +67,8 @@ try {
       const glb = await exportGLB(scene),
         restored = await loadGLB(glb);
       let restoredTriangles = 0,
-        restoredCeiling = 0;
+        restoredCeiling = 0,
+        restoredWalls = 0;
       restored.traverse((o) => {
         if (o.isMesh) {
           const count =
@@ -73,6 +76,7 @@ try {
             3;
           restoredTriangles += count;
           if (o.userData.venuePart === "ceiling") restoredCeiling += count;
+          if (o.userData.venuePart === "wall") restoredWalls += count;
         }
       });
       disposeScene(scene);
@@ -81,8 +85,10 @@ try {
         triangles,
         meshes,
         ceilingTriangles,
+        wallTriangles,
         restoredTriangles,
         restoredCeiling,
+        restoredWalls,
         textures,
         glbBytes: glb.byteLength,
       };
@@ -91,8 +97,10 @@ try {
     assert.equal(result.triangles, manifest.geometry.triangles);
     assert.ok(result.meshes >= manifest.geometry.meshes);
     assert.ok(result.ceilingTriangles > 0);
+    assert.ok(result.wallTriangles > 0);
     assert.equal(result.restoredTriangles, manifest.geometry.triangles);
     assert.equal(result.restoredCeiling, result.ceilingTriangles);
+    assert.equal(result.restoredWalls, result.wallTriangles);
   }
 } finally {
   await browser.close();

@@ -29,6 +29,7 @@ export default function VenueSceneReview() {
     [error, setError] = useState("");
   const [ghost, setGhost] = useState(true),
     [hideCeiling, setHideCeiling] = useState(true),
+    [hideForegroundWalls, setHideForegroundWalls] = useState(true),
     [view, setView] = useState(ISOMETRIC_VIEWS[0].id),
     [viewer, setViewer] = useState(null);
   const mounted = useRef(true),
@@ -84,6 +85,7 @@ export default function VenueSceneReview() {
         setupID: result.save.setup.id,
         spawn: model.userData.spawn,
         ceilingTriangles: model.userData.ceilingTriangles,
+        wallTrianglesBySide: model.userData.wallTrianglesBySide,
         roomID: result.save.setup.roomID,
         created: Date.now(),
         fixtures: result.save.setup.placements.fixtures.map((f) => ({
@@ -194,6 +196,7 @@ export default function VenueSceneReview() {
               upAxis: "Y",
               transparentVenue: ghost,
               ceilingHidden: hideCeiling,
+              foregroundWallsHidden: hideForegroundWalls,
               resolution: [1600, 1200],
               views: ISOMETRIC_VIEWS,
             },
@@ -314,6 +317,7 @@ export default function VenueSceneReview() {
               model={active.model}
               ghost={ghost}
               hideCeiling={hideCeiling}
+              hideForegroundWalls={hideForegroundWalls}
               spawn={active.spawn}
               view={view}
               onReady={viewerReady}
@@ -361,6 +365,15 @@ export default function VenueSceneReview() {
                   onChange={(e) => setHideCeiling(e.target.checked)}
                 />{" "}
                 Hide ceiling {active.ceilingTriangles ? "" : "(none detected)"}
+              </label>
+              <label className="venue-ghost">
+                <input
+                  type="checkbox"
+                  checked={hideForegroundWalls}
+                  disabled={!!busy || !Object.values(active.wallTrianglesBySide || {}).some(Boolean)}
+                  onChange={(e) => setHideForegroundWalls(e.target.checked)}
+                />{" "}
+                Hide foreground walls {Object.values(active.wallTrianglesBySide || {}).some(Boolean) ? "" : "(none detected)"}
               </label>
               <label className="venue-ghost">
                 <input
