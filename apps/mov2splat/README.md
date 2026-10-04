@@ -1,6 +1,10 @@
 # mov2splat
 
-**Optional experiment.** The current venue environment pipeline is
+**Gaussian capture pipeline.** The SaaS prototype's [venue movie intake service](../../services/venue-ingest/README.md)
+queues uploaded movies through this launcher and saves the resulting PLY with
+the venue. Its standalone `/upload` page supports deferred venue setup.
+
+The separate editable venue environment pipeline is
 [room2blender](../room2blender/README.md), producing Blender/USDZ and interaction metadata.
 It has no dependency on this application or its Docker image. Use `scripts/host.sh` for
 Gaussian experiments; the unused Compose launcher has been removed. See the

@@ -11,6 +11,7 @@
     "test:browser": "node tests/browser.mjs",
     "test:live": "node tests/live-browser.mjs",
     "test:slots": "node tests/script-slots-browser.mjs",
+    "test:venues": "npm run build && node tests/venue-movies-browser.mjs",
     "export:screens": "node tests/export.mjs"
   },
   "dependencies": {

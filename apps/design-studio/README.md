@@ -1,6 +1,6 @@
 # Venue Volume design studio
 
-An interactive React design study with 35 product screens in both wireframe and high fidelity. It is a local mockup: no authentication, billing, cloud storage, CAD conversion, or DMX/Art-Net output is implemented.
+An interactive React design study with 35 product screens in both wireframe and high fidelity, plus a standalone movie upload page. Venue movie uploads use a real local intake service and Movie2Splat queue. Authentication, billing, cloud storage, CAD conversion, and DMX/Art-Net output are not implemented.
 
 ## Run
 
@@ -20,12 +20,21 @@ npx playwright install chromium
 npm run test:browser
 npm run test:live
 npm run test:slots
+npm run test:venues
 npm run export:screens
 ```
 
 Browser checks and export expect the dev server on `http://127.0.0.1:5173`; set `VV_BASE_URL` to use another address. Screenshots and the static gallery are generated under `assets/design/venue-volume` at the repository root. Font loading uses Google Fonts with local sans-serif fallbacks; production bundling is otherwise local.
 
 The demo persists selected sample data under `vv-design-v1` in localStorage. Remove that single key in browser developer tools to restore the sample dataset. Exports use isolated browser contexts so local edits do not change baseline screenshots.
+
+## Venue movie uploads
+
+Start `python3 services/venue-ingest/server.py --port 8788` from the repository root after checking that port is free. Vite proxies `/api/venues` to this service; set `VV_INTAKE_URL` for a different port. Movie2Splat processing needs the existing Docker/NVIDIA setup. The UI reports service and pipeline failures with retry actions.
+
+In **Venues → Add venue → From a movie**, choose the movie, name and starting configuration. `/upload` is a standalone page requiring only a movie; it creates an inbox venue marked **Needs setup**. After processing, open it from the venue inbox and choose **Import venue into show**. Both paths retain the actual movie bytes, status and resulting PLY across browser sessions. Uploaded records are separate from the sample localStorage model and remain linked by UUID when imported or renamed.
+
+See the [intake service guide](../../services/venue-ingest/README.md) for startup, storage, API, restart/retry behavior and deployment limits. `npm run test:venues` runs the browser workflow against a real temporary service with a fixture GPU launcher, without requiring Docker or a GPU.
 
 See the Obsidian vault's `02 Product/Design` and `02 Product/Features` directories for screen coverage, prototype limits, and requirements beyond the UI.
 

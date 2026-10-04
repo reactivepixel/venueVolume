@@ -68,6 +68,8 @@ import LiveConsole from "./LiveConsole";
 import ScriptSlots from "./ScriptSlots";
 import { useSharedState } from "./shared-state";
 import { createRun, makeSnapshot } from "./live-model";
+import { useVenueLibrary } from "./venue-api";
+import { IntakeConnection, MovieUploadForm, StandaloneMovieUpload, VenueMovieDetail, VenueMovieLibrary } from "./VenueMovies";
 
 const initial = {
   showName: "Afterglow · Fall tour",
@@ -117,6 +119,11 @@ function App() {
     [selected, setSelected] = useState(0),
     [connected, setConnected] = useSharedState("vv-demo-connected", true),
     [dirty, setDirty] = useState(false);
+  const [movieId, setMovieId] = useState(urlParams().get("venueId") || "");
+  const [venueMethod, setVenueMethod] = useState("movie");
+  const movieLibrary = useVenueLibrary();
+  const movieVenue = movieLibrary.venues.find((record) => record.id === movieId);
+  const venueCount = data.venues.length + movieLibrary.venues.filter((record) => record.show === data.showName).length;
   const screen = screens.find((s) => s.id === route) || screens[4];
   const [liveRun, setLiveRun] = useSharedState(
     `vv-live-v2:${encodeURIComponent(urlParams().get("show") || data.showName)}:${encodeURIComponent(venue)}:live`,
@@ -130,9 +137,10 @@ function App() {
     p.set("screen", route);
     p.set("mode", mode);
     p.set("state", scenario);
+    if (movieId) p.set("venueId", movieId); else p.delete("venueId");
     history.replaceState({}, "", `?${p}`);
     document.title = `${screen.title} · Venue Volume`;
-  }, [route, mode, scenario]);
+  }, [route, mode, scenario, movieId]);
   useEffect(() => {
     if (!toast) return;
     const t = setTimeout(() => setToast(""), 4000);
@@ -151,6 +159,13 @@ function App() {
   }
   function update(values) {
     setData((d) => ({ ...d, ...values }));
+  }
+  function openMovie(record) {
+    setMovieId(record.id);
+    setVenue(record.name);
+    if (record.show) update({ showName: record.show });
+    movieLibrary.refresh();
+    go("venue-detail");
   }
   function notify(message) {
     setToast(message);
@@ -435,7 +450,7 @@ function App() {
                         {i === 0 ? "In rehearsal" : "Draft"}
                       </Badge>
                       <span>
-                        {i === 0 ? data.venues.length : 1} venues{" "}
+                        {i === 0 ? venueCount : 1} venues{" "}
                         <ArrowUpRight size={14} />
                       </span>
                     </div>
@@ -547,7 +562,7 @@ function App() {
             <div className="metrics">
               <Metric
                 label="VENUES"
-                value={String(data.venues.length).padStart(2, "0")}
+                value={String(venueCount).padStart(2, "0")}
                 detail="Next · The Glasshouse"
               />
               <Metric
@@ -1114,8 +1129,9 @@ function App() {
                 onChange={setQuery}
                 placeholder="Find a venue…"
               />
-              <Badge>{data.venues.length} stops</Badge>
+              <Badge>{venueCount} stops</Badge>
             </div>
+            <VenueMovieLibrary library={movieLibrary} show={data.showName} query={query} onOpen={openMovie} />
             <div className="three-col">
               {matching(data.venues).map((v, i) => (
                 <Panel
@@ -1143,6 +1159,7 @@ function App() {
                   </div>
                   <Button
                     onClick={() => {
+                      setMovieId("");
                       setVenue(v);
                       go("venue-detail");
                     }}
@@ -1159,8 +1176,16 @@ function App() {
           <>
             {header(
               "Give your show a new home.",
-              "Choose a starting configuration. Keep all changes local to this venue.",
+              "Upload a walkthrough movie, or start with an existing configuration.",
             )}
+            <div className="segmented movie-create-tabs" aria-label="Venue creation method">
+              <button type="button" className={venueMethod === "movie" ? "active" : ""} onClick={() => setVenueMethod("movie")}>From a movie</button>
+              <button type="button" className={venueMethod === "template" ? "active" : ""} onClick={() => setVenueMethod("template")}>From a template</button>
+            </div>
+            {venueMethod === "movie" ? <Panel className="movie-create-panel" title="Turn a movie into a venue" subtitle="Movie2Splat processes your movie and saves the resulting splat with this venue.">
+              <MovieUploadForm library={movieLibrary} show={data.showName} templates={data.templates} onQueued={openMovie} />
+              <p className="panel-copy">Just capturing the room? <a href="/upload" className="text-link">Upload now and set up later <ArrowUpRight size={13} /></a></p>
+            </Panel> :
             <form
               className="form-card narrow"
               onSubmit={(e) => {
@@ -1169,6 +1194,7 @@ function App() {
                   name = f.get("name").trim();
                 if (!name) return;
                 update({ venues: [...data.venues, name] });
+                setMovieId("");
                 setVenue(name);
                 go("venue-detail");
               }}
@@ -1200,10 +1226,15 @@ function App() {
                 </p>
               </div>
               <FormFooter label="Create venue" onCancel={() => go("venues")} />
-            </form>
+            </form>}
           </>
         );
       case "venue-detail":
+        if (movieId) return <>
+          {header(movieVenue?.name || "Uploaded venue", "Movie capture · Processing and venue setup", <Button onClick={() => go("venues")}><ArrowLeft size={15} />All venues</Button>)}
+          {movieVenue ? <VenueMovieDetail key={movieVenue.id} record={movieVenue} library={movieLibrary} shows={data.shows} templates={data.templates} currentShow={data.showName} onOpen={openMovie} />
+            : <><IntakeConnection library={movieLibrary} /><p role="status">{movieLibrary.loading ? "Loading venue…" : movieLibrary.error ? "Reconnect to load this venue." : "This venue could not be found. Return to the venue list to choose another."}</p></>}
+        </>;
         return (
           <>
             {header(
@@ -2403,7 +2434,7 @@ function App() {
                   <dt>Members</dt>
                   <dd>{data.members.length}</dd>
                   <dt>Venue configurations</dt>
-                  <dd>{data.venues.length}</dd>
+                  <dd>{venueCount}</dd>
                   <dt>Included limits</dt>
                   <dd>To be determined</dd>
                 </dl>
@@ -2779,7 +2810,7 @@ function App() {
               >
                 <Icon size={17} />
                 {title}
-                {id === "venues" && <small>{data.venues.length}</small>}
+                {id === "venues" && <small>{venueCount}</small>}
               </button>
             ))}
           </nav>
@@ -2960,4 +2991,6 @@ function App() {
     </div>
   );
 }
-createRoot(document.getElementById("root")).render(<App />);
+createRoot(document.getElementById("root")).render(
+  /^\/upload\/?$/.test(location.pathname) ? <StandaloneMovieUpload /> : <App />,
+);
