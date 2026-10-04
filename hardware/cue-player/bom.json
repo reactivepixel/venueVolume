@@ -1,0 +1,964 @@
+{
+  "revision": "A",
+  "items": [
+    {
+      "refs": [
+        "U1"
+      ],
+      "qty": 1,
+      "value": "Teensy 4.1 with Ethernet PHY",
+      "package": "Module / two 1x24 rows",
+      "mpn": "PJRC TEENSY41 (PHY populated)",
+      "category": "carrier",
+      "note": "Cut VUSB-VIN link. USB device, SDIO and Ethernet kit remain on module. Unused GPIO NC."
+    },
+    {
+      "refs": [
+        "U2"
+      ],
+      "qty": 1,
+      "value": "3.3 V / 1 A LDO",
+      "package": "DGN HVSSOP-8 exposed pad",
+      "mpn": "TLV76733DGNR",
+      "category": "carrier",
+      "note": "SNS at OUT; EP to thermal ground plane."
+    },
+    {
+      "refs": [
+        "U5"
+      ],
+      "qty": 1,
+      "value": "Schmitt AND gates",
+      "package": "TSSOP-14",
+      "mpn": "SN74HCS08PWR",
+      "category": "carrier",
+      "note": ""
+    },
+    {
+      "refs": [
+        "F1"
+      ],
+      "qty": 1,
+      "value": "1.5 A hold / 16 V PPTC",
+      "package": "1812",
+      "mpn": "1812L150/16DR",
+      "category": "carrier",
+      "note": "Check ambient derating and fault clearing."
+    },
+    {
+      "refs": [
+        "Q1"
+      ],
+      "qty": 1,
+      "value": "P-channel reverse polarity MOSFET",
+      "package": "SOT-23",
+      "mpn": "AO3401A",
+      "category": "carrier",
+      "note": "Pin 1 gate, 2 source, 3 drain. Drain faces incoming supply."
+    },
+    {
+      "refs": [
+        "R1"
+      ],
+      "qty": 1,
+      "value": "100 kohm 1%",
+      "package": "0603",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": ""
+    },
+    {
+      "refs": [
+        "C1"
+      ],
+      "qty": 1,
+      "value": "100 uF / 10 V",
+      "package": "Radial electrolytic",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": "Positive terminal pin 1; reserve exact lead pitch after procurement."
+    },
+    {
+      "refs": [
+        "C2"
+      ],
+      "qty": 1,
+      "value": "1 uF / 16 V X7R",
+      "package": "0603",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": ""
+    },
+    {
+      "refs": [
+        "C3"
+      ],
+      "qty": 1,
+      "value": "10 uF / 16 V X7R",
+      "package": "0805",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": ""
+    },
+    {
+      "refs": [
+        "C4"
+      ],
+      "qty": 1,
+      "value": "10 uF / 16 V X7R",
+      "package": "0805",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": "Check effective capacitance after bias derating."
+    },
+    {
+      "refs": [
+        "C5",
+        "C6",
+        "C7",
+        "C30",
+        "C31",
+        "C32",
+        "C33",
+        "C34",
+        "C35"
+      ],
+      "qty": 9,
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": ""
+    },
+    {
+      "refs": [
+        "R2",
+        "R20",
+        "R21",
+        "R22",
+        "R23",
+        "R24",
+        "R25",
+        "R16",
+        "R17"
+      ],
+      "qty": 9,
+      "value": "1 kohm 1%",
+      "package": "0603",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": ""
+    },
+    {
+      "refs": [
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R30",
+        "R31",
+        "R32",
+        "R33",
+        "R34",
+        "R35"
+      ],
+      "qty": 13,
+      "value": "10 kohm 1%",
+      "package": "0603",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": ""
+    },
+    {
+      "refs": [
+        "U3",
+        "U4"
+      ],
+      "qty": 2,
+      "value": "Isolated DMX output",
+      "package": "SOIC-20 wide body",
+      "mpn": "ADM2587EBRWZ",
+      "category": "carrier",
+      "note": "Output only. /RE high, RxD NC. Separate isolated supply per port."
+    },
+    {
+      "refs": [
+        "FB1",
+        "FB2",
+        "FB3",
+        "FB4"
+      ],
+      "qty": 4,
+      "value": "600 ohm at 100 MHz ferrite",
+      "package": "0603",
+      "mpn": "BLM18AG601SN1D",
+      "category": "carrier",
+      "note": "Initial EMI candidate; verify high-frequency curve, current and DCR before release."
+    },
+    {
+      "refs": [
+        "C10",
+        "C20"
+      ],
+      "qty": 2,
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": "IC pins 2/1"
+    },
+    {
+      "refs": [
+        "C11",
+        "C21"
+      ],
+      "qty": 2,
+      "value": "10 nF / 16 V X7R",
+      "package": "0603",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": "IC pins 2/1"
+    },
+    {
+      "refs": [
+        "C12",
+        "C22"
+      ],
+      "qty": 2,
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": "IC pins 8/9"
+    },
+    {
+      "refs": [
+        "C13",
+        "C23"
+      ],
+      "qty": 2,
+      "value": "10 uF / 16 V X7R",
+      "package": "0805",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": "IC pins 8/9"
+    },
+    {
+      "refs": [
+        "C14",
+        "C24"
+      ],
+      "qty": 2,
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": "IC pins 12/11"
+    },
+    {
+      "refs": [
+        "C15",
+        "C25"
+      ],
+      "qty": 2,
+      "value": "10 uF / 16 V X7R",
+      "package": "0805",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": "IC pins 12/11"
+    },
+    {
+      "refs": [
+        "C16",
+        "C26"
+      ],
+      "qty": 2,
+      "value": "100 nF / 16 V X7R",
+      "package": "0603",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": "IC pins 19/20"
+    },
+    {
+      "refs": [
+        "C17",
+        "C27"
+      ],
+      "qty": 2,
+      "value": "10 nF / 16 V X7R",
+      "package": "0603",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": "IC pins 19/20"
+    },
+    {
+      "refs": [
+        "R10",
+        "R11",
+        "R12",
+        "R13"
+      ],
+      "qty": 4,
+      "value": "0 ohm",
+      "package": "0805",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": "Tuning link. Default 0 ohm; added resistance requires loaded DMX tests."
+    },
+    {
+      "refs": [
+        "D1",
+        "D2"
+      ],
+      "qty": 2,
+      "value": "RS-485 transient array",
+      "package": "SOT-23",
+      "mpn": "SM712-02HTG",
+      "category": "carrier",
+      "note": "Protection coordination requires bench validation; no claimed surge rating."
+    },
+    {
+      "refs": [
+        "J2",
+        "J3"
+      ],
+      "qty": 2,
+      "value": "DMX harness",
+      "package": "JST-XH 3-pin 2.5 mm",
+      "mpn": "B3B-XH-A(LF)(SN)",
+      "category": "carrier",
+      "note": ""
+    },
+    {
+      "refs": [
+        "XLR1",
+        "XLR2"
+      ],
+      "qty": 2,
+      "value": "5-pin DMX output socket",
+      "package": "Panel D series",
+      "mpn": "NC5FD-LX",
+      "category": "off-board",
+      "note": ""
+    },
+    {
+      "refs": [
+        "SW2"
+      ],
+      "qty": 1,
+      "value": "GO momentary switch",
+      "package": "12 mm panel; low-current gold contacts",
+      "mpn": "Specification controlled",
+      "category": "off-board",
+      "note": "SPST-NO; final mechanical SKU and button color selected before panel machining."
+    },
+    {
+      "refs": [
+        "SW3"
+      ],
+      "qty": 1,
+      "value": "HOLD momentary switch",
+      "package": "12 mm panel; low-current gold contacts",
+      "mpn": "Specification controlled",
+      "category": "off-board",
+      "note": "SPST-NO; final mechanical SKU and button color selected before panel machining."
+    },
+    {
+      "refs": [
+        "SW4"
+      ],
+      "qty": 1,
+      "value": "BACK momentary switch",
+      "package": "12 mm panel; low-current gold contacts",
+      "mpn": "Specification controlled",
+      "category": "off-board",
+      "note": "SPST-NO; final mechanical SKU and button color selected before panel machining."
+    },
+    {
+      "refs": [
+        "SW5"
+      ],
+      "qty": 1,
+      "value": "NEXT momentary switch",
+      "package": "12 mm panel; low-current gold contacts",
+      "mpn": "Specification controlled",
+      "category": "off-board",
+      "note": "SPST-NO; final mechanical SKU and button color selected before panel machining."
+    },
+    {
+      "refs": [
+        "SW6"
+      ],
+      "qty": 1,
+      "value": "BLACKOUT momentary switch",
+      "package": "12 mm panel; low-current gold contacts",
+      "mpn": "Specification controlled",
+      "category": "off-board",
+      "note": "SPST-NO; final mechanical SKU and button color selected before panel machining."
+    },
+    {
+      "refs": [
+        "SW7"
+      ],
+      "qty": 1,
+      "value": "PAIR momentary switch",
+      "package": "12 mm panel; low-current gold contacts",
+      "mpn": "Specification controlled",
+      "category": "off-board",
+      "note": "SPST-NO; final mechanical SKU and button color selected before panel machining."
+    },
+    {
+      "refs": [
+        "SW1"
+      ],
+      "qty": 1,
+      "value": "ARM maintained switch + guard",
+      "package": "Panel SPST",
+      "mpn": "Specification controlled",
+      "category": "off-board",
+      "note": "Low-current gold contacts. Guard envelope checked in panel CAD."
+    },
+    {
+      "refs": [
+        "LED1"
+      ],
+      "qty": 1,
+      "value": "green panel LED",
+      "package": "3 mm LED + insulating bezel",
+      "mpn": "Specification controlled",
+      "category": "off-board",
+      "note": ""
+    },
+    {
+      "refs": [
+        "LED2"
+      ],
+      "qty": 1,
+      "value": "red panel LED",
+      "package": "3 mm LED + insulating bezel",
+      "mpn": "Specification controlled",
+      "category": "off-board",
+      "note": ""
+    },
+    {
+      "refs": [
+        "J1"
+      ],
+      "qty": 1,
+      "value": "Power harness",
+      "package": "JST-XH 2-pin 2.5 mm",
+      "mpn": "B2B-XH-A(LF)(SN)",
+      "category": "carrier",
+      "note": ""
+    },
+    {
+      "refs": [
+        "J4"
+      ],
+      "qty": 1,
+      "value": "OLED interface",
+      "package": "JST-SH 4-pin 1 mm",
+      "mpn": "SM04B-SRSS-TB(LF)(SN)",
+      "category": "carrier",
+      "note": ""
+    },
+    {
+      "refs": [
+        "J5"
+      ],
+      "qty": 1,
+      "value": "Panel controls harness",
+      "package": "JST-XH 12-pin 2.5 mm",
+      "mpn": "B12B-XH-A(LF)(SN)",
+      "category": "carrier",
+      "note": ""
+    },
+    {
+      "refs": [
+        "J6"
+      ],
+      "qty": 1,
+      "value": "Chassis bond point",
+      "package": "M3 ring lug / bond pad",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": ""
+    },
+    {
+      "refs": [
+        "R40"
+      ],
+      "qty": 1,
+      "value": "0 ohm",
+      "package": "0805",
+      "mpn": "Specification controlled",
+      "category": "carrier",
+      "note": "Single initial logic/chassis bond; never bridge an isolated DMX common."
+    },
+    {
+      "refs": [
+        "OLED1"
+      ],
+      "qty": 1,
+      "value": "128x64 I2C OLED",
+      "package": "29.2 x 26.7 mm module",
+      "mpn": "Adafruit 326 current STEMMA QT version",
+      "category": "off-board",
+      "note": "Module supplies I2C pullups; verify address."
+    },
+    {
+      "refs": [
+        "TP1"
+      ],
+      "qty": 1,
+      "value": "+5V_SYS",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP2"
+      ],
+      "qty": 1,
+      "value": "+3V3_MCU",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP3"
+      ],
+      "qty": 1,
+      "value": "+3V3_DMX",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP4"
+      ],
+      "qty": 1,
+      "value": "GND_LOGIC",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP5"
+      ],
+      "qty": 1,
+      "value": "ARM_SENSE",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP6"
+      ],
+      "qty": 1,
+      "value": "DMXA_REQ",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP7"
+      ],
+      "qty": 1,
+      "value": "DMXB_REQ",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP8"
+      ],
+      "qty": 1,
+      "value": "DMXA_DE",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP9"
+      ],
+      "qty": 1,
+      "value": "DMXB_DE",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP10"
+      ],
+      "qty": 1,
+      "value": "DMXA_TX",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP11"
+      ],
+      "qty": 1,
+      "value": "DMXB_TX",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP12"
+      ],
+      "qty": 1,
+      "value": "ISOA_3V3",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP13"
+      ],
+      "qty": 1,
+      "value": "ISOA_GND",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP14"
+      ],
+      "qty": 1,
+      "value": "DMXA_P_CABLE",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP15"
+      ],
+      "qty": 1,
+      "value": "DMXA_N_CABLE",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP16"
+      ],
+      "qty": 1,
+      "value": "ISOB_3V3",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP17"
+      ],
+      "qty": 1,
+      "value": "ISOB_GND",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP18"
+      ],
+      "qty": 1,
+      "value": "DMXB_P_CABLE",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "TP19"
+      ],
+      "qty": 1,
+      "value": "DMXB_N_CABLE",
+      "package": "1.5 mm exposed test pad",
+      "mpn": "Specification controlled",
+      "category": "PCB feature",
+      "note": "Copper feature; no purchased component."
+    },
+    {
+      "refs": [
+        "ETH1"
+      ],
+      "qty": 1,
+      "value": "Ethernet kit for Teensy 4.1",
+      "package": "Assembly / accessory",
+      "mpn": "PJRC ETHERNET_KIT",
+      "category": "assembly",
+      "note": "Includes magjack, PCB, capacitor, 2x3 headers and ribbon cable; assemble vendor kit."
+    },
+    {
+      "refs": [
+        "SD1"
+      ],
+      "qty": 1,
+      "value": "Industrial/high-endurance 8-32 GB microSD",
+      "package": "Assembly / accessory",
+      "mpn": "Qualified supplier SKU required",
+      "category": "assembly",
+      "note": "FAT32 initial target; qualify exact model for power interruption/read latency."
+    },
+    {
+      "refs": [
+        "PS1"
+      ],
+      "qty": 1,
+      "value": "5 V 3 A external adapter",
+      "package": "Assembly / accessory",
+      "mpn": "Mean Well GST18A05-P1J",
+      "category": "assembly",
+      "note": "Add regional IEC mains lead; no mains wiring in box."
+    },
+    {
+      "refs": [
+        "USB1"
+      ],
+      "qty": 1,
+      "value": "Reversible USB A/B panel feedthrough",
+      "package": "Assembly / accessory",
+      "mpn": "Neutrik NAUSB-W",
+      "category": "assembly",
+      "note": "B outward, A inward; bond shell to chassis."
+    },
+    {
+      "refs": [
+        "NET1"
+      ],
+      "qty": 1,
+      "value": "Shielded RJ45 panel coupler, CAT5e or better",
+      "package": "Assembly / accessory",
+      "mpn": "Mechanical SKU to select",
+      "category": "assembly",
+      "note": "Panel grounded shell; internal short patch cable to Ethernet kit; no PoE."
+    },
+    {
+      "refs": [
+        "DC1"
+      ],
+      "qty": 1,
+      "value": "Insulated panel barrel socket, 5.5/2.1 mm, >=3 A",
+      "package": "Assembly / accessory",
+      "mpn": "Mechanical SKU to select",
+      "category": "assembly",
+      "note": "Center positive; sleeve to logic ground; two-wire harness to J1."
+    },
+    {
+      "refs": [
+        "CASE1"
+      ],
+      "qty": 1,
+      "value": "Extruded aluminum enclosure",
+      "package": "Assembly / accessory",
+      "mpn": "Hammond 1455T2201BK",
+      "category": "assembly",
+      "note": "220 x 165 x 51.5 mm nominal; use custom machined end panels."
+    },
+    {
+      "refs": [
+        "PCB1"
+      ],
+      "qty": 1,
+      "value": "Custom 4-layer carrier, 140 x 110 mm allowance",
+      "package": "Assembly / accessory",
+      "mpn": "Native ECAD and routed PCB required",
+      "category": "assembly",
+      "note": "Not supplied as fabrication-ready artwork."
+    },
+    {
+      "refs": [
+        "SOCKET"
+      ],
+      "qty": 2,
+      "value": "1x24 female 2.54 mm module socket",
+      "package": "Assembly / accessory",
+      "mpn": "PJRC 24-pin socket or dimensional equivalent",
+      "category": "assembly",
+      "note": "Check controller header lengths and retention bracket."
+    },
+    {
+      "refs": [
+        "HEADER"
+      ],
+      "qty": 2,
+      "value": "1x24 male 2.54 mm header",
+      "package": "Assembly / accessory",
+      "mpn": "PJRC 24-pin header or dimensional equivalent",
+      "category": "assembly",
+      "note": "For bare Teensy module; omit if purchased already fitted."
+    },
+    {
+      "refs": [
+        "HARNESS1"
+      ],
+      "qty": 1,
+      "value": "J1 power mating connector and leads",
+      "package": "Assembly / accessory",
+      "mpn": "XHP-2 + 2 x SXH contacts",
+      "category": "assembly",
+      "note": "22 AWG stranded; verify crimp tooling and pin 1."
+    },
+    {
+      "refs": [
+        "HARNESS2"
+      ],
+      "qty": 2,
+      "value": "J2/J3 DMX mating connectors and leads",
+      "package": "Assembly / accessory",
+      "mpn": "XHP-3 + 3 x SXH contacts per harness",
+      "category": "assembly",
+      "note": "Short 120-ohm twisted pair + isolated common; heatshrink at XLR."
+    },
+    {
+      "refs": [
+        "HARNESS3"
+      ],
+      "qty": 1,
+      "value": "J5 12-way panel harness",
+      "package": "Assembly / accessory",
+      "mpn": "XHP-12 + 12 x SXH contacts",
+      "category": "assembly",
+      "note": "26 AWG signal wiring; <=200 mm; continuity test each switch."
+    },
+    {
+      "refs": [
+        "CABLE1"
+      ],
+      "qty": 1,
+      "value": "JST-SH/Qwiic 4-wire OLED cable",
+      "package": "Assembly / accessory",
+      "mpn": "Standard keyed cable, <=150 mm",
+      "category": "assembly",
+      "note": "Verify pinout; use assembled cable, no hand-swapped wire colors."
+    },
+    {
+      "refs": [
+        "CABLE2"
+      ],
+      "qty": 1,
+      "value": "Internal USB-A male to Micro-B data cable",
+      "package": "Assembly / accessory",
+      "mpn": "Short, shielded, <=200 mm",
+      "category": "assembly",
+      "note": "Secure both ends; no charge-only cable."
+    },
+    {
+      "refs": [
+        "CABLE3"
+      ],
+      "qty": 1,
+      "value": "Internal CAT5e patch cable",
+      "package": "Assembly / accessory",
+      "mpn": "Short shielded patch, <=200 mm",
+      "category": "assembly",
+      "note": "Kit magjack to panel coupler."
+    },
+    {
+      "refs": [
+        "CABLE4"
+      ],
+      "qty": 1,
+      "value": "Host USB cable",
+      "package": "Assembly / accessory",
+      "mpn": "USB-A/C host to USB-B device data cable",
+      "category": "assembly",
+      "note": "Host-dependent cable; supplied as accessory."
+    },
+    {
+      "refs": [
+        "CABLE5"
+      ],
+      "qty": 1,
+      "value": "External CAT5e network cable",
+      "package": "Assembly / accessory",
+      "mpn": "Shielding per venue installation",
+      "category": "assembly",
+      "note": "Local Ethernet connection."
+    },
+    {
+      "refs": [
+        "CABLE6"
+      ],
+      "qty": 2,
+      "value": "External DMX512 5-pin cable",
+      "package": "Assembly / accessory",
+      "mpn": "120-ohm DMX cable",
+      "category": "assembly",
+      "note": "One for each physical output as required."
+    },
+    {
+      "refs": [
+        "TERM"
+      ],
+      "qty": 2,
+      "value": "120-ohm far-end XLR DMX terminator",
+      "package": "Assembly / accessory",
+      "mpn": "5-pin, 0.25 W or greater resistor",
+      "category": "assembly",
+      "note": "External accessory, no source-end shunt termination."
+    },
+    {
+      "refs": [
+        "MECH"
+      ],
+      "qty": 1,
+      "value": "Mechanical hardware set",
+      "package": "Assembly / accessory",
+      "mpn": "Procure to reviewed mechanical CAD",
+      "category": "assembly",
+      "note": "Insulating M3 standoffs, screws, washers, module brackets, feet, OLED window, SD cover, strain reliefs, chassis lead and labels."
+    },
+    {
+      "refs": [
+        "LAN"
+      ],
+      "qty": 0,
+      "value": "Optional offline Wi-Fi AP / Ethernet switch",
+      "package": "Assembly / accessory",
+      "mpn": "Venue-dependent external equipment",
+      "category": "assembly",
+      "note": "Only needed to join wireless app clients or multiple network nodes; internet not required."
+    }
+  ]
+}

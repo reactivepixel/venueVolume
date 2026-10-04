@@ -75,3 +75,9 @@ Both screenshots were visually inspected. [Dotted guide with Toolbox open](evide
 ## Remaining validation
 
 The Mac was locked during native UI access. Mouse/physical pinch exploration, right-hand tracking, eye/hand arbitration across app windows, real-world comfort and headset performance are **not tested** in this change. The generic device build is compilation evidence, not a headset install or run. Precise release coordinates, warm ring visibility across all fixture shapes and bright-room contrast still need worn-device acceptance. No hardware deployment was requested in this turn.
+
+## Integration release check
+
+The remote merge added the cue-player research/hardware files without application-source conflicts. Both npm app package and lockfile versions, `project.yml` and generated Xcode settings were bumped to **0.2.7** in the integration merge. The version-only Simulator rebuild passed using the command above; the built bundle's `CFBundleShortVersionString` is **0.2.7**. The only build warning was skipped App Intents metadata extraction because this app has no AppIntents framework dependency.
+
+The integration commit is tagged with an annotated `v0.2.7`; `python3 apps/visionos/scripts/check-version.py --release` checks the tag, both npm apps, generated settings and Info.plist binding. Existing tags are retained. This request integrates local `dev`; no push was requested.
