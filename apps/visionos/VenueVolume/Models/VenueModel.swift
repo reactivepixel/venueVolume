@@ -1080,6 +1080,26 @@ final class VenueModel {
         revision += 1; persist(); message = saved == nil ? "Returned moving parts to rest." : "Restored the preset's motion values."
     }
 
+    func activatePresetApplication(_ id: UUID) {
+        guard isImmersed, canPlace, !libraryBusy, !isPickingRoom, !isTransformDragging,
+              tourPreview == nil, presets.contains(where: { $0.id == id }) else { return }
+        endPresetDrag()
+        presetDrag.activate(presetID: id)
+        beginPresetDrag(id)
+    }
+
+    @discardableResult func applyProposedPreset() -> Bool {
+        guard let session = presetDrag.session, let fixtureID = presetDrag.proposedFixtureID else { return false }
+        return finishPresetApplication(presetID: session.presetID, fixtureID: fixtureID)
+    }
+
+    @discardableResult func finishPresetApplication(presetID: UUID, fixtureID: UUID) -> Bool {
+        let success = applyPreset(presetID, to: fixtureID)
+        endPresetDrag()
+        presetDrag.showFeedback(presetID: presetID, fixtureID: fixtureID, succeeded: success, message: success ? nil : message)
+        return success
+    }
+
     func beginPresetDrag(_ id: UUID) {
         draggingPresetID = id
     }

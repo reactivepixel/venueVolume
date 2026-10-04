@@ -1,0 +1,220 @@
+Building for debugging...
+[Computing dependencies]
+[1 / 3]
+[2 / 6] VenueVolumeCore
+[3 / 7] VenueVolumeCore
+[8 / 12] VenueVolumeCore
+[11 / 13] VenueVolumeCoreTests-product
+[13 / 15] VenueVolumeCoreTests-product
+[17 / 18] VenueVolumeCoreTests-product
+[19 / 19] VenueVolumeCoreTests-product
+Build complete! (6.43 sec)
+Test Suite 'All tests' started at 2026-10-04 17:41:43.307.
+Test Suite 'All tests' passed at 2026-10-04 17:41:43.312.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.004) seconds
+◇ Test run started.
+↳ Testing Library Version: 2084
+↳ Target Platform: arm64e-apple-macos14.0
+◇ Suite AuditHistoryTests started.
+◇ Test exportedClassroomContractAndDeskPlacement() started.
+◇ Test completePayloadRoundTripsAndIncludesEveryConfiguration() started.
+◇ Test selectedLabelWinsOverlapEvenAtADistance() started.
+◇ Test tourSelectionResolvesHierarchyAndConfiguration() started.
+◇ Test benchmarkKeepsIdenticalGeometryAndPatchAcrossRooms() started.
+◇ Test roomLibraryKeepsGeometryAndIndependentSetupsAcrossRelaunch() started.
+◇ Test aimOverrideSurvivesPresetOperationsAndPersistence() started.
+◇ Test dragAndOtherFingerDoNotBecomeDoubleClicks() started.
+◇ Test headAimSolvesInFixtureCoordinatesWithQuantizedDmx() started.
+◇ Test tourGroupApplyIsAtomicOnIncompatibleMember() started.
+◇ Test planeSurvivesFixtureRoundTripAndLegacyStillDecodes() started.
+◇ Test mappedRoomPreservesClassroomInteractionAndResolvesSeparately() started.
+◇ Test wideBoundsDoNotSubtractWidthFromWallOcclusion() started.
+◇ Test compoundFixturesKeepIndependentControlsAndEmitters() started.
+◇ Test recentItemsAreUniqueOrderedAndCappedAtTen() started.
+◇ Test offscreenNeighborsDoNotHideFrontalLabels() started.
+◇ Test presetBoundsRayUsesNearestForwardSurface() started.
+◇ Test previewPersonalityDecodesDmxAndClamps() started.
+◇ Test emptySnapshotCanClearRemoteConfiguration() started.
+◇ Test conflictingFootprintRejectsEntireSaveAndDrop() started.
+◇ Test palmRevealDebouncesAndDismissesAfterTrackingLoss() started.
+◇ Test portableSaveRejectsDamagedAssetsPathsAndUnknownVersionsBeforeWriting() started.
+◇ Test effectsUseVisualMechanismsWithoutSpotlightEmission() started.
+◇ Test presetSnapReachesLargeVenueFromOnePosition() started.
+◇ Test panTiltAndBeamRespondIndependently() started.
+◇ Test cancelledAndSupersededDragCannotApply() started.
+◇ Test tourColourPreservesIntensityAndFocus() started.
+◇ Test tourPinnedSessionUnaffectedByShowLibraryEdits() started.
+◇ Test portableSaveRollsBackNewGeometryWhenSetupCannotBeWritten() started.
+◇ Test placementsSurviveNewStoreAndAreIsolatedByRoomVersion() started.
+◇ Test tourRejectsEmptyMasksDuplicateIDsAndDanglingBindings() started.
+◇ Test invalidPatchCannotBeSynced() started.
+◇ Test trackingLossRequiresReleaseAndNeverResumesOldDrag() started.
+◇ Test tourArchiveRoundTripRetainsUnplacedAndUnusedPresets() started.
+◇ Test fixtureAssetAndTransformRoundTripWithPresets() started.
+◇ Test navigationPoseRoundTripsAndRejectsInvalidData() started.
+◇ Test copiedPresetDoesNotUpdateOriginalAssignments() started.
+◇ Test everyMovingHeadTargetsUsingItsOwnPivots() started.
+◇ Test portableImportRejectsExistingGeometryChangedAfterPreparation() started.
+◇ Test ambiguousAndInvalidPinchesDoNotStartNavigation() started.
+◇ Test tourResetIndividualFallsBackToClosestGroup() started.
+◇ Test unreachableHeadTargetsFailInsteadOfClamping() started.
+◇ Test rotationKeepsPositionAndTranslationFollowsRotatedAxes() started.
+◇ Test deletingPresetClearsAssignmentsAndZerosChannels() started.
+◇ Test patchesCannotOverlapButMayShareAddressesAcrossUniverses() started.
+◇ Test moduleOverridesSurvivePresetChangesAndOldSaves() started.
+◇ Test doubleMiddleResetsOnlyOrientationAndDoubleIndexResetsBoth() started.
+◇ Test mockFailureCanBeRetried() started.
+◇ Test catalogControlsAreAddressableAndNeutralAtRest() started.
+◇ Test tourNamedFocusSolvesEachMountIndependently() started.
+◇ Test allocatorFillsGapsAndRollsToNextUniverse() started.
+◇ Test mountAnglesRoundTripIncludingGimbalLock() started.
+◇ Test tourMissingFocusLocationBlocksOutput() started.
+◇ Test stagedPortableImportPreservesLibraryWhenPublicationFails() started.
+◇ Test localRepositoryResolvesAndRejectsWrongIDAndTruncation() started.
+◇ Test touringUnavailableUnitsAndMismatchedLayoutAreRejected() started.
+◇ Test presetDropPreservesObjectIdentityAndPatch() started.
+◇ Test mockHTTPTransportAcceptsEntireSnapshot() started.
+◇ Test presetDragRequiresMovementAndConsumesReleaseOnce() started.
+◇ Test presetSnapRetainsNearBoundaryAndUsesOnlyAvailableTargets() started.
+◇ Test touringVenuePortableRoundTripKeepsPinnedInventoryAndUnusedPresets() started.
+◇ Test portableSaveRoundTripsGeometryPresetsAndMaterialSettings() started.
+◇ Test footprintMustFitUniverse() started.
+◇ Test bundledVenueChoicesIncludeReviewedFortress() started.
+◇ Test incompatibleAndMalformedManifestsFailBeforeLoading() started.
+◇ Test presetSnapSupportsIndirectInputAndRejectsBehindOrFarTargets() started.
+◇ Test portableImportPreparationDoesNotPublishUntilCommit() started.
+◇ Test legacyPresetDecodesAsFullFrame() started.
+◇ Test tourIdentityAndFootprintCannotChangeAtPlacement() started.
+◇ Test scanRequiresAllCornersOnCapturedWallPlane() started.
+◇ Test gizmoWorldAxesComposeMountRotation() started.
+◇ Test tourHierarchyRejectsCyclesAndDanglingParents() started.
+◇ Test mountAlignsToFloorWallAndCeilingWithoutInvalidQuaternion() started.
+◇ Test presetDragRejectsInvalidSamplesAndNoTarget() started.
+◇ Test labelsBoundClutterAndRejectInvalidOrDistantCandidates() started.
+◇ Test channelCountBounds(count:) started.
+◇ Test setupRejectsInvalidSnapshotsWithoutOverwritingGoodSave() started.
+◇ Test presetActivationPersistsUntilApplyOrExplicitCancel() started.
+◇ Test tourGroupDefaultsPreserveAndExplicitlyReplaceExceptions() started.
+◇ Test namesValuesAndUniverseMustBeValid() started.
+◇ Test presetSnapUsesVisibleEndsOfLongFixtures() started.
+◇ Test tourTransformPreservesScalePatchAndProgramming() started.
+◇ Test portableSaveWorkerDoesHeavyWorkAwayFromMainActor() started.
+◇ Test pilotHeadSliderAnglesEncodeToPreviewValues() started.
+◇ Test budgetsRespectHardwareThermalAndSelection() started.
+◇ Test saveUpdatesEveryAssignedObjectButNotOtherPresets() started.
+◇ Test presetPayloadAndAssignmentsRoundTrip() started.
+◇ Test portableSaveCancellationDoesNotPublishStagedFiles() started.
+◇ Test cadenceRetainsHitchesAndRejectsNonFiniteSamples() started.
+◇ Test mountAimAccountsForEmitterParallaxAndPreservesArticulation() started.
+◇ Test navigationMovesAllAxesWithoutBoundsOrAccumulatingDrift() started.
+◇ Test corruptPlacementsRemainUntouched() started.
+◇ Test scannedMeshValidatesAndRejectsUnsupportedEdgesAndHoles() started.
+◇ Test mountAimUsesStaticAndMultiEmitterGeometry() started.
+◇ Test touringFocusMaskMustKeepThePairTogether() started.
+◇ Test slidingPlaneRemovesOnlyNormalMotion() started.
+◇ Test undoRedoBranchesKeepAbandonedEvents() started.
+◇ Test auditNavigationPersistsWithoutReplayingExternalEffects() started.
+◇ Test corruptedAuditDoesNotOverwriteTheFile() started.
+◇ Test case passing 1 argument count → 0 to channelCountBounds(count:) started.
+◇ Test case passing 1 argument count → 17 to channelCountBounds(count:) started.
+✔ Test dragAndOtherFingerDoNotBecomeDoubleClicks() passed after 0.102 seconds.
+✔ Test selectedLabelWinsOverlapEvenAtADistance() passed after 0.105 seconds.
+✔ Test headAimSolvesInFixtureCoordinatesWithQuantizedDmx() passed after 0.105 seconds.
+✔ Test exportedClassroomContractAndDeskPlacement() passed after 0.105 seconds.
+✔ Test planeSurvivesFixtureRoundTripAndLegacyStillDecodes() passed after 0.105 seconds.
+✔ Test wideBoundsDoNotSubtractWidthFromWallOcclusion() passed after 0.106 seconds.
+✔ Test tourSelectionResolvesHierarchyAndConfiguration() passed after 0.107 seconds.
+✔ Test recentItemsAreUniqueOrderedAndCappedAtTen() passed after 0.106 seconds.
+✔ Test offscreenNeighborsDoNotHideFrontalLabels() passed after 0.106 seconds.
+✔ Test presetBoundsRayUsesNearestForwardSurface() passed after 0.107 seconds.
+✔ Test previewPersonalityDecodesDmxAndClamps() passed after 0.106 seconds.
+✔ Test tourGroupApplyIsAtomicOnIncompatibleMember() passed after 0.107 seconds.
+✔ Test conflictingFootprintRejectsEntireSaveAndDrop() passed after 0.107 seconds.
+✔ Test compoundFixturesKeepIndependentControlsAndEmitters() passed after 0.107 seconds.
+✔ Test palmRevealDebouncesAndDismissesAfterTrackingLoss() passed after 0.107 seconds.
+✔ Test effectsUseVisualMechanismsWithoutSpotlightEmission() passed after 0.107 seconds.
+✔ Test presetSnapReachesLargeVenueFromOnePosition() passed after 0.107 seconds.
+✔ Test panTiltAndBeamRespondIndependently() passed after 0.106 seconds.
+✔ Test aimOverrideSurvivesPresetOperationsAndPersistence() passed after 0.107 seconds.
+✔ Test tourColourPreservesIntensityAndFocus() passed after 0.106 seconds.
+✔ Test tourPinnedSessionUnaffectedByShowLibraryEdits() passed after 0.106 seconds.
+✔ Test tourRejectsEmptyMasksDuplicateIDsAndDanglingBindings() passed after 0.107 seconds.
+✔ Test completePayloadRoundTripsAndIncludesEveryConfiguration() passed after 0.107 seconds.
+✔ Test trackingLossRequiresReleaseAndNeverResumesOldDrag() passed after 0.106 seconds.
+✔ Test tourArchiveRoundTripRetainsUnplacedAndUnusedPresets() passed after 0.106 seconds.
+✔ Test portableSaveRejectsDamagedAssetsPathsAndUnknownVersionsBeforeWriting() passed after 0.107 seconds.
+✔ Test navigationPoseRoundTripsAndRejectsInvalidData() passed after 0.106 seconds.
+✔ Test copiedPresetDoesNotUpdateOriginalAssignments() passed after 0.106 seconds.
+✔ Test fixtureAssetAndTransformRoundTripWithPresets() passed after 0.106 seconds.
+✔ Test mappedRoomPreservesClassroomInteractionAndResolvesSeparately() passed after 0.107 seconds.
+✔ Test ambiguousAndInvalidPinchesDoNotStartNavigation() passed after 0.106 seconds.
+✔ Test roomLibraryKeepsGeometryAndIndependentSetupsAcrossRelaunch() passed after 0.107 seconds.
+✔ Test tourResetIndividualFallsBackToClosestGroup() passed after 0.106 seconds.
+✔ Test unreachableHeadTargetsFailInsteadOfClamping() passed after 0.106 seconds.
+✔ Test rotationKeepsPositionAndTranslationFollowsRotatedAxes() passed after 0.106 seconds.
+✔ Test deletingPresetClearsAssignmentsAndZerosChannels() passed after 0.106 seconds.
+✔ Test patchesCannotOverlapButMayShareAddressesAcrossUniverses() passed after 0.106 seconds.
+✔ Test moduleOverridesSurvivePresetChangesAndOldSaves() passed after 0.106 seconds.
+✔ Test placementsSurviveNewStoreAndAreIsolatedByRoomVersion() passed after 0.107 seconds.
+✔ Test doubleMiddleResetsOnlyOrientationAndDoubleIndexResetsBoth() passed after 0.106 seconds.
+✔ Test benchmarkKeepsIdenticalGeometryAndPatchAcrossRooms() passed after 0.107 seconds.
+✔ Test catalogControlsAreAddressableAndNeutralAtRest() passed after 0.106 seconds.
+✔ Test tourNamedFocusSolvesEachMountIndependently() passed after 0.106 seconds.
+✔ Test mountAnglesRoundTripIncludingGimbalLock() passed after 0.106 seconds.
+✔ Test tourMissingFocusLocationBlocksOutput() passed after 0.106 seconds.
+✔ Test everyMovingHeadTargetsUsingItsOwnPivots() passed after 0.107 seconds.
+✔ Test allocatorFillsGapsAndRollsToNextUniverse() passed after 0.106 seconds.
+✔ Test touringUnavailableUnitsAndMismatchedLayoutAreRejected() passed after 0.106 seconds.
+✔ Test presetDropPreservesObjectIdentityAndPatch() passed after 0.106 seconds.
+✔ Test presetSnapRetainsNearBoundaryAndUsesOnlyAvailableTargets() passed after 0.106 seconds.
+✔ Test footprintMustFitUniverse() passed after 0.106 seconds.
+✔ Test invalidPatchCannotBeSynced() passed after 0.107 seconds.
+✔ Test portableImportRejectsExistingGeometryChangedAfterPreparation() passed after 0.107 seconds.
+✔ Test portableSaveRollsBackNewGeometryWhenSetupCannotBeWritten() passed after 0.107 seconds.
+✔ Test bundledVenueChoicesIncludeReviewedFortress() passed after 0.106 seconds.
+✔ Test presetSnapSupportsIndirectInputAndRejectsBehindOrFarTargets() passed after 0.106 seconds.
+✔ Test legacyPresetDecodesAsFullFrame() passed after 0.106 seconds.
+✔ Test gizmoWorldAxesComposeMountRotation() passed after 0.106 seconds.
+✔ Test scanRequiresAllCornersOnCapturedWallPlane() passed after 0.107 seconds.
+✔ Test tourHierarchyRejectsCyclesAndDanglingParents() passed after 0.106 seconds.
+✔ Test mountAlignsToFloorWallAndCeilingWithoutInvalidQuaternion() passed after 0.106 seconds.
+✔ Test labelsBoundClutterAndRejectInvalidOrDistantCandidates() passed after 0.106 seconds.
+✔ Test localRepositoryResolvesAndRejectsWrongIDAndTruncation() passed after 0.107 seconds.
+✔ Test channelCountBounds(count:) with 2 test cases passed after 0.106 seconds.
+✔ Test tourIdentityAndFootprintCannotChangeAtPlacement() passed after 0.106 seconds.
+✔ Test namesValuesAndUniverseMustBeValid() passed after 0.106 seconds.
+✔ Test presetSnapUsesVisibleEndsOfLongFixtures() passed after 0.106 seconds.
+✔ Test tourTransformPreservesScalePatchAndProgramming() passed after 0.106 seconds.
+✔ Test pilotHeadSliderAnglesEncodeToPreviewValues() passed after 0.106 seconds.
+✔ Test budgetsRespectHardwareThermalAndSelection() passed after 0.106 seconds.
+✔ Test saveUpdatesEveryAssignedObjectButNotOtherPresets() passed after 0.106 seconds.
+✔ Test presetPayloadAndAssignmentsRoundTrip() passed after 0.106 seconds.
+✔ Test incompatibleAndMalformedManifestsFailBeforeLoading() passed after 0.107 seconds.
+✔ Test cadenceRetainsHitchesAndRejectsNonFiniteSamples() passed after 0.106 seconds.
+✔ Test tourGroupDefaultsPreserveAndExplicitlyReplaceExceptions() passed after 0.106 seconds.
+✔ Test navigationMovesAllAxesWithoutBoundsOrAccumulatingDrift() passed after 0.105 seconds.
+✔ Test mountAimAccountsForEmitterParallaxAndPreservesArticulation() passed after 0.107 seconds.
+✔ Test scannedMeshValidatesAndRejectsUnsupportedEdgesAndHoles() passed after 0.106 seconds.
+✔ Test setupRejectsInvalidSnapshotsWithoutOverwritingGoodSave() passed after 0.106 seconds.
+✔ Test touringFocusMaskMustKeepThePairTogether() passed after 0.101 seconds.
+✔ Test slidingPlaneRemovesOnlyNormalMotion() passed after 0.101 seconds.
+✔ Test undoRedoBranchesKeepAbandonedEvents() passed after 0.097 seconds.
+✔ Test stagedPortableImportPreservesLibraryWhenPublicationFails() passed after 0.107 seconds.
+✔ Test cancelledAndSupersededDragCannotApply() passed after 0.108 seconds.
+✔ Test presetDragRequiresMovementAndConsumesReleaseOnce() passed after 0.107 seconds.
+✔ Test presetDragRejectsInvalidSamplesAndNoTarget() passed after 0.107 seconds.
+✔ Test presetActivationPersistsUntilApplyOrExplicitCancel() passed after 0.107 seconds.
+✔ Test corruptedAuditDoesNotOverwriteTheFile() passed after 0.098 seconds.
+✔ Test mountAimUsesStaticAndMultiEmitterGeometry() passed after 0.109 seconds.
+✔ Test auditNavigationPersistsWithoutReplayingExternalEffects() passed after 0.111 seconds.
+✔ Suite AuditHistoryTests passed after 0.126 seconds.
+✔ Test corruptPlacementsRemainUntouched() passed after 0.131 seconds.
+✔ Test touringVenuePortableRoundTripKeepsPinnedInventoryAndUnusedPresets() passed after 0.136 seconds.
+✔ Test portableImportPreparationDoesNotPublishUntilCommit() passed after 0.156 seconds.
+✔ Test portableSaveCancellationDoesNotPublishStagedFiles() passed after 0.161 seconds.
+✔ Test portableSaveRoundTripsGeometryPresetsAndMaterialSettings() passed after 0.166 seconds.
+✔ Test portableSaveWorkerDoesHeavyWorkAwayFromMainActor() passed after 0.174 seconds.
+✔ Test emptySnapshotCanClearRemoteConfiguration() passed after 0.563 seconds.
+✔ Test mockHTTPTransportAcceptsEntireSnapshot() passed after 0.562 seconds.
+✔ Test mockFailureCanBeRetried() passed after 1.014 seconds.
+✔ Test run with 99 tests in 1 suite passed after 1.018 seconds.

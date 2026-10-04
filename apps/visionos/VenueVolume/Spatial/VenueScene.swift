@@ -36,9 +36,9 @@ final class VenueScene {
     private var rigs: [UUID: FixtureRig] = [:]
     private let transformGizmo = FixtureTransformGizmo()
     private let presetDragVisual = PresetDragVisual()
-    #if DEBUG
-    private var presetInputFromScene: AffineTransform3D?
-    #endif
+    private var presetReduceMotion = false
+    private var latestRightHand: HandAnchor?
+    private var lastRightHandUpdate: Double = 0
     let headAnchor = AnchorEntity(.head, trackingMode: .continuous)
     private let repository: (any EnvironmentRepository)?
     private let environmentID: String
@@ -193,6 +193,7 @@ final class VenueScene {
             guard let self else { return }
             if let model = self.model { self.applyViewerNavigation(model: model) }
             self.rigs.values.forEach { $0.tick(deltaTime: event.deltaTime) }
+            if let model = self.model, model.presetDrag.isActive { self.updatePresetDrag(model: model, reduceMotion: self.presetReduceMotion) }
             self.presetDragVisual.tick()
             self.labelLayoutElapsed += event.deltaTime
             if self.labelLayoutElapsed >= 0.1 {
@@ -515,59 +516,46 @@ final class VenueScene {
     #endif
 
     #if DEBUG
-    /// Feeds synthetic pointer samples through the real snap/render/commit path.
-    /// The source is a measured preset row, never a fabricated window position.
-    /// This intentionally does not claim physical pinch acceptance.
-    func runPresetDragSmoke(model: VenueModel) async {
+    /// Synthetic world-space pointer samples exercise the real render/commit path.
+    /// They do not establish physical pinch acceptance.
+    func runPresetDragSmoke(model: VenueModel, closeToolbox: () -> Void) async {
         guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--preset-drag-smoke") else { return }
         do {
             for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
-            model.toolboxLibraryTab = 1
-            model.requestToolbox()
+            model.toolboxLibraryTab = 1; model.requestToolbox()
             guard let fixture = model.fixtures.first,
-                  let preset = model.presets.first(where: { $0.id != fixture.presetID }) else {
+                  let preset = model.presets.first(where: { $0.id != fixture.presetID }),
+                  let entity = rigs[fixture.id]?.entity ?? cubes[fixture.id] else {
                 throw EnvironmentError.invalid("Missing smoke fixture or alternate preset")
             }
-            for _ in 0..<100 where model.presetDrag.sources[preset.id] == nil ||
-                model.toolboxPresentedID != model.toolboxRequestID || !model.toolboxVisible {
-                try await Task.sleep(for: .milliseconds(100))
-            }
-            // Window geometry is available before its presentation fade ends.
-            // Wait for the recalled window, then sample the current row origin.
-            try await Task.sleep(for: .seconds(3))
-            guard let source = model.presetDrag.sources[preset.id], let transform = presetInputFromScene,
-                  let inverse = transform.inverse, model.toolboxVisible,
-                  model.toolboxPresentedID == model.toolboxRequestID,
-                  let entity = rigs[fixture.id]?.entity ?? cubes[fixture.id] else {
-                throw EnvironmentError.invalid("Wrist preset source geometry unavailable")
-            }
-            func input(_ point: SIMD3<Float>) -> SIMD3<Float> {
-                let result = Point3D(x: Double(point.x), y: Double(point.y), z: Double(point.z)).applying(transform)
-                return [Float(result.x), Float(result.y), Float(result.z)]
-            }
+            model.endPresetDrag(); updatePresetDrag(model: model, reduceMotion: false)
+            guard !presetDragVisual.hasTether else { throw EnvironmentError.invalid("Idle tether is visible") }
+            model.activatePresetApplication(preset.id)
+            guard let id = model.presetDrag.session?.id else { throw EnvironmentError.invalid("Activation failed") }
             let target = entity.visualBounds(relativeTo: nil, excludeInactive: true).center
-            let row = Point3D(x: Double(source.x), y: Double(source.y), z: Double(source.z)).applying(inverse)
-            let rowWorld = SIMD3<Float>(Float(row.x), Float(row.y), Float(row.z))
-            let right = SIMD3<Float>(deviceTransform.columns.0.x, deviceTransform.columns.0.y, deviceTransform.columns.0.z)
-            let up = SIMD3<Float>(deviceTransform.columns.1.x, deviceTransform.columns.1.y, deviceTransform.columns.1.z)
-            let towardViewer = SIMD3<Float>(deviceTransform.columns.2.x, deviceTransform.columns.2.y, deviceTransform.columns.2.z)
-            // Explicitly synthetic hand data lets the two-segment tether leave
-            // the window's silhouette. A straight source-to-fixture segment is
-            // normally hidden by the system window, even at correct coordinates.
-            let hand = input(rowWorld + right*0.85 + up*0.45 + towardViewer*0.10)
-            let initial = PresetDragState.Sample(source: source, cursor: input(target + right + up*0.6), hand: hand)
-            guard let id = model.presetDrag.begin(presetID: preset.id, sample: initial) else { throw CancellationError() }
-            model.beginPresetDrag(preset.id)
+            let eye = SIMD3<Float>(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
+            let right = SIMD3<Float>(deviceTransform.columns.0.x,deviceTransform.columns.0.y,deviceTransform.columns.0.z)
+            let up = SIMD3<Float>(deviceTransform.columns.1.x,deviceTransform.columns.1.y,deviceTransform.columns.1.z)
+            let forward = -SIMD3<Float>(deviceTransform.columns.2.x,deviceTransform.columns.2.y,deviceTransform.columns.2.z)
+            let hand = eye+right*0.42-up*0.28+forward*0.5
+            let initial = PresetDragState.Sample(cursor: target+right+up*0.6, hand: hand)
             model.presetDrag.update(id, sample: initial, armed: true)
             try await Task.sleep(for: .seconds(1))
-            guard model.presetDrag.proposedFixtureID == nil else { throw EnvironmentError.invalid("Unsnapped presentation unexpectedly selected a fixture") }
-            print("PRESET_DRAG_SMOKE_DOTTED settled=true syntheticHand=true")
+            guard model.presetDrag.proposedFixtureID == nil,
+                  presetDragVisual.visibleOrigin == hand else { throw EnvironmentError.invalid("Dotted tether did not start at the user") }
+            print("PRESET_DRAG_SMOKE_DOTTED viewerOrigin=true rowIndependent=true")
             try await Task.sleep(for: .seconds(6))
-            let snapped = PresetDragState.Sample(source: source, cursor: input(target), hand: hand)
+            closeToolbox()
+            try await Task.sleep(for: .milliseconds(500))
+            guard model.presetDrag.session?.id == id, !model.toolboxVisible else { throw EnvironmentError.invalid("Toolbox dismissal ended Apply or did not close") }
+            model.presetDrag.release(id)
+            try await Task.sleep(for: .milliseconds(200))
+            guard model.presetDrag.session?.id == id else { throw EnvironmentError.invalid("Missed release ended Apply") }
+            let snapped = PresetDragState.Sample(cursor: target, hand: hand)
             model.presetDrag.update(id, sample: snapped, armed: true)
             try await Task.sleep(for: .seconds(1))
-            guard model.presetDrag.proposedFixtureID == fixture.id else { throw EnvironmentError.invalid("Fixture did not snap") }
-            print("PRESET_DRAG_SMOKE_SOLID settled=true syntheticHand=true")
+            guard model.presetDrag.proposedFixtureID == fixture.id, presetDragVisual.isSnapped else { throw EnvironmentError.invalid("Fixture did not snap") }
+            print("PRESET_DRAG_SMOKE_SOLID curved=true targetRing=true")
             try await Task.sleep(for: .seconds(6))
             let oldCount = model.history?.entries.count ?? 0
             model.presetDrag.release(id)
@@ -575,17 +563,21 @@ final class VenueScene {
             guard model.fixture(fixture.id)?.presetID == preset.id,
                   model.history?.entries.count == oldCount+1,
                   model.presetDrag.feedback?.succeeded == true,
+                  !presetDragVisual.hasTether,
                   model.fixture(fixture.id).map({ model.renderedChannels(for: $0) == preset.channels }) == true else {
-                throw EnvironmentError.invalid("Drop did not apply once with success feedback")
+                throw EnvironmentError.invalid("Apply did not commit once and clear the tether")
             }
             model.presetDrag.release(id)
             try await Task.sleep(for: .milliseconds(100))
             guard model.history?.entries.count == oldCount+1 else { throw EnvironmentError.invalid("Duplicate release was applied") }
             model.undo()
-            guard model.fixture(fixture.id)?.presetID == fixture.presetID else { throw EnvironmentError.invalid("Drop undo failed") }
+            guard model.fixture(fixture.id)?.presetID == fixture.presetID else { throw EnvironmentError.invalid("Apply undo failed") }
             model.redo()
-            guard model.fixture(fixture.id)?.presetID == preset.id else { throw EnvironmentError.invalid("Drop redo failed") }
-            print("PRESET_DRAG_SMOKE_PASS realRowSource=true snap=true applyOnce=true undo=true redo=true syntheticPointer=true")
+            guard model.fixture(fixture.id)?.presetID == preset.id else { throw EnvironmentError.invalid("Apply redo failed") }
+            model.activatePresetApplication(preset.id); model.endPresetDrag()
+            updatePresetDrag(model: model, reduceMotion: true)
+            guard !presetDragVisual.hasTether, model.presetDrag.session == nil else { throw EnvironmentError.invalid("Cancel left a tether") }
+            print("PRESET_DRAG_SMOKE_PASS viewerOrigin=true noRowGeometry=true toolboxClose=true missedReleaseStaysActive=true applyOnce=true cancel=true undo=true redo=true syntheticPointer=true")
         } catch {
             model.endPresetDrag()
             print("PRESET_DRAG_SMOKE_FAIL: \(error)")
@@ -852,13 +844,10 @@ final class VenueScene {
         for (id, label) in labels { label.isEnabled = visible.contains(id) }
     }
 
-    /// SwiftUI window coordinates are converted by the system into this scene;
-    /// neither the row origin nor the pinch origin is estimated from head pose.
-    func updatePresetDrag(model: VenueModel, content: RealityViewContent, reduceMotion: Bool) {
+    /// Input is already in world meters. No preset row geometry enters this path.
+    func updatePresetDrag(model: VenueModel, reduceMotion: Bool) {
+        presetReduceMotion = reduceMotion
         if presetDragVisual.root.parent == nil { overlayRoot.addChild(presetDragVisual.root) }
-        #if DEBUG
-        presetInputFromScene = content.transform(from: .scene, to: .immersiveSpace)
-        #endif
         func bounds(_ id: UUID) -> BoundingBox? {
             (rigs[id]?.entity ?? cubes[id]).map { $0.visualBounds(relativeTo: nil, excludeInactive: true) }
         }
@@ -866,19 +855,24 @@ final class VenueScene {
             presetDragVisual.feedback(id: feedback.id, bounds: box, succeeded: feedback.succeeded, reduceMotion: reduceMotion)
         }
         guard let session = model.presetDrag.session else {
-            presetDragVisual.tether(points: [], snapped: false, target: nil)
+            presetDragVisual.tether(origin: nil, reduceMotion: reduceMotion)
             return
         }
         guard aligned, model.canPlace, !model.libraryBusy, !model.isPickingRoom, !model.isTransformDragging,
               model.presets.contains(where: { $0.id == session.presetID }) else {
             model.endPresetDrag(); presetDragVisual.clear(); return
         }
-        func point(_ input: SIMD3<Float>) -> SIMD3<Float> {
-            content.convert(Point3D(x: Double(input.x), y: Double(input.y), z: Double(input.z)), from: .immersiveSpace, to: .scene)
-        }
+        let eye = SIMD3<Float>(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
+        let forward = -SIMD3<Float>(deviceTransform.columns.2.x,deviceTransform.columns.2.y,deviceTransform.columns.2.z)
+        let up = SIMD3<Float>(deviceTransform.columns.1.x,deviceTransform.columns.1.y,deviceTransform.columns.1.z)
+        let right = SIMD3<Float>(deviceTransform.columns.0.x,deviceTransform.columns.0.y,deviceTransform.columns.0.z)
         let sample = session.sample
-        let source = point(sample.source), cursor = point(sample.cursor)
-        let hand = sample.hand.map(point), rayOrigin = sample.rayOrigin.map(point), rayPoint = sample.rayPoint.map(point)
+        let cursor = sample?.cursor ?? eye+forward*3
+        let hand = sample?.hand ?? rightPinchPosition()
+        let rayOrigin = sample?.rayOrigin ?? eye, rayPoint = sample?.rayPoint ?? cursor
+        // A tracked hand is preferred. Simulator/permission fallback begins below
+        // and to the right of the viewer, never at a preset row or window.
+        let origin = hand ?? eye-up*0.22+right*0.18+forward*0.25
         var targets = model.fixtures.compactMap { fixture -> PresetDropSnap.Target? in
             guard let box = bounds(fixture.id) else { return nil }
             return .init(id: fixture.id, minimum: box.min, maximum: box.max)
@@ -891,35 +885,50 @@ final class VenueScene {
             while let candidate = PresetDropSnap.match(cursor: cursor, rayOrigin: rayOrigin, rayPoint: rayPoint,
                                                        targets: targets, previous: model.presetDrag.proposedFixtureID),
                   let target = targets.first(where: { $0.id == candidate.id }) {
-                let origin = rayOrigin ?? hand ?? cursor
-                let delta = candidate.point-origin, length = simd_length(delta)
+                let visibilityOrigin = rayOrigin
+                let delta = candidate.point-visibilityOrigin, length = simd_length(delta)
                 var blocked = false
                 if length > 0.001, let scene = root.scene {
-                    let entry = PresetDropSnap.entryDistance(from: origin, through: candidate.point, target: target) ?? length
-                    let firstWall = scene.raycast(origin: origin, direction: delta/length, length: entry, query: .all,
+                    let entry = PresetDropSnap.entryDistance(from: visibilityOrigin, through: candidate.point, target: target) ?? length
+                    let firstWall = scene.raycast(origin: visibilityOrigin, direction: delta/length, length: entry, query: .all,
                                                  mask: .all, relativeTo: nil).filter {
                         $0.entity.name.hasPrefix("aim-surface:") || $0.entity.name.hasPrefix("room-collider:")
                     }.map(\.distance).min()
                     blocked = firstWall.map { $0 < entry-0.015 } ?? false
                 }
-                if !blocked { proposed = candidate.id; contactPoint = candidate.point; break }
+                if !blocked {
+                    proposed = candidate.id
+                    let cable = candidate.point-origin
+                    if simd_length(cable) > 0.001,
+                       let entry = PresetDropSnap.entryDistance(from: origin, through: candidate.point, target: target) {
+                        // Keep the endpoint ring just outside the nearest bounds
+                        // surface instead of burying it inside the fixture body.
+                        contactPoint = origin+simd_normalize(cable)*max(0,entry-0.012)
+                    } else { contactPoint = candidate.point }
+                    break
+                }
                 targets.removeAll { $0.id == candidate.id }
             }
         }
         model.presetDrag.propose(proposed)
-        var points = [source]
-        if let hand { points.append(hand) }
-        points.append(contactPoint ?? cursor)
-        presetDragVisual.tether(points: points, snapped: proposed != nil, target: proposed.flatMap(bounds))
-        if let release = model.presetDrag.takeRelease() {
-            if let fixtureID = release.fixtureID {
-                let success = model.applyPreset(release.presetID, to: fixtureID)
-                model.presetDrag.showFeedback(presetID: release.presetID, fixtureID: fixtureID, succeeded: success, message: success ? nil : model.message)
-            } else {
-                model.endPresetDrag()
-                model.message = "Preset drop cancelled. Drag until the line becomes solid, or use the preset's Apply menu."
-            }
+        presetDragVisual.tether(origin: origin, end: contactPoint ?? cursor, targetID: proposed,
+                                 target: proposed.flatMap(bounds), reduceMotion: reduceMotion)
+        if let release = model.presetDrag.takeRelease(), let fixtureID = release.fixtureID {
+            model.finishPresetApplication(presetID: release.presetID, fixtureID: fixtureID)
+            presetDragVisual.tether(origin: nil, reduceMotion: reduceMotion)
         }
+    }
+
+    private func rightPinchPosition() -> SIMD3<Float>? {
+        guard CACurrentMediaTime()-lastRightHandUpdate < 0.25,
+              let hand = latestRightHand, hand.isTracked, let skeleton = hand.handSkeleton else { return nil }
+        let joints = [HandSkeleton.JointName.thumbTip,.indexFingerTip].map { skeleton.joint($0) }
+        guard joints.allSatisfy(\.isTracked) else { return nil }
+        let points = joints.map { joint -> SIMD3<Float> in
+            let t = hand.originFromAnchorTransform*joint.anchorFromJointTransform
+            return [t.columns.3.x,t.columns.3.y,t.columns.3.z]
+        }
+        return (points[0]+points[1])/2
     }
 
     private func requestFixture(_ descriptor: FixtureAsset, model: VenueModel) {
@@ -1000,6 +1009,9 @@ final class VenueScene {
                     if update.anchor.chirality == .left {
                         self.latestLeftHand = update.event == .removed ? nil : update.anchor
                         self.lastHandUpdate = CACurrentMediaTime()
+                    } else {
+                        self.latestRightHand = update.event == .removed ? nil : update.anchor
+                        self.lastRightHandUpdate = CACurrentMediaTime()
                     }
                 }
             } : nil

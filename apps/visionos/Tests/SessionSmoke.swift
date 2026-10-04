@@ -208,6 +208,7 @@ struct SessionSmoke {
         try InteractionSmoke.run(environment: environment)
         try FixtureMovementSmoke.run(environment: environment)
         try ViewerNavigationSmoke.run(environment: environment)
+        try PresetApplicationSmoke.run(environment: environment)
         try await StartupSmoke.run()
         EditorPresentationSmoke.run()
         try TouringSmoke.run(environment: environment)

@@ -316,3 +316,44 @@ import VenueVolumeCore
         print("Viewer navigation checks passed: unbounded movement, fixture isolation, atomic Undo/Redo, reset, history resume, legacy audit decoding and fallback controls.")
     }
 }
+
+
+@MainActor enum PresetApplicationSmoke {
+    static func run(environment: EnvironmentManifest) throws {
+        func check(_ condition: @autoclosure () -> Bool, _ message: String) { precondition(condition(), message) }
+        let suite = "preset-application-"+UUID().uuidString
+        let defaults = UserDefaults(suiteName: suite)!
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: folder); defaults.removePersistentDomain(forName: suite) }
+        let model = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder)
+        model.activate(environment: environment); model.canPlace = true; model.isImmersed = true
+        check(model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 2.66,y: 0,z: -2),surfaceID: "floor"), "Place preset target")
+        model.cancelPicking()
+        let fixture = model.fixtures[0], preset = model.presets.first { $0.id != fixture.presetID }!
+        let fixtures = model.fixtures, presets = model.presets, count = model.history!.nodes.count
+        model.activatePresetApplication(preset.id)
+        check(model.presetDrag.isActive && model.draggingPresetID == preset.id, "Explicit Apply activates without row geometry")
+        model.toolboxVisible = false
+        check(model.presetDrag.isActive, "Closing Toolbox preserves Apply")
+        model.endPresetDrag()
+        check(!model.presetDrag.isActive && model.draggingPresetID == nil, "Lower pane Cancel ends Apply")
+        check(model.fixtures == fixtures && model.presets == presets && model.history!.nodes.count == count, "Cancel does not mutate scene/history")
+        model.activatePresetApplication(preset.id); model.presetDrag.propose(fixture.id)
+        check(model.applyProposedPreset(), "Lower pane Apply commits proposal")
+        check(model.fixture(fixture.id)?.presetID == preset.id && !model.presetDrag.isActive && model.presetDrag.feedback?.succeeded == true, "Apply clears session and exposes success")
+        check(model.history!.nodes.count == count+1 && !model.applyProposedPreset(), "Apply is exactly one undo step")
+        model.undo(); check(model.fixtures == fixtures, "Undo restores prior preset")
+        model.redo(); check(model.fixture(fixture.id)?.presetID == preset.id, "Redo restores applied preset")
+        model.activatePresetApplication(preset.id)
+        model.beginViewerNavigation(.index)
+        check(!model.presetDrag.isActive, "Left-hand navigation cancels preset application")
+        model.endViewerNavigation()
+        model.activatePresetApplication(preset.id); model.presetDrag.propose(UUID())
+        let unchanged = model.fixtures
+        check(!model.applyProposedPreset() && model.presetDrag.feedback?.succeeded == false && !model.presetDrag.isActive, "Stale target fails with error feedback")
+        check(model.fixtures == unchanged, "Failed apply preserves fixture values")
+        model.isImmersed = false; model.activatePresetApplication(preset.id)
+        check(!model.presetDrag.isActive, "Cannot activate outside venue")
+        print("Preset application checks passed: explicit activation, Toolbox independence, Cancel, single apply, error feedback, Undo/Redo and left-hand isolation.")
+    }
+}

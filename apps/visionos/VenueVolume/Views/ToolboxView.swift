@@ -209,12 +209,28 @@ struct VenueControlsView: View {
             HStack(spacing: 20) {
                 Label("Venue controls", systemImage: "scope").font(.headline)
                 Divider().frame(height: 56)
-                if model.tourPreview != nil {
+                if let session = model.presetDrag.session {
+                    let presetName = model.presets.first { $0.id == session.presetID }?.name ?? "Preset"
+                    let target = model.presetDrag.proposedFixtureID.flatMap { model.fixture($0) }
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Apply · \(presetName)").font(.headline).lineLimit(1)
+                        Text(target.map { "Pinch to apply to \($0.name)" } ?? "Aim toward a fixture, then pinch. Hold to adjust.")
+                            .font(.callout).foregroundStyle(.secondary).lineLimit(2)
+                    }.frame(width: 460, alignment: .leading)
+                    Button("Cancel", role: .cancel) { model.endPresetDrag() }.frame(minHeight: 60)
+                    Button("Apply to fixture") { model.applyProposedPreset() }
+                        .buttonStyle(.borderedProminent).disabled(target == nil).frame(minHeight: 60)
+                } else if model.tourPreview != nil {
                     Text(model.tourPreviewTitle).font(.callout).frame(width: 300, alignment: .leading)
                     Button("Cancel") { model.cancelTourPreview() }.frame(minHeight: 60)
                     Button("Save change") { model.commitTourPreview() }.buttonStyle(.borderedProminent).frame(minHeight: 60)
                 } else if model.isPickingRoom || model.gizmoVisible {
                     TargetingPrompt()
+                } else if let feedback = model.presetDrag.feedback {
+                    Label(feedback.succeeded ? "Preset applied" : feedback.message ?? "Could not apply preset",
+                          systemImage: feedback.succeeded ? "checkmark.circle" : "exclamationmark.triangle")
+                        .font(.callout).frame(width: 460, alignment: .leading)
+                    Button("Done") { model.presetDrag.clearFeedback() }.frame(minHeight: 60)
                 } else {
                     Text("Select a fixture, then click it again to move or transform.")
                         .font(.callout).foregroundStyle(.secondary).frame(width: 460, alignment: .leading)

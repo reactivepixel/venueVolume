@@ -5,20 +5,18 @@ import Observation
 @MainActor @Observable
 public final class PresetDragState {
     public struct Sample: Equatable, Sendable {
-        /// All points are in SwiftUI's immersive coordinate space. The renderer
-        /// converts them together into meters using RealityViewContent.
-        public var source: SIMD3<Float>
+        /// Points are world-space meters, independent of every window and list row.
         public var cursor: SIMD3<Float>
         public var hand: SIMD3<Float>?
         public var rayOrigin: SIMD3<Float>?
         public var rayPoint: SIMD3<Float>?
-        public init(source: SIMD3<Float>, cursor: SIMD3<Float>, hand: SIMD3<Float>? = nil,
+        public init(cursor: SIMD3<Float>, hand: SIMD3<Float>? = nil,
                     rayOrigin: SIMD3<Float>? = nil, rayPoint: SIMD3<Float>? = nil) {
-            self.source = source; self.cursor = cursor; self.hand = hand
+            self.cursor = cursor; self.hand = hand
             self.rayOrigin = rayOrigin; self.rayPoint = rayPoint
         }
         public var isFinite: Bool {
-            [source, cursor, hand, rayOrigin, rayPoint].compactMap { $0 }.allSatisfy { point in
+            [cursor, hand, rayOrigin, rayPoint].compactMap { $0 }.allSatisfy { point in
                 point.x.isFinite && point.y.isFinite && point.z.isFinite
             }
         }
@@ -26,7 +24,7 @@ public final class PresetDragState {
     public struct Session: Equatable, Sendable {
         public let id: UUID
         public let presetID: UUID
-        public var sample: Sample
+        public var sample: Sample?
         public var armed: Bool
         public var released = false
     }
@@ -38,13 +36,23 @@ public final class PresetDragState {
         public let message: String?
         public let date: Date
     }
-    public private(set) var sources: [UUID: SIMD3<Float>] = [:]
     public private(set) var session: Session?
     public private(set) var proposedFixtureID: UUID?
     public private(set) var feedback: Feedback?
     public var isActive: Bool { session != nil }
     public init() {}
 
+    /// Explicit activation survives release away from a fixture and list/window dismissal.
+    @discardableResult public func activate(presetID: UUID) -> UUID {
+        let id = UUID()
+        session = .init(id: id, presetID: presetID, sample: nil, armed: true)
+        proposedFixtureID = nil; feedback = nil
+        return id
+    }
+    public func clearPointer() {
+        guard session != nil else { return }
+        session?.sample = nil; session?.released = false; proposedFixtureID = nil
+    }
     @discardableResult public func begin(presetID: UUID, sample: Sample) -> UUID? {
         guard sample.isFinite, session == nil else { return nil }
         let id = UUID()
@@ -71,12 +79,16 @@ public final class PresetDragState {
     /// Taking a release consumes it once, before applying the undoable command.
     public func takeRelease() -> (presetID: UUID, fixtureID: UUID?)? {
         guard let session, session.released else { return nil }
-        let target = session.armed ? proposedFixtureID : nil
+        guard session.armed, let target = proposedFixtureID else {
+            // A missed release keeps Apply active; Cancel lives in the lower pane.
+            clearPointer()
+            return nil
+        }
         cancel()
         return (session.presetID, target)
     }
     public func cancel() { session = nil; proposedFixtureID = nil }
-    public func registerSource(presetID: UUID, point: SIMD3<Float>?) { sources[presetID] = point }
+    public func clearFeedback() { feedback = nil }
     public func showFeedback(presetID: UUID, fixtureID: UUID, succeeded: Bool, message: String? = nil) {
         feedback = .init(id: UUID(), fixtureID: fixtureID, presetID: presetID, succeeded: succeeded, message: message, date: Date())
     }
