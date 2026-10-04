@@ -84,7 +84,7 @@ struct VenueSpaceView: View {
             if active { openWindow(id: "venue-controls", value: "controls") }
         }
         .task(id: model.toolboxRequestID) {
-            guard let request = model.toolboxRequestID else { return }
+            guard let request = model.toolboxRequestID, model.isImmersed else { return }
             // A new window value recalls the toolbox near the viewer instead of
             // refocusing an existing window at its old, possibly distant position.
             if model.toolboxVisible {
@@ -93,7 +93,8 @@ struct VenueSpaceView: View {
                     do { try await Task.sleep(for: .milliseconds(50)) } catch { return }
                 }
             }
-            guard !Task.isCancelled else { return }
+            guard !Task.isCancelled, model.isImmersed,
+                  model.toolboxRequestID == request else { return }
             openWindow(id: "toolbox", value: request)
         }
         .task(id: model.roomLoadToken) {

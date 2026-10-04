@@ -74,6 +74,9 @@ struct ToolboxView: View {
         }
         .sheet(isPresented: Binding(get: { model.touringPanelPresented }, set: { model.touringPanelPresented = $0 })) { TouringLibrarySheet() }
         .onAppear { model.toolboxVisible = true; model.toolboxPresentedID = instanceID }
+        .onChange(of: model.isImmersed) { wasImmersed, isImmersed in
+            if wasImmersed && !isImmersed { closeToolbox() }
+        }
         .onDisappear {
             if model.toolboxPresentedID == instanceID { model.toolboxVisible = false; model.toolboxPresentedID = nil }
         }
@@ -95,13 +98,24 @@ struct ToolboxView: View {
                     Button("New venue…", systemImage: "plus") { model.requestNewVenue(); if !model.isImmersed { openWindow(id: "launch") } }
                     Button("Venue controls", systemImage: "scope") { openWindow(id: "venue-controls", value: "controls") }
                     Button("Diagnostics & sync") { openWindow(id: "diagnostics") }
-                    Button("Leave venue") { model.flushHistoryEdits(); model.auditExternal("Leave venue"); Task { await dismissSpace() } }
+                    Button("Leave venue") {
+                        model.flushHistoryEdits(); model.auditExternal("Leave venue")
+                        model.resetToolboxActivation()
+                        closeToolbox()
+                        Task { await dismissSpace() }
+                    }
                 } label: { Image(systemName: "ellipsis").frame(minWidth: 60, minHeight: 60) }.accessibilityLabel("Wrist menu options")
-                Button { dismissWindow(id: "toolbox") } label: { Image(systemName: "xmark").frame(minWidth: 60, minHeight: 60) }.accessibilityLabel("Close toolbox")
+                Button { closeToolbox() } label: { Image(systemName: "xmark").frame(minWidth: 60, minHeight: 60) }.accessibilityLabel("Close toolbox")
             }
             HistoryControls()
             TouringContextButton()
         }
+    }
+
+    private func closeToolbox() {
+        // Address this UUID-valued window while its scene is still active.
+        if let instanceID { dismissWindow(id: "toolbox", value: instanceID) }
+        else { dismissWindow(id: "toolbox") }
     }
 
     private var library: some View {

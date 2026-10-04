@@ -104,7 +104,10 @@ final class VenueModel {
     }
 
     func requestToolbox() { toolboxRequestID = UUID() }
-    func resetToolboxActivation() { palmActivationHeld = false }
+    func resetToolboxActivation() {
+        palmActivationHeld = false
+        toolboxRequestID = nil
+    }
     var simulatedPalm = true
     var needsManualToolbox = false
     var handTrackingStatus = "Turn your left hand toward you to open the wrist menu"

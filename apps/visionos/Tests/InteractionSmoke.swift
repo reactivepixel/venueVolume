@@ -28,6 +28,11 @@ import VenueVolumeCore
         let thirdRecall = model.toolboxRequestID
         model.requestToolbox()
         check(model.toolboxRequestID != thirdRecall, "Manual fallback can recall repeatedly without a hand toggle")
+        model.resetToolboxActivation()
+        check(model.toolboxRequestID == nil, "Venue exit cancels a pending recall instead of reopening its Toolbox")
+        model.updateToolboxActivation(raised: true)
+        check(model.toolboxRequestID != nil && model.toolboxRequestID != thirdRecall,
+              "Re-entering permits a fresh wrist activation after exit")
         model.activate(environment: environment); model.canPlace = true
         check(model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 2.66,y: 0,z: -2), surfaceID: "floor"), "First pilot")
         let first = model.fixtures[0].id
