@@ -33,6 +33,8 @@ final class VenueModel {
     let library: RoomLibraryStore
     private(set) var rooms: [LibraryRoom] = []
     private(set) var savedSetups: [VenueSetup] = []
+    var pendingFixturePlacement: PendingFixturePlacement?
+    var placementLinkMessage: String?
     var roomRequest: RoomRequest?
     var roomLoadToken = UUID()
     private(set) var venueIntentID = UUID()
@@ -913,6 +915,7 @@ final class VenueModel {
     var canResumeVenue: Bool { activeRoom != nil || historyDestination != nil }
     func requestNewVenue() {
         guard !libraryBusy else { return }
+        cancelPlacementHandoff()
         venueIntentID = UUID()
         newVenuePresented = true
     }
@@ -921,6 +924,7 @@ final class VenueModel {
     /// Newer choices or a closed source window invalidate it before any writes.
     func beginVenueImport() -> UUID? {
         guard !libraryBusy, !isTransitioning else { return nil }
+        cancelPlacementHandoff()
         venueIntentID = UUID()
         return venueIntentID
     }
@@ -931,6 +935,7 @@ final class VenueModel {
 
     func cancelRequestedRoom(_ id: UUID) {
         guard roomLoadToken == id, roomRequest != nil else { return }
+        if pendingFixturePlacement != nil { cancelPlacementHandoff(message: "Opening the Load Out was cancelled. Open the placement link to try again.") }
         roomRequest = nil; libraryBusy = false
         canPlace = isImmersed && environment != nil
         roomLoadToken = UUID()
@@ -984,9 +989,10 @@ final class VenueModel {
         } catch { libraryMessage = "Library could not be read: \(error.localizedDescription). Existing files are preserved." }
     }
 
-    func requestRoom(_ room: LibraryRoom, setup: VenueSetup? = nil, blank: Bool = true) {
+    func requestRoom(_ room: LibraryRoom, setup: VenueSetup? = nil, blank: Bool = true, preservingPlacementLink: Bool = false) {
         endTransformDrag(); gizmoVisible = false
         guard !libraryBusy else { return }
+        if !preservingPlacementLink { cancelPlacementHandoff() }
         flushHistoryEdits()
         do { if let setup { try setup.validate(room: room) } }
         catch { libraryMessage = error.localizedDescription; return }
@@ -1090,6 +1096,7 @@ extension VenueModel {
         if let id = history?.redoTarget { restoreHistory(id, kind: .redo) }
     }
     func restoreHistory(_ id: UUID, kind: AuditHistory<VenueAuditState>.Entry.Kind = .jump) {
+        cancelPlacementHandoff()
         guard !libraryBusy, !historyBlocked else { return }
         // Undo/Redo always includes an in-progress edit before choosing its destination.
         finishHistoryGesture()
@@ -1125,6 +1132,7 @@ extension VenueModel {
         preparedHistory = next
     }
     func historyRestoreFailed(_ reason: String) {
+        if pendingFixturePlacement != nil { cancelPlacementHandoff(message: "The linked Load Out could not open: \(reason)") }
         if historyDestination != nil { historyMessage = "Could not restore history: \(reason)" }
         historyDestination = nil; preparedHistory = nil; roomRequest = nil; libraryBusy = false
     }

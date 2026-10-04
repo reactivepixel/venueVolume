@@ -1,5 +1,8 @@
 # Venue Volume for visionOS
 
+The app now registers `venuevolume://place?version=1&loadout=<UUID>&fixture=<UUID>`. Opening a link on Vision Pro resolves an existing native save and enters placement for the selected existing fixture after room/tracking readiness. SaaS Load Out transfer and Movie2Splat PLY loading remain unimplemented; unavailable IDs produce a clear message.
+
+
 A runnable RealityKit lighting proof of concept for Simulator and Vision Pro (visionOS 2+). Start with recent saves, **Load save from file**, or **New venue**. Blank choices include **Empty classroom**, **Empty classroom (mapped)**, and **The Fortress**; imported and locally scanned rooms are also available. The fixture library contains 252 models, with 322 preview joints across 175 articulated assets. Search by model or manufacturer, filter by category, place models, preview supported motion and light, and save setups for each environment.
 
 ## Run

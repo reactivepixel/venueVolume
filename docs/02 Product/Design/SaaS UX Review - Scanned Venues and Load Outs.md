@@ -7,6 +7,9 @@ updated: 2026-10-04
 
 # SaaS UX review — scanned venues, Load Outs and Tours
 
+**Placement follow-up:** The Load Out action now offers a real app link and native receiver for existing saves. Automatic SaaS-to-native transfer, PLY room support and placement return sync remain missing. See [[Vision Pro Placement Handoff]] for the exact capability and device-validation limits.
+
+
 ## Conclusion
 
 The previous SaaS study used the wrong preparation hierarchy: Show → configuration template → venue copy. It conflated the physical room, equipment ownership, placement and programming scope. The revised product starts with a shared scanned venue library. A **Load Out** selects physical fixtures and records their placement and patch inside one venue. A venue can have multiple Load Outs. A **Tour** selects a shared base inventory and gives every venue stop its own Load Out, with additions specific to that stop.

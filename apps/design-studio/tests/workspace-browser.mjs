@@ -129,6 +129,39 @@ try {
   assert.equal((await state()).tours[0].baseUnitIds.length, 2);
   assert.equal((await state()).loadouts[1].extraUnitIds.length, 0);
   checks++;
+  const beforeHandoff = await state();
+  await page
+    .getByRole("button", { name: "Place in Vision Pro", exact: true })
+    .first()
+    .click();
+  const nativeLink = page.getByRole("link", {
+    name: "Open on this Vision Pro",
+  });
+  const expected = `venuevolume://place?version=1&loadout=${beforeHandoff.loadouts[0].id}&fixture=${beforeHandoff.loadouts[0].baseUnitIds[0]}`;
+  await expect(nativeLink).toHaveAttribute("href", expected);
+  await expect(page.getByLabel("Vision Pro placement link")).toHaveValue(
+    expected,
+  );
+  await expect(
+    page.getByText("Existing native Load Out required.", { exact: true }),
+  ).toBeVisible();
+  assert.deepEqual(
+    (await state()).loadouts,
+    beforeHandoff.loadouts,
+    "Opening the handoff cannot place or duplicate fixtures",
+  );
+  await snap("08-vision-pro-handoff");
+  await page.setViewportSize({ width: 390, height: 844 });
+  assert.equal(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth > innerWidth + 1,
+    ),
+    false,
+  );
+  await snap("09-vision-pro-handoff-mobile");
+  await page.setViewportSize({ width: 1440, height: 1050 });
+  await page.getByRole("button", { name: "Close dialog", exact: true }).click();
+  checks += 4;
   await snap("04-load-out-inventory");
   await click("2 · Placement");
   for (let i = 0; i < 3; i++) {

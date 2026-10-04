@@ -1,5 +1,8 @@
 # Venue Volume SaaS design studio
 
+The Load Out inventory now offers **Place in Vision Pro**. It opens a handoff dialog with a real `venuevolume://place` link and copy action. This is navigation to an existing native save with matching IDs, not data transfer; newly created browser-local Load Outs cannot yet load automatically on the headset.
+
+
 The active product prototype uses a shared scanned-venue library, physical fixture inventory, multiple **Load Outs** per venue and **Tours** with base inventory and a dedicated Load Out per stop. Blank room and template-created venue workflows have been removed. See the [whole-product UX review](../../docs/02%20Product/Design/SaaS%20UX%20Review%20-%20Scanned%20Venues%20and%20Load%20Outs.md).
 
 ## Run and verify

@@ -39,6 +39,7 @@ import {
   workspaceKey,
 } from "./workspace-model";
 import "./workspace.css";
+import VisionProHandoff from "./VisionProHandoff";
 
 const navigation = [
   ["overview", "Overview"],
@@ -1158,11 +1159,10 @@ export default function Workspace({ ProgrammingPreview }) {
                   loadout.placements[u.id] ? "Placed" : "Unplaced",
                   <Button
                     onClick={() => {
-                      setTab("placement");
-                      setModal({ kind: "placement", unitId: u.id });
+                      setModal({ kind: "vision-pro", unitId: u.id });
                     }}
                   >
-                    Set placement
+                    Place in Vision Pro
                   </Button>,
                 ])}
               />
@@ -1290,6 +1290,13 @@ export default function Workspace({ ProgrammingPreview }) {
                     >
                       Edit position
                     </Button>
+                    <Button
+                      onClick={() =>
+                        setModal({ kind: "vision-pro", unitId: u.id })
+                      }
+                    >
+                      Place in Vision Pro
+                    </Button>
                     {loadout.placements[u.id] && (
                       <Button
                         onClick={() =>
@@ -1412,6 +1419,10 @@ export default function Workspace({ ProgrammingPreview }) {
           }}
         />
       );
+    if (kind === "vision-pro") {
+      const unit = state.units.find((u) => u.id === modal.unitId);
+      return <VisionProHandoff loadout={loadout} unit={unit} />;
+    }
     if (kind === "placement") {
       const unit = state.units.find((u) => u.id === modal.unitId);
       return (
@@ -1735,6 +1746,7 @@ export default function Workspace({ ProgrammingPreview }) {
               "tour-inventory": "Tour base inventory",
               "loadout-inventory": "Load Out inventory",
               placement: "Fixture placement",
+              "vision-pro": "Place fixture in Vision Pro",
               "base-review": "Review Tour base changes",
             }[modal.kind]
           }
