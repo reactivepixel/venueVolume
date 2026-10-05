@@ -4,6 +4,8 @@ Venue Volume is an early-stage company researching and developing a software-bas
 
 This repository is the top-level workspace for the company's software services, shared packages, documentation, research, and supporting assets.
 
+The SaaS preparation workflow now uses **scanned venues → Load Outs**, with **Tours** supplying shared base inventory and a dedicated Load Out per stop. See the [whole-product UX review](docs/02%20Product/Design/SaaS%20UX%20Review%20-%20Scanned%20Venues%20and%20Load%20Outs.md) and [design studio guide](apps/design-studio/README.md) for current behavior and prototype limits.
+
 ## Repository map
 
 ```text
@@ -41,6 +43,12 @@ The explorer distinguishes modeled representatives from research-only gaps.
 
 The [React design studio](apps/design-studio/README.md) contains 35 screens with wireframe and high-fidelity modes, simulated interactions, and responsive layouts. Run `npm ci` and `npm run dev` in `apps/design-studio`.
 
+Venue movies can be uploaded in **Venues → Add venue** or through the standalone
+`/upload` page. The [venue intake service](services/venue-ingest/README.md) stores
+the original movie, queues Movie2Splat processing and keeps unassigned venues in
+an inbox for setup later. Start that service alongside the design studio to use
+the upload flows.
+
 Browse the [static screen gallery](assets/design/venue-volume/index.html) for exported mockups. The [feature catalog](docs/02%20Product/Features/Feature%20Catalog.md) defines requirements across the interface, API, storage, domain model, local output runtime, and operations. The [interaction coverage](docs/02%20Product/Design/Interaction%20Coverage.md) distinguishes functional demo behavior from presentation-only flows.
 
 ## Marketing study
@@ -64,10 +72,10 @@ for the review step, dependencies, and the existing classroom example. The separ
 [mappedRoom](apps/room2blender/mappedRoom/README.md) variant adds compact photo-derived
 textures and a controlled lighting comparison against the original room.
 
-## Optional mov2splat experiment
+## Movie2Splat captures
 
-[mov2splat](apps/mov2splat/README.md) remains available for video → Gaussian `.ply`
-experiments. It is independent of the current Blender/USDZ venue workflow. Its single
+[mov2splat](apps/mov2splat/README.md) processes video → Gaussian `.ply` captures,
+including movies queued by the venue intake service. It is independent of the Blender/USDZ venue workflow. Its single
 supported launcher is `apps/mov2splat/scripts/host.sh`; it builds the NVIDIA Docker image
 on demand. The unused Compose launcher has been removed.
 

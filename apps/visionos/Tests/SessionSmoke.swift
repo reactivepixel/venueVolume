@@ -207,6 +207,7 @@ struct SessionSmoke {
         try await AuditSmoke.run(environment: environment)
         try InteractionSmoke.run(environment: environment)
         try await StartupSmoke.run()
+        try await PlacementHandoffSmoke.run()
         EditorPresentationSmoke.run()
     }
 }

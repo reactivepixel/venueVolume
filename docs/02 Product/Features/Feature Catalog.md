@@ -6,19 +6,17 @@ updated: 2026-09-19
 
 # Feature Catalog
 
-Venue Volume is a React-based SaaS application for creating, adapting, programming, and operating DMX/Art-Net productions. The project boundary is a **show**. This catalog defines application-wide behavior, not only frontend screens.
+Venue Volume is a React-based SaaS application for preparing and operating productions in scanned venues. The founder's 2026-10-04 clarification supersedes the original configuration-template room model.
 
 ## Confirmed by the founder
 
-- A project is called a show.
-- A show has multiple configuration templates; each saves a CAD drawing and inventory of lighting and other production equipment.
-- A show has any number of venues. Each venue may start from a template and be modified locally.
-- A show owns presets, cues, and scripts.
-- Presets make repeated DMX fixtures easier to program.
-- Cues are show states/moments that assign presets and other configuration to fixtures for the current venue.
-- Scripts represent the expected cue sequence.
-- Show-level defaults can be overridden at venue level.
-- The interface is React-based and the application is SaaS-based.
+- Venues come from a shared scanned-venue library; no raw areas are created.
+- A **Load Out** selects physical fixtures and their placement inside one venue. Each venue supports multiple Load Outs.
+- A **Tour** uses base fixture inventory across multiple venues with additions per stop. Each stop has its own Load Out and placements.
+- Inventory and preparation are managed primarily in SaaS; visionOS refinement comes later.
+- Presets, cues and scripts remain reusable programming concepts, separate from physical venue identity and touring logistics.
+
+See [[../Design/SaaS UX Review - Scanned Venues and Load Outs]] for the whole-product review. Earlier feature documents mentioning template-created venues are historical unless updated to this model.
 
 The confirmed live direction adds color-coded pre-programming/programming/live workflows, fixture/group/venue control, a temporary live programmer, MIDI-driven script progress, song restart, inspectable cue targets, and a synchronized touch pop-out.
 
@@ -28,7 +26,7 @@ The confirmed live direction adds color-coded pre-programming/programming/live w
 | --- | --- | --- |
 | F01 | [[F01 - Workspace and access|Workspace and access]] | Proposed SaaS support |
 | F02 | [[F02 - Show lifecycle|Show lifecycle]] | Confirmed domain |
-| F03 | [[F03 - Configuration templates|Configuration templates]] | Confirmed domain |
+| F03 | [[F03 - Configuration templates|Load Outs (replaces configurations)]] | Confirmed domain |
 | F04 | [[F04 - Drawings and assets|Drawings and assets]] | Confirmed need; format scope open |
 | F05 | [[F05 - Equipment inventory|Equipment inventory]] | Confirmed domain |
 | F06 | [[F06 - Fixture profiles and roles|Fixture profiles and roles]] | Supporting requirement |

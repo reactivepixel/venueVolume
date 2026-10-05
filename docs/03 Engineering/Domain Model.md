@@ -2,85 +2,61 @@
 type: architecture
 status: proposed
 owner: engineering
-updated: 2026-09-19
+updated: 2026-10-04
 ---
 
 # Domain Model
 
-The founder-confirmed domain is recorded in [[../02 Product/Features/Feature Catalog|Feature Catalog]]. Stable IDs, revision policies, and exact resolution semantics here are engineering proposals for that domain.
+The founder's 2026-10-04 clarification replaces the template-first room model. See [[../02 Product/Design/SaaS UX Review - Scanned Venues and Load Outs]]. The product rules are confirmed; service and revision details below are proposed beyond the local implementation.
 
 ## Ownership
 
-```mermaid
-erDiagram
-    WORKSPACE ||--o{ SHOW : owns
-    WORKSPACE ||--o{ MEMBERSHIP : grants
-    SHOW ||--o{ CONFIGURATION_TEMPLATE : defines
-    CONFIGURATION_TEMPLATE ||--|{ TEMPLATE_REVISION : versions
-    TEMPLATE_REVISION ||--o{ EQUIPMENT_INSTANCE : includes
-    TEMPLATE_REVISION ||--o| DRAWING_REVISION : references
-    SHOW ||--o{ VENUE : visits
-    VENUE }o--|| TEMPLATE_REVISION : starts_from
-    VENUE ||--o{ OVERRIDE : adapts
-    VENUE ||--o{ PATCH_ASSIGNMENT : maps
-    SHOW ||--o{ PRESET : defines
-    SHOW ||--o{ CUE : defines
-    CUE ||--o{ CUE_ASSIGNMENT : contains
-    CUE_ASSIGNMENT }o--|| PRESET : references
-    SHOW ||--o{ SCRIPT : orders
-    SCRIPT ||--o{ SCRIPT_ENTRY : contains
-    SCRIPT_ENTRY }o--|| CUE : references
-    VENUE ||--o{ RUN_SNAPSHOT : resolves
-    RUN_SNAPSHOT ||--o{ RUN_SESSION : executes
-```
-
-A venue may initially have no selected template (draft/incomplete). The diagram shows the configured state. A show can have many configurations and venues. No fixed venue count is part of the domain.
-
-## Identity and revision
-
-Every aggregate has a stable ID, workspace ID, owning show ID where applicable, schema version, revision, creation/update metadata, and lifecycle status. Relationships use IDs, never editable names or array positions. Published revisions are immutable; subsequent changes create a draft. Logical fixture IDs survive moving or repatching equipment.
-
-Inventory lines may represent quantities of non-addressable items. Independently addressable fixtures have separate instance IDs even when they share a profile. A fixture profile revision and selected mode determine its DMX footprint. A role such as `upstage-wash` maps to a venue-specific set of instances.
-
-## Two inheritance paths
-
-Configuration resolves from the pinned template drawing and inventory plus venue structural changes. Programming resolves from show presets/cues/scripts plus venue programming overrides. Do not force templates into the precedence chain for every cue parameter.
+- **Workspace** owns scanned venues, physical fixture units, Tours, Load Outs, memberships and reusable programming.
+- **Venue** identifies a physical room and its processed scan. Its intake may be pending, processing, failed, ready for import or imported. It does not own shared fixture placements.
+- **Load Out** references exactly one imported venue scan and selects physical unit IDs. It owns placement, patch and readiness. A venue has any number of Load Outs.
+- **Tour** owns a base physical-unit selection and ordered stops. Each stop references a venue and a distinct Load Out. Repeated visits to the same venue have separate stop IDs.
+- **Fixture profile** describes a manufacturer/model/mode. A **physical unit** has a stable identity independent of name, placement, patch and model. Duplicate plans do not duplicate units.
+- **Programming** defines reusable presets, cues and scripts. A resolved run must name the selected Load Out, scan, program revisions and output mapping. A Tour is not a synonym for a show program.
 
 ```text
-Template revision (drawing + inventory) ──> venue structural overrides ─┐
-Show programming (presets + cues + scripts) ─> venue program overrides ─┼─> resolved venue snapshot
-Fixture profile revisions + role bindings + venue patch/output routes ┘
+Workspace → Scanned venues → Load Outs → selected inventory + placement + patch
+          → Physical fixtures ↗
+          → Tours → base fixture selection → stops → dedicated Load Out per stop
+          → Programming → resolved Load Out program → immutable run snapshot
 ```
 
-For a scalar field: if a venue override exists, use it, even if its value is `0`, `false`, or an allowed explicit null. Otherwise use the inherited source. Reset removes the override record; setting it to zero does not reset it. Every resolved field reports source entity, source revision, and field path.
+## Preparation semantics
 
-Collections use stable IDs. Venue equipment removal is a tombstone against the base item. Additions receive new IDs. Script entries have their own IDs, including repeated references to one cue. Initial proposal: a venue sequence override replaces the ordered entry list as one revisioned value; it is not merged by array index.
+Only a ready, imported scan can start a Load Out. Import preserves the original venue UUID, movie and splat; it does not assign a show or rig. No blank areas or CAD-created venues are supported. Drawings are supporting documents.
 
-## Upstream adoption
+A Load Out stores a scan reference, base-unit IDs (if touring), additional-unit IDs, per-unit placement and per-unit patch. Coordinates are metres: X right, Y up, Z depth; yaw about Y. Production must pin verified scan scale/origin and immutable scan revision. Current intake has one asset per UUID; revision lineage is not implemented.
 
-Venues pin template revisions. When a new revision appears, compare base B, local venue L, and upstream U. Unchanged local fields may adopt U; local-only changes remain local; competing changes require an explicit choice. Removed referenced equipment, changed footprints, and missing capabilities block successful compilation. Rebase/adoption is transactional and never updates an active run.
+A new Tour stop copies the current base selection, with no inherited placement or patch. Existing stops retain their reviewed base until adoption. Local additions affect only the selected Load Out. In the local prototype, removed base units become additions on adoption, preserving placements and patch; removing them subsequently is explicit. A richer production diff may offer exclusion/return choices transactionally.
 
-## Live-operation extension
+Removing a placed unit from a Load Out first requires returning it to unplaced inventory. Returning preserves physical identity and patch. A unit referenced by any Tour or Load Out cannot be deleted from workspace inventory. Saved alternative plans do not reserve equipment; simultaneous booking requires a separate availability model.
 
-Runtime adds temporary manual programmer values, group/grand masters, song IDs, expected entry offsets, venue MIDI mappings, and a call log keyed by occurrence and playback pass. Selected fixtures, inspected cue, and active cue are separate. Restart reapplies an entry and resets current-pass markers from there without deleting history. See [[../02 Product/Features/F16 - Workflow modes and live programmer]] and [[../02 Product/Features/F17 - Script transport and MIDI triggers]].
+## Identity, persistence and migration
 
-Accepted live edits advance an explicit runtime revision for future calls while retaining the active look and manual values. Structural fixture/patch changes require a validated disarmed transition. [[../02 Product/Features/F18 - Persistent console and live updates]] distinguishes draft arrival from application without reload.
+All production relationships use immutable IDs, never editable labels or array positions. Aggregates need workspace ID, revision, schema version and mutation metadata. Published revisions and active run snapshots must be immutable. Service writes require tenant authorization, optimistic concurrency and transactional reference checks.
 
-## Cue semantics
+The current preparation prototype uses `vv-workspace-v2` in browser storage. It deliberately does not reinterpret old `vv-design-v1` venue/template strings as scanned rooms or physical fixture identities. Old sample data remains untouched. New programming previews use `vv-programming-preview:<loadoutId>` and live sessions use the Load Out ID. They still contain sample programming and are not the production program store.
 
-A cue is a named state definition and transition policy. Assignments bind a preset to a role, group, or instance; venue resolution supplies actual targets and parameter values. A script is an ordered list of references to those definitions. Activating Q02 and advancing to the script's next entry are different commands.
+Movie bytes, pipeline status and splats are persisted by the local intake service. Import sets `setupStatus=configured` with name/city, independently of show/template. Legacy request fields remain compatible but are not part of the new UX. Production cloud storage, tenants and durable preparation records are outstanding.
 
-Initial proposed evaluator: compute complete resolved states without implicit tracking. Assignments own explicit included parameters; unowned parameters resolve to the configured baseline. Conflicting assignments must be rejected or resolved by an explicit priority policy. Fade interruption, blackout behavior, and discrete channel timing need validated engine decisions before physical use.
+## Programming and runtime
 
-## Worked example
+Preset definitions, cue assignments and script occurrences remain separate identities. Repeated cue occurrences have separate entry IDs. A program binds fixture/group/role IDs to the selected Load Out and validates missing or incompatible targets before compiling.
 
-Show `Afterglow` defines `Midnight blue` at 75% intensity. `The Glasshouse` overrides it to 60%; `Mercury Hall` has no override and receives 75%. Q02 assigns this preset to `upstage-wash`. The Glasshouse maps that role to four local wash instances and its own patch. A script can reference Q02 twice with different entry notes. Resetting the Glasshouse override restores 75%; changing the show default later propagates at the next resolved draft publication, never mid-run.
+Inheritance must report the source and revision of each effective value. Explicit zero overrides a default; reset removes the override. A future Tour/program update requires a reviewed diff and cannot move, repatch or reprogram an active snapshot silently.
+
+The simulated console retains manual programmer values, masters, cue transport, MIDI mappings and session history. Active/inspected/selected state remains separate. Structural changes require a validated disarmed transition in production. See [[../02 Product/Features/F18 - Persistent console and live updates]].
 
 ## Integrity checks
 
-- Every reference belongs to the authorized workspace/show or an explicitly shared immutable library.
-- All required profiles/assets and role mappings are available before compilation.
-- Quantities and geometry units are valid; patch footprints fit and do not collide.
-- A preset's required capabilities are supported by each target or a reviewed fallback.
-- Cue/script references cannot dangle; deleting an entity reports dependents.
-- A run snapshot contains exact revisions and a content hash. Cloud draft edits cannot mutate it.
+- Layout refers to an imported processed scan in the authorized workspace.
+- Each Load Out references existing units at most once; each Tour stop has its own matching venue/Load Out pair.
+- Placement coordinates are finite and use the reviewed scan coordinate convention.
+- Patch footprints fit slots 1–512 and do not overlap within a universe.
+- Base changes remain pending per Load Out until explicit adoption.
+- Production compilation validates profiles, targets, assets, authorization and exact revisions.
+- A preparation checklist is not proof of valid hardware output or physical rigging.

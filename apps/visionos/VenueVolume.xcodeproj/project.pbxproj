@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09A55C7B6DCC4BB2AC570901 /* FixturePlacementHandoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A55C7B6DCC4BB2AC570902 /* FixturePlacementHandoff.swift */; };
+		09A55C7B6DCC4BB2AC570903 /* PlacementLinkReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A55C7B6DCC4BB2AC570904 /* PlacementLinkReceiver.swift */; };
 		0AAFA831C65D19BFAD1B3037 /* ToolboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A77C35DB1F4AA96F5DAE3C /* ToolboxView.swift */; };
 		0AD799F45280996D383A05B9 /* UXPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E68505DBBA6EEE51BDB540 /* UXPreview.swift */; };
 		0CA2049D9B473E27E6BEC71F /* PresetEditorPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A096039BA75A5E69F7F5AE /* PresetEditorPresentation.swift */; };
@@ -39,6 +41,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09A55C7B6DCC4BB2AC570902 /* FixturePlacementHandoff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturePlacementHandoff.swift; sourceTree = "<group>"; };
+		09A55C7B6DCC4BB2AC570904 /* PlacementLinkReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacementLinkReceiver.swift; sourceTree = "<group>"; };
 		00372CBAA7C8480C7AC8437A /* FixtureLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureLabel.swift; sourceTree = "<group>"; };
 		013BE4C4EB04D817E031E19E /* VenueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueModel.swift; sourceTree = "<group>"; };
 		16DE72BEDB41CF8A53707C9C /* PresetEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetEditorView.swift; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 		7236898DCCB5ACCBED23F40E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				09A55C7B6DCC4BB2AC570902 /* FixturePlacementHandoff.swift */,
 				40A096039BA75A5E69F7F5AE /* PresetEditorPresentation.swift */,
 				013BE4C4EB04D817E031E19E /* VenueModel.swift */,
 			);
@@ -151,6 +156,7 @@
 		DCB6E7E3210CB8F84B897279 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				09A55C7B6DCC4BB2AC570904 /* PlacementLinkReceiver.swift */,
 				6DCC5AEC820ED40A582D3DE4 /* AuditHistoryView.swift */,
 				F58C9AC408DE096B035A72DE /* DebugPanel.swift */,
 				36264B9671A4D573E153004E /* FixtureInspector.swift */,
@@ -246,6 +252,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09A55C7B6DCC4BB2AC570901 /* FixturePlacementHandoff.swift in Sources */,
+				09A55C7B6DCC4BB2AC570903 /* PlacementLinkReceiver.swift in Sources */,
 				31168DE9ABBE06BB43C628B8 /* AuditHistoryView.swift in Sources */,
 				401DB4EDFCC193C6117F2594 /* DebugPanel.swift in Sources */,
 				AD8C275DDC1945BB1092CD89 /* FixtureInspector.swift in Sources */,
@@ -409,7 +417,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.6;
+				MARKETING_VERSION = 0.2.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.venuevolume.VenueVolume;
 				PRODUCT_NAME = "Venue Volume";
 				SDKROOT = xros;
@@ -428,7 +436,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.6;
+				MARKETING_VERSION = 0.2.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.venuevolume.VenueVolume;
 				PRODUCT_NAME = "Venue Volume";
 				SDKROOT = xros;

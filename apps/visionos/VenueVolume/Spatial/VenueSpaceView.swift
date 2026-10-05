@@ -77,6 +77,8 @@ struct VenueSpaceView: View {
                 dismissWindow(id: "fixture-editor")
             }
         }
+        .onChange(of: model.canPlace, initial: true) { _, _ in model.finishPlacementHandoffIfReady() }
+        .onChange(of: model.isImmersed) { _, _ in model.finishPlacementHandoffIfReady() }
         .onChange(of: model.canSimulatePalm || model.needsManualToolbox, initial: true) { _, needed in
             if needed { openWindow(id: "venue-controls", value: "controls") }
         }
@@ -161,6 +163,7 @@ struct VenueSpaceView: View {
             #endif
         }
         .onDisappear {
+            model.cancelPlacementHandoff()
             model.finishHistoryGesture()
             model.flushHistoryEdits()
             model.isImmersed = false

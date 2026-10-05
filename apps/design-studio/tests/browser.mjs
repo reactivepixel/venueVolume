@@ -1,3 +1,4 @@
+// Historical 35-screen study. Current entry point: tests/workspace-browser.mjs.
 import { chromium, expect } from "@playwright/test";
 import assert from "node:assert/strict";
 import { screens } from "../src/catalog.js";

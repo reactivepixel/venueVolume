@@ -1,20 +1,25 @@
+import { installWorkspaceFixture } from "./workspace-fixture.mjs";
 import { chromium, expect } from "@playwright/test";
 import assert from "node:assert/strict";
 import { resolve } from "node:path";
 const base = process.env.VV_BASE_URL || "http://127.0.0.1:5173";
 const browser = await chromium.launch({
-  headless: true,
+  headless: true, executablePath: process.env.VV_CHROMIUM_EXECUTABLE || "/usr/bin/chromium",
   args: ["--no-sandbox"],
 });
 const context = await browser.newContext({
   viewport: { width: 1600, height: 1050 },
 });
+await installWorkspaceFixture(context);
 const page = await context.newPage();
+await (await import("node:fs/promises")).mkdir("../../tmp/saas-ux-review/high-fidelity", { recursive: true });
+await (await import("node:fs/promises")).mkdir("../../tmp/saas-ux-review/dialogs", { recursive: true });
+await (await import("node:fs/promises")).mkdir("../../tmp/saas-ux-review/mobile", { recursive: true });
 const errors = [];
 context.on("page", (p) => p.on("pageerror", (e) => errors.push(e.message)));
 page.on("pageerror", (e) => errors.push(e.message));
 try {
-  await page.goto(`${base}/?screen=live&mode=hifi&state=ready`);
+  await page.goto(`${base}/?loadoutId=review-0&screen=live&mode=hifi&state=ready`);
   await expect(
     page.getByRole("heading", { name: "The Glasshouse / Live console" }),
   ).toBeVisible();
@@ -125,10 +130,10 @@ try {
   ).toHaveValue("55");
   const navigationCount = { count: 0 };
   popup.on("framenavigated", () => navigationCount.count++);
-  await page.locator('.workflow-modes [data-phase="programming"]').click();
+  await page.goto(`${base}/?loadoutId=review-0&screen=preset-editor`);
   // Use a direct editor URL if the workflow picker changes in a future design pass.
   if (!page.url().includes("preset-editor"))
-    await page.goto(`${base}/?screen=preset-editor`);
+    await page.goto(`${base}/?loadoutId=review-0&screen=preset-editor`);
   await page
     .getByRole("button", { name: "The Glasshouse", exact: true })
     .click();
@@ -165,7 +170,7 @@ try {
   await popup.evaluate(()=>document.querySelectorAll('.desk-inspector,.stage-panel,.cue-list-scroll').forEach(el=>el.scrollTop=0));
   await popup.screenshot({
     path: resolve(
-      "../../assets/design/venue-volume/high-fidelity/live-popout.png",
+      "../../tmp/saas-ux-review/high-fidelity/live-popout.png",
     ),
     fullPage: true,
   });
@@ -176,7 +181,7 @@ try {
   await popup.evaluate(()=>document.querySelector('.desk-inspector').scrollTop=0);
   await popup.screenshot({
     path: resolve(
-      "../../assets/design/venue-volume/high-fidelity/live-cue-inspector.png",
+      "../../tmp/saas-ux-review/high-fidelity/live-cue-inspector.png",
     ),
     fullPage: true,
   });
@@ -195,7 +200,7 @@ try {
     .fill("72");
   await popup.screenshot({
     path: resolve(
-      "../../assets/design/venue-volume/dialogs/live-midi-mapping.png",
+      "../../tmp/saas-ux-review/dialogs/live-midi-mapping.png",
     ),
     fullPage: true,
   });
@@ -211,7 +216,7 @@ try {
     .click();
   await expect(popup.locator(".cue-trigger-detail")).toContainText("NOTE 72");
   const sibling = await context.newPage();
-  await sibling.goto(`${base}/?screen=live&venue=Mercury%20Hall&popout=1`);
+  await sibling.goto(`${base}/?loadoutId=review-1&screen=live&venue=Mercury%20Hall&popout=1`);
   await expect(sibling.locator(".playback-summary h2")).toHaveText("Standby");
   await expect(
     sibling.getByRole("slider", { name: "Grand master", exact: true }),
@@ -226,7 +231,7 @@ try {
   );
   await popup.screenshot({
     path: resolve(
-      "../../assets/design/venue-volume/mobile/live-touch-tablet.png",
+      "../../tmp/saas-ux-review/mobile/live-touch-tablet.png",
     ),
     fullPage: true,
   });

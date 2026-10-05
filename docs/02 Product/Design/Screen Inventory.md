@@ -6,6 +6,9 @@ updated: 2026-09-19
 
 # Screen Inventory
 
+> **2026-10-04 update:** The active SaaS workflow now uses scanned venues → Load Outs and Tours. See [[SaaS UX Review - Scanned Venues and Load Outs]] for the whole-product review, current navigation, implemented preparation flows and remaining release gates. The earlier 35-screen study described below is historical; programming/console components remain explicitly labeled previews.
+
+
 The first complete product design baseline has **35 named screens**, each available as a structural wireframe and a high-fidelity mockup. This is the bounded meaning of “every screen” for this design pass; future requirements can extend this catalog. Shared dialogs and states are listed separately so they are not hidden from scope.
 
 Open the React screen browser or the [static gallery](../../../assets/design/venue-volume/index.html). Route pattern: `http://localhost:5173/?screen=<route>&mode=wire` or `mode=hifi`.

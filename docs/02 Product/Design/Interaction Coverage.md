@@ -1,10 +1,13 @@
 ---
 type: design-validation
 status: prototype
-updated: 2026-09-19
+updated: 2026-10-03
 ---
 
 # Interaction Coverage
+
+> **2026-10-04 update:** The active SaaS workflow now uses scanned venues → Load Outs and Tours. See [[SaaS UX Review - Scanned Venues and Load Outs]] for the whole-product review, current navigation, implemented preparation flows and remaining release gates. The earlier 35-screen study described below is historical; programming/console components remain explicitly labeled previews.
+
 
 Revision 05: script editor and live playback use vertical numbered cue slots. Editor grips support mouse/touch drag to insert at a destination slot, source/target feedback, edge scrolling, Escape/outside-drop cancellation, arrow-key movement, and up/down alternatives. Live slots are inspection-only; Edit running order opens the draft editor. Stable entry IDs retain MIDI, timing, notes, and cue references through moves. Armed sequence changes require review and do not fire a cue. Full server concurrency and venue sequence-override persistence remain outside this prototype.
 
@@ -17,6 +20,7 @@ This is a design prototype. The screen catalog represents intended production su
 - Inspect generic empty, loading, error/retry, and permission-denied presentations.
 - Search shows, configurations, inventory fixtures, profiles, venues, presets, and cues.
 - Add local demo show names, templates, venues, presets, fixture instances, and member entries.
+- Upload actual venue movie bytes from **Add venue → From a movie** or the standalone `/upload` page. The local intake service persists a UUID record, original movie and processing state; its serial worker invokes Movie2Splat. Standalone captures stay in a **Needs setup** inbox until imported into a show with a name and configuration. Retry, pipeline logs and ready PLY downloads are implemented. This flow requires the intake service; processing requires the documented Docker/NVIDIA environment.
 - Change preset intensity at show/venue scope, expose provenance, and reset inheritance.
 - Modify patch addresses/universes and detect footprint overflow or overlap.
 - Reorder, remove, or repeat script cue references using separate entry IDs.
@@ -37,13 +41,15 @@ The pop-out remains usable after the editor closes. Active look and manual value
 - Many inspector fields, preset colors, cue assignments/timing, and settings illustrate controls but are not bound to a complete domain editor. Their save action is visual/local feedback, not a server write.
 - The primary detail/editor examples use Touring rig, Midnight blue, and Q02. Other list entries illustrate the same detail pattern.
 - CAD is a schematic interactive stage preview. Selection and parameter preview work, but layer/coordinate controls do not parse or save CAD. Outside the console, parameter edits are local preview values.
-- File selection retains filename and size only; no file bytes are uploaded or persisted.
+- **Files & drawings** retains filename and size only. The venue movie intake flow separately persists original movie bytes and Gaussian PLY results through its local service.
 - Non-lighting inventory, fixture channel maps, audit history, conversion results, timings, and revision statuses are sample data.
 - Authentication, invitations, password recovery, custom profile creation, cue/script creation dialogs, billing, bridge pairing, template adoption, restore, and archive are review flows only; they do not contact external systems.
 - All output, connectivity, live controls, and universe values are simulated. There is no DMX/Art-Net engine, physical interface, or authenticated output lease.
 - Blackout/hold logic validates the prototype's advance guard; it does not establish physical device safety or real timing behavior.
 
 Additional limits: no interpolated physical fades, MTC/audio scheduler, verified physical MIDI, full packet deduplication/CC edge policy, or OS always-on-top/background guarantee. Console run keys use demo show/venue names rather than stable production IDs. Expected timeline offsets are metadata; the playhead advances when cues are called.
+
+Venue movie intake is single-host and local-only, without tenant authentication or cloud storage. Show/configuration assignments reference prototype labels, not production revisions. A processed splat does not establish room scale, editable CAD, rig mappings or output readiness. See [the service guide](../../../services/venue-ingest/README.md) for its API and operational boundaries.
 
 ## Required production expansion
 

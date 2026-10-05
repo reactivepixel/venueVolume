@@ -1,3 +1,4 @@
+// Historical 35-screen study. Current entry point: tests/workspace-browser.mjs.
 import { chromium } from "@playwright/test";
 import { mkdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";

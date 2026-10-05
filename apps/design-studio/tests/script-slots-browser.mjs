@@ -1,9 +1,14 @@
+import { installWorkspaceFixture } from "./workspace-fixture.mjs";
 import { chromium, expect } from "@playwright/test";
 import assert from "node:assert/strict";
 const base = process.env.VV_BASE_URL || "http://127.0.0.1:5173";
-const browser = await chromium.launch({ headless: true, args: ["--no-sandbox"] });
+const browser = await chromium.launch({ headless: true, executablePath: process.env.VV_CHROMIUM_EXECUTABLE || "/usr/bin/chromium", args: ["--no-sandbox"] });
 const context = await browser.newContext({ viewport: { width: 1440, height: 1040 } });
+await installWorkspaceFixture(context);
 const page = await context.newPage();
+await (await import("node:fs/promises")).mkdir("../../tmp/saas-ux-review/high-fidelity", { recursive: true });
+await (await import("node:fs/promises")).mkdir("../../tmp/saas-ux-review/dialogs", { recursive: true });
+await (await import("node:fs/promises")).mkdir("../../tmp/saas-ux-review/mobile", { recursive: true });
 const errors = [];
 context.on("page", (p) => p.on("pageerror", (e) => errors.push(e.message)));
 page.on("pageerror", (e) => errors.push(e.message));
@@ -22,7 +27,7 @@ async function drag(from, to, cancel = false, outside = false) {
   await page.mouse.up();
 }
 try {
-  await page.goto(`${base}/?screen=script-editor&mode=hifi`);
+  await page.goto(`${base}/?loadoutId=review-0&screen=script-editor&mode=hifi`);
   await expect(page.locator(".script-slot")).toHaveCount(6);
   await drag("entry-0", "entry-2");
   await expect.poll(order).toEqual(["entry-1", "entry-2", "entry-0", "entry-3", "entry-4", "entry-5"]);
@@ -47,7 +52,7 @@ try {
   await page.keyboard.press("ArrowUp");
   await expect.poll(async () => (await order())[5]).toBe(repeatedId);
   const live = await context.newPage();
-  await live.goto(`${base}/?screen=live&mode=hifi&popout=1`);
+  await live.goto(`${base}/?loadoutId=review-0&screen=live&mode=hifi&popout=1`);
   await expect(live.locator(".desk-cue-row")).toHaveCount(7);
   await expect(live.locator(".live-slot-number")).toHaveText(["01", "02", "03", "04", "05", "06", "07"]);
   const boxes = await live.locator(".desk-cue-row").evaluateAll((rows) => rows.map((row) => ({ y: row.getBoundingClientRect().top, x: row.getBoundingClientRect().left })));
@@ -67,8 +72,10 @@ try {
   await expect(live.locator(".playback-summary h2")).toHaveText(active);
   // Real touch events exercise the same grip/capture path on a touch viewport.
   const touchContext = await browser.newContext({ viewport: { width: 1024, height: 900 }, hasTouch: true });
+  await installWorkspaceFixture(touchContext);
   const touch = await touchContext.newPage();
-  await touch.goto(`${base}/?screen=script-editor&mode=hifi`);
+  await touch.goto(`${base}/?loadoutId=review-0&screen=script-editor&mode=hifi`);
+  await touch.locator(".script-slot").nth(1).scrollIntoViewIfNeeded();
   const first = await touch.locator(".slot-grip").first().boundingBox();
   const second = await touch.locator(".script-slot").nth(1).boundingBox();
   const cdp = await touchContext.newCDPSession(touch);
