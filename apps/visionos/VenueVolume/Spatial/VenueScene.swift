@@ -65,6 +65,7 @@ final class VenueScene {
     private var blackoutFadeStart: Double?
     private var blackoutFadeDuration: Double = 0.333
     private var groupAnimationTime: Double = 0
+    private var reduceNavigationMotion = false
     private var connectorRevision = ""
     private var latestLeftHand: HandAnchor?
     private var lastHandUpdate: Double = 0
@@ -211,9 +212,8 @@ final class VenueScene {
             self.tickNavigation()
             self.updatePlacementGhost()
             self.groupAnimationTime += event.deltaTime
-            self.groupLinks.children.enumerated().forEach { index, child in
-                child.components.set(OpacityComponent(opacity: 0.35 + 0.65 * Float((sin(self.groupAnimationTime * 4 - Double(index)*0.3)+1)/2)))
-            }
+            self.groupLinks.components.set(OpacityComponent(opacity: self.reduceNavigationMotion ? 1 :
+                0.35 + 0.65 * Float((sin(self.groupAnimationTime * 4)+1)/2)))
             self.labelLayoutElapsed += event.deltaTime
             if self.labelLayoutElapsed >= 0.1 {
                 self.labelLayoutElapsed = 0
@@ -225,11 +225,7 @@ final class VenueScene {
 
     private func tickPhasers() {
         guard let model, model.lightingBenchmark == nil, !model.navigationBlackoutActive else { return }
-        let animated = Set(model.fixtures.compactMap { fixture -> UUID? in
-            let palette = model.previewDraft && model.selectedFixtureIDs.contains(fixture.id)
-                ? model.presetDraft : model.presets.first(where: { $0.id == fixture.presetID })
-            return palette?.phaser == nil ? nil : fixture.id
-        })
+        let animated = Set(model.fixtures.filter { model.hasAnimatedPalette(for: $0) }.map(\.id))
         guard !animated.isEmpty else { return }
         let channels = Dictionary(uniqueKeysWithValues: model.fixtures.map { ($0.id,model.renderedChannels(for: $0)) })
         let budgets = LightingBudget.allocate(model.fixtures.map { fixture in
@@ -706,6 +702,7 @@ final class VenueScene {
     /// SwiftUI window coordinates are converted by the system into this scene;
     /// neither the row origin nor the pinch origin is estimated from head pose.
     func updatePresetDrag(model: VenueModel, content: RealityViewContent, reduceMotion: Bool) {
+        reduceNavigationMotion = reduceMotion
         if presetDragVisual.root.parent == nil { overlayRoot.addChild(presetDragVisual.root) }
         #if DEBUG
         presetInputFromScene = content.transform(from: .scene, to: .immersiveSpace)
@@ -1058,7 +1055,7 @@ final class VenueScene {
             let first = selected[index-1], second = selected[index]
             let start = FixtureAiming.vector(first.position)+[0,first.assetID == nil ? -0.10 : 0.02,0]
             let end = FixtureAiming.vector(second.position)+[0,second.assetID == nil ? -0.10 : 0.02,0]
-            let distance = simd_distance(start,end), count = min(240,max(2,Int(distance/0.045)))
+            let distance = simd_distance(start,end), count = min(48,max(2,Int(distance/0.045)))
             for dot in 0..<count {
                 let point = start+(end-start)*(Float(dot)/Float(count-1))
                 let bead = ModelEntity(mesh: .generateSphere(radius: 0.002),materials: [UnlitMaterial(color: .cyan)])
