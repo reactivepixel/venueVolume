@@ -246,6 +246,42 @@ import VenueVolumeCore
         grouped.remove(b); check(grouped.fixtures.isEmpty && grouped.fixtureGroups.isEmpty, "Delete acts on group without dangling membership")
         grouped.navigationFadeMilliseconds = 500
         check(VenueModel(arguments: [], defaults: defaults, placementDirectory: folder).navigationFadeMilliseconds == 500, "Navigation fade preference persists")
+        let layered = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder.appendingPathComponent("layers"))
+        layered.activate(environment: environment); layered.canPlace = true; layered.beginPlacement()
+        for x: Float in [2.66, 5, 6] { layered.place(at: [x,0,-2], surfaceID: "floor") }
+        layered.finishPlacement()
+        check(layered.fixtures.count == 3, "Layered test places three fixtures")
+        let one = layered.fixtures[0].id, two = layered.fixtures[1].id
+        layered.select(one); layered.multiSelectionMode = true; layered.select(two); layered.groupSelection()
+        let chase = layered.presets.first { $0.name == "Phaser · Dimmer chase" }!
+        let red = layered.presets.first { $0.name == "Color · Red" }!
+        let centerPalette = layered.presets.first { $0.name == "Position · Center" }!
+        for palette in [chase, red, centerPalette] {
+            check(layered.applyPreset(palette.id, to: one), "Apply independent group attribute palette")
+        }
+        let oneOutput = layered.renderedChannels(for: layered.fixture(one)!, at: 0)
+        let twoOutput = layered.renderedChannels(for: layered.fixture(two)!, at: 0)
+        check(oneOutput[0] == 255 && twoOutput[0] == 0, "Unassigned fixtures do not affect chase phase distribution")
+        check(Array(oneOutput[1...3]) == [255,0,0] && oneOutput[4] == 128, "Static color/position coexist with intensity phaser")
+        check(layered.hasAnimatedPalette(for: layered.fixture(one)!), "Latest static palette does not hide animated layers")
+        let layeredSave = try layered.currentSetupSnapshot()
+        check(Set(layeredSave.presets.map(\.id)).isSuperset(of: [chase.id, red.id, centerPalette.id]), "Portable setup retains all palette dependencies")
+        let layeredRestored = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder.appendingPathComponent("layers"))
+        layeredRestored.activate(environment: environment)
+        check(layeredRestored.renderedChannels(for: layeredRestored.fixture(two)!, at: 0) == twoOutput, "Layered phaser playback survives relaunch")
+        layered.deletePreset(red.id)
+        check(layered.hasAnimatedPalette(for: layered.fixture(one)!) && layered.renderedChannels(for: layered.fixture(one)!, at: 0)[0] == 255,
+              "Deleting color preserves the independent intensity phaser")
+        let legacySuite = suite + "-legacy"
+        let legacyDefaults = UserDefaults(suiteName: legacySuite)!
+        defer { legacyDefaults.removePersistentDomain(forName: legacySuite) }
+        legacyDefaults.set(try JSONEncoder().encode(LightingPreview.presets), forKey: "venue.presets.v1")
+        let migrated = VenueModel(arguments: [], defaults: legacyDefaults, placementDirectory: folder.appendingPathComponent("legacy"))
+        check(migrated.presets.contains { $0.id == chase.id }, "Existing preset libraries receive the palette baseline once")
+        migrated.deletePreset(chase.id)
+        let migratedAgain = VenueModel(arguments: [], defaults: legacyDefaults, placementDirectory: folder.appendingPathComponent("legacy"))
+        check(!migratedAgain.presets.contains { $0.id == chase.id }, "Deleted baseline palettes are not recreated on relaunch")
+        print("Layered palette session checks passed: independent attributes, group phase, portable dependencies, relaunch and selective deletion.")
         print("Catalog session checks passed: module isolation, grouped undo/redo, saved poses, preset preservation and fan controls.")
     }
 }

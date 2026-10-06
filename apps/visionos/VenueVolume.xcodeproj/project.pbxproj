@@ -38,6 +38,9 @@
 		DF7F226A13D50185AD29409F /* FixturePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAD85CBEF3AD8C985E74BDC /* FixturePanel.swift */; };
 		E8C47E05F9704B18695FC303 /* FixturePlacementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD38AEB3AC858868B97CE99D /* FixturePlacementView.swift */; };
 		FFCDD751EB44DD4C0CB35879 /* PresetDragVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F02E9EB65A3BE3B88A3598B /* PresetDragVisual.swift */; };
+		E7FB0CAF748D2566869E83BB /* PalmNavigationVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEB3BD5FC04D2E228011FE7 /* PalmNavigationVisual.swift */; };
+		9D037A3B28A00DC0DED26FED /* VenueContextBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770FA085F040A05702D77C4D /* VenueContextBar.swift */; };
+		FA89ADF773713E7899826054 /* PalettePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2992C6BADF3AEF5C71DBAC0 /* PalettePreviewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +77,9 @@
 		F949E3AA522D9D9A396D62E4 /* VenueSaveDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueSaveDocument.swift; sourceTree = "<group>"; };
 		FC6645148B15A2D221C051A4 /* PresetEditorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetEditorPresenter.swift; sourceTree = "<group>"; };
 		FF1BBE8A979B55C93151CC1F /* Environments */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Environments; path = VenueVolume/Environments; sourceTree = SOURCE_ROOT; };
+		5AEB3BD5FC04D2E228011FE7 /* PalmNavigationVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalmNavigationVisual.swift; sourceTree = "<group>"; };
+		770FA085F040A05702D77C4D /* VenueContextBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueContextBar.swift; sourceTree = "<group>"; };
+		F2992C6BADF3AEF5C71DBAC0 /* PalettePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettePreviewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +97,8 @@
 		10729003391B865AB390F33C /* Spatial */ = {
 			isa = PBXGroup;
 			children = (
+				770FA085F040A05702D77C4D /* VenueContextBar.swift */,
+				5AEB3BD5FC04D2E228011FE7 /* PalmNavigationVisual.swift */,
 				9C8A9C441DF185E732E8E41E /* FixtureRig.swift */,
 				6C9DEE749A32406F9D8E6E18 /* FixtureTransformGizmo.swift */,
 				6F02E9EB65A3BE3B88A3598B /* PresetDragVisual.swift */,
@@ -156,6 +164,7 @@
 		DCB6E7E3210CB8F84B897279 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F2992C6BADF3AEF5C71DBAC0 /* PalettePreviewView.swift */,
 				09A55C7B6DCC4BB2AC570904 /* PlacementLinkReceiver.swift */,
 				6DCC5AEC820ED40A582D3DE4 /* AuditHistoryView.swift */,
 				F58C9AC408DE096B035A72DE /* DebugPanel.swift */,
@@ -252,6 +261,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA89ADF773713E7899826054 /* PalettePreviewView.swift in Sources */,
+				9D037A3B28A00DC0DED26FED /* VenueContextBar.swift in Sources */,
+				E7FB0CAF748D2566869E83BB /* PalmNavigationVisual.swift in Sources */,
 				09A55C7B6DCC4BB2AC570901 /* FixturePlacementHandoff.swift in Sources */,
 				09A55C7B6DCC4BB2AC570903 /* PlacementLinkReceiver.swift in Sources */,
 				31168DE9ABBE06BB43C628B8 /* AuditHistoryView.swift in Sources */,
@@ -417,7 +429,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.7;
+				MARKETING_VERSION = 0.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.venuevolume.VenueVolume;
 				PRODUCT_NAME = "Venue Volume";
 				SDKROOT = xros;
@@ -436,7 +448,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.7;
+				MARKETING_VERSION = 0.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.venuevolume.VenueVolume;
 				PRODUCT_NAME = "Venue Volume";
 				SDKROOT = xros;

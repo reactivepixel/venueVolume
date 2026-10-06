@@ -765,7 +765,7 @@ final class VenueScene {
                 model.presetDrag.showFeedback(presetID: release.presetID, fixtureID: fixtureID, succeeded: success, message: success ? nil : model.message)
             } else {
                 model.endPresetDrag()
-                model.message = "Preset drop cancelled. Drag until the line becomes solid, or use the preset's Apply menu."
+                model.message = "Palette drop cancelled. Drag until the line becomes solid, or use the palette's Apply menu."
             }
         }
     }
