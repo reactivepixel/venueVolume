@@ -251,7 +251,11 @@ final class VenueModel {
                 for original in setup.presets {
                     if let existing = presets.first(where: { $0.id == original.id }), existing != original {
                         var copy = original
-                        if let equivalent = presets.first(where: { $0.name == original.name && $0.channels == original.channels }) { copy = equivalent }
+                        if let equivalent = presets.first(where: { candidate in
+                            var normalized = candidate
+                            normalized.id = original.id
+                            return normalized == original
+                        }) { copy = equivalent }
                         else { copy.id = UUID(); presets.append(copy) }
                         for i in fixtures.indices {
                             if fixtures[i].presetID == original.id { fixtures[i].presetID = copy.id }
@@ -579,7 +583,7 @@ final class VenueModel {
         }
         guard !libraryBusy else { return }
         beginHistoryAction("Clear fixture palette"); defer { endHistoryAction() }
-        guard let index = fixtures.firstIndex(where: { $0.id == id }), fixtures[index].presetID != nil else { return }
+        guard let index = fixtures.firstIndex(where: { $0.id == id }), !fixtures[index].referencedPaletteIDs.isEmpty else { return }
         if case .aim(let targetID) = scenePick, targetID == id { cancelPicking() }
         fixtures[index].presetID = nil
         fixtures[index].channelPaletteIDs = nil
@@ -595,25 +599,32 @@ final class VenueModel {
         return presets.contains { fixture.referencedPaletteIDs.contains($0.id) && $0.phaser != nil }
     }
 
-    func renderedChannels(for fixture: Fixture) -> [Int] {
-        if isRetargeting, targetPreview != nil { return renderedFixture(fixture).channels }
-        let seconds = ProcessInfo.processInfo.systemUptime - paletteClockOrigin
-        let index = fixtures.firstIndex(where: { $0.id == fixture.id }) ?? 0
-        let count = max(1, fixtures.count)
+    func renderedChannels(for fixture: Fixture, at time: Double? = nil) -> [Int] {
+        if isRetargeting, let targetPreview, actionIDs(for: targetPreview.id).contains(fixture.id) {
+            return renderedFixture(fixture).channels
+        }
+        let seconds = time ?? (ProcessInfo.processInfo.systemUptime - paletteClockOrigin)
+        func phasePosition(for paletteID: UUID, draft: Bool = false) -> (index: Int, count: Int) {
+            let members = fixtures.filter { draft ? selectedFixtureIDs.contains($0.id) : $0.referencedPaletteIDs.contains(paletteID) }
+            return (members.firstIndex(where: { $0.id == fixture.id }) ?? 0, max(1, members.count))
+        }
         var rendered = fixture
         if let owners = fixture.channelPaletteIDs {
             for paletteID in Set(owners.values) {
                 guard let palette = presets.first(where: { $0.id == paletteID }) else { continue }
-                let sampled = palette.sampledChannels(at: seconds, fixtureIndex: index, fixtureCount: count)
+                let phase = phasePosition(for: paletteID)
+                let sampled = palette.sampledChannels(at: seconds, fixtureIndex: phase.index, fixtureCount: phase.count)
                 for (channel, owner) in owners where owner == paletteID && rendered.channels.indices.contains(channel) && sampled.indices.contains(channel) {
                     rendered.channels[channel] = sampled[channel]
                 }
             }
         } else if let palette = presets.first(where: { $0.id == fixture.presetID }) {
-            rendered.channels = PresetOperations.mergedChannels(palette, existing: rendered.channels, at: seconds, fixtureIndex: index, fixtureCount: count)
+            let phase = phasePosition(for: palette.id)
+            rendered.channels = PresetOperations.mergedChannels(palette, existing: rendered.channels, at: seconds, fixtureIndex: phase.index, fixtureCount: phase.count)
         }
         if previewDraft && selectedFixtureIDs.contains(fixture.id) {
-            rendered.channels = PresetOperations.mergedChannels(presetDraft, existing: rendered.channels, at: seconds, fixtureIndex: index, fixtureCount: count)
+            let phase = phasePosition(for: presetDraft.id, draft: true)
+            rendered.channels = PresetOperations.mergedChannels(presetDraft, existing: rendered.channels, at: seconds, fixtureIndex: phase.index, fixtureCount: phase.count)
         }
         rendered.preserveAimOverride()
         return rendered.channels
