@@ -27,6 +27,7 @@ struct VenueSpaceView: View {
             scene.update(model: model, attachments: attachments)
             scene.updatePresetDrag(model: model, content: content, reduceMotion: reduceMotion)
         } attachments: {
+            Attachment(id: "venue-context-bar") { VenueContextBar().environment(model) }
             ForEach(model.environment?.surfaces ?? [], id: \.id) { surface in
                 Attachment(id: "surface-drop-\(surface.id)") { FixtureSurfaceDrop(surface: surface).environment(model) }
             }
@@ -60,18 +61,18 @@ struct VenueSpaceView: View {
                     let point = value.convert(value.location3D, from: .local, to: scene.root)
                     let start = value.convert(value.startLocation3D, from: .local, to: scene.root)
                     _ = scene.handleDrag(entity: value.entity, position: point, start: start, model: model)
-                    model.endTransformDrag(); lastSpatialDragEnd = Date()
+                    scene.endSpatialDrag(model: model); lastSpatialDragEnd = Date()
                 }
                 handledDrag = false; dragFixtureID = nil; cancelledDrag = false
             })
         .onChange(of: spatialDragActive) { _, active in
             if !active && handledDrag {
-                model.endTransformDrag(); lastSpatialDragEnd = Date(); handledDrag = false
+                scene.cancelSpatialDrag(model: model); lastSpatialDragEnd = Date(); handledDrag = false
             }
             if !active { dragFixtureID = nil; cancelledDrag = false }
         }
         .onChange(of: model.selectedID) { _, selected in
-            if handledDrag { cancelledDrag = true; lastSpatialDragEnd = Date() }
+            if handledDrag { scene.cancelSpatialDrag(model: model); cancelledDrag = true; lastSpatialDragEnd = Date() }
             handledDrag = false; dragFixtureID = nil
             if selected == nil {
                 dismissWindow(id: "fixture-editor")
@@ -81,9 +82,6 @@ struct VenueSpaceView: View {
         .onChange(of: model.isImmersed) { _, _ in model.finishPlacementHandoffIfReady() }
         .onChange(of: model.canSimulatePalm || model.needsManualToolbox, initial: true) { _, needed in
             if needed { openWindow(id: "venue-controls", value: "controls") }
-        }
-        .onChange(of: model.isPickingRoom || model.gizmoVisible) { _, active in
-            if active { openWindow(id: "venue-controls", value: "controls") }
         }
         .task(id: model.toolboxRequestID) {
             guard let request = model.toolboxRequestID else { return }
@@ -193,9 +191,9 @@ struct VenueSpaceView: View {
             for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
             guard let fixture = model.fixtures.first else { throw EnvironmentError.invalid("Missing fixture") }
             model.beginRetarget(fixture.id)
-            for _ in 0..<100 where !model.venueControlsVisible { try await Task.sleep(for: .milliseconds(50)) }
-            guard model.venueControlsVisible, scene.headAnchor.children.isEmpty else {
-                throw EnvironmentError.invalid("Targeting did not use the stationary control window")
+            for _ in 0..<100 where scene.headAnchor.findEntity(named: "VenueContextBar") == nil { try await Task.sleep(for: .milliseconds(50)) }
+            guard scene.headAnchor.findEntity(named: "VenueContextBar") != nil else {
+                throw EnvironmentError.invalid("Targeting context bar attachment is missing")
             }
             guard model.acceptTarget(.init(x: 2.9, y: 1.8, z: -7.67)) else { throw EnvironmentError.invalid("Preview failed") }
             model.cancelPicking()
@@ -206,7 +204,7 @@ struct VenueSpaceView: View {
             guard model.fixture(fixture.id)?.channels == fixture.channels else { throw EnvironmentError.invalid("Target undo failed") }
             model.beginRetarget(fixture.id)
             _ = model.acceptTarget(.init(x: 2.9, y: 1.8, z: -7.67))
-            print("STATIONARY_CONTROLS_SMOKE_PASS normalWindow=true headControls=0 cancel=true save=true undo=true")
+            print("STATIONARY_CONTROLS_SMOKE_PASS contextBar=true cancel=true save=true undo=true")
         } catch { print("STATIONARY_CONTROLS_SMOKE_FAIL \(error)") }
     }
 
