@@ -2,7 +2,7 @@ import RealityKit
 import SwiftUI
 import VenueVolumeCore
 
-/// System gaze targeting + right-hand pinch/drag operate these input targets.
+/// System gaze targeting and indirect pinch/drag operate these input targets.
 /// We never synthesize an eye ray or bind locomotion to finger-motion updates.
 @MainActor
 final class PalmNavigationVisual {
@@ -167,6 +167,10 @@ final class PalmNavigationVisual {
     }
 
     func cancel() { dragStart = nil; proposed = nil; rotationAxis = nil; rotationStart = nil; moved = false }
+
+    func reset() {
+        cancel(); rotating = false; rings.isEnabled = false; entity.isEnabled = false
+    }
 
     private static func material(_ color: UIColor, alpha: Float = 1) -> UnlitMaterial {
         var material = UnlitMaterial(color: color)

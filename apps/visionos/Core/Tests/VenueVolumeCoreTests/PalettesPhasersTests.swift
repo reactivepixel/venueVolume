@@ -2,6 +2,13 @@ import XCTest
 @testable import VenueVolumeCore
 
 final class PalettesPhasersTests: XCTestCase {
+    func testTouringMaskAndPaletteAttributesCompose() throws {
+        let palette = DMXPreset(name: "Scoped color", channels: [255,200,100,50],
+            attributeIndices: [1,2,3], includedChannels: [1,2])
+        XCTAssertEqual(palette.channelMask, [1,2])
+        XCTAssertEqual(PresetOperations.mergedChannels(palette, existing: [42,0,0,99]), [42,200,100,99])
+        XCTAssertEqual(try JSONDecoder().decode(DMXPreset.self, from: JSONEncoder().encode(palette)), palette)
+    }
     func testLegacyDecodeAndNewRoundTrip() throws {
         let id = UUID()
         let data = Data("{\"id\":\"\(id.uuidString)\",\"name\":\"Legacy\",\"channels\":[255,0]}".utf8)

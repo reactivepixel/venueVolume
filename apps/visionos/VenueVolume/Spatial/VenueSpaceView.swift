@@ -38,7 +38,7 @@ struct VenueSpaceView: View {
             }
             ForEach(model.sceneFixtures) { fixture in
                 Attachment(id: "label-\(fixture.id)") {
-                    FixtureLabel(fixture: fixture).environment(model).navigationInputShield(model: model)
+                    FixtureLabel(fixture: fixture).environment(model).navigationInputShield(model: model).disabled(model.palmMapVisible)
                 }
                 Attachment(id: "drop-\(fixture.id)") {
                     FixtureDropTarget(fixture: fixture).environment(model).navigationInputShield(model: model)
@@ -57,7 +57,14 @@ struct VenueSpaceView: View {
                 dismissWindow(id: "fixture-editor")
             }
         }
-        .onChange(of: model.canPlace, initial: true) { _, _ in model.finishPlacementHandoffIfReady() }
+        .onChange(of: model.canPlace, initial: true) { _, ready in
+            if !ready { model.closePalmMap() }
+            model.finishPlacementHandoffIfReady()
+        }
+        .onChange(of: model.palmMapRequestID) { _, _ in
+            scene.cancelSpatialDrag(model: model)
+            activeSpatialEvents.removeAll(); presetSpatialEvents.removeAll()
+        }
         .onChange(of: model.isImmersed) { _, _ in model.finishPlacementHandoffIfReady() }
         .task(id: model.toolboxRequestID) {
             guard let request = model.toolboxRequestID, model.isImmersed else { return }
@@ -75,6 +82,7 @@ struct VenueSpaceView: View {
             openWindow(id: "toolbox", value: request)
         }
         .task(id: model.roomLoadToken) {
+            model.closePalmMap()
             model.canPlace = false
             let loaded = await scene.load(model: model)
             if !Task.isCancelled && (loaded || model.environment != nil) {
@@ -153,6 +161,7 @@ struct VenueSpaceView: View {
             #endif
         }
         .onDisappear {
+            model.closePalmMap()
             model.cancelPlacementHandoff()
             model.finishHistoryGesture()
             model.flushHistoryEdits()
@@ -172,7 +181,10 @@ struct VenueSpaceView: View {
             openWindow(id: "launch")
         }
         .onChange(of: scenePhase) { _, phase in
-            if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits(); model.endPresetDrag() }
+            if phase != .active {
+                model.closePalmMap(); scene.cancelSpatialDrag(model: model)
+                model.finishHistoryGesture(); model.flushHistoryEdits(); model.endPresetDrag()
+            }
         }
         .presetEditorPresenter()
     }

@@ -94,6 +94,7 @@ extension VenueModel {
         }
         pendingFixturePlacement = nil
         beginReposition(fixture.id)
+        scenePick = .move(fixture.id)
         placementLinkMessage = "Placing \(fixture.name) in \(setupName). Look at a supported surface and pinch to place."
         message = placementLinkMessage
     }

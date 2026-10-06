@@ -18,6 +18,7 @@ private struct FixtureTransformDrag {
 private struct FixtureSurfaceDrag {
     var fixture: Fixture
     var plane: FixtureMountPlane
+    var members: [Fixture]
     var start: SIMD3<Float>
 }
 struct RoomRequest { var room: LibraryRoom; var setup: VenueSetup?; var blank: Bool; var configurationID: UUID? = nil }
@@ -137,6 +138,14 @@ final class VenueModel {
         for i in fixtures.indices where fixtures[i].groupID == group { fixtures[i].groupID = nil }
         additionalSelection = []; revision += 1; persist()
     }
+    private(set) var palmMapRequestID: UUID?
+    var palmMapVisible: Bool { palmMapRequestID != nil }
+    func togglePalmMap() {
+        if palmMapVisible { closePalmMap(); return }
+        guard isImmersed, canPlace, !libraryBusy, !navigationBlackoutActive else { return }
+        palmMapRequestID = UUID()
+    }
+    func closePalmMap() { palmMapRequestID = nil }
     var navigationBlackoutActive = false
     var navigationFadeMilliseconds: Double = 333 {
         didSet { defaults.set(navigationFadeMilliseconds, forKey: "venue.navigationFadeMilliseconds") }
@@ -279,11 +288,11 @@ final class VenueModel {
         false
         #endif
     }
-    var isImmersed = false
+    var isImmersed = false { didSet { if !isImmersed { closePalmMap() } } }
     var isTransitioning = false
     var isPlacing = false
     var trackingStatus = "Starting spatial tracking…"
-    var canPlace = false
+    var canPlace = false { didSet { if !canPlace { closePalmMap() } } }
     private(set) var environment: EnvironmentManifest?
     var environmentStatus = "Loading classroom…"
     private(set) var persistenceStatus = "Placements save on this device"
@@ -335,6 +344,7 @@ final class VenueModel {
     }
 
     func activate(environment: EnvironmentManifest) {
+        closePalmMap()
         if rooms.isEmpty { bootstrapLibrary(defaultRoom: environment) }
         if let destination = historyDestination, let state = history?.node(destination.id)?.state {
             guard state.rooms.first(where: { $0.id == state.roomID })?.manifest == environment else { return }
@@ -1188,7 +1198,7 @@ final class VenueModel {
               !isRetargeting, !isPlacing, let fixture = fixture(id) else { return }
         cancelPicking(); previewDraft = false; transformMode = .move
         beginHistoryAction("Slide fixture on its surface")
-        surfaceDrag = .init(fixture: fixture, plane: supportingPlane(for: fixture), start: point)
+        surfaceDrag = .init(fixture: fixture, plane: supportingPlane(for: fixture), members: fixtures.filter { actionIDs(for: id).contains($0.id) }, start: point)
     }
 
     func surfaceDragDestination(to point: SIMD3<Float>) -> (point: Position3D, normal: Position3D, radius: Float)? {
@@ -1218,7 +1228,8 @@ final class VenueModel {
         }
         if let issue = candidate.placementIssue(in: environment) ?? candidate.validationIssue(among: fixtures) { message = issue; return false }
         guard candidate != fixtures[i] else { return true }
-        fixtures[i] = candidate; revision += 1; persist(); message = nil
+        guard let updates = surfaceGroupPlacement(anchor: drag.fixture, candidate: candidate, members: drag.members) else { return false }
+        fixtures = updates; revision += 1; persist(); message = nil
         return true
     }
 
@@ -1246,10 +1257,38 @@ final class VenueModel {
         candidate.position = .init(x: position.x,y: position.y,z: position.z)
         candidate.surfaceID = surfaceID; candidate.mountPlane = plane
         if let issue = candidate.placementIssue(in: environment) ?? candidate.validationIssue(among: fixtures) { message = issue; return false }
+        guard let updates = surfaceGroupPlacement(anchor: fixtures[i], candidate: candidate, members: fixtures.filter { actionIDs(for: id).contains($0.id) }) else { return false }
         endTransformDrag(); beginHistoryAction("Move fixture to surface"); defer { endHistoryAction() }
-        fixtures[i] = candidate; scenePick = nil; gizmoVisible = true; transformMode = .move; lastTarget = nil
+        fixtures = updates; scenePick = nil; gizmoVisible = true; transformMode = .move; lastTarget = nil
         revision += 1; persist(); message = "Fixture moved and aligned to the surface."
         return true
+    }
+
+    private func surfaceGroupPlacement(anchor: Fixture, candidate: Fixture, members: [Fixture]) -> [Fixture]? {
+        guard let environment, let plane = candidate.mountPlane else { return nil }
+        let rotation = ViewerNavigationPose.compose(candidate.orientation, FixtureAiming.inverse(anchor.orientation))
+        var updates = fixtures
+        for original in members {
+            guard let index = updates.firstIndex(where: { $0.id == original.id }) else { return nil }
+            var member = original
+            let relative = FixtureAiming.vector(original.position)-FixtureAiming.vector(anchor.position)
+            let position = FixtureAiming.vector(candidate.position)+FixtureAiming.rotate(rotation, relative)
+            member.position = .init(x: position.x,y: position.y,z: position.z)
+            member.orientation = ViewerNavigationPose.compose(rotation, original.orientation)
+            member.surfaceID = candidate.surfaceID; member.mountPlane = plane
+            let point = mountingPoint(for: member)
+            if let surfaceID = member.surfaceID, let surface = environment.surfaces.first(where: { $0.id == surfaceID }),
+               surface.fixturePosition(hit: point, halfSize: member.footprintRadius) == nil {
+                message = "Choose a surface with enough room for the entire selection."; return nil
+            }
+            if let scannedMesh, !scannedMesh.supports(point, normal: plane.normal, radius: member.footprintRadius) {
+                message = "Capture enough support for the entire selection."; return nil
+            }
+            if let issue = member.placementIssue(in: environment) { message = issue; return nil }
+            updates[index] = original.id == anchor.id ? candidate : member
+        }
+        for member in updates { if let issue = member.validationIssue(among: updates) { message = issue; return nil } }
+        return updates
     }
 
     func reposition(at hit: Position3D, surfaceID: String) {
@@ -1760,7 +1799,7 @@ extension VenueModel {
         if let tour { presets = tour.presets }
         else if let data = defaults.data(forKey: "venue.presets.v1"), let legacy = try? JSONDecoder().decode([DMXPreset].self, from: data), legacy.allSatisfy({ $0.validationIssue == nil && $0.focusTargetID == nil }) {
             presets = legacy
-        } else { presets = LightingPreview.presets }
+        } else { presets = LightingPreview.presets + PaletteLibrary.baseline }
         if !presets.contains(where: { $0.id == editingPresetID }) { editingPresetID = nil }
     }
     @discardableResult private func commitTour(_ session: TourSession, fixtures updated: [Fixture], title: String, publish: Bool = false) -> Bool {

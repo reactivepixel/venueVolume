@@ -104,6 +104,8 @@ struct ToolboxView: View {
                     }
                 }
                 Spacer(minLength: 12)
+                Button(model.palmMapVisible ? "Close Palm Map" : "Palm Map", systemImage: "map") { model.togglePalmMap() }
+                    .disabled(!model.palmMapVisible && (!model.isImmersed || !model.canPlace || model.libraryBusy || model.navigationBlackoutActive))
                 Menu {
                     Button("Settings", systemImage: "gearshape") { settingsPresented = true }
                     Button("Touring shows…", systemImage: "shippingbox") { model.touringPanelPresented = true }
@@ -225,7 +227,12 @@ struct VenueControlsView: View {
             HStack(spacing: 20) {
                 Label("Venue controls", systemImage: "scope").font(.headline)
                 Divider().frame(height: 56)
-                if let session = model.presetDrag.session {
+                Button(model.palmMapVisible ? "Close Palm Map" : "Palm Map", systemImage: "map") { model.togglePalmMap() }
+                    .disabled(!model.palmMapVisible && (!model.canPlace || model.libraryBusy || model.navigationBlackoutActive))
+                if model.palmMapVisible {
+                    Text("Drag the marker to teleport; tap it for rotation rings.").font(.callout).frame(width: 460, alignment: .leading)
+                    Button("Done") { model.closePalmMap() }.frame(minHeight: 60)
+                } else if let session = model.presetDrag.session {
                     let presetName = model.presets.first { $0.id == session.presetID }?.name ?? "Preset"
                     let target = model.presetDrag.proposedFixtureID.flatMap { model.fixture($0) }
                     VStack(alignment: .leading, spacing: 4) {

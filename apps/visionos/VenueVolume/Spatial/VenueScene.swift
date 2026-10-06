@@ -48,16 +48,13 @@ final class VenueScene {
     private var labels: [UUID: Entity] = [:]
     private var drops: [UUID: Entity] = [:]
     private var palmGate = PalmRevealGate()
-    private var mapToggle = PalmMapToggle()
+    private var displayedMapRequestID: UUID?
+    private var mapWorldPosition = SIMD3<Float>.zero
+    private var mapWorldOrientation = simd_quatf(angle: 0,axis: [0,1,0])
     private let palmMap = PalmNavigationVisual()
     private let placementGhost = Entity()
     private let groupLinks = Entity()
-    private var hasHandAccess = false
-    private var lastRightPinchAt = Double.leastNormalMagnitude
     private var navigationGestureCancelled = false
-    private var mapAttended = false
-    private var mapHeld = false
-    private var palmPosition = SIMD3<Float>.zero
     private var blackoutCover: ModelEntity?
     private var navigationTransition: Task<Void, Never>?
     private var blackoutFadeStart: Double?
@@ -328,11 +325,13 @@ final class VenueScene {
 
     func handleTap(entity: Entity, position: SIMD3<Float>, model: VenueModel) {
         guard !model.navigationBlackoutActive else { return }
+        tickNavigation()
         let point = Position3D(x: position.x, y: position.y, z: position.z)
         if entity.name.hasPrefix("palm-map-") {
-            if !hasHandAccess || CACurrentMediaTime()-lastRightPinchAt < 0.2 { _ = palmMap.tap(entity) }
+            if model.palmMapVisible && model.canPlace { _ = palmMap.tap(entity) }
             return
         }
+        guard !model.palmMapVisible else { return }
         if FixtureTransformGizmo.handle(entity) != nil { return }
         if let id = UUID(uuidString: entity.name), !model.isPlacing && !model.isRetargeting {
             model.tapFixture(id)
@@ -389,10 +388,11 @@ final class VenueScene {
 
     func handleDrag(entity: Entity, position: SIMD3<Float>, start: SIMD3<Float>, model: VenueModel) -> Bool {
         guard !model.navigationBlackoutActive else { return false }
-        if !navigationGestureCancelled, let environment = manifest,
-           (!hasHandAccess || palmMap.dragging || rightHandPinching()),
+        tickNavigation()
+        if !navigationGestureCancelled, model.palmMapVisible, model.canPlace, let environment = manifest,
            palmMap.drag(entity, worldPoint: root.convert(position: position, to: nil),
                         worldStart: root.convert(position: start, to: nil), environment: environment) { return true }
+        guard !model.palmMapVisible else { return false }
         if model.isRetargeting && entity.name.hasPrefix("aim-surface:") {
             _ = model.acceptTarget(.init(x: position.x, y: position.y, z: position.z))
             return true
@@ -555,6 +555,18 @@ final class VenueScene {
                 throw EnvironmentError.invalid("fixture collision or tap/drag isolation failed")
             }
             model.deselect()
+            model.beginPlacement(); model.togglePalmMap()
+            guard model.palmMapVisible else { throw EnvironmentError.invalid("Toolbar map failed to open") }
+            let count = model.fixtures.count
+            handleTap(entity: target, position: center, model: model)
+            handleTap(entity: surface, position: center, model: model)
+            guard model.isPlacing, model.selectedID == nil, model.fixtures.count == count,
+                  !handleDrag(entity: surface,position: center,start: center,model: model) else {
+                throw EnvironmentError.invalid("Open map allowed editing behind navigation")
+            }
+            model.closePalmMap()
+            guard model.isPlacing else { throw EnvironmentError.invalid("Map close lost prior editing context") }
+            model.finishPlacement()
             handleTap(entity: target, position: center, model: model)
             guard model.selectedID == fixture.id else { throw EnvironmentError.invalid("fixture tap did not select") }
             handleTap(entity: surface, position: center, model: model)
@@ -780,7 +792,7 @@ final class VenueScene {
         }
         if transformGizmo.entity.parent == nil { root.addChild(transformGizmo.entity) }
         transformGizmo.update(fixture: model.transformFixtureContext,
-                              visible: model.gizmoVisible && (!model.isPickingRoom || model.isSurfaceMoveActive), mode: model.transformMode, selectedAxis: model.activeTransformAxis)
+                              visible: model.gizmoVisible && (!model.isPickingRoom || model.isSurfaceMoveActive) && !model.palmMapVisible, mode: model.transformMode, selectedAxis: model.activeTransformAxis)
         for surface in model.environment?.surfaces ?? [] {
             if let zone = attachments.entity(for: "surface-drop-\(surface.id)") {
                 if zone.parent == nil { root.addChild(zone) }
@@ -874,7 +886,7 @@ final class VenueScene {
                 if drop.parent == nil { root.addChild(drop) }
                 drop.position = FixtureAiming.vector(fixture.visualCenter) + [0,0,0.20]
                 drop.components.set(BillboardComponent())
-                drop.isEnabled = model.draggingPresetID != nil && !model.presetDrag.isActive && !model.isPickingRoom
+                drop.isEnabled = model.draggingPresetID != nil && !model.presetDrag.isActive && !model.isPickingRoom && !model.palmMapVisible
                 drops[fixture.id] = drop
             }
         }
@@ -921,7 +933,7 @@ final class VenueScene {
             presetDragVisual.tether(origin: nil, reduceMotion: reduceMotion)
             return
         }
-        guard aligned, model.canPlace, !model.libraryBusy, !model.isPickingRoom, !model.isTransformDragging,
+        guard aligned, model.canPlace, !model.libraryBusy, !model.isPickingRoom, !model.palmMapVisible, !model.isTransformDragging,
               model.presets.contains(where: { $0.id == session.presetID }) else {
             model.endPresetDrag(); presetDragVisual.clear(); return
         }
@@ -1053,13 +1065,12 @@ final class VenueScene {
         let session = ARKitSession()
         let world = WorldTrackingProvider()
         let hands = HandTrackingProvider()
-        defer { session.stop(); latestLeftHand = nil; latestRightHand = nil; hasHandAccess = false }
+        defer { session.stop(); latestLeftHand = nil }
         var handAccess = false
         if HandTrackingProvider.isSupported {
             let status = await session.requestAuthorization(for: [.handTracking])
             handAccess = status[.handTracking] == .allowed
         }
-        hasHandAccess = handAccess
         model.needsManualToolbox = !handAccess
         model.handTrackingStatus = handAccess ? "Left index: move · left middle: rotate · double pinch: reset" : "Hand tracking unavailable · use navigation controls"
         do {
@@ -1070,10 +1081,6 @@ final class VenueScene {
             let handTask: Task<Void, Never>? = handAccess ? Task { @MainActor in
                 for await update in hands.anchorUpdates {
                     guard !Task.isCancelled else { return }
-                    if update.anchor.chirality == .right {
-                        self.latestRightHand = update.event == .removed ? nil : update.anchor
-                        self.lastRightHandUpdate = CACurrentMediaTime()
-                    }
                     if update.anchor.chirality == .left {
                         self.latestLeftHand = update.event == .removed ? nil : update.anchor
                         self.lastHandUpdate = CACurrentMediaTime()
@@ -1087,7 +1094,6 @@ final class VenueScene {
             while !Task.isCancelled {
                 let now = CACurrentMediaTime()
                 var eligible = false
-                mapAttended = false; mapHeld = false
                 var navigation: NavigationHandSample?
                 if world.state == .running,
                    let device = world.queryDeviceAnchor(atTimestamp: now), device.isTracked {
@@ -1098,9 +1104,6 @@ final class VenueScene {
                     if handAccess, hands.state == .running, now - lastHandUpdate < 0.25, let hand = latestLeftHand {
                         let attention = handAttention(hand)
                         eligible = attention.wrist
-                        mapAttended = attention.palm
-                        mapHeld = attention.facing
-                        palmPosition = attention.center
                         navigation = navigationSample(hand)
                     }
                 } else {
@@ -1110,12 +1113,6 @@ final class VenueScene {
                 if handAccess && hands.state == .stopped {
                     model.needsManualToolbox = true
                     model.handTrackingStatus = "Hand tracking stopped · use navigation controls or re-enter to retry"
-                }
-                if rightHandPinching() { lastRightPinchAt = now }
-                _ = mapToggle.update(attended: mapAttended, now: now)
-                if !mapHeld {
-                    if palmMap.dragging { navigationGestureCancelled = true }
-                    palmMap.cancel()
                 }
                 let revealed = palmGate.update(eligible: eligible, now: now)
                 model.updateToolboxActivation(raised: revealed)
@@ -1160,18 +1157,12 @@ final class VenueScene {
         return (wristAttended,attending && facing,facing,center)
     }
 
-    private func rightHandPinching() -> Bool {
-        guard CACurrentMediaTime()-lastRightHandUpdate < 0.25, let hand = latestRightHand, hand.isTracked, let skeleton = hand.handSkeleton else { return false }
-        let index = skeleton.joint(.indexFingerTip), thumb = skeleton.joint(.thumbTip)
-        guard index.isTracked, thumb.isTracked else { return false }
-        let a = index.anchorFromJointTransform.columns.3, b = thumb.anchorFromJointTransform.columns.3
-        return simd_length(SIMD3(a.x-b.x,a.y-b.y,a.z-b.z)) < 0.045
-    }
-
     var isNavigationDragging: Bool { palmMap.dragging }
 
     func endSpatialDrag(model: VenueModel) {
-        if let action = palmMap.finish() { transitionNavigation(action, milliseconds: model.navigationFadeMilliseconds) }
+        if model.palmMapVisible, model.canPlace, !navigationGestureCancelled, let action = palmMap.finish() {
+            transitionNavigation(action, milliseconds: model.navigationFadeMilliseconds)
+        } else { palmMap.cancel() }
         navigationGestureCancelled = false
         model.endTransformDrag()
     }
@@ -1184,15 +1175,20 @@ final class VenueScene {
         guard let manifest else { return }
         let eye = SIMD3(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
         let localEye = root.convert(position: eye, from: nil)
-        #if targetEnvironment(simulator)
-        let visible = model?.simulatedPalm == true
-        let position = eye + simd_quatf(deviceTransform).act([0,-0.25,-0.5])
-        #else
-        let visible = mapToggle.isVisible && mapHeld
-        let position = palmPosition + [0,0.07,0]
-        #endif
-        palmMap.update(environment: manifest, viewpoint: localEye, worldPosition: position,
-                       orientation: simd_quatf(deviceTransform), visible: visible)
+        if displayedMapRequestID != model?.palmMapRequestID {
+            if palmMap.dragging { navigationGestureCancelled = true }
+            palmMap.cancel()
+            palmMap.reset()
+            displayedMapRequestID = model?.palmMapRequestID
+            // Capture a world pose once per explicit opening. Looking around or
+            // moving hands does not shift the map while acquiring its marker.
+            mapWorldOrientation = simd_quatf(deviceTransform)
+            mapWorldPosition = eye + mapWorldOrientation.act([0,-0.10,-0.65])
+        }
+        let visible = model?.palmMapVisible == true && model?.canPlace == true
+        if !visible { palmMap.cancel() }
+        palmMap.update(environment: manifest, viewpoint: localEye, worldPosition: mapWorldPosition,
+                       orientation: mapWorldOrientation, visible: visible)
         if let start = blackoutFadeStart {
             let opacity = max(0,1-Float((CACurrentMediaTime()-start)/blackoutFadeDuration))
             blackoutCover?.components.set(OpacityComponent(opacity: opacity))
@@ -1211,6 +1207,7 @@ final class VenueScene {
             let cover = ModelEntity(mesh: .generateSphere(radius: 0.12), materials: [material])
             cover.name = "NavigationBlackout"; headAnchor.addChild(cover); blackoutCover = cover
         }
+        let requestID = model?.palmMapRequestID
         model?.navigationBlackoutActive = true
         blackoutFadeStart = nil
         blackoutCover?.components.set(OpacityComponent(opacity: 1)); blackoutCover?.isEnabled = true
@@ -1219,6 +1216,11 @@ final class VenueScene {
             defer { self.navigationTransition = nil }
             // Present a black frame before changing the world under the viewer.
             do { try await Task.sleep(for: .milliseconds(100)) } catch { return }
+            guard self.model?.palmMapRequestID == requestID, requestID != nil, self.model?.canPlace == true else {
+                self.blackoutCover?.isEnabled = false
+                self.model?.navigationBlackoutActive = false
+                return
+            }
             let eye = SIMD3(self.deviceTransform.columns.3.x,self.deviceTransform.columns.3.y,self.deviceTransform.columns.3.z)
             switch action {
             case .teleport(let destination):
@@ -1248,7 +1250,7 @@ final class VenueScene {
     }
 
     private func updatePlacementGhost() {
-        guard let model, model.isPlacing, model.canPlace, !palmMap.dragging else { placementGhost.isEnabled = false; return }
+        guard let model, model.isPlacing, model.canPlace, !model.palmMapVisible, !palmMap.dragging else { placementGhost.isEnabled = false; return }
         let eye = SIMD3(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
         let direction = -SIMD3(deviceTransform.columns.2.x,deviceTransform.columns.2.y,deviceTransform.columns.2.z)
         // No eye ray is exposed by visionOS. Head-forward surface preview is a
@@ -1311,8 +1313,9 @@ final class VenueScene {
     func clearAttachments() {
         navigationTransition?.cancel(); navigationTransition = nil; blackoutFadeStart = nil
         model?.navigationBlackoutActive = false
-        palmMap.cancel(); palmMap.entity.isEnabled = false
-        mapToggle = PalmMapToggle(); latestRightHand = nil
+        palmMap.reset()
+        displayedMapRequestID = nil
+        model?.closePalmMap()
         blackoutCover?.removeFromParent(); blackoutCover = nil
         presetDragVisual.clear()
         fixtureLoadGeneration = UUID()

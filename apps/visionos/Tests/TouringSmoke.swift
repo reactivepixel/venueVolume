@@ -155,6 +155,25 @@ import VenueVolumeCore
         check(corrupt.touringBlocked && corrupt.tour == nil, "Corrupt inventory is preserved")
         let preserved = try Data(contentsOf: corruptURL)
         check(preserved == Data("broken".utf8), "Corrupt bytes not overwritten")
+        let animated = VenueModel(arguments: [], defaults: defaults, placementDirectory: directory.appendingPathComponent("animated"))
+        animated.createTouringShow(name: "Palette integration")
+        animated.addInventory(.movingHead, quantity: 2)
+        let animatedIDs = animated.tourUnits.map(\.id)
+        animated.activate(environment: environment); animated.canPlace = true
+        animated.beginInventoryPlacement(animatedIDs[0], repeatAll: true)
+        for x: Float in [2,3] { animated.place(at: [x,0,-2], surfaceID: "floor") }
+        animated.newPreset(); animated.presetDraft.name = "Tour chase"
+        animated.presetDraft.attributeIndices = [0]; animated.presetDraft.includedChannels = [0]
+        animated.presetDraft.phaser = Phaser(steps: [.init(values: [0: 255]), .init(values: [0: 0])], phaseSpreadDegrees: 360, transition: 0)
+        check(animated.savePreset(), "Save touring attribute phaser")
+        let animatedPaletteID = animated.editingPresetID!
+        check(animated.applyTourPreset(animatedPaletteID, ids: Set(animatedIDs)), "Assign phaser without erasing other touring channels")
+        let firstAnimated = animated.fixture(animatedIDs[0])!, secondAnimated = animated.fixture(animatedIDs[1])!
+        check(animated.hasAnimatedPalette(for: firstAnimated), "Tour bindings expose animated palettes to the renderer")
+        check(animated.renderedChannels(for: firstAnimated, at: 0)[0] == 255 && animated.renderedChannels(for: secondAnimated, at: 0)[0] == 0,
+              "Tour group phaser distributes phase across bound fixtures")
+        check(animated.renderedChannels(for: firstAnimated, at: 0.5)[0] == 0, "Tour phaser advances over time")
+        check(Array(animated.renderedChannels(for: firstAnimated, at: 0)[1...]) == Array(firstAnimated.channels[1...]), "Tour phaser preserves unassigned channels")
         print("Touring session checks passed: prepared inventory, quantity limits, groups, atomic presets, shared scope, axes, target solve, previews, room pinning, persistence, import/adoption and Undo/Redo.")
     }
 }
