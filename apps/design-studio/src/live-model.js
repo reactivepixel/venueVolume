@@ -1,3 +1,4 @@
+import { samplePhaser } from "./palettes-phasers.js";
 import { normalizeScript, patchErrors } from "./model.js";
 
 export const clamp = (n) => Math.max(0, Math.min(100, Number(n) || 0));
@@ -56,44 +57,35 @@ export function createRun(snapshot) {
     serial: 0,
   };
 }
-export function cueValues(snapshot, entry) {
-  const result = {};
-  for (const f of snapshot.fixtures) {
-    const assignment = entry?.assignments.find(
-      (a) => a.role === f.role || a.fixtureId === f.id,
-    );
-    const preset = snapshot.presets.find((p) => p.name === assignment?.preset);
-    result[f.id] = {
-      intensity: preset?.intensity ?? 0,
-      color: preset?.color ?? "#dfe9f2",
-      pan: 50,
-      tilt: 50,
-    };
-  }
-  return result;
+export function assignmentPalettes(snapshot, entry, fixture) {
+  const assignment = entry?.assignments?.find(a => a.role === fixture.role || a.fixtureId === fixture.id);
+  const names = assignment?.paletteNames ?? (assignment?.preset ? [assignment.preset] : []);
+  return names.map(name => snapshot.presets.find(p => p.name === name)).filter(Boolean);
 }
-export function outputValue(run, fixture) {
-  const base = run.activeValues[fixture.id] || {
-    intensity: 0,
-    color: "#dfe9f2",
-    pan: 50,
-    tilt: 50,
-  };
-  const value = { ...base, ...run.programmer[fixture.id] };
-  const effective =
-    run.blackout || !run.armed
-      ? 0
-      : Math.round(
-          (((value.intensity * run.master) / 100) *
-            (run.groupMasters[fixture.role] ?? 100)) /
-            100,
-        );
-  return {
-    ...value,
-    effective,
-    manual: !!run.programmer[fixture.id],
-    unknown: !run.connected,
-  };
+export function paletteOutput(palette, seconds = 0, index = 0, count = 1) {
+  const sampled = samplePhaser(palette, seconds, index, count);
+  // Palette position values are degrees; programmer and rig controls use percentages.
+  sampled.pan = Math.max(0, Math.min(100, 50 + sampled.pan / 270 * 100));
+  sampled.tilt = Math.max(0, Math.min(100, 50 + sampled.tilt / 120 * 100));
+  const attributes = palette.attributes ?? ["intensity", "color"];
+  return Object.fromEntries(Object.entries(sampled).filter(([key]) => attributes.includes(key)));
+}
+export function cueValues(snapshot, entry) {
+  return Object.fromEntries(snapshot.fixtures.map(f => [f.id, Object.assign({ intensity: 0, color: "#dfe9f2", pan: 50, tilt: 50 }, ...assignmentPalettes(snapshot, entry, f).map(p => paletteOutput(p)))]));
+}
+export function outputValue(run, fixture, seconds = 0) {
+  const base = run.activeValues[fixture.id] || { intensity: 0, color: "#dfe9f2", pan: 50, tilt: 50 };
+  const entry = run.snapshot.script.find(e => e.entryId === run.activeId);
+  const palettes = assignmentPalettes(run.snapshot, entry, fixture);
+  const animated = {};
+  for (const palette of palettes) {
+    if (!palette.phaser) continue;
+    const targets = run.snapshot.fixtures.filter(f => assignmentPalettes(run.snapshot, entry, f).some(p => p.name === palette.name));
+    Object.assign(animated, paletteOutput(palette, seconds, Math.max(0, targets.findIndex(f => f.id === fixture.id)), targets.length));
+  }
+  const value = { ...base, ...animated, ...run.programmer[fixture.id] };
+  const effective = run.blackout || !run.armed ? 0 : Math.round(value.intensity * run.master / 100 * (run.groupMasters[fixture.role] ?? 100) / 100);
+  return { ...value, effective, manual: !!run.programmer[fixture.id], unknown: !run.connected };
 }
 export function midiMatches(mapping, bytes) {
   if (!mapping || !bytes?.length) return false;

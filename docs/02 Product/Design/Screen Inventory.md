@@ -35,10 +35,10 @@ Open the React screen browser or the [static gallery](../../../assets/design/ven
 | 16 | Venue drawing | `venue-layout` | F04 | Adapt the inherited rig to the venue footprint. |
 | 17 | DMX patch | `patch` | F08 | Map logical fixtures to addresses with conflict detection. |
 | 18 | Compare overrides | `overrides` | F09 | Inspect and reset differences without losing show defaults. |
-| 19 | Preset library | `presets` | F10 | Reuse parameter looks across repeated fixture groups. |
-| 20 | Preset editor | `preset-editor` | F10 | Program parameters and inspect venue-resolved values. |
+| 19 | Palette library | `palettes` | F10 | Reuse parameter looks across repeated fixture groups. |
+| 20 | Palette editor | `preset-editor` | F10 | Program parameters and inspect venue-resolved values. |
 | 21 | Cue library | `cues` | F11 | Manage named show states independently from running order. |
-| 22 | Cue editor | `cue-editor` | F11 | Assign presets to fixture roles and define transitions. |
+| 22 | Cue editor | `cue-editor` | F11 | Assign palettes to fixture roles and define transitions. |
 | 23 | Scripts | `scripts` | F12 | Choose an expected cue sequence and revision. |
 | 24 | Script editor | `script-editor` | F12 | Order cue references, repeats, notes, and advance policies. |
 | 25 | Rehearsal | `rehearsal` | F13 | Step through the venue-resolved script with simulated output. |
@@ -65,7 +65,7 @@ The same 35 routes now include F16–F18. Live/rehearsal adds selection and cue 
 | Create / duplicate template | Configurations / template detail | Named local template, revision concept |
 | Add equipment | Inventory | Named fixture instance in sample dataset |
 | Add custom profile | Fixture library | Naming flow; schema editor is future implementation |
-| Create preset | Presets | Named local preset card |
+| Create palette | Palettes and phasers | Named local palette card |
 | Create cue | Cues | Creation intent; cue persistence is future implementation |
 | Create script | Scripts | Creation intent; multiple script persistence is future implementation |
 | Add cue reference | Script editor | Select existing cue; allow repeated reference with new entry ID |

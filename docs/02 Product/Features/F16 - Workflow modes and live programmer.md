@@ -10,13 +10,13 @@ updated: 2026-09-19
 
 ## Confirmed direction
 
-Venue Volume has three primary uses: pre-programming before arrival, programming at the venue, and live operation. The live surface should be comfortable to front-of-house and lighting engineers accustomed to lighting desks. Early programming remains the foundation, while live operators can adjust individual fixtures, groups, and the whole venue, apply presets, and retain control over script playback.
+Venue Volume has three primary uses: pre-programming before arrival, programming at the venue, and live operation. The live surface should be comfortable to front-of-house and lighting engineers accustomed to lighting desks. Early programming remains the foundation, while live operators can adjust individual fixtures, groups, and the whole venue, apply palettes, and retain control over script playback.
 
 ## Mode contract
 
 | Mode | Color | Purpose | Default effect |
 | --- | --- | --- | --- |
-| Pre-programming | Violet | Design show defaults, configurations, fixture roles, presets, cues, scripts | Edit drafts / preview |
+| Pre-programming | Violet | Design show defaults, configurations, fixture roles, palettes, cues, scripts | Edit drafts / preview |
 | Programming | Amber | Adapt and rehearse the selected venue | Edit venue drafts; explicit live adjustments require an armed session |
 | Live | Teal | Run scripts and control the room | Acknowledged operator commands against the current run |
 
@@ -26,11 +26,11 @@ Within the live console, functional sections also require distinct high-contrast
 
 ## Selection and programmer
 
-Tap a fixture on the drawing to toggle selection. Group buttons replace the selection with that role's fixtures. Whole venue selects all valid instances. Clear selection changes selection only; it must not release live values. The selected detail panel shows count, roles, intensity, mixed values, color, applicable position controls, and preset choice. Cue inspection can select all reactive targets without calling the cue.
+Tap a fixture on the drawing to toggle selection. Group buttons replace the selection with that role's fixtures. Whole venue selects all valid instances. Clear selection changes selection only; it must not release live values. The selected detail panel shows count, roles, intensity, mixed values, color, applicable position controls, and palette choice. Cue inspection can select all reactive targets without calling the cue.
 
 Absolute edits set the selected fixtures to a shared value. Relative nudges adjust each fixture's current parameter separately and clamp to valid ranges. Unsupported attributes are disabled or excluded with a clear explanation. Repeated fixtures remain individually addressable. Selection never activates output by itself.
 
-Live changes enter a temporary **programmer** layer. They do not overwrite the preset, show default, or saved venue override. Release selected returns only those fixtures to cue control; release manual clears the entire programmer. An explicit future record/store workflow must name the destination and scope before persisting a live look.
+Live changes enter a temporary **programmer** layer. They do not overwrite the palette, show default, or saved venue override. Release selected returns only those fixtures to cue control; release manual clears the entire programmer. An explicit future record/store workflow must name the destination and scope before persisting a live look.
 
 ## Proposed output precedence
 
@@ -51,6 +51,6 @@ Color/position are not dimmed by the grand master. Fixture-aware safe output is 
 
 ## Prototype coverage
 
-Implemented: all three mode indicators; interactive stage selection across the design study; live intensity/color/preset/pan/tilt preview; group and grand masters; clear selection, release selected, release all; and shared simulated live state. Non-console stage inspectors are local visual previews. Physical DMX, live fades, fixture manufacturer validation, and record/store are not implemented.
+Implemented: all three mode indicators; interactive stage selection across the design study; live intensity/color/palette/pan/tilt preview; group and grand masters; clear selection, release selected, release all; and shared simulated live state. Non-console stage inspectors are local visual previews. Physical DMX, live fades, fixture manufacturer validation, and record/store are not implemented.
 
-Related: [[F10 - DMX presets]], [[F13 - Rehearsal and operation]], [[F17 - Script transport and MIDI triggers]], [[F18 - Persistent console and live updates]].
+Related: [[F10 - Palettes and Phasers]], [[F13 - Rehearsal and operation]], [[F17 - Script transport and MIDI triggers]], [[F18 - Persistent console and live updates]].

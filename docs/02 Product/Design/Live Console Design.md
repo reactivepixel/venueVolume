@@ -50,9 +50,9 @@ Acceptance: all six functional surfaces are visually distinct; selected/active c
 ## Essential interactions
 
 1. Select fixtures by tapping the rig, choose a role group, or select the whole venue.
-2. Adjust intensity, nudge each selected value, pick a color or preset, or adjust position when supported.
+2. Adjust intensity, nudge each selected value, pick a color or palette, or adjust position when supported.
 3. Release selected/all manual values to return control to the active cue.
-4. Inspect a cue to see its reactive roles, fixture IDs, presets, and trigger. Select those targets directly.
+4. Inspect a cue to see its reactive roles, fixture IDs, palettes, and trigger. Select those targets directly.
 5. Call via Next/Back, reviewed Go to cue, or MIDI input. The active/next state, timeline, and checkmarks update together.
 6. Restart a song or selected entry; confirm the starting state and begin a new pass with subsequent cues eligible again.
 7. Pop out the console, edit the venue in the original window, review the resulting draft update, and keep operating without reload.

@@ -13,7 +13,7 @@ The [hardware packet](../../hardware/cue-player/README.md) specifies a Teensy 4.
 
 A venue console can receive the player's levels only through an explicitly supported DMX or Art-Net input/merge path. Direct connection to lighting distribution is the default topology. This hardware does not convert Venue Volume cues into a console's native show file or make two DMX outputs safe to connect together.
 
-This is an unbuilt reference design. Native ECAD capture, layout, Gerbers, firmware, real fixture compilation and physical verification remain to be implemented. Current visionOS presets contain preview mappings, not a safe production export contract.
+This is an unbuilt reference design. Native ECAD capture, layout, Gerbers, firmware, real fixture compilation and physical verification remain to be implemented. Current visionOS palettes contain preview mappings, not a safe production export contract.
 
 Art-Net revision 1.4dp deprecates Port-Address zero. New routes in this proposal default Universe 1 to 0:0:1; the existing F08 0:0:0 example is a deliberate legacy compatibility mapping and must never be silently renumbered.
 

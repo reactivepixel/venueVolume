@@ -64,6 +64,9 @@ import {
   Table,
 } from "./components";
 import "./styles.css";
+import CuePaletteAssignments from "./CuePaletteAssignments";
+import PaletteWorkbench from "./PaletteWorkbench";
+import { baselinePalettes } from "./palettes-phasers";
 import LiveConsole from "./LiveConsole";
 import Workspace from "./Workspace";
 import ScriptSlots from "./ScriptSlots";
@@ -76,7 +79,7 @@ const initial = {
   shows: ["Afterglow · Fall tour", "Common ground", "The midnight sessions"],
   venues: ["The Glasshouse", "Mercury Hall", "Northside Theater"],
   templates: ["Touring rig", "Intimate room", "Festival stage"],
-  presets: presetRows,
+  presets: [...presetRows, ...baselinePalettes],
   fixtures: fixtureRows,
   script: cueRows.map((c, i) => ({ ...c, entryId: `entry-${i}` })),
   intensity: 75,
@@ -86,10 +89,9 @@ const initial = {
 };
 function load() {
   try {
-    return {
-      ...initial,
-      ...JSON.parse(localStorage.getItem("vv-design-v1") || "{}"),
-    };
+    const stored = JSON.parse(localStorage.getItem("vv-design-v1") || "{}");
+    const presets = stored.presets ?? initial.presets;
+    return { ...initial, ...stored, presets: [...presets, ...baselinePalettes.filter(p => !presets.some(existing => existing.name === p.name))] };
   } catch {
     return initial;
   }
@@ -123,9 +125,9 @@ function App({ embeddedRoute, onNavigate, context }) {
     [selected, setSelected] = useState(0),
     [connected, setConnected] = useSharedState("vv-demo-connected", true),
     [dirty, setDirty] = useState(false);
-  const data = context
-    ? { ...storedData, fixtures: context.fixtures }
-    : storedData;
+  const existingPalettes = storedData.presets ?? initial.presets;
+  const seededData = { ...storedData, presets: [...existingPalettes, ...baselinePalettes.filter(p => !existingPalettes.some(existing => existing.name === p.name))] };
+  const data = context ? { ...seededData, fixtures: context.fixtures } : seededData;
   const screen = screens.find((s) => s.id === route) || screens[4];
   const [liveRun, setLiveRun] = useSharedState(
     `vv-live-v2:${encodeURIComponent(context?.id || urlParams().get("show") || data.showName)}:${encodeURIComponent(venue)}:live`,
@@ -155,7 +157,7 @@ function App({ embeddedRoute, onNavigate, context }) {
     window.scrollTo(0, 0);
   }
   function update(values) {
-    setData((d) => ({ ...d, ...values }));
+    return setData((d) => ({ ...d, ...values }));
   }
   function notify(message) {
     setToast(message);
@@ -250,7 +252,7 @@ function App({ embeddedRoute, onNavigate, context }) {
   );
   const cueTable = (items = data.script) => (
     <Table
-      headers={["Cue", "State", "Preset", "Fade", "Scope", ""]}
+      headers={["Cue", "State", "Palette", "Fade", "Scope", ""]}
       rows={items.map((c, i) => [
         <span className="mono">{c.id}</span>,
         <span className="with-dot">
@@ -400,17 +402,17 @@ function App({ embeddedRoute, onNavigate, context }) {
           <>
             {header(
               "Good looks are worth repeating.",
-              "Reusable DMX parameter presets for fixture roles, groups, and individual fixtures.",
-              create("preset", "Create preset"),
+              "Reusable DMX parameter palettes for fixture roles, groups, and individual fixtures.",
+              create("preset", "Create palette"),
             )}
             {scopeBar}
             <div className="toolbar">
               <SearchBox
                 value={query}
                 onChange={setQuery}
-                placeholder="Find a preset…"
+                placeholder="Find a palette…"
               />
-              <Badge>{data.presets.length} presets</Badge>
+              <Badge>{data.presets.length} palettes</Badge>
             </div>
             <div className="three-col preset-grid">
               {matching(data.presets).map((p) => (
@@ -445,119 +447,15 @@ function App({ embeddedRoute, onNavigate, context }) {
           </>
         );
       case "preset-editor":
-        return (
-          <>
-            {header(
-              "Midnight blue",
-              "Preset · Color + intensity · Upstage wash",
-              <Button primary onClick={save}>
-                <Check size={15} />
-                Save preset
-              </Button>,
-            )}
-            {scopeBar}
-            <div className="two-col">
-              <div className="stack">
-                <Stage large look="#7386ee" />
-                <Panel title="Target fixture roles">
-                  <div className="chip-row">
-                    <Badge tone="green">Upstage wash · 4 fixtures</Badge>
-                    <Badge>RGBW capability</Badge>
-                  </div>
-                  <p className="panel-copy">
-                    This preset uses semantic color and intensity values. Each
-                    compatible fixture profile resolves those values to its own
-                    channels.
-                  </p>
-                </Panel>
-              </div>
-              <Panel
-                title="Parameter editor"
-                subtitle="Preview only · no physical output"
-              >
-                <div className="form-fields">
-                  <div className="parameter-heading">
-                    <strong>Intensity</strong>
-                    <Badge
-                      tone={
-                        source.source === "Venue override" ? "amber" : "neutral"
-                      }
-                    >
-                      {source.source}
-                    </Badge>
-                  </div>
-                  <div className="big-value">
-                    {source.value}
-                    <span>%</span>
-                  </div>
-                  <input
-                    aria-label="Preset intensity"
-                    type="range"
-                    min="0"
-                    max="100"
-                    value={source.value}
-                    onChange={(e) => {
-                      scope === "show"
-                        ? update({ intensity: Number(e.target.value) })
-                        : setVenueOverride(Number(e.target.value));
-                      setDirty(true);
-                    }}
-                  />
-                  {scope === "venue" && (
-                    <Button
-                      onClick={() => {
-                        setVenueOverride(undefined);
-                        setDirty(true);
-                      }}
-                    >
-                      <RotateCcw size={14} />
-                      Reset to show default ({data.intensity}%)
-                    </Button>
-                  )}
-                  <div className="divider" />
-                  <Field label="Color">
-                    <input
-                      type="color"
-                      defaultValue="#7386ee"
-                      onChange={() => setDirty(true)}
-                    />
-                  </Field>
-                  <div className="color-swatches">
-                    {[
-                      "#7386ee",
-                      "#b481d5",
-                      "#e3b178",
-                      "#b7cc98",
-                      "#e1e5de",
-                    ].map((c) => (
-                      <span key={c} style={{ background: c }} />
-                    ))}
-                  </div>
-                  <Field label="Fade behavior">
-                    <select onChange={() => setDirty(true)}>
-                      <option>Use cue transition</option>
-                      <option>Snap at cue start</option>
-                    </select>
-                  </Field>
-                  <Field label="Included parameters">
-                    <div className="check-row">
-                      <input type="checkbox" defaultChecked />
-                      Color
-                    </div>
-                    <div className="check-row">
-                      <input type="checkbox" defaultChecked />
-                      Intensity
-                    </div>
-                  </Field>
-                  <p className="panel-note">
-                    Excluded parameters are not controlled by this preset.
-                    Missing capabilities must be reviewed before publishing.
-                  </p>
-                </div>
-              </Panel>
-            </div>
-          </>
-        );
+        return <>
+          {header("Palettes & phasers", "Build static attribute palettes or duplicate a baseline phaser and customize its steps.")}
+          {scopeBar}
+          <PaletteWorkbench palettes={data.presets} onSave={async (palette, originalName) => {
+            await update({ presets: originalName ? data.presets.map(p => p.name === originalName ? palette : p) : [...data.presets, palette],
+              script: originalName && originalName !== palette.name ? data.script.map(entry => ({ ...entry, assignments: entry.assignments?.map(a => a.preset === originalName ? {...a, preset: palette.name} : a) })) : data.script });
+            setDirty(true);
+          }}/>
+        </>;
       case "cues":
         return (
           <>
@@ -603,37 +501,7 @@ function App({ embeddedRoute, onNavigate, context }) {
             )}
             {scopeBar}
             <div className="two-col">
-              <Panel
-                title="Fixture assignments"
-                action={<Badge>3 roles</Badge>}
-              >
-                <Table
-                  headers={["Target", "Preset", "Resolved source"]}
-                  rows={["Upstage wash", "Front key", "Side beams"].map(
-                    (r, i) => [
-                      r,
-                      <select
-                        aria-label={`${r} preset`}
-                        onChange={() => setDirty(true)}
-                      >
-                        {[
-                          data.presets[i + 1],
-                          ...data.presets.filter((_, j) => j !== i + 1),
-                        ].map((p) => (
-                          <option key={p.name}>{p.name}</option>
-                        ))}
-                      </select>,
-                      <Badge>
-                        {scope === "show" ? "Show default" : "Inherited"}
-                      </Badge>,
-                    ],
-                  )}
-                />
-                <p className="panel-note">
-                  Unassigned parameters: release to defined base state. Tracking
-                  behavior is explicit and versioned.
-                </p>
-              </Panel>
+              <CuePaletteAssignments data={data} venue={venue} onChange={script => { update({script}); setDirty(true); }}/>
               <Panel title="Transition & behavior">
                 <div className="form-fields">
                   <Field label="Fade in (seconds)">

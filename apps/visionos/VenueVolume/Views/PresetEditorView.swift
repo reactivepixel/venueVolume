@@ -27,16 +27,20 @@ struct PresetEditorView: View {
                     library.frame(width: sidebarWidth)
                     Divider()
                 }
+                VStack(spacing: 0) {
+                    PalettePreviewView(palette: model.presetDraft).padding(.horizontal, 28)
                 ScrollView {
                     VStack(alignment: .leading, spacing: 24) {
                         if !showsSidebar { compactLibrary }
                         navigation(stacked: stacked)
                         HistoryControls()
+                        phaserEditor
                         editor(stacked: stacked)
                         footer(stacked: stacked)
                     }
                     .padding(28)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                }
                 }
             }
         }
@@ -72,36 +76,36 @@ struct PresetEditorView: View {
         .onChange(of: scenePhase) { _, phase in
             if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits() }
         }
-        .confirmationDialog("Unsaved preset changes", isPresented: $showUnsaved, titleVisibility: .visible) {
+        .confirmationDialog("Unsaved palette changes", isPresented: $showUnsaved, titleVisibility: .visible) {
             Button("Save and continue") { if model.savePreset() { navigate() } }
             Button("Discard changes", role: .destructive) { navigate() }
             Button("Keep editing", role: .cancel) { pendingNavigation = nil }
-        } message: { Text("Save or discard your draft before switching presets. Simulation is paused until you choose a preset or turn it back on.") }
-        .confirmationDialog("Delete this preset?", isPresented: $showDelete, titleVisibility: .visible) {
-            Button("Delete preset", role: .destructive) {
+        } message: { Text("Save or discard your draft before switching palettes. Simulation is paused until you choose a palette or turn it back on.") }
+        .confirmationDialog("Delete this palette?", isPresented: $showDelete, titleVisibility: .visible) {
+            Button("Delete palette", role: .destructive) {
                 if let id = model.editingPresetID { model.deletePreset(id) }
             }
-        } message: { Text("Assigned objects will be unassigned and their channels set to zero. Unsaved edits will be discarded.") }
-        .alert("Save as new preset", isPresented: $showSaveAs) {
-            TextField("Preset name", text: $copyName)
-            Button("Save new preset") {
+        } message: { Text("Channels owned by this palette will be unassigned and set to zero; other palette assignments remain. Unsaved edits will be discarded.") }
+        .alert("Save as new palette", isPresented: $showSaveAs) {
+            TextField("Palette name", text: $copyName)
+            Button("Save new palette") {
                 let previousName = model.presetDraft.name
                 model.presetDraft.name = copyName
                 if model.savePreset(asNew: true) { copyName = "" }
                 else { model.presetDraft.name = previousName }
             }.disabled(copyName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             Button("Cancel", role: .cancel) { }
-        } message: { Text("Creates an independent preset. Existing object assignments stay on the original.") }
+        } message: { Text("Creates an independent palette. Existing object assignments stay on the original.") }
     }
 
     private var library: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
-                Text("Presets").font(.largeTitle.weight(.semibold))
+                Text("Palettes & phasers").font(.largeTitle.weight(.semibold))
                     .accessibilityAddTraits(.isHeader)
-                Text("\(model.presets.count) saved presets").foregroundStyle(.secondary)
+                Text("\(model.presets.count) saved palettes").foregroundStyle(.secondary)
                 Button { request(.new) } label: {
-                    Label("New preset", systemImage: "plus").frame(minHeight: 60)
+                    Label("New palette", systemImage: "plus").frame(minHeight: 60)
                 }
                 LazyVStack(spacing: 12) {
                     ForEach(model.presets) { preset in
@@ -109,7 +113,7 @@ struct PresetEditorView: View {
                             HStack(alignment: .top, spacing: 12) {
                                 VStack(alignment: .leading, spacing: 6) {
                                     Text(preset.name).font(.headline)
-                                    Text("\(preset.channels.count) channels · \(model.fixtures.filter { $0.presetID == preset.id }.count) objects")
+                                    Text("\(preset.channels.count) channels · \(model.fixtures.filter { $0.referencedPaletteIDs.contains(preset.id) }.count) objects")
                                         .font(.subheadline).foregroundStyle(.secondary)
                                 }
                                 Spacer(minLength: 0)
@@ -136,7 +140,7 @@ struct PresetEditorView: View {
     private var compactLibrary: some View {
         VStack(alignment: .leading, spacing: 12) {
             Menu {
-                Button("New preset", systemImage: "plus") { request(.new) }
+                Button("New palette", systemImage: "plus") { request(.new) }
                 Divider()
                 ForEach(model.presets) { preset in
                     Button { request(.preset(preset.id)) } label: {
@@ -146,18 +150,18 @@ struct PresetEditorView: View {
                     }
                 }
             } label: {
-                Label("Presets: \(model.presets.first(where: { $0.id == model.editingPresetID })?.name ?? "New preset")", systemImage: "list.bullet")
+                Label("Palettes & phasers: \(model.presets.first(where: { $0.id == model.editingPresetID })?.name ?? "New palette")", systemImage: "list.bullet")
                     .frame(maxWidth: .infinity, minHeight: 60, alignment: .leading)
             }
-            .accessibilityLabel("Choose preset")
-            .accessibilityValue(model.presets.first(where: { $0.id == model.editingPresetID })?.name ?? "New preset")
+            .accessibilityLabel("Choose palette")
+            .accessibilityValue(model.presets.first(where: { $0.id == model.editingPresetID })?.name ?? "New palette")
             if !model.isImmersed { VenueEntryButton() }
             profileExplanation
         }
     }
 
     private var profileExplanation: some View {
-        Text("Simulation profile, not manufacturer DMX. Presets own light values; objects keep their patch and position.")
+        Text("Simulation profile, not manufacturer DMX. Palettes & phasers own light values; objects keep their patch and position.")
             .font(.subheadline).foregroundStyle(.secondary)
             .fixedSize(horizontal: false, vertical: true)
     }
@@ -169,14 +173,14 @@ struct PresetEditorView: View {
 
     private func navigation(stacked: Bool) -> some View {
         actionLayout(stacked: stacked) {
-            Label("Preset editor", systemImage: "slider.horizontal.3").font(.title2.weight(.semibold))
+            Label("Palette editor", systemImage: "slider.horizontal.3").font(.title2.weight(.semibold))
                 .accessibilityAddTraits(.isHeader)
             if !stacked { Spacer() }
             HStack(spacing: 12) {
                 Button { adjacent(-1) } label: { Image(systemName: "chevron.left").frame(minWidth: 60, minHeight: 60) }
-                    .disabled(adjacentID(-1) == nil).accessibilityLabel("Previous preset")
+                    .disabled(adjacentID(-1) == nil).accessibilityLabel("Previous palette")
                 Button { adjacent(1) } label: { Image(systemName: "chevron.right").frame(minWidth: 60, minHeight: 60) }
-                    .disabled(adjacentID(1) == nil).accessibilityLabel("Next preset")
+                    .disabled(adjacentID(1) == nil).accessibilityLabel("Next palette")
                 Menu {
                     Button("Clear channel values") {
                         model.presetDraft.channels = Array(repeating: 0, count: model.presetDraft.channels.count)
@@ -186,8 +190,8 @@ struct PresetEditorView: View {
                         if let preset = model.presets.first(where: { $0.id == model.editingPresetID }) { model.choosePreset(preset) }
                     }.disabled(model.editingPresetID == nil)
                     Divider()
-                    Button("Delete preset", role: .destructive) { showDelete = true }.disabled(model.editingPresetID == nil)
-                } label: { Image(systemName: "ellipsis").frame(minWidth: 60, minHeight: 60) }.accessibilityLabel("Manage preset")
+                    Button("Delete palette", role: .destructive) { showDelete = true }.disabled(model.editingPresetID == nil)
+                } label: { Image(systemName: "ellipsis").frame(minWidth: 60, minHeight: 60) }.accessibilityLabel("Manage palette")
             }
         }
     }
@@ -196,16 +200,23 @@ struct PresetEditorView: View {
         @Bindable var model = model
         return VStack(alignment: .leading, spacing: 20) {
             actionLayout(stacked: stacked) {
-                TextField("Preset name", text: $model.presetDraft.name).textFieldStyle(.roundedBorder)
-                    .frame(minHeight: 60).accessibilityLabel("Preset name")
+                TextField("Palette name", text: $model.presetDraft.name).textFieldStyle(.roundedBorder)
+                    .frame(minHeight: 60).accessibilityLabel("Palette name")
                 Picker("Channels", selection: Binding(
                     get: { model.presetDraft.channels.count },
-                    set: { count in model.presetDraft.channels = Array((model.presetDraft.channels + Array(repeating: 0, count: 16)).prefix(count)) }
+                    set: { count in
+                        model.presetDraft.channels = Array((model.presetDraft.channels + Array(repeating: 0, count: 16)).prefix(count))
+                        model.presetDraft.attributeIndices = model.presetDraft.attributeIndices?.filter { $0 < count }
+                        if var phaser = model.presetDraft.phaser {
+                            for index in phaser.steps.indices { phaser.steps[index].values = phaser.steps[index].values.filter { $0.key < count } }
+                            model.presetDraft.phaser = phaser
+                        }
+                    }
                 )) { ForEach(1...16, id: \.self) { Text("\($0) channels").tag($0) } }
-                    .frame(minHeight: 60).accessibilityLabel("Number of preset channels")
+                    .frame(minHeight: 60).accessibilityLabel("Number of palette channels")
             }
             actionLayout(stacked: stacked) {
-                Text(model.draftHasChanges ? "Unsaved changes" : "Saved preset").foregroundStyle(model.draftHasChanges ? Color.orange : .secondary)
+                Text(model.draftHasChanges ? "Unsaved changes" : "Saved palette").foregroundStyle(model.draftHasChanges ? Color.orange : .secondary)
                 if !stacked { Spacer() }
                 Text("VV Preview 16 · Simulation").foregroundStyle(.secondary)
             }.font(.subheadline)
@@ -252,9 +263,45 @@ struct PresetEditorView: View {
                     }
                 }
             } else {
-                Text("Select an object or drag a saved preset from the toolbox onto a fixture.")
+                Text("Select an object or drag a saved palette from the toolbox onto a fixture.")
                     .foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
             }
+        }
+    }
+
+    private var phaserEditor: some View {
+        @Bindable var model = model
+        return VStack(alignment: .leading, spacing: 12) {
+            Picker("Palette family", selection: Binding(get: { model.presetDraft.category ?? .all }, set: { model.presetDraft.category = $0 })) {
+                ForEach(PaletteCategory.allCases, id: \.self) { Text($0.rawValue.capitalized).tag($0) }
+            }
+            Toggle("Animate as phaser", isOn: Binding(get: { model.presetDraft.phaser != nil }, set: { enabled in
+                model.presetDraft.phaser = enabled ? Phaser(steps: [.init(values: Dictionary(uniqueKeysWithValues: model.presetDraft.channels.enumerated().map { ($0.offset, $0.element) })), .init(values: [0: 0])]) : nil
+            }))
+            if let phaser = model.presetDraft.phaser {
+                Text("Steps use independent channel values; speed, phase and measure apply to the whole cycle.").font(.caption)
+                phaserSlider("Speed (BPM)", value: phaser.beatsPerMinute, range: 1...240) { model.presetDraft.phaser?.beatsPerMinute = $0 }
+                phaserSlider("Measure (beats per cycle)", value: phaser.measure, range: 0.25...16) { model.presetDraft.phaser?.measure = $0 }
+                phaserSlider("Phase (degrees)", value: phaser.phaseDegrees, range: 0...360) { model.presetDraft.phaser?.phaseDegrees = $0 }
+                phaserSlider("Fixture phase spread", value: phaser.phaseSpreadDegrees, range: 0...360) { model.presetDraft.phaser?.phaseSpreadDegrees = $0 }
+                phaserSlider("Transition", value: phaser.transition, range: 0...1) { model.presetDraft.phaser?.transition = $0 }
+                ForEach(phaser.steps.indices, id: \.self) { index in
+                    DisclosureGroup("Step \(index + 1)") {
+                        phaserSlider("Width", value: phaser.steps[index].width, range: 0.1...8) { model.presetDraft.phaser?.steps[index].width = $0 }
+                        ForEach(model.presetDraft.channels.indices, id: \.self) { channel in
+                            phaserSlider("Channel \(channel + 1)", value: Double(phaser.steps[index].values[channel] ?? model.presetDraft.channels[channel]), range: 0...255) { model.presetDraft.phaser?.steps[index].values[channel] = Int($0) }
+                        }
+                        Button("Remove step", role: .destructive) { model.presetDraft.phaser?.steps.remove(at: index) }.disabled(phaser.steps.count <= 2)
+                    }
+                }
+                Button("Add step") { model.presetDraft.phaser?.steps.append(phaser.steps.last ?? .init(values: [:])) }.disabled(phaser.steps.count >= 32)
+            }
+        }
+    }
+    private func phaserSlider(_ name: String, value: Double, range: ClosedRange<Double>, set: @escaping (Double) -> Void) -> some View {
+        VStack(alignment: .leading) {
+            Text("\(name): \(value, specifier: "%.2f")")
+            Slider(value: Binding(get: { value }, set: set), in: range)
         }
     }
 
@@ -268,6 +315,15 @@ struct PresetEditorView: View {
                 Spacer(minLength: 0)
                 Text("\(value)").font(.body.monospacedDigit()).foregroundStyle(.cyan)
             }.accessibilityHidden(true)
+            Toggle("Include this attribute", isOn: Binding(
+                get: { model.presetDraft.attributeIndices?.contains(index) ?? true },
+                set: { included in
+                    var indices = model.presetDraft.attributeIndices ?? Array(model.presetDraft.channels.indices)
+                    indices.removeAll { $0 == index }
+                    if included { indices.append(index) }
+                    model.presetDraft.attributeIndices = indices.sorted()
+                }
+            ))
             Slider(value: Binding(
                 get: { model.presetDraft.channels.indices.contains(index) ? Double(model.presetDraft.channels[index]) : 0 },
                 set: { if model.presetDraft.channels.indices.contains(index) { model.presetDraft.channels[index] = Int($0) } }
@@ -277,13 +333,13 @@ struct PresetEditorView: View {
             .frame(minHeight: 60)
             .accessibilityLabel("Channel \(index + 1), \(name)")
             .accessibilityValue("\(value) of 255")
-            .accessibilityHint("Adjusts this channel in the preset draft.")
+            .accessibilityHint("Adjusts this channel in the palette draft.")
         }
     }
 
     private func footer(stacked: Bool) -> some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(model.presetMessage ?? "Saving updates all objects assigned to this preset.")
+            Text(model.presetMessage ?? "Saving updates all objects assigned to this palette.")
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -291,7 +347,7 @@ struct PresetEditorView: View {
                 Button { copyName = ""; showSaveAs = true } label: { Text("Save as new…").frame(minHeight: 60) }
                     .disabled(model.isRetargeting)
                 if !stacked { Spacer() }
-                Button { model.savePreset() } label: { Text("Save preset").frame(minHeight: 60) }
+                Button { model.savePreset() } label: { Text("Save palette").frame(minHeight: 60) }
                     .buttonStyle(.borderedProminent).disabled(!model.draftHasChanges || model.isRetargeting)
             }
         }

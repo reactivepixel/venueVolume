@@ -30,7 +30,7 @@ Separate arrival of an edit from applying it to the runtime:
 | Fixture, profile, routing, or patch change | Require validation and a controlled disarmed transition |
 | Removal of the active script entry | Reject while armed; require reconciliation |
 
-When disarmed, the prototype accepts the latest draft automatically. When armed, it exposes Review & apply. Accepting a new preset does not retroactively replace an already active look; the next call or explicit reassert uses the new definition. Cue identity and script occurrence identity stay stable across updates.
+When disarmed, the prototype accepts the latest draft automatically. When armed, it exposes Review & apply. Accepting a new palette does not retroactively replace an already active look; the next call or explicit reassert uses the new definition. Cue identity and script occurrence identity stay stable across updates.
 
 ## Cross-layer responsibilities
 
@@ -44,6 +44,6 @@ When disarmed, the prototype accepts the latest draft automatically. When armed,
 
 The same-origin demo uses BroadcastChannel plus storage notifications, localStorage snapshots, and Web Locks to serialize changes. Run state is keyed by demo show name and venue name, with rehearsal separated. Production must replace these demo names with stable IDs and local storage coordination with the bridge's authoritative session protocol. Concurrent draft edits are last-write behavior, not production conflict resolution.
 
-Acceptance: open editor and pop-out; change a venue preset; see update availability without navigation; apply it for future calls; change a master in either console and observe both; close the editor and continue GO from the pop-out. Also test separate venue isolation, MIDI ownership, blocked popups, unsupported wake locks, denied storage, disconnection, and reconnect state. No physical output continuity is claimed by the browser mockup.
+Acceptance: open editor and pop-out; change a venue palette; see update availability without navigation; apply it for future calls; change a master in either console and observe both; close the editor and continue GO from the pop-out. Also test separate venue isolation, MIDI ownership, blocked popups, unsupported wake locks, denied storage, disconnection, and reconnect state. No physical output continuity is claimed by the browser mockup.
 
 Related: [[F13 - Rehearsal and operation]], [[F14 - Local bridge and diagnostics]], [[F15 - History synchronization and portability]], [[F16 - Workflow modes and live programmer]], [[F17 - Script transport and MIDI triggers]].
