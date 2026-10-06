@@ -13,7 +13,7 @@ import VenueVolumeCore
         entity.addChild(rotation); entity.addChild(movement)
         for axis in FixtureAxis.allCases {
             let color: UIColor = axis == .x ? .systemRed : axis == .y ? .systemGreen : .systemBlue
-            let material = UnlitMaterial(color: color)
+            let material = UnlitMaterial(color: color.withAlphaComponent(0.3))
             let ring = Entity()
             ring.orientation = simd_quatf(from: [0,0,1], to: axis.vector)
             rotation.addChild(ring)
@@ -39,12 +39,22 @@ import VenueVolumeCore
         }
     }
 
-    func update(fixture: Fixture?, visible: Bool, mode: FixtureTransformMode) {
+    func update(fixture: Fixture?, visible: Bool, mode: FixtureTransformMode, selectedAxis: FixtureAxis? = nil) {
         entity.isEnabled = visible && fixture != nil
         guard let fixture else { return }
         entity.position = FixtureAiming.vector(fixture.position) + [0, fixture.assetID == nil ? 0 : fixture.visualHeight/2, 0]
         rotation.isEnabled = mode == .rotate
         movement.isEnabled = mode == .move
+        for parent in [rotation, movement] {
+            for child in parent.children {
+                let models: [ModelEntity] = (child as? ModelEntity).map { [$0] } ?? child.children.compactMap { $0 as? ModelEntity }
+                for model in models {
+                    guard let (axis, _) = Self.handle(model) else { continue }
+                    let color: UIColor = axis == .x ? .systemRed : axis == .y ? .systemGreen : .systemBlue
+                    model.model?.materials = [UnlitMaterial(color: color.withAlphaComponent(axis == selectedAxis ? 1 : 0.3))]
+                }
+            }
+        }
     }
 
     static func handle(_ entity: Entity) -> (FixtureAxis, FixtureTransformMode)? {

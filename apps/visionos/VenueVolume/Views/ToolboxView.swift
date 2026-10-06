@@ -10,6 +10,7 @@ struct ToolboxView: View {
     @Environment(\.dynamicTypeSize) private var textSize
     @State private var fixtureSearch = ""
     @State private var presetSearch = ""
+    @State private var settingsPresented = false
     @State private var fixtureFamily = "all"
 
     private var visibleFixtures: [FixtureKind] {
@@ -31,7 +32,7 @@ struct ToolboxView: View {
                     if !model.isImmersed { VenueEntryButton() }
                     @Bindable var model = model
                     Picker("Toolbox section", selection: $model.toolboxTab) {
-                        Text("Fixtures & presets").tag(0)
+                        Text("Fixtures & palettes").tag(0)
                         Text("Rooms & saves").tag(1)
                         Text("History").tag(2)
                     }.pickerStyle(.menu).accessibilityLabel("Toolbox section")
@@ -64,6 +65,20 @@ struct ToolboxView: View {
         .frame(minWidth: 680, minHeight: 560)
         .background { if model.toolboxBlackout { BlackoutStarfield().allowsHitTesting(false).accessibilityHidden(true) } }
         .clipShape(RoundedRectangle(cornerRadius: 28))
+        .sheet(isPresented: $settingsPresented) {
+            VStack(alignment: .leading, spacing: 20) {
+                Text("User preferences").font(.title)
+                Text("Navigation blackout fade · \(Int(model.navigationFadeMilliseconds)) ms")
+                Slider(value: Binding(get: { model.navigationFadeMilliseconds }, set: { model.navigationFadeMilliseconds = $0 }), in: 0...2000, step: 1)
+                    .accessibilityLabel("Navigation fade duration in milliseconds")
+                Text("Teleport and viewpoint rotation fade back after the new position is ready.").foregroundStyle(.secondary)
+                HStack {
+                    Button("Reset to 333 ms") { model.navigationFadeMilliseconds = 333 }
+                    Spacer()
+                    Button("Done") { settingsPresented = false }
+                }
+            }.padding(28).frame(width: 560)
+        }
         .presetEditorPresenter(when: !model.isImmersed)
         .sheet(isPresented: Binding(get: { model.isImmersed && model.newVenuePresented }, set: { model.newVenuePresented = $0 })) {
             NewVenueSheet().environment(model)
@@ -81,11 +96,12 @@ struct ToolboxView: View {
                     Text("Toolbox").font(.largeTitle.weight(.semibold)).accessibilityAddTraits(.isHeader)
                     Text("Wrist menu · \(appVersion)").font(.callout).foregroundStyle(.secondary)
                     if model.toolboxBlackout {
-                        Text(model.blackout ? "Blackout · all fixtures" : "Blackout · preset simulation").font(.headline)
+                        Text(model.blackout ? "Blackout · all fixtures" : "Blackout · palette simulation").font(.headline)
                     }
                 }
                 Spacer(minLength: 12)
                 Menu {
+                    Button("Settings", systemImage: "gearshape") { settingsPresented = true }
                     Button("New venue…", systemImage: "plus") { model.requestNewVenue(); if !model.isImmersed { openWindow(id: "launch") } }
                     Button("Venue controls", systemImage: "scope") { openWindow(id: "venue-controls", value: "controls") }
                     Button("Diagnostics & sync") { openWindow(id: "diagnostics") }
@@ -102,7 +118,7 @@ struct ToolboxView: View {
         return VStack(alignment: .leading, spacing: 14) {
             Picker("Library", selection: $model.toolboxLibraryTab) {
                 Text("Fixtures").tag(0)
-                Text("Presets").tag(1)
+                Text("Palettes").tag(1)
             }.pickerStyle(.segmented)
             if model.toolboxLibraryTab == 0 {
                 TextField("Search \(FixtureCatalog.all.count) fixtures", text: $fixtureSearch)
@@ -127,16 +143,16 @@ struct ToolboxView: View {
                 }
             } else {
                 HStack {
-                    TextField("Search presets", text: $presetSearch).textFieldStyle(.roundedBorder)
+                    TextField("Search palettes", text: $presetSearch).textFieldStyle(.roundedBorder)
                     Button { model.presetEditor.request() } label: { Image(systemName: "slider.horizontal.3").frame(minWidth: 60, minHeight: 60) }
-                        .accessibilityLabel("Open preset editor")
+                        .accessibilityLabel("Open palette editor")
                 }
                 ScrollView {
                     LazyVStack(alignment: .leading, spacing: 18) {
                         ForEach(model.presets.filter { presetSearch.isEmpty || $0.name.localizedCaseInsensitiveContains(presetSearch) }) { preset in
                             PresetDragSource(preset: preset, openEditor: { model.record(.preset(preset.id)); model.presetEditor.request(presetID: preset.id) })
                         }
-                        if model.presets.isEmpty { Text("Create a preset with the editor button above, then drag its handle onto a fixture or use Apply.") }
+                        if model.presets.isEmpty { Text("Create a palette with the editor button above, then drag its handle onto a fixture or use Apply.") }
                         else if !presetSearch.isEmpty && !model.presets.contains(where: { $0.name.localizedCaseInsensitiveContains(presetSearch) }) { ContentUnavailableView.search(text: presetSearch) }
                     }
                 }
@@ -179,6 +195,7 @@ struct ToolboxView: View {
 
 /// System window controls stay where placed; no interactive UI follows the head.
 struct VenueControlsView: View {
+    @State private var attended = false
     @Environment(VenueModel.self) private var model
     var body: some View {
         @Bindable var model = model
@@ -188,11 +205,15 @@ struct VenueControlsView: View {
                 if model.isImmersed {
                     Button("Open / recall wrist menu", systemImage: "rectangle.on.rectangle") { model.requestToolbox() }.frame(minHeight: 60)
                     if model.isPickingRoom || model.gizmoVisible { TargetingPrompt() }
+                    if model.isPlacing { Button("Done placing fixtures", systemImage: "checkmark") { model.finishPlacement() } }
                     else { Text("Select a fixture to move, transform or retarget it.").foregroundStyle(.secondary) }
                     if model.canSimulatePalm { Toggle("Left hand facing me", isOn: $model.simulatedPalm).frame(minHeight: 60) }
                 } else { VenueEntryButton() }
             }.padding(24)
         }.frame(minWidth: 480, minHeight: 300)
+        .opacity(attended ? 1 : 0.35)
+        .onHover { attended = $0 }
+        .animation(.easeInOut(duration: 0.2), value: attended)
         .onAppear { model.venueControlsVisible = true }
         .onDisappear {
             model.venueControlsVisible = false

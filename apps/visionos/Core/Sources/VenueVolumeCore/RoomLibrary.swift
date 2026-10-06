@@ -40,7 +40,7 @@ public struct VenueSetup: Codable, Equatable, Identifiable, Sendable {
                 whiteRoom: Bool, houseLight: Float) {
         self.id = id; self.name = name; modified = Date(); roomID = room.id
         placements = .init(environment: room.manifest, fixtures: fixtures, revision: revision)
-        self.presets = presets.filter { preset in fixtures.contains { $0.presetID == preset.id } }
+        self.presets = presets.filter { preset in fixtures.contains { $0.referencedPaletteIDs.contains(preset.id) } }
         self.whiteRoom = whiteRoom; self.houseLight = houseLight
     }
     public func validate(room: LibraryRoom) throws {
@@ -50,7 +50,7 @@ public struct VenueSetup: Codable, Equatable, Identifiable, Sendable {
             throw EnvironmentError.invalid("invalid saved setup")
         }
         try placements.validate(environment: room.manifest)
-        guard placements.fixtures.allSatisfy({ fixture in fixture.presetID == nil || presets.contains { $0.id == fixture.presetID } }) else {
+        guard placements.fixtures.allSatisfy({ fixture in fixture.referencedPaletteIDs.isSubset(of: Set(presets.map(\.id))) }) else {
             throw EnvironmentError.invalid("saved setup is missing a preset")
         }
     }
