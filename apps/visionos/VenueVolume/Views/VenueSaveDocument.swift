@@ -86,7 +86,7 @@ struct ExportVenueSaveButton: View {
         .onDisappear { preparing = false }
         .fileExporter(isPresented: $exporting, document: document, contentType: .venueVolumeSave, defaultFilename: "Venue Volume Save") { result in
             switch result {
-            case .success: model.libraryMessage = "Exported venue save with room, fixtures, presets, and material settings."; model.auditExternal("Export venue save")
+            case .success: model.libraryMessage = "Exported venue save with room, fixtures, palettes/phasers, and material settings."; model.auditExternal("Export venue save")
             case .failure(let error): model.libraryMessage = "Export failed: \(error.localizedDescription)"
             }
         }

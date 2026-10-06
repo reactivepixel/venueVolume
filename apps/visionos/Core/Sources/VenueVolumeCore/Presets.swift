@@ -85,6 +85,7 @@ public enum PresetOperations {
         var references = result[index].channelPaletteIDs ?? Dictionary(uniqueKeysWithValues: result[index].channels.indices.compactMap { channel in
             result[index].presetID.map { (channel, $0) }
         })
+        if preset.attributeIndices == nil { references.removeAll() }
         for channel in preset.attributeIndices ?? Array(preset.channels.indices) { references[channel] = preset.id }
         result[index].channelPaletteIDs = references
         result[index].presetID = preset.id

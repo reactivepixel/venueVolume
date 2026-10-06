@@ -10,7 +10,19 @@ The pre-change baseline on `dev` (`c39e5e2`) passes 72 Core tests and all sessio
 
 ## Release verification
 
-Final integrated results are recorded below after review.
+Reviewed integration for v0.2.8:
+
+- PASS: 75 Swift Testing tests and 5 XCTest palette/phaser tests (80 Core tests total).
+- PASS: all session, room, audit, interaction, catalog, startup, placement-link and editor-presentation smoke groups, including new grouped action and layered palette/migration checks.
+- PASS: Swift syntax parsing of all spatial views, SwiftUI views and application entry point. This is not Apple SDK type checking.
+- PASS: 252 bundled fixture models/rigs, room checksums and metadata verification.
+- PASS: 36 design-studio unit tests and production build; 4 marketing tests and production build.
+- PASS: palette duplicate/edit/save/reload browser test; 61 workspace browser checks; palette editor desktop visual inspection and 390 px mobile overflow check.
+- PASS: all application Swift source files have Xcode project references and Sources entries. The project was updated directly on Linux; regenerate with XcodeGen and compare on a Mac.
+
+Review fixes include preserving independently assigned palette layers, phase distribution scoped to palette members, importing definitions with distinct phasers/masks without conflating them, one-time baseline migration, full-palette replacement clearing stale owners, and deletion preserving unrelated phasers without starting a new draft preview.
+
+The native build, physical wrist reveal, system hover, right-hand map gestures, full-immersion transition timing, and sample-room rendering remain unverified on this host. The renderer uses a 100 ms solid-black hold before applying the pose, followed by the configured fade (333 ms default). It requests full immersion while covered and restores the previous style after fading. System UI and exact progressive portal restoration require the checks below. See Apple's [immersion-style contract](https://developer.apple.com/documentation/swiftui/scene/immersionstyle(selection:in:)) for the supported style-switching API.
 
 ## Native acceptance checks
 

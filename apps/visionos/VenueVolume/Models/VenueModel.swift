@@ -212,6 +212,15 @@ final class VenueModel {
            let saved = try? JSONDecoder().decode([DMXPreset].self, from: data),
            saved.allSatisfy({ $0.validationIssue == nil }), Set(saved.map(\.id)).count == saved.count {
             presets = saved
+            if !defaults.bool(forKey: "venue.paletteBaseline.v1") {
+                presets += PaletteLibrary.baseline.filter { baseline in !saved.contains { $0.id == baseline.id } }
+                if let upgraded = try? JSONEncoder().encode(presets) {
+                    defaults.set(upgraded, forKey: "venue.presets.v1")
+                    defaults.set(true, forKey: "venue.paletteBaseline.v1")
+                }
+            }
+        } else if !isDemoMode, defaults.data(forKey: "venue.presets.v1") == nil {
+            defaults.set(true, forKey: "venue.paletteBaseline.v1")
         }
         if let first = presets.first { presetDraft = first; editingPresetID = first.id }
         guard isDemoMode else { return }
@@ -547,7 +556,8 @@ final class VenueModel {
         recent.remove(.preset(id))
         if !isDemoMode, let data = try? JSONEncoder().encode(presets) { defaults.set(data, forKey: "venue.presets.v1") }
         if let first = presets.first { choosePreset(first) } else { newPreset() }
-        presetMessage = "Palette deleted. Assigned fixtures are dark and unassigned; aim overrides are preserved."
+        previewDraft = false
+        presetMessage = "Palette deleted. Its attributes are cleared; other palette layers and aim overrides are preserved."
     }
 
     @discardableResult func applyPreset(_ presetID: UUID, to fixtureID: UUID) -> Bool {

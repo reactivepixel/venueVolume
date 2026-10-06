@@ -63,3 +63,16 @@ extension PalettesPhasersTests {
         XCTAssertEqual(fixtures[0].channels[1], 0)
     }
 }
+
+extension PalettesPhasersTests {
+    func testFullPaletteReplacementRemovesOldChannelOwners() throws {
+        let fixture = Fixture(name: "Replace all")
+        let chase = PaletteLibrary.baseline.first { $0.name == "Phaser · Dimmer chase" }!
+        let layered = try PresetOperations.applying(chase, to: fixture.id, fixtures: [fixture])
+        let replacement = DMXPreset(name: "Short legacy look", channels: [64, 128])
+        let replaced = try PresetOperations.applying(replacement, to: fixture.id, fixtures: layered)[0]
+        XCTAssertEqual(replaced.channels, [64, 128])
+        XCTAssertEqual(replaced.referencedPaletteIDs, [replacement.id])
+        XCTAssertEqual(Set(replaced.channelPaletteIDs!.keys), [0, 1])
+    }
+}

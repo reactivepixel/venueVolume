@@ -247,9 +247,10 @@ import VenueVolumeCore
         grouped.navigationFadeMilliseconds = 500
         check(VenueModel(arguments: [], defaults: defaults, placementDirectory: folder).navigationFadeMilliseconds == 500, "Navigation fade preference persists")
         let layered = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder.appendingPathComponent("layers"))
-        layered.activate(environment: environment); layered.canPlace = true
+        layered.activate(environment: environment); layered.canPlace = true; layered.beginPlacement()
         for x: Float in [2.66, 5, 6] { layered.place(at: [x,0,-2], surfaceID: "floor") }
         layered.finishPlacement()
+        check(layered.fixtures.count == 3, "Layered test places three fixtures")
         let one = layered.fixtures[0].id, two = layered.fixtures[1].id
         layered.select(one); layered.multiSelectionMode = true; layered.select(two); layered.groupSelection()
         let chase = layered.presets.first { $0.name == "Phaser · Dimmer chase" }!
@@ -271,6 +272,15 @@ import VenueVolumeCore
         layered.deletePreset(red.id)
         check(layered.hasAnimatedPalette(for: layered.fixture(one)!) && layered.renderedChannels(for: layered.fixture(one)!, at: 0)[0] == 255,
               "Deleting color preserves the independent intensity phaser")
+        let legacySuite = suite + "-legacy"
+        let legacyDefaults = UserDefaults(suiteName: legacySuite)!
+        defer { legacyDefaults.removePersistentDomain(forName: legacySuite) }
+        legacyDefaults.set(try JSONEncoder().encode(LightingPreview.presets), forKey: "venue.presets.v1")
+        let migrated = VenueModel(arguments: [], defaults: legacyDefaults, placementDirectory: folder.appendingPathComponent("legacy"))
+        check(migrated.presets.contains { $0.id == chase.id }, "Existing preset libraries receive the palette baseline once")
+        migrated.deletePreset(chase.id)
+        let migratedAgain = VenueModel(arguments: [], defaults: legacyDefaults, placementDirectory: folder.appendingPathComponent("legacy"))
+        check(!migratedAgain.presets.contains { $0.id == chase.id }, "Deleted baseline palettes are not recreated on relaunch")
         print("Layered palette session checks passed: independent attributes, group phase, portable dependencies, relaunch and selective deletion.")
         print("Catalog session checks passed: module isolation, grouped undo/redo, saved poses, preset preservation and fan controls.")
     }
