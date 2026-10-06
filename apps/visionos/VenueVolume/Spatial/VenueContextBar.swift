@@ -8,7 +8,13 @@ struct VenueContextBar: View {
     var body: some View {
         @Bindable var model = model
         HStack(spacing: 18) {
-            if model.isPlacing {
+            Button("Wrist toolbox", systemImage: "rectangle.on.rectangle") { model.requestToolbox() }
+            Button(model.palmMapVisible ? "Close Palm Map" : "Palm Map", systemImage: "map") { model.togglePalmMap() }
+                .disabled(!model.palmMapVisible && (!model.canPlace || model.libraryBusy || model.navigationBlackoutActive))
+            if model.palmMapVisible {
+                Text("Drag the marker to teleport; tap it to show rotation rings.").font(.caption)
+                Button("Done", systemImage: "checkmark") { model.closePalmMap() }
+            } else if model.isPlacing {
                 Label("Place \(model.fixtureKind.name)", systemImage: "plus.viewfinder")
                 Text("Look at a surface and pinch. Repeat to place more.").font(.caption)
                 Button("Done", systemImage: "checkmark") { model.finishPlacement() }
@@ -25,8 +31,6 @@ struct VenueContextBar: View {
                 }.pickerStyle(.segmented).frame(width: 220)
                 Button("Done", systemImage: "checkmark") { model.endTransformDrag(); model.gizmoVisible = false }
             } else {
-                Button("Wrist toolbox", systemImage: "rectangle.on.rectangle") { model.requestToolbox() }
-                Text("Look at your left palm for the venue map").font(.caption)
                 Button("Venue controls", systemImage: "slider.horizontal.3") { openWindow(id: "venue-controls", value: "controls") }
             }
         }
