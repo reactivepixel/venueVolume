@@ -48,6 +48,24 @@ final class VenueScene {
     private var labels: [UUID: Entity] = [:]
     private var drops: [UUID: Entity] = [:]
     private var palmGate = PalmRevealGate()
+    private var mapToggle = PalmMapToggle()
+    private let palmMap = PalmNavigationVisual()
+    private let placementGhost = Entity()
+    private let groupLinks = Entity()
+    private var latestRightHand: HandAnchor?
+    private var lastRightHandUpdate: Double = 0
+    private var hasHandAccess = false
+    private var lastRightPinchAt = Double.leastNormalMagnitude
+    private var navigationGestureCancelled = false
+    private var mapAttended = false
+    private var mapHeld = false
+    private var palmPosition = SIMD3<Float>.zero
+    private var blackoutCover: ModelEntity?
+    private var navigationTransition: Task<Void, Never>?
+    private var blackoutFadeStart: Double?
+    private var blackoutFadeDuration: Double = 0.333
+    private var groupAnimationTime: Double = 0
+    private var connectorRevision = ""
     private var latestLeftHand: HandAnchor?
     private var lastHandUpdate: Double = 0
     private var labelLayoutElapsed: Double = 0
@@ -189,12 +207,32 @@ final class VenueScene {
             guard let self else { return }
             self.rigs.values.forEach { $0.tick(deltaTime: event.deltaTime) }
             self.presetDragVisual.tick()
+            self.tickPhasers()
+            self.tickNavigation()
+            self.updatePlacementGhost()
+            self.groupAnimationTime += event.deltaTime
+            self.groupLinks.children.enumerated().forEach { index, child in
+                child.components.set(OpacityComponent(opacity: 0.35 + 0.65 * Float((sin(self.groupAnimationTime * 4 - Double(index)*0.3)+1)/2)))
+            }
             self.labelLayoutElapsed += event.deltaTime
             if self.labelLayoutElapsed >= 0.1 {
                 self.labelLayoutElapsed = 0
                 self.layoutFixtureLabels()
             }
             self.updateLightingDiagnostics(deltaTime: event.deltaTime)
+        }
+    }
+
+    private func tickPhasers() {
+        guard let model, model.lightingBenchmark == nil, !model.navigationBlackoutActive else { return }
+        for fixture in model.fixtures {
+            let palette = model.previewDraft && model.selectedFixtureIDs.contains(fixture.id)
+                ? model.presetDraft : model.presets.first(where: { $0.id == fixture.presetID })
+            guard palette?.phaser != nil, let rig = rigs[fixture.id] else { continue }
+            rig.update(fixture: model.renderedFixture(fixture),channels: model.renderedChannels(for: fixture),
+                       selected: model.selectedFixtureIDs.contains(fixture.id),blackout: model.isBlackedOut(fixture),
+                       placing: model.isPickingRoom,interactive: model.isTransformDragging,
+                       lightBudget: benchmarkBudgets[fixture.id] ?? 0)
         }
     }
 
@@ -276,7 +314,12 @@ final class VenueScene {
     }
 
     func handleTap(entity: Entity, position: SIMD3<Float>, model: VenueModel) {
+        guard !model.navigationBlackoutActive else { return }
         let point = Position3D(x: position.x, y: position.y, z: position.z)
+        if entity.name.hasPrefix("palm-map-") {
+            if !hasHandAccess || CACurrentMediaTime()-lastRightPinchAt < 0.2 { _ = palmMap.tap(entity) }
+            return
+        }
         if !model.isPickingRoom {
             if FixtureTransformGizmo.handle(entity) != nil { return }
             if let id = UUID(uuidString: entity.name) { model.select(id) }
@@ -297,6 +340,11 @@ final class VenueScene {
     }
 
     func handleDrag(entity: Entity, position: SIMD3<Float>, start: SIMD3<Float>, model: VenueModel) -> Bool {
+        guard !model.navigationBlackoutActive else { return false }
+        if !navigationGestureCancelled, let environment = manifest,
+           (!hasHandAccess || palmMap.dragging || rightHandPinching()),
+           palmMap.drag(entity, worldPoint: root.convert(position: position, to: nil),
+                        worldStart: root.convert(position: start, to: nil), environment: environment) { return true }
         if model.isRetargeting && entity.name.hasPrefix("aim-surface:") {
             _ = model.acceptTarget(.init(x: position.x, y: position.y, z: position.z))
             return true
@@ -495,6 +543,14 @@ final class VenueScene {
     }
 
     func update(model: VenueModel, attachments: RealityViewAttachments) {
+        if let bar = attachments.entity(for: "venue-context-bar") {
+            if bar.parent == nil { headAnchor.addChild(bar) }
+            bar.name = "VenueContextBar"; bar.position = [0,-0.36,-0.8]
+        }
+        if palmMap.entity.parent == nil { overlayRoot.addChild(palmMap.entity) }
+        if placementGhost.parent == nil { root.addChild(placementGhost) }
+        if groupLinks.parent == nil { root.addChild(groupLinks) }
+        updateGroupLinks(model: model)
         _ = model.fixtureRenderRevision // Rebuild placeholders when an asynchronous catalog asset becomes ready.
         if targetMarker.parent == nil { root.addChild(targetMarker) }
         targetMarker.components.set(DynamicLightShadowComponent(castsShadow: false))
@@ -511,7 +567,7 @@ final class VenueScene {
         }
         if transformGizmo.entity.parent == nil { root.addChild(transformGizmo.entity) }
         transformGizmo.update(fixture: model.selectedID.flatMap { model.fixture($0) },
-                              visible: model.gizmoVisible && !model.isPickingRoom, mode: model.transformMode)
+                              visible: model.gizmoVisible && !model.isPickingRoom, mode: model.transformMode, selectedAxis: model.activeTransformAxis)
         for surface in model.environment?.surfaces ?? [] {
             if let zone = attachments.entity(for: "surface-drop-\(surface.id)") {
                 if zone.parent == nil { root.addChild(zone) }
@@ -560,7 +616,7 @@ final class VenueScene {
         for fixture in model.fixtures {
             let displayed = model.renderedFixture(fixture)
             let position = FixtureAiming.vector(displayed.position)
-            let selected = model.selectedID == fixture.id
+            let selected = model.selectedFixtureIDs.contains(fixture.id)
             if let descriptor = fixture.asset {
                 if let template = fixtureTemplates[descriptor.id] {
                 cubes.removeValue(forKey: fixture.id)?.removeFromParent()
@@ -587,6 +643,9 @@ final class VenueScene {
                 cube.scale = FixtureAiming.vector(fixture.scale)
                 cube.model?.materials = [Self.glass(opacity: selected ? 0.16 : 0.07)]
                 cube.components.set(InputTargetComponent(allowedInputTypes: model.isPickingRoom ? [] : [.indirect]))
+            }
+            if let cube = cubes[fixture.id] {
+                cube.findEntity(named: "SelectionBase")?.isEnabled = selected
             }
             if let label = attachments.entity(for: "label-\(fixture.id)") {
                 if label.parent == nil { root.addChild(label) }
@@ -626,7 +685,7 @@ final class VenueScene {
             guard center.z < -0.05 else { label.isEnabled = false; continue }
             candidates.append(.init(id: fixture.id, center: [center.x / -center.z, center.y / -center.z],
                 halfSize: [max(localSize.x, 0.1) * scale / (-2 * center.z), max(localSize.y, 0.06) * scale / (-2 * center.z)],
-                distance: distance, selected: model.selectedID == fixture.id))
+                distance: distance, selected: model.selectedFixtureIDs.contains(fixture.id)))
         }
         let visible = SpatialLabelLayout.visible(candidates)
         for (id, label) in labels { label.isEnabled = visible.contains(id) }
@@ -758,12 +817,13 @@ final class VenueScene {
         let session = ARKitSession()
         let world = WorldTrackingProvider()
         let hands = HandTrackingProvider()
-        defer { session.stop(); latestLeftHand = nil }
+        defer { session.stop(); latestLeftHand = nil; latestRightHand = nil; hasHandAccess = false }
         var handAccess = false
         if HandTrackingProvider.isSupported {
             let status = await session.requestAuthorization(for: [.handTracking])
             handAccess = status[.handTracking] == .allowed
         }
+        hasHandAccess = handAccess
         model.needsManualToolbox = !handAccess
         model.handTrackingStatus = handAccess ? "Turn your left hand toward you to open the wrist menu" : "Hand tracking unavailable · use Show toolbox"
         do {
@@ -774,6 +834,10 @@ final class VenueScene {
             let handTask: Task<Void, Never>? = handAccess ? Task { @MainActor in
                 for await update in hands.anchorUpdates {
                     guard !Task.isCancelled else { return }
+                    if update.anchor.chirality == .right {
+                        self.latestRightHand = update.event == .removed ? nil : update.anchor
+                        self.lastRightHandUpdate = CACurrentMediaTime()
+                    }
                     if update.anchor.chirality == .left {
                         self.latestLeftHand = update.event == .removed ? nil : update.anchor
                         self.lastHandUpdate = CACurrentMediaTime()
@@ -784,6 +848,7 @@ final class VenueScene {
             while !Task.isCancelled {
                 let now = CACurrentMediaTime()
                 var eligible = false
+                mapAttended = false; mapHeld = false
                 if world.state == .running,
                    let device = world.queryDeviceAnchor(atTimestamp: now), device.isTracked {
                     deviceTransform = device.originFromAnchorTransform
@@ -791,7 +856,11 @@ final class VenueScene {
                     model.canPlace = manifest != nil
                     model.trackingStatus = "World tracking active"
                     if handAccess, hands.state == .running, now - lastHandUpdate < 0.25, let hand = latestLeftHand {
-                        eligible = palmFacesViewer(hand)
+                        let attention = handAttention(hand)
+                        eligible = attention.wrist
+                        mapAttended = attention.palm
+                        mapHeld = attention.facing
+                        palmPosition = attention.center
                     }
                 } else {
                     model.canPlace = false
@@ -800,6 +869,12 @@ final class VenueScene {
                 if handAccess && hands.state == .stopped {
                     model.needsManualToolbox = true
                     model.handTrackingStatus = "Hand tracking stopped · use Show toolbox or re-enter to retry"
+                }
+                if rightHandPinching() { lastRightPinchAt = now }
+                _ = mapToggle.update(attended: mapAttended, now: now)
+                if !mapHeld {
+                    if palmMap.dragging { navigationGestureCancelled = true }
+                    palmMap.cancel()
                 }
                 let revealed = palmGate.update(eligible: eligible, now: now)
                 model.updateToolboxActivation(raised: revealed)
@@ -818,31 +893,170 @@ final class VenueScene {
         #endif
     }
 
-    private func palmFacesViewer(_ hand: HandAnchor) -> Bool {
-        guard hand.chirality == .left, hand.isTracked, let skeleton = hand.handSkeleton else { return false }
-        let names: [HandSkeleton.JointName] = [.wrist, .indexFingerKnuckle, .littleFingerKnuckle]
-        let joints = names.map { skeleton.joint($0) }
-        guard joints.allSatisfy(\.isTracked) else { return false }
+    /// Head-attention is an approximation, not raw eye gaze. System hover handles
+    /// precise gaze targeting of the map marker, rotation rings and context bar.
+    private func handAttention(_ hand: HandAnchor) -> (wrist: Bool, palm: Bool, facing: Bool, center: SIMD3<Float>) {
+        guard hand.chirality == .left, hand.isTracked, let skeleton = hand.handSkeleton else { return (false,false,false,.zero) }
+        let joints = [HandSkeleton.JointName.wrist, .indexFingerKnuckle, .littleFingerKnuckle].map { skeleton.joint($0) }
+        guard joints.allSatisfy(\.isTracked) else { return (false,false,false,.zero) }
         let points = joints.map { joint -> SIMD3<Float> in
             let t = hand.originFromAnchorTransform * joint.anchorFromJointTransform
-            return SIMD3(t.columns.3.x, t.columns.3.y, t.columns.3.z)
+            return SIMD3(t.columns.3.x,t.columns.3.y,t.columns.3.z)
         }
-        let wrist = points[0], index = points[1], little = points[2]
-        let normal = simd_cross(index - wrist, little - wrist)
-        guard simd_length(normal) > 0.0001 else { return false }
-        let center = (wrist + index + little) / 3
-        let head = SIMD3(deviceTransform.columns.3.x, deviceTransform.columns.3.y, deviceTransform.columns.3.z)
-        let towardPalm = center - head
-        let distance = simd_length(towardPalm)
-        guard distance > 0.15, distance < 1.0 else { return false }
-        let forward = -SIMD3(deviceTransform.columns.2.x, deviceTransform.columns.2.y, deviceTransform.columns.2.z)
-        let visible = simd_dot(simd_normalize(towardPalm), forward) > 0.72
-        let facing = simd_dot(simd_normalize(normal), -simd_normalize(towardPalm)) > 0.55
-        // Use head orientation as a viewing-area approximation; no eye gaze is read.
-        return visible && facing
+        let center = (points[0]+points[1]+points[2])/3
+        let normal = simd_cross(points[1]-points[0],points[2]-points[0])
+        let eye = SIMD3(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
+        let ray = center-eye, distance = simd_length(ray)
+        guard distance > 0.12, distance < 1.2, simd_length(normal) > 0.0001 else { return (false,false,false,center) }
+        let forward = -SIMD3(deviceTransform.columns.2.x,deviceTransform.columns.2.y,deviceTransform.columns.2.z)
+        let attending = simd_dot(simd_normalize(ray),forward) > 0.88
+        let facing = simd_dot(simd_normalize(normal),-simd_normalize(ray)) > 0.35
+        // Wrist activation accepts either side: users shouldn't need to find a
+        // narrow palm angle merely to recall their toolbox. Map requires palm up.
+        let wristRay = points[0]-eye
+        let wristAttended = simd_dot(simd_normalize(wristRay),forward) > 0.9
+        return (wristAttended,attending && facing,facing,center)
+    }
+
+    private func rightHandPinching() -> Bool {
+        guard CACurrentMediaTime()-lastRightHandUpdate < 0.25, let hand = latestRightHand, hand.isTracked, let skeleton = hand.handSkeleton else { return false }
+        let index = skeleton.joint(.indexFingerTip), thumb = skeleton.joint(.thumbTip)
+        guard index.isTracked, thumb.isTracked else { return false }
+        let a = index.anchorFromJointTransform.columns.3, b = thumb.anchorFromJointTransform.columns.3
+        return simd_length(SIMD3(a.x-b.x,a.y-b.y,a.z-b.z)) < 0.045
+    }
+
+    var isNavigationDragging: Bool { palmMap.dragging }
+
+    func endSpatialDrag(model: VenueModel) {
+        if let action = palmMap.finish() { transitionNavigation(action, milliseconds: model.navigationFadeMilliseconds) }
+        navigationGestureCancelled = false
+        model.endTransformDrag()
+    }
+
+    func cancelSpatialDrag(model: VenueModel) {
+        palmMap.cancel(); navigationGestureCancelled = false; model.endTransformDrag()
+    }
+
+    private func tickNavigation() {
+        guard let manifest else { return }
+        let eye = SIMD3(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
+        let localEye = root.convert(position: eye, from: nil)
+        #if targetEnvironment(simulator)
+        let visible = model?.simulatedPalm == true
+        let position = eye + simd_quatf(deviceTransform).act([0,-0.25,-0.5])
+        #else
+        let visible = mapToggle.isVisible && mapHeld
+        let position = palmPosition + [0,0.07,0]
+        #endif
+        palmMap.update(environment: manifest, viewpoint: localEye, worldPosition: position,
+                       orientation: simd_quatf(deviceTransform), visible: visible)
+        if let start = blackoutFadeStart {
+            let opacity = max(0,1-Float((CACurrentMediaTime()-start)/blackoutFadeDuration))
+            blackoutCover?.components.set(OpacityComponent(opacity: opacity))
+            if opacity == 0 {
+                blackoutCover?.isEnabled = false; blackoutFadeStart = nil
+                model?.navigationBlackoutActive = false
+            }
+        }
+    }
+
+    private func transitionNavigation(_ action: PalmNavigationVisual.Action, milliseconds: Double) {
+        guard navigationTransition == nil, blackoutFadeStart == nil else { return }
+        if blackoutCover == nil {
+            var material = UnlitMaterial(color: .black)
+            material.faceCulling = .front
+            let cover = ModelEntity(mesh: .generateSphere(radius: 0.12), materials: [material])
+            cover.name = "NavigationBlackout"; headAnchor.addChild(cover); blackoutCover = cover
+        }
+        model?.navigationBlackoutActive = true
+        blackoutFadeStart = nil
+        blackoutCover?.components.set(OpacityComponent(opacity: 1)); blackoutCover?.isEnabled = true
+        navigationTransition = Task { @MainActor [weak self] in
+            guard let self else { return }
+            defer { self.navigationTransition = nil }
+            // Present a black frame before changing the world under the viewer.
+            do { try await Task.sleep(for: .milliseconds(100)) } catch { return }
+            let eye = SIMD3(self.deviceTransform.columns.3.x,self.deviceTransform.columns.3.y,self.deviceTransform.columns.3.z)
+            switch action {
+            case .teleport(let destination):
+                let rotation = self.root.orientation
+                let localEye = self.root.convert(position: eye, from: nil)
+                self.root.position += rotation.act(localEye - SIMD3(destination.x,localEye.y,destination.z))
+            case .rotate(let axis,let angle):
+                let pivot = self.root.convert(position: eye, from: nil)
+                var vector = SIMD3<Float>.zero; vector[axis] = 1
+                self.root.orientation = self.root.orientation * simd_quatf(angle: -angle,axis: vector)
+                self.root.position = eye-self.root.orientation.act(pivot)
+            }
+            self.blackoutFadeDuration = max(0.001,min(max(milliseconds,0),2000)/1000)
+            self.blackoutFadeStart = CACurrentMediaTime()
+        }
+    }
+
+    private func updatePlacementGhost() {
+        guard let model, model.isPlacing, model.canPlace, !palmMap.dragging else { placementGhost.isEnabled = false; return }
+        let eye = SIMD3(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
+        let direction = -SIMD3(deviceTransform.columns.2.x,deviceTransform.columns.2.y,deviceTransform.columns.2.z)
+        // No eye ray is exposed by visionOS. Head-forward surface preview is a
+        // deliberately documented approximation; the pinch's system target is authoritative.
+        guard let hits = root.scene?.raycast(origin: eye,direction: direction,length: 30,query: .all,mask: .all,relativeTo: nil),
+              let hit = hits.sorted(by: { $0.distance < $1.distance }).first(where: {
+                  $0.entity.name.hasPrefix("room-collider:") || $0.entity.name.hasPrefix("aim-surface:")
+              }) else { placementGhost.isEnabled = false; return }
+        let point = root.convert(position: hit.position, from: nil)
+        let radius = model.fixtureKind.radius
+        let valid: Bool
+        if let scan = model.scannedMesh { valid = scan.supports(.init(x: point.x,y: point.y,z: point.z),radius: radius) }
+        else {
+            let id = String(hit.entity.name.dropFirst("room-collider:".count))
+            valid = manifest?.surfaces.first(where: { $0.id == id })?.fixturePosition(hit: .init(x: point.x,y: point.y,z: point.z),halfSize: radius) != nil
+        }
+        guard valid else { placementGhost.isEnabled = false; return }
+        if placementGhost.name != model.fixtureKind.name {
+            placementGhost.children.removeAll(); placementGhost.name = model.fixtureKind.name
+            let asset = model.fixtureKind.asset
+            let minimum = asset.map { SIMD3<Float>($0.boundsMin[0],$0.boundsMin[1],$0.boundsMin[2]) } ?? [-radius,0,-radius]
+            let maximum = asset.map { SIMD3<Float>($0.boundsMax[0],$0.boundsMax[1],$0.boundsMax[2]) } ?? [radius,2*radius,radius]
+            let extent = maximum-minimum, center = (minimum+maximum)/2
+            for axis in 0..<3 { for a: Float in [-1,1] { for b: Float in [-1,1] {
+                var size = SIMD3<Float>(repeating: 0.002); size[axis] = extent[axis]
+                var location = center
+                location[(axis+1)%3] += a*extent[(axis+1)%3]/2
+                location[(axis+2)%3] += b*extent[(axis+2)%3]/2
+                let line = ModelEntity(mesh: .generateBox(size: size),materials: [UnlitMaterial(color: .cyan)])
+                line.position = location; placementGhost.addChild(line)
+            } } }
+            placementGhost.components.set(OpacityComponent(opacity: 0.55))
+        }
+        placementGhost.position = point; placementGhost.isEnabled = true
+    }
+
+    private func updateGroupLinks(model: VenueModel) {
+        let selected = model.fixtures.filter { model.selectedFixtureIDs.contains($0.id) }
+        let key = selected.map { "\($0.id):\($0.position)" }.joined()
+        guard key != connectorRevision else { return }
+        connectorRevision = key; groupLinks.children.removeAll()
+        guard selected.count > 1 else { return }
+        for index in 1..<selected.count {
+            let first = selected[index-1], second = selected[index]
+            let start = FixtureAiming.vector(first.position)+[0,first.assetID == nil ? -0.10 : 0.02,0]
+            let end = FixtureAiming.vector(second.position)+[0,second.assetID == nil ? -0.10 : 0.02,0]
+            let distance = simd_distance(start,end), count = min(240,max(2,Int(distance/0.045)))
+            for dot in 0..<count {
+                let point = start+(end-start)*(Float(dot)/Float(count-1))
+                let bead = ModelEntity(mesh: .generateSphere(radius: 0.002),materials: [UnlitMaterial(color: .cyan)])
+                bead.position = point; groupLinks.addChild(bead)
+            }
+        }
     }
 
     func clearAttachments() {
+        navigationTransition?.cancel(); navigationTransition = nil; blackoutFadeStart = nil
+        model?.navigationBlackoutActive = false
+        palmMap.cancel(); palmMap.entity.isEnabled = false
+        mapToggle = PalmMapToggle(); latestRightHand = nil
+        blackoutCover?.removeFromParent(); blackoutCover = nil
         presetDragVisual.clear()
         fixtureLoadGeneration = UUID()
         fixtureLoads.values.forEach { $0.cancel() }; fixtureLoads.removeAll()
@@ -885,6 +1099,16 @@ final class VenueScene {
                 }
             }
         }
+        let base = Entity(); base.name = "SelectionBase"; base.position.y = -side/2-0.002
+        // A flat, padded 2D ring at the primitive's base, without a hit target.
+        for index in 0..<64 {
+            let angle = Float(index)*2 * .pi/64
+            let segment = ModelEntity(mesh: .generateBox(size: [0.016,0.001,0.002]),materials: [edgeMaterial])
+            segment.position = [cos(angle)*0.17,0,sin(angle)*0.17]
+            segment.orientation = simd_quatf(angle: -angle + .pi/2,axis: [0,1,0])
+            base.addChild(segment)
+        }
+        base.isEnabled = false; cube.addChild(base)
         return cube
     }
 }
