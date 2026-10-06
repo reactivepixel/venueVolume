@@ -35,8 +35,8 @@ struct FixturePanel: View {
                 model.presetEditor.request(presetID: fixture.presetID)
                 model.record(.presets)
                 model.controlsTab = 0
-            } label: { Label(fixture.presetID == nil ? "Choose or create preset" : "Edit assigned preset", systemImage: "slider.horizontal.3") }
-            Text("Drag a preset using its handle in the wrist menu, or choose a fixture from the preset’s Apply menu.")
+            } label: { Label(fixture.presetID == nil ? "Choose or create palette" : "Edit assigned palette", systemImage: "slider.horizontal.3") }
+            Text("Drag a palette using its handle in the wrist menu, or choose a fixture from the palette’s Apply menu.")
                 .font(.caption).foregroundStyle(.secondary)
         }.font(.callout)
     }
@@ -53,14 +53,14 @@ struct FixtureDropTarget: View {
             .overlay {
                 if model.draggingPresetID != nil || targeted {
                     RoundedRectangle(cornerRadius: 18).stroke(.cyan, lineWidth: 2)
-                    Text(targeted ? "Release to apply" : "Drop preset")
+                    Text(targeted ? "Release to apply" : "Drop palette")
                         .font(.headline).padding(12).glassBackgroundEffect()
                 }
             }
             .frame(width: 300, height: 300)
             .contentShape(Rectangle())
             .onTapGesture { withAnimation { model.select(fixture.id) } }
-            .accessibilityLabel("\(fixture.name), preset drop target")
+            .accessibilityLabel("\(fixture.name), palette drop target")
             .dropDestination(for: String.self) { tokens, _ in
                 guard let token = tokens.first, let id = DMXPreset.id(from: token) else { return false }
                 return model.applyPreset(id, to: fixture.id)

@@ -22,7 +22,7 @@ The prototype's editable song labels are a simplified grouping key; production u
 
 ## Inspect versus activate
 
-The script and timeline share one bottom playback box containing all script occurrences grouped by song. Tapping a cue card opens its detail panel without changing output. Show target fixture roles/instances, assigned presets, resolved target IDs, transition metadata, and MIDI mapping. Selecting a target group changes the stage selection only. Next activates the next script entry (the former GO action). Back immediately recalls the previous occurrence. Go to cue requires an explicit call action; a jump must not mark skipped entries as called.
+The script and timeline share one bottom playback box containing all script occurrences grouped by song. Tapping a cue card opens its detail panel without changing output. Show target fixture roles/instances, assigned palettes, resolved target IDs, transition metadata, and MIDI mapping. Selecting a target group changes the stage selection only. Next activates the next script entry (the former GO action). Back immediately recalls the previous occurrence. Go to cue requires an explicit call action; a jump must not mark skipped entries as called.
 
 ## Restart semantics
 

@@ -52,6 +52,12 @@ export default function LiveConsole({
   const key = `vv-live-v2:${encodeURIComponent(showName)}:${encodeURIComponent(venue)}:${rehearsal ? "rehearsal" : "live"}`;
   const [run, setRun] = useSharedState(key, createRun(draft));
   const [activeZone, setActiveZone] = useState(null);
+  const [phaserTime, setPhaserTime] = useState(0);
+  useEffect(() => {
+    const start = performance.now();
+    const timer = setInterval(() => setPhaserTime((performance.now() - start) / 1000), 33);
+    return () => clearInterval(timer);
+  }, [run.activeId]);
   const markZone = (event) => {
     const zone = event.target.closest?.("[data-desk-zone]")?.dataset.deskZone;
     if (zone) setActiveZone(zone);
@@ -97,7 +103,7 @@ export default function LiveConsole({
   const roles = [...new Set(fixtures.map((f) => f.role))];
   const groups = scriptSegments(entries);
   const output = Object.fromEntries(
-    fixtures.map((f) => [f.id, outputValue(run, f)]),
+    fixtures.map((f) => [f.id, outputValue(run, f, phaserTime)]),
   );
   const blocked = !run.armed || run.held || run.blackout || !run.connected;
   const hitCount = entries.filter((e) => run.hits[e.entryId]).length;
@@ -781,7 +787,7 @@ export default function LiveConsole({
           {confirm.kind === "update" ? (
             <>
               <p>
-                Apply {draft.script.length} script entries and updated preset
+                Apply {draft.script.length} script entries and updated palette
                 values to future cue calls. Active cue values and manual
                 adjustments remain untouched.
               </p>

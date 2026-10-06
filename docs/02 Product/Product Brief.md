@@ -21,7 +21,7 @@ Venue Volume is a React-based SaaS tool for preparing fixture inventory, placeme
 
 A **Tour** visits multiple venues using shared base inventory, augmented per venue as needed. Each stop has its own Load Out for placement and patching. SaaS is the primary preparation interface. Fine-tuning the same Load Out in visionOS is planned for a later release.
 
-Presets, cues and scripts remain programming concepts. Reusable show programming is separate from the physical room, Tour and Load Out. This clarification supersedes the earlier model in which a show-owned configuration template created a venue. See [[Design/SaaS UX Review - Scanned Venues and Load Outs]] for the complete product review and implementation limits.
+Palettes and phasers, cues and scripts remain programming concepts. Reusable show programming is separate from the physical room, Tour and Load Out. This clarification supersedes the earlier model in which a show-owned configuration template created a venue. See [[Design/SaaS UX Review - Scanned Venues and Load Outs]] for the complete product review and implementation limits.
 
 The full application contracts are in [[Features/Feature Catalog]]. [[Design/Screen Inventory]] maps 35 proposed screens to those contracts, and [[Design/Interaction Coverage]] records the limits of the interactive mockups.
 

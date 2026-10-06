@@ -18,7 +18,7 @@ The domain requested by the founder is authoritative. Detailed policies below ar
 
 Entities: OverrideRecord, SourceReference, ResolvedValue, RevisionConflict.
 
-An explicit venue value wins over a show default, including zero and false. Missing override means inherit. Reset removes the override. For configuration, template revision is the structural baseline; it is not an additional precedence layer for every preset field. Upstream updates use a three-way comparison.
+An explicit venue value wins over a show default, including zero and false. Missing override means inherit. Reset removes the override. For configuration, template revision is the structural baseline; it is not an additional precedence layer for every palette field. Upstream updates use a three-way comparison.
 
 ## Interface responsibilities
 

@@ -18,10 +18,10 @@ This is a design prototype. The screen catalog represents intended production su
 - Navigate all 35 screens and preserve screen/fidelity/state in the URL.
 - Toggle the same screen between wireframe and high fidelity.
 - Inspect generic empty, loading, error/retry, and permission-denied presentations.
-- Search shows, configurations, inventory fixtures, profiles, venues, presets, and cues.
-- Add local demo show names, templates, venues, presets, fixture instances, and member entries.
+- Search shows, configurations, inventory fixtures, profiles, venues, palettes, and cues.
+- Add local demo show names, templates, venues, palettes, fixture instances, and member entries.
 - Upload actual venue movie bytes from **Add venue → From a movie** or the standalone `/upload` page. The local intake service persists a UUID record, original movie and processing state; its serial worker invokes Movie2Splat. Standalone captures stay in a **Needs setup** inbox until imported into a show with a name and configuration. Retry, pipeline logs and ready PLY downloads are implemented. This flow requires the intake service; processing requires the documented Docker/NVIDIA environment.
-- Change preset intensity at show/venue scope, expose provenance, and reset inheritance.
+- Change palette intensity at show/venue scope, expose provenance, and reset inheritance.
 - Modify patch addresses/universes and detect footprint overflow or overlap.
 - Reorder, remove, or repeat script cue references using separate entry IDs.
 - Arm/disarm simulated playback, advance cues, hold, latch blackout, and simulate connection loss/recovery.
@@ -31,14 +31,14 @@ This is a design prototype. The screen catalog represents intended production su
 
 ## Live-console revision 02
 
-Implemented: violet pre-programming, amber programming, teal live; touch fixture/group/venue selection; selected intensity/color/preset/compatible position adjustment and relative nudge; group/grand masters; release selected/all manual values; independent cue inspection and activation; reviewed cue/song restart; a single bottom script timeline containing every occurrence in sequence; immediate Back/Next, Hold changing to Play (resume input without advancing), secondary Blackout and House-cue shortcut; actual cue-hit markers; editable song/offsets and venue MIDI mappings; optional permitted Web MIDI input and hardware-free test triggers; synchronized detached console and reviewed draft updates without reload; visible-window wake lock where supported. House calls the demo's existing House open script entry, not separate house-light circuits; production binding configuration remains to implement.
+Implemented: violet pre-programming, amber programming, teal live; touch fixture/group/venue selection; selected intensity/color/palette/compatible position adjustment and relative nudge; group/grand masters; release selected/all manual values; independent cue inspection and activation; reviewed cue/song restart; a single bottom script timeline containing every occurrence in sequence; immediate Back/Next, Hold changing to Play (resume input without advancing), secondary Blackout and House-cue shortcut; actual cue-hit markers; editable song/offsets and venue MIDI mappings; optional permitted Web MIDI input and hardware-free test triggers; synchronized detached console and reviewed draft updates without reload; visible-window wake lock where supported. House calls the demo's existing House open script entry, not separate house-light circuits; production binding configuration remains to implement.
 
 The pop-out remains usable after the editor closes. Active look and manual values survive accepted draft updates; future calls use the new snapshot. Structural patch/fixture changes require disarming.
 
 ## Presentation-only or deliberately limited
 
 - Show creation retains the sample production content so the remaining mockups stay reviewable. It does not create independent production databases.
-- Many inspector fields, preset colors, cue assignments/timing, and settings illustrate controls but are not bound to a complete domain editor. Their save action is visual/local feedback, not a server write.
+- Many inspector fields, palette colors, cue assignments/timing, and settings illustrate controls but are not bound to a complete domain editor. Their save action is visual/local feedback, not a server write.
 - The primary detail/editor examples use Touring rig, Midnight blue, and Q02. Other list entries illustrate the same detail pattern.
 - CAD is a schematic interactive stage preview. Selection and parameter preview work, but layer/coordinate controls do not parse or save CAD. Outside the console, parameter edits are local preview values.
 - **Files & drawings** retains filename and size only. The venue movie intake flow separately persists original movie bytes and Gaussian PLY results through its local service.

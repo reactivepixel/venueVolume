@@ -109,9 +109,9 @@ export function SelectionInspector({
           ))}
         </div>
         <label className="select-preset">
-          Apply preset
+          Apply palette
           <select
-            aria-label="Apply selected preset"
+            aria-label="Apply selected palette"
             value=""
             onChange={(e) => {
               const preset = presets.find((p) => p.name === e.target.value);
@@ -163,7 +163,7 @@ export function SelectionInspector({
       </fieldset>
       <p className="selection-note">
         {live
-          ? "Manual values stay through cue calls until released. No presets are overwritten."
+          ? "Manual values stay through cue calls until released. No palettes are overwritten."
           : "Preview controls only · does not change a show or send output."}
       </p>
     </section>

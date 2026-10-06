@@ -19,9 +19,9 @@ struct PresetDragSource: View {
     @State private var initialCursor: SIMD3<Float>?
 
     private var unavailableReason: String? {
-        if !model.isImmersed { return "Enter a venue to drag presets." }
+        if !model.isImmersed { return "Enter a venue to drag palettes." }
         if model.libraryBusy || !model.canPlace { return "Wait for the venue to finish loading." }
-        if model.isPickingRoom || model.isTransformDragging { return "Finish positioning or targeting before dragging a preset." }
+        if model.isPickingRoom || model.isTransformDragging { return "Finish positioning or targeting before dragging a palette." }
         if windowTransform == nil { return "Spatial dragging is unavailable. Use Apply to choose a fixture." }
         return nil
     }
@@ -35,7 +35,7 @@ struct PresetDragSource: View {
                         Image(systemName: "slider.horizontal.3").frame(width: 28)
                         VStack(alignment: .leading, spacing: 4) {
                             Text(preset.name).font(.headline)
-                            Text("\(preset.channels.count) channels · Edit preset")
+                            Text("\(preset.channels.count) channels · Edit palette")
                                 .font(.caption).foregroundStyle(.secondary)
                         }
                         Spacer(minLength: 0)
@@ -88,7 +88,7 @@ struct PresetDragSource: View {
                     .font(.caption).foregroundStyle(.secondary)
                 Button("Cancel drag", role: .cancel) { cancel() }.controlSize(.small)
             } else if let feedback = model.presetDrag.feedback, feedback.presetID == preset.id {
-                Label(feedback.succeeded ? "Preset applied" : "Could not apply preset · \(feedback.message ?? "Try again")",
+                Label(feedback.succeeded ? "Palette applied" : "Could not apply palette · \(feedback.message ?? "Try again")",
                       systemImage: feedback.succeeded ? "checkmark.circle" : "exclamationmark.triangle")
                     .font(.caption).foregroundStyle(.secondary)
             }

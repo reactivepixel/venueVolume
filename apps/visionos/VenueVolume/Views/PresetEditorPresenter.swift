@@ -19,7 +19,7 @@ private struct PresetEditorPresenter: ViewModifier {
             guard !Task.isCancelled, model.presetEditor.latestRequest?.id == request.id else { return }
             guard model.presetEditor.canPresent(request) else {
                 retryIfUnfinished = false
-                model.presetEditor.failureMessage = "The previous preset editor is still closing. Try opening it again."
+                model.presetEditor.failureMessage = "The previous palette editor is still closing. Try opening it again."
                 return
             }
             model.presetEditor.didOpen(request)

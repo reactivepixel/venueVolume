@@ -17,7 +17,7 @@ struct FixtureLabel: View {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(fixture.name).font(.headline)
                         if selected {
-                            Text(model.presets.first(where: { $0.id == fixture.presetID })?.name ?? "No preset")
+                            Text(model.presets.first(where: { $0.id == fixture.presetID })?.name ?? "No palette")
                                 .font(.callout).foregroundStyle(.secondary)
                         }
                     }
@@ -43,7 +43,7 @@ struct FixtureLabel: View {
                     Button("Move", systemImage: "arrow.up.and.down.and.arrow.left.and.right") { model.beginReposition(fixture.id) }.disabled(!model.canPlace)
                     Button("Retarget DMX", systemImage: "scope") { model.beginRetarget(fixture.id) }.disabled(!model.canPlace || fixture.asset?.headAim != true)
                     Button("Transform", systemImage: "rotate.3d") { model.beginTransform(fixture.id) }.disabled(!model.canPlace)
-                    if fixture.aimOverride != nil { Button("Use preset aim") { model.resetAim(fixture.id) } }
+                    if fixture.aimOverride != nil { Button("Use palette aim") { model.resetAim(fixture.id) } }
                 }.frame(minHeight: 60)
             }
         }
@@ -78,11 +78,11 @@ struct TargetingPrompt: View {
                     .font(.callout)
             } else {
             layout {
-                Label(model.isRetargeting ? "Retarget preset" : "Position fixture", systemImage: "scope").font(.headline)
+                Label(model.isRetargeting ? "Retarget palette" : "Position fixture", systemImage: "scope").font(.headline)
                 Spacer()
                 Button("Cancel") { model.cancelPicking() }
                 if model.isRetargeting {
-                    Button("Save preset target") { model.saveTarget() }.disabled(!model.canSaveTarget)
+                    Button("Save palette target") { model.saveTarget() }.disabled(!model.canSaveTarget)
                         .buttonStyle(.borderedProminent)
                 }
             }

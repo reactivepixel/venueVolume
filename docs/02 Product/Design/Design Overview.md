@@ -34,7 +34,7 @@ Refinement keeps the wireframe's workflow while adding spacing hierarchy, typogr
 
 ## Navigation
 
-Workspace → Shows → Show → Configurations / Inventory / Venues / Presets / Cues / Scripts / Files.
+Workspace → Shows → Show → Configurations / Inventory / Venues / Palettes and phasers / Cues / Scripts / Files.
 
 Venue detail → Drawing / Patch / Overrides → Preflight → Rehearsal or Live console.
 
@@ -65,14 +65,14 @@ Use native controls, visible keyboard focus, semantic labels, textual status alo
 
 - Native CAD editing depth versus upload, preview, and fixture annotation.
 - Device/OS support and local bridge packaging.
-- Preset precedence, non-tracking state policy, fade interruption, and blackout semantics.
+- Palette precedence, non-tracking state policy, fade interruption, and blackout semantics.
 - Script follow/timecode/branching scope beyond the expected cue sequence.
 - Collaboration roles, offline authorization lifetime, and plan entitlements.
 - Venue-specific script replacement versus future fine-grained sequence merging.
 
 ## Native touring workflow plan
 
-[[Touring Inventory and Fixture Workflows]] records the planned inventory, hierarchical groups, partial presets, placement shortcuts and venue adaptation workflow for visionOS. It includes persistence boundaries, migration, delivery phases and acceptance checks. These are planned features, separate from the current native prototype and the React design study.
+[[Touring Inventory and Fixture Workflows]] records the planned inventory, hierarchical groups, partial palettes, placement shortcuts and venue adaptation workflow for visionOS. It includes persistence boundaries, migration, delivery phases and acceptance checks. These are planned features, separate from the current native prototype and the React design study.
 
 ## Related
 
