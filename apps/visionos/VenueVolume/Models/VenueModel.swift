@@ -7,6 +7,7 @@ private enum TargetPresetSource { case saved(UUID), draft(UUID) }
 enum FixtureTransformMode: String, CaseIterable, Identifiable { case move = "Move", rotate = "Rotate"; var id: String { rawValue } }
 private struct FixtureTransformDrag {
     var fixture: Fixture
+    var members: [Fixture]
     var axis: FixtureAxis
     var mode: FixtureTransformMode
     var start: SIMD3<Float>
@@ -58,15 +59,47 @@ final class VenueModel {
             guard let activeRoom else { return !fixtures.isEmpty }
             return !fixtures.isEmpty || setupName != "Untitled setup" || houseLight != 0.15 || whiteRoom != (activeRoom.manifest.id != "mappedRoom" && activeRoom.manifest.id != "the-fortress")
         }
-        let assignedPresets = presets.filter { preset in fixtures.contains { $0.presetID == preset.id } }
+        let assignedPresets = presets.filter { preset in fixtures.contains { $0.referencedPaletteIDs.contains(preset.id) } }
         return fixtures != savedSetup.placements.fixtures || assignedPresets != savedSetup.presets || setupName != savedSetup.name || whiteRoom != savedSetup.whiteRoom || houseLight != savedSetup.houseLight
     }
     private(set) var fixtures: [Fixture] = []
     var selectedID: UUID?
+    private var groupActionActive = false
+    var multiSelectionMode = false
+    private var additionalSelection: Set<UUID> = []
+    var selectedFixtureIDs: Set<UUID> {
+        var ids = additionalSelection
+        if let selectedID { ids.insert(selectedID) }
+        let groups = Set(fixtures.filter { ids.contains($0.id) }.compactMap(\.groupID))
+        ids.formUnion(fixtures.filter { $0.groupID.map(groups.contains) ?? false }.map(\.id))
+        return ids.intersection(Set(fixtures.map(\.id)))
+    }
+    var fixtureGroups: [UUID] { Array(Set(fixtures.compactMap(\.groupID))).sorted { $0.uuidString < $1.uuidString } }
+    func actionIDs(for id: UUID) -> Set<UUID> {
+        if selectedFixtureIDs.contains(id) { return selectedFixtureIDs }
+        guard let group = fixture(id)?.groupID else { return [id] }
+        return Set(fixtures.filter { $0.groupID == group }.map(\.id))
+    }
+    func groupSelection() {
+        guard selectedFixtureIDs.count > 1 else { return }
+        beginHistoryAction("Group fixtures"); defer { endHistoryAction() }
+        let ids = selectedFixtureIDs, group = UUID()
+        for i in fixtures.indices where ids.contains(fixtures[i].id) { fixtures[i].groupID = group }
+        additionalSelection = []; multiSelectionMode = false; revision += 1; persist()
+    }
+    func ungroup(_ group: UUID) {
+        beginHistoryAction("Ungroup fixtures"); defer { endHistoryAction() }
+        for i in fixtures.indices where fixtures[i].groupID == group { fixtures[i].groupID = nil }
+        additionalSelection = []; revision += 1; persist()
+    }
+    var navigationBlackoutActive = false
+    var navigationFadeMilliseconds: Double = 333 {
+        didSet { defaults.set(navigationFadeMilliseconds, forKey: "venue.navigationFadeMilliseconds") }
+    }
     var expandedID: UUID?
-    private(set) var presets: [DMXPreset] = LightingPreview.presets
+    private(set) var presets: [DMXPreset] = LightingPreview.presets + PaletteLibrary.baseline
     private(set) var recent = RecentItems()
-    var presetDraft = DMXPreset(name: "New preset") { didSet { queueHistoryEdit("Edit preset draft") } }
+    var presetDraft = DMXPreset(name: "New palette") { didSet { queueHistoryEdit("Edit palette draft") } }
     var editingPresetID: UUID?
     var presetMessage: String?
     var toolboxVisible = false
@@ -87,10 +120,11 @@ final class VenueModel {
     var handTrackingStatus = "Turn your left hand toward you to open the wrist menu"
     private(set) var draggingPresetID: UUID?
     private var fixtureDragLease: Task<Void, Never>?
+    private let paletteClockOrigin = ProcessInfo.processInfo.systemUptime
     private let defaults: UserDefaults
     private let arguments: [String]
     var previewDraft = false { didSet { queueHistoryEdit("Change draft preview") } }
-    var previewBlackout = false { didSet { queueHistoryEdit("Change preset simulation blackout") } }
+    var previewBlackout = false { didSet { queueHistoryEdit("Change palette simulation blackout") } }
     var toolboxBlackout: Bool { blackout || (previewDraft && previewBlackout && selectedID != nil) }
     private var targetPresetSource: TargetPresetSource?
     var blackout = false { didSet { queueHistoryEdit("Change blackout") } }
@@ -115,12 +149,13 @@ final class VenueModel {
     var transformMode = FixtureTransformMode.rotate
     private var transformDrag: FixtureTransformDrag?
     var isTransformDragging: Bool { transformDrag != nil }
+    var activeTransformAxis: FixtureAxis? { transformDrag?.axis }
     var isRetargeting: Bool { if case .aim = scenePick { true } else { false } }
     var isPickingRoom: Bool { isPlacing || scenePick != nil }
     var pickingInstruction: String {
         switch scenePick {
         case .move: "Look at a clear floor or tabletop, then pinch to reposition."
-        case .aim: "Look and click to preview DMX aim. Hold and move your hand to adjust. Save updates this preset and its assigned fixtures; Cancel restores."
+        case .aim: "Look and click to preview DMX aim. Hold and move your hand to adjust. Save updates this palette and its assigned fixtures; Cancel restores."
         case nil: "Look at a clear floor or tabletop, then pinch to place."
         }
     }
@@ -167,6 +202,7 @@ final class VenueModel {
     init(arguments: [String] = ProcessInfo.processInfo.arguments, defaults: UserDefaults = .standard, placementDirectory: URL? = nil) {
         self.defaults = defaults
         self.arguments = arguments
+        if let duration = defaults.object(forKey: "venue.navigationFadeMilliseconds") as? Double, duration.isFinite { navigationFadeMilliseconds = min(2000, max(0, duration)) }
         lightingBenchmark = LightingBenchmark(arguments: arguments)
         requestedLightLimit = lightingBenchmark?.lights ?? 8
         placements = PlacementStore(directory: placementDirectory ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("VenueVolume/Placements"))
@@ -208,6 +244,7 @@ final class VenueModel {
         if let request = roomRequest {
             guard request.room.manifest == environment else { return }
             self.environment = environment
+            additionalSelection = []
             fixtures = request.setup?.placements.fixtures ?? []
             if let setup = request.setup {
                 // Fork conflicting preset definitions instead of altering other setups.
@@ -216,7 +253,12 @@ final class VenueModel {
                         var copy = original
                         if let equivalent = presets.first(where: { $0.name == original.name && $0.channels == original.channels }) { copy = equivalent }
                         else { copy.id = UUID(); presets.append(copy) }
-                        for i in fixtures.indices where fixtures[i].presetID == original.id { fixtures[i].presetID = copy.id }
+                        for i in fixtures.indices {
+                            if fixtures[i].presetID == original.id { fixtures[i].presetID = copy.id }
+                            if let owners = fixtures[i].channelPaletteIDs {
+                                fixtures[i].channelPaletteIDs = owners.mapValues { $0 == original.id ? copy.id : $0 }
+                            }
+                        }
                     } else if !presets.contains(where: { $0.id == original.id }) { presets.append(original) }
                 }
                 if !isDemoMode, let data = try? JSONEncoder().encode(presets) { defaults.set(data, forKey: "venue.presets.v1") }
@@ -239,7 +281,7 @@ final class VenueModel {
             setupName = request.setup?.name ?? "Untitled setup"
             savedSetup = request.setup.map { setup in
                 var copy = setup; copy.placements = .init(environment: environment, fixtures: fixtures, revision: revision)
-                copy.presets = presets.filter { preset in fixtures.contains { $0.presetID == preset.id } }; return copy
+                copy.presets = presets.filter { preset in fixtures.contains { $0.referencedPaletteIDs.contains(preset.id) } }; return copy
             }
             roomRequest = nil; libraryBusy = false
             cancelPicking(); selectedID = fixtures.first?.id; expandedID = nil; lastTarget = nil
@@ -356,7 +398,8 @@ final class VenueModel {
         recent.use(.addFixture)
         nextFixtureNumber += 1
         selectedID = fixture.id
-        isPlacing = false
+        additionalSelection = []
+        isPlacing = true
         draggingFixture = nil
         revision += 1
         persist()
@@ -368,6 +411,16 @@ final class VenueModel {
         beginHistoryAction(expand ? "Toggle fixture info" : "Select fixture"); defer { endHistoryAction() }
         guard fixture(id) != nil else { return }
         if selectedID != id { expandedID = nil; lastTarget = nil }
+        if multiSelectionMode {
+            if selectedFixtureIDs.contains(id) {
+                let removed: Set<UUID> = fixture(id)?.groupID.map { group in Set(fixtures.filter { $0.groupID == group }.map(\.id)) } ?? [id]
+                additionalSelection.subtract(removed)
+                if let selectedID, removed.contains(selectedID) { self.selectedID = additionalSelection.first }
+                return
+            }
+            if let selectedID { additionalSelection.insert(selectedID) }
+            additionalSelection.insert(id)
+        } else if !selectedFixtureIDs.contains(id) { additionalSelection = [] }
         cancelPicking()
         selectedID = id
         toolboxTab = 0
@@ -376,13 +429,22 @@ final class VenueModel {
         if expand { expandedID = expandedID == id ? nil : id }
     }
 
+    private func focusSelection(_ id: UUID) {
+        let multiple = multiSelectionMode
+        multiSelectionMode = false
+        select(id)
+        multiSelectionMode = multiple
+    }
+
     func deselect() {
         guard !libraryBusy else { return }
         endTransformDrag()
         beginHistoryAction("Deselect fixture"); defer { endHistoryAction() }
-        cancelPicking(); selectedID = nil; expandedID = nil; lastTarget = nil
+        cancelPicking(); selectedID = nil; additionalSelection = []; expandedID = nil; lastTarget = nil
         gizmoVisible = false; previewDraft = false
     }
+
+    func finishPlacement() { cancelPicking(); fixtureDragLease?.cancel() }
 
     func beginPlacement() {
         endTransformDrag(); gizmoVisible = false
@@ -400,7 +462,7 @@ final class VenueModel {
         fixtureDragLease?.cancel()
         fixtureDragLease = Task { [weak self] in
             do { try await Task.sleep(for: .seconds(30)) } catch { return }
-            self?.draggingFixture = nil; self?.isPlacing = false
+            self?.draggingFixture = nil
         }
     }
 
@@ -418,7 +480,7 @@ final class VenueModel {
         // The editor manages dirty-navigation confirmation; external open requests
         // keep the current draft intact while bringing its window forward.
         if draftHasChanges {
-            presetMessage = "Your unsaved draft is still open. Use the preset list to save or discard it before switching."
+            presetMessage = "Your unsaved draft is still open. Use the palette list to save or discard it before switching."
             return
         }
         if let saved = presets.first(where: { $0.id == id }) {
@@ -428,7 +490,7 @@ final class VenueModel {
 
     func choosePreset(_ preset: DMXPreset) {
         guard !libraryBusy else { return }
-        beginHistoryAction("Open preset · \(preset.name)"); defer { endHistoryAction() }
+        beginHistoryAction("Open palette · \(preset.name)"); defer { endHistoryAction() }
         cancelPicking()
         previewDraft = true; previewBlackout = false
         presetDraft = preset
@@ -439,7 +501,7 @@ final class VenueModel {
 
     func newPreset() {
         guard !libraryBusy else { return }
-        beginHistoryAction("New preset draft"); defer { endHistoryAction() }
+        beginHistoryAction("New palette draft"); defer { endHistoryAction() }
         editingPresetID = nil
         cancelPicking()
         previewDraft = true; previewBlackout = false
@@ -449,7 +511,7 @@ final class VenueModel {
 
     @discardableResult func savePreset(asNew: Bool = false) -> Bool {
         guard !libraryBusy else { return false }
-        beginHistoryAction(asNew ? "Save preset as new" : "Save preset"); defer { endHistoryAction() }
+        beginHistoryAction(asNew ? "Save palette as new" : "Save palette"); defer { endHistoryAction() }
         var candidate = presetDraft
         candidate.name = candidate.name.trimmingCharacters(in: .whitespacesAndNewlines)
         if asNew { candidate.id = UUID() }
@@ -463,7 +525,7 @@ final class VenueModel {
             presets = library
             if fixtures != updated { fixtures = updated; revision += 1; persist() }
             choosePreset(candidate)
-            presetMessage = asNew ? "Saved as a new preset. Existing assignments are unchanged." : "Saved. Assigned fixtures are updated."
+            presetMessage = asNew ? "Saved as a new palette. Existing assignments are unchanged." : "Saved. Assigned fixtures are updated."
             return true
         } catch {
             presetMessage = error.localizedDescription
@@ -473,7 +535,7 @@ final class VenueModel {
 
     func deletePreset(_ id: UUID) {
         guard !libraryBusy else { return }
-        beginHistoryAction("Delete preset"); defer { endHistoryAction() }
+        beginHistoryAction("Delete palette"); defer { endHistoryAction() }
         guard presets.contains(where: { $0.id == id }) else { return }
         let updated = PresetOperations.clearing(id, fixtures: fixtures)
         if fixtures != updated { fixtures = updated; revision += 1; persist() }
@@ -481,22 +543,24 @@ final class VenueModel {
         recent.remove(.preset(id))
         if !isDemoMode, let data = try? JSONEncoder().encode(presets) { defaults.set(data, forKey: "venue.presets.v1") }
         if let first = presets.first { choosePreset(first) } else { newPreset() }
-        presetMessage = "Preset deleted. Assigned fixtures are dark and unassigned; aim overrides are preserved."
+        presetMessage = "Palette deleted. Assigned fixtures are dark and unassigned; aim overrides are preserved."
     }
 
     @discardableResult func applyPreset(_ presetID: UUID, to fixtureID: UUID) -> Bool {
         guard !libraryBusy else { return false }
-        beginHistoryAction("Apply preset"); defer { endHistoryAction() }
+        beginHistoryAction("Apply palette"); defer { endHistoryAction() }
         defer { endPresetDrag() }
         guard let preset = presets.first(where: { $0.id == presetID }) else {
-            message = "That preset no longer exists."
+            message = "That palette no longer exists."
             return false
         }
         do {
-            let updated = try PresetOperations.applying(preset, to: fixtureID, fixtures: fixtures)
+            var updated = fixtures
+            for memberID in actionIDs(for: fixtureID) { updated = try PresetOperations.applying(preset, to: memberID, fixtures: updated) }
             if updated != fixtures { fixtures = updated; revision += 1; persist() }
             previewDraft = false
-            select(fixtureID)
+            let selectingMultiple = multiSelectionMode
+            multiSelectionMode = false; select(fixtureID); multiSelectionMode = selectingMultiple
             recent.use(.preset(presetID))
             message = "Applied \(preset.name) to \(fixture(fixtureID)?.name ?? "fixture")."
             return true
@@ -507,11 +571,18 @@ final class VenueModel {
     }
 
     func clearAssignment(_ id: UUID) {
+        if !groupActionActive, actionIDs(for: id).count > 1 {
+            beginHistoryAction("Clear group palette"); groupActionActive = true
+            defer { groupActionActive = false; endHistoryAction() }
+            for member in actionIDs(for: id) { clearAssignment(member) }
+            return
+        }
         guard !libraryBusy else { return }
-        beginHistoryAction("Clear fixture preset"); defer { endHistoryAction() }
+        beginHistoryAction("Clear fixture palette"); defer { endHistoryAction() }
         guard let index = fixtures.firstIndex(where: { $0.id == id }), fixtures[index].presetID != nil else { return }
         if case .aim(let targetID) = scenePick, targetID == id { cancelPicking() }
         fixtures[index].presetID = nil
+        fixtures[index].channelPaletteIDs = nil
         fixtures[index].channels = Array(repeating: 0, count: fixtures[index].channels.count)
         fixtures[index].preserveAimOverride()
         revision += 1
@@ -519,13 +590,47 @@ final class VenueModel {
         presetMessage = "Assignment cleared. Output is zero; any aim override is preserved."
     }
 
+    func hasAnimatedPalette(for fixture: Fixture) -> Bool {
+        if previewDraft && selectedFixtureIDs.contains(fixture.id) && presetDraft.phaser != nil { return true }
+        return presets.contains { fixture.referencedPaletteIDs.contains($0.id) && $0.phaser != nil }
+    }
+
     func renderedChannels(for fixture: Fixture) -> [Int] {
-        if targetPreview?.id == fixture.id { return renderedFixture(fixture).channels }
-        return previewDraft && selectedID == fixture.id ? presetDraft.channels : fixture.channels
+        if isRetargeting, targetPreview != nil { return renderedFixture(fixture).channels }
+        let seconds = ProcessInfo.processInfo.systemUptime - paletteClockOrigin
+        let index = fixtures.firstIndex(where: { $0.id == fixture.id }) ?? 0
+        let count = max(1, fixtures.count)
+        var rendered = fixture
+        if let owners = fixture.channelPaletteIDs {
+            for paletteID in Set(owners.values) {
+                guard let palette = presets.first(where: { $0.id == paletteID }) else { continue }
+                let sampled = palette.sampledChannels(at: seconds, fixtureIndex: index, fixtureCount: count)
+                for (channel, owner) in owners where owner == paletteID && rendered.channels.indices.contains(channel) && sampled.indices.contains(channel) {
+                    rendered.channels[channel] = sampled[channel]
+                }
+            }
+        } else if let palette = presets.first(where: { $0.id == fixture.presetID }) {
+            rendered.channels = PresetOperations.mergedChannels(palette, existing: rendered.channels, at: seconds, fixtureIndex: index, fixtureCount: count)
+        }
+        if previewDraft && selectedFixtureIDs.contains(fixture.id) {
+            rendered.channels = PresetOperations.mergedChannels(presetDraft, existing: rendered.channels, at: seconds, fixtureIndex: index, fixtureCount: count)
+        }
+        rendered.preserveAimOverride()
+        return rendered.channels
     }
 
     func renderedFixture(_ fixture: Fixture) -> Fixture {
-        guard let preview = targetPreview, preview.id == fixture.id, isRetargeting else { return fixture }
+        guard let preview = targetPreview, isRetargeting else { return fixture }
+        if preview.id != fixture.id {
+            guard actionIDs(for: preview.id).contains(fixture.id), let target = pendingTarget else { return fixture }
+            var current = fixture
+            current.channels = targetingPreset?.channels ?? fixture.channels
+            current.aimOverride = nil
+            if let aim = try? FixtureAiming.articulated(current, target: target), current.channels.count >= 6 {
+                current.channels[4] = aim.pan; current.channels[5] = aim.tilt
+            }
+            return current
+        }
         var current = fixture
         current.channels = targetingPreset?.channels ?? preview.channels
         if current.channels.count >= 6 {
@@ -536,11 +641,17 @@ final class VenueModel {
     }
 
     func isBlackedOut(_ fixture: Fixture) -> Bool {
-        blackout || (previewDraft && previewBlackout && selectedID == fixture.id)
+        blackout || (previewDraft && previewBlackout && selectedFixtureIDs.contains(fixture.id))
     }
 
     /// Direct preview articulation belongs to this placed fixture, not its shared preset.
     func setHeadAim(_ id: UUID, panDegrees: Float? = nil, tiltDegrees: Float? = nil) {
+        if !groupActionActive, actionIDs(for: id).count > 1 {
+            beginHistoryAction("Adjust group motion"); groupActionActive = true
+            defer { groupActionActive = false; endHistoryAction() }
+            for member in actionIDs(for: id) { setHeadAim(member, panDegrees: panDegrees, tiltDegrees: tiltDegrees) }
+            return
+        }
         guard !libraryBusy else { return }
         beginHistoryAction("Adjust fixture motion"); defer { endHistoryAction() }
         guard let index = fixtures.firstIndex(where: { $0.id == id }),
@@ -563,6 +674,12 @@ final class VenueModel {
     }
 
     func setJoint(_ id: UUID, jointID: String, value: Float) {
+        if !groupActionActive, actionIDs(for: id).count > 1 {
+            beginHistoryAction("Adjust group joint"); groupActionActive = true
+            defer { groupActionActive = false; endHistoryAction() }
+            for member in actionIDs(for: id) { setJoint(member, jointID: jointID, value: value) }
+            return
+        }
         guard !libraryBusy, value.isFinite, let index = fixtures.firstIndex(where: { $0.id == id }),
               let joint = fixtures[index].asset?.joints.first(where: { $0.id == jointID }),
               fixtures[index].channels.indices.contains(joint.channel) else { return }
@@ -592,11 +709,26 @@ final class VenueModel {
         var candidate = fixtures[index]
         candidate.position = position
         candidate.orientation = FixtureAiming.euler(yaw: yaw, pitch: pitch, roll: roll)
+        candidate.surfaceID = nil
         if let issue = candidate.placementIssue(in: environment) { message = issue; return }
         candidate.surfaceID = nil
         guard candidate != fixtures[index] else { return }
         cancelPicking()
-        fixtures[index] = candidate
+        var updated = fixtures
+        let original = fixtures[index]
+        let delta = FixtureAiming.vector(position) - FixtureAiming.vector(original.position)
+        let oldAngles = FixtureAiming.angles(original.orientation)
+        for memberIndex in updated.indices where actionIDs(for: id).contains(updated[memberIndex].id) {
+            var member = updated[memberIndex]
+            let p = FixtureAiming.vector(member.position) + delta
+            member.position = member.id == id ? position : .init(x: p.x, y: p.y, z: p.z)
+            let angles = FixtureAiming.angles(member.orientation)
+            member.orientation = FixtureAiming.euler(yaw: angles.yaw + yaw - oldAngles.yaw, pitch: angles.pitch + pitch - oldAngles.pitch, roll: angles.roll + roll - oldAngles.roll)
+            member.surfaceID = nil
+            if let issue = member.placementIssue(in: environment) { message = issue; return }
+            updated[memberIndex] = member
+        }
+        fixtures = updated
         lastTarget = nil
         revision += 1; persist(); message = nil
     }
@@ -606,11 +738,11 @@ final class VenueModel {
     /// Scene retarget always starts from the fixture's assigned, saved preset.
     func beginRetarget(_ id: UUID) {
         guard canPlace, let fixture = fixture(id), fixture.asset?.headAim == true else { return }
-        guard let presetID = fixture.presetID, presets.contains(where: { $0.id == presetID }) else {
-            message = "Apply a preset before retargeting, or create one in the preset editor."
+        guard let presetID = fixture.channelPaletteIDs?[4] ?? fixture.presetID, presets.contains(where: { $0.id == presetID }) else {
+            message = "Apply a palette before retargeting, or create one in the palette editor."
             return
         }
-        select(id)
+        focusSelection(id)
         gizmoVisible = false; previewDraft = false
         targetPresetSource = .saved(presetID)
         scenePick = .aim(id); lastTarget = nil; message = nil
@@ -638,7 +770,7 @@ final class VenueModel {
 
     func beginReposition(_ id: UUID) {
         guard canPlace, fixture(id) != nil else { return }
-        select(id)
+        focusSelection(id)
         gizmoVisible = false
         scenePick = .move(id)
         previewDraft = false
@@ -655,7 +787,7 @@ final class VenueModel {
         guard !libraryBusy, canPlace, case .aim(let id) = scenePick,
               var candidate = fixture(id), let preset = targetingPreset else { return false }
         do {
-            guard preset.channels.count >= 6 else { throw PresetError("Target requires a preset with at least six channels.") }
+            guard preset.channels.count >= 6 else { throw PresetError("Target requires a palette with at least six channels.") }
             candidate.channels = preset.channels
             candidate.presetID = preset.id
             candidate.aimOverride = nil
@@ -666,7 +798,7 @@ final class VenueModel {
             candidate.channels[4] = aim.pan; candidate.channels[5] = aim.tilt
             if let issue = candidate.validationIssue(among: fixtures) { throw PresetError(issue) }
             targetPreview = candidate; pendingTarget = target
-            message = "Previewing \(preset.name) · Save updates preset Pan/Tilt and assigned fixtures. Cancel restores."
+            message = "Previewing \(preset.name) · Save updates palette Pan/Tilt and assigned fixtures. Cancel restores."
             return true
         } catch {
             targetPreview = nil; pendingTarget = nil
@@ -683,26 +815,39 @@ final class VenueModel {
         preset.name = preset.name.trimmingCharacters(in: .whitespacesAndNewlines)
         do {
             var assigned = fixtures
-            for index in assigned.indices where assigned[index].presetID == preset.id || assigned[index].id == id {
+            for index in assigned.indices where assigned[index].presetID == preset.id || actionIDs(for: id).contains(assigned[index].id) {
                 assigned[index].presetID = preset.id
+                if assigned[index].channelPaletteIDs != nil {
+                    assigned[index].channelPaletteIDs?[4] = preset.id
+                    assigned[index].channelPaletteIDs?[5] = preset.id
+                }
                 assigned[index].aimOverride = nil
                 assigned[index].jointOverrides?.removeValue(forKey: "pan")
                 assigned[index].jointOverrides?.removeValue(forKey: "tilt")
             }
-            let updated = try PresetOperations.saving(preset, fixtures: assigned)
+            var updated = try PresetOperations.saving(preset, fixtures: assigned)
+            let memberIDs = actionIDs(for: id)
+            if memberIDs.count > 1 {
+                for index in updated.indices where memberIDs.contains(updated[index].id) && updated[index].asset?.headAim == true {
+                    let aim = try FixtureAiming.articulated(updated[index], target: target)
+                    updated[index].aimOverride = .init(pan: aim.pan, tilt: aim.tilt)
+                    updated[index].preserveAimOverride()
+                    if let issue = updated[index].validationIssue(among: updated) { throw PresetError(issue) }
+                }
+            }
             var library = presets
             if let index = library.firstIndex(where: { $0.id == preset.id }) { library[index] = preset }
             else { library.append(preset) }
             let encoded = try JSONEncoder().encode(library)
             let refreshEditor = editingPresetID == preset.id && !draftHasChanges
-            beginHistoryAction("Retarget preset · \(preset.name)"); defer { endHistoryAction() }
+            beginHistoryAction("Retarget palette · \(preset.name)"); defer { endHistoryAction() }
             if !isDemoMode { defaults.set(encoded, forKey: "venue.presets.v1") }
             presets = library; fixtures = updated
             // Preserve an unrelated unsaved editor draft when targeting from the scene.
             if case .draft = targetPresetSource { presetDraft = preset; editingPresetID = preset.id }
             else if refreshEditor { presetDraft = preset }
             cancelPicking(); lastTarget = target; revision += 1; persist()
-            message = "Saved \(preset.name) target · preset Pan/Tilt updated."
+            message = "Saved \(preset.name) target · palette Pan/Tilt updated."
             presetMessage = message
             return true
         } catch { message = error.localizedDescription; return false }
@@ -710,7 +855,7 @@ final class VenueModel {
 
     func beginTransform(_ id: UUID) {
         guard canPlace, fixture(id) != nil else { return }
-        select(id); gizmoVisible = true; previewDraft = false
+        focusSelection(id); gizmoVisible = true; previewDraft = false
     }
 
     @discardableResult func updateFixtureDetails(_ id: UUID, name: String, universe: Int, address: Int) -> Bool {
@@ -718,22 +863,30 @@ final class VenueModel {
         var candidate = fixtures[i]
         candidate.name = name.trimmingCharacters(in: .whitespacesAndNewlines)
         candidate.universe = universe; candidate.startAddress = address
-        if let issue = candidate.validationIssue(among: fixtures) { message = issue; return false }
+        var updated = fixtures
+        let ids = actionIDs(for: id)
+        var nextAddress = address
+        for index in updated.indices where ids.contains(updated[index].id) {
+            updated[index].universe = universe; updated[index].startAddress = nextAddress
+            if updated[index].id == id { updated[index].name = candidate.name }
+            nextAddress += updated[index].channels.count
+        }
+        for member in updated { if let issue = member.validationIssue(among: updated) { message = issue; return false } }
         endTransformDrag()
         beginHistoryAction("Edit fixture details"); defer { endHistoryAction() }
-        cancelPicking(); fixtures[i] = candidate; revision += 1; persist()
+        cancelPicking(); fixtures = updated; revision += 1; persist()
         message = "Saved item details."
         return true
     }
 
     func beginTransformDrag(axis: FixtureAxis, mode: FixtureTransformMode, at point: SIMD3<Float>) {
-        guard canPlace, gizmoVisible, transformDrag == nil, let id = selectedID, let fixture = fixture(id) else { return }
+        guard canPlace, gizmoVisible, mode == transformMode, transformDrag == nil, let id = selectedID, let fixture = fixture(id) else { return }
         let center = FixtureAiming.vector(fixture.position) + [0, fixture.asset?.headAim != true ? 0 : fixture.visualHeight/2, 0]
         let angle = axis.angle(at: point, about: center)
         guard mode == .move || angle != nil else { return }
         cancelPicking(); previewDraft = false
         beginHistoryAction("\(mode.rawValue) fixture · \(axis.rawValue.uppercased()) axis")
-        transformDrag = .init(fixture: fixture, axis: axis, mode: mode, start: point, lastAngle: angle)
+        transformDrag = .init(fixture: fixture, members: fixtures.filter { actionIDs(for: id).contains($0.id) }, axis: axis, mode: mode, start: point, lastAngle: angle)
     }
 
     func updateTransformDrag(to point: SIMD3<Float>) {
@@ -753,7 +906,22 @@ final class VenueModel {
         }
         transformDrag = drag; candidate.surfaceID = nil
         guard candidate != fixtures[i], candidate.validationIssue(among: fixtures) == nil else { return }
-        fixtures[i] = candidate; lastTarget = nil; revision += 1; persist(); message = nil
+        var updated = fixtures
+        let delta = FixtureAiming.vector(candidate.position) - FixtureAiming.vector(drag.fixture.position)
+        for member in drag.members {
+            guard let index = updated.firstIndex(where: { $0.id == member.id }) else { continue }
+            var moved = member
+            if drag.mode == .move {
+                let p = FixtureAiming.vector(member.position) + delta
+                moved.position = .init(x: p.x, y: p.y, z: p.z)
+            } else {
+                moved.orientation = FixtureAiming.rotatedMount(member.orientation, around: drag.axis, radians: drag.totalAngle)
+            }
+            moved.surfaceID = nil
+            if let issue = moved.placementIssue(in: environment) { message = issue; return }
+            updated[index] = moved
+        }
+        fixtures = updated; lastTarget = nil; revision += 1; persist(); message = nil
     }
 
     func endTransformDrag() {
@@ -771,8 +939,8 @@ final class VenueModel {
         guard let center = surface.fixturePosition(hit: hit, halfSize: radius) else {
             message = "Choose a top surface with enough space for the fixture."; return
         }
-        fixtures[index].position = .init(x: center.x, y: center.y-(fixtures[index].assetID == nil ? 0 : radius), z: center.z)
-        fixtures[index].surfaceID = surfaceID
+        let destination = Position3D(x: center.x, y: center.y-(fixtures[index].assetID == nil ? 0 : radius), z: center.z)
+        guard relocateGroup(id, to: destination, surfaceID: surfaceID) else { return }
         scenePick = nil; lastTarget = nil
         revision += 1; persist(); message = "Fixture repositioned. Its orientation and DMX values are preserved."
     }
@@ -783,12 +951,41 @@ final class VenueModel {
         guard canPlace, case .move(let id) = scenePick, let i = fixtures.firstIndex(where: { $0.id == id }), let scannedMesh else { return }
         let radius = fixtures[i].footprintRadius
         guard scannedMesh.supports(point, radius: radius) else { message = "Choose a scanned horizontal surface with enough space."; return }
-        fixtures[i].position = .init(x: point.x, y: point.y+(fixtures[i].assetID == nil ? radius : 0), z: point.z)
+        guard relocateGroup(id, to: .init(x: point.x, y: point.y+(fixtures[i].assetID == nil ? radius : 0), z: point.z), surfaceID: nil) else { return }
         fixtures[i].surfaceID = nil; scenePick = nil; lastTarget = nil
         revision += 1; persist()
     }
 
+    private func relocateGroup(_ id: UUID, to destination: Position3D, surfaceID: String?) -> Bool {
+        guard let anchor = fixture(id), let environment else { return false }
+        let delta = FixtureAiming.vector(destination) - FixtureAiming.vector(anchor.position)
+        let ids = actionIDs(for: id)
+        var updated = fixtures
+        for index in updated.indices where ids.contains(updated[index].id) {
+            let p = FixtureAiming.vector(updated[index].position) + delta
+            updated[index].position = updated[index].id == id ? destination : .init(x: p.x, y: p.y, z: p.z)
+            updated[index].surfaceID = surfaceID
+            if let surfaceID, let surface = environment.surfaces.first(where: { $0.id == surfaceID }) {
+                let radius = updated[index].footprintRadius
+                let base = updated[index].position
+                guard surface.fixturePosition(hit: .init(x: base.x, y: base.y, z: base.z), halfSize: radius) != nil else {
+                    message = "Choose a surface with enough space for the entire group."; return false
+                }
+            } else if let scannedMesh, !scannedMesh.supports(updated[index].position, radius: updated[index].footprintRadius) {
+                message = "Scan enough support for the entire group."; return false
+            }
+        }
+        fixtures = updated
+        return true
+    }
+
     func resetAim(_ id: UUID) {
+        if !groupActionActive, actionIDs(for: id).count > 1 {
+            beginHistoryAction("Reset group aim"); groupActionActive = true
+            defer { groupActionActive = false; endHistoryAction() }
+            for member in actionIDs(for: id) { resetAim(member) }
+            return
+        }
         guard !libraryBusy else { return }
         beginHistoryAction("Reset fixture aim"); defer { endHistoryAction() }
         guard let index = fixtures.firstIndex(where: { $0.id == id }),
@@ -801,7 +998,7 @@ final class VenueModel {
             fixtures[index].channels[joint.channel] = saved.flatMap { $0.channels.indices.contains(joint.channel) ? $0.channels[joint.channel] : nil } ?? (joint.continuous ? 0 : 128)
         }
         previewDraft = false; lastTarget = nil
-        revision += 1; persist(); message = saved == nil ? "Returned moving parts to rest." : "Restored the preset's motion values."
+        revision += 1; persist(); message = saved == nil ? "Returned moving parts to rest." : "Restored the palette's motion values."
     }
 
     func beginPresetDrag(_ id: UUID) {
@@ -820,10 +1017,12 @@ final class VenueModel {
         endTransformDrag()
         beginHistoryAction("Delete fixture"); defer { endHistoryAction() }
         guard fixtures.contains(where: { $0.id == id }) else { return }
-        fixtures.removeAll { $0.id == id }
+        let ids = actionIDs(for: id)
+        fixtures.removeAll { ids.contains($0.id) }
+        additionalSelection.subtract(ids)
         cancelPicking(); lastTarget = nil
         recent.remove(.fixture(id))
-        if selectedID == id { selectedID = nil; gizmoVisible = false }
+        if let selectedID, ids.contains(selectedID) { self.selectedID = nil; gizmoVisible = false }
         if expandedID == id { expandedID = nil }
         revision += 1
         persist()
@@ -833,7 +1032,7 @@ final class VenueModel {
         guard !libraryBusy, !fixtures.isEmpty else { return }
         endTransformDrag()
         beginHistoryAction("Clear scene fixtures"); defer { endHistoryAction() }
-        cancelPicking(); fixtures = []; selectedID = nil; expandedID = nil
+        cancelPicking(); fixtures = []; additionalSelection = []; selectedID = nil; expandedID = nil
         gizmoVisible = false; lastTarget = nil; previewDraft = false; recent = RecentItems()
         revision += 1; persist()
     }
@@ -1145,7 +1344,7 @@ extension VenueModel {
         fixtures = state.fixtures; presets = state.presets; presetDraft = state.draft; editingPresetID = state.editingPresetID
         setupName = state.setupName; activeSetupID = state.activeSetupID; savedSetup = state.savedSetup
         whiteRoom = state.whiteRoom; houseLight = state.houseLight; blackout = state.blackout
-        selectedID = state.selectedID; expandedID = state.expandedID; previewDraft = state.previewDraft; previewBlackout = state.previewBlackout ?? false
+        additionalSelection = []; selectedID = state.selectedID; expandedID = state.expandedID; previewDraft = state.previewDraft; previewBlackout = state.previewBlackout ?? false
         revision += 1; syncedRevision = nil; nextFixtureNumber = fixtures.count+1
         if !isDemoMode, let data = try? JSONEncoder().encode(presets) { defaults.set(data, forKey: "venue.presets.v1") }
         persistenceBlocked = false

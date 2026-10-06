@@ -138,6 +138,7 @@ import VenueVolumeCore
         model.redo(); check(model.fixture(first) == rotated, "Redo ring gesture")
         model.beginTransform(first)
         let start = FixtureAiming.vector(rotated.position)
+        model.transformMode = .move
         model.beginTransformDrag(axis: .x, mode: .move, at: start)
         model.updateTransformDrag(to: start+[0.2,2,1])
         model.endTransformDrag()
@@ -196,6 +197,55 @@ import VenueVolumeCore
         check(catalogAfter.channels == model.presets.first { $0.id == preset.id }?.channels, "Catalog head follows saved preset")
         model.undo(); check(model.fixture(catalogID) == catalogBefore, "Undo restores catalog joint overrides and target preset")
         model.redo(); check(model.fixture(catalogID) == catalogAfter, "Redo restores catalog preset target")
+        let grouped = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder.appendingPathComponent("groups"))
+        grouped.activate(environment: environment); grouped.canPlace = true
+        grouped.beginPlacement()
+        grouped.place(at: [2.66,0,-2], surfaceID: "floor")
+        check(grouped.isPlacing, "Placement continues after first fixture")
+        grouped.place(at: [5,0,-2], surfaceID: "floor")
+        check(grouped.fixtures.count == 2 && grouped.isPlacing, "Repeated clicks place fixtures until Done")
+        grouped.finishPlacement(); check(!grouped.isPlacing, "Done ends placement")
+        let a = grouped.fixtures[0].id, b = grouped.fixtures[1].id
+        grouped.select(a); grouped.multiSelectionMode = true; grouped.select(b)
+        check(grouped.selectedFixtureIDs == [a,b], "Multi-selection keeps both fixtures")
+        grouped.select(b)
+        check(grouped.selectedFixtureIDs == [a], "Toggle removes only the clicked ungrouped fixture")
+        grouped.select(b)
+        grouped.groupSelection()
+        let group = grouped.fixture(a)!.groupID!
+        grouped.deselect(); grouped.select(b)
+        check(grouped.selectedFixtureIDs == [a,b], "Selecting a group member selects the whole group")
+        grouped.multiSelectionMode = true; grouped.select(a)
+        check(grouped.selectedFixtureIDs.isEmpty, "Toggle another member deselects the whole group")
+        grouped.select(a); grouped.multiSelectionMode = false
+        check(grouped.applyPreset(grouped.presets[0].id, to: a), "Apply palette to group")
+        check(grouped.fixtures.allSatisfy { $0.presetID == grouped.presets[0].id }, "Group palette assignment updates all members")
+        let beforePatch = grouped.fixtures
+        check(!grouped.updateFixtureDetails(a, name: "Group anchor", universe: 1, address: 510), "Group patch rejects overflowing footprint")
+        check(grouped.fixtures == beforePatch, "Invalid group patch is atomic")
+        check(grouped.updateFixtureDetails(a, name: "Group anchor", universe: 2, address: 33), "Group patch succeeds")
+        check(grouped.fixtures[0].startAddress == 33 && grouped.fixtures[1].startAddress == 49, "Group patch allocates successive footprints")
+        let beforeMove = grouped.fixtures
+        grouped.moveFixture(a, position: .init(x: 3, y: 0, z: -2), yawDegrees: 30)
+        check(grouped.fixture(b)!.position.x > beforeMove[1].position.x && grouped.fixture(b)!.orientation != beforeMove[1].orientation, "Group movement and orientation apply to all")
+        grouped.undo(); check(grouped.fixtures == beforeMove, "Group transform is one Undo step")
+        grouped.redo()
+        let restoredGroup = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder.appendingPathComponent("groups"))
+        restoredGroup.activate(environment: environment)
+        check(restoredGroup.fixtures.allSatisfy { $0.groupID == group }, "Group membership survives relaunch")
+        let portable = try grouped.currentSetupSnapshot()
+        let decoded = try JSONDecoder().decode(VenueSetup.self, from: JSONEncoder().encode(portable))
+        check(decoded.placements.fixtures.allSatisfy { $0.groupID == group }, "Group membership survives portable setup encoding")
+        grouped.beginRetarget(a)
+        let target = Position3D(x: 2,y: 1.5,z: -7)
+        check(grouped.acceptTarget(target) && grouped.saveTarget(), "Group retarget saves")
+        check(grouped.fixtures.allSatisfy { $0.aimOverride != nil }, "Group target resolves per fixture")
+        check(grouped.fixture(a)!.aimOverride != grouped.fixture(b)!.aimOverride, "Separated fixtures use distinct DMX angles for common target")
+        grouped.ungroup(group); check(grouped.fixtures.allSatisfy { $0.groupID == nil }, "Ungroup clears all membership")
+        grouped.undo(); check(grouped.fixtures.allSatisfy { $0.groupID == group }, "Undo restores group")
+        grouped.remove(b); check(grouped.fixtures.isEmpty && grouped.fixtureGroups.isEmpty, "Delete acts on group without dangling membership")
+        grouped.navigationFadeMilliseconds = 500
+        check(VenueModel(arguments: [], defaults: defaults, placementDirectory: folder).navigationFadeMilliseconds == 500, "Navigation fade preference persists")
         print("Catalog session checks passed: module isolation, grouped undo/redo, saved poses, preset preservation and fan controls.")
     }
 }

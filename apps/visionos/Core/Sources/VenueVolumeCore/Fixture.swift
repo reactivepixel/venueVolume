@@ -30,6 +30,14 @@ public struct Fixture: Identifiable, Codable, Equatable, Sendable {
     public var jointOverrides: [String: Int]?
     public var assetID: String?
     public var presetID: UUID?
+    /// Optional persistent membership; absent in legacy saved placements.
+    public var groupID: UUID?
+    /// Per-channel palette ownership allows color, position and phasers to coexist.
+    public var channelPaletteIDs: [Int: UUID]?
+    public var referencedPaletteIDs: Set<UUID> {
+        if let channelPaletteIDs { return Set(channelPaletteIDs.values) }
+        return presetID.map { [$0] } ?? []
+    }
     public var name: String
     public var universe: Int
     public var startAddress: Int

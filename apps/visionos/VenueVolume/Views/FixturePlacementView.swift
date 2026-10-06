@@ -52,13 +52,13 @@ struct FixturePlacementView: View {
                                     }).accessibilityLabel(joint.label)
                             }
                         }
-                        Button("Use preset motion") { model.resetAim(id) }
+                        Button("Use palette motion") { model.resetAim(id) }
                             .disabled(fixture.aimOverride == nil && fixture.jointOverrides == nil)
                     }
                     if let asset = fixture.asset, !asset.emitters.isEmpty {
                         Divider()
                         Text("Light targeting").font(.headline)
-                        Text("Retarget saves Pan/Tilt into the assigned preset and updates its fixtures. Cancel restores the previous look.")
+                        Text("Retarget saves Pan/Tilt into the assigned palette and updates its fixtures. Cancel restores the previous look.")
                         Button("Retarget DMX", systemImage: "scope") { model.beginRetarget(id) }
                             .disabled(!model.canPlace || !asset.headAim)
                     }

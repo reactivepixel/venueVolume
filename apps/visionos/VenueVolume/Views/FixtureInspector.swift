@@ -17,9 +17,19 @@ struct SceneSelectionPane: View {
                     Button { model.deselect() } label: { Image(systemName: "xmark").frame(minWidth: 60, minHeight: 60) }
                         .accessibilityLabel("Deselect \(fixture.name)")
                 }
-                Text(fixture.name).font(.title3.weight(.semibold))
+                Text(model.selectedFixtureIDs.count > 1 ? "\(model.selectedFixtureIDs.count) selected fixtures" : fixture.name).font(.title3.weight(.semibold))
+                if model.selectedFixtureIDs.count > 1 { Button("Create group", systemImage: "square.3.layers.3d") { model.groupSelection() } }
+                if let group = fixture.groupID { Button("Break group", systemImage: "square.3.layers.3d.slash") { model.ungroup(group) } }
+                Button(model.multiSelectionMode ? "Finish selecting" : "Select multiple") { model.multiSelectionMode.toggle() }
+                if model.multiSelectionMode {
+                    ForEach(model.fixtures) { item in
+                        Button { model.select(item.id) } label: {
+                            Label(item.name, systemImage: model.selectedFixtureIDs.contains(item.id) ? "checkmark.circle.fill" : "circle")
+                        }
+                    }
+                }
                 Button { model.presetEditor.request(presetID: fixture.presetID) } label: {
-                    Label("Preset editor", systemImage: "slider.horizontal.3")
+                    Label("Palette editor", systemImage: "slider.horizontal.3")
                         .frame(maxWidth: .infinity, minHeight: 60, alignment: .leading)
                 }
                 Button { openWindow(id: "fixture-editor", value: "selection") } label: {
@@ -35,7 +45,15 @@ struct SceneSelectionPane: View {
                 }
             } else {
                 HStack {
-                    Text("SCENE · \(model.fixtures.count) ITEMS").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
+                    ForEach(model.fixtureGroups, id: \.self) { group in
+                    HStack {
+                        Text("Group · \(model.fixtures.filter { $0.groupID == group }.count) fixtures")
+                        Spacer()
+                        Button("Select") { if let item = model.fixtures.first(where: { $0.groupID == group }) { model.select(item.id) } }
+                        Button("Break group") { model.ungroup(group) }
+                    }
+                }
+                Text("SCENE · \(model.fixtures.count) ITEMS").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
                     Spacer()
                     Button("Clear all", role: .destructive) { confirmClear = true }.disabled(model.fixtures.isEmpty)
                 }
@@ -53,7 +71,7 @@ struct SceneSelectionPane: View {
                                         VStack(alignment: .leading, spacing: 5) {
                                             Text(fixture.name).font(.callout.weight(.semibold))
                                             Text("U\(fixture.universe) · \(fixture.startAddress)–\(fixture.endAddress)")
-                                            Text(model.presets.first { $0.id == fixture.presetID }?.name ?? "No preset · dark")
+                                            Text(model.presets.first { $0.id == fixture.presetID }?.name ?? "No palette · dark")
                                         }.font(.caption).frame(maxWidth: .infinity, alignment: .leading)
                                     }.buttonStyle(.plain)
                                     Button(role: .destructive) { model.remove(fixture.id) } label: { Image(systemName: "trash").frame(minWidth: 60, minHeight: 60) }
@@ -103,13 +121,13 @@ struct FixtureEditorView: View {
                     HistoryControls()
                 }
                 Picker("Item editor", selection: $tab) {
-                    Text("Info & preset").tag(0)
+                    Text("Info & palette").tag(0)
                     Text("Transform").tag(1)
                 }.pickerStyle(.segmented)
                 if tab == 0 {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 20) {
-                            Button("Preset editor", systemImage: "slider.horizontal.3") {
+                            Button("Palette editor", systemImage: "slider.horizontal.3") {
                                 model.presetEditor.request(presetID: fixture.presetID)
                             }.frame(minHeight: 60)
                             FixtureActions(fixture: fixture)
