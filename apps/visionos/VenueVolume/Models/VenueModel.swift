@@ -92,6 +92,14 @@ final class VenueModel {
         for i in fixtures.indices where fixtures[i].groupID == group { fixtures[i].groupID = nil }
         additionalSelection = []; revision += 1; persist()
     }
+    private(set) var palmMapRequestID: UUID?
+    var palmMapVisible: Bool { palmMapRequestID != nil }
+    func togglePalmMap() {
+        if palmMapVisible { closePalmMap(); return }
+        guard isImmersed, canPlace, !libraryBusy, !navigationBlackoutActive else { return }
+        palmMapRequestID = UUID()
+    }
+    func closePalmMap() { palmMapRequestID = nil }
     var navigationBlackoutActive = false
     var navigationFadeMilliseconds: Double = 333 {
         didSet { defaults.set(navigationFadeMilliseconds, forKey: "venue.navigationFadeMilliseconds") }
@@ -176,11 +184,11 @@ final class VenueModel {
         false
         #endif
     }
-    var isImmersed = false
+    var isImmersed = false { didSet { if !isImmersed { closePalmMap() } } }
     var isTransitioning = false
     var isPlacing = false
     var trackingStatus = "Starting spatial tracking…"
-    var canPlace = false
+    var canPlace = false { didSet { if !canPlace { closePalmMap() } } }
     private(set) var environment: EnvironmentManifest?
     var environmentStatus = "Loading classroom…"
     private(set) var persistenceStatus = "Placements save on this device"
@@ -229,6 +237,7 @@ final class VenueModel {
     }
 
     func activate(environment: EnvironmentManifest) {
+        closePalmMap()
         if rooms.isEmpty { bootstrapLibrary(defaultRoom: environment) }
         if let destination = historyDestination, let state = history?.node(destination.id)?.state {
             guard state.rooms.first(where: { $0.id == state.roomID })?.manifest == environment else { return }
