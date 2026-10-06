@@ -225,15 +225,27 @@ final class VenueScene {
 
     private func tickPhasers() {
         guard let model, model.lightingBenchmark == nil, !model.navigationBlackoutActive else { return }
-        for fixture in model.fixtures {
+        let animated = Set(model.fixtures.compactMap { fixture -> UUID? in
             let palette = model.previewDraft && model.selectedFixtureIDs.contains(fixture.id)
                 ? model.presetDraft : model.presets.first(where: { $0.id == fixture.presetID })
-            guard palette?.phaser != nil, let rig = rigs[fixture.id] else { continue }
-            rig.update(fixture: model.renderedFixture(fixture),channels: model.renderedChannels(for: fixture),
+            return palette?.phaser == nil ? nil : fixture.id
+        })
+        guard !animated.isEmpty else { return }
+        let channels = Dictionary(uniqueKeysWithValues: model.fixtures.map { ($0.id,model.renderedChannels(for: $0)) })
+        let budgets = LightingBudget.allocate(model.fixtures.map { fixture in
+            let look = LightingPreview(channels: channels[fixture.id] ?? fixture.channels,blackout: model.isBlackedOut(fixture))
+            return .init(id: fixture.id,emitters: fixtureTemplates[fixture.assetID ?? ""] == nil ? 0 : fixture.asset?.emitters.count ?? 0,
+                         emitting: look.intensity > 0 && look.rgb.contains { $0 > 0 })
+        },selected: model.selectedID,limit: model.effectiveLightLimit)
+        for fixture in model.fixtures {
+            guard animated.contains(fixture.id) || budgets[fixture.id] != benchmarkBudgets[fixture.id],
+                  let rig = rigs[fixture.id] else { continue }
+            rig.update(fixture: model.renderedFixture(fixture),channels: channels[fixture.id] ?? fixture.channels,
                        selected: model.selectedFixtureIDs.contains(fixture.id),blackout: model.isBlackedOut(fixture),
                        placing: model.isPickingRoom,interactive: model.isTransformDragging,
-                       lightBudget: benchmarkBudgets[fixture.id] ?? 0)
+                       lightBudget: budgets[fixture.id] ?? 0)
         }
+        benchmarkBudgets = budgets
     }
 
     private func updateLightingDiagnostics(deltaTime: Double) {
