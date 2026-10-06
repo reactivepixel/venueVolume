@@ -28,7 +28,39 @@ import VenueVolumeCore
         let thirdRecall = model.toolboxRequestID
         model.requestToolbox()
         check(model.toolboxRequestID != thirdRecall, "Manual fallback can recall repeatedly without a hand toggle")
-        model.activate(environment: environment); model.canPlace = true
+        model.togglePalmMap()
+        check(!model.palmMapVisible, "Map cannot open outside a tracked immersed venue")
+        model.activate(environment: environment); model.canPlace = true; model.isImmersed = true
+        model.needsManualToolbox = true; model.simulatedPalm = false
+        model.togglePalmMap()
+        let mapRequest = model.palmMapRequestID
+        check(mapRequest != nil && model.palmMapVisible, "Toolbar opens map without hand tracking or raised palm")
+        model.updateToolboxActivation(raised: false)
+        model.updateToolboxActivation(raised: true)
+        check(model.palmMapRequestID == mapRequest, "Wrist recall does not toggle or reposition map")
+        model.closePalmMap()
+        check(!model.palmMapVisible, "Explicit Done closes map")
+        model.togglePalmMap()
+        check(model.palmMapRequestID != nil && model.palmMapRequestID != mapRequest, "Reopen requests a new stable pose")
+        model.canPlace = false
+        check(!model.palmMapVisible, "World tracking loss closes map and invalidates its request")
+        model.canPlace = true; model.togglePalmMap()
+        model.navigationBlackoutActive = true
+        model.togglePalmMap()
+        check(!model.palmMapVisible, "Close remains available during pending blackout")
+        model.togglePalmMap()
+        check(!model.palmMapVisible, "Pending blackout blocks new map request")
+        model.navigationBlackoutActive = false; model.togglePalmMap()
+        model.isImmersed = false
+        check(!model.palmMapVisible, "Leaving immersion clears map visibility")
+        model.isImmersed = true; model.togglePalmMap(); model.activate(environment: environment)
+        check(!model.palmMapVisible, "Room activation invalidates the previous map request")
+        model.canPlace = true
+        model.beginPlacement(); model.togglePalmMap()
+        check(model.palmMapVisible && model.isPlacing, "Opening map preserves placement context for return")
+        model.closePalmMap()
+        check(model.isPlacing, "Closing map restores the existing placement context")
+        model.finishPlacement()
         check(model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 2.66,y: 0,z: -2), surfaceID: "floor"), "First pilot")
         let first = model.fixtures[0].id
         check(model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 5,y: 0,z: -2), surfaceID: "floor"), "Second pilot")
@@ -154,7 +186,7 @@ import VenueVolumeCore
         check(model.fixtures.isEmpty && model.selectedID == nil && model.presets == presets && model.activeRoom == room, "Clear all affects scene items only")
         model.undo(); check(model.fixtures == fixtures, "Undo restores all scene items")
         model.redo(); check(model.fixtures.isEmpty, "Redo clears scene items")
-        print("Interaction checks passed: toolbox activation/close/reopen, target preview/save/cancel, held updates, selection, axis gestures, grouped history, scene clearing and persistence.")
+        print("Interaction checks passed: toolbar map lifecycle, toolbox activation/close/reopen, target preview/save/cancel, held updates, selection, axis gestures, grouped history, scene clearing and persistence.")
         let waveKind = FixtureKind(rawValue: "claypaky/volero-wave")!
         check(model.dropFixture([waveKind.dragToken], at: .init(x: 2.66,y: 0,z: -2), surfaceID: "floor"), "Place eight-module bar")
         let wave = model.fixtures[0], joint = wave.asset!.joints[0]

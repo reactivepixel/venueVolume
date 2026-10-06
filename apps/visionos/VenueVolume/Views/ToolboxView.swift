@@ -100,6 +100,8 @@ struct ToolboxView: View {
                     }
                 }
                 Spacer(minLength: 12)
+                Button(model.palmMapVisible ? "Close Palm Map" : "Palm Map", systemImage: "map") { model.togglePalmMap() }
+                    .disabled(!model.palmMapVisible && (!model.isImmersed || !model.canPlace || model.libraryBusy || model.navigationBlackoutActive))
                 Menu {
                     Button("Settings", systemImage: "gearshape") { settingsPresented = true }
                     Button("New venue…", systemImage: "plus") { model.requestNewVenue(); if !model.isImmersed { openWindow(id: "launch") } }
@@ -204,6 +206,8 @@ struct VenueControlsView: View {
                 Text("Venue controls").font(.title).accessibilityAddTraits(.isHeader)
                 if model.isImmersed {
                     Button("Open / recall wrist menu", systemImage: "rectangle.on.rectangle") { model.requestToolbox() }.frame(minHeight: 60)
+                    Button(model.palmMapVisible ? "Close Palm Map" : "Palm Map", systemImage: "map") { model.togglePalmMap() }
+                        .disabled(!model.palmMapVisible && (!model.canPlace || model.libraryBusy || model.navigationBlackoutActive))
                     if model.isPickingRoom || model.gizmoVisible { TargetingPrompt() }
                     if model.isPlacing { Button("Done placing fixtures", systemImage: "checkmark") { model.finishPlacement() } }
                     else { Text("Select a fixture to move, transform or retarget it.").foregroundStyle(.secondary) }
