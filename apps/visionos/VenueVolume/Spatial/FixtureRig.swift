@@ -78,7 +78,7 @@ import VenueVolumeCore
         target.components.set(InputTargetComponent())
         target.components.set(HoverEffectComponent())
         entity.addChild(target)
-        selection = ModelEntity(mesh: .generateBox(width: size.x+0.04, height: 0.004, depth: size.z+0.04),
+        selection = ModelEntity(mesh: .generateCylinder(height: 0.002, radius: max(size.x, size.z)/2 + 0.06),
                                 materials: [UnlitMaterial(color: UIColor.cyan.withAlphaComponent(0.35))])
         selection.position = [(low.x+high.x)/2, low.y+0.003, (low.z+high.z)/2]
         selection.components.set(DynamicLightShadowComponent(castsShadow: false))
@@ -131,6 +131,7 @@ import VenueVolumeCore
             }
             lastLight = state
         }
+        selection.orientation = base.rotation.inverse
         selection.isEnabled = selected && !placing
         if lastPlacing != placing {
             for child in entity.children where child.components.has(InputTargetComponent.self) {

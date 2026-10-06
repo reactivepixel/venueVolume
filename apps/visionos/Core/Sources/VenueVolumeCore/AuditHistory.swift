@@ -150,7 +150,7 @@ public struct VenueAuditState: Codable, Equatable, Sendable {
         guard let room = rooms.first(where: { $0.id == roomID }), Set(rooms.map(\.id)).count == rooms.count,
               Set(setups.map(\.id)).count == setups.count, Set(presets.map(\.id)).count == presets.count,
               presets.allSatisfy({ $0.validationIssue == nil }), houseLight.isFinite, (0...1).contains(houseLight),
-              fixtures.allSatisfy({ fixture in fixture.presetID == nil || presets.contains { $0.id == fixture.presetID } }),
+              fixtures.allSatisfy({ fixture in fixture.referencedPaletteIDs.isSubset(of: Set(presets.map(\.id))) }),
               editingPresetID == nil || presets.contains(where: { $0.id == editingPresetID }),
               activeSetupID == nil || setups.contains(where: { $0.id == activeSetupID }),
               savedSetup?.id == activeSetupID,
