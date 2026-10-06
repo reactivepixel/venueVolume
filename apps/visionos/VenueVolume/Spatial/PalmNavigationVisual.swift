@@ -2,32 +2,36 @@ import RealityKit
 import SwiftUI
 import VenueVolumeCore
 
-/// System gaze targeting and indirect pinch/drag operate these input targets.
-/// We never synthesize an eye ray or bind locomotion to finger-motion updates.
+/// An isometric miniature. A blocked proposal stays selected so it can be raised
+/// or moved again; only the explicit Teleport target commits a clear destination.
 @MainActor
 final class PalmNavigationVisual {
     let entity = Entity()
+    private let map = Entity()
     private let marker = ModelEntity()
-    private let rings = Entity()
+    private let handles = Entity()
+    private let feedback = Entity()
     private var projection: PalmMapProjection?
     private var roomID: String?
+    private var obstacles: [EnvironmentManifest.Collider] = []
+    private var elevation: Float = 0
     private var proposed: Position3D?
     private var dragStart: SIMD3<Float>?
-    private var dragMarkerStart = SIMD3<Float>.zero
-    private var rotationAxis: Int?
-    private var rotationStart: Float?
-    private var rotationAmount: Float = 0
-    private var moved = false
-    private(set) var rotating = false
+    private var dragProposal = Position3D(x: 0, y: 0, z: 0)
+    private var dragAxis: Int?
+    private var selected = false
+    private var issue: String?
+    private var feedbackText = ""
     var dragging: Bool { dragStart != nil }
+    var message: String { issue ?? "Drag the cube or its handles, then select Teleport." }
 
     init() {
         entity.name = "PalmNavigationMap"
+        map.orientation = simd_quatf(angle: PalmMapProjection.pitch, axis: [1,0,0]) * simd_quatf(angle: PalmMapProjection.yaw, axis: [0,1,0])
         marker.name = "palm-map-viewpoint"
-        marker.components.set(InputTargetComponent(allowedInputTypes: [.indirect]))
-        marker.components.set(HoverEffectComponent())
-        marker.components.set(SpatialDragTarget())
-        entity.addChild(marker); entity.addChild(rings)
+        Self.input(marker, draggable: true)
+        map.addChild(marker); map.addChild(handles)
+        entity.addChild(map); entity.addChild(feedback)
         entity.isEnabled = false
     }
 
@@ -35,143 +39,160 @@ final class PalmNavigationVisual {
         if roomID != environment.id + ":" + environment.version {
             roomID = environment.id + ":" + environment.version
             projection = PalmMapProjection(minimum: environment.bounds.min, maximum: environment.bounds.max)
-            rebuild(environment)
+            proposed = nil
+            obstacles = []; rebuild(environment)
+        }
+        if obstacles != environment.colliders {
+            obstacles = environment.colliders; rebuild(environment)
         }
         entity.isEnabled = visible
-        guard visible, let projection, !dragging else { return }
-        entity.position = worldPosition
-        entity.orientation = orientation
-        let point = projection.map([viewpoint.x, viewpoint.z])
-        marker.position = [point.x, -point.y, 0.009]
-        rings.position = marker.position
-        rings.isEnabled = rotating
+        guard visible, let projection else { return }
+        if !dragging { entity.position = worldPosition; entity.orientation = orientation }
+        if proposed == nil {
+            // The scene supplies the floor-relative feet position.
+            proposed = .init(x: viewpoint.x, y: max(PalmMapProjection.floorHeight([viewpoint.x,viewpoint.z], in: environment), viewpoint.y), z: viewpoint.z)
+        }
+        if let proposed {
+            let p = projection.map([proposed.x,proposed.z])
+            marker.position = [p.x, (proposed.y - environment.bounds.min[1] + 0.85)*projection.metersToMap, p.y]
+            issue = PalmMapProjection.obstruction(proposed, in: environment)
+            elevation = max(0, proposed.y - PalmMapProjection.floorHeight([proposed.x,proposed.z], in: environment))
+        }
+        marker.model?.materials = [Self.material(issue == nil ? .cyan : .yellow)]
+        handles.position = marker.position; handles.isEnabled = selected
+        showFeedback()
     }
 
     private func rebuild(_ environment: EnvironmentManifest) {
         guard let projection else { return }
-        for child in Array(entity.children) where child != marker && child != rings { child.removeFromParent() }
-        for child in Array(rings.children) { child.removeFromParent() }
+        for child in Array(map.children) where child != marker && child != handles { child.removeFromParent() }
+        for child in Array(handles.children) { child.removeFromParent() }
         let scale = projection.metersToMap
         let width = (environment.bounds.max[0]-environment.bounds.min[0])*scale
-        let height = (environment.bounds.max[2]-environment.bounds.min[2])*scale
-        let panel = ModelEntity(mesh: .generateBox(size: [width+0.012, height+0.012, 0.003]), materials: [Self.material(.black, alpha: 0.8)])
-        panel.position.z = -0.004
-        entity.addChild(panel)
-        for surface in environment.surfaces where surface.role == "floor" || surface.role == "tabletop" {
-            let p = projection.map([surface.center[0], surface.center[2]])
-            let w = surface.size[0]*scale, h = surface.size[1]*scale
-            for (offset, size) in [(SIMD3<Float>(0,h/2,0), SIMD3<Float>(w,0.001,0.001)),
-                                   (SIMD3<Float>(0,-h/2,0), SIMD3<Float>(w,0.001,0.001)),
-                                   (SIMD3<Float>(w/2,0,0), SIMD3<Float>(0.001,h,0.001)),
-                                   (SIMD3<Float>(-w/2,0,0), SIMD3<Float>(0.001,h,0.001))] {
-                let edge = ModelEntity(mesh: .generateBox(size: size), materials: [Self.material(surface.role == "floor" ? .white : .gray)])
-                edge.position = SIMD3(p.x,-p.y,0) + offset; entity.addChild(edge)
-            }
-        }
-        // Structural walls and furniture footprints complete the floor plan.
-        for box in environment.colliders where box.center[1] + box.size[1]/2 > 0.15 && box.center[1] - box.size[1]/2 < 1.8 {
+        let depth = (environment.bounds.max[2]-environment.bounds.min[2])*scale
+        let panel = ModelEntity(mesh: .generateBox(size: [width,0.002,depth]), materials: [Self.material(.darkGray, alpha: 0.85)])
+        panel.name = "palm-map-floor"
+        panel.position.y = -0.002
+        panel.components.set(CollisionComponent(shapes: [.generateBox(size: [width,0.004,depth])]))
+        Self.input(panel)
+        map.addChild(panel)
+        let floorIDs = Set(environment.surfaces.filter { $0.role == "floor" }.map(\.id))
+        for box in environment.colliders {
             let rotation = simd_quatf(ix: box.rotation[0],iy: box.rotation[1],iz: box.rotation[2],r: box.rotation[3])
-            let center = SIMD3<Float>(box.center[0],box.center[1],box.center[2])
-            let corners = [SIMD3<Float>(-box.size[0]/2,0,-box.size[2]/2),
-                           SIMD3<Float>(box.size[0]/2,0,-box.size[2]/2),
-                           SIMD3<Float>(box.size[0]/2,0,box.size[2]/2),
-                           SIMD3<Float>(-box.size[0]/2,0,box.size[2]/2)].map { offset -> SIMD2<Float> in
-                let world = center+rotation.act(offset)
-                return projection.map([world.x,world.z])
-            }
-            for index in 0..<4 {
-                let a = corners[index], b = corners[(index+1)%4], delta = b-a
-                let length = simd_length(delta)
-                guard length > 0.0001 else { continue }
-                let edge = ModelEntity(mesh: .generateBox(size: [length,0.0007,0.0007]),materials: [Self.material(.gray,alpha: 0.65)])
-                edge.position = [(a.x+b.x)/2,-(a.y+b.y)/2,0.001]
-                edge.orientation = simd_quatf(angle: -atan2(delta.y,delta.x),axis: [0,0,1])
-                entity.addChild(edge)
-            }
-        }
-        // A half-meter footprint, 1.7m height, in the same venue-to-map scale.
-        let size = SIMD3<Float>(0.5*scale, 0.5*scale, 1.7*scale)
-        marker.model = ModelComponent(mesh: .generateBox(size: size), materials: [Self.material(.cyan)])
-        // Generous target while keeping the visible marker human-scaled.
-        marker.components.set(CollisionComponent(shapes: [.generateBox(size: [max(size.x,0.016),max(size.y,0.016),size.z])]))
-        for axis in 0..<3 {
-            for index in 0..<48 {
-                let angle = Float(index)*2*Float.pi/48
-                var p = SIMD3<Float>.zero
-                p[(axis+1)%3] = cos(angle)*0.032
-                p[(axis+2)%3] = sin(angle)*0.032
-                let dot = ModelEntity(mesh: .generateSphere(radius: 0.0016), materials: [Self.material([UIColor.red,.green,.blue][axis], alpha: 0.45)])
-                dot.name = "palm-map-axis-\(axis)"; dot.position = p
-                dot.components.set(CollisionComponent(shapes: [.generateSphere(radius: 0.004)]))
-                dot.components.set(InputTargetComponent(allowedInputTypes: [.indirect]))
-                dot.components.set(HoverEffectComponent()); dot.components.set(SpatialDragTarget())
-                rings.addChild(dot)
-            }
-        }
-        rings.isEnabled = false
-    }
-
-    func tap(_ target: Entity) -> Bool {
-        guard target.name == marker.name || target.name.hasPrefix("palm-map-axis-") else { return false }
-        rotating.toggle(); rings.isEnabled = rotating
-        return true
-    }
-
-    func drag(_ target: Entity, worldPoint: SIMD3<Float>, worldStart: SIMD3<Float>, environment: EnvironmentManifest) -> Bool {
-        guard target.name == marker.name || target.name.hasPrefix("palm-map-axis-"), let projection, entity.isEnabled else { return false }
-        let point = entity.convert(position: worldPoint, from: nil)
-        let start = entity.convert(position: worldStart, from: nil)
-        if dragStart == nil {
-            dragStart = start; dragMarkerStart = marker.position; moved = false
-            rotationAxis = target.name.hasPrefix("palm-map-axis-") ? Int(target.name.suffix(1)) : nil
-            rotationAmount = 0; rotationStart = nil
-        }
-        if let axis = rotationAxis {
-            let offset = point - dragMarkerStart
-            let angle = atan2(offset[(axis+2)%3], offset[(axis+1)%3])
-            if let previous = rotationStart {
-                var delta = angle-previous
-                if delta > .pi { delta -= 2 * .pi }
-                if delta < -.pi { delta += 2 * .pi }
-                rotationAmount += delta
-            }
-            rotationStart = angle
-            moved = moved || abs(rotationAmount) > 0.02
-            for child in rings.children {
-                if var material = (child as? ModelEntity)?.model?.materials.first as? UnlitMaterial {
-                    material.blending = .transparent(opacity: .init(floatLiteral: child.name == target.name ? 1 : 0.25))
-                    (child as? ModelEntity)?.model?.materials = [material]
+            let half = SIMD3<Float>(box.size[0],box.size[1],box.size[2])/2
+            func magnitude(_ v: SIMD3<Float>) -> SIMD3<Float> { [abs(v.x),abs(v.y),abs(v.z)] }
+            let envelope = magnitude(rotation.act([half.x,0,0])) + magnitude(rotation.act([0,half.y,0])) + magnitude(rotation.act([0,0,half.z]))
+            // A roofless miniature with wireframe walls keeps interior objects and
+            // the selected cube visible. All colliders still participate in validation.
+            guard !floorIDs.contains(box.sourceID), box.center[1]-envelope.y < environment.bounds.max[1]-0.2,
+                  !box.id.localizedCaseInsensitiveContains("ceiling") else { continue }
+            let p = projection.map([box.center[0],box.center[2]])
+            let size = half*2*scale
+            let shape = Entity()
+            shape.position = [p.x,(box.center[1]-environment.bounds.min[1])*scale,p.y]
+            shape.orientation = rotation
+            if envelope.y > 0.7 && min(envelope.x,envelope.z) < 0.35 {
+                for axis in 0..<3 {
+                    let a = (axis+1)%3, b = (axis+2)%3
+                    for signA: Float in [-1,1] { for signB: Float in [-1,1] {
+                        var edgeSize = SIMD3<Float>(repeating: 0.0007); edgeSize[axis] = size[axis]
+                        let edge = ModelEntity(mesh: .generateBox(size: edgeSize), materials: [Self.material(.lightGray,alpha: 0.45)])
+                        edge.position[a] = signA*size[a]/2; edge.position[b] = signB*size[b]/2
+                        shape.addChild(edge)
+                    } }
                 }
+            } else {
+                shape.addChild(ModelEntity(mesh: .generateBox(size: size), materials: [Self.material(.lightGray, alpha: 0.6)]))
             }
-        } else {
-            let delta = point-start
-            moved = moved || simd_length(delta) > 0.006
-            let proposedMap = SIMD2(dragMarkerStart.x+delta.x, -dragMarkerStart.y-delta.y)
-            let room = projection.room(proposedMap)
-            proposed = PalmMapProjection.destination(room, in: environment)
-            marker.position = [proposedMap.x,-proposedMap.y,dragMarkerStart.z]
-            marker.model?.materials = [Self.material(proposed == nil ? .red : .cyan)]
-            rings.position = marker.position
+            map.addChild(shape)
         }
-        return true
+        let size = SIMD3<Float>(0.5,1.7,0.5)*scale
+        marker.model = ModelComponent(mesh: .generateBox(size: size), materials: [Self.material(.cyan)])
+        marker.components.set(CollisionComponent(shapes: [.generateBox(size: [max(size.x,0.016),max(size.y,0.024),max(size.z,0.016)])]))
+        for axis in 0..<3 {
+            var size = SIMD3<Float>(repeating: 0.0015); size[axis] = 0.038
+            let color: UIColor = axis == 1 ? .white : .cyan
+            let shaft = ModelEntity(mesh: .generateBox(size: size), materials: [Self.material(color)])
+            shaft.position[axis] = 0.019
+            handles.addChild(shaft)
+            let tip = ModelEntity(mesh: .generateSphere(radius: 0.005), materials: [Self.material(color)])
+            tip.name = "palm-map-move-\(axis)"; tip.position[axis] = 0.043
+            tip.components.set(CollisionComponent(shapes: [.generateSphere(radius: 0.01)]))
+            Self.input(tip, draggable: true); handles.addChild(tip)
+        }
+        feedbackText = ""
     }
 
-    enum Action { case teleport(Position3D), rotate(Int, Float) }
-    func finish() -> Action? {
-        defer { dragStart = nil; proposed = nil; rotationAxis = nil; rotationStart = nil; moved = false }
-        guard dragging else { return nil }
-        if !moved { rotating.toggle(); rings.isEnabled = rotating; return nil }
-        if let axis = rotationAxis { return .rotate(axis,rotationAmount) }
-        if let proposed { rotating = false; rings.isEnabled = false; return .teleport(proposed) }
+    func tap(_ target: Entity, worldPoint: SIMD3<Float>, environment: EnvironmentManifest) -> Action? {
+        guard entity.isEnabled, let projection else { return nil }
+        if target.name == "palm-map-teleport", let proposed {
+            guard PalmMapProjection.obstruction(proposed, in: environment) == nil else { return nil }
+            return .teleport(proposed)
+        }
+        if target.name == "palm-map-floor" {
+            let local = map.convert(position: worldPoint, from: nil)
+            let room = projection.room([local.x,local.z])
+            proposed = .init(x: room.x, y: PalmMapProjection.floorHeight(room, in: environment), z: room.y)
+            selected = true
+        } else if target.name == marker.name || target.name.hasPrefix("palm-map-move-") { selected = true }
         return nil
     }
 
-    func cancel() { dragStart = nil; proposed = nil; rotationAxis = nil; rotationStart = nil; moved = false }
-
-    func reset() {
-        cancel(); rotating = false; rings.isEnabled = false; entity.isEnabled = false
+    func drag(_ target: Entity, worldPoint: SIMD3<Float>, worldStart: SIMD3<Float>, environment: EnvironmentManifest) -> Bool {
+        guard target.name == marker.name || target.name.hasPrefix("palm-map-move-"), let projection, let proposed, entity.isEnabled else { return false }
+        let point = entity.convert(position: worldPoint, from: nil)
+        let start = entity.convert(position: worldStart, from: nil)
+        if dragStart == nil {
+            dragStart = start; dragProposal = proposed
+            dragAxis = target.name.hasPrefix("palm-map-move-") ? Int(target.name.suffix(1)) : nil
+            selected = true
+        }
+        let delta = point - (dragStart ?? start)
+        var next = dragProposal
+        if dragAxis == 1 {
+            next.y += projection.heightDelta(screenY: delta.y)
+            next.y = max(PalmMapProjection.floorHeight([next.x,next.z], in: environment), next.y)
+        } else {
+            let floor = projection.floorDelta(screen: [delta.x,delta.y])
+            if dragAxis != 2 { next.x += floor.x }
+            if dragAxis != 0 { next.z += floor.y }
+            let elevation = max(0, dragProposal.y - PalmMapProjection.floorHeight([dragProposal.x,dragProposal.z], in: environment))
+            next.y = PalmMapProjection.floorHeight([next.x,next.z], in: environment) + elevation
+        }
+        self.proposed = next
+        issue = PalmMapProjection.obstruction(next, in: environment)
+        return true
     }
 
+    enum Action { case teleport(Position3D) }
+    func finish() { dragStart = nil; dragAxis = nil }
+    func cancel() { if dragging { proposed = dragProposal }; finish() }
+    func reset() { cancel(); proposed = nil; selected = false; handles.isEnabled = false; entity.isEnabled = false }
+
+    private func showFeedback() {
+        let text = selected ? (String(format: "%.1f m above floor · ", elevation) + (issue ?? "Clear · select Teleport")) : "Select the user cube to move"
+        guard feedbackText != text else { return }
+        feedbackText = text
+        for child in Array(feedback.children) { child.removeFromParent() }
+        let label = ModelEntity(mesh: .generateText(text, extrusionDepth: 0.0001, font: .systemFont(ofSize: 0.008),
+            containerFrame: CGRect(x: 0,y: 0,width: 0.34,height: 0.045), alignment: .center), materials: [Self.material(issue == nil ? .white : .yellow)])
+        label.position = [-0.17,-0.175,0.10]; feedback.addChild(label)
+        if selected {
+            let button = ModelEntity(mesh: .generateBox(size: [0.09,0.024,0.004]), materials: [Self.material(issue == nil ? .systemTeal : .darkGray)])
+            button.name = "palm-map-teleport"; button.position = [0,-0.19,0.06]
+            if issue == nil {
+                button.components.set(CollisionComponent(shapes: [.generateBox(size: [0.10,0.03,0.01])]))
+                Self.input(button)
+            }
+            let title = ModelEntity(mesh: .generateText("Teleport", extrusionDepth: 0.0001, font: .systemFont(ofSize: 0.009)), materials: [Self.material(.white)])
+            title.position = [-0.019,-0.005,0.003]; button.addChild(title); feedback.addChild(button)
+        }
+    }
+    private static func input(_ target: Entity, draggable: Bool = false) {
+        target.components.set(InputTargetComponent(allowedInputTypes: [.indirect]))
+        target.components.set(HoverEffectComponent())
+        if draggable { target.components.set(SpatialDragTarget()) }
+    }
     private static func material(_ color: UIColor, alpha: Float = 1) -> UnlitMaterial {
         var material = UnlitMaterial(color: color)
         material.blending = .transparent(opacity: .init(floatLiteral: alpha))

@@ -480,3 +480,66 @@ import VenueVolumeCore
         print("Preset application checks passed: explicit activation, Toolbox independence, Cancel, single apply, error feedback, Undo/Redo and left-hand isolation.")
     }
 }
+
+@MainActor enum PalettePalmSelectionSmoke {
+    static func run(environment: EnvironmentManifest) throws {
+        let suite = "palette-palm-selection-" + UUID().uuidString
+        let defaults = UserDefaults(suiteName: suite)!
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent(suite)
+        defer { defaults.removePersistentDomain(forName: suite); try? FileManager.default.removeItem(at: folder) }
+        func check(_ value: @autoclosure () -> Bool, _ message: String) { precondition(value(), message) }
+        let model = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder)
+        check(model.presets == PaletteLibrary.baseline && model.presets.count == 15, "Fresh library contains exactly 15 standard palettes")
+        model.activate(environment: environment); model.canPlace = true; model.isImmersed = true
+        model.updatePalmMapActivation(attended: true, palmVisible: true, now: 0)
+        check(!model.palmMapVisible, "Palm reveal dwells")
+        model.updatePalmMapActivation(attended: true, palmVisible: true, now: 0.4)
+        check(model.palmMapVisible, "Palm attention reveals the map")
+        model.updatePalmMapActivation(attended: false, palmVisible: true, now: 0.5)
+        check(model.palmMapVisible, "Looking from palm to map does not dismiss while palm remains visible")
+        model.updatePalmMapActivation(attended: false, palmVisible: false, now: 0.6)
+        check(!model.palmMapVisible, "Hiding palm dismisses map")
+        model.updatePalmMapActivation(attended: true, palmVisible: true, now: 1)
+        model.updatePalmMapActivation(attended: true, palmVisible: true, now: 1.4)
+        check(model.palmMapVisible, "Next palm reveal opens again")
+        model.closePalmMap()
+        model.updatePalmMapActivation(attended: true, palmVisible: true, now: 1.5)
+        check(!model.palmMapVisible, "Done is respected until the next palm reveal")
+        model.togglePalmMap()
+        model.updatePalmMapActivation(attended: false, palmVisible: false, now: 2)
+        check(model.palmMapVisible, "Manual fallback remains available without tracked hands")
+        model.closePalmMap()
+        for x: Float in [2,3,4] {
+            check(model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: x,y: 0,z: -2), surfaceID: "floor"), "Place selection fixture")
+        }
+        let ids = model.fixtures.map(\.id)
+        model.deselect()
+        check(model.selectedFixtures.isEmpty, "Unselected scene fixtures never appear in selected list")
+        model.multiSelectionMode = true; model.select(ids[0]); model.select(ids[1])
+        check(model.selectedFixtures.map(\.id) == Array(ids.prefix(2)), "Selected list grows with selection and excludes third fixture")
+        check(!model.groupSelection(name: "  "), "Empty group name is rejected")
+        check(model.groupSelection(name: "  Front wash  "), "Named scene group created")
+        check(model.selectedFixtures.allSatisfy { $0.groupName == "Front wash" }, "Trimmed group name stays on members")
+        model.undo()
+        check(model.fixtures.allSatisfy { $0.groupID == nil && $0.groupName == nil }, "Grouping undo removes membership and name")
+        model.redo()
+        check(model.fixtures.filter { $0.groupName == "Front wash" }.count == 2, "Grouping redo restores name")
+        model.deselect(); check(model.selectedFixtures.isEmpty, "Background deselection empties grouped selection")
+        let restored = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder)
+        restored.activate(environment: environment)
+        check(restored.fixtures.filter { $0.groupName == "Front wash" }.count == 2, "Named groups survive new-format saves")
+        let tourModel = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder.appendingPathComponent("tour"))
+        tourModel.createTouringShow(name: "First")
+        tourModel.createTouringShow(name: "Second")
+        check(tourModel.presets == PaletteLibrary.baseline, "A show created from an active show receives all standard palettes")
+        tourModel.addInventory(.movingHead, quantity: 3)
+        let units = tourModel.tourUnits.map(\.id)
+        tourModel.selectInventory(units[0]); tourModel.toggleUnitSelection(units[1])
+        check(tourModel.groupSelection(name: "Tour front"), "Name and group multiple wrist-selected inventory units")
+        check(tourModel.tourSelection == Set(units.prefix(2)), "Grouping keeps the intended inventory selection")
+        check(tourModel.tour?.show.groups.last?.name == "Tour front", "Tour group name committed")
+        tourModel.undo(); check(tourModel.tour?.show.groups.isEmpty == true, "Tour grouping is one undoable action")
+        tourModel.redo(); check(tourModel.tour?.show.groups.last?.name == "Tour front", "Tour grouping redo restores group")
+        print("Palette/palm/selection checks passed: 15 palettes, show seeding, palm reveal/hide, selected-only list, named groups and persistence.")
+    }
+}

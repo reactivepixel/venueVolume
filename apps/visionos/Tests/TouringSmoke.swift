@@ -148,6 +148,8 @@ import VenueVolumeCore
         check(legacy.tour == nil && legacy.presets.allSatisfy { $0.focusTargetID == nil }, "Opening a legacy save does not leak touring presets")
         let corruptFolder = directory.appendingPathComponent("corrupt/Library")
         try FileManager.default.createDirectory(at: corruptFolder, withIntermediateDirectories: true)
+        // Corruption protection applies to saves created after the intentional release reset.
+        _ = VenueModel(arguments: [], defaults: defaults, placementDirectory: directory.appendingPathComponent("corrupt"))
         let corruptURL = corruptFolder.appendingPathComponent("touring-shows.json")
         try Data("broken".utf8).write(to: corruptURL)
         let corrupt = VenueModel(arguments: [], defaults: defaults, placementDirectory: directory.appendingPathComponent("corrupt"))

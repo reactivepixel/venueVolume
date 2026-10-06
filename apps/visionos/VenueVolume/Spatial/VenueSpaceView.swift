@@ -145,6 +145,7 @@ struct VenueSpaceView: View {
             await scene.runInputSmoke(model: model)
             await scene.runFixtureMovementSmoke(model: model)
             await scene.runNavigationSmoke(model: model)
+            await scene.runPalmMapSmoke(model: model)
             await RoomLibrarySmoke.run(model: model)
             await RoomLibrarySmoke.catalog(model: model)
             await RoomLibrarySmoke.touring(model: model)

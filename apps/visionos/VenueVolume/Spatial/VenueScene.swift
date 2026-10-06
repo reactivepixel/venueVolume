@@ -52,6 +52,9 @@ final class VenueScene {
     private var mapWorldPosition = SIMD3<Float>.zero
     private var mapWorldOrientation = simd_quatf(angle: 0,axis: [0,1,0])
     private let palmMap = PalmNavigationVisual()
+    private var navigationEnvironment: EnvironmentManifest? {
+        manifest.map { PalmMapProjection.includingFixtures(model?.fixtures ?? [], in: $0) }
+    }
     private let placementGhost = Entity()
     private let groupLinks = Entity()
     private var navigationGestureCancelled = false
@@ -328,7 +331,11 @@ final class VenueScene {
         tickNavigation()
         let point = Position3D(x: position.x, y: position.y, z: position.z)
         if entity.name.hasPrefix("palm-map-") {
-            if model.palmMapVisible && model.canPlace { _ = palmMap.tap(entity) }
+            if model.palmMapVisible && model.canPlace, let manifest = navigationEnvironment {
+                if let action = palmMap.tap(entity, worldPoint: root.convert(position: position, to: nil), environment: manifest) {
+                    transitionNavigation(action, milliseconds: model.navigationFadeMilliseconds)
+                }
+            }
             return
         }
         guard !model.palmMapVisible else { return }
@@ -389,7 +396,7 @@ final class VenueScene {
     func handleDrag(entity: Entity, position: SIMD3<Float>, start: SIMD3<Float>, model: VenueModel) -> Bool {
         guard !model.navigationBlackoutActive else { return false }
         tickNavigation()
-        if !navigationGestureCancelled, model.palmMapVisible, model.canPlace, let environment = manifest,
+        if !navigationGestureCancelled, model.palmMapVisible, model.canPlace, let environment = navigationEnvironment,
            palmMap.drag(entity, worldPoint: root.convert(position: position, to: nil),
                         worldStart: root.convert(position: start, to: nil), environment: environment) { return true }
         guard !model.palmMapVisible else { return false }
@@ -415,6 +422,58 @@ final class VenueScene {
     }
 
     #if DEBUG
+    /// Exercise the actual RealityKit map entities, drag coordinates and commit gate.
+    func runPalmMapSmoke(model: VenueModel) async {
+        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--palm-map-smoke") else { return }
+        do {
+            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
+            var room = EnvironmentManifest.simple(id: "map-test", title: "Map", min: [-5,0,-5], max: [5,5,5], spawn: [0,0,3], yaw: 0,
+                file: "room.usdz", checksum: String(repeating: "a", count: 64), bytes: 1, scanned: false)
+            var desk = room.colliders[0]
+            desk.id = "desk"; desk.sourceID = "desk"; desk.center = [0,0.5,0]; desk.size = [2,1,2]
+            room.colliders.append(desk)
+            let visual = PalmNavigationVisual()
+            overlayRoot.addChild(visual.entity)
+            defer { visual.entity.removeFromParent() }
+            func update() { visual.update(environment: room, viewpoint: [0,0,3], worldPosition: .zero, orientation: .init(angle: 0,axis: [0,1,0]), visible: true) }
+            update()
+            guard let floor = visual.entity.findEntity(named: "palm-map-floor"),
+                  let marker = visual.entity.findEntity(named: "palm-map-viewpoint"),
+                  let vertical = visual.entity.findEntity(named: "palm-map-move-1"), let miniature = floor.parent else {
+                throw EnvironmentError.invalid("Map entities missing")
+            }
+            _ = visual.tap(floor, worldPoint: miniature.convert(position: .zero, to: nil), environment: room)
+            update()
+            guard visual.message.contains("Obstructed"),
+                  visual.entity.findEntity(named: "palm-map-teleport")?.components[InputTargetComponent.self] == nil else {
+                throw EnvironmentError.invalid("Blocked proposal allowed teleport")
+            }
+            let start = vertical.position(relativeTo: nil)
+            let scale = PalmMapProjection(minimum: room.bounds.min, maximum: room.bounds.max).metersToMap
+            guard visual.drag(vertical, worldPoint: start+[0,1.2*cos(PalmMapProjection.pitch)*scale,0], worldStart: start, environment: room) else {
+                throw EnvironmentError.invalid("Vertical handle did not route")
+            }
+            visual.finish(); update(); update()
+            guard let button = visual.entity.findEntity(named: "palm-map-teleport"),
+                  button.components[InputTargetComponent.self] != nil,
+                  case .teleport(let point) = visual.tap(button, worldPoint: button.position(relativeTo: nil), environment: room), abs(point.y-1.2) < 0.001 else {
+                throw EnvironmentError.invalid("Raised proposal did not persist and clear the obstacle")
+            }
+            let markerStart = marker.position(relativeTo: nil)
+            _ = visual.drag(marker, worldPoint: markerStart+[2,0,0], worldStart: markerStart, environment: room)
+            visual.finish(); update(); update()
+            guard visual.entity.findEntity(named: "palm-map-teleport")?.components[InputTargetComponent.self] == nil else {
+                throw EnvironmentError.invalid("Out-of-room proposal accepted")
+            }
+            model.togglePalmMap(); tickNavigation()
+            if let cube = palmMap.entity.findEntity(named: "palm-map-viewpoint"), let environment = navigationEnvironment {
+                _ = palmMap.tap(cube, worldPoint: cube.position(relativeTo: nil), environment: environment)
+            }
+            tickNavigation()
+            FileHandle.standardOutput.write(Data("PALM_MAP_SMOKE_PASS isometric=true blockedPersists=true verticalClearance=true explicitTeleport=true bounds=true\n".utf8))
+        } catch { FileHandle.standardOutput.write(Data("PALM_MAP_SMOKE_FAIL \(error)\n".utf8)) }
+    }
+
     func runNavigationSmoke(model: VenueModel) async {
         guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--navigation-smoke") else { return }
         do {
@@ -738,7 +797,7 @@ final class VenueScene {
     }
 
     func updateLeftNavigation(_ sample: NavigationHandSample?, at time: Double, model: VenueModel) {
-        guard aligned, model.canPlace, !model.libraryBusy, !model.navigationBlackoutActive, !palmMap.dragging else {
+        guard aligned, model.canPlace, !model.libraryBusy, !model.navigationBlackoutActive, !model.palmMapVisible, !palmMap.dragging else {
             leftNavigation.cancel(at: time); model.endViewerNavigation(); model.navigationInputReserved = false; return
         }
         if leftNavigation.activeFinger == nil { leftNavigation.restore(model.viewerPose) }
@@ -1041,6 +1100,7 @@ final class VenueScene {
     func runTracking(model: VenueModel) async {
         defer {
             model.canPlace = false
+            model.updatePalmMapActivation(attended: false, palmVisible: false, now: CACurrentMediaTime())
             model.resetToolboxActivation()
             leftNavigation.cancel(at: ProcessInfo.processInfo.systemUptime)
             model.endViewerNavigation(); model.navigationInputReserved = false
@@ -1094,6 +1154,8 @@ final class VenueScene {
             while !Task.isCancelled {
                 let now = CACurrentMediaTime()
                 var eligible = false
+                var palmAttended = false
+                var palmVisible = false
                 var navigation: NavigationHandSample?
                 if world.state == .running,
                    let device = world.queryDeviceAnchor(atTimestamp: now), device.isTracked {
@@ -1103,7 +1165,9 @@ final class VenueScene {
                     model.trackingStatus = "World tracking active"
                     if handAccess, hands.state == .running, now - lastHandUpdate < 0.25, let hand = latestLeftHand {
                         let attention = handAttention(hand)
-                        eligible = attention.wrist
+                        eligible = attention.wrist && !attention.palm
+                        palmAttended = attention.palm
+                        palmVisible = attention.facing
                         navigation = navigationSample(hand)
                     }
                 } else {
@@ -1116,12 +1180,14 @@ final class VenueScene {
                 }
                 let revealed = palmGate.update(eligible: eligible, now: now)
                 model.updateToolboxActivation(raised: revealed)
+                model.updatePalmMapActivation(attended: palmAttended, palmVisible: palmVisible, now: now)
                 updateLeftNavigation(navigation, at: ProcessInfo.processInfo.systemUptime, model: model)
                 try await Task.sleep(for: .milliseconds(33))
             }
         } catch is CancellationError {
         } catch {
             model.trackingStatus = "Tracking unavailable: \(error.localizedDescription)"
+            model.updatePalmMapActivation(attended: false, palmVisible: false, now: CACurrentMediaTime())
             model.needsManualToolbox = true
             model.handTrackingStatus = "Use navigation controls or re-enter the venue to retry tracking."
             // Keep the explicit fallback responsive even after authorization/session failure.
@@ -1133,7 +1199,7 @@ final class VenueScene {
     }
 
     /// Head-attention is an approximation, not raw eye gaze. System hover handles
-    /// precise gaze targeting of the map marker, rotation rings and context bar.
+    /// precise gaze targeting of the map marker, translation handles and context bar.
     private func handAttention(_ hand: HandAnchor) -> (wrist: Bool, palm: Bool, facing: Bool, center: SIMD3<Float>) {
         guard hand.chirality == .left, hand.isTracked, let skeleton = hand.handSkeleton else { return (false,false,false,.zero) }
         let joints = [HandSkeleton.JointName.wrist, .indexFingerKnuckle, .littleFingerKnuckle].map { skeleton.joint($0) }
@@ -1149,7 +1215,7 @@ final class VenueScene {
         guard distance > 0.12, distance < 1.2, simd_length(normal) > 0.0001 else { return (false,false,false,center) }
         let forward = -SIMD3(deviceTransform.columns.2.x,deviceTransform.columns.2.y,deviceTransform.columns.2.z)
         let attending = simd_dot(simd_normalize(ray),forward) > 0.88
-        let facing = simd_dot(simd_normalize(normal),-simd_normalize(ray)) > 0.35
+        let facing = simd_dot(simd_normalize(normal),-simd_normalize(ray)) > 0.35 && simd_dot(simd_normalize(ray),forward) > 0.35
         // Wrist activation accepts either side: users shouldn't need to find a
         // narrow palm angle merely to recall their toolbox. Map requires palm up.
         let wristRay = points[0]-eye
@@ -1160,8 +1226,9 @@ final class VenueScene {
     var isNavigationDragging: Bool { palmMap.dragging }
 
     func endSpatialDrag(model: VenueModel) {
-        if model.palmMapVisible, model.canPlace, !navigationGestureCancelled, let action = palmMap.finish() {
-            transitionNavigation(action, milliseconds: model.navigationFadeMilliseconds)
+        if model.palmMapVisible, model.canPlace, !navigationGestureCancelled {
+            palmMap.finish()
+            model.message = palmMap.message
         } else { palmMap.cancel() }
         navigationGestureCancelled = false
         model.endTransformDrag()
@@ -1172,7 +1239,7 @@ final class VenueScene {
     }
 
     private func tickNavigation() {
-        guard let manifest else { return }
+        guard let manifest = navigationEnvironment else { return }
         let eye = SIMD3(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
         let localEye = root.convert(position: eye, from: nil)
         if displayedMapRequestID != model?.palmMapRequestID {
@@ -1183,11 +1250,11 @@ final class VenueScene {
             // Capture a world pose once per explicit opening. Looking around or
             // moving hands does not shift the map while acquiring its marker.
             mapWorldOrientation = simd_quatf(deviceTransform)
-            mapWorldPosition = eye + mapWorldOrientation.act([0,-0.10,-0.65])
+            mapWorldPosition = eye + mapWorldOrientation.act([0,0.06,-0.8])
         }
         let visible = model?.palmMapVisible == true && model?.canPlace == true
         if !visible { palmMap.cancel() }
-        palmMap.update(environment: manifest, viewpoint: localEye, worldPosition: mapWorldPosition,
+        palmMap.update(environment: manifest, viewpoint: localEye - SIMD3<Float>(0, max(0.5, deviceTransform.columns.3.y), 0), worldPosition: mapWorldPosition,
                        orientation: mapWorldOrientation, visible: visible)
         if let start = blackoutFadeStart {
             let opacity = max(0,1-Float((CACurrentMediaTime()-start)/blackoutFadeDuration))
@@ -1224,14 +1291,13 @@ final class VenueScene {
             let eye = SIMD3(self.deviceTransform.columns.3.x,self.deviceTransform.columns.3.y,self.deviceTransform.columns.3.z)
             switch action {
             case .teleport(let destination):
+                guard let manifest = self.navigationEnvironment, PalmMapProjection.obstruction(destination, in: manifest) == nil else {
+                    self.blackoutCover?.isEnabled = false; self.model?.navigationBlackoutActive = false; return
+                }
                 let rotation = self.root.orientation
                 let localEye = self.root.convert(position: eye, from: nil)
-                self.root.position += rotation.act(localEye - SIMD3(destination.x,localEye.y,destination.z))
-            case .rotate(let axis,let angle):
-                let pivot = self.root.convert(position: eye, from: nil)
-                var vector = SIMD3<Float>.zero; vector[axis] = 1
-                self.root.orientation = self.root.orientation * simd_quatf(angle: -angle,axis: vector)
-                self.root.position = eye-self.root.orientation.act(pivot)
+                let eyeHeight = max(0.5, self.deviceTransform.columns.3.y)
+                self.root.position += rotation.act(localEye - SIMD3(destination.x,destination.y + eyeHeight,destination.z))
             }
             if let model = self.model {
                 let view = (self.root.orientation * self.spawnRootTransform.rotation.inverse).inverse

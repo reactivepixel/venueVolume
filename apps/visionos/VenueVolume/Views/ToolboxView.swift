@@ -11,6 +11,7 @@ struct ToolboxView: View {
     @State private var browsingFixtures = false
     @State private var presetSearch = ""
     @State private var settingsPresented = false
+    @State private var confirmClearScene = false
     var body: some View {
         GeometryReader { geometry in
             let compact = textSize.isAccessibilitySize || geometry.size.width < 900
@@ -72,6 +73,9 @@ struct ToolboxView: View {
                 }
             }.padding(28).frame(width: 560)
         }
+        .confirmationDialog(model.tour == nil ? "Clear all scene fixtures?" : "Return all fixtures to inventory?", isPresented: $confirmClearScene, titleVisibility: .visible) {
+            Button(model.tour == nil ? "Clear all fixtures" : "Return all fixtures", role: .destructive) { model.clearScene() }
+        } message: { Text("Undo restores the placements. Saved setups stay available.") }
         .presetEditorPresenter(when: !model.isImmersed)
         .sheet(isPresented: Binding(get: { model.isImmersed && model.newVenuePresented }, set: { model.newVenuePresented = $0 })) {
             NewVenueSheet().environment(model)
@@ -112,6 +116,8 @@ struct ToolboxView: View {
                     Button("New venue…", systemImage: "plus") { model.requestNewVenue(); if !model.isImmersed { openWindow(id: "launch") } }
                     Button("Venue controls", systemImage: "scope") { model.showVenueControls() }
                     Button("Diagnostics & sync") { openWindow(id: "diagnostics") }
+                    Button(model.tour == nil ? "Clear all scene fixtures…" : "Return all fixtures to inventory…", role: .destructive) { confirmClearScene = true }
+                        .disabled(model.fixtures.isEmpty || model.libraryBusy)
                     Button("Leave venue") {
                         model.flushHistoryEdits(); model.auditExternal("Leave venue")
                         model.resetToolboxActivation()
@@ -230,7 +236,7 @@ struct VenueControlsView: View {
                 Button(model.palmMapVisible ? "Close Palm Map" : "Palm Map", systemImage: "map") { model.togglePalmMap() }
                     .disabled(!model.palmMapVisible && (!model.canPlace || model.libraryBusy || model.navigationBlackoutActive))
                 if model.palmMapVisible {
-                    Text("Drag the marker to teleport; tap it for rotation rings.").font(.callout).frame(width: 460, alignment: .leading)
+                    Text("Select the cube, drag its handles, then Teleport. Yellow means obstructed; raise it or choose another spot.").font(.callout).frame(width: 460, alignment: .leading)
                     Button("Done") { model.closePalmMap() }.frame(minHeight: 60)
                 } else if let session = model.presetDrag.session {
                     let presetName = model.presets.first { $0.id == session.presetID }?.name ?? "Preset"

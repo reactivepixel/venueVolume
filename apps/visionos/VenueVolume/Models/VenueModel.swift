@@ -120,23 +120,61 @@ final class VenueModel {
         ids.formUnion(fixtures.filter { $0.groupID.map(groups.contains) ?? false }.map(\.id))
         return ids.intersection(Set(fixtures.map(\.id)))
     }
+    var selectedFixtures: [Fixture] { fixtures.filter { selectedFixtureIDs.contains($0.id) } }
     var fixtureGroups: [UUID] { Array(Set(fixtures.compactMap(\.groupID))).sorted { $0.uuidString < $1.uuidString } }
     func actionIDs(for id: UUID) -> Set<UUID> {
         if selectedFixtureIDs.contains(id) { return selectedFixtureIDs }
         guard let group = fixture(id)?.groupID else { return [id] }
         return Set(fixtures.filter { $0.groupID == group }.map(\.id))
     }
-    func groupSelection() {
-        guard selectedFixtureIDs.count > 1 else { return }
-        beginHistoryAction("Group fixtures"); defer { endHistoryAction() }
+    @discardableResult func groupSelection(name: String = "Group") -> Bool {
+        let name = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !name.isEmpty, name.count <= 120, !libraryBusy else { return false }
+        if var session = tour {
+            let ids = tourSelection
+            guard ids.count > 1 else { return false }
+            let group = FixtureGroup(name: name)
+            // Preserve the existing effective palette layers when moving between groups.
+            for unit in session.allUnits where ids.contains(unit.id) {
+                for channel in unit.fixture.channels.indices {
+                    if let palette = session.binding(for: unit, channel: channel) {
+                        session.programming.units[unit.id, default: [:]][channel] = palette
+                    }
+                }
+            }
+            session.show.groups.append(group)
+            for i in session.show.units.indices where ids.contains(session.show.units[i].id) { session.show.units[i].groupID = group.id }
+            for i in session.localUnits.indices where ids.contains(session.localUnits[i].id) { session.localUnits[i].groupID = group.id }
+            session.show.revision += 1
+            do {
+                let updated = try fixtures.map { try Touring.resolved($0, in: session) }
+                beginHistoryAction("Group fixtures · \(name)"); defer { endHistoryAction() }
+                guard commitTour(session, fixtures: updated, title: "Group fixtures · \(name)", publish: true) else { return false }
+                selectedGroupID = group.id; selectedUnitIDs = ids; multiSelection = false
+                return true
+            } catch { message = error.localizedDescription; return false }
+        }
+        guard selectedFixtureIDs.count > 1 else { return false }
+        beginHistoryAction("Group fixtures · \(name)"); defer { endHistoryAction() }
         let ids = selectedFixtureIDs, group = UUID()
-        for i in fixtures.indices where ids.contains(fixtures[i].id) { fixtures[i].groupID = group }
+        for i in fixtures.indices where ids.contains(fixtures[i].id) { fixtures[i].groupID = group; fixtures[i].groupName = name }
         additionalSelection = []; multiSelectionMode = false; revision += 1; persist()
+        return true
     }
     func ungroup(_ group: UUID) {
         beginHistoryAction("Ungroup fixtures"); defer { endHistoryAction() }
-        for i in fixtures.indices where fixtures[i].groupID == group { fixtures[i].groupID = nil }
+        for i in fixtures.indices where fixtures[i].groupID == group { fixtures[i].groupID = nil; fixtures[i].groupName = nil }
         additionalSelection = []; revision += 1; persist()
+    }
+    private var palmMapAttention = PalmMapToggle()
+    private var palmMapFollowsHand = false
+    func updatePalmMapActivation(attended: Bool, palmVisible: Bool, now: Double) {
+        let wasVisible = palmMapAttention.isVisible
+        let revealed = palmMapAttention.update(attended: attended || (wasVisible && palmVisible), now: now)
+        if !palmVisible, palmMapFollowsHand { closePalmMap() }
+        if revealed && !wasVisible && !palmMapVisible && isImmersed && canPlace && !libraryBusy && !navigationBlackoutActive {
+            palmMapRequestID = UUID(); palmMapFollowsHand = true
+        }
     }
     private(set) var palmMapRequestID: UUID?
     var palmMapVisible: Bool { palmMapRequestID != nil }
@@ -145,13 +183,13 @@ final class VenueModel {
         guard isImmersed, canPlace, !libraryBusy, !navigationBlackoutActive else { return }
         palmMapRequestID = UUID()
     }
-    func closePalmMap() { palmMapRequestID = nil }
+    func closePalmMap() { palmMapRequestID = nil; palmMapFollowsHand = false }
     var navigationBlackoutActive = false
     var navigationFadeMilliseconds: Double = 333 {
         didSet { defaults.set(navigationFadeMilliseconds, forKey: "venue.navigationFadeMilliseconds") }
     }
     var expandedID: UUID?
-    private(set) var presets: [DMXPreset] = LightingPreview.presets + PaletteLibrary.baseline
+    private(set) var presets: [DMXPreset] = PaletteLibrary.baseline
     private(set) var recent = RecentItems()
     var presetDraft = DMXPreset(name: "New palette") { didSet { queueHistoryEdit("Edit palette draft") } }
     var editingPresetID: UUID?
@@ -322,19 +360,19 @@ final class VenueModel {
         isDemoMode = isDemoModeDirectory(arguments)
         var seenKinds = Set<FixtureKind>()
         recentFixtureKinds = Array((defaults.stringArray(forKey: "venue.fixture-recents.v1") ?? []).compactMap(FixtureKind.init(rawValue:)).filter { seenKinds.insert($0).inserted }.prefix(6))
-        if !isDemoMode, let data = defaults.data(forKey: "venue.presets.v1"),
-           let saved = try? JSONDecoder().decode([DMXPreset].self, from: data),
-           saved.allSatisfy({ $0.validationIssue == nil }), Set(saved.map(\.id)).count == saved.count {
-            presets = saved
-            if !defaults.bool(forKey: "venue.paletteBaseline.v1") {
-                presets += PaletteLibrary.baseline.filter { baseline in !saved.contains { $0.id == baseline.id } }
-                if let upgraded = try? JSONEncoder().encode(presets) {
-                    defaults.set(upgraded, forKey: "venue.presets.v1")
-                    defaults.set(true, forKey: "venue.paletteBaseline.v1")
+        if !isDemoMode {
+            do {
+                try PaletteReleaseReset.run(placements: placements.directory, library: library.directory, defaults: defaults)
+                if let data = defaults.data(forKey: "venue.presets.v1"),
+                   let saved = try? JSONDecoder().decode([DMXPreset].self, from: data),
+                   saved.allSatisfy({ $0.validationIssue == nil }), Set(saved.map(\.id)).count == saved.count {
+                    presets = saved
                 }
+            } catch {
+                persistenceBlocked = true; historyBlocked = true; touringBlocked = true
+                message = "Could not reset incompatible saves: \(error.localizedDescription)"
+                return
             }
-        } else if !isDemoMode, defaults.data(forKey: "venue.presets.v1") == nil {
-            defaults.set(true, forKey: "venue.paletteBaseline.v1")
         }
         loadTouring()
         if let first = presets.first { presetDraft = first; editingPresetID = first.id }
@@ -1799,7 +1837,7 @@ extension VenueModel {
         if let tour { presets = tour.presets }
         else if let data = defaults.data(forKey: "venue.presets.v1"), let legacy = try? JSONDecoder().decode([DMXPreset].self, from: data), legacy.allSatisfy({ $0.validationIssue == nil && $0.focusTargetID == nil }) {
             presets = legacy
-        } else { presets = LightingPreview.presets + PaletteLibrary.baseline }
+        } else { presets = PaletteLibrary.baseline }
         if !presets.contains(where: { $0.id == editingPresetID }) { editingPresetID = nil }
     }
     @discardableResult private func commitTour(_ session: TourSession, fixtures updated: [Fixture], title: String, publish: Bool = false) -> Bool {
@@ -1831,7 +1869,7 @@ extension VenueModel {
     }
     func createTouringShow(name: String) {
         guard tour == nil || fixtures.isEmpty else { message = "Save and return this show’s placements before creating another show."; return }
-        var show = TouringShow(name: name.trimmingCharacters(in: .whitespacesAndNewlines), presets: tour == nil ? presets : LightingPreview.presets)
+        var show = TouringShow(name: name.trimmingCharacters(in: .whitespacesAndNewlines), presets: tour == nil ? presets : PaletteLibrary.baseline)
         show.units = fixtures.map { InventoryUnit(fixture: $0) }
         show.configurations[0].unitIDs = Set(fixtures.map(\.id))
         for fixture in fixtures {
