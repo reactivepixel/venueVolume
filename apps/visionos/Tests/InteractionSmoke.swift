@@ -25,9 +25,20 @@ import VenueVolumeCore
         check(model.toolboxRequestID == secondRecall && !model.toolboxVisible, "Closing while palm is raised stays closed")
         model.updateToolboxActivation(raised: false); model.updateToolboxActivation(raised: true)
         check(model.toolboxRequestID != secondRecall, "Lower then raise reopens a closed toolbox")
+        let a = UUID(), b = UUID()
+        model.toolboxAppeared(a); model.toolboxAppeared(b); model.toolboxDisappeared(a)
+        check(model.toolboxVisible && model.toolboxWindowIDs == [b] && model.toolboxPresentedID == b,
+              "A closing old Toolbox cannot hide the replacement window")
+        model.toolboxDisappeared(b)
+        check(!model.toolboxVisible && model.toolboxWindowIDs.isEmpty,"Closing all instances clears Toolbox visibility")
         let thirdRecall = model.toolboxRequestID
         model.requestToolbox()
         check(model.toolboxRequestID != thirdRecall, "Manual fallback can recall repeatedly without a hand toggle")
+        model.resetToolboxActivation()
+        check(model.toolboxRequestID == nil, "Venue exit cancels a pending recall instead of reopening its Toolbox")
+        model.updateToolboxActivation(raised: true)
+        check(model.toolboxRequestID != nil && model.toolboxRequestID != thirdRecall,
+              "Re-entering permits a fresh wrist activation after exit")
         model.activate(environment: environment); model.canPlace = true
         check(model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 2.66,y: 0,z: -2), surfaceID: "floor"), "First pilot")
         let first = model.fixtures[0].id
@@ -205,29 +216,29 @@ import VenueVolumeCore
         grouped.place(at: [5,0,-2], surfaceID: "floor")
         check(grouped.fixtures.count == 2 && grouped.isPlacing, "Repeated clicks place fixtures until Done")
         grouped.finishPlacement(); check(!grouped.isPlacing, "Done ends placement")
-        let a = grouped.fixtures[0].id, b = grouped.fixtures[1].id
-        grouped.select(a); grouped.multiSelectionMode = true; grouped.select(b)
-        check(grouped.selectedFixtureIDs == [a,b], "Multi-selection keeps both fixtures")
-        grouped.select(b)
-        check(grouped.selectedFixtureIDs == [a], "Toggle removes only the clicked ungrouped fixture")
-        grouped.select(b)
+        let groupFirstID = grouped.fixtures[0].id, groupSecondID = grouped.fixtures[1].id
+        grouped.select(groupFirstID); grouped.multiSelectionMode = true; grouped.select(groupSecondID)
+        check(grouped.selectedFixtureIDs == [groupFirstID,groupSecondID], "Multi-selection keeps both fixtures")
+        grouped.select(groupSecondID)
+        check(grouped.selectedFixtureIDs == [groupFirstID], "Toggle removes only the clicked ungrouped fixture")
+        grouped.select(groupSecondID)
         grouped.groupSelection()
-        let group = grouped.fixture(a)!.groupID!
-        grouped.deselect(); grouped.select(b)
-        check(grouped.selectedFixtureIDs == [a,b], "Selecting a group member selects the whole group")
-        grouped.multiSelectionMode = true; grouped.select(a)
+        let group = grouped.fixture(groupFirstID)!.groupID!
+        grouped.deselect(); grouped.select(groupSecondID)
+        check(grouped.selectedFixtureIDs == [groupFirstID,groupSecondID], "Selecting groupFirstID group member selects the whole group")
+        grouped.multiSelectionMode = true; grouped.select(groupFirstID)
         check(grouped.selectedFixtureIDs.isEmpty, "Toggle another member deselects the whole group")
-        grouped.select(a); grouped.multiSelectionMode = false
-        check(grouped.applyPreset(grouped.presets[0].id, to: a), "Apply palette to group")
+        grouped.select(groupFirstID); grouped.multiSelectionMode = false
+        check(grouped.applyPreset(grouped.presets[0].id, to: groupFirstID), "Apply palette to group")
         check(grouped.fixtures.allSatisfy { $0.presetID == grouped.presets[0].id }, "Group palette assignment updates all members")
         let beforePatch = grouped.fixtures
-        check(!grouped.updateFixtureDetails(a, name: "Group anchor", universe: 1, address: 510), "Group patch rejects overflowing footprint")
+        check(!grouped.updateFixtureDetails(groupFirstID, name: "Group anchor", universe: 1, address: 510), "Group patch rejects overflowing footprint")
         check(grouped.fixtures == beforePatch, "Invalid group patch is atomic")
-        check(grouped.updateFixtureDetails(a, name: "Group anchor", universe: 2, address: 33), "Group patch succeeds")
+        check(grouped.updateFixtureDetails(groupFirstID, name: "Group anchor", universe: 2, address: 33), "Group patch succeeds")
         check(grouped.fixtures[0].startAddress == 33 && grouped.fixtures[1].startAddress == 49, "Group patch allocates successive footprints")
         let beforeMove = grouped.fixtures
-        grouped.moveFixture(a, position: .init(x: 3, y: 0, z: -2), yawDegrees: 30)
-        check(grouped.fixture(b)!.position.x > beforeMove[1].position.x && grouped.fixture(b)!.orientation != beforeMove[1].orientation, "Group movement and orientation apply to all")
+        grouped.moveFixture(groupFirstID, position: .init(x: 3, y: 0, z: -2), yawDegrees: 30)
+        check(grouped.fixture(groupSecondID)!.position.x > beforeMove[1].position.x && grouped.fixture(groupSecondID)!.orientation != beforeMove[1].orientation, "Group movement and orientation apply to all")
         grouped.undo(); check(grouped.fixtures == beforeMove, "Group transform is one Undo step")
         grouped.redo()
         let restoredGroup = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder.appendingPathComponent("groups"))
@@ -236,14 +247,14 @@ import VenueVolumeCore
         let portable = try grouped.currentSetupSnapshot()
         let decoded = try JSONDecoder().decode(VenueSetup.self, from: JSONEncoder().encode(portable))
         check(decoded.placements.fixtures.allSatisfy { $0.groupID == group }, "Group membership survives portable setup encoding")
-        grouped.beginRetarget(a)
+        grouped.beginRetarget(groupFirstID)
         let target = Position3D(x: 2,y: 1.5,z: -7)
         check(grouped.acceptTarget(target) && grouped.saveTarget(), "Group retarget saves")
         check(grouped.fixtures.allSatisfy { $0.aimOverride != nil }, "Group target resolves per fixture")
-        check(grouped.fixture(a)!.aimOverride != grouped.fixture(b)!.aimOverride, "Separated fixtures use distinct DMX angles for common target")
+        check(grouped.fixture(groupFirstID)!.aimOverride != grouped.fixture(groupSecondID)!.aimOverride, "Separated fixtures use distinct DMX angles for common target")
         grouped.ungroup(group); check(grouped.fixtures.allSatisfy { $0.groupID == nil }, "Ungroup clears all membership")
         grouped.undo(); check(grouped.fixtures.allSatisfy { $0.groupID == group }, "Undo restores group")
-        grouped.remove(b); check(grouped.fixtures.isEmpty && grouped.fixtureGroups.isEmpty, "Delete acts on group without dangling membership")
+        grouped.remove(groupSecondID); check(grouped.fixtures.isEmpty && grouped.fixtureGroups.isEmpty, "Delete acts on group without dangling membership")
         grouped.navigationFadeMilliseconds = 500
         check(VenueModel(arguments: [], defaults: defaults, placementDirectory: folder).navigationFadeMilliseconds == 500, "Navigation fade preference persists")
         let layered = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder.appendingPathComponent("layers"))
@@ -283,5 +294,152 @@ import VenueVolumeCore
         check(!migratedAgain.presets.contains { $0.id == chase.id }, "Deleted baseline palettes are not recreated on relaunch")
         print("Layered palette session checks passed: independent attributes, group phase, portable dependencies, relaunch and selective deletion.")
         print("Catalog session checks passed: module isolation, grouped undo/redo, saved poses, preset preservation and fan controls.")
+    }
+}
+
+
+@MainActor enum FixtureMovementSmoke {
+    static func run(environment: EnvironmentManifest) throws {
+        func check(_ condition: @autoclosure () -> Bool, _ message: String) { precondition(condition(),message) }
+        let defaults = UserDefaults(suiteName: "fixture-movement-" + UUID().uuidString)!
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let model = VenueModel(arguments: [],defaults: defaults,placementDirectory: folder)
+        model.activate(environment: environment); model.canPlace = true
+        check(model.dropFixture([FixtureKind.movingHead.dragToken],at: .init(x: 2.66,y: 0,z: -2),surfaceID: "floor"),"Place pilot")
+        let id = model.fixtures[0].id
+        model.deselect(); model.tapFixture(id)
+        check(model.selectedID == id && !model.gizmoVisible,"First click selects")
+        model.tapFixture(id)
+        check(model.gizmoVisible && model.transformMode == .move && model.isSurfaceMoveActive,"Second click enables surface movement and rings")
+        let original = model.fixtures[0], nodes = model.history!.nodes.count
+        let start = FixtureAiming.vector(original.position)
+        model.beginSurfaceDrag(id,at: start)
+        check(model.updateSurfaceDrag(to: start+[0.12,4,0.1]),"Slide floor")
+        check(model.updateSurfaceDrag(to: start+[0.25,-3,0.2]),"Continue same drag")
+        model.endTransformDrag()
+        let moved = model.fixtures[0]
+        check(moved.position.y == original.position.y && abs(moved.position.x-original.position.x-0.25) < 0.001,"Body drag stays on floor and uses the original gesture position")
+        check(moved.orientation == original.orientation && moved.channels == original.channels,"Body drag preserves mount and DMX")
+        check(model.history!.nodes.count == nodes+1,"Body drag is one Undo step")
+        model.undo(); check(model.fixtures[0] == original,"Undo restores body drag")
+        model.redo(); check(model.fixtures[0] == moved,"Redo restores plane and position")
+        model.beginTransform(id)
+        let beforeBad = model.fixtures
+        model.beginSurfaceDrag(id,at: FixtureAiming.vector(moved.position))
+        check(!model.updateSurfaceDrag(to: [-30,0,-2]),"Reject off-plane support bounds")
+        model.endTransformDrag(); check(model.fixtures == beforeBad,"Rejected drag keeps last valid position")
+        model.beginTransform(id)
+        let max = environment.bounds.max, min = environment.bounds.min
+        let wall = Position3D(x: min[0],y: 1.3,z: (min[2]+max[2])/2)
+        check(model.moveToSurface(at: wall,normal: .init(x: 1,y: 0,z: 0)),"Move to wall")
+        let wallFixture = model.fixtures[0]
+        check(FixtureAiming.length(FixtureAiming.rotate(wallFixture.orientation,[0,1,0])-SIMD3<Float>(1,0,0)) < 0.001 && wallFixture.channels == original.channels,"Wall aligns mount while preserving DMX")
+        model.beginSurfaceDrag(id,at: [0,1,0])
+        check(model.updateSurfaceDrag(to: [5,1.2,0.1]),"Slide wall")
+        model.endTransformDrag()
+        check(abs(model.fixtures[0].position.x-wall.x) < 0.001 && abs(model.fixtures[0].position.y-wall.y-0.2) < 0.001,"Wall drag ignores normal movement")
+        model.beginTransform(id)
+        check(model.moveToSurface(at: .init(x: 3,y: max[1],z: -3),normal: .init(x: 0,y: -1,z: 0)),"Move to ceiling")
+        let ceiling = model.fixtures[0]
+        check(FixtureAiming.length(FixtureAiming.rotate(ceiling.orientation,[0,1,0])-SIMD3<Float>(0,-1,0)) < 0.001,"Ceiling mount faces into room")
+        let restored = VenueModel(arguments: [],defaults: defaults,placementDirectory: folder)
+        restored.activate(environment: environment)
+        check(restored.fixtures[0] == ceiling,"Mount plane survives relaunch")
+        model.deselect(); check(!model.isSurfaceMoveActive && !model.gizmoVisible,"Deselect ends movement")
+        let kinds = Array(FixtureKind.allCases.filter { $0 != .movingHead }.prefix(7))
+        for kind in kinds { model.selectFixtureKind(kind) }
+        model.selectFixtureKind(kinds[4])
+        check(model.quickFixtureKinds.first == .movingHead && model.quickFixtureKinds.count == 6,"Pinned pilot plus five recent models")
+        check(model.quickFixtureKinds[1] == kinds[4] && Set(model.quickFixtureKinds).count == 6,"Recents deduplicate and reorder")
+        let relaunched = VenueModel(arguments: [],defaults: defaults,placementDirectory: folder)
+        check(relaunched.quickFixtureKinds == model.quickFixtureKinds,"Recent model choices persist independently of venues")
+        model.toolboxVisible = false; model.showVenueControls()
+        let recall = model.toolboxRequestID
+        check(recall != nil && model.venueControlsVisible,"Appearing controls exposes groupFirstID closed Toolbox")
+        model.showVenueControls()
+        check(model.toolboxRequestID == recall,"Repeated appearance callbacks do not queue duplicate Toolboxes")
+        model.toolboxVisible = true; model.showVenueControls()
+        check(model.toolboxRequestID == recall,"An open Toolbox is not recalled or repositioned")
+        print("Fixture movement checks passed: second click, floor/wall/ceiling moves, plane dragging, atomic Undo/Redo, persistence, compact recents and dock wrist reveal.")
+    }
+}
+
+@MainActor enum ViewerNavigationSmoke {
+    static func run(environment: EnvironmentManifest) throws {
+        func check(_ condition: @autoclosure () -> Bool, _ message: String) { precondition(condition(),message) }
+        let suite = "viewer-navigation-"+UUID().uuidString
+        let defaults = UserDefaults(suiteName: suite)!
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: folder); defaults.removePersistentDomain(forName: suite) }
+        let model = VenueModel(arguments: [],defaults: defaults,placementDirectory: folder)
+        model.activate(environment: environment); model.canPlace = true; model.isImmersed = true
+        _ = model.dropFixture([FixtureKind.movingHead.dragToken],at: .init(x: 2.66,y: 0,z: -2),surfaceID: "floor")
+        let fixtures = model.fixtures, presets = model.presets, count = model.history!.nodes.count
+        let moved = ViewerNavigationPose(offset: .init(x: -30,y: 20,z: -100),orientation: FixtureAiming.euler(yaw: 25,pitch: 10,roll: 5))
+        model.beginTransform(model.fixtures[0].id)
+        model.beginViewerNavigation(.index)
+        check(model.gizmoVisible,"Viewer movement keeps mount controls available")
+        model.updateViewerNavigation(.init(offset: .init(x: 1,y: 2,z: 3)))
+        model.updateViewerNavigation(moved); model.endViewerNavigation()
+        check(model.history!.nodes.count == count+1,"Navigation drag is one history action")
+        check(model.fixtures == fixtures && model.presets == presets,"Navigation never edits fixture mounts or DMX")
+        model.undo(); check(model.viewerPose == .init(),"Undo navigation")
+        model.redo(); check(model.viewerPose == moved,"Redo navigation")
+        let restored = VenueModel(arguments: [],defaults: defaults,placementDirectory: folder)
+        restored.activate(environment: environment)
+        check(restored.viewerPose == moved,"Virtual navigation resumes from history")
+        model.resetViewerToSpawn(); check(model.viewerPose == .init(),"Full reset")
+        model.undo(); check(model.viewerPose == moved,"Reset is undoable")
+        let encoded = try JSONEncoder().encode(model.auditState!)
+        var legacy = try JSONSerialization.jsonObject(with: encoded) as! [String:Any]
+        legacy.removeValue(forKey: "viewerPose")
+        let old = try JSONDecoder().decode(VenueAuditState.self,from: JSONSerialization.data(withJSONObject: legacy))
+        try old.validate(); check(old.viewerPose == nil,"Legacy audit snapshots remain readable")
+        model.stepViewer(offset: [0,0,-0.5],yaw: 15)
+        check(model.viewerPose != moved && model.viewerPose.isValid,"Simulator/fallback navigation")
+        model.undo(); check(model.viewerPose == moved,"Fallback navigation is undoable")
+        print("Viewer navigation checks passed: unbounded movement, fixture isolation, atomic Undo/Redo, reset, history resume, legacy audit decoding and fallback controls.")
+    }
+}
+
+
+@MainActor enum PresetApplicationSmoke {
+    static func run(environment: EnvironmentManifest) throws {
+        func check(_ condition: @autoclosure () -> Bool, _ message: String) { precondition(condition(), message) }
+        let suite = "preset-application-"+UUID().uuidString
+        let defaults = UserDefaults(suiteName: suite)!
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: folder); defaults.removePersistentDomain(forName: suite) }
+        let model = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder)
+        model.activate(environment: environment); model.canPlace = true; model.isImmersed = true
+        check(model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 2.66,y: 0,z: -2),surfaceID: "floor"), "Place preset target")
+        model.cancelPicking()
+        let fixture = model.fixtures[0], preset = model.presets.first { $0.id != fixture.presetID }!
+        let fixtures = model.fixtures, presets = model.presets, count = model.history!.nodes.count
+        model.activatePresetApplication(preset.id)
+        check(model.presetDrag.isActive && model.draggingPresetID == preset.id, "Explicit Apply activates without row geometry")
+        model.toolboxVisible = false
+        check(model.presetDrag.isActive, "Closing Toolbox preserves Apply")
+        model.endPresetDrag()
+        check(!model.presetDrag.isActive && model.draggingPresetID == nil, "Lower pane Cancel ends Apply")
+        check(model.fixtures == fixtures && model.presets == presets && model.history!.nodes.count == count, "Cancel does not mutate scene/history")
+        model.activatePresetApplication(preset.id); model.presetDrag.propose(fixture.id)
+        check(model.applyProposedPreset(), "Lower pane Apply commits proposal")
+        check(model.fixture(fixture.id)?.presetID == preset.id && !model.presetDrag.isActive && model.presetDrag.feedback?.succeeded == true, "Apply clears session and exposes success")
+        check(model.history!.nodes.count == count+1 && !model.applyProposedPreset(), "Apply is exactly one undo step")
+        model.undo(); check(model.fixtures == fixtures, "Undo restores prior preset")
+        model.redo(); check(model.fixture(fixture.id)?.presetID == preset.id, "Redo restores applied preset")
+        model.activatePresetApplication(preset.id)
+        model.beginViewerNavigation(.index)
+        check(!model.presetDrag.isActive, "Left-hand navigation cancels preset application")
+        model.endViewerNavigation()
+        model.activatePresetApplication(preset.id); model.presetDrag.propose(UUID())
+        let unchanged = model.fixtures
+        check(!model.applyProposedPreset() && model.presetDrag.feedback?.succeeded == false && !model.presetDrag.isActive, "Stale target fails with error feedback")
+        check(model.fixtures == unchanged, "Failed apply preserves fixture values")
+        model.isImmersed = false; model.activatePresetApplication(preset.id)
+        check(!model.presetDrag.isActive, "Cannot activate outside venue")
+        print("Preset application checks passed: explicit activation, Toolbox independence, Cancel, single apply, error feedback, Undo/Redo and left-hand isolation.")
     }
 }

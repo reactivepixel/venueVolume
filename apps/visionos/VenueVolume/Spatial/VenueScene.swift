@@ -36,9 +36,9 @@ final class VenueScene {
     private var rigs: [UUID: FixtureRig] = [:]
     private let transformGizmo = FixtureTransformGizmo()
     private let presetDragVisual = PresetDragVisual()
-    #if DEBUG
-    private var presetInputFromScene: AffineTransform3D?
-    #endif
+    private var presetReduceMotion = false
+    private var latestRightHand: HandAnchor?
+    private var lastRightHandUpdate: Double = 0
     let headAnchor = AnchorEntity(.head, trackingMode: .continuous)
     private let repository: (any EnvironmentRepository)?
     private let environmentID: String
@@ -52,8 +52,6 @@ final class VenueScene {
     private let palmMap = PalmNavigationVisual()
     private let placementGhost = Entity()
     private let groupLinks = Entity()
-    private var latestRightHand: HandAnchor?
-    private var lastRightHandUpdate: Double = 0
     private var hasHandAccess = false
     private var lastRightPinchAt = Double.leastNormalMagnitude
     private var navigationGestureCancelled = false
@@ -67,6 +65,10 @@ final class VenueScene {
     private var groupAnimationTime: Double = 0
     private var reduceNavigationMotion = false
     private var connectorRevision = ""
+    private var leftNavigation = LeftHandNavigation()
+    private var spawnRootTransform = Transform()
+    private var spawnFrameRotation = simd_quatf(angle: 0,axis: [0,1,0])
+    private var viewerResetToken: UUID?
     private var latestLeftHand: HandAnchor?
     private var lastHandUpdate: Double = 0
     private var labelLayoutElapsed: Double = 0
@@ -172,6 +174,7 @@ final class VenueScene {
             try Task.checkCancellation()
             try model.prepareHistoryRestore()
             root.children.removeAll(); cubes.removeAll(); rigs.removeAll(); labels.removeAll(); drops.removeAll()
+            leftNavigation.cancel(at: ProcessInfo.processInfo.systemUptime); model.endViewerNavigation()
             aligned = false; root.transform = Transform(); root.isEnabled = false
             root.addChild(room); proxies.forEach { root.addChild($0) }
             roomMaterials = newMaterials; displayedWhiteRoom = nil
@@ -206,7 +209,9 @@ final class VenueScene {
     func startAnimation(in content: RealityViewContent) {
         frameSubscription = content.subscribe(to: SceneEvents.Update.self) { [weak self] event in
             guard let self else { return }
+            if let model = self.model { self.applyViewerNavigation(model: model) }
             self.rigs.values.forEach { $0.tick(deltaTime: event.deltaTime) }
+            if let model = self.model, model.presetDrag.isActive { self.updatePresetDrag(model: model, reduceMotion: self.presetReduceMotion) }
             self.presetDragVisual.tick()
             self.tickPhasers()
             self.tickNavigation()
@@ -328,22 +333,57 @@ final class VenueScene {
             if !hasHandAccess || CACurrentMediaTime()-lastRightPinchAt < 0.2 { _ = palmMap.tap(entity) }
             return
         }
-        if !model.isPickingRoom {
-            if FixtureTransformGizmo.handle(entity) != nil { return }
-            if let id = UUID(uuidString: entity.name) { model.select(id) }
-            else if entity.name.hasPrefix("aim-surface:") || entity.name.hasPrefix("room-collider:") {
-                model.deselect()
+        if FixtureTransformGizmo.handle(entity) != nil { return }
+        if let id = UUID(uuidString: entity.name), !model.isPlacing && !model.isRetargeting {
+            model.tapFixture(id)
+        } else if model.isSurfaceMoveActive, isRoomSurface(entity) {
+            guard let hit = surfaceHit(entity: entity, point: position),
+                  let fixture = model.selectedID.flatMap({ model.fixture($0) }),
+                  supportsSurface(at: hit.point, normal: hit.normal, radius: fixture.footprintRadius) else {
+                model.message = "Choose a solid surface with enough room for this fixture."; return
             }
+            let surface = model.environment?.surfaces.first { $0.fixturePosition(hit: .init(x: hit.point.x,y: hit.point.y,z: hit.point.z), halfSize: fixture.footprintRadius) != nil && hit.normal.y > 0.98 }
+            _ = model.moveToSurface(at: .init(x: hit.point.x,y: hit.point.y,z: hit.point.z),
+                                   normal: .init(x: hit.normal.x,y: hit.normal.y,z: hit.normal.z), surfaceID: surface?.id)
+        } else if !model.isPickingRoom {
+            if isRoomSurface(entity) { model.deselect() }
         } else if entity.name.hasPrefix("aim-surface:"), model.isRetargeting {
             _ = model.acceptTarget(point)
         } else if entity.name.hasPrefix("aim-surface:"), model.scannedMesh != nil, model.isPlacing {
             model.placeOnMesh(at: point)
-        } else if entity.name.hasPrefix("aim-surface:"), model.scannedMesh != nil, model.scenePick != nil {
-            model.repositionOnMesh(at: point)
-        } else if entity.name.hasPrefix("room-collider:") {
-            let id = String(entity.name.dropFirst("room-collider:".count))
-            if model.isPlacing { model.place(at: position, surfaceID: id) }
-            else if model.scenePick != nil { model.reposition(at: point, surfaceID: id) }
+        } else if entity.name.hasPrefix("room-collider:"), model.isPlacing {
+            model.place(at: position, surfaceID: String(entity.name.dropFirst("room-collider:".count)))
+        }
+    }
+
+    private func isRoomSurface(_ entity: Entity) -> Bool {
+        entity.name.hasPrefix("aim-surface:") || entity.name.hasPrefix("room-collider:")
+    }
+
+    private func surfaceHit(entity: Entity, point: SIMD3<Float>) -> (point: SIMD3<Float>, normal: SIMD3<Float>)? {
+        guard let scene = root.scene else { return nil }
+        let eye = root.convert(position: SIMD3(deviceTransform.columns.3.x, deviceTransform.columns.3.y, deviceTransform.columns.3.z), from: nil)
+        let direction = point-eye, distance = simd_length(direction)
+        guard distance > 0.001 else { return nil }
+        let hits = scene.raycast(origin: eye, direction: direction/distance, length: distance+0.08,
+                                 query: .all, mask: .all, relativeTo: root)
+        guard let hit = hits.filter({ $0.entity == entity }).min(by: { abs($0.distance-distance) < abs($1.distance-distance) }),
+              simd_length(hit.normal) > 0.001 else { return nil }
+        let normal = simd_normalize(hit.normal)
+        return (hit.position, simd_dot(normal, eye-hit.position) < 0 ? -normal : normal)
+    }
+
+    /// Check the rendered room beneath the mount's center and four corners.
+    private func supportsSurface(at point: SIMD3<Float>, normal: SIMD3<Float>, radius: Float) -> Bool {
+        guard let scene = root.scene else { return false }
+        let orientation = FixtureAiming.alignedMount(.init(), normal: normal)
+        return [(Float(0),Float(0)),(-radius,-radius),(-radius,radius),(radius,-radius),(radius,radius)].allSatisfy { x,z in
+            let sample = point + FixtureAiming.rotate(orientation, [x,0,z])
+            return scene.raycast(origin: sample+normal*0.04, direction: -normal, length: 0.08,
+                                 query: .all, mask: .all, relativeTo: root).contains {
+                $0.entity.name.hasPrefix("aim-surface:") && simd_distance($0.position,sample) < 0.025
+                    && abs(simd_dot(simd_normalize($0.normal),normal)) > 0.98
+            }
         }
     }
 
@@ -362,8 +402,130 @@ final class VenueScene {
             model.updateTransformDrag(to: position)
             return true
         }
+        if let id = UUID(uuidString: entity.name), id == model.selectedID, model.gizmoVisible,
+           !model.isRetargeting && !model.isPlacing {
+            if !model.isTransformDragging { model.beginSurfaceDrag(id, at: start) }
+            if let candidate = model.surfaceDragDestination(to: position),
+               supportsSurface(at: FixtureAiming.vector(candidate.point), normal: FixtureAiming.vector(candidate.normal), radius: candidate.radius) {
+                _ = model.updateSurfaceDrag(to: position)
+            } else { model.message = "Keep the fixture on a solid part of its current plane." }
+            return true
+        }
         return false
     }
+
+    #if DEBUG
+    func runNavigationSmoke(model: VenueModel) async {
+        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--navigation-smoke") else { return }
+        do {
+            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
+            model.resetViewerToSpawn(); applyViewerNavigation(model: model)
+            let fixtures = model.fixtures, presets = model.presets
+            let eye = SIMD3<Float>(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
+            let initialEye = root.convert(position: eye,from: nil)
+            var time = ProcessInfo.processInfo.systemUptime
+            func send(_ finger: NavigationFinger? = nil, point: SIMD3<Float> = .zero) {
+                time += 0.04
+                updateLeftNavigation(.init(thumb: point,index: point+[finger == .index ? 0.01 : 0.1,0,0],middle: point+[0,finger == .middle ? 0.01 : 0.1,0]),at: time,model: model)
+            }
+            send(); send(.index); send(.index,point: [10,4,-10]); send(); send()
+            try await Task.sleep(for: .milliseconds(100))
+            let moved = model.viewerPose, movedEye = root.convert(position: eye,from: nil)
+            guard simd_distance(movedEye,initialEye) > 30, model.fixtures == fixtures, model.presets == presets else { throw EnvironmentError.invalid("Travel failed: distance=\(simd_distance(movedEye,initialEye)) offset=\(moved.offset) fixturesEqual=\(model.fixtures == fixtures) presetsEqual=\(model.presets == presets)") }
+            model.undo(); applyViewerNavigation(model: model)
+            try await Task.sleep(for: .milliseconds(100))
+            guard simd_distance(root.convert(position: eye,from: nil),initialEye) < 0.001 else { throw EnvironmentError.invalid("Navigation Undo failed") }
+            model.redo(); applyViewerNavigation(model: model)
+            guard model.viewerPose == moved else { throw EnvironmentError.invalid("Navigation Redo failed") }
+            send(.middle); send(.middle,point: [0.1,0.2,0.1]); send(); send()
+            try await Task.sleep(for: .milliseconds(100))
+            guard model.viewerPose.orientation != .init(), model.viewerPose.offset == moved.offset,
+                  simd_distance(root.convert(position: eye,from: nil),movedEye) < 0.001 else { throw EnvironmentError.invalid("Rotation moved viewer position") }
+            send(.middle); send(); send(); send(.middle); send(); send()
+            guard model.viewerPose.orientation == .init(), model.viewerPose.offset == moved.offset else { throw EnvironmentError.invalid("Double middle reset failed") }
+            send(.index); send(); send(); send(.index); send(); send()
+            try await Task.sleep(for: .milliseconds(100))
+            guard model.viewerPose == .init(), simd_distance(root.convert(position: eye,from: nil),initialEye) < 0.001 else { throw EnvironmentError.invalid("Double index spawn reset failed") }
+            time += 0.5; send()
+            guard !model.navigationInputReserved else { throw EnvironmentError.invalid("Navigation release kept editing blocked") }
+            model.message = "Left index moves · left middle rotates · double pinch resets."
+            print("VIEWER_NAVIGATION_SMOKE_PASS freeTravel=true fixedFixtures=true rotationPivot=true doubleMiddle=true doubleIndex=true undoRedo=true release=true")
+        } catch { print("VIEWER_NAVIGATION_SMOKE_FAIL \(error)") }
+    }
+
+    /// Exercises real collision normals and body-drag routing, not hand input.
+    func runFixtureMovementSmoke(model: VenueModel) async {
+        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--movement-smoke") else { return }
+        do {
+            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
+            model.clearScene()
+            guard model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 2.66,y: 0,z: -2.3), surfaceID: "floor"),
+                  let fixture = model.fixtures.first else { throw EnvironmentError.invalid("Pilot placement failed") }
+            try await Task.sleep(for: .milliseconds(700))
+            model.deselect()
+            guard let fixtureRoot = root.findEntity(named: fixture.id.uuidString),
+                  let target = fixtureRoot.children.first(where: { $0.components.has(InputTargetComponent.self) }) else { throw EnvironmentError.invalid("Fixture input target missing") }
+            let start = target.position(relativeTo: root)
+            handleTap(entity: target,position: start,model: model)
+            guard !model.gizmoVisible else { throw EnvironmentError.invalid("First tap did not stay selection-only") }
+            handleTap(entity: target,position: start,model: model)
+            try await Task.sleep(for: .milliseconds(250))
+            guard model.gizmoVisible, target.components.has(SpatialDragTarget.self),
+                  handleDrag(entity: target,position: start+[0.1,0.2,0.1],start: start,model: model) else { throw EnvironmentError.invalid("Second click/body drag routing failed") }
+            model.endTransformDrag()
+            guard let slid = model.fixture(fixture.id), abs(slid.position.x-fixture.position.x-0.1) < 0.001,
+                  slid.position.y == fixture.position.y, slid.channels == fixture.channels else { throw EnvironmentError.invalid("Rendered body drag left its plane or failed: \(model.message ?? "unknown")") }
+            model.undo(); guard model.fixture(fixture.id) == fixture else { throw EnvironmentError.invalid("Body drag Undo failed") }
+            model.redo(); model.beginTransform(fixture.id)
+            guard let physics = root.scene else { throw EnvironmentError.invalid("Physics scene missing") }
+            let floorPoint = SIMD3<Float>(2.9,0,-2.7)
+            guard let floor = physics.raycast(origin: floorPoint+[0,0.1,0],direction: [0,-1,0],length: 0.2,query: .all,mask: .all,relativeTo: root).first(where: { $0.entity.name.hasPrefix("aim-surface:") }) else { throw EnvironmentError.invalid("Rendered floor missing") }
+            handleTap(entity: floor.entity,position: floor.position,model: model)
+            guard let onFloor = model.fixture(fixture.id), simd_distance(FixtureAiming.vector(onFloor.position),floor.position) < 0.001,
+                  onFloor.mountPlane != nil else { throw EnvironmentError.invalid("Surface tap did not move to rendered floor: \(model.message ?? "unknown")") }
+            var onWall: Fixture?
+            for collider in model.environment?.colliders ?? [] where collider.size[1] > 1 {
+                let axis = collider.size[0] < collider.size[2] ? 0 : 2
+                guard collider.size[axis] < 0.5 else { continue }
+                let rotation = Quaternion3D(x: collider.rotation[0],y: collider.rotation[1],z: collider.rotation[2],w: collider.rotation[3])
+                for sign: Float in [-1,1] {
+                    var local = SIMD3<Float>.zero; local[axis] = sign
+                    let normal = FixtureAiming.rotate(rotation,local)
+                    let face = SIMD3<Float>(collider.center[0],collider.center[1],collider.center[2]) + normal*collider.size[axis]/2
+                    let hits = physics.raycast(origin: face+normal*0.15,direction: -normal,length: 0.3,query: .all,mask: .all,relativeTo: root)
+                    guard let hit = hits.first(where: { $0.entity.name.hasPrefix("aim-surface:") && abs($0.normal.y) < 0.1 }) else { continue }
+                    handleTap(entity: hit.entity,position: hit.position,model: model)
+                    if let candidate = model.fixture(fixture.id), let plane = candidate.mountPlane, abs(plane.normal.y) < 0.1 {
+                        onWall = candidate; break
+                    }
+                }
+                if onWall != nil { break }
+            }
+            guard let onWall, let plane = onWall.mountPlane,
+                  FixtureAiming.length(FixtureAiming.rotate(onWall.orientation,[0,1,0])-FixtureAiming.vector(plane.normal)) < 0.001,
+                  onWall.channels == fixture.channels else { throw EnvironmentError.invalid("No rendered wall accepted mount alignment: \(model.message ?? "unknown")") }
+            model.undo(); guard model.fixture(fixture.id) == onFloor else { throw EnvironmentError.invalid("Wall move Undo failed") }
+            model.redo(); guard model.fixture(fixture.id) == onWall else { throw EnvironmentError.invalid("Wall move Redo failed") }
+            model.deselect()
+            try await Task.sleep(for: .milliseconds(200))
+            guard !target.components.has(SpatialDragTarget.self),
+                  let dock = headAnchor.children.first(where: { $0.name == "venue-controls-dock" }),
+                  dock.visualBounds(relativeTo: dock).extents.x > dock.visualBounds(relativeTo: dock).extents.y*4 else { throw EnvironmentError.invalid("Deselection or horizontal controls dock failed") }
+            // Presentation follows the same user commands after assertions.
+            model.beginTransform(fixture.id)
+            handleTap(entity: floor.entity,position: floor.position,model: model)
+            if ProcessInfo.processInfo.arguments.contains("--movement-screenshot") {
+                let tablePoint = SIMD3<Float>(1.5,0.74,-3.68)
+                if let table = physics.raycast(origin: tablePoint+[0,0.1,0],direction: [0,-1,0],length: 0.2,query: .all,mask: .all,relativeTo: root).first(where: { $0.entity.name.hasPrefix("aim-surface:") }) {
+                    handleTap(entity: table.entity,position: table.position,model: model)
+                }
+            }
+            for kind in FixtureKind.allCases.filter({ $0 != .movingHead }).prefix(5) { model.rememberFixtureKind(kind) }
+            model.message = "Movement runtime checks passed."
+            print("FIXTURE_MOVEMENT_SMOKE_PASS secondClick=true bodySlide=true floorHit=true wallNormal=true undoRedo=true horizontalDock=true")
+        } catch { print("FIXTURE_MOVEMENT_SMOKE_FAIL \(error)") }
+    }
+    #endif
 
     #if DEBUG
     /// Native renderer routing check, separate from human pinch acceptance.
@@ -409,59 +571,46 @@ final class VenueScene {
     #endif
 
     #if DEBUG
-    /// Feeds synthetic pointer samples through the real snap/render/commit path.
-    /// The source is a measured preset row, never a fabricated window position.
-    /// This intentionally does not claim physical pinch acceptance.
-    func runPresetDragSmoke(model: VenueModel) async {
+    /// Synthetic world-space pointer samples exercise the real render/commit path.
+    /// They do not establish physical pinch acceptance.
+    func runPresetDragSmoke(model: VenueModel, closeToolbox: () -> Void) async {
         guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--preset-drag-smoke") else { return }
         do {
             for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
-            model.toolboxLibraryTab = 1
-            model.requestToolbox()
+            model.toolboxLibraryTab = 1; model.requestToolbox()
             guard let fixture = model.fixtures.first,
-                  let preset = model.presets.first(where: { $0.id != fixture.presetID }) else {
+                  let preset = model.presets.first(where: { $0.id != fixture.presetID }),
+                  let entity = rigs[fixture.id]?.entity ?? cubes[fixture.id] else {
                 throw EnvironmentError.invalid("Missing smoke fixture or alternate preset")
             }
-            for _ in 0..<100 where model.presetDrag.sources[preset.id] == nil ||
-                model.toolboxPresentedID != model.toolboxRequestID || !model.toolboxVisible {
-                try await Task.sleep(for: .milliseconds(100))
-            }
-            // Window geometry is available before its presentation fade ends.
-            // Wait for the recalled window, then sample the current row origin.
-            try await Task.sleep(for: .seconds(3))
-            guard let source = model.presetDrag.sources[preset.id], let transform = presetInputFromScene,
-                  let inverse = transform.inverse, model.toolboxVisible,
-                  model.toolboxPresentedID == model.toolboxRequestID,
-                  let entity = rigs[fixture.id]?.entity ?? cubes[fixture.id] else {
-                throw EnvironmentError.invalid("Wrist preset source geometry unavailable")
-            }
-            func input(_ point: SIMD3<Float>) -> SIMD3<Float> {
-                let result = Point3D(x: Double(point.x), y: Double(point.y), z: Double(point.z)).applying(transform)
-                return [Float(result.x), Float(result.y), Float(result.z)]
-            }
+            model.endPresetDrag(); updatePresetDrag(model: model, reduceMotion: false)
+            guard !presetDragVisual.hasTether else { throw EnvironmentError.invalid("Idle tether is visible") }
+            model.activatePresetApplication(preset.id)
+            guard let id = model.presetDrag.session?.id else { throw EnvironmentError.invalid("Activation failed") }
             let target = entity.visualBounds(relativeTo: nil, excludeInactive: true).center
-            let row = Point3D(x: Double(source.x), y: Double(source.y), z: Double(source.z)).applying(inverse)
-            let rowWorld = SIMD3<Float>(Float(row.x), Float(row.y), Float(row.z))
-            let right = SIMD3<Float>(deviceTransform.columns.0.x, deviceTransform.columns.0.y, deviceTransform.columns.0.z)
-            let up = SIMD3<Float>(deviceTransform.columns.1.x, deviceTransform.columns.1.y, deviceTransform.columns.1.z)
-            let towardViewer = SIMD3<Float>(deviceTransform.columns.2.x, deviceTransform.columns.2.y, deviceTransform.columns.2.z)
-            // Explicitly synthetic hand data lets the two-segment tether leave
-            // the window's silhouette. A straight source-to-fixture segment is
-            // normally hidden by the system window, even at correct coordinates.
-            let hand = input(rowWorld + right*0.85 + up*0.45 + towardViewer*0.10)
-            let initial = PresetDragState.Sample(source: source, cursor: input(target + right + up*0.6), hand: hand)
-            guard let id = model.presetDrag.begin(presetID: preset.id, sample: initial) else { throw CancellationError() }
-            model.beginPresetDrag(preset.id)
+            let eye = SIMD3<Float>(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
+            let right = SIMD3<Float>(deviceTransform.columns.0.x,deviceTransform.columns.0.y,deviceTransform.columns.0.z)
+            let up = SIMD3<Float>(deviceTransform.columns.1.x,deviceTransform.columns.1.y,deviceTransform.columns.1.z)
+            let forward = -SIMD3<Float>(deviceTransform.columns.2.x,deviceTransform.columns.2.y,deviceTransform.columns.2.z)
+            let hand = eye+right*0.42-up*0.28+forward*0.5
+            let initial = PresetDragState.Sample(cursor: target+right+up*0.6, hand: hand)
             model.presetDrag.update(id, sample: initial, armed: true)
             try await Task.sleep(for: .seconds(1))
-            guard model.presetDrag.proposedFixtureID == nil else { throw EnvironmentError.invalid("Unsnapped presentation unexpectedly selected a fixture") }
-            print("PRESET_DRAG_SMOKE_DOTTED settled=true syntheticHand=true")
+            guard model.presetDrag.proposedFixtureID == nil,
+                  presetDragVisual.visibleOrigin == hand else { throw EnvironmentError.invalid("Dotted tether did not start at the user") }
+            print("PRESET_DRAG_SMOKE_DOTTED viewerOrigin=true rowIndependent=true")
             try await Task.sleep(for: .seconds(6))
-            let snapped = PresetDragState.Sample(source: source, cursor: input(target), hand: hand)
+            closeToolbox()
+            try await Task.sleep(for: .milliseconds(500))
+            guard model.presetDrag.session?.id == id, !model.toolboxVisible else { throw EnvironmentError.invalid("Toolbox dismissal ended Apply or did not close") }
+            model.presetDrag.release(id)
+            try await Task.sleep(for: .milliseconds(200))
+            guard model.presetDrag.session?.id == id else { throw EnvironmentError.invalid("Missed release ended Apply") }
+            let snapped = PresetDragState.Sample(cursor: target, hand: hand)
             model.presetDrag.update(id, sample: snapped, armed: true)
             try await Task.sleep(for: .seconds(1))
-            guard model.presetDrag.proposedFixtureID == fixture.id else { throw EnvironmentError.invalid("Fixture did not snap") }
-            print("PRESET_DRAG_SMOKE_SOLID settled=true syntheticHand=true")
+            guard model.presetDrag.proposedFixtureID == fixture.id, presetDragVisual.isSnapped else { throw EnvironmentError.invalid("Fixture did not snap") }
+            print("PRESET_DRAG_SMOKE_SOLID curved=true targetRing=true")
             try await Task.sleep(for: .seconds(6))
             let oldCount = model.history?.entries.count ?? 0
             model.presetDrag.release(id)
@@ -469,17 +618,21 @@ final class VenueScene {
             guard model.fixture(fixture.id)?.presetID == preset.id,
                   model.history?.entries.count == oldCount+1,
                   model.presetDrag.feedback?.succeeded == true,
+                  !presetDragVisual.hasTether,
                   model.fixture(fixture.id).map({ model.renderedChannels(for: $0) == preset.channels }) == true else {
-                throw EnvironmentError.invalid("Drop did not apply once with success feedback")
+                throw EnvironmentError.invalid("Apply did not commit once and clear the tether")
             }
             model.presetDrag.release(id)
             try await Task.sleep(for: .milliseconds(100))
             guard model.history?.entries.count == oldCount+1 else { throw EnvironmentError.invalid("Duplicate release was applied") }
             model.undo()
-            guard model.fixture(fixture.id)?.presetID == fixture.presetID else { throw EnvironmentError.invalid("Drop undo failed") }
+            guard model.fixture(fixture.id)?.presetID == fixture.presetID else { throw EnvironmentError.invalid("Apply undo failed") }
             model.redo()
-            guard model.fixture(fixture.id)?.presetID == preset.id else { throw EnvironmentError.invalid("Drop redo failed") }
-            print("PRESET_DRAG_SMOKE_PASS realRowSource=true snap=true applyOnce=true undo=true redo=true syntheticPointer=true")
+            guard model.fixture(fixture.id)?.presetID == preset.id else { throw EnvironmentError.invalid("Apply redo failed") }
+            model.activatePresetApplication(preset.id); model.endPresetDrag()
+            updatePresetDrag(model: model, reduceMotion: true)
+            guard !presetDragVisual.hasTether, model.presetDrag.session == nil else { throw EnvironmentError.invalid("Cancel left a tether") }
+            print("PRESET_DRAG_SMOKE_PASS viewerOrigin=true noRowGeometry=true toolboxClose=true missedReleaseStaysActive=true applyOnce=true cancel=true undo=true redo=true syntheticPointer=true")
         } catch {
             model.endPresetDrag()
             print("PRESET_DRAG_SMOKE_FAIL: \(error)")
@@ -546,19 +699,71 @@ final class VenueScene {
         // Room floor stays at the immersive space floor; tracked eye height is never overridden.
         root.position = SIMD3(deviceTransform.columns.3.x, 0, deviceTransform.columns.3.z)
             - rotation.act(SIMD3(spawn.position[0], spawn.position[1], spawn.position[2]))
+        spawnRootTransform = root.transform
+        spawnFrameRotation = simd_quatf(angle: heading,axis: [0,1,0])
         root.isEnabled = true
         aligned = true
     }
 
-    func update(model: VenueModel, attachments: RealityViewAttachments) {
-        if let bar = attachments.entity(for: "venue-context-bar") {
-            if bar.parent == nil { headAnchor.addChild(bar) }
-            bar.name = "VenueContextBar"; bar.position = [0,-0.36,-0.8]
+    private func applyViewerNavigation(model: VenueModel) {
+        guard aligned else { return }
+        if viewerResetToken != model.viewerResetToken {
+            viewerResetToken = model.viewerResetToken
+            // An explicit full reset reanchors spawn under the current tracked head.
+            if model.viewerPose == ViewerNavigationPose() {
+                aligned = false; alignToSpawn()
+            }
         }
+        let pose = model.viewerPose
+        let q = simd_quatf(ix: pose.orientation.x,iy: pose.orientation.y,iz: pose.orientation.z,r: pose.orientation.w)
+        let inverseView = (spawnFrameRotation*q*spawnFrameRotation.inverse).inverse
+        let eye = SIMD3<Float>(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
+        let offset = spawnFrameRotation.act(FixtureAiming.vector(pose.offset))
+        let rotation = inverseView*spawnRootTransform.rotation
+        let position = pose.orientation == Quaternion3D() ? spawnRootTransform.translation-offset : eye + inverseView.act(spawnRootTransform.translation-eye-offset)
+        if root.orientation.vector != rotation.vector { root.orientation = rotation }
+        if root.position != position { root.position = position }
+    }
+
+    func updateLeftNavigation(_ sample: NavigationHandSample?, at time: Double, model: VenueModel) {
+        guard aligned, model.canPlace, !model.libraryBusy, !model.navigationBlackoutActive, !palmMap.dragging else {
+            leftNavigation.cancel(at: time); model.endViewerNavigation(); model.navigationInputReserved = false; return
+        }
+        if leftNavigation.activeFinger == nil { leftNavigation.restore(model.viewerPose) }
+        let previous = leftNavigation.activeFinger
+        let head = spawnFrameRotation.inverse*simd_quatf(deviceTransform)
+        leftNavigation.update(sample, headBasis: .init(x: head.imag.x,y: head.imag.y,z: head.imag.z,w: head.real),at: time)
+        if previous == nil, let finger = leftNavigation.activeFinger { model.beginViewerNavigation(finger) }
+        model.updateViewerNavigation(leftNavigation.pose)
+        if let reset = leftNavigation.reset, reset == .spawn { model.viewerResetToken = UUID() }
+        if previous != nil && leftNavigation.activeFinger == nil { model.endViewerNavigation() }
+        let reserved = leftNavigation.reservesInput(at: time) || time < model.leftUIReservedUntil
+        if model.navigationInputReserved != reserved { model.navigationInputReserved = reserved }
+        applyViewerNavigation(model: model)
+    }
+
+    private func navigationSample(_ hand: HandAnchor) -> NavigationHandSample? {
+        guard hand.chirality == .left, hand.isTracked, let skeleton = hand.handSkeleton else { return nil }
+        let joints = [HandSkeleton.JointName.thumbTip,.indexFingerTip,.middleFingerTip].map { skeleton.joint($0) }
+        guard joints.allSatisfy(\.isTracked) else { return nil }
+        let points = joints.map { joint -> SIMD3<Float> in
+            let t = hand.originFromAnchorTransform*joint.anchorFromJointTransform
+            return spawnFrameRotation.inverse.act([t.columns.3.x,t.columns.3.y,t.columns.3.z])
+        }
+        return .init(thumb: points[0],index: points[1],middle: points[2])
+    }
+
+    func update(model: VenueModel, attachments: RealityViewAttachments) {
         if palmMap.entity.parent == nil { overlayRoot.addChild(palmMap.entity) }
         if placementGhost.parent == nil { root.addChild(placementGhost) }
         if groupLinks.parent == nil { root.addChild(groupLinks) }
         updateGroupLinks(model: model)
+        if let controls = attachments.entity(for: "venue-controls-dock") {
+            if controls.parent != headAnchor { headAnchor.addChild(controls) }
+            controls.name = "venue-controls-dock"
+            controls.position = [0,-0.42,-1.15]
+            controls.scale = [1,1,1]
+        }
         _ = model.fixtureRenderRevision // Rebuild placeholders when an asynchronous catalog asset becomes ready.
         if targetMarker.parent == nil { root.addChild(targetMarker) }
         targetMarker.components.set(DynamicLightShadowComponent(castsShadow: false))
@@ -566,16 +771,16 @@ final class VenueScene {
         targetMarker.isEnabled = marker != nil
         if let target = marker { targetMarker.position = FixtureAiming.vector(target) }
         for (entity, _) in roomMaterials {
-            entity.components.set(InputTargetComponent(allowedInputTypes: !model.isPickingRoom || model.isRetargeting || (model.scannedMesh != nil && model.isPickingRoom) ? [.indirect] : []))
+            entity.components.set(InputTargetComponent(allowedInputTypes: !model.isPickingRoom || model.isRetargeting || model.isSurfaceMoveActive || (model.scannedMesh != nil && model.isPickingRoom) ? [.indirect] : []))
             if model.isRetargeting { entity.components.set(SpatialDragTarget()) }
             else { entity.components.remove(SpatialDragTarget.self) }
         }
         for child in root.children where child.name.hasPrefix("room-collider:") {
-            child.components.set(InputTargetComponent(allowedInputTypes: model.isPickingRoom && !model.isRetargeting && model.scannedMesh == nil ? [.indirect] : []))
+            child.components.set(InputTargetComponent(allowedInputTypes: model.isPlacing && model.scannedMesh == nil ? [.indirect] : []))
         }
         if transformGizmo.entity.parent == nil { root.addChild(transformGizmo.entity) }
-        transformGizmo.update(fixture: model.selectedID.flatMap { model.fixture($0) },
-                              visible: model.gizmoVisible && !model.isPickingRoom, mode: model.transformMode, selectedAxis: model.activeTransformAxis)
+        transformGizmo.update(fixture: model.transformFixtureContext,
+                              visible: model.gizmoVisible && (!model.isPickingRoom || model.isSurfaceMoveActive), mode: model.transformMode, selectedAxis: model.activeTransformAxis)
         for surface in model.environment?.surfaces ?? [] {
             if let zone = attachments.entity(for: "surface-drop-\(surface.id)") {
                 if zone.parent == nil { root.addChild(zone) }
@@ -598,8 +803,8 @@ final class VenueScene {
             displayedWhiteRoom = model.whiteRoom
         }
         root.components.set(EnvironmentLightingConfigurationComponent(environmentLightingWeight: model.houseLight))
-        let ids = Set(model.fixtures.map(\.id))
-        let activeAssets = Set(model.fixtures.compactMap(\.assetID))
+        let ids = Set(model.sceneFixtures.map(\.id))
+        let activeAssets = Set(model.sceneFixtures.compactMap(\.assetID))
         for id in Array(fixtureTemplates.keys) where id != LightingPreview.assetID && !activeAssets.contains(id) {
             fixtureTemplates[id] = nil
         }
@@ -615,13 +820,13 @@ final class VenueScene {
         }
         // Bound expensive shadow lights; selected fixtures receive preview priority.
         // Geometry and articulation continue for every placed asset.
-        let budgets = LightingBudget.allocate(model.fixtures.map { fixture in
+        let budgets = LightingBudget.allocate(model.sceneFixtures.map { fixture in
             let look = LightingPreview(channels: model.renderedChannels(for: fixture), blackout: model.isBlackedOut(fixture))
             return .init(id: fixture.id, emitters: fixtureTemplates[fixture.assetID ?? ""] == nil ? 0 : fixture.asset?.emitters.count ?? 0,
                          emitting: look.intensity > 0 && look.rgb.contains { $0 > 0 })
         }, selected: model.selectedID, limit: model.effectiveLightLimit)
         benchmarkBudgets = budgets
-        for fixture in model.fixtures {
+        for fixture in model.sceneFixtures {
             let displayed = model.renderedFixture(fixture)
             let position = FixtureAiming.vector(displayed.position)
             let selected = model.selectedFixtureIDs.contains(fixture.id)
@@ -636,7 +841,7 @@ final class VenueScene {
                 }
                 rigs[fixture.id]?.update(fixture: displayed, channels: model.renderedChannels(for: fixture),
                                          selected: selected, blackout: model.isBlackedOut(fixture), placing: model.isPickingRoom,
-                                         interactive: model.isTransformDragging, lightBudget: budgets[fixture.id] ?? 0)
+                                         interactive: model.isTransformDragging, bodyDraggable: model.gizmoVisible && model.selectedID == fixture.id && !model.isRetargeting && !model.isPlacing, lightBudget: budgets[fixture.id] ?? 0)
                 } else {
                     requestFixture(descriptor, model: model)
                     let placeholder = cubes[fixture.id] ?? Self.makeCube(id: fixture.id)
@@ -650,7 +855,9 @@ final class VenueScene {
                 cube.orientation = simd_quatf(ix: fixture.orientation.x, iy: fixture.orientation.y, iz: fixture.orientation.z, r: fixture.orientation.w)
                 cube.scale = FixtureAiming.vector(fixture.scale)
                 cube.model?.materials = [Self.glass(opacity: selected ? 0.16 : 0.07)]
-                cube.components.set(InputTargetComponent(allowedInputTypes: model.isPickingRoom ? [] : [.indirect]))
+                cube.components.set(InputTargetComponent(allowedInputTypes: model.isPickingRoom && !model.isSurfaceMoveActive ? [] : [.indirect]))
+                if model.gizmoVisible && model.selectedID == fixture.id && !model.isRetargeting && !model.isPlacing { cube.components.set(SpatialDragTarget()) }
+                else { cube.components.remove(SpatialDragTarget.self) }
             }
             if let cube = cubes[fixture.id] {
                 cube.findEntity(named: "SelectionBase")?.isEnabled = selected
@@ -665,7 +872,7 @@ final class VenueScene {
             }
             if let drop = attachments.entity(for: "drop-\(fixture.id)") {
                 if drop.parent == nil { root.addChild(drop) }
-                drop.position = position + [0, fixture.assetID == nil ? 0 : fixture.visualHeight/2, 0.20]
+                drop.position = FixtureAiming.vector(fixture.visualCenter) + [0,0,0.20]
                 drop.components.set(BillboardComponent())
                 drop.isEnabled = model.draggingPresetID != nil && !model.presetDrag.isActive && !model.isPickingRoom
                 drops[fixture.id] = drop
@@ -680,10 +887,10 @@ final class VenueScene {
         let eye = SIMD3(deviceTransform.columns.3.x, deviceTransform.columns.3.y, deviceTransform.columns.3.z)
         let view = simd_inverse(deviceTransform)
         var candidates: [SpatialLabelLayout.Candidate] = []
-        for fixture in model.fixtures {
+        for fixture in model.sceneFixtures {
             guard let label = labels[fixture.id] else { continue }
             let localSize = label.visualBounds(relativeTo: label, excludeInactive: false).extents
-            let base = FixtureAiming.vector(fixture.position)
+            let base = FixtureAiming.vector(model.renderedFixture(fixture).position)
             let world = root.transformMatrix(relativeTo: nil) * SIMD4<Float>(base, 1)
             let distance = simd_distance(eye, SIMD3(world.x, world.y, world.z))
             let scale = max(1, distance / 2)
@@ -699,14 +906,11 @@ final class VenueScene {
         for (id, label) in labels { label.isEnabled = visible.contains(id) }
     }
 
-    /// SwiftUI window coordinates are converted by the system into this scene;
-    /// neither the row origin nor the pinch origin is estimated from head pose.
-    func updatePresetDrag(model: VenueModel, content: RealityViewContent, reduceMotion: Bool) {
+    /// Input is already in world meters. No preset row geometry enters this path.
+    func updatePresetDrag(model: VenueModel, reduceMotion: Bool) {
+        presetReduceMotion = reduceMotion
         reduceNavigationMotion = reduceMotion
         if presetDragVisual.root.parent == nil { overlayRoot.addChild(presetDragVisual.root) }
-        #if DEBUG
-        presetInputFromScene = content.transform(from: .scene, to: .immersiveSpace)
-        #endif
         func bounds(_ id: UUID) -> BoundingBox? {
             (rigs[id]?.entity ?? cubes[id]).map { $0.visualBounds(relativeTo: nil, excludeInactive: true) }
         }
@@ -714,19 +918,24 @@ final class VenueScene {
             presetDragVisual.feedback(id: feedback.id, bounds: box, succeeded: feedback.succeeded, reduceMotion: reduceMotion)
         }
         guard let session = model.presetDrag.session else {
-            presetDragVisual.tether(points: [], snapped: false, target: nil)
+            presetDragVisual.tether(origin: nil, reduceMotion: reduceMotion)
             return
         }
         guard aligned, model.canPlace, !model.libraryBusy, !model.isPickingRoom, !model.isTransformDragging,
               model.presets.contains(where: { $0.id == session.presetID }) else {
             model.endPresetDrag(); presetDragVisual.clear(); return
         }
-        func point(_ input: SIMD3<Float>) -> SIMD3<Float> {
-            content.convert(Point3D(x: Double(input.x), y: Double(input.y), z: Double(input.z)), from: .immersiveSpace, to: .scene)
-        }
+        let eye = SIMD3<Float>(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
+        let forward = -SIMD3<Float>(deviceTransform.columns.2.x,deviceTransform.columns.2.y,deviceTransform.columns.2.z)
+        let up = SIMD3<Float>(deviceTransform.columns.1.x,deviceTransform.columns.1.y,deviceTransform.columns.1.z)
+        let right = SIMD3<Float>(deviceTransform.columns.0.x,deviceTransform.columns.0.y,deviceTransform.columns.0.z)
         let sample = session.sample
-        let source = point(sample.source), cursor = point(sample.cursor)
-        let hand = sample.hand.map(point), rayOrigin = sample.rayOrigin.map(point), rayPoint = sample.rayPoint.map(point)
+        let cursor = sample?.cursor ?? eye+forward*3
+        let hand = sample?.hand ?? rightPinchPosition()
+        let rayOrigin = sample?.rayOrigin ?? eye, rayPoint = sample?.rayPoint ?? cursor
+        // A tracked hand is preferred. Simulator/permission fallback begins below
+        // and to the right of the viewer, never at a preset row or window.
+        let origin = hand ?? eye-up*0.22+right*0.18+forward*0.25
         var targets = model.fixtures.compactMap { fixture -> PresetDropSnap.Target? in
             guard let box = bounds(fixture.id) else { return nil }
             return .init(id: fixture.id, minimum: box.min, maximum: box.max)
@@ -739,35 +948,50 @@ final class VenueScene {
             while let candidate = PresetDropSnap.match(cursor: cursor, rayOrigin: rayOrigin, rayPoint: rayPoint,
                                                        targets: targets, previous: model.presetDrag.proposedFixtureID),
                   let target = targets.first(where: { $0.id == candidate.id }) {
-                let origin = rayOrigin ?? hand ?? cursor
-                let delta = candidate.point-origin, length = simd_length(delta)
+                let visibilityOrigin = rayOrigin
+                let delta = candidate.point-visibilityOrigin, length = simd_length(delta)
                 var blocked = false
                 if length > 0.001, let scene = root.scene {
-                    let entry = PresetDropSnap.entryDistance(from: origin, through: candidate.point, target: target) ?? length
-                    let firstWall = scene.raycast(origin: origin, direction: delta/length, length: entry, query: .all,
+                    let entry = PresetDropSnap.entryDistance(from: visibilityOrigin, through: candidate.point, target: target) ?? length
+                    let firstWall = scene.raycast(origin: visibilityOrigin, direction: delta/length, length: entry, query: .all,
                                                  mask: .all, relativeTo: nil).filter {
                         $0.entity.name.hasPrefix("aim-surface:") || $0.entity.name.hasPrefix("room-collider:")
                     }.map(\.distance).min()
                     blocked = firstWall.map { $0 < entry-0.015 } ?? false
                 }
-                if !blocked { proposed = candidate.id; contactPoint = candidate.point; break }
+                if !blocked {
+                    proposed = candidate.id
+                    let cable = candidate.point-origin
+                    if simd_length(cable) > 0.001,
+                       let entry = PresetDropSnap.entryDistance(from: origin, through: candidate.point, target: target) {
+                        // Keep the endpoint ring just outside the nearest bounds
+                        // surface instead of burying it inside the fixture body.
+                        contactPoint = origin+simd_normalize(cable)*max(0,entry-0.012)
+                    } else { contactPoint = candidate.point }
+                    break
+                }
                 targets.removeAll { $0.id == candidate.id }
             }
         }
         model.presetDrag.propose(proposed)
-        var points = [source]
-        if let hand { points.append(hand) }
-        points.append(contactPoint ?? cursor)
-        presetDragVisual.tether(points: points, snapped: proposed != nil, target: proposed.flatMap(bounds))
-        if let release = model.presetDrag.takeRelease() {
-            if let fixtureID = release.fixtureID {
-                let success = model.applyPreset(release.presetID, to: fixtureID)
-                model.presetDrag.showFeedback(presetID: release.presetID, fixtureID: fixtureID, succeeded: success, message: success ? nil : model.message)
-            } else {
-                model.endPresetDrag()
-                model.message = "Palette drop cancelled. Drag until the line becomes solid, or use the palette's Apply menu."
-            }
+        presetDragVisual.tether(origin: origin, end: contactPoint ?? cursor, targetID: proposed,
+                                 target: proposed.flatMap(bounds), reduceMotion: reduceMotion)
+        if let release = model.presetDrag.takeRelease(), let fixtureID = release.fixtureID {
+            model.finishPresetApplication(presetID: release.presetID, fixtureID: fixtureID)
+            presetDragVisual.tether(origin: nil, reduceMotion: reduceMotion)
         }
+    }
+
+    private func rightPinchPosition() -> SIMD3<Float>? {
+        guard CACurrentMediaTime()-lastRightHandUpdate < 0.25,
+              let hand = latestRightHand, hand.isTracked, let skeleton = hand.handSkeleton else { return nil }
+        let joints = [HandSkeleton.JointName.thumbTip,.indexFingerTip].map { skeleton.joint($0) }
+        guard joints.allSatisfy(\.isTracked) else { return nil }
+        let points = joints.map { joint -> SIMD3<Float> in
+            let t = hand.originFromAnchorTransform*joint.anchorFromJointTransform
+            return [t.columns.3.x,t.columns.3.y,t.columns.3.z]
+        }
+        return (points[0]+points[1])/2
     }
 
     private func requestFixture(_ descriptor: FixtureAsset, model: VenueModel) {
@@ -787,7 +1011,7 @@ final class VenueScene {
                 let template = try await Entity(contentsOf: url)
                 try Task.checkCancellation()
                 guard self.fixtureLoadGeneration == generation else { return }
-                guard model.fixtures.contains(where: { $0.assetID == descriptor.id }) else { return }
+                guard model.sceneFixtures.contains(where: { $0.assetID == descriptor.id }) else { return }
                 _ = try FixtureRig(template: template, id: UUID(), descriptor: descriptor)
                 self.fixtureTemplates[descriptor.id] = template
                 model.fixtureAssetStatus = "\(FixtureCatalog.all.count) catalog assets · loaded \(descriptor.name)"
@@ -806,7 +1030,8 @@ final class VenueScene {
         defer {
             model.canPlace = false
             model.resetToolboxActivation()
-            palmGate = PalmRevealGate()
+            leftNavigation.cancel(at: ProcessInfo.processInfo.systemUptime)
+            model.endViewerNavigation(); model.navigationInputReserved = false
         }
         #if targetEnvironment(simulator)
         model.trackingStatus = "Simulator · room-relative placement"
@@ -814,8 +1039,10 @@ final class VenueScene {
         model.canPlace = manifest != nil
         // ARKit device tracking is unavailable in Simulator; use its floor origin and forward direction.
         while !Task.isCancelled {
-            model.handTrackingStatus = "Simulator wrist menu"
-            model.updateToolboxActivation(raised: model.simulatedPalm)
+            model.handTrackingStatus = "Left index: move · left middle: rotate · double pinch: reset"
+            let reserved = ProcessInfo.processInfo.systemUptime < model.leftUIReservedUntil
+            if model.navigationInputReserved != reserved { model.navigationInputReserved = reserved }
+            applyViewerNavigation(model: model)
             try? await Task.sleep(for: .milliseconds(33))
         }
         #else
@@ -834,12 +1061,12 @@ final class VenueScene {
         }
         hasHandAccess = handAccess
         model.needsManualToolbox = !handAccess
-        model.handTrackingStatus = handAccess ? "Turn your left hand toward you to open the wrist menu" : "Hand tracking unavailable · use Show toolbox"
+        model.handTrackingStatus = handAccess ? "Left index: move · left middle: rotate · double pinch: reset" : "Hand tracking unavailable · use navigation controls"
         do {
             if handAccess { try await session.run([world, hands]) }
             else { try await session.run([world]) }
             // Cache the update stream instead of consuming latestAnchors every frame;
-            // missing a provider tick must not restart the reveal debounce.
+            // briefly missing a provider tick must not restart an active pinch.
             let handTask: Task<Void, Never>? = handAccess ? Task { @MainActor in
                 for await update in hands.anchorUpdates {
                     guard !Task.isCancelled else { return }
@@ -850,6 +1077,9 @@ final class VenueScene {
                     if update.anchor.chirality == .left {
                         self.latestLeftHand = update.event == .removed ? nil : update.anchor
                         self.lastHandUpdate = CACurrentMediaTime()
+                    } else {
+                        self.latestRightHand = update.event == .removed ? nil : update.anchor
+                        self.lastRightHandUpdate = CACurrentMediaTime()
                     }
                 }
             } : nil
@@ -858,6 +1088,7 @@ final class VenueScene {
                 let now = CACurrentMediaTime()
                 var eligible = false
                 mapAttended = false; mapHeld = false
+                var navigation: NavigationHandSample?
                 if world.state == .running,
                    let device = world.queryDeviceAnchor(atTimestamp: now), device.isTracked {
                     deviceTransform = device.originFromAnchorTransform
@@ -870,6 +1101,7 @@ final class VenueScene {
                         mapAttended = attention.palm
                         mapHeld = attention.facing
                         palmPosition = attention.center
+                        navigation = navigationSample(hand)
                     }
                 } else {
                     model.canPlace = false
@@ -877,7 +1109,7 @@ final class VenueScene {
                 }
                 if handAccess && hands.state == .stopped {
                     model.needsManualToolbox = true
-                    model.handTrackingStatus = "Hand tracking stopped · use Show toolbox or re-enter to retry"
+                    model.handTrackingStatus = "Hand tracking stopped · use navigation controls or re-enter to retry"
                 }
                 if rightHandPinching() { lastRightPinchAt = now }
                 _ = mapToggle.update(attended: mapAttended, now: now)
@@ -887,13 +1119,14 @@ final class VenueScene {
                 }
                 let revealed = palmGate.update(eligible: eligible, now: now)
                 model.updateToolboxActivation(raised: revealed)
+                updateLeftNavigation(navigation, at: ProcessInfo.processInfo.systemUptime, model: model)
                 try await Task.sleep(for: .milliseconds(33))
             }
         } catch is CancellationError {
         } catch {
             model.trackingStatus = "Tracking unavailable: \(error.localizedDescription)"
             model.needsManualToolbox = true
-            model.handTrackingStatus = "Use Show toolbox or re-enter the venue to retry tracking."
+            model.handTrackingStatus = "Use navigation controls or re-enter the venue to retry tracking."
             // Keep the explicit fallback responsive even after authorization/session failure.
             while !Task.isCancelled {
                 try? await Task.sleep(for: .milliseconds(33))
@@ -997,6 +1230,17 @@ final class VenueScene {
                 var vector = SIMD3<Float>.zero; vector[axis] = 1
                 self.root.orientation = self.root.orientation * simd_quatf(angle: -angle,axis: vector)
                 self.root.position = eye-self.root.orientation.act(pivot)
+            }
+            if let model = self.model {
+                let view = (self.root.orientation * self.spawnRootTransform.rotation.inverse).inverse
+                let poseRotation = self.spawnFrameRotation.inverse * view * self.spawnFrameRotation
+                let worldOffset = self.spawnRootTransform.translation-eye-view.act(self.root.position-eye)
+                let offset = self.spawnFrameRotation.inverse.act(worldOffset)
+                model.beginViewerNavigation(.index)
+                model.updateViewerNavigation(.init(offset: .init(x: offset.x,y: offset.y,z: offset.z),
+                    orientation: .init(x: poseRotation.imag.x,y: poseRotation.imag.y,z: poseRotation.imag.z,w: poseRotation.real)))
+                model.endViewerNavigation()
+                self.leftNavigation.restore(model.viewerPose)
             }
             self.blackoutFadeDuration = max(0.001,min(max(milliseconds,0),2000)/1000)
             self.blackoutFadeStart = CACurrentMediaTime()

@@ -22,6 +22,22 @@ public struct Quaternion3D: Codable, Equatable, Sendable {
     }
 }
 
+/// The supporting plane travels with a saved placement, independently of its DMX.
+public struct FixtureMountPlane: Codable, Equatable, Sendable {
+    public var origin: Position3D
+    public var normal: Position3D
+    public init(origin: Position3D, normal: Position3D) { self.origin = origin; self.normal = normal }
+    public var isValid: Bool {
+        let n = FixtureAiming.vector(normal)
+        return [origin.x, origin.y, origin.z, normal.x, normal.y, normal.z].allSatisfy(\.isFinite)
+            && abs(n.x*n.x + n.y*n.y + n.z*n.z - 1) < 0.001
+    }
+    public func projected(_ delta: SIMD3<Float>) -> SIMD3<Float> {
+        let n = FixtureAiming.vector(normal)
+        return delta - n * (delta.x*n.x + delta.y*n.y + delta.z*n.z)
+    }
+}
+
 /// A generic, unverified DMX fixture. Addresses are one-based logical addresses.
 public struct Fixture: Identifiable, Codable, Equatable, Sendable {
     public let id: UUID
@@ -47,6 +63,7 @@ public struct Fixture: Identifiable, Codable, Equatable, Sendable {
     public var orientation: Quaternion3D
     public var scale: Position3D
     public var surfaceID: String?
+    public var mountPlane: FixtureMountPlane?
 
     public init(id: UUID = UUID(), presetID: UUID? = nil, name: String, assetID: String? = nil, universe: Int = 1,
                 startAddress: Int = 1, channels: [Int] = Array(repeating: 0, count: 8),
@@ -98,6 +115,7 @@ public struct Fixture: Identifiable, Codable, Equatable, Sendable {
         if !(1...512).contains(startAddress) || endAddress > 512 { return "The full footprint must fit within addresses 1–512." }
         if channels.contains(where: { !(0...255).contains($0) }) { return "Channel values must be between 0 and 255." }
         if !position.x.isFinite || !position.y.isFinite || !position.z.isFinite { return "The fixture position is invalid." }
+        if let mountPlane, !mountPlane.isValid { return "The supporting plane is invalid." }
         let q = [orientation.x, orientation.y, orientation.z, orientation.w]
         if !q.allSatisfy(\.isFinite) || abs(q.reduce(0) { $0+$1*$1 }-1) > 0.001 {
             return "The fixture orientation is invalid."

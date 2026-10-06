@@ -4,12 +4,13 @@ import Testing
 
 @Test @MainActor func presetDragRequiresMovementAndConsumesReleaseOnce() {
     let state = PresetDragState(), preset = UUID(), fixture = UUID()
-    let sample = PresetDragState.Sample(source: .zero, cursor: [0,0,-1])
+    let sample = PresetDragState.Sample(cursor: [0,0,-1])
     let id = state.begin(presetID: preset, sample: sample)!
     state.propose(fixture)
     state.release(id)
-    #expect(state.takeRelease()?.fixtureID == nil)
     #expect(state.takeRelease() == nil)
+    #expect(state.session?.id == id)
+    state.cancel()
     let next = state.begin(presetID: preset, sample: sample)!
     state.update(next, sample: sample, armed: true)
     state.propose(fixture)
@@ -19,14 +20,14 @@ import Testing
 }
 
 @Test @MainActor func cancelledAndSupersededDragCannotApply() {
-    let state = PresetDragState(), sample = PresetDragState.Sample(source: .zero, cursor: .zero)
+    let state = PresetDragState(), sample = PresetDragState.Sample(cursor: .zero)
     let old = state.begin(presetID: UUID(), sample: sample)!
     #expect(state.begin(presetID: UUID(), sample: sample) == nil)
     state.update(old, sample: sample, armed: true)
     state.propose(UUID()); state.cancel(); state.release(old)
     #expect(state.takeRelease() == nil)
     let fresh = state.begin(presetID: UUID(), sample: sample)!
-    state.update(old, sample: .init(source: .zero, cursor: [5,0,0]), armed: true)
+    state.update(old, sample: .init(cursor: [5,0,0]), armed: true)
     #expect(state.session?.id == fresh)
     #expect(state.session?.sample == sample)
     #expect(state.session?.armed == false)
@@ -34,12 +35,12 @@ import Testing
 
 @Test @MainActor func presetDragRejectsInvalidSamplesAndNoTarget() {
     let state = PresetDragState()
-    #expect(state.begin(presetID: UUID(), sample: .init(source: .zero, cursor: [.nan,0,0])) == nil)
-    let sample = PresetDragState.Sample(source: [1,2,3], cursor: [3,4,5])
+    #expect(state.begin(presetID: UUID(), sample: .init(cursor: [.nan,0,0])) == nil)
+    let sample = PresetDragState.Sample(cursor: [3,4,5])
     let id = state.begin(presetID: UUID(), sample: sample)!
     state.update(id, sample: sample, armed: true)
     state.propose(UUID())
-    state.update(id, sample: .init(source: .zero, cursor: [.infinity,0,0]), armed: true)
+    state.update(id, sample: .init(cursor: [.infinity,0,0]), armed: true)
     #expect(state.session == nil)
     state.release(id)
     #expect(state.takeRelease()?.fixtureID == nil)
@@ -105,4 +106,26 @@ import Testing
     #expect(Float(3) < entry-0.015)
     let invalid = PresetDropSnap.Target(id: UUID(), minimum: [1,1,1], maximum: [-1,-1,-1])
     #expect(PresetDropSnap.target(cursor: .zero, rayOrigin: .zero, rayPoint: [0,0,-1], targets: [invalid], previous: nil) == nil)
+}
+
+@Test @MainActor func presetActivationPersistsUntilApplyOrExplicitCancel() {
+    let state = PresetDragState(), preset = UUID(), fixture = UUID()
+    let id = state.activate(presetID: preset)
+    #expect(state.session?.sample == nil)
+    #expect(state.session?.armed == true)
+    state.release(id)
+    #expect(state.takeRelease() == nil)
+    #expect(state.session?.id == id)
+    #expect(state.session?.released == false)
+    state.propose(fixture); state.release(id)
+    #expect(state.takeRelease()?.fixtureID == fixture)
+    #expect(state.session == nil)
+    #expect(state.takeRelease() == nil)
+    let cancelled = state.activate(presetID: preset)
+    state.propose(fixture); state.cancel(); state.release(cancelled)
+    #expect(state.takeRelease() == nil)
+    let fresh = state.activate(presetID: UUID())
+    state.update(cancelled, sample: .init(cursor: [1,2,3]), armed: true)
+    #expect(state.session?.id == fresh)
+    #expect(state.session?.sample == nil)
 }

@@ -15,6 +15,12 @@ struct PresetEditorView: View {
     @State private var copyName = ""
     private enum Navigation { case preset(UUID), new }
     private var windowID: UUID { instanceID ?? restoredWindowID }
+    private var visibleChannels: [Int] {
+        model.presetDraft.channels.indices.filter { index in
+            guard model.tour != nil else { return true }
+            return model.presetDraft.channelMask.contains(index) && !(model.presetDraft.focusTargetID != nil && [4,5].contains(index))
+        }
+    }
 
     var body: some View {
         GeometryReader { geometry in
@@ -24,19 +30,19 @@ struct PresetEditorView: View {
             let stacked = detailWidth < 660 || dynamicTypeSize >= .xxLarge
             HStack(spacing: 0) {
                 if showsSidebar {
-                    library.frame(width: sidebarWidth)
+                    library.frame(width: sidebarWidth).disabled(model.tourPreview != nil)
                     Divider()
                 }
                 VStack(spacing: 0) {
                     PalettePreviewView(palette: model.presetDraft).padding(.horizontal, 28)
                 ScrollView {
                     VStack(alignment: .leading, spacing: 24) {
-                        if !showsSidebar { compactLibrary }
-                        navigation(stacked: stacked)
+                        if !showsSidebar { compactLibrary.disabled(model.tourPreview != nil) }
+                        navigation(stacked: stacked).disabled(model.tourPreview != nil)
                         HistoryControls()
                         phaserEditor
-                        editor(stacked: stacked)
-                        footer(stacked: stacked)
+                        if model.tourPreview != nil { TourPreviewControls() }
+                        else { editor(stacked: stacked); footer(stacked: stacked) }
                     }
                     .padding(28)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -85,7 +91,7 @@ struct PresetEditorView: View {
             Button("Delete palette", role: .destructive) {
                 if let id = model.editingPresetID { model.deletePreset(id) }
             }
-        } message: { Text("Channels owned by this palette will be unassigned and set to zero; other palette assignments remain. Unsaved edits will be discarded.") }
+        } message: { Text(model.tour == nil ? "Assigned objects will be unassigned and their channels set to zero. Unsaved edits will be discarded." : "Assigned touring palettes must be reassigned before deletion. Saved venues retain their pinned copies.") }
         .alert("Save as new palette", isPresented: $showSaveAs) {
             TextField("Palette name", text: $copyName)
             Button("Save new palette") {
@@ -213,7 +219,7 @@ struct PresetEditorView: View {
                         }
                     }
                 )) { ForEach(1...16, id: \.self) { Text("\($0) channels").tag($0) } }
-                    .frame(minHeight: 60).accessibilityLabel("Number of palette channels")
+                    .frame(minHeight: 60).accessibilityLabel("Number of palette channels").disabled(model.tour != nil)
             }
             actionLayout(stacked: stacked) {
                 Text(model.draftHasChanges ? "Unsaved changes" : "Saved palette").foregroundStyle(model.draftHasChanges ? Color.orange : .secondary)
@@ -221,14 +227,16 @@ struct PresetEditorView: View {
                 Text("VV Preview 16 · Simulation").foregroundStyle(.secondary)
             }.font(.subheadline)
             actionLayout(stacked: stacked) {
-                Toggle("Simulate on selected fixture", isOn: $model.previewDraft)
+                Toggle(model.tour == nil ? "Simulate on selected fixture" : "Simulate on selected fixtures", isOn: $model.previewDraft)
                     .frame(minHeight: 60).disabled(model.selectedID == nil)
                 Toggle(isOn: $model.previewBlackout) {
                     Text("Blackout simulation").frame(minHeight: 60)
                 }.toggleStyle(.button).disabled(!model.previewDraft || model.selectedID == nil)
             }
+            if model.tour != nil { TouringPresetOptions() }
+            TourPreviewControls()
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 24), count: stacked ? 1 : 2), spacing: 24) {
-                ForEach(model.presetDraft.channels.indices, id: \.self) { index in channel(index) }
+                ForEach(visibleChannels, id: \.self) { index in channel(index) }
             }
             Divider()
             if model.isRetargeting {
@@ -242,7 +250,7 @@ struct PresetEditorView: View {
                     }
                 }
             }
-            if let id = model.selectedID, let fixture = model.fixture(id) {
+            if model.tour == nil, let id = model.selectedID, let fixture = model.fixture(id) {
                 VStack(alignment: .leading, spacing: 12) {
                     Text(fixture.name).font(.headline)
                     Text("Assigned: \(model.presets.first(where: { $0.id == fixture.presetID })?.name ?? "None")")
@@ -339,7 +347,7 @@ struct PresetEditorView: View {
 
     private func footer(stacked: Bool) -> some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(model.presetMessage ?? "Saving updates all objects assigned to this palette.")
+            Text(model.presetMessage ?? (model.tour == nil ? "Saving updates all objects assigned to this palette." : "Saving updates assigned parameters in this scope. Named focus changes require Refocus."))
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -348,7 +356,7 @@ struct PresetEditorView: View {
                     .disabled(model.isRetargeting)
                 if !stacked { Spacer() }
                 Button { model.savePreset() } label: { Text("Save palette").frame(minHeight: 60) }
-                    .buttonStyle(.borderedProminent).disabled(!model.draftHasChanges || model.isRetargeting)
+                    .buttonStyle(.borderedProminent).disabled(!model.canSavePreset || model.isRetargeting)
             }
         }
     }

@@ -85,8 +85,10 @@ import VenueVolumeCore
         entity.addChild(selection)
     }
 
+    private var lastBodyDraggable = false
+
     func update(fixture: Fixture, channels: [Int], selected: Bool, blackout: Bool, placing: Bool,
-                interactive: Bool = false, lightBudget: Int = 4) {
+                interactive: Bool = false, bodyDraggable: Bool = false, lightBudget: Int = 4) {
         let base = Transform(scale: FixtureAiming.vector(fixture.scale),
                              rotation: simd_quatf(ix: fixture.orientation.x, iy: fixture.orientation.y, iz: fixture.orientation.z, r: fixture.orientation.w),
                              translation: FixtureAiming.vector(fixture.position))
@@ -132,6 +134,13 @@ import VenueVolumeCore
             lastLight = state
         }
         selection.orientation = base.rotation.inverse
+        if lastBodyDraggable != bodyDraggable {
+            for child in entity.children where child.components.has(InputTargetComponent.self) {
+                if bodyDraggable { child.components.set(SpatialDragTarget()) }
+                else { child.components.remove(SpatialDragTarget.self) }
+            }
+            lastBodyDraggable = bodyDraggable
+        }
         selection.isEnabled = selected && !placing
         if lastPlacing != placing {
             for child in entity.children where child.components.has(InputTargetComponent.self) {

@@ -6,14 +6,19 @@ struct VenueSpaceView: View {
     @Environment(VenueModel.self) private var model
     @Environment(\.dismissWindow) private var dismissWindow
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.dismissImmersiveSpace) private var dismissSpace
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var scene = VenueScene()
-    @State private var lastSpatialDragEnd = Date.distantPast
-    @State private var handledDrag = false
-    @State private var dragFixtureID: UUID?
-    @State private var cancelledDrag = false
-    @GestureState private var spatialDragActive = false
+    private struct SpatialInput {
+        var entity: Entity
+        var start: SIMD3<Float>
+        var point: SIMD3<Float>
+        var dragged = false
+        var fixtureID: UUID?
+    }
+    @State private var presetSpatialEvents: Set<SpatialEventCollection.Event.ID> = []
+    @State private var activeSpatialEvents: [SpatialEventCollection.Event.ID: SpatialInput] = [:]
 
     var body: some View {
         RealityView { content, attachments in
@@ -22,78 +27,51 @@ struct VenueSpaceView: View {
             content.add(scene.overlayRoot)
             content.add(scene.headAnchor)
             scene.update(model: model, attachments: attachments)
-            scene.updatePresetDrag(model: model, content: content, reduceMotion: reduceMotion)
+            scene.updatePresetDrag(model: model, reduceMotion: reduceMotion)
         } update: { content, attachments in
             scene.update(model: model, attachments: attachments)
-            scene.updatePresetDrag(model: model, content: content, reduceMotion: reduceMotion)
+            scene.updatePresetDrag(model: model, reduceMotion: reduceMotion)
         } attachments: {
-            Attachment(id: "venue-context-bar") { VenueContextBar().environment(model) }
+            Attachment(id: "venue-controls-dock") { VenueControlsView().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model) }
             ForEach(model.environment?.surfaces ?? [], id: \.id) { surface in
                 Attachment(id: "surface-drop-\(surface.id)") { FixtureSurfaceDrop(surface: surface).environment(model) }
             }
-            ForEach(model.fixtures) { fixture in
+            ForEach(model.sceneFixtures) { fixture in
                 Attachment(id: "label-\(fixture.id)") {
-                    FixtureLabel(fixture: fixture).environment(model)
+                    FixtureLabel(fixture: fixture).environment(model).navigationInputShield(model: model)
                 }
                 Attachment(id: "drop-\(fixture.id)") {
-                    FixtureDropTarget(fixture: fixture).environment(model)
+                    FixtureDropTarget(fixture: fixture).environment(model).navigationInputShield(model: model)
                 }
             }
         }
-        .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded { value in
-            guard Date().timeIntervalSince(lastSpatialDragEnd) > 0.25, !handledDrag else { return }
-            let position = value.convert(value.location3D, from: .local, to: scene.root)
-            scene.handleTap(entity: value.entity, position: position, model: model)
-        })
-        .simultaneousGesture(DragGesture(minimumDistance: 0).targetedToEntity(where: .has(SpatialDragTarget.self))
-            .updating($spatialDragActive) { _, active, _ in active = true }
-            .onChanged { value in
-                guard !cancelledDrag, !handledDrag || dragFixtureID == model.selectedID else { return }
-                let start = value.convert(value.startLocation3D, from: .local, to: scene.root)
-                let point = value.convert(value.location3D, from: .local, to: scene.root)
-                if scene.handleDrag(entity: value.entity, position: point, start: start, model: model) {
-                    if !handledDrag { dragFixtureID = model.selectedID }
-                    handledDrag = true
-                }
-            }
+        .gesture(SpatialEventGesture().targetedToAnyEntity()
+            .onChanged { value in routeSpatialEvents(value) }
             .onEnded { value in
-                if handledDrag && !cancelledDrag && dragFixtureID == model.selectedID {
-                    let point = value.convert(value.location3D, from: .local, to: scene.root)
-                    let start = value.convert(value.startLocation3D, from: .local, to: scene.root)
-                    _ = scene.handleDrag(entity: value.entity, position: point, start: start, model: model)
-                    scene.endSpatialDrag(model: model); lastSpatialDragEnd = Date()
-                }
-                handledDrag = false; dragFixtureID = nil; cancelledDrag = false
+                routeSpatialEvents(value)
+                model.endTransformDrag(); activeSpatialEvents.removeAll(); presetSpatialEvents.removeAll()
             })
-        .onChange(of: spatialDragActive) { _, active in
-            if !active && handledDrag {
-                scene.cancelSpatialDrag(model: model); lastSpatialDragEnd = Date(); handledDrag = false
-            }
-            if !active { dragFixtureID = nil; cancelledDrag = false }
-        }
         .onChange(of: model.selectedID) { _, selected in
-            if handledDrag { scene.cancelSpatialDrag(model: model); cancelledDrag = true; lastSpatialDragEnd = Date() }
-            handledDrag = false; dragFixtureID = nil
+            activeSpatialEvents.removeAll(); model.endTransformDrag()
             if selected == nil {
                 dismissWindow(id: "fixture-editor")
             }
         }
         .onChange(of: model.canPlace, initial: true) { _, _ in model.finishPlacementHandoffIfReady() }
         .onChange(of: model.isImmersed) { _, _ in model.finishPlacementHandoffIfReady() }
-        .onChange(of: model.canSimulatePalm || model.needsManualToolbox, initial: true) { _, needed in
-            if needed { openWindow(id: "venue-controls", value: "controls") }
-        }
         .task(id: model.toolboxRequestID) {
-            guard let request = model.toolboxRequestID else { return }
+            guard let request = model.toolboxRequestID, model.isImmersed else { return }
             // A new window value recalls the toolbox near the viewer instead of
             // refocusing an existing window at its old, possibly distant position.
             if model.toolboxVisible {
-                dismissWindow(id: "toolbox")
+                for identity in model.toolboxWindowIDs { dismissWindow(id: "toolbox", value: identity) }
+                if model.unvaluedToolboxVisible { dismissWindow(id: "toolbox") }
                 for _ in 0..<30 where model.toolboxVisible {
                     do { try await Task.sleep(for: .milliseconds(50)) } catch { return }
                 }
             }
-            guard !Task.isCancelled else { return }
+            guard !Task.isCancelled, model.isImmersed, !model.toolboxVisible,
+                  model.toolboxRequestID == request else { return }
             openWindow(id: "toolbox", value: request)
         }
         .task(id: model.roomLoadToken) {
@@ -140,6 +118,7 @@ struct VenueSpaceView: View {
         }
         .onAppear {
             model.isImmersed = true
+            model.showVenueControls()
             dismissWindow(id: "launch")
             let arguments = ProcessInfo.processInfo.arguments
             if model.isDemoMode && !arguments.contains("--show-preset-editor") && !arguments.contains("--position-tab") {
@@ -151,13 +130,26 @@ struct VenueSpaceView: View {
         }
         .task {
             #if DEBUG
-            await scene.runPresetDragSmoke(model: model)
-            await runStationaryControlsSmoke()
+            await scene.runPresetDragSmoke(model: model) { dismissWindow(id: "toolbox") }
+            await runBottomControlsSmoke()
             await runEditorRecallSmoke()
             await runToolboxWindowSmoke()
             await scene.runInputSmoke(model: model)
+            await scene.runFixtureMovementSmoke(model: model)
+            await scene.runNavigationSmoke(model: model)
             await RoomLibrarySmoke.run(model: model)
             await RoomLibrarySmoke.catalog(model: model)
+            await RoomLibrarySmoke.touring(model: model)
+            runVenueExitSmoke()
+            if model.isDemoMode && ProcessInfo.processInfo.arguments.contains("--movement-screenshot") {
+                for identity in model.toolboxWindowIDs { dismissWindow(id: "toolbox", value: identity) }
+            }
+            if model.isDemoMode && ProcessInfo.processInfo.arguments.contains("--touring-editor") {
+                // Presentation-only capture: expose the editor instead of leaving
+                // it behind the automatically recalled wrist/controls windows.
+                try? await Task.sleep(for: .seconds(2))
+                if !Task.isCancelled { dismissWindow(id: "toolbox") }
+            }
             #endif
         }
         .onDisappear {
@@ -170,8 +162,9 @@ struct VenueSpaceView: View {
             model.expandedID = nil
             model.gizmoVisible = false
             dismissWindow(id: "fixture-editor")
-            dismissWindow(id: "toolbox")
-            dismissWindow(id: "venue-controls")
+            for identity in model.toolboxWindowIDs { dismissWindow(id: "toolbox", value: identity) }
+            if model.unvaluedToolboxVisible { dismissWindow(id: "toolbox") }
+            model.venueControlsVisible = false
             model.resetToolboxActivation()
             model.endPresetDrag()
             model.previewDraft = false
@@ -184,16 +177,92 @@ struct VenueSpaceView: View {
         .presetEditorPresenter()
     }
 
+    private func routeSpatialEvents(_ value: EntityTargetValue<SpatialEventCollection>) {
+        for event in value.gestureValue {
+            // ARKit handles left navigation even when looking at empty space.
+            // Never route a left-hand system pinch into fixture editing.
+            if event.chirality == .left {
+                model.reserveLeftHandInput(); activeSpatialEvents[event.id] = nil; continue
+            }
+            if model.navigationInputReserved { continue }
+            if model.presetDrag.session == nil, presetSpatialEvents.contains(event.id) {
+                if event.phase != .active { presetSpatialEvents.remove(event.id) }
+                continue
+            }
+            if let session = model.presetDrag.session {
+                presetSpatialEvents.insert(event.id)
+                func world(_ point: Point3D) -> SIMD3<Float> {
+                    scene.root.convert(position: value.convert(point, from: .local, to: scene.root), to: nil)
+                }
+                let sample = PresetDragState.Sample(cursor: world(event.location3D),
+                    hand: event.inputDevicePose.map { world($0.pose3D.position) },
+                    rayOrigin: event.selectionRay.map { world($0.origin) },
+                    rayPoint: event.selectionRay.map { world($0.origin + $0.direction) })
+                switch event.phase {
+                case .active: model.presetDrag.update(session.id, sample: sample, armed: true)
+                case .ended:
+                    model.presetDrag.update(session.id, sample: sample, armed: true)
+                    model.presetDrag.release(session.id)
+                case .cancelled: model.presetDrag.clearPointer()
+                @unknown default: model.presetDrag.clearPointer()
+                }
+                activeSpatialEvents.removeAll()
+                continue
+            }
+            let entity = event.targetedEntity ?? value.entity
+            let point = value.convert(event.location3D, from: .local, to: scene.root)
+            switch event.phase {
+            case .active:
+                var input = activeSpatialEvents[event.id] ?? SpatialInput(entity: entity,start: point,point: point,fixtureID: model.selectedID)
+                input.point = point
+                if input.fixtureID == model.selectedID, FixtureAiming.length(point-input.start) > 0.015 || input.dragged {
+                    if input.entity.components.has(SpatialDragTarget.self),
+                       scene.handleDrag(entity: input.entity,position: point,start: input.start,model: model) { input.dragged = true }
+                }
+                activeSpatialEvents[event.id] = input
+            case .ended:
+                guard let input = activeSpatialEvents.removeValue(forKey: event.id) else { continue }
+                if input.dragged {
+                    if input.fixtureID == model.selectedID { _ = scene.handleDrag(entity: input.entity,position: point,start: input.start,model: model) }
+                    scene.endSpatialDrag(model: model)
+                } else { scene.handleTap(entity: input.entity,position: point,model: model) }
+            case .cancelled:
+                if activeSpatialEvents.removeValue(forKey: event.id)?.dragged == true { scene.cancelSpatialDrag(model: model) }
+            @unknown default: break
+            }
+        }
+    }
+
     #if DEBUG
-    private func runStationaryControlsSmoke() async {
+    private func runVenueExitSmoke() {
+        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--venue-exit-smoke") else { return }
+        // Outlive this view's task cancellation when the immersive space closes.
+        Task { @MainActor in
+            do {
+                model.requestToolbox()
+                try await waitForToolbox(model.toolboxRequestID)
+                await dismissSpace()
+                for _ in 0..<100 where model.isImmersed || model.toolboxVisible {
+                    try await Task.sleep(for: .milliseconds(50))
+                }
+                guard !model.isImmersed, !model.toolboxVisible, model.toolboxWindowIDs.isEmpty,
+                      !model.unvaluedToolboxVisible, model.toolboxRequestID == nil else {
+                    throw EnvironmentError.invalid("Venue exit left wrist window or recall active")
+                }
+                print("VENUE_EXIT_SMOKE_PASS immersed=false toolboxWindows=0 pendingRecall=false")
+            } catch { print("VENUE_EXIT_SMOKE_FAIL \(error)") }
+        }
+    }
+
+    private func runBottomControlsSmoke() async {
         guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--audit-controls-smoke") else { return }
         do {
             for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
             guard let fixture = model.fixtures.first else { throw EnvironmentError.invalid("Missing fixture") }
             model.beginRetarget(fixture.id)
-            for _ in 0..<100 where scene.headAnchor.findEntity(named: "VenueContextBar") == nil { try await Task.sleep(for: .milliseconds(50)) }
-            guard scene.headAnchor.findEntity(named: "VenueContextBar") != nil else {
-                throw EnvironmentError.invalid("Targeting context bar attachment is missing")
+            for _ in 0..<100 where !model.venueControlsVisible { try await Task.sleep(for: .milliseconds(50)) }
+            guard model.venueControlsVisible, scene.headAnchor.children.contains(where: { $0.name == "venue-controls-dock" }) else {
+                throw EnvironmentError.invalid("Targeting did not use the bottom controls attachment")
             }
             guard model.acceptTarget(.init(x: 2.9, y: 1.8, z: -7.67)) else { throw EnvironmentError.invalid("Preview failed") }
             model.cancelPicking()
@@ -204,8 +273,8 @@ struct VenueSpaceView: View {
             guard model.fixture(fixture.id)?.channels == fixture.channels else { throw EnvironmentError.invalid("Target undo failed") }
             model.beginRetarget(fixture.id)
             _ = model.acceptTarget(.init(x: 2.9, y: 1.8, z: -7.67))
-            print("STATIONARY_CONTROLS_SMOKE_PASS contextBar=true cancel=true save=true undo=true")
-        } catch { print("STATIONARY_CONTROLS_SMOKE_FAIL \(error)") }
+            print("VENUE_CONTROLS_DOCK_SMOKE_PASS bottomAttachment=true wristReveal=true cancel=true save=true undo=true")
+        } catch { print("VENUE_CONTROLS_DOCK_SMOKE_FAIL \(error)") }
     }
 
     private func runEditorRecallSmoke() async {
@@ -241,7 +310,7 @@ struct VenueSpaceView: View {
             model.requestToolbox()
             try await waitForToolbox(model.toolboxRequestID)
             let heldRequest = model.toolboxRequestID
-            dismissWindow(id: "toolbox")
+            if let identity = model.toolboxPresentedID { dismissWindow(id: "toolbox", value: identity) }
             try await waitForToolbox(nil)
             try await Task.sleep(for: .milliseconds(300))
             guard !model.toolboxVisible, model.toolboxRequestID == heldRequest else {

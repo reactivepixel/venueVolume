@@ -42,6 +42,7 @@ struct LaunchView: View {
             }
             Text("Open a recent save, load a shared save, or start with a blank venue.")
                 .foregroundStyle(.secondary)
+            TouringContextButton()
             VenueLibraryPicker(showsNewVenues: false).frame(height: pickerHeight)
             if model.canResumeVenue {
                 Button {
@@ -51,13 +52,14 @@ struct LaunchView: View {
                         .frame(maxWidth: .infinity).padding(.vertical, 8)
                 }.disabled(model.isTransitioning || model.libraryBusy)
             }
-            Text("Turn your left hand toward you to open the wrist menu. Placements stay on this device until you export a save.")
+            Text("The Toolbox opens when you enter. Use your right hand for venue controls; left index moves you and left middle rotates your view. Placements stay on this device until you export a save.")
                 .font(.caption).foregroundStyle(.secondary)
             Text("Estimated venue dimensions · No physical DMX output").font(.caption).foregroundStyle(.secondary)
         }
         .padding(32)
         }.frame(minWidth: 680, minHeight: 700)
         .sheet(isPresented: Binding(get: { model.newVenuePresented && !model.isImmersed }, set: { model.newVenuePresented = $0 })) { NewVenueSheet() }
+        .sheet(isPresented: Binding(get: { model.touringPanelPresented && !model.isImmersed }, set: { model.touringPanelPresented = $0 })) { TouringLibrarySheet() }
         .presetEditorPresenter(when: !model.isImmersed)
         .task(id: model.pendingFixturePlacement?.id) {
             guard let id = model.pendingFixturePlacement?.id else { return }
@@ -78,6 +80,21 @@ struct LaunchView: View {
                 if let id = placementDecisionID { model.cancelPlacementHandoff(id, message: "Placement handoff cancelled.") }
             }
         } message: { Text("Your current fixture arrangement has unsaved changes.") }
+        .onChange(of: model.isImmersed, initial: true) { _, immersed in
+            // Restoration can present this window after the immersive view's
+            // initial dismissal. The chooser belongs outside the venue.
+            if immersed { dismissWindow(id: "launch") }
+        }
+        .task(id: model.isImmersed ? nil : model.toolboxWindowIDs) {
+            guard !model.isImmersed else { return }
+            // Dismissal from the disappearing immersive scene can be ignored
+            // during the transition. Finish it from the active chooser scene.
+            for _ in 0..<30 where !model.isImmersed && model.toolboxVisible {
+                for identity in model.toolboxWindowIDs { dismissWindow(id: "toolbox", value: identity) }
+                if model.unvaluedToolboxVisible { dismissWindow(id: "toolbox") }
+                do { try await Task.sleep(for: .milliseconds(100)) } catch { return }
+            }
+        }
         .task {
             await model.prepareLibrary()
             #if DEBUG

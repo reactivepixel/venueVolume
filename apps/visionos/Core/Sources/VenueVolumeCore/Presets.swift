@@ -7,17 +7,25 @@ public struct DMXPreset: Identifiable, Codable, Equatable, Sendable {
     public var phaser: Phaser?
     public var category: PaletteCategory?
     public var attributeIndices: [Int]?
+    public var includedChannels: [Int]?
+    public var focusTargetID: UUID?
+    public var channelMask: Set<Int> { Set(includedChannels ?? Array(channels.indices)).intersection(Set(attributeIndices ?? Array(channels.indices))) }
 
-    public init(id: UUID = UUID(), name: String, channels: [Int] = Array(repeating: 0, count: 16), phaser: Phaser? = nil, category: PaletteCategory? = nil, attributeIndices: [Int]? = nil) {
+    public init(id: UUID = UUID(), name: String, channels: [Int] = Array(repeating: 0, count: 16), phaser: Phaser? = nil, category: PaletteCategory? = nil, attributeIndices: [Int]? = nil, includedChannels: [Int]? = nil, focusTargetID: UUID? = nil) {
         self.id = id
         self.name = name
         self.channels = channels
         self.phaser = phaser
         self.category = category
         self.attributeIndices = attributeIndices
+        self.includedChannels = includedChannels
+        self.focusTargetID = focusTargetID
     }
 
     public var validationIssue: String? {
+        if let includedChannels, includedChannels.contains(4) != includedChannels.contains(5) { return "Include Pan and Tilt together for Focus." }
+        if let includedChannels, includedChannels.isEmpty || Set(includedChannels).count != includedChannels.count || !includedChannels.allSatisfy({ channels.indices.contains($0) }) { return "Choose valid included parameters." }
+        if focusTargetID != nil && !Set([4, 5]).isSubset(of: channelMask) { return "Focus includes Pan and Tilt." }
         if name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { return "Give this palette a name." }
         if !(1...16).contains(channels.count) { return "A palette needs 1–16 channels." }
         if channels.contains(where: { !(0...255).contains($0) }) { return "Channel values must be 0–255." }
@@ -85,8 +93,8 @@ public enum PresetOperations {
         var references = result[index].channelPaletteIDs ?? Dictionary(uniqueKeysWithValues: result[index].channels.indices.compactMap { channel in
             result[index].presetID.map { (channel, $0) }
         })
-        if preset.attributeIndices == nil { references.removeAll() }
-        for channel in preset.attributeIndices ?? Array(preset.channels.indices) { references[channel] = preset.id }
+        if preset.attributeIndices == nil && preset.includedChannels == nil { references.removeAll() }
+        for channel in preset.channelMask { references[channel] = preset.id }
         result[index].channelPaletteIDs = references
         result[index].presetID = preset.id
         result[index].channels = mergedChannels(preset, existing: result[index].channels)
@@ -136,7 +144,8 @@ public enum PresetOperations {
 
     public static func mergedChannels(_ palette: DMXPreset, existing: [Int], at seconds: Double = 0, fixtureIndex: Int = 0, fixtureCount: Int = 1) -> [Int] {
         let output = palette.sampledChannels(at: seconds, fixtureIndex: fixtureIndex, fixtureCount: fixtureCount)
-        guard let attributes = palette.attributeIndices else { return output }
+        guard palette.attributeIndices != nil || palette.includedChannels != nil else { return output }
+        let attributes = palette.channelMask
         var result = Array((existing + Array(repeating: 0, count: output.count)).prefix(max(existing.count, output.count)))
         for index in attributes where output.indices.contains(index) { result[index] = output[index] }
         return result
