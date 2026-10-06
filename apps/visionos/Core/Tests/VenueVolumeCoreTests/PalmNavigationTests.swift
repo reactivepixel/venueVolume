@@ -11,26 +11,48 @@ import Testing
     #expect(abs(map.metersToMap - 0.014) < 0.0001)
 }
 
-@Test func palmMapDwellTogglesOnceAndRequiresFreshAttention() {
+@Test func palmMapRevealsAfterDwellAndDismissesWhenHidden() {
     var toggle = PalmMapToggle()
-    let result1 = toggle.update(attended: true, now: 0)
-    #expect(!result1)
-    let result2 = toggle.update(attended: true, now: 0.36)
-    #expect(result2)
-    let result3 = toggle.update(attended: true, now: 4)
-    #expect(result3)
-    let result4 = toggle.update(attended: false, now: 4.1)
-    #expect(result4)
-    let result5 = toggle.update(attended: true, now: 4.2)
-    #expect(result5)
-    let result6 = toggle.update(attended: true, now: 5)
-    #expect(result6)
-    _ = toggle.update(attended: false, now: 5.1)
-    _ = toggle.update(attended: false, now: 5.7)
-    let result7 = toggle.update(attended: true, now: 6)
-    #expect(result7)
-    let result8 = toggle.update(attended: true, now: 6.4)
-    #expect(!result8)
+    for (attended, now, expected) in [(true,0.0,false), (true,0.36,true), (true,4.0,true),
+                                      (false,4.1,false), (true,4.2,false), (true,4.6,true), (true,5.0,true)] {
+        let visible = toggle.update(attended: attended, now: now)
+        #expect(visible == expected)
+    }
+}
+
+@Test func isometricDragInvertsFloorProjectionAndSeparatesElevation() {
+    let map = PalmMapProjection(minimum: [-10,0,-10], maximum: [10,4,10])
+    let delta = SIMD2<Float>(2,-3)
+    let x = cos(PalmMapProjection.yaw) * (delta.x + delta.y) * map.metersToMap
+    let y = sin(PalmMapProjection.pitch) * cos(PalmMapProjection.yaw) * (delta.x - delta.y) * map.metersToMap
+    let restored = map.floorDelta(screen: [x,y])
+    #expect(abs(restored.x-delta.x) < 0.0001)
+    #expect(abs(restored.y-delta.y) < 0.0001)
+    #expect(abs(map.heightDelta(screenY: 2*cos(PalmMapProjection.pitch)*map.metersToMap)-2) < 0.0001)
+}
+
+@Test func raisedDestinationClearsFurnitureButStillRejectsCeilingAndWalls() throws {
+    var room = EnvironmentManifest.simple(id: "map", title: "Map", min: [-5,0,-5], max: [5,5,5], spawn: [0,0,3], yaw: 0,
+        file: "room.usdz", checksum: String(repeating: "a", count: 64), bytes: 1, scanned: false)
+    room.colliders.append(.init(id: "desk", sourceID: "desk", shape: "box", center: [0,0.5,0], size: [2,1,2], rotation: [0,0,0,1]))
+    #expect(PalmMapProjection.destination([0,0], in: room) == nil)
+    #expect(PalmMapProjection.destination([0,0], in: room, elevation: 1)?.y == 1)
+    #expect(PalmMapProjection.destination([3,0], in: room) != nil)
+    #expect(PalmMapProjection.destination([0,0], in: room, elevation: 4) == nil)
+    #expect(PalmMapProjection.destination([0,0], in: room, elevation: -1) == nil)
+    #expect(PalmMapProjection.destination([5,0], in: room, elevation: 1) == nil)
+    #expect(PalmMapProjection.destination([0,0], in: room, elevation: .nan) == nil)
+    room.colliders.append(.init(id: "wall", sourceID: "wall", shape: "box", center: [3,2.5,0], size: [0.2,5,5], rotation: [0,0,0,1]))
+    #expect(PalmMapProjection.destination([3,0], in: room, elevation: 1) == nil)
+}
+
+@Test func palmMapRespectsRotatedObstacles() {
+    var room = EnvironmentManifest.simple(id: "map", title: "Map", min: [-5,0,-5], max: [5,5,5], spawn: [0,0,3], yaw: 0,
+        file: "room.usdz", checksum: String(repeating: "a", count: 64), bytes: 1, scanned: false)
+    room.colliders.append(.init(id: "diagonal", sourceID: "diagonal", shape: "box", center: [0,1,0], size: [4,2,0.2],
+        rotation: [0,sin(Float.pi/8),0,cos(Float.pi/8)]))
+    #expect(PalmMapProjection.destination([1,-1], in: room) == nil)
+    #expect(PalmMapProjection.destination([1,1], in: room) != nil)
 }
 
 @Test func palmMapRejectsOutsideFloorAndFurniture() throws {
@@ -43,4 +65,14 @@ import Testing
     let desk = try #require(room.surfaces.first { $0.id == "instructor-desk-top" })
     #expect(PalmMapProjection.destination([desk.center[0],desk.center[2]], in: room) == nil)
     #expect(PalmMapProjection.destination([.nan,0], in: room) == nil)
+}
+
+@Test func palmMapEquipmentEnvelopeParticipatesInCollision() {
+    let room = EnvironmentManifest.simple(id: "map", title: "Map", min: [-5,0,-5], max: [5,5,5], spawn: [0,0,3], yaw: 0,
+        file: "room.usdz", checksum: String(repeating: "a", count: 64), bytes: 1, scanned: false)
+    let fixture = Fixture(name: "Cube", position: .init(x: 0,y: 0.12,z: 0))
+    let withEquipment = PalmMapProjection.includingFixtures([fixture], in: room)
+    #expect(PalmMapProjection.destination([0,0], in: room) != nil)
+    #expect(PalmMapProjection.destination([0,0], in: withEquipment) == nil)
+    #expect(PalmMapProjection.destination([0,0], in: withEquipment, elevation: 0.3) != nil)
 }

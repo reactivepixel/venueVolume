@@ -48,6 +48,7 @@ public struct Fixture: Identifiable, Codable, Equatable, Sendable {
     public var presetID: UUID?
     /// Optional persistent membership; absent in legacy saved placements.
     public var groupID: UUID?
+    public var groupName: String?
     /// Per-channel palette ownership allows color, position and phasers to coexist.
     public var channelPaletteIDs: [Int: UUID]?
     public var referencedPaletteIDs: Set<UUID> {

@@ -1,92 +1,109 @@
 import SwiftUI
 import VenueVolumeCore
 
-/// The wrist's right column follows selection; the scene list returns on deselect.
+/// Only selected fixtures belong in the wrist selection column.
 struct SceneSelectionPane: View {
     @Environment(VenueModel.self) private var model
     @Environment(\.openWindow) private var openWindow
-    @State private var confirmClear = false
-
+    @State private var choosing = false
+    @State private var namingGroup = false
     var body: some View {
         ScrollView {
-        VStack(alignment: .leading, spacing: 12) {
-            if let id = model.selectedID, let fixture = model.fixture(id) {
+            VStack(alignment: .leading, spacing: 12) {
                 HStack {
-                    Text("SELECTED ITEM").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
+                    Text("SELECTED · \(model.selectedFixtures.count)").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
                     Spacer()
-                    Button { model.deselect() } label: { Image(systemName: "xmark").frame(minWidth: 60, minHeight: 60) }
-                        .accessibilityLabel("Deselect \(fixture.name)")
+                    if !model.selectedFixtures.isEmpty {
+                        Button("Clear selection", systemImage: "xmark") { model.deselect() }
+                    }
                 }
-                Text(model.selectedFixtureIDs.count > 1 ? "\(model.selectedFixtureIDs.count) selected fixtures" : fixture.name).font(.title3.weight(.semibold))
-                if model.selectedFixtureIDs.count > 1 { Button("Create group", systemImage: "square.3.layers.3d") { model.groupSelection() } }
-                if let group = fixture.groupID { Button("Break group", systemImage: "square.3.layers.3d.slash") { model.ungroup(group) } }
-                Button(model.multiSelectionMode ? "Finish selecting" : "Select multiple") { model.multiSelectionMode.toggle() }
-                if model.multiSelectionMode {
-                    ForEach(model.fixtures) { item in
-                        Button { model.select(item.id) } label: {
-                            Label(item.name, systemImage: model.selectedFixtureIDs.contains(item.id) ? "checkmark.circle.fill" : "circle")
+                Button("Add fixtures…", systemImage: "plus") { choosing = true }.disabled(model.fixtures.isEmpty)
+                if model.selectedFixtures.isEmpty {
+                    ContentUnavailableView("No fixtures selected", systemImage: "cursorarrow.click",
+                        description: Text("Select fixtures in the room or use Add fixtures. Selecting the background clears the selection."))
+                } else {
+                    Button(model.multiSelectionMode ? "Finish selecting" : "Select multiple in room") { model.multiSelectionMode.toggle() }
+                    ForEach(model.selectedFixtures) { fixture in
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(fixture.name).font(.headline)
+                            Text(fixture.groupName ?? "U\(fixture.universe) · \(fixture.startAddress)–\(fixture.endAddress)")
+                                .font(.caption).foregroundStyle(.secondary)
                         }
                     }
-                }
-                Button { model.presetEditor.request(presetID: fixture.presetID) } label: {
-                    Label("Palette editor", systemImage: "slider.horizontal.3")
-                        .frame(maxWidth: .infinity, minHeight: 60, alignment: .leading)
-                }
-                Button { openWindow(id: "fixture-editor", value: "selection") } label: {
-                    Label("Pop out item editor", systemImage: "arrow.up.right.square")
-                        .frame(maxWidth: .infinity, minHeight: 60, alignment: .leading)
-                }
-                Group {
-                    VStack(alignment: .leading, spacing: 14) {
-                        FixtureActions(fixture: fixture)
-                        Divider()
-                        FixturePanel(fixture: model.renderedFixture(fixture))
-                    }.padding(.trailing, 4)
-                }
-            } else {
-                HStack {
-                    ForEach(model.fixtureGroups, id: \.self) { group in
-                    HStack {
-                        Text("Group · \(model.fixtures.filter { $0.groupID == group }.count) fixtures")
-                        Spacer()
-                        Button("Select") { if let item = model.fixtures.first(where: { $0.groupID == group }) { model.select(item.id) } }
-                        Button("Break group") { model.ungroup(group) }
+                    if model.selectedFixtures.count > 1 {
+                        Button("Group", systemImage: "square.3.layers.3d") { namingGroup = true }
                     }
-                }
-                Text("SCENE · \(model.fixtures.count) ITEMS").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
-                    Spacer()
-                    Button("Clear all", role: .destructive) { confirmClear = true }.disabled(model.fixtures.isEmpty)
-                }
-                Text("\(model.totalChannels) DMX channels · \(Set(model.fixtures.map(\.universe)).count) universes")
-                    .font(.caption).foregroundStyle(.secondary)
-                if model.fixtures.isEmpty {
-                    ContentUnavailableView("Empty scene", systemImage: "cube.transparent",
-                        description: Text("Drag a fixture from the library into the room. Select it here or in the scene to inspect and edit it."))
-                } else {
-                    Group {
-                        VStack(spacing: 10) {
-                            ForEach(model.fixtures) { fixture in
-                                HStack {
-                                    Button { model.select(fixture.id) } label: {
-                                        VStack(alignment: .leading, spacing: 5) {
-                                            Text(fixture.name).font(.callout.weight(.semibold))
-                                            Text("U\(fixture.universe) · \(fixture.startAddress)–\(fixture.endAddress)")
-                                            Text(model.presets.first { $0.id == fixture.presetID }?.name ?? "No palette · dark")
-                                        }.font(.caption).frame(maxWidth: .infinity, alignment: .leading)
-                                    }.buttonStyle(.plain)
-                                    Button(role: .destructive) { model.remove(fixture.id) } label: { Image(systemName: "trash").frame(minWidth: 60, minHeight: 60) }
-                                        .accessibilityLabel("Clear \(fixture.name) from scene")
-                                }.padding(12).background(.white.opacity(0.05), in: RoundedRectangle(cornerRadius: 14))
-                            }
+                    if let fixture = model.selectedFixtures.first {
+                        if let group = fixture.groupID { Button("Break group", systemImage: "square.3.layers.3d.slash") { model.ungroup(group) } }
+                        Button("Palette editor", systemImage: "slider.horizontal.3") { model.presetEditor.request(presetID: fixture.presetID) }
+                        Button("Pop out item editor", systemImage: "arrow.up.right.square") { openWindow(id: "fixture-editor", value: "selection") }
+                        FixtureActions(fixture: fixture)
+                        if model.selectedFixtures.count == 1 {
+                            Divider()
+                            FixturePanel(fixture: model.renderedFixture(fixture))
                         }
                     }
                 }
             }
         }
-        }
-        .confirmationDialog("Clear all scene fixtures?", isPresented: $confirmClear, titleVisibility: .visible) {
-            Button("Clear all fixtures", role: .destructive) { model.clearScene() }
-        } message: { Text("The room and saved setups remain available. Undo restores these fixtures.") }
+        .sheet(isPresented: $choosing) { FixtureSelectionSheet() }
+        .sheet(isPresented: $namingGroup) { SelectionGroupSheet() }
+    }
+}
+
+/// Separate discovery from the selected-only list; toggling always extends selection.
+struct FixtureSelectionSheet: View {
+    @Environment(VenueModel.self) private var model
+    @Environment(\.dismiss) private var dismiss
+    var body: some View {
+        NavigationStack {
+            List {
+                if model.tour != nil {
+                    ForEach(model.tourUnits) { unit in
+                        Button { model.toggleUnitSelection(unit.id) } label: {
+                            Label(unit.fixture.name, systemImage: model.tourSelection.contains(unit.id) ? "checkmark.circle.fill" : "circle")
+                        }
+                    }
+                } else {
+                    ForEach(model.fixtures) { fixture in
+                        Button {
+                            let previous = model.multiSelectionMode
+                            model.multiSelectionMode = true; model.select(fixture.id); model.multiSelectionMode = previous
+                        } label: {
+                            Label(fixture.name, systemImage: model.selectedFixtureIDs.contains(fixture.id) ? "checkmark.circle.fill" : "circle")
+                        }
+                    }
+                }
+            }.navigationTitle("Add fixtures to selection")
+                .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
+        }.frame(width: 580, height: 520)
+    }
+}
+
+struct SelectionGroupSheet: View {
+    @Environment(VenueModel.self) private var model
+    @Environment(\.dismiss) private var dismiss
+    @State private var name = ""
+    @State private var failure: String?
+    private var trimmed: String { name.trimmingCharacters(in: .whitespacesAndNewlines) }
+    var body: some View {
+        NavigationStack {
+            Form {
+                TextField("Group name", text: $name)
+                if let failure { Text(failure).foregroundStyle(.red) }
+                Text("Group \(model.tour == nil ? model.selectedFixtureIDs.count : model.tourSelection.count) selected fixtures.")
+            }.navigationTitle("Name group")
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Create group") {
+                            if model.groupSelection(name: trimmed) { dismiss() }
+                            else { failure = model.message ?? "Select at least two fixtures and enter a name of at most 120 characters." }
+                        }
+                            .disabled(trimmed.isEmpty || trimmed.count > 120 || (model.tour == nil ? model.selectedFixtureIDs.count : model.tourSelection.count) < 2)
+                    }
+                }
+        }.frame(width: 520, height: 300)
     }
 }
 

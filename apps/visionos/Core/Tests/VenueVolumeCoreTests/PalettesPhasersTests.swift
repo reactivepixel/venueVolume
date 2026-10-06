@@ -2,6 +2,15 @@ import XCTest
 @testable import VenueVolumeCore
 
 final class PalettesPhasersTests: XCTestCase {
+    func testStandardLibraryReplacesLegacyLooksAndIncludesEveryCategory() {
+        XCTAssertEqual(PaletteLibrary.baseline.count, 15)
+        XCTAssertEqual(Set(PaletteLibrary.baseline.map(\.id)).count, 15)
+        XCTAssertEqual(Set(PaletteLibrary.baseline.compactMap(\.category)), Set(PaletteCategory.allCases))
+        XCTAssertEqual(LightingPreview.presets, Array(PaletteLibrary.baseline.prefix(3)))
+        XCTAssertTrue(PaletteLibrary.baseline.allSatisfy { !$0.id.uuidString.hasPrefix("20000000") })
+        XCTAssertEqual(PaletteLibrary.baseline.filter { $0.phaser != nil }.count, 4)
+    }
+
     func testTouringMaskAndPaletteAttributesCompose() throws {
         let palette = DMXPreset(name: "Scoped color", channels: [255,200,100,50],
             attributeIndices: [1,2,3], includedChannels: [1,2])

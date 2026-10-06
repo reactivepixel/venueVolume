@@ -24,14 +24,8 @@ public struct LightingPreview: Equatable, Sendable {
         outerAngle = 10 + value(6, fallback: 128) * 50
     }
 
-    public static let presets = [
-        DMXPreset(id: UUID(uuidString: "20000000-0000-0000-0000-000000000001")!, name: "Warm room wash",
-                  channels: [210, 255, 170, 95, 128, 145, 200, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-        DMXPreset(id: UUID(uuidString: "20000000-0000-0000-0000-000000000002")!, name: "Blue focus",
-                  channels: [255, 45, 115, 255, 128, 145, 125, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-        DMXPreset(id: UUID(uuidString: "20000000-0000-0000-0000-000000000003")!, name: "White work light",
-                  channels: [180, 255, 255, 255, 128, 128, 240, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    ]
+    /// Existing preview callers now resolve to the standard palette IDs and masks.
+    public static let presets = Array(PaletteLibrary.baseline.prefix(3))
 
     public static func placementIssue(_ position: Position3D, in room: EnvironmentManifest) -> String? {
         let values = [position.x, position.y, position.z]

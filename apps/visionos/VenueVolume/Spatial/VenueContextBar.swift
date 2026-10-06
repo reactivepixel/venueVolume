@@ -12,7 +12,7 @@ struct VenueContextBar: View {
             Button(model.palmMapVisible ? "Close Palm Map" : "Palm Map", systemImage: "map") { model.togglePalmMap() }
                 .disabled(!model.palmMapVisible && (!model.canPlace || model.libraryBusy || model.navigationBlackoutActive))
             if model.palmMapVisible {
-                Text("Drag the marker to teleport; tap it to show rotation rings.").font(.caption)
+                Text("Select the cube to move it. Yellow means obstructed; raise or move it, then Teleport.").font(.caption)
                 Button("Done", systemImage: "checkmark") { model.closePalmMap() }
             } else if model.isPlacing {
                 Label("Place \(model.fixtureKind.name)", systemImage: "plus.viewfinder")

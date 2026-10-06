@@ -58,12 +58,15 @@ public enum PaletteLibrary {
         var channels = [255, 255, 255, 255, 128, 128, 128] + Array(repeating: 0, count: 9)
         for (index, value) in values { channels[index] = value }
         return DMXPreset(id: UUID(uuidString: String(format: "30000000-0000-0000-0000-%012d", number))!, name: name,
-                         channels: channels, phaser: phaser, category: category, attributeIndices: values.keys.sorted())
+                         channels: channels, phaser: phaser, category: category, attributeIndices: category == .all ? Array(0..<16) : values.keys.sorted())
     }
+    /// The three complete looks replace the legacy preview presets. Attribute palettes
+    /// below layer over these foundations; phasers own only their animated attributes.
     public static let baseline: [DMXPreset] = [
+        palette(101, "All · Warm room wash", .all, [0: 210, 1: 255, 2: 170, 3: 95, 4: 128, 5: 145, 6: 200]),
+        palette(102, "All · Blue focus", .all, [0: 255, 1: 45, 2: 115, 3: 255, 4: 128, 5: 145, 6: 125]),
+        palette(103, "All · White work light", .all, [0: 180, 1: 255, 2: 255, 3: 255, 4: 128, 5: 128, 6: 240]),
         palette(1, "Intensity · Full", .intensity, [0: 255]),
-        palette(2, "Intensity · Half", .intensity, [0: 128]),
-        palette(3, "Intensity · Blackout", .intensity, [0: 0]),
         palette(4, "Color · White", .color, [1: 255, 2: 255, 3: 255]),
         palette(5, "Color · Warm", .color, [1: 255, 2: 170, 3: 95]),
         palette(6, "Color · Red", .color, [1: 255, 2: 0, 3: 0]),
@@ -74,7 +77,6 @@ public enum PaletteLibrary {
         palette(11, "Phaser · Dimmer chase", .intensity, [0: 255], phaser: Phaser(steps: [.init(values: [0: 255]), .init(values: [0: 0])], phaseSpreadDegrees: 360, transition: 0)),
         palette(12, "Phaser · Dimmer breathe", .intensity, [0: 255], phaser: Phaser(steps: [.init(values: [0: 32]), .init(values: [0: 255])], beatsPerMinute: 30)),
         palette(13, "Phaser · Red / blue", .color, [1: 255, 2: 0, 3: 0], phaser: Phaser(steps: [.init(values: [1: 255, 2: 0, 3: 0]), .init(values: [1: 0, 2: 60, 3: 255])], transition: 0)),
-        palette(14, "Phaser · Pan sweep", .position, [4: 128, 5: 128], phaser: Phaser(steps: [.init(values: [4: 64]), .init(values: [4: 192])], beatsPerMinute: 20)),
         palette(15, "Phaser · Circle", .position, [4: 128, 5: 128], phaser: Phaser(steps: [.init(values: [4: 128, 5: 80]), .init(values: [4: 180, 5: 128]), .init(values: [4: 128, 5: 180]), .init(values: [4: 80, 5: 128])], beatsPerMinute: 20))
     ]
 }

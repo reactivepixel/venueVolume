@@ -373,25 +373,15 @@ struct TourSelectionPane: View {
     @Environment(\.openWindow) private var openWindow
     @State private var arranging = false
     @State private var adapting = false
-    @State private var confirmReturn = false
+    @State private var choosing = false
+    @State private var namingGroup = false
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 if model.tourSelection.isEmpty {
-                    HStack {
-                        Text("Scene · \(model.fixtures.count) fixtures").font(.headline)
-                        Spacer()
-                        Button("Return all") { confirmReturn = true }.disabled(model.fixtures.isEmpty)
-                    }
-                    if model.fixtures.isEmpty { Text("Select inventory units or a group. Place remaining repeats placement until that model's inventory is exhausted.").foregroundStyle(.secondary) }
-                    ForEach(model.fixtures) { fixture in
-                        HStack {
-                            Button(fixture.name) { model.select(fixture.id) }.frame(minHeight: 60)
-                            Spacer()
-                            Button { model.remove(fixture.id) } label: { Image(systemName: "arrow.uturn.backward").frame(minWidth: 60, minHeight: 60) }.accessibilityLabel("Return \(fixture.name) to inventory")
-                        }
-                    }
-                    Button("Select all inventory") { model.selectGroup(nil) }.disabled(model.tourUnits.isEmpty)
+                    ContentUnavailableView("No fixtures selected", systemImage: "cursorarrow.click",
+                        description: Text("Select inventory units in the library or add fixtures to the selection."))
+                    Button("Add fixtures…", systemImage: "plus") { choosing = true }.disabled(model.tourUnits.isEmpty)
                     Button("Adapt configuration layout…") { adapting = true }.disabled(!model.fixtures.isEmpty || model.tour?.configuration?.layout.isEmpty != false)
                 } else {
                     HStack(alignment: .top) {
@@ -401,6 +391,10 @@ struct TourSelectionPane: View {
                         }
                         Spacer()
                         Button { model.deselect() } label: { Image(systemName: "xmark").frame(minWidth: 60, minHeight: 60) }.accessibilityLabel("Deselect inventory")
+                    }
+                    Button("Add fixtures…", systemImage: "plus") { choosing = true }
+                    if model.tourSelection.count > 1 {
+                        Button("Group", systemImage: "square.3.layers.3d") { namingGroup = true }
                     }
                     Button("Preset editor", systemImage: "slider.horizontal.3") { model.presetEditor.request() }.frame(minHeight: 60)
                     TourApplyMenu()
@@ -435,9 +429,8 @@ struct TourSelectionPane: View {
         }
         .sheet(isPresented: $arranging) { ArrangementSheet(adapting: false) }
         .sheet(isPresented: $adapting) { ArrangementSheet(adapting: true) }
-        .confirmationDialog("Return all fixtures to inventory?", isPresented: $confirmReturn, titleVisibility: .visible) {
-            Button("Return all") { model.clearScene() }
-        } message: { Text("Groups and programming stay with the equipment. Undo restores the placements.") }
+        .sheet(isPresented: $choosing) { FixtureSelectionSheet() }
+        .sheet(isPresented: $namingGroup) { SelectionGroupSheet() }
     }
 }
 

@@ -213,5 +213,6 @@ struct SessionSmoke {
         try await PlacementHandoffSmoke.run()
         EditorPresentationSmoke.run()
         try TouringSmoke.run(environment: environment)
+        try PalettePalmSelectionSmoke.run(environment: environment)
     }
 }
