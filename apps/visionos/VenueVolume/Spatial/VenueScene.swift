@@ -1002,17 +1002,21 @@ final class VenueScene {
         // deliberately documented approximation; the pinch's system target is authoritative.
         guard let hits = root.scene?.raycast(origin: eye,direction: direction,length: 30,query: .all,mask: .all,relativeTo: nil),
               let hit = hits.sorted(by: { $0.distance < $1.distance }).first(where: {
-                  $0.entity.name.hasPrefix("room-collider:") || $0.entity.name.hasPrefix("aim-surface:")
+                  model.scannedMesh != nil ? $0.entity.name.hasPrefix("aim-surface:") : $0.entity.name.hasPrefix("room-collider:")
               }) else { placementGhost.isEnabled = false; return }
         let point = root.convert(position: hit.position, from: nil)
         let radius = model.fixtureKind.radius
-        let valid: Bool
-        if let scan = model.scannedMesh { valid = scan.supports(.init(x: point.x,y: point.y,z: point.z),radius: radius) }
-        else {
+        let base: SIMD3<Float>
+        if let scan = model.scannedMesh {
+            guard scan.supports(.init(x: point.x,y: point.y,z: point.z),radius: radius) else { placementGhost.isEnabled = false; return }
+            base = point
+        } else {
             let id = String(hit.entity.name.dropFirst("room-collider:".count))
-            valid = manifest?.surfaces.first(where: { $0.id == id })?.fixturePosition(hit: .init(x: point.x,y: point.y,z: point.z),halfSize: radius) != nil
+            guard let position = manifest?.surfaces.first(where: { $0.id == id })?.fixturePosition(hit: .init(x: point.x,y: point.y,z: point.z),halfSize: radius) else {
+                placementGhost.isEnabled = false; return
+            }
+            base = [position.x,position.y-radius,position.z]
         }
-        guard valid else { placementGhost.isEnabled = false; return }
         if placementGhost.name != model.fixtureKind.name {
             placementGhost.children.removeAll(); placementGhost.name = model.fixtureKind.name
             let asset = model.fixtureKind.asset
@@ -1029,7 +1033,7 @@ final class VenueScene {
             } } }
             placementGhost.components.set(OpacityComponent(opacity: 0.55))
         }
-        placementGhost.position = point; placementGhost.isEnabled = true
+        placementGhost.position = base; placementGhost.isEnabled = true
     }
 
     private func updateGroupLinks(model: VenueModel) {
