@@ -4,6 +4,7 @@ import SwiftUI
 struct VenueVolumeApp: App {
     @State private var model = VenueModel()
     @State private var venueImmersion: ImmersionStyle = .progressive(0...1, initialAmount: 1)
+    @State private var immersionBeforeNavigation: ImmersionStyle?
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
@@ -46,9 +47,24 @@ struct VenueVolumeApp: App {
         ImmersiveSpace(id: "VenueSpace") {
             VenueSpaceView()
                 .placementLinkReceiver().environment(model).auditTextSize().controlSize(.large)
+                .onChange(of: model.navigationBlackoutActive) { _, active in
+                    if active {
+                        immersionBeforeNavigation = venueImmersion
+                        venueImmersion = .full
+                    } else if let previous = immersionBeforeNavigation {
+                        venueImmersion = previous
+                        immersionBeforeNavigation = nil
+                    }
+                }
+                .onDisappear {
+                    if let previous = immersionBeforeNavigation { venueImmersion = previous }
+                    immersionBeforeNavigation = nil
+                }
         }
-        // visionOS owns Digital Crown input and smoothly reveals passthrough.
-        .immersionStyle(selection: $venueImmersion, in: .progressive(0...1, initialAmount: 1))
+        // Full immersion lets the head-anchored cover mask a navigation change even
+        // when the user has reduced the progressive portal using the Digital Crown.
+        // Restore their selected style after the fade completes.
+        .immersionStyle(selection: $venueImmersion, in: .progressive(0...1, initialAmount: 1), .full)
 
         ImmersiveSpace(id: "RoomScan") { RoomScanView().placementLinkReceiver().environment(model).auditTextSize().controlSize(.large) }
             .immersionStyle(selection: .constant(.mixed), in: .mixed)
