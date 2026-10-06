@@ -10,7 +10,7 @@ updated: 2026-09-19
 
 ## Intent and basis
 
-Confirmed domain. Represent moments as named show states with preset assignments and other configuration.
+Confirmed domain. Represent moments as named show states with palette assignments and other configuration.
 
 The domain requested by the founder is authoritative. Detailed policies below are proposed requirements pending R&D validation, not evidence of implemented production behavior.
 
@@ -18,17 +18,17 @@ The domain requested by the founder is authoritative. Detailed policies below ar
 
 Entities: Cue, CueRevision, CueAssignment, TransitionPolicy, VenueCueOverride.
 
-A cue definition exists independently of script order. Activating it resolves venue-specific fixtures and presets. Fade-in/out, interruption, omitted parameters, and entry/exit behavior must be explicit. Additional non-lighting actions are typed extensions and require their own adapter contracts.
+A cue definition exists independently of script order. Activating it resolves venue-specific fixtures and palettes. Fade-in/out, interruption, omitted parameters, and entry/exit behavior must be explicit. Additional non-lighting actions are typed extensions and require their own adapter contracts.
 
 ## Interface responsibilities
 
-Provide cue list, editor, role-to-preset assignments, timing and notes, resolved preview, usage references, validation, and venue adaptation.
+Provide cue list, editor, role-to-palette assignments, timing and notes, resolved preview, usage references, validation, and venue adaptation.
 
 Wireframe and high-fidelity screens are mapped in [[../Design/Screen Inventory|Screen Inventory]]. See [[../Design/Interaction Coverage|Interaction Coverage]] for what the prototype actually implements.
 
 ## API, storage, and service responsibilities
 
-Persist references, versioned transition policy, and structured configuration. Reject missing presets or targets. Publish only validated cue graphs/snapshots.
+Persist references, versioned transition policy, and structured configuration. Reject missing palettes or targets. Publish only validated cue graphs/snapshots.
 
 ## Runtime and operational responsibilities
 

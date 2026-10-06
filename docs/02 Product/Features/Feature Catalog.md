@@ -14,7 +14,7 @@ Venue Volume is a React-based SaaS application for preparing and operating produ
 - A **Load Out** selects physical fixtures and their placement inside one venue. Each venue supports multiple Load Outs.
 - A **Tour** uses base fixture inventory across multiple venues with additions per stop. Each stop has its own Load Out and placements.
 - Inventory and preparation are managed primarily in SaaS; visionOS refinement comes later.
-- Presets, cues and scripts remain reusable programming concepts, separate from physical venue identity and touring logistics.
+- Palettes and phasers, cues and scripts remain reusable programming concepts, separate from physical venue identity and touring logistics.
 
 See [[../Design/SaaS UX Review - Scanned Venues and Load Outs]] for the whole-product review. Earlier feature documents mentioning template-created venues are historical unless updated to this model.
 
@@ -33,7 +33,7 @@ The confirmed live direction adds color-coded pre-programming/programming/live w
 | F07 | [[F07 - Venue configurations|Venue configurations]] | Confirmed domain |
 | F08 | [[F08 - Patch and routing|Patch and routing]] | Supporting DMX requirement |
 | F09 | [[F09 - Inheritance and overrides|Inheritance and overrides]] | Confirmed behavior; resolution policy proposed |
-| F10 | [[F10 - DMX presets|DMX presets]] | Confirmed domain |
+| F10 | [[F10 - Palettes and Phasers|DMX palettes]] | Confirmed domain |
 | F11 | [[F11 - Cues and state transitions|Cues and state transitions]] | Confirmed domain |
 | F12 | [[F12 - Scripts and running order|Scripts and running order]] | Confirmed domain |
 | F13 | [[F13 - Rehearsal and operation|Rehearsal and operation]] | Supporting requirement |
@@ -51,7 +51,7 @@ Template revision pinning, immutable publication, non-tracking cue evaluation, a
 
 1. Validate fixture profiles, venue override resolution, CAD format needs, and local output feasibility.
 2. Implement show/template/inventory/venue data and revision semantics.
-3. Implement presets, cues, scripts, and simulated venue-resolved rehearsal.
+3. Implement palettes, cues, scripts, and simulated venue-resolved rehearsal.
 4. Implement authenticated bridge, compiler, preflight, physical output, and recovery with hardware tests.
 5. Add SaaS collaboration, audit, imports/exports, and commercially validated billing.
 

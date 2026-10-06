@@ -16,7 +16,7 @@ The founder's 2026-10-04 clarification replaces the template-first room model. S
 - **Load Out** references exactly one imported venue scan and selects physical unit IDs. It owns placement, patch and readiness. A venue has any number of Load Outs.
 - **Tour** owns a base physical-unit selection and ordered stops. Each stop references a venue and a distinct Load Out. Repeated visits to the same venue have separate stop IDs.
 - **Fixture profile** describes a manufacturer/model/mode. A **physical unit** has a stable identity independent of name, placement, patch and model. Duplicate plans do not duplicate units.
-- **Programming** defines reusable presets, cues and scripts. A resolved run must name the selected Load Out, scan, program revisions and output mapping. A Tour is not a synonym for a show program.
+- **Programming** defines reusable palettes, cues and scripts. A resolved run must name the selected Load Out, scan, program revisions and output mapping. A Tour is not a synonym for a show program.
 
 ```text
 Workspace → Scanned venues → Load Outs → selected inventory + placement + patch
@@ -45,7 +45,7 @@ Movie bytes, pipeline status and splats are persisted by the local intake servic
 
 ## Programming and runtime
 
-Preset definitions, cue assignments and script occurrences remain separate identities. Repeated cue occurrences have separate entry IDs. A program binds fixture/group/role IDs to the selected Load Out and validates missing or incompatible targets before compiling.
+Palette definitions, cue assignments and script occurrences remain separate identities. Repeated cue occurrences have separate entry IDs. A program binds fixture/group/role IDs to the selected Load Out and validates missing or incompatible targets before compiling.
 
 Inheritance must report the source and revision of each effective value. Explicit zero overrides a default; reset removes the override. A future Tour/program update requires a reviewed diff and cannot move, repatch or reprogram an active snapshot silently.
 

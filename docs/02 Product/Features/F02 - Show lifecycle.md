@@ -18,7 +18,7 @@ The domain requested by the founder is authoritative. Detailed policies below ar
 
 Entities: Show, ShowRevision, ShowSettings, ArchiveRecord.
 
-A show owns templates, venues, presets, cues, scripts, and asset references. IDs are stable across renames. Archive is recoverable and blocked while an output session is active. Duplication must remap internal references without sharing mutable ownership.
+A show owns templates, venues, palettes, cues, scripts, and asset references. IDs are stable across renames. Archive is recoverable and blocked while an output session is active. Duplication must remap internal references without sharing mutable ownership.
 
 ## Interface responsibilities
 

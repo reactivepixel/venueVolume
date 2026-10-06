@@ -127,14 +127,14 @@ export const screens = [
   ],
   [
     "presets",
-    "Preset library",
+    "Palette library",
     "Program",
     "F10",
     "Reuse parameter looks across repeated fixture groups.",
   ],
   [
     "preset-editor",
-    "Preset editor",
+    "Palette editor",
     "Program",
     "F10",
     "Program parameters and inspect venue-resolved values.",
@@ -151,7 +151,7 @@ export const screens = [
     "Cue editor",
     "Program",
     "F11",
-    "Assign presets to fixture roles and define transitions.",
+    "Assign palettes to fixture roles and define transitions.",
   ],
   [
     "scripts",

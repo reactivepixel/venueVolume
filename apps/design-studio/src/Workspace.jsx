@@ -363,7 +363,7 @@ export default function Workspace({ ProgrammingPreview }) {
           <nav className="tabs" aria-label="Programming and operations">
             {(programRoutes.includes(route)
               ? [
-                  ["presets", "Presets"],
+                  ["presets", "Palettes & phasers"],
                   ["cues", "Cues"],
                   ["scripts", "Scripts"],
                 ]
@@ -866,7 +866,7 @@ export default function Workspace({ ProgrammingPreview }) {
             {chooseContext()}
             <Panel title="A consistent programming sequence">
               <p className="panel-copy">
-                Fixture roles → presets → cues → scripts → rehearsal. Current
+                Fixture roles → palettes → cues → scripts → rehearsal. Current
                 editors are design previews with sample cue content. Production
                 programming inheritance across Tours remains to be implemented.
               </p>

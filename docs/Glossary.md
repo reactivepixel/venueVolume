@@ -30,7 +30,7 @@ updated: 2026-09-19
 
 **Universe** — A logical group of up to 512 DMX slots transmitted as a unit.
 
-**Show** — The production project that owns configuration templates, venues, presets, cues, scripts, and assets.
+**Show** — The production project that owns configuration templates, venues, palettes, cues, scripts, and assets.
 
 **Configuration template** — A reusable show configuration containing a saved drawing and production inventory. Venues start from a selected revision and adapt it locally.
 
@@ -38,10 +38,13 @@ updated: 2026-09-19
 
 **Override** — An explicit venue-level change to an inherited value. Removing an override restores inheritance; zero remains a valid explicit value.
 
-**Preset** — A reusable set of DMX parameter intents applied to compatible fixture roles, groups, or instances.
+**Palette** — A reusable set of DMX parameter intents applied to compatible fixture roles, groups, or instances.
 
 **Script** — The expected sequence of cue references and operator instructions. The same cue may appear in multiple distinct script entries.
 
 **Local bridge** — The proposed venue-local component responsible for authenticated control, validated run snapshots, and physical output transport.
 
 **Run snapshot** — An immutable, fully resolved combination of show, venue, script, patch, asset, and profile revisions used for a particular run.
+
+- **Palette**: reusable static values for selected intensity, color, position or beam attributes. Legacy saved data retains preset keys.
+- **Phaser**: a cyclic sequence of attribute steps with speed, measure, phase, width and transition controls. Combine different attribute palettes and phasers; later assignments take precedence for overlapping channels.

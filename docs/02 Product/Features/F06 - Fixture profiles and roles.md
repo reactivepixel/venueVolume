@@ -10,7 +10,7 @@ updated: 2026-09-19
 
 ## Intent and basis
 
-Supporting requirement. Describe fixture capabilities so reusable presets work across repeated and replacement fixtures.
+Supporting requirement. Describe fixture capabilities so reusable palettes work across repeated and replacement fixtures.
 
 The domain requested by the founder is authoritative. Detailed policies below are proposed requirements pending R&D validation, not evidence of implemented production behavior.
 
@@ -36,7 +36,7 @@ Compile semantic intensity/color/position into validated channel mappings. Missi
 
 ## Acceptance scenarios
 
-One intensity preset resolves across four compatible washes; a replacement with a different mode receives its own correct mapping; unsupported color capability produces an actionable error.
+One intensity palette resolves across four compatible washes; a replacement with a different mode receives its own correct mapping; unsupported color capability produces an actionable error.
 
 Apply tenant isolation, revision conflicts, invalid input, empty/loading/error, and permission checks where relevant. Test against resolved data rather than only the presentation.
 

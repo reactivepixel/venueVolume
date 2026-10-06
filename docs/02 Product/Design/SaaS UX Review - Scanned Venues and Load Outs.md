@@ -27,7 +27,7 @@ This review covers the whole SaaS surface, including the earlier 35-screen study
 - A stop inherits the base inventory selection, never another room’s coordinates or patch. Local additions do not alter the Tour base.
 - Existing Load Outs review base changes explicitly. Removed base units remain local additions until deliberately unplaced and deselected, so adoption cannot silently delete placements.
 - SaaS is the primary preparation interface. A later visionOS release will refine the same Load Out and fixture identities. No current sync action should imply this already works.
-- Presets, cues and scripts remain programming concepts. “Show” may describe reusable programming; it must not own the physical venue or substitute for Tour or Load Out.
+- Palettes and phasers, cues and scripts remain programming concepts. “Show” may describe reusable programming; it must not own the physical venue or substitute for Tour or Load Out.
 
 ## Findings and disposition
 
@@ -61,7 +61,7 @@ This review covers the whole SaaS surface, including the earlier 35-screen study
 | Venues; create venue; venue overview | Shared available scans plus intake inbox; movie upload; import without show/template; per-venue Load Out list. |
 | Venue drawing | Placement schematic with numeric X/Y/Z/yaw controls, linked scan, no invented room boundaries. Actual splat rendering and calibration remain missing. |
 | Patch; overrides | Patch is per Load Out; Tour base inventory changes are reviewed here. Legacy programming overrides remain a preview, not a second room configuration. |
-| Presets; preset editor | Load Out context required; sample library preview retained. Production needs real fixture/group binding, partial-parameter intent and compatibility checks. |
+| Palettes and phasers; palette editor | Load Out context required; sample library preview retained. Production needs real fixture/group binding, partial-parameter intent and compatibility checks. |
 | Cues; cue editor | Keep cue definition separate from script occurrence; current sample content is labeled. Implement real creation, editing and missing-target handling before release. |
 | Scripts; script editor | Existing occurrence IDs, ordering and MIDI/timing controls remain. Preview drafts are isolated per Load Out. Reusable program adoption across Tour stops remains open. |
 | Rehearsal; live console | Enter through a Load Out review; output stays simulated. Existing console interactions and pop-out remain design validation surfaces. No “ready” badge claims hardware readiness. |
