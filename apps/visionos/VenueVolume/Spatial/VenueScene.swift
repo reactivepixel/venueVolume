@@ -648,7 +648,7 @@ final class VenueScene {
         guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--preset-drag-smoke") else { return }
         do {
             for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
-            model.toolboxLibraryTab = 1; model.requestToolbox()
+            model.requestToolbox()
             guard let fixture = model.fixtures.first,
                   let preset = model.presets.first(where: { $0.id != fixture.presetID }),
                   let entity = rigs[fixture.id]?.entity ?? cubes[fixture.id] else {

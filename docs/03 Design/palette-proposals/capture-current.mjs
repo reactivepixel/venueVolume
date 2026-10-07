@@ -1,0 +1,31 @@
+import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
+import path from 'node:path';
+import {emptyWorkspace,transition} from '../../../apps/design-studio/src/workspace-model.js';
+const dir=path.dirname(fileURLToPath(import.meta.url));
+const require=createRequire(path.resolve(dir,'../../../apps/design-studio/package.json'));
+const {chromium,expect}=require('@playwright/test');
+const state=transition(emptyWorkspace(),{type:'add-loadout',id:'palette-proposals',name:'Palette Review',venueId:'room'},[{id:'room',name:'Room',assetUrl:'/scan.ply',status:'ready',setupStatus:'configured'}]);
+state.units=Array.from({length:4},(_,i)=>({id:'wash-'+i,name:'Wash 0'+(i+1),role:'Wash',model:'RGB Wash',footprint:8}));
+state.loadouts[0].extraUnitIds=state.units.map(f=>f.id);
+const browser=await chromium.launch({headless:true,executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
+try {
+ const page=await browser.newPage({viewport:{width:1700,height:1400},deviceScaleFactor:1.5});
+ page.setDefaultTimeout(15000);
+ await page.addInitScript(s=>localStorage.setItem('vv-workspace-v2',JSON.stringify(s)),state);
+ await page.goto('http://127.0.0.1:5184/?screen=preset-editor&loadoutId=palette-proposals');
+ await page.getByRole('button',{name:/Dimmer chase/}).click();
+ await page.getByLabel('Palette name',{exact:true}).fill('Dimmer wave');
+ await page.getByLabel('Beats per cycle').fill('4');
+ await page.getByLabel('Transition',{exact:true}).fill('1');
+ await page.getByRole('button',{name:/Step 1/}).click();
+ await page.getByLabel('Step source').selectOption('Intensity · Full');
+ await page.getByRole('button',{name:/Step 2/}).click();
+ await page.getByLabel('Step source').selectOption('Intensity · Blackout');
+ await page.getByRole('button',{name:/Step 1/}).click();
+ await page.getByRole('button',{name:'Update palette',exact:true}).click();
+ await expect(page.getByRole('status')).toContainText('Updated palette');
+ await page.getByRole('button',{name:'Wash',exact:true}).click();
+ await page.getByRole('button',{name:'Pause',exact:true}).click();
+ await page.getByRole('region',{name:'Palette programmer'}).screenshot({path:path.join(dir,'0-current-saas.png')});
+} finally {await browser.close();}

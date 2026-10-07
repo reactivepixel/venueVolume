@@ -73,7 +73,6 @@ final class VenueModel {
     private var tourPreviewSource: TouringArchive?
     private var focusBaseSession: TourSession?
     private var focusDraftPresetID: UUID?
-    var toolboxLibraryTab = 0
     /// The context bar follows a concrete fixture, palette application, or focus target selection.
     var contextBarVisible: Bool {
         isImmersed && !palmMapVisible && (!selectedFixtureIDs.isEmpty || presetDrag.session != nil || focusPickID != nil)
