@@ -39,3 +39,45 @@ test('static position and color coexist with intensity chase in cue output', () 
  run.programmer.one={intensity:75};
  assert.equal(outputValue(run,fixture,0.5).effective,75);
 });
+
+import {applyPaletteToCue, createPalette, paletteIssue, renamePaletteReferences} from '../src/palettes-phasers.js';
+import {assignmentPalettes} from '../src/live-model.js';
+test('step palette sources stay linked and survive palette rename', () => {
+ const red = {...createPalette('Color'), name:'Source red', color:'#ff0000'};
+ const blue = {...createPalette('Color'), name:'Source blue', color:'#0000ff'};
+ const chase = {...createPalette('Color'), name:'Linked color', phaser:{bpm:60,measure:1,transition:0,steps:[{paletteName:red.name},{paletteName:blue.name}]}};
+ assert.equal(paletteIssue(chase,[red,blue]),null);
+ assert.equal(samplePhaser(chase,0,0,1,[red,blue]).color,'#ff0000');
+ red.color='#00ff00';
+ assert.equal(samplePhaser(chase,0,0,1,[red,blue]).color,'#00ff00');
+ const data={presets:[red,blue,chase],script:[{entryId:'one',preset:red.name,assignments:[{role:'Wash',preset:red.name,paletteNames:[red.name,chase.name]}]}]};
+ const changed=renamePaletteReferences(data,{...red,name:'Source green'},red.name);
+ assert.equal(changed.presets[2].phaser.steps[0].paletteName,'Source green');
+ assert.equal(changed.script[0].preset,'Source green');
+ assert.deepEqual(changed.script[0].assignments[0].paletteNames,['Source green',chase.name]);
+ assert.equal(samplePhaser(changed.presets[2],0,0,1,changed.presets).color,'#00ff00');
+ assert.ok(paletteIssue({...chase,phaser:{...chase.phaser,steps:[{paletteName:chase.name},{}]}},[chase]));
+});
+test('fixture application layers above group defaults without changing unselected fixtures', () => {
+ const dimmer={...createPalette(),name:'Half',intensity:50};
+ const red={...createPalette('Color'),name:'Red',color:'#ff0000'};
+ const blue={...createPalette('Color'),name:'Blue',color:'#0000ff'};
+ const fixtures=[{id:'one',role:'Wash'},{id:'two',role:'Wash'}];
+ const script=[{entryId:'cue',assignments:[{role:'Wash',paletteNames:[dimmer.name,red.name]}]}];
+ const applied=applyPaletteToCue(script,'cue',['one'],blue,fixtures,[dimmer,red,blue]);
+ const snapshot={fixtures,presets:[dimmer,red,blue],script:applied};
+ const values=cueValues(snapshot,applied[0]);
+ assert.equal(values.one.intensity,50); assert.equal(values.one.color,'#0000ff');
+ assert.equal(values.two.intensity,50); assert.equal(values.two.color,'#ff0000');
+ assert.equal(script[0].assignments.length,1);
+ assert.equal(assignmentPalettes(snapshot,applied[0],fixtures[0]).at(-1).name,'Blue');
+});
+test('a later static layer stops the phaser only for overlapping attributes', () => {
+ const chase=baselinePalettes.find(p=>p.name.includes('Dimmer chase'));
+ const half={...createPalette(),name:'Half',intensity:50};
+ const fixture={id:'one',role:'Wash'};
+ const entry={entryId:'cue',assignments:[{role:'Wash',paletteNames:[chase.name,half.name]}]};
+ const snapshot={fixtures:[fixture],presets:[chase,half],script:[entry]};
+ const run={snapshot,activeId:'cue',activeValues:cueValues(snapshot,entry),programmer:{},armed:true,master:100,groupMasters:{},connected:true};
+ assert.equal(outputValue(run,fixture,.5).intensity,50);
+});

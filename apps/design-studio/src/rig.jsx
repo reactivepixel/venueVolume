@@ -7,6 +7,7 @@ import {
   Plus,
   RotateCcw,
 } from "lucide-react";
+import { paletteOutput } from "./live-model";
 import { fixtureRows, presetRows } from "./catalog";
 
 export function SelectionInspector({
@@ -116,13 +117,13 @@ export function SelectionInspector({
             onChange={(e) => {
               const preset = presets.find((p) => p.name === e.target.value);
               if (preset)
-                onChange({ intensity: preset.intensity, color: preset.color });
+                onChange(paletteOutput(preset, 0, 0, 1, presets));
             }}
           >
             <option value="" disabled>
-              Choose a look…
+              Choose an attribute palette…
             </option>
-            {presets.map((p) => (
+            {presets.filter(p => !p.phaser).map((p) => (
               <option key={p.name}>{p.name}</option>
             ))}
           </select>

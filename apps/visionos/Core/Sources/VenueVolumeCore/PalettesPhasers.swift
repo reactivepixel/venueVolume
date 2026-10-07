@@ -2,13 +2,18 @@ import Foundation
 
 public enum PaletteCategory: String, Codable, CaseIterable, Sendable {
     case intensity, color, position, beam, all
+    public var label: String { self == .intensity ? "Dimmer" : rawValue.capitalized }
+    public var channelIndices: [Int] {
+        switch self { case .intensity: [0]; case .color: [1,2,3]; case .position: [4,5]; case .beam: [6]; case .all: Array(0..<16) }
+    }
 }
 
 /// Independent attribute values per step; absent attributes retain the base palette.
 public struct PhaserStep: Codable, Equatable, Sendable {
     public var values: [Int: Int]
     public var width: Double
-    public init(values: [Int: Int], width: Double = 1) { self.values = values; self.width = width }
+    public var paletteID: UUID?
+    public init(values: [Int: Int], width: Double = 1, paletteID: UUID? = nil) { self.values = values; self.width = width; self.paletteID = paletteID }
 }
 
 /// Console-inspired cyclic steps, measured in beats, with fixture phase distribution.
@@ -54,6 +59,13 @@ public struct Phaser: Codable, Equatable, Sendable {
 }
 
 public enum PaletteLibrary {
+    /// Portable setups retain the static sources used by assigned phasers.
+    public static func dependencies(for fixtures: [Fixture], in palettes: [DMXPreset]) -> [DMXPreset] {
+        var ids = Set(fixtures.flatMap { $0.referencedPaletteIDs })
+        for palette in palettes where ids.contains(palette.id) { ids.formUnion(palette.phaser?.steps.compactMap(\.paletteID) ?? []) }
+        return palettes.filter { ids.contains($0.id) }
+    }
+
     private static func palette(_ number: Int, _ name: String, _ category: PaletteCategory, _ values: [Int: Int], phaser: Phaser? = nil) -> DMXPreset {
         var channels = [255, 255, 255, 255, 128, 128, 128] + Array(repeating: 0, count: 9)
         for (index, value) in values { channels[index] = value }

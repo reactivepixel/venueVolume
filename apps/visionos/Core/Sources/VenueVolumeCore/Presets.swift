@@ -34,8 +34,39 @@ public struct DMXPreset: Identifiable, Codable, Equatable, Sendable {
         return nil
     }
 
-    public func sampledChannels(at seconds: Double, fixtureIndex: Int = 0, fixtureCount: Int = 1) -> [Int] {
-        phaser?.sample(base: channels, seconds: seconds, fixtureIndex: fixtureIndex, fixtureCount: fixtureCount) ?? channels
+    public var pool: PaletteCategory {
+        category ?? PaletteCategory.allCases.first(where: { $0 != .all && channelMask.isSubset(of: Set($0.channelIndices)) }) ?? .all
+    }
+    public mutating func setPool(_ pool: PaletteCategory) {
+        category = pool
+        attributeIndices = pool.channelIndices.filter { channels.indices.contains($0) }
+        includedChannels = nil
+        if pool != .position && pool != .all { focusTargetID = nil }
+        if var phaser {
+            for index in phaser.steps.indices {
+                phaser.steps[index].values = phaser.steps[index].values.filter { channelMask.contains($0.key) }
+                phaser.steps[index].paletteID = nil
+            }
+            self.phaser = phaser
+        }
+    }
+    public func referenceIssue(in palettes: [DMXPreset]) -> String? {
+        for id in phaser?.steps.compactMap(\.paletteID) ?? [] {
+            guard id != self.id, let source = palettes.first(where: { $0.id == id }), source.phaser == nil else { return "Each linked step needs an existing static palette." }
+            guard channelMask.isSubset(of: source.channelMask) else { return "Step palettes must contain all of this phaser’s attributes." }
+        }
+        return nil
+    }
+    public func sampledChannels(at seconds: Double, fixtureIndex: Int = 0, fixtureCount: Int = 1, palettes: [DMXPreset] = []) -> [Int] {
+        guard var phaser else { return channels }
+        for index in phaser.steps.indices {
+            guard let id = phaser.steps[index].paletteID,
+                  let source = palettes.first(where: { $0.id == id && $0.phaser == nil }) else { continue }
+            for channel in channelMask.intersection(source.channelMask) {
+                phaser.steps[index].values[channel] = source.channels[channel]
+            }
+        }
+        return phaser.sample(base: channels, seconds: seconds, fixtureIndex: fixtureIndex, fixtureCount: fixtureCount)
     }
 
     public func duplicated(name: String? = nil) -> DMXPreset {
@@ -109,8 +140,8 @@ public enum PresetOperations {
         for index in result.indices where result[index].referencedPaletteIDs.contains(preset.id) {
             if let references = result[index].channelPaletteIDs {
                 let sampled = preset.sampledChannels(at: 0)
-                guard !references.contains(where: { $0.value == preset.id && !sampled.indices.contains($0.key) }) else {
-                    throw PresetError("This palette still owns channels outside its new footprint. Reassign the fixtures before reducing channel count.")
+                guard !references.contains(where: { $0.value == preset.id && (!sampled.indices.contains($0.key) || !preset.channelMask.contains($0.key)) }) else {
+                    throw PresetError("This palette still owns excluded attributes. Save as new or reassign the fixtures before changing its pool.")
                 }
                 for (channel, owner) in references where owner == preset.id && result[index].channels.indices.contains(channel) && sampled.indices.contains(channel) {
                     result[index].channels[channel] = sampled[channel]
@@ -142,8 +173,8 @@ public enum PresetOperations {
         }
     }
 
-    public static func mergedChannels(_ palette: DMXPreset, existing: [Int], at seconds: Double = 0, fixtureIndex: Int = 0, fixtureCount: Int = 1) -> [Int] {
-        let output = palette.sampledChannels(at: seconds, fixtureIndex: fixtureIndex, fixtureCount: fixtureCount)
+    public static func mergedChannels(_ palette: DMXPreset, existing: [Int], at seconds: Double = 0, fixtureIndex: Int = 0, fixtureCount: Int = 1, palettes: [DMXPreset] = []) -> [Int] {
+        let output = palette.sampledChannels(at: seconds, fixtureIndex: fixtureIndex, fixtureCount: fixtureCount, palettes: palettes)
         guard palette.attributeIndices != nil || palette.includedChannels != nil else { return output }
         let attributes = palette.channelMask
         var result = Array((existing + Array(repeating: 0, count: output.count)).prefix(max(existing.count, output.count)))
@@ -155,12 +186,12 @@ public enum PresetOperations {
     public static func renderedChannels(for fixture: Fixture, palettes: [DMXPreset], at seconds: Double, fixtureIndex: Int = 0, fixtureCount: Int = 1) -> [Int] {
         guard let references = fixture.channelPaletteIDs else {
             guard let palette = palettes.first(where: { $0.id == fixture.presetID }) else { return fixture.channels }
-            return mergedChannels(palette, existing: fixture.channels, at: seconds, fixtureIndex: fixtureIndex, fixtureCount: fixtureCount)
+            return mergedChannels(palette, existing: fixture.channels, at: seconds, fixtureIndex: fixtureIndex, fixtureCount: fixtureCount, palettes: palettes)
         }
         var channels = fixture.channels
         for paletteID in Set(references.values) {
             guard let palette = palettes.first(where: { $0.id == paletteID }) else { continue }
-            let sample = palette.sampledChannels(at: seconds, fixtureIndex: fixtureIndex, fixtureCount: fixtureCount)
+            let sample = palette.sampledChannels(at: seconds, fixtureIndex: fixtureIndex, fixtureCount: fixtureCount, palettes: palettes)
             for (channel, owner) in references where owner == paletteID && channels.indices.contains(channel) && sample.indices.contains(channel) { channels[channel] = sample[channel] }
         }
         return channels

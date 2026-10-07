@@ -536,6 +536,27 @@ import VenueVolumeCore
         check(model.fixtures.allSatisfy { $0.groupID == nil && $0.groupName == nil }, "Grouping undo removes membership and name")
         model.redo()
         check(model.fixtures.filter { $0.groupName == "Front wash" }.count == 2, "Grouping redo restores name")
+        let color = model.presets.first { $0.name == "Color · Red" }!
+        let untouched = model.fixture(ids[2])!
+        model.select(ids[0], extendSelection: false)
+        let beforeApply = model.fixtures
+        check(model.applyPaletteToSelection(color.id), "Selected group accepts an attribute palette")
+        check(model.fixtures.filter { $0.referencedPaletteIDs.contains(color.id) }.count == 2, "Apply changes exactly the selected group")
+        check(model.fixture(ids[2]) == untouched, "Unselected fixture stays unchanged")
+        model.undo(); check(model.fixtures == beforeApply, "Selection apply is atomic Undo")
+        model.redo()
+        model.newPreset(pool: .color)
+        model.presetDraft.name = "Linked color chase"
+        model.presetDraft.phaser = Phaser(steps: [.init(values: [:], paletteID: color.id), .init(values: [1:0,2:0,3:255])], transition: 0)
+        check(model.savePreset(), "Store linked phaser")
+        let linkedID = model.editingPresetID!
+        check(model.applyPaletteToSelection(linkedID), "Apply linked phaser to selection")
+        model.choosePreset(color); model.presetDraft.channels[1] = 77
+        check(model.savePreset(), "Update step source")
+        model.previewDraft = false
+        check(model.renderedChannels(for: model.fixture(ids[0])!, at: 0)[1] == 77, "Linked phaser follows source updates")
+        model.deletePreset(color.id)
+        check(model.presets.contains { $0.id == color.id }, "Linked source deletion is blocked")
         model.deselect(); check(model.selectedFixtures.isEmpty, "Background deselection empties grouped selection")
         let restored = VenueModel(arguments: [], defaults: defaults, placementDirectory: folder)
         restored.activate(environment: environment)

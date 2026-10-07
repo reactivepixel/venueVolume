@@ -155,7 +155,7 @@ public struct VenueAuditState: Codable, Equatable, Sendable {
     public func validate() throws {
         guard let room = rooms.first(where: { $0.id == roomID }), Set(rooms.map(\.id)).count == rooms.count,
               Set(setups.map(\.id)).count == setups.count, Set(presets.map(\.id)).count == presets.count,
-              presets.allSatisfy({ $0.validationIssue == nil }), viewerPose?.isValid != false, houseLight.isFinite, (0...1).contains(houseLight),
+              presets.allSatisfy({ $0.validationIssue == nil && $0.referenceIssue(in: presets) == nil }), viewerPose?.isValid != false, houseLight.isFinite, (0...1).contains(houseLight),
               fixtures.allSatisfy({ fixture in fixture.referencedPaletteIDs.isSubset(of: Set(presets.map(\.id))) }),
               editingPresetID == nil || presets.contains(where: { $0.id == editingPresetID }),
               activeSetupID == nil || setups.contains(where: { $0.id == activeSetupID }),

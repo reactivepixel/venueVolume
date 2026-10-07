@@ -95,7 +95,7 @@ public struct TouringShow: Codable, Equatable, Identifiable, Sendable {
             }
         }
         for preset in presets {
-            if let issue = preset.validationIssue { throw PresetError(issue) }
+            if let issue = preset.validationIssue ?? preset.referenceIssue(in: presets) { throw PresetError(issue) }
             if let id = preset.focusTargetID, !targets.contains(where: { $0.id == id }) { throw PresetError("Preset references a missing focus target.") }
         }
         guard targets.allSatisfy({ Self.validName($0.name) }) else { throw PresetError("Name each focus target.") }
@@ -145,7 +145,7 @@ public struct TourSession: Codable, Equatable, Sendable {
             if let issue = unit.fixture.validationIssue(among: [unit.fixture]) { throw PresetError(issue) }
         }
         for preset in presetOverrides {
-            if let issue = preset.validationIssue { throw PresetError(issue) }
+            if let issue = preset.validationIssue ?? preset.referenceIssue(in: presets) { throw PresetError(issue) }
             if let id = preset.focusTargetID, !show.targets.contains(where: { $0.id == id }) { throw PresetError("Missing show focus target.") }
         }
         for (id, point) in targetLocations {

@@ -13,11 +13,13 @@ struct PresetEditorView: View {
     @State private var showDelete = false
     @State private var showSaveAs = false
     @State private var copyName = ""
+    @State private var poolFilter: PaletteCategory?
+    @State private var selectedStep = 0
+    private var pooledPresets: [DMXPreset] { model.presets.filter { poolFilter == nil || $0.pool == poolFilter } }
     private enum Navigation { case preset(UUID), new }
     private var windowID: UUID { instanceID ?? restoredWindowID }
     private var visibleChannels: [Int] {
         model.presetDraft.channels.indices.filter { index in
-            guard model.tour != nil else { return true }
             return model.presetDraft.channelMask.contains(index) && !(model.presetDraft.focusTargetID != nil && [4,5].contains(index))
         }
     }
@@ -35,12 +37,13 @@ struct PresetEditorView: View {
                 }
                 VStack(spacing: 0) {
                     PalettePreviewView(palette: model.presetDraft).padding(.horizontal, 28)
+                    selectionBar.padding(.horizontal, 28).padding(.vertical, 12)
+                    Divider()
                 ScrollView {
                     VStack(alignment: .leading, spacing: 24) {
                         if !showsSidebar { compactLibrary.disabled(model.tourPreview != nil) }
                         navigation(stacked: stacked).disabled(model.tourPreview != nil)
                         HistoryControls()
-                        phaserEditor
                         if model.tourPreview != nil { TourPreviewControls() }
                         else { editor(stacked: stacked); footer(stacked: stacked) }
                     }
@@ -74,10 +77,6 @@ struct PresetEditorView: View {
             }
             model.presetWindowVisible = !model.presetEditor.windowIDs.isEmpty
             model.flushHistoryEdits()
-        }
-        .onChange(of: model.selectedID) { _, id in
-            guard let id, let presetID = model.fixture(id)?.presetID, presetID != model.editingPresetID else { return }
-            request(.preset(presetID))
         }
         .onChange(of: scenePhase) { _, phase in
             if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits() }
@@ -113,13 +112,17 @@ struct PresetEditorView: View {
                 Button { request(.new) } label: {
                     Label("New palette", systemImage: "plus").frame(minHeight: 60)
                 }
+                Picker("Attribute pool", selection: $poolFilter) {
+                    Text("All pools").tag(nil as PaletteCategory?)
+                    ForEach(PaletteCategory.allCases, id: \.self) { Text($0.label).tag(Optional($0)) }
+                }
                 LazyVStack(spacing: 12) {
-                    ForEach(model.presets) { preset in
+                    ForEach(pooledPresets) { preset in
                         Button { request(.preset(preset.id)) } label: {
                             HStack(alignment: .top, spacing: 12) {
                                 VStack(alignment: .leading, spacing: 6) {
                                     Text(preset.name).font(.headline)
-                                    Text("\(preset.channels.count) channels · \(model.fixtures.filter { $0.referencedPaletteIDs.contains(preset.id) }.count) objects")
+                                    Text("\(preset.pool.label) · \(preset.phaser.map { "\($0.steps.count) steps" } ?? "Static") · \(model.fixtures.filter { $0.referencedPaletteIDs.contains(preset.id) }.count) fixtures")
                                         .font(.subheadline).foregroundStyle(.secondary)
                                 }
                                 Spacer(minLength: 0)
@@ -179,7 +182,7 @@ struct PresetEditorView: View {
 
     private func navigation(stacked: Bool) -> some View {
         actionLayout(stacked: stacked) {
-            Label("Palette editor", systemImage: "slider.horizontal.3").font(.title2.weight(.semibold))
+            Label("Palette programmer", systemImage: "slider.horizontal.3").font(.title2.weight(.semibold))
                 .accessibilityAddTraits(.isHeader)
             if !stacked { Spacer() }
             HStack(spacing: 12) {
@@ -208,35 +211,23 @@ struct PresetEditorView: View {
             actionLayout(stacked: stacked) {
                 TextField("Palette name", text: $model.presetDraft.name).textFieldStyle(.roundedBorder)
                     .frame(minHeight: 60).accessibilityLabel("Palette name")
-                Picker("Channels", selection: Binding(
-                    get: { model.presetDraft.channels.count },
-                    set: { count in
-                        model.presetDraft.channels = Array((model.presetDraft.channels + Array(repeating: 0, count: 16)).prefix(count))
-                        model.presetDraft.attributeIndices = model.presetDraft.attributeIndices?.filter { $0 < count }
-                        if var phaser = model.presetDraft.phaser {
-                            for index in phaser.steps.indices { phaser.steps[index].values = phaser.steps[index].values.filter { $0.key < count } }
-                            model.presetDraft.phaser = phaser
-                        }
-                    }
-                )) { ForEach(1...16, id: \.self) { Text("\($0) channels").tag($0) } }
-                    .frame(minHeight: 60).accessibilityLabel("Number of palette channels").disabled(model.tour != nil)
+                Picker("Store in pool", selection: Binding(get: { model.presetDraft.pool }, set: { model.presetDraft.setPool($0) })) {
+                    ForEach(PaletteCategory.allCases, id: \.self) { Text($0.label).tag($0) }
+                }.frame(minHeight: 60)
+
             }
             actionLayout(stacked: stacked) {
                 Text(model.draftHasChanges ? "Unsaved changes" : "Saved palette").foregroundStyle(model.draftHasChanges ? Color.orange : .secondary)
                 if !stacked { Spacer() }
                 Text("VV Preview 16 · Simulation").foregroundStyle(.secondary)
             }.font(.subheadline)
-            actionLayout(stacked: stacked) {
-                Toggle(model.tour == nil ? "Simulate on selected fixture" : "Simulate on selected fixtures", isOn: $model.previewDraft)
-                    .frame(minHeight: 60).disabled(model.selectedID == nil)
-                Toggle(isOn: $model.previewBlackout) {
-                    Text("Blackout simulation").frame(minHeight: 60)
-                }.toggleStyle(.button).disabled(!model.previewDraft || model.selectedID == nil)
-            }
             if model.tour != nil { TouringPresetOptions() }
             TourPreviewControls()
+            phaserEditor
+            if model.presetDraft.phaser == nil {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 24), count: stacked ? 1 : 2), spacing: 24) {
                 ForEach(visibleChannels, id: \.self) { index in channel(index) }
+            }
             }
             Divider()
             if model.isRetargeting {
@@ -263,10 +254,10 @@ struct PresetEditorView: View {
                             .disabled(fixture.presetID == nil)
                         Button {
                             if let presetID = model.editingPresetID {
-                                _ = model.applyPreset(presetID, to: id)
+                                _ = model.applyPaletteToSelection(presetID)
                                 model.presetMessage = model.message
                             }
-                        } label: { Text("Apply saved").frame(minHeight: 60) }
+                        } label: { Text("Apply to selection").frame(minHeight: 60) }
                             .disabled(model.editingPresetID == nil || model.draftHasChanges)
                     }
                 }
@@ -277,36 +268,93 @@ struct PresetEditorView: View {
         }
     }
 
-    private var phaserEditor: some View {
+    private var selectionBar: some View {
         @Bindable var model = model
-        return VStack(alignment: .leading, spacing: 12) {
-            Picker("Palette family", selection: Binding(get: { model.presetDraft.category ?? .all }, set: { model.presetDraft.category = $0 })) {
-                ForEach(PaletteCategory.allCases, id: \.self) { Text($0.rawValue.capitalized).tag($0) }
+        return HStack(spacing: 16) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text("\(model.selectedFixtures.count) fixtures selected").font(.headline)
+                Text("Owns \(model.presetDraft.pool.label.lowercased()) · other attributes stay unchanged")
+                    .font(.caption).foregroundStyle(.secondary)
             }
-            Toggle("Animate as phaser", isOn: Binding(get: { model.presetDraft.phaser != nil }, set: { enabled in
-                model.presetDraft.phaser = enabled ? Phaser(steps: [.init(values: Dictionary(uniqueKeysWithValues: model.presetDraft.channels.enumerated().map { ($0.offset, $0.element) })), .init(values: [0: 0])]) : nil
-            }))
+            Spacer()
+            Toggle("Preview", isOn: $model.previewDraft).toggleStyle(.button).disabled(model.selectedFixtures.isEmpty)
+            Button("Apply saved") { if let id = model.editingPresetID { _ = model.applyPaletteToSelection(id) } }
+                .buttonStyle(.borderedProminent)
+                .disabled(model.selectedFixtures.isEmpty || model.editingPresetID == nil || model.draftHasChanges || model.isRetargeting || model.tourPreview != nil)
+        }.frame(minHeight: 60)
+    }
+
+    private var phaserEditor: some View {
+        VStack(alignment: .leading, spacing: 18) {
+            Picker("Value mode", selection: Binding(get: { model.presetDraft.phaser != nil }, set: { enabled in
+                if enabled {
+                    let values = Dictionary(uniqueKeysWithValues: model.presetDraft.channelMask.map { ($0, model.presetDraft.channels[$0]) })
+                    var next = values
+                    if model.presetDraft.channelMask.contains(0) { next[0] = 0 }
+                    if model.presetDraft.channelMask.contains(4) { next[4] = 180 }
+                    if model.presetDraft.pool == .color { next[1] = 0; next[2] = 60; next[3] = 255 }
+                    model.presetDraft.phaser = Phaser(steps: [.init(values: values), .init(values: next)])
+                } else { model.presetDraft.phaser = nil }
+                selectedStep = 0
+            })) { Text("Static values").tag(false); Text("Phaser steps").tag(true) }.pickerStyle(.segmented)
             if let phaser = model.presetDraft.phaser {
-                Text("Steps use independent channel values; speed, phase and measure apply to the whole cycle.").font(.caption)
-                phaserSlider("Speed (BPM)", value: phaser.beatsPerMinute, range: 1...240) { model.presetDraft.phaser?.beatsPerMinute = $0 }
-                phaserSlider("Measure (beats per cycle)", value: phaser.measure, range: 0.25...16) { model.presetDraft.phaser?.measure = $0 }
-                phaserSlider("Phase (degrees)", value: phaser.phaseDegrees, range: 0...360) { model.presetDraft.phaser?.phaseDegrees = $0 }
-                phaserSlider("Fixture phase spread", value: phaser.phaseSpreadDegrees, range: 0...360) { model.presetDraft.phaser?.phaseSpreadDegrees = $0 }
-                phaserSlider("Transition", value: phaser.transition, range: 0...1) { model.presetDraft.phaser?.transition = $0 }
-                ForEach(phaser.steps.indices, id: \.self) { index in
-                    DisclosureGroup("Step \(index + 1)") {
-                        phaserSlider("Width", value: phaser.steps[index].width, range: 0.1...8) { model.presetDraft.phaser?.steps[index].width = $0 }
-                        ForEach(model.presetDraft.channels.indices, id: \.self) { channel in
-                            phaserSlider("Channel \(channel + 1)", value: Double(phaser.steps[index].values[channel] ?? model.presetDraft.channels[channel]), range: 0...255) { model.presetDraft.phaser?.steps[index].values[channel] = Int($0) }
+                ScrollView(.horizontal) {
+                    HStack(spacing: 12) {
+                        ForEach(phaser.steps.indices, id: \.self) { index in
+                            Button { selectedStep = index } label: {
+                                VStack(alignment: .leading) {
+                                    Text("Step \(index + 1)").font(.headline)
+                                    Text(phaser.steps[index].paletteID.flatMap { id in model.presets.first { $0.id == id }?.name } ?? "Custom values").font(.caption).lineLimit(1)
+                                }.frame(minWidth: 110, minHeight: 60)
+                            }.tint(selectedStep == index ? .cyan : .gray)
                         }
-                        Button("Remove step", role: .destructive) { model.presetDraft.phaser?.steps.remove(at: index) }.disabled(phaser.steps.count <= 2)
+                        Button("Add step", systemImage: "plus") {
+                            model.presetDraft.phaser?.steps.append(phaser.steps.last ?? .init(values: [:]))
+                            selectedStep = phaser.steps.count
+                        }.disabled(phaser.steps.count >= 32)
                     }
                 }
-                Button("Add step") { model.presetDraft.phaser?.steps.append(phaser.steps.last ?? .init(values: [:])) }.disabled(phaser.steps.count >= 32)
+                if phaser.steps.indices.contains(selectedStep) {
+                    let step = phaser.steps[selectedStep]
+                    Picker("Step source", selection: Binding(get: { step.paletteID }, set: { model.presetDraft.phaser?.steps[selectedStep].paletteID = $0 })) {
+                        Text("Custom values").tag(nil as UUID?)
+                        ForEach(model.presets.filter { $0.phaser == nil && $0.id != model.presetDraft.id && model.presetDraft.channelMask.isSubset(of: $0.channelMask) }) { palette in
+                            Text(palette.name).tag(Optional(palette.id))
+                        }
+                    }
+                    if step.paletteID != nil {
+                        Text("Linked palette · updating its values updates this step.").font(.callout).foregroundStyle(.secondary)
+                    } else {
+                        ForEach(visibleChannels, id: \.self) { channel in
+                            phaserSlider(LightingPreview.channelNames[channel], value: Double(step.values[channel] ?? model.presetDraft.channels[channel]) / 255 * 100, range: 0...100) {
+                                model.presetDraft.phaser?.steps[selectedStep].values[channel] = Int(($0 / 100 * 255).rounded())
+                            }
+                        }
+                    }
+                    phaserSlider("Step width (ratio)", value: step.width, range: 0.1...8) { model.presetDraft.phaser?.steps[selectedStep].width = $0 }
+                    Button("Remove step", role: .destructive) {
+                        model.presetDraft.phaser?.steps.remove(at: selectedStep); selectedStep = max(0, selectedStep - 1)
+                    }.disabled(phaser.steps.count <= 2)
+                }
+                Divider()
+                Text("Timing & distribution").font(.headline)
+                phaserSlider("Speed (BPM)", value: phaser.beatsPerMinute, range: 1...240) { model.presetDraft.phaser?.beatsPerMinute = $0 }
+                phaserSlider("Beats per cycle", value: phaser.measure, range: 0.25...16) { model.presetDraft.phaser?.measure = $0 }
+                phaserSlider("Phase offset (°)", value: phaser.phaseDegrees, range: -360...360) { model.presetDraft.phaser?.phaseDegrees = $0 }
+                phaserSlider("Phase spread (°)", value: phaser.phaseSpreadDegrees, range: -360...360) { model.presetDraft.phaser?.phaseSpreadDegrees = $0 }
+                HStack {
+                    Button("Together") { model.presetDraft.phaser?.phaseSpreadDegrees = 0 }
+                    Button("Wave 0–360°") { model.presetDraft.phaser?.phaseSpreadDegrees = 360 }
+                    Button("Reverse wave") { model.presetDraft.phaser?.phaseSpreadDegrees = -360 }
+                }
+                phaserSlider("Transition", value: phaser.transition, range: 0...1) { model.presetDraft.phaser?.transition = $0 }
+                Text("\(60 * phaser.measure / phaser.beatsPerMinute, specifier: "%.2f") seconds per cycle · distributed in fixture list order")
+                    .font(.caption).foregroundStyle(.secondary)
             }
+            if let issue = model.presetDraft.referenceIssue(in: model.presets) { Text(issue).foregroundStyle(.orange) }
         }
     }
-    private func phaserSlider(_ name: String, value: Double, range: ClosedRange<Double>, set: @escaping (Double) -> Void) -> some View {
+    private func phaserSlider(_ name: String, value: Double, range: ClosedRange<Double>, set: @escaping @MainActor @Sendable (Double) -> Void) -> some View {
         VStack(alignment: .leading) {
             Text("\(name): \(value, specifier: "%.2f")")
             Slider(value: Binding(get: { value }, set: set), in: range)
@@ -314,24 +362,14 @@ struct PresetEditorView: View {
     }
 
     private func channel(_ index: Int) -> some View {
-        let asset = model.selectedID.flatMap { model.fixture($0)?.asset }
-        let name = asset?.channelName(index) ?? (index < LightingPreview.channelNames.count ? LightingPreview.channelNames[index] : "Unused")
+        let name = (index < LightingPreview.channelNames.count ? LightingPreview.channelNames[index] : "Unused")
         let value = model.presetDraft.channels.indices.contains(index) ? model.presetDraft.channels[index] : 0
         return VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .firstTextBaseline, spacing: 12) {
-                Text("\(index + 1) · \(name)").font(.headline)
+                Text(name).font(.headline)
                 Spacer(minLength: 0)
-                Text("\(value)").font(.body.monospacedDigit()).foregroundStyle(.cyan)
+                Text("\(Int((Double(value) / 255 * 100).rounded()))%").font(.body.monospacedDigit()).foregroundStyle(.cyan)
             }.accessibilityHidden(true)
-            Toggle("Include this attribute", isOn: Binding(
-                get: { model.presetDraft.attributeIndices?.contains(index) ?? true },
-                set: { included in
-                    var indices = model.presetDraft.attributeIndices ?? Array(model.presetDraft.channels.indices)
-                    indices.removeAll { $0 == index }
-                    if included { indices.append(index) }
-                    model.presetDraft.attributeIndices = indices.sorted()
-                }
-            ))
             Slider(value: Binding(
                 get: { model.presetDraft.channels.indices.contains(index) ? Double(model.presetDraft.channels[index]) : 0 },
                 set: { if model.presetDraft.channels.indices.contains(index) { model.presetDraft.channels[index] = Int($0) } }
@@ -355,7 +393,7 @@ struct PresetEditorView: View {
                 Button { copyName = ""; showSaveAs = true } label: { Text("Save as new…").frame(minHeight: 60) }
                     .disabled(model.isRetargeting)
                 if !stacked { Spacer() }
-                Button { model.savePreset() } label: { Text("Save palette").frame(minHeight: 60) }
+                Button { model.savePreset() } label: { Text(model.editingPresetID == nil ? "Store palette" : "Update palette").frame(minHeight: 60) }
                     .buttonStyle(.borderedProminent).disabled(!model.canSavePreset || model.isRetargeting)
             }
         }
@@ -374,10 +412,11 @@ struct PresetEditorView: View {
         switch pendingNavigation {
         case .preset(let id):
             if let preset = model.presets.first(where: { $0.id == id }) { model.choosePreset(preset) }
-        case .new: model.newPreset()
+        case .new: model.newPreset(pool: poolFilter ?? .intensity)
         case nil: break
         }
         pendingNavigation = nil
+        selectedStep = 0
     }
     private func adjacentID(_ offset: Int) -> UUID? {
         guard let index = model.presets.firstIndex(where: { $0.id == model.editingPresetID }),

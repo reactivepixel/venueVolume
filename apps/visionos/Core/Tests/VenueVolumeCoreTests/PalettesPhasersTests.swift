@@ -92,3 +92,33 @@ extension PalettesPhasersTests {
         XCTAssertEqual(Set(replaced.channelPaletteIDs!.keys), [0, 1])
     }
 }
+
+extension PalettesPhasersTests {
+    func testLinkedStepSourcesUpdateAndRemainPortable() throws {
+        var red = PaletteLibrary.baseline.first { $0.name == "Color · Red" }!
+        let blue = PaletteLibrary.baseline.first { $0.name == "Color · Blue" }!
+        var chase = red.duplicated(name: "Linked colors")
+        chase.phaser = Phaser(steps: [.init(values: [:], paletteID: red.id), .init(values: [:], paletteID: blue.id)], transition: 0)
+        XCTAssertNil(chase.referenceIssue(in: [red, blue]))
+        XCTAssertEqual(chase.sampledChannels(at: 0, palettes: [red, blue])[1], 255)
+        red.channels[1] = 40
+        XCTAssertEqual(chase.sampledChannels(at: 0, palettes: [red, blue])[1], 40)
+        XCTAssertEqual(chase.sampledChannels(at: 0.5, palettes: [red, blue])[3], 255)
+    }
+    func testSourceValidationAndDependencyClosure() throws {
+        let red = PaletteLibrary.baseline.first { $0.name == "Color · Red" }!
+        var chase = red.duplicated(name: "Linked colors")
+        chase.phaser = Phaser(steps: [.init(values: [:], paletteID: red.id), .init(values: [1:0,2:0,3:255])])
+        let fixture = Fixture(name: "Source dependencies")
+        let assigned = try PresetOperations.applying(chase, to: fixture.id, fixtures: [fixture])
+        let required = PaletteLibrary.dependencies(for: assigned, in: [red, chase] + PaletteLibrary.baseline.filter { $0.id != red.id })
+        XCTAssertEqual(Set(required.map(\.id)), Set([red.id, chase.id]))
+        XCTAssertNotNil(chase.referenceIssue(in: []))
+        var source = red; source.phaser = Phaser(steps: [.init(values: [1:0]), .init(values: [1:255])])
+        XCTAssertNotNil(chase.referenceIssue(in: [source]))
+        var color = red; color.setPool(.intensity)
+        XCTAssertNotNil(chase.referenceIssue(in: [color]))
+        XCTAssertThrowsError(try PresetOperations.saving(color, fixtures: try PresetOperations.applying(red, to: fixture.id, fixtures: [fixture])))
+        XCTAssertEqual(try JSONDecoder().decode(DMXPreset.self, from: JSONEncoder().encode(chase)), chase)
+    }
+}

@@ -41,14 +41,14 @@ public struct VenueSetup: Codable, Equatable, Identifiable, Sendable {
                 whiteRoom: Bool, houseLight: Float, tour: TourSession? = nil) {
         self.id = id; self.name = name; modified = Date(); roomID = room.id
         placements = .init(environment: room.manifest, fixtures: fixtures, revision: revision)
-        self.presets = tour == nil ? presets.filter { preset in fixtures.contains { $0.referencedPaletteIDs.contains(preset.id) } } : presets
+        self.presets = tour == nil ? PaletteLibrary.dependencies(for: fixtures, in: presets) : presets
         self.tour = tour
         self.whiteRoom = whiteRoom; self.houseLight = houseLight
     }
     public func validate(room: LibraryRoom) throws {
         guard schemaVersion == 1, roomID == room.id, !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
               name.count <= 120, houseLight.isFinite, (0...1).contains(houseLight),
-              presets.allSatisfy({ $0.validationIssue == nil }), Set(presets.map(\.id)).count == presets.count else {
+              presets.allSatisfy({ $0.validationIssue == nil && $0.referenceIssue(in: presets) == nil }), Set(presets.map(\.id)).count == presets.count else {
             throw EnvironmentError.invalid("invalid saved setup")
         }
         if let tour, presets != tour.presets { throw PresetError("Saved presets do not match the pinned show and venue overrides.") }

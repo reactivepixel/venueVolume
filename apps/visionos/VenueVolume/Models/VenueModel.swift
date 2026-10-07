@@ -102,7 +102,7 @@ final class VenueModel {
             guard let activeRoom else { return !fixtures.isEmpty }
             return !fixtures.isEmpty || setupName != "Untitled setup" || houseLight != 0.15 || whiteRoom != (activeRoom.manifest.id != "mappedRoom" && activeRoom.manifest.id != "the-fortress")
         }
-        let assignedPresets = touring.active == nil ? presets.filter { preset in fixtures.contains { $0.referencedPaletteIDs.contains(preset.id) } } : presets
+        let assignedPresets = touring.active == nil ? PaletteLibrary.dependencies(for: fixtures, in: presets) : presets
         return fixtures != savedSetup.placements.fixtures || assignedPresets != savedSetup.presets || setupName != savedSetup.name || whiteRoom != savedSetup.whiteRoom || houseLight != savedSetup.houseLight
     }
     private(set) var fixtures: [Fixture] = []
@@ -461,7 +461,7 @@ final class VenueModel {
             setupName = request.setup?.name ?? "Untitled setup"
             savedSetup = request.setup.map { setup in
                 var copy = setup; copy.placements = .init(environment: environment, fixtures: fixtures, revision: revision)
-                copy.presets = touring.active == nil ? presets.filter { preset in fixtures.contains { $0.referencedPaletteIDs.contains(preset.id) } } : presets; return copy
+                copy.presets = touring.active == nil ? PaletteLibrary.dependencies(for: fixtures, in: presets) : presets; return copy
             }
             roomRequest = nil; libraryBusy = false
             selectedGroupID = nil; selectedUnitIDs = []; tourPreview = nil
@@ -688,18 +688,22 @@ final class VenueModel {
         recent.use(.preset(preset.id))
     }
 
-    func newPreset() {
+    func newPreset(pool: PaletteCategory = .all) {
         guard !libraryBusy else { return }
         beginHistoryAction("New palette draft"); defer { endHistoryAction() }
         editingPresetID = nil
         cancelTourPreview(); cancelPicking()
         previewDraft = true; previewBlackout = false
-        presetDraft = DMXPreset(name: "")
-        if tour != nil { presetDraft.includedChannels = [0,1,2,3,6] }
+        presetDraft = DMXPreset(name: "", channels: [255,255,255,255,128,128,128] + Array(repeating: 0, count: 9))
+        presetDraft.setPool(pool)
         presetMessage = nil
     }
 
     @discardableResult func savePreset(asNew: Bool = false) -> Bool {
+        var validationCandidate = presetDraft
+        if asNew { validationCandidate.id = UUID() }
+        let candidateLibrary = presets.filter { $0.id != validationCandidate.id } + [validationCandidate]
+        if let issue = candidateLibrary.compactMap({ $0.referenceIssue(in: candidateLibrary) }).first { presetMessage = issue; return false }
         if touring.active != nil { return saveTourPreset(asNew: asNew) }
         guard !libraryBusy else { return false }
         beginHistoryAction(asNew ? "Save palette as new" : "Save palette"); defer { endHistoryAction() }
@@ -725,6 +729,9 @@ final class VenueModel {
     }
 
     func deletePreset(_ id: UUID) {
+        if presets.contains(where: { $0.phaser?.steps.contains(where: { $0.paletteID == id }) == true }) {
+            presetMessage = "This palette is linked by a phaser. Change its step sources before deleting."; return
+        }
         if touring.active != nil { deleteTourPreset(id); return }
         guard !libraryBusy else { return }
         beginHistoryAction("Delete palette"); defer { endHistoryAction() }
@@ -737,6 +744,16 @@ final class VenueModel {
         if let first = presets.first { choosePreset(first) } else { newPreset() }
         previewDraft = false
         presetMessage = "Palette deleted. Its attributes are cleared; other palette layers and aim overrides are preserved."
+    }
+
+    @discardableResult func applyPaletteToSelection(_ id: UUID) -> Bool {
+        guard !selectedFixtureIDs.isEmpty else { presetMessage = "Select fixtures or a group first."; return false }
+        if tour != nil { return applyTourPreset(id, ids: selectedFixtureIDs) }
+        guard let first = selectedFixtures.first else { return false }
+        let count = selectedFixtureIDs.count
+        let applied = applyPreset(id, to: first.id)
+        if applied { presetMessage = "Applied to \(count) selected fixtures. Other attributes are preserved." }
+        return applied
     }
 
     @discardableResult func applyPreset(_ presetID: UUID, to fixtureID: UUID) -> Bool {
@@ -804,7 +821,7 @@ final class VenueModel {
                 return (try? Touring.resolved(fixture, in: session, solveFocus: true).channels) ?? fixture.channels
             }
             var values = fixture.channels
-            let sample = presetDraft.sampledChannels(at: time ?? (ProcessInfo.processInfo.systemUptime - paletteClockOrigin))
+            let sample = presetDraft.sampledChannels(at: time ?? (ProcessInfo.processInfo.systemUptime - paletteClockOrigin), fixtureIndex: selectedFixtures.firstIndex(where: { $0.id == fixture.id }) ?? 0, fixtureCount: max(1, selectedFixtures.count), palettes: presets)
             for i in presetDraft.channelMask { values[i] = sample[i] }
             return values
         }
@@ -818,7 +835,7 @@ final class VenueModel {
                 let members = fixtures.filter { placed in
                     session.allUnits.first(where: { $0.id == placed.id }).map { session.binding(for: $0, channel: channel) == id } ?? false
                 }
-                let sample = palette.sampledChannels(at: seconds, fixtureIndex: members.firstIndex(where: { $0.id == fixture.id }) ?? 0, fixtureCount: max(1,members.count))
+                let sample = palette.sampledChannels(at: seconds, fixtureIndex: members.firstIndex(where: { $0.id == fixture.id }) ?? 0, fixtureCount: max(1,members.count), palettes: presets)
                 values[channel] = sample[channel]
             }
             return values
@@ -836,18 +853,18 @@ final class VenueModel {
             for paletteID in Set(owners.values) {
                 guard let palette = presets.first(where: { $0.id == paletteID }) else { continue }
                 let phase = phasePosition(for: paletteID)
-                let sampled = palette.sampledChannels(at: seconds, fixtureIndex: phase.index, fixtureCount: phase.count)
+                let sampled = palette.sampledChannels(at: seconds, fixtureIndex: phase.index, fixtureCount: phase.count, palettes: presets)
                 for (channel, owner) in owners where owner == paletteID && rendered.channels.indices.contains(channel) && sampled.indices.contains(channel) {
                     rendered.channels[channel] = sampled[channel]
                 }
             }
         } else if let palette = presets.first(where: { $0.id == fixture.presetID }) {
             let phase = phasePosition(for: palette.id)
-            rendered.channels = PresetOperations.mergedChannels(palette, existing: rendered.channels, at: seconds, fixtureIndex: phase.index, fixtureCount: phase.count)
+            rendered.channels = PresetOperations.mergedChannels(palette, existing: rendered.channels, at: seconds, fixtureIndex: phase.index, fixtureCount: phase.count, palettes: presets)
         }
         if previewDraft && selectedFixtureIDs.contains(fixture.id) {
             let phase = phasePosition(for: presetDraft.id, draft: true)
-            rendered.channels = PresetOperations.mergedChannels(presetDraft, existing: rendered.channels, at: seconds, fixtureIndex: phase.index, fixtureCount: phase.count)
+            rendered.channels = PresetOperations.mergedChannels(presetDraft, existing: rendered.channels, at: seconds, fixtureIndex: phase.index, fixtureCount: phase.count, palettes: presets)
         }
         rendered.preserveAimOverride()
         return rendered.channels

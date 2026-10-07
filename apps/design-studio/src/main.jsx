@@ -66,6 +66,7 @@ import {
 import "./styles.css";
 import CuePaletteAssignments from "./CuePaletteAssignments";
 import PaletteWorkbench from "./PaletteWorkbench";
+import { renamePaletteReferences, applyPaletteToCue } from "./palettes-phasers";
 import { baselinePalettes } from "./palettes-phasers";
 import LiveConsole from "./LiveConsole";
 import Workspace from "./Workspace";
@@ -75,6 +76,7 @@ import { createRun, makeSnapshot } from "./live-model";
 import { StandaloneMovieUpload } from "./VenueMovies";
 
 const initial = {
+  paletteLibraryVersion: 2,
   showName: "Afterglow · Fall tour",
   shows: ["Afterglow · Fall tour", "Common ground", "The midnight sessions"],
   venues: ["The Glasshouse", "Mercury Hall", "Northside Theater"],
@@ -91,7 +93,7 @@ function load() {
   try {
     const stored = JSON.parse(localStorage.getItem("vv-design-v1") || "{}");
     const presets = stored.presets ?? initial.presets;
-    return { ...initial, ...stored, presets: [...presets, ...baselinePalettes.filter(p => !presets.some(existing => existing.name === p.name))] };
+    return { ...initial, ...stored, paletteLibraryVersion: 2, presets: stored.paletteLibraryVersion === 2 ? presets : [...presets, ...baselinePalettes.filter(p => !presets.some(existing => existing.name === p.name))] };
   } catch {
     return initial;
   }
@@ -126,7 +128,7 @@ function App({ embeddedRoute, onNavigate, context }) {
     [connected, setConnected] = useSharedState("vv-demo-connected", true),
     [dirty, setDirty] = useState(false);
   const existingPalettes = storedData.presets ?? initial.presets;
-  const seededData = { ...storedData, presets: [...existingPalettes, ...baselinePalettes.filter(p => !existingPalettes.some(existing => existing.name === p.name))] };
+  const seededData = { ...storedData, presets: storedData.paletteLibraryVersion === 2 ? existingPalettes : [...existingPalettes, ...baselinePalettes.filter(p => !existingPalettes.some(existing => existing.name === p.name))] };
   const data = context ? { ...seededData, fixtures: context.fixtures } : seededData;
   const screen = screens.find((s) => s.id === route) || screens[4];
   const [liveRun, setLiveRun] = useSharedState(
@@ -157,7 +159,10 @@ function App({ embeddedRoute, onNavigate, context }) {
     window.scrollTo(0, 0);
   }
   function update(values) {
-    return setData((d) => ({ ...d, ...values }));
+    return setData((d) => {
+      const presets = d.presets ?? initial.presets;
+      return { ...d, presets: d.paletteLibraryVersion === 2 ? presets : [...presets, ...baselinePalettes.filter(p => !presets.some(existing => existing.name === p.name))], paletteLibraryVersion: 2, ...values };
+    });
   }
   function notify(message) {
     setToast(message);
@@ -398,63 +403,18 @@ function App({ embeddedRoute, onNavigate, context }) {
           </>
         );
       case "presets":
-        return (
-          <>
-            {header(
-              "Good looks are worth repeating.",
-              "Reusable DMX parameter palettes for fixture roles, groups, and individual fixtures.",
-              create("preset", "Create palette"),
-            )}
-            {scopeBar}
-            <div className="toolbar">
-              <SearchBox
-                value={query}
-                onChange={setQuery}
-                placeholder="Find a palette…"
-              />
-              <Badge>{data.presets.length} palettes</Badge>
-            </div>
-            <div className="three-col preset-grid">
-              {matching(data.presets).map((p) => (
-                <button
-                  key={p.name}
-                  className="preset-card"
-                  onClick={() => go("preset-editor")}
-                >
-                  <div className="preset-visual" style={{ "--look": p.color }}>
-                    <div />
-                    <div />
-                    <div />
-                    <span>{p.type.toUpperCase()}</span>
-                  </div>
-                  <div className="preset-body">
-                    <h2>
-                      {p.name}
-                      <ArrowUpRight size={16} />
-                    </h2>
-                    <p>
-                      {p.intensity}% intensity · Used in {p.count} assignments
-                    </p>
-                    <Badge>
-                      {scope === "show"
-                        ? "Show default"
-                        : "Inherited from show"}
-                    </Badge>
-                  </div>
-                </button>
-              ))}
-            </div>
-          </>
-        );
       case "preset-editor":
         return <>
-          {header("Palettes & phasers", "Build static attribute palettes or duplicate a baseline phaser and customize its steps.")}
-          {scopeBar}
-          <PaletteWorkbench palettes={data.presets} onSave={async (palette, originalName) => {
-            await update({ presets: originalName ? data.presets.map(p => p.name === originalName ? palette : p) : [...data.presets, palette],
-              script: originalName && originalName !== palette.name ? data.script.map(entry => ({ ...entry, assignments: entry.assignments?.map(a => a.preset === originalName ? {...a, preset: palette.name} : a) })) : data.script });
-            setDirty(true);
-          }}/>
+          {header("Palettes & phasers", "Select fixtures · build attribute values · store and apply")}
+          <PaletteWorkbench palettes={data.presets} fixtures={data.fixtures} script={makeSnapshot(data, venue).script}
+            onSave={async (palette, originalName) => {
+              await update(renamePaletteReferences(data, palette, originalName));
+              setDirty(true);
+            }}
+            onApply={async (palette, ids, entryId) => {
+              await update({script: applyPaletteToCue(makeSnapshot(data, venue).script, entryId, ids, palette, data.fixtures, data.presets)});
+              setDirty(true);
+            }}/>
         </>;
       case "cues":
         return (

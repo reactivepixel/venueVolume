@@ -1,4 +1,4 @@
-import { samplePhaser } from "./palettes-phasers.js";
+import { attributesOf, samplePhaser } from "./palettes-phasers.js";
 import { normalizeScript, patchErrors } from "./model.js";
 
 export const clamp = (n) => Math.max(0, Math.min(100, Number(n) || 0));
@@ -58,12 +58,14 @@ export function createRun(snapshot) {
   };
 }
 export function assignmentPalettes(snapshot, entry, fixture) {
-  const assignment = entry?.assignments?.find(a => a.role === fixture.role || a.fixtureId === fixture.id);
-  const names = assignment?.paletteNames ?? (assignment?.preset ? [assignment.preset] : []);
+  const assignments = entry?.assignments ?? [];
+  const group = assignments.find(a => !a.fixtureId && a.role === fixture.role);
+  const individual = assignments.find(a => a.fixtureId === fixture.id);
+  const names = [group, individual].flatMap(a => a?.paletteNames ?? (a?.preset ? [a.preset] : []));
   return names.map(name => snapshot.presets.find(p => p.name === name)).filter(Boolean);
 }
-export function paletteOutput(palette, seconds = 0, index = 0, count = 1) {
-  const sampled = samplePhaser(palette, seconds, index, count);
+export function paletteOutput(palette, seconds = 0, index = 0, count = 1, library = []) {
+  const sampled = samplePhaser(palette, seconds, index, count, library);
   // Palette position values are degrees; programmer and rig controls use percentages.
   sampled.pan = Math.max(0, Math.min(100, 50 + sampled.pan / 270 * 100));
   sampled.tilt = Math.max(0, Math.min(100, 50 + sampled.tilt / 120 * 100));
@@ -71,7 +73,7 @@ export function paletteOutput(palette, seconds = 0, index = 0, count = 1) {
   return Object.fromEntries(Object.entries(sampled).filter(([key]) => attributes.includes(key)));
 }
 export function cueValues(snapshot, entry) {
-  return Object.fromEntries(snapshot.fixtures.map(f => [f.id, Object.assign({ intensity: 0, color: "#dfe9f2", pan: 50, tilt: 50 }, ...assignmentPalettes(snapshot, entry, f).map(p => paletteOutput(p)))]));
+  return Object.fromEntries(snapshot.fixtures.map(f => [f.id, Object.assign({ intensity: 0, color: "#dfe9f2", pan: 50, tilt: 50 }, ...assignmentPalettes(snapshot, entry, f).map(p => paletteOutput(p, 0, 0, 1, snapshot.presets)))]));
 }
 export function outputValue(run, fixture, seconds = 0) {
   const base = run.activeValues[fixture.id] || { intensity: 0, color: "#dfe9f2", pan: 50, tilt: 50 };
@@ -79,9 +81,11 @@ export function outputValue(run, fixture, seconds = 0) {
   const palettes = assignmentPalettes(run.snapshot, entry, fixture);
   const animated = {};
   for (const palette of palettes) {
-    if (!palette.phaser) continue;
+    // Static cue values stay latched through hot edits. Later static ownership
+    // still suppresses earlier phasers for overlapping attributes.
+    if (!palette.phaser) { for (const key of attributesOf(palette)) delete animated[key]; continue; }
     const targets = run.snapshot.fixtures.filter(f => assignmentPalettes(run.snapshot, entry, f).some(p => p.name === palette.name));
-    Object.assign(animated, paletteOutput(palette, seconds, Math.max(0, targets.findIndex(f => f.id === fixture.id)), targets.length));
+    Object.assign(animated, paletteOutput(palette, seconds, Math.max(0, targets.findIndex(f => f.id === fixture.id)), targets.length, run.snapshot.presets));
   }
   const value = { ...base, ...animated, ...run.programmer[fixture.id] };
   const effective = run.blackout || !run.armed ? 0 : Math.round(value.intensity * run.master / 100 * (run.groupMasters[fixture.role] ?? 100) / 100);

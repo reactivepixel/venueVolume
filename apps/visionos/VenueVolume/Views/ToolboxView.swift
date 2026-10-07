@@ -10,6 +10,7 @@ struct ToolboxView: View {
     @Environment(\.dynamicTypeSize) private var textSize
     @State private var browsingFixtures = false
     @State private var presetSearch = ""
+    @State private var palettePool: PaletteCategory?
     @State private var settingsPresented = false
     @State private var confirmClearScene = false
     var body: some View {
@@ -183,9 +184,14 @@ struct ToolboxView: View {
                     Button { model.presetEditor.request() } label: { Image(systemName: "slider.horizontal.3").frame(minWidth: 60, minHeight: 60) }
                         .accessibilityLabel("Open palette editor")
                 }
+                Picker("Attribute pool", selection: $palettePool) {
+                    Text("All pools").tag(nil as PaletteCategory?)
+                    ForEach(PaletteCategory.allCases, id: \.self) { Text($0.label).tag(Optional($0)) }
+                }
+                Text("Select fixtures, then Apply. Use Edit to change the palette.").font(.caption).foregroundStyle(.secondary)
                 ScrollView {
                     LazyVStack(alignment: .leading, spacing: 18) {
-                        ForEach(model.presets.filter { presetSearch.isEmpty || $0.name.localizedCaseInsensitiveContains(presetSearch) }) { preset in
+                        ForEach(model.presets.filter { (palettePool == nil || $0.pool == palettePool) && (presetSearch.isEmpty || $0.name.localizedCaseInsensitiveContains(presetSearch)) }) { preset in
                             PresetDragSource(preset: preset, openEditor: { model.record(.preset(preset.id)); model.presetEditor.request(presetID: preset.id) })
                         }
                         if model.presets.isEmpty { Text("Create a palette with the editor button above, then drag its handle onto a fixture or use Apply.") }

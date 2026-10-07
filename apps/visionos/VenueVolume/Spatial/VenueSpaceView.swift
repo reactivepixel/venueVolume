@@ -105,7 +105,10 @@ struct VenueSpaceView: View {
                     openWindow(id: "fixture-editor", value: "selection")
                 } else if arguments.contains("--show-item-editor") {
                     openWindow(id: "fixture-editor", value: "selection")
-                } else { model.presetEditor.request() }
+                } else {
+                    let phaserID = arguments.contains("--phaser-editor") ? model.presets.first(where: { $0.phaser != nil })?.id : nil
+                    model.presetEditor.request(presetID: phaserID)
+                }
             }
         }
         .task {

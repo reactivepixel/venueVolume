@@ -25,13 +25,16 @@ struct PresetDragSource: View {
                         Image(systemName: "slider.horizontal.3").frame(width: 28)
                         VStack(alignment: .leading, spacing: 4) {
                             Text(preset.name).font(.headline)
-                            Text("\(preset.channels.count) channels · Edit palette")
+                            Text("\(preset.pool.label) · \(preset.phaser.map { "\($0.steps.count) steps" } ?? "Static") · Edit")
                                 .font(.caption).foregroundStyle(.secondary)
                         }
                         Spacer(minLength: 0)
                     }.frame(minHeight: 60).contentShape(Rectangle())
                 }.buttonStyle(.plain)
                 HStack(spacing: 16) {
+                Button("Apply") { _ = model.applyPaletteToSelection(preset.id) }
+                    .disabled(model.selectedFixtureIDs.isEmpty || unavailableReason != nil)
+                    .accessibilityLabel("Apply \(preset.name) to \(model.selectedFixtureIDs.count) selected fixtures")
                 Button {
                     model.activatePresetApplication(preset.id)
                 } label: {
