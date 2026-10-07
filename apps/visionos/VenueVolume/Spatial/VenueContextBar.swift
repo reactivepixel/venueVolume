@@ -1,41 +1,52 @@
 import SwiftUI
 
-/// Fixed lower-view controls stay available, with system hover restoring full
-/// contrast when attended. visionOS does not expose a raw eye-gaze stream.
+/// Selection-specific controls attached below the viewer in the immersive venue.
 struct VenueContextBar: View {
     @Environment(VenueModel.self) private var model
     @Environment(\.openWindow) private var openWindow
+
     var body: some View {
-        @Bindable var model = model
-        HStack(spacing: 18) {
-            Button("Wrist toolbox", systemImage: "rectangle.on.rectangle") { model.requestToolbox() }
-            Button(model.palmMapVisible ? "Close Palm Map" : "Palm Map", systemImage: "map") { model.togglePalmMap() }
-                .disabled(!model.palmMapVisible && (!model.canPlace || model.libraryBusy || model.navigationBlackoutActive))
-            if model.palmMapVisible {
-                Text("Select the cube to move it. Yellow means obstructed; raise or move it, then Teleport.").font(.caption)
-                Button("Done", systemImage: "checkmark") { model.closePalmMap() }
-            } else if model.isPlacing {
-                Label("Place \(model.fixtureKind.name)", systemImage: "plus.viewfinder")
-                Text("Look at a surface and pinch. Repeat to place more.").font(.caption)
-                Button("Done", systemImage: "checkmark") { model.finishPlacement() }
-            } else if model.isRetargeting {
-                Label("Aim selection", systemImage: "scope")
-                Button("Save", systemImage: "checkmark") { _ = model.saveTarget() }.disabled(!model.canSaveTarget)
-                Button("Cancel") { model.cancelPicking() }
-            } else if model.scenePick != nil {
-                Label("Move selection", systemImage: "move.3d")
-                Button("Done", systemImage: "checkmark") { model.cancelPicking() }
-            } else if model.gizmoVisible {
-                Picker("Transform", selection: $model.transformMode) {
-                    ForEach(FixtureTransformMode.allCases) { mode in Text(mode.rawValue).tag(mode) }
-                }.pickerStyle(.segmented).frame(width: 220)
-                Button("Done", systemImage: "checkmark") { model.endTransformDrag(); model.gizmoVisible = false }
-            } else {
-                Button("Venue controls", systemImage: "slider.horizontal.3") { openWindow(id: "venue-controls", value: "controls") }
-            }
+        if model.contextBarVisible {
+            ScrollView(.horizontal) {
+                HStack(spacing: 20) {
+                    Label("Context bar", systemImage: "scope").font(.headline)
+                    Divider().frame(height: 56)
+                    if let session = model.presetDrag.session {
+                        let paletteName = model.presets.first { $0.id == session.presetID }?.name ?? "Palette"
+                        let target = model.presetDrag.proposedFixtureID.flatMap { model.fixture($0) }
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Apply · \(paletteName)").font(.headline).lineLimit(1)
+                            Text(target.map { "Pinch to apply to \($0.name)" } ?? "Aim toward a fixture, then pinch. Hold to adjust.")
+                                .font(.callout).foregroundStyle(.secondary).lineLimit(2)
+                        }.frame(width: 360, alignment: .leading)
+                        Button("Cancel", role: .cancel) { model.endPresetDrag() }.frame(minHeight: 60)
+                        Button("Apply to fixture") { model.applyProposedPreset() }
+                            .buttonStyle(.borderedProminent).disabled(target == nil).frame(minHeight: 60)
+                    } else if model.isRetargeting {
+                        TargetingPrompt()
+                    } else if model.tourPreview != nil {
+                        Text(model.tourPreviewTitle).font(.callout).frame(width: 300, alignment: .leading)
+                        Button("Cancel") { model.cancelTourPreview() }.frame(minHeight: 60)
+                        Button("Save change") { model.commitTourPreview() }.buttonStyle(.borderedProminent).frame(minHeight: 60)
+                    } else if model.isPickingRoom || model.gizmoVisible {
+                        TargetingPrompt()
+                    } else {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(model.selectedFixtures.count == 1 ? model.selectedFixtures[0].name : "\(model.selectedFixtures.count) fixtures selected")
+                                .font(.headline).lineLimit(1)
+                            Text("Select again to move or transform.")
+                                .font(.callout).foregroundStyle(.secondary)
+                        }.frame(width: 360, alignment: .leading)
+                        Button("Edit selection", systemImage: "slider.horizontal.3") {
+                            openWindow(id: "fixture-editor", value: "selection")
+                        }.frame(minHeight: 60)
+                    }
+                }.padding(20).frame(minHeight: 100)
+            }.frame(width: 1120)
+                .glassBackgroundEffect(in: RoundedRectangle(cornerRadius: 24))
+                .accessibilityElement(children: .contain)
+                .accessibilityLabel("Context bar")
+                .hoverEffect { effect, active, _ in effect.opacity(active ? 1 : 0.35) }
         }
-        .padding(.horizontal, 22).padding(.vertical, 12)
-        .glassBackgroundEffect()
-        .hoverEffect { effect, active, _ in effect.opacity(active ? 1 : 0.3) }
     }
 }

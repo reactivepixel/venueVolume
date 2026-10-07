@@ -520,7 +520,7 @@ private struct FocusTargetList: View {
             HStack { Text("Venue focus targets").font(.headline); Spacer(); Button { name = ""; newTarget = true } label: { Image(systemName: "plus").frame(minWidth: 60, minHeight: 60) }.accessibilityLabel("New focus target") }
             ForEach(model.tour?.show.targets ?? []) { target in
                 Button {
-                    model.beginFocusLocation(target.id); model.showVenueControls()
+                    model.beginFocusLocation(target.id)
                 } label: {
                     HStack {
                         Text(target.name); Spacer()

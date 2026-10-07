@@ -32,7 +32,7 @@ struct VenueSpaceView: View {
             scene.update(model: model, attachments: attachments)
             scene.updatePresetDrag(model: model, reduceMotion: reduceMotion)
         } attachments: {
-            Attachment(id: "venue-controls-dock") { VenueControlsView().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model) }
+            Attachment(id: "context-bar") { VenueContextBar().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model) }
             ForEach(model.environment?.surfaces ?? [], id: \.id) { surface in
                 Attachment(id: "surface-drop-\(surface.id)") { FixtureSurfaceDrop(surface: surface).environment(model) }
             }
@@ -126,7 +126,7 @@ struct VenueSpaceView: View {
         }
         .onAppear {
             model.isImmersed = true
-            model.showVenueControls()
+            if !model.toolboxVisible { model.requestToolbox() }
             dismissWindow(id: "launch")
             let arguments = ProcessInfo.processInfo.arguments
             if model.isDemoMode && !arguments.contains("--show-preset-editor") && !arguments.contains("--position-tab") {
@@ -139,7 +139,7 @@ struct VenueSpaceView: View {
         .task {
             #if DEBUG
             await scene.runPresetDragSmoke(model: model) { dismissWindow(id: "toolbox") }
-            await runBottomControlsSmoke()
+            await runContextBarSmoke()
             await runEditorRecallSmoke()
             await runToolboxWindowSmoke()
             await scene.runInputSmoke(model: model)
@@ -174,7 +174,6 @@ struct VenueSpaceView: View {
             dismissWindow(id: "fixture-editor")
             for identity in model.toolboxWindowIDs { dismissWindow(id: "toolbox", value: identity) }
             if model.unvaluedToolboxVisible { dismissWindow(id: "toolbox") }
-            model.venueControlsVisible = false
             model.resetToolboxActivation()
             model.endPresetDrag()
             model.previewDraft = false
@@ -267,15 +266,15 @@ struct VenueSpaceView: View {
         }
     }
 
-    private func runBottomControlsSmoke() async {
+    private func runContextBarSmoke() async {
         guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--audit-controls-smoke") else { return }
         do {
             for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
             guard let fixture = model.fixtures.first else { throw EnvironmentError.invalid("Missing fixture") }
             model.beginRetarget(fixture.id)
-            for _ in 0..<100 where !model.venueControlsVisible { try await Task.sleep(for: .milliseconds(50)) }
-            guard model.venueControlsVisible, scene.headAnchor.children.contains(where: { $0.name == "venue-controls-dock" }) else {
-                throw EnvironmentError.invalid("Targeting did not use the bottom controls attachment")
+            for _ in 0..<100 where !scene.headAnchor.children.contains(where: { $0.name == "context-bar" && $0.isEnabled }) { try await Task.sleep(for: .milliseconds(50)) }
+            guard model.contextBarVisible, let bar = scene.headAnchor.children.first(where: { $0.name == "context-bar" && $0.isEnabled }) else {
+                throw EnvironmentError.invalid("Targeting did not show the context bar")
             }
             guard model.acceptTarget(.init(x: 2.9, y: 1.8, z: -7.67)) else { throw EnvironmentError.invalid("Preview failed") }
             model.cancelPicking()
@@ -284,10 +283,14 @@ struct VenueSpaceView: View {
             guard model.acceptTarget(.init(x: 2.9, y: 1.8, z: -7.67)), model.saveTarget() else { throw EnvironmentError.invalid("Save target failed") }
             model.undo()
             guard model.fixture(fixture.id)?.channels == fixture.channels else { throw EnvironmentError.invalid("Target undo failed") }
-            model.beginRetarget(fixture.id)
-            _ = model.acceptTarget(.init(x: 2.9, y: 1.8, z: -7.67))
-            print("VENUE_CONTROLS_DOCK_SMOKE_PASS bottomAttachment=true wristReveal=true cancel=true save=true undo=true")
-        } catch { print("VENUE_CONTROLS_DOCK_SMOKE_FAIL \(error)") }
+            model.deselect()
+            for _ in 0..<100 where bar.isEnabled { try await Task.sleep(for: .milliseconds(50)) }
+            guard !model.contextBarVisible, !bar.isEnabled else { throw EnvironmentError.invalid("Deselection left the context bar visible") }
+            model.select(fixture.id)
+            for _ in 0..<100 where !bar.isEnabled { try await Task.sleep(for: .milliseconds(50)) }
+            guard model.contextBarVisible, bar.isEnabled else { throw EnvironmentError.invalid("Selection did not restore the context bar") }
+            print("CONTEXT_BAR_SMOKE_PASS selectionShows=true deselectionHides=true cancel=true save=true undo=true")
+        } catch { print("CONTEXT_BAR_SMOKE_FAIL \(error)") }
     }
 
     private func runEditorRecallSmoke() async {

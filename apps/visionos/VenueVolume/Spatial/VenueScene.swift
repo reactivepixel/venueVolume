@@ -568,8 +568,8 @@ final class VenueScene {
             model.deselect()
             try await Task.sleep(for: .milliseconds(200))
             guard !target.components.has(SpatialDragTarget.self),
-                  let dock = headAnchor.children.first(where: { $0.name == "venue-controls-dock" }),
-                  dock.visualBounds(relativeTo: dock).extents.x > dock.visualBounds(relativeTo: dock).extents.y*4 else { throw EnvironmentError.invalid("Deselection or horizontal controls dock failed") }
+                  let dock = headAnchor.children.first(where: { $0.name == "context-bar" }),
+                  !dock.isEnabled else { throw EnvironmentError.invalid("Deselection did not hide the context bar") }
             // Presentation follows the same user commands after assertions.
             model.beginTransform(fixture.id)
             handleTap(entity: floor.entity,position: floor.position,model: model)
@@ -829,12 +829,13 @@ final class VenueScene {
         if placementGhost.parent == nil { root.addChild(placementGhost) }
         if groupLinks.parent == nil { root.addChild(groupLinks) }
         updateGroupLinks(model: model)
-        if let controls = attachments.entity(for: "venue-controls-dock") {
+        if let controls = attachments.entity(for: "context-bar") {
             if controls.parent != headAnchor { headAnchor.addChild(controls) }
-            controls.name = "venue-controls-dock"
+            controls.name = "context-bar"
             controls.position = [0,-0.42,-1.15]
             controls.scale = [1,1,1]
         }
+        headAnchor.children.first { $0.name == "context-bar" }?.isEnabled = model.contextBarVisible
         _ = model.fixtureRenderRevision // Rebuild placeholders when an asynchronous catalog asset becomes ready.
         if targetMarker.parent == nil { root.addChild(targetMarker) }
         targetMarker.components.set(DynamicLightShadowComponent(castsShadow: false))

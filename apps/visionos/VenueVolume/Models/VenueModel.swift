@@ -74,7 +74,10 @@ final class VenueModel {
     private var focusBaseSession: TourSession?
     private var focusDraftPresetID: UUID?
     var toolboxLibraryTab = 0
-    var venueControlsVisible = false
+    /// The context bar follows a concrete fixture, palette application, or focus target selection.
+    var contextBarVisible: Bool {
+        isImmersed && !palmMapVisible && (!selectedFixtureIDs.isEmpty || presetDrag.session != nil || focusPickID != nil)
+    }
     var setupName = "Untitled setup" { didSet { queueHistoryEdit("Rename setup") } }
     private(set) var activeSetupID: UUID?
     private var savedSetup: VenueSetup?
@@ -90,11 +93,6 @@ final class VenueModel {
         if !isDemoMode { defaults.set(recentFixtureKinds.map(\.rawValue), forKey: "venue.fixture-recents.v1") }
     }
     func selectFixtureKind(_ kind: FixtureKind) { fixtureKind = kind; rememberFixtureKind(kind) }
-    func showVenueControls() {
-        let appearing = !venueControlsVisible
-        venueControlsVisible = true
-        if appearing && !toolboxVisible { requestToolbox() }
-    }
     var draggingFixture: FixtureKind?
     var activeRoom: LibraryRoom? { rooms.first { $0.manifest.id == environment?.id && $0.manifest.version == environment?.version } }
     var hasUnsavedSetup: Bool {
@@ -2144,7 +2142,7 @@ extension VenueModel {
     func beginFocusLocation(_ id: UUID) {
         guard canPlace, tour?.show.targets.contains(where: { $0.id == id }) == true else { return }
         cancelPicking(); cancelTourPreview(); gizmoVisible = false; previewDraft = false
-        focusPickID = id; focusBaseSession = tour; message = "Look and pinch to preview the target. Save or Cancel in Venue controls."
+        focusPickID = id; focusBaseSession = tour; message = "Look and pinch to preview the target. Save or Cancel in the context bar."
     }
     private func beginTourTarget(_ preset: DMXPreset, fromDraft: Bool) {
         guard canPlace, var session = tour, !tourSelection.isEmpty else { return }

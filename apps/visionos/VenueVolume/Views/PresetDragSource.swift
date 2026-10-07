@@ -40,7 +40,7 @@ struct PresetDragSource: View {
                 }
                 .disabled(unavailableReason != nil)
                 .accessibilityLabel("Apply \(preset.name) in venue")
-                .accessibilityHint("Activates a connector from you. Pinch a fixture to apply, or cancel in Venue controls.")
+                .accessibilityHint("Activates a connector from you. Pinch a fixture to apply, or cancel in the context bar.")
                 Menu {
                     if model.tour != nil {
                         Button("Preview on selected \(model.tourSelection.count) units") { model.applyTourPreset(preset.id, preview: true) }.disabled(model.tourSelection.isEmpty)
@@ -65,7 +65,7 @@ struct PresetDragSource: View {
                 Text(reason).font(.caption).foregroundStyle(.secondary)
             }
             if model.presetDrag.session?.presetID == preset.id {
-                Label("Applying in venue · controls below", systemImage: "scope")
+                Label("Applying in venue · context bar below", systemImage: "scope")
                     .font(.caption).foregroundStyle(.secondary)
             } else if let feedback = model.presetDrag.feedback, feedback.presetID == preset.id {
                 Label(feedback.succeeded ? "Palette applied" : "Could not apply palette · \(feedback.message ?? "Try again")",
