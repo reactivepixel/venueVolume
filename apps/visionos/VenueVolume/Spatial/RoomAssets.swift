@@ -1,3 +1,4 @@
+import CoreGraphics
 import CryptoKit
 import Foundation
 import RealityKit
@@ -58,5 +59,55 @@ import VenueVolumeCore
         }
         try store.install(room: room, asset: data)
         return room
+    }
+}
+
+/// A room-only ambient source gives the slider a deterministic range, independent
+/// of the headset's sensed environment and RealityKit's default illumination.
+@MainActor final class RoomAmbientLight {
+    let entity = Entity()
+    private var dark: EnvironmentResource?
+    private var bright: EnvironmentResource?
+    private var displayedLevel: Float?
+
+    func prepare() async throws {
+        guard bright == nil else { return }
+        func image(dark: Bool) throws -> CGImage {
+            guard let context = CGContext(data: nil, width: 64, height: 32, bitsPerComponent: 8,
+                bytesPerRow: 64*4, space: CGColorSpaceCreateDeviceRGB(),
+                bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else {
+                throw EnvironmentError.invalid("Room ambient lighting could not be created")
+            }
+            // A soft hemisphere keeps surface orientation readable at full light.
+            for row in 0..<32 {
+                let value = dark ? 0.0 : 0.25 + 0.75*Double(row)/31
+                context.setFillColor(CGColor(gray: value, alpha: 1))
+                context.fill(CGRect(x: 0,y: row,width: 64,height: 1))
+            }
+            guard let image = context.makeImage() else { throw EnvironmentError.invalid("Room ambient map is missing") }
+            return image
+        }
+        let darkResource = try await EnvironmentResource(equirectangular: image(dark: true), withName: "room-ambient-dark")
+        let brightResource = try await EnvironmentResource(equirectangular: image(dark: false), withName: "room-ambient-bright")
+        dark = darkResource; bright = brightResource
+        entity.name = "room-ambient-light"
+    }
+
+    func attach(to models: [Entity], in root: Entity, level: Float) {
+        root.addChild(entity)
+        for model in models {
+            model.components.set(ImageBasedLightReceiverComponent(imageBasedLight: entity))
+            model.components.set(EnvironmentLightingConfigurationComponent(environmentLightingWeight: 0))
+        }
+        displayedLevel = nil
+        update(level: level)
+    }
+
+    func update(level: Float) {
+        guard let dark, let bright else { return }
+        let level = level.isFinite ? min(1,max(0,level)) : 0
+        guard displayedLevel != level else { return }
+        entity.components.set(ImageBasedLightComponent(source: .blend(dark,bright,level)))
+        displayedLevel = level
     }
 }

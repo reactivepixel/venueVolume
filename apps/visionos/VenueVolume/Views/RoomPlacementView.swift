@@ -35,10 +35,16 @@ struct RoomPlacementView: View {
                     Toggle("White model", isOn: $model.whiteRoom).toggleStyle(.button)
                     Toggle("Blackout", isOn: $model.blackout).toggleStyle(.button)
                     VStack(alignment: .leading) {
-                        Text("Room light")
+                        HStack {
+                            Text("Room light")
+                            Spacer()
+                            Text("\(Int((model.houseLight * 100).rounded()))%").monospacedDigit().foregroundStyle(.secondary)
+                        }
                         Slider(value: $model.houseLight, in: 0...1, onEditingChanged: { editing in
                             if editing { model.beginHistoryAction("Adjust room light") } else { model.endHistoryAction() }
                         }).accessibilityLabel("Room light")
+                            .accessibilityValue("\(Int((model.houseLight * 100).rounded())) percent")
+                        Text("Room brightness · fixture output stays unchanged.").font(.caption).foregroundStyle(.secondary)
                     }
                 }
                 Divider()

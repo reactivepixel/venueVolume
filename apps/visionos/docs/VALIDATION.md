@@ -82,3 +82,7 @@ The [mappedRoom lighting runbook](MAPPED_ROOM_LIGHTING.md) records the new work 
 - Physical v0.2.12 crash reports showed `Array.subscript.getter` inside `PhaserProgrammerView.stepEditor`. The native `--demo --show-preset-editor --phaser-render-smoke` reproduced this on entering Dynamic for an All palette: 16 channels indexed only seven names. Channel labels now cover the full palette footprint.
 - The rendered test then caught a second crash when shrinking 32 steps to 2 with step 32 selected. The ring now clamps its displayed bank before SwiftUI selection updates; callbacks reject removed step indices.
 - Both native regression runs pass in Simulator. The phaser run renders empty and nonempty selections across all five attribute pools, repeated Static/Dynamic changes and 32-to-2 step reductions. The Core suite passes 128 tests (12 XCTest and 116 Swift Testing), and the full session suite passes.
+
+## v0.2.14 room ambient brightness
+
+The [room light regression report](validation/2026-10-14-room-light.md) records the identical before-fix renders, the room-only ambient source, native screenshot comparison and fixture-output isolation checks.
