@@ -86,3 +86,7 @@ The [mappedRoom lighting runbook](MAPPED_ROOM_LIGHTING.md) records the new work 
 ## v0.2.14 room ambient brightness
 
 The [room light regression report](validation/2026-10-14-room-light.md) records the identical before-fix renders, the room-only ambient source, native screenshot comparison and fixture-output isolation checks.
+
+## v0.2.15 palette targeting
+
+The [palette targeting report](validation/2026-10-14-palette-target.md) covers the restored editor Target action, per-fixture cue solutions, removal of legacy DMX buttons and regression checks.

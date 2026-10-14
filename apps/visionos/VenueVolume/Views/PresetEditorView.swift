@@ -242,23 +242,30 @@ struct PresetEditorView: View {
             }.font(.subheadline)
             if model.tour != nil { TouringPresetOptions() }
             TourPreviewControls()
-            phaserEditor
-            if model.presetDraft.phaser == nil {
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 24), count: stacked ? 1 : 2), spacing: 24) {
-                ForEach(visibleChannels, id: \.self) { index in channel(index) }
-            }
-            }
             Divider()
+            if !model.isRetargeting {
+                Button { model.beginPaletteTarget() } label: {
+                    Label("Target Fixture(s)", systemImage: "scope").frame(minHeight: 60)
+                }.disabled(model.paletteTargetIssue != nil)
+                Text(model.paletteTargetIssue ?? "Aim the selection at a room surface. Each fixture gets its own Pan/Tilt. Targeting holds position while color and intensity phasers continue.")
+                    .font(.subheadline).foregroundStyle(.secondary)
+            }
             if model.isRetargeting {
                 VStack(alignment: .leading, spacing: 12) {
                     Text(model.message ?? model.pickingInstruction)
                         .fixedSize(horizontal: false, vertical: true)
                     actionLayout(stacked: stacked) {
                         Button { model.cancelPicking() } label: { Text("Cancel target").frame(minHeight: 60) }
-                        Button { model.saveTarget() } label: { Text("Save target").frame(minHeight: 60) }
+                        Button { model.saveTarget() } label: { Text(model.isPaletteCueTarget ? "Save target to cue \(model.currentCueLabel)" : "Save target").frame(minHeight: 60) }
                             .disabled(!model.canSaveTarget)
                     }
                 }
+            }
+            phaserEditor
+            if model.presetDraft.phaser == nil {
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 24), count: stacked ? 1 : 2), spacing: 24) {
+                ForEach(visibleChannels, id: \.self) { index in channel(index) }
+            }
             }
             if model.selectedFixtures.isEmpty {
                 Text("Select fixtures to edit their cue output. You can also create a palette in the library.")

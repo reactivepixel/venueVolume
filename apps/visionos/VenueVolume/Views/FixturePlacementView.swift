@@ -55,13 +55,6 @@ struct FixturePlacementView: View {
                         Button("Use palette motion") { model.resetAim(id) }
                             .disabled(fixture.aimOverride == nil && fixture.jointOverrides == nil)
                     }
-                    if let asset = fixture.asset, !asset.emitters.isEmpty {
-                        Divider()
-                        Text("Light targeting").font(.headline)
-                        Text("Retarget saves Pan/Tilt into the assigned palette and updates its fixtures. Cancel restores the previous look.")
-                        Button("Retarget DMX", systemImage: "scope") { model.beginRetarget(id) }
-                            .disabled(!model.canPlace || !asset.headAim)
-                    }
                     if let message = model.message { Text(message).font(.caption).foregroundStyle(.orange) }
                 }.padding(.trailing, 4)
             }
