@@ -29,6 +29,7 @@ final class VenueScene {
     private let targetMarker = ModelEntity(mesh: .generateSphere(radius: 0.025), materials: [UnlitMaterial(color: .cyan)])
     private var roomMaterials: [(Entity, ModelComponent)] = []
     private var displayedWhiteRoom: Bool?
+    private let roomAmbientLight = RoomAmbientLight()
     private var fixtureTemplates: [String: Entity] = [:]
     private var fixtureLoads: [String: Task<Void, Never>] = [:]
     private var fixtureFailures: Set<String> = []
@@ -177,6 +178,7 @@ final class VenueScene {
                 entity.components.set(InputTargetComponent(allowedInputTypes: [.indirect]))
                 proxies.append(entity)
             }
+            try await roomAmbientLight.prepare()
             // Publish only after all assets and collision shapes are ready.
             // A failed import/open therefore leaves the previous room usable.
             try Task.checkCancellation()
@@ -186,6 +188,7 @@ final class VenueScene {
             aligned = false; root.transform = Transform(); root.isEnabled = false
             root.addChild(room); proxies.forEach { root.addChild($0) }
             roomMaterials = newMaterials; displayedWhiteRoom = nil
+            roomAmbientLight.attach(to: newMaterials.map { $0.0 }, in: root, level: model.houseLight)
             fixtureLoadGeneration = UUID()
             fixtureLoads.values.forEach { $0.cancel() }; fixtureLoads.removeAll(); fixtureFailures.removeAll()
             fixtureTemplates = [LightingPreview.assetID: template]
@@ -603,6 +606,47 @@ final class VenueScene {
     #endif
 
     #if DEBUG
+    /// Native render capture checks room ambience independently of fixture data.
+    func runRoomLightSmoke(model: VenueModel) async {
+        do {
+            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
+            model.deselect(); model.closePalmMap(); model.setPalettePlaying(false)
+            let fixtures = model.fixtures, cues = model.cueSheet, presets = model.presets
+            let channels = fixtures.map { model.renderedChannels(for: $0) }
+            model.blackout = true
+            for (label, level): (String,Float) in [("LOW",0),("HIGH",1)] {
+                model.houseLight = level
+                try await Task.sleep(for: .seconds(2))
+                FileHandle.standardOutput.write(Data("ROOM_LIGHT_CAPTURE_\(label)\n".utf8))
+                try await Task.sleep(for: .seconds(8))
+            }
+            guard model.fixtures == fixtures, model.presets == presets, model.cueSheet == cues,
+                  model.fixtures.map({ model.renderedChannels(for: $0) }) == channels else {
+                throw EnvironmentError.invalid("Room light changed fixture programming")
+            }
+            func emitters(_ entity: Entity) -> [Float] {
+                var values: [Float] = []
+                if let light = entity.components[SpotLightComponent.self] {
+                    values = [light.intensity,light.innerAngleInDegrees,light.outerAngleInDegrees,light.attenuationRadius]
+                    values += (light.color.cgColor.components ?? []).map(Float.init)
+                }
+                return values + entity.children.flatMap { emitters($0) }
+            }
+            model.blackout = false; model.houseLight = 0
+            try await Task.sleep(for: .milliseconds(500))
+            let darkEmitters = emitters(root)
+            model.houseLight = 1
+            try await Task.sleep(for: .milliseconds(500))
+            guard !darkEmitters.isEmpty, emitters(root) == darkEmitters,
+                  roomMaterials.allSatisfy({ $0.0.components[ImageBasedLightReceiverComponent.self]?.imageBasedLight === roomAmbientLight.entity }),
+                  rigs.values.allSatisfy({ !$0.entity.components.has(ImageBasedLightReceiverComponent.self) }) else {
+                throw EnvironmentError.invalid("Ambient light changed fixture emitters or escaped room geometry")
+            }
+            model.houseLight = 0.15
+            FileHandle.standardOutput.write(Data("ROOM_LIGHT_SMOKE_PASS fixtureProgrammingUnchanged=true fixtureEmittersUnchanged=true roomOnly=true\n".utf8))
+        } catch { FileHandle.standardOutput.write(Data("ROOM_LIGHT_SMOKE_FAIL \(error)\n".utf8)) }
+    }
+
     /// Keep the visible placement box and click target deliberately separated.
     func runPlacementWristSmoke(model: VenueModel) async {
         guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--placement-wrist-smoke") else { return }
@@ -971,7 +1015,7 @@ final class VenueScene {
             }
             displayedWhiteRoom = model.whiteRoom
         }
-        root.components.set(EnvironmentLightingConfigurationComponent(environmentLightingWeight: model.houseLight))
+        roomAmbientLight.update(level: model.houseLight)
         let ids = Set(model.sceneFixtures.map(\.id))
         let activeAssets = Set(model.sceneFixtures.compactMap(\.assetID))
         for id in Array(fixtureTemplates.keys) where id != LightingPreview.assetID && !activeAssets.contains(id) {

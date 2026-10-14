@@ -141,6 +141,13 @@ struct VenueSpaceView: View {
             await runCueProgrammingSmoke()
             await runEditorRecallSmoke()
             await runToolboxWindowSmoke()
+            if model.isDemoMode && ProcessInfo.processInfo.arguments.contains("--room-light-smoke") {
+                try? await Task.sleep(for: .seconds(3))
+                model.resetToolboxActivation()
+                for identity in model.toolboxWindowIDs { dismissWindow(id: "toolbox", value: identity) }
+                dismissWindow(id: "presets"); dismissWindow(id: "room-placement")
+                await scene.runRoomLightSmoke(model: model)
+            }
             await scene.runPlacementWristSmoke(model: model)
             await scene.runInputSmoke(model: model)
             await scene.runFixtureMovementSmoke(model: model)
