@@ -47,6 +47,11 @@ struct PhaserProgrammerView: View {
                 }
             }
         }
+        .task {
+            #if DEBUG
+            await runRenderSmoke()
+            #endif
+        }
         .onChange(of: model.presetDraft.id) { _, _ in selectedStep = 0 }
         .onChange(of: phaser?.steps.count) { _, count in selectedStep = min(selectedStep, max(0, (count ?? 1) - 1)) }
         .confirmationDialog("Replace the phaser steps?", isPresented: $replacingPattern, titleVisibility: .visible) {
@@ -56,6 +61,49 @@ struct PhaserProgrammerView: View {
             Button("Cancel", role: .cancel) { pendingPattern = nil }
         } message: { Text("The pattern replaces step sources and distribution. Your tempo and cycle length are kept.") }
     }
+    #if DEBUG
+    /// Render the real SwiftUI controls after each mode/step change, not just
+    /// the underlying model. Model-only tests missed an out-of-range label read.
+    private func runRenderSmoke() async {
+        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--phaser-render-smoke") else { return }
+        do {
+            for _ in 0..<200 where !model.canPlace || model.fixtures.isEmpty {
+                try await Task.sleep(for: .milliseconds(100))
+            }
+            try await Task.sleep(for: .milliseconds(500))
+            guard let fixture = model.fixtures.first,
+                  let source = model.presets.first(where: { $0.pool == .all && $0.phaser == nil }) else {
+                throw EnvironmentError.invalid("Missing phaser render fixture")
+            }
+            for selected in [false, true] {
+                if selected { model.select(fixture.id,extendSelection: false) } else { model.deselect() }
+                try await Task.sleep(for: .milliseconds(150))
+                model.choosePreset(source)
+                for pool in [PaletteCategory.all, .intensity, .color, .position, .beam] {
+                    model.setPhaserMode(false); model.presetDraft.setPool(pool)
+                    try await Task.sleep(for: .milliseconds(150))
+                    FileHandle.standardOutput.write(Data("PHASER_RENDER_CASE selected=\(selected) pool=\(pool.rawValue)\n".utf8))
+                    model.setPhaserMode(true)
+                    try await Task.sleep(for: .milliseconds(250))
+                    guard model.presetDraft.phaser != nil else { throw EnvironmentError.invalid("Dynamic mode was lost") }
+                    model.presetDraft.phaser?.resizeSteps(to: 32); selectedStep = 31
+                    try await Task.sleep(for: .milliseconds(150))
+                    model.presetDraft.phaser?.resizeSteps(to: 2)
+                    try await Task.sleep(for: .milliseconds(150))
+                    model.setPhaserMode(false)
+                    try await Task.sleep(for: .milliseconds(150))
+                }
+            }
+            model.presetDraft.setPool(.all); model.setPhaserMode(true)
+            try await Task.sleep(for: .milliseconds(300))
+            FileHandle.standardOutput.write(Data("PHASER_RENDER_SMOKE_PASS emptySelection=true selectedFixture=true allPools=true repeatedModes=true stepResize=true\n".utf8))
+        } catch is CancellationError {
+            // Window restoration can replace an old editor; its successor runs
+            // the check after the normal single-window handoff.
+        } catch { FileHandle.standardOutput.write(Data("PHASER_RENDER_SMOKE_FAIL \(error)\n".utf8)) }
+    }
+    #endif
+
     private func modeButton(_ title: String, enabled: Bool) -> some View {
         Button { model.setPhaserMode(enabled); selectedStep = 0 } label: {
             HStack { Image(systemName: enabled ? "waveform.path" : "line.diagonal"); Text(title) }
@@ -81,10 +129,9 @@ struct PhaserProgrammerView: View {
                             Text("BPM").font(.headline); Text("Tap tempo").font(.caption).foregroundStyle(.secondary)
                         }.frame(width: 160, height: 160).contentShape(Circle())
                     }.buttonStyle(.borderless).background(.white.opacity(0.07), in: Circle()).accessibilityLabel("Tap tempo, \(Int(phaser.beatsPerMinute)) BPM")
-                    let first = selectedStep / 8 * 8
-                    let count = min(8, phaser.steps.count - first)
-                    ForEach(first..<(first + count), id: \.self) { index in
-                        let angle = Double(index - first) / Double(count) * 2 * Double.pi - Double.pi / 2
+                    let bank = phaser.stepBank(containing: selectedStep)
+                    ForEach(bank, id: \.self) { index in
+                        let angle = Double(index - bank.lowerBound) / Double(bank.count) * 2 * Double.pi - Double.pi / 2
                         Button { selectedStep = index } label: { Text("\(index + 1)").font(.headline).frame(width: 54, height: 54) }
                             .buttonStyle(.borderless)
                             .background(index == selectedStep ? Color.accentColor : .white.opacity(0.12), in: Circle())
@@ -110,15 +157,16 @@ struct PhaserProgrammerView: View {
         }
     }
     private func stepEditor(_ phaser: Phaser) -> some View {
-        VStack(alignment: .leading, spacing: 18) {
+        let draft = model.presetDraft
+        return VStack(alignment: .leading, spacing: 18) {
             if phaser.steps.indices.contains(selectedStep) {
                 let step = phaser.steps[selectedStep]
                 HStack { Text("Step \(selectedStep + 1)").font(.title2.bold()); Spacer(); Button("Next", systemImage: "chevron.right") { selectedStep = (selectedStep + 1) % phaser.steps.count } }
                 Picker("Palette source", selection: Binding(get: { step.paletteID }, set: { id in
                     if id == nil, let previous = compatibleSources.first(where: { $0.id == step.paletteID }) {
-                        model.presetDraft.phaser?.steps[selectedStep].values = Dictionary(uniqueKeysWithValues: model.presetDraft.channelMask.map { ($0, previous.channels[$0]) })
+                        editStep { $0.values = Dictionary(uniqueKeysWithValues: model.presetDraft.channelMask.filter { previous.channels.indices.contains($0) }.map { ($0, previous.channels[$0]) }) }
                     }
-                    model.presetDraft.phaser?.steps[selectedStep].paletteID = id
+                    editStep { $0.paletteID = id }
                     remember()
                 })) {
                     Text("Custom values").tag(nil as UUID?)
@@ -127,19 +175,22 @@ struct PhaserProgrammerView: View {
                 }
                 if step.paletteID != nil { Text("Linked source · updates to this palette follow through to the phaser.").font(.caption).foregroundStyle(.secondary) }
                 else {
-                    ForEach(model.presetDraft.channelMask.sorted(), id: \.self) { channel in
-                        number(LightingPreview.channelNames[channel] + " (%)", value: Double(step.values[channel] ?? model.presetDraft.channels[channel]) / 255 * 100, range: 0...100) { model.presetDraft.phaser?.steps[selectedStep].values[channel] = Int(($0 * 255 / 100).rounded()) }
+                    ForEach(draft.channelMask.filter { draft.channels.indices.contains($0) }.sorted(), id: \.self) { channel in
+                        number(LightingPreview.channelName(at: channel) + " (%)", value: Double(step.values[channel] ?? draft.channels[channel]) / 255 * 100, range: 0...100) { value in
+                            guard model.presetDraft.channelMask.contains(channel) else { return }
+                            editStep { $0.values[channel] = Int((value * 255 / 100).rounded()) }
+                        }
                     }
                 }
-                number("Relative step width", value: step.width, range: 0.1...8) { model.presetDraft.phaser?.steps[selectedStep].width = $0 }
-                number("Transition (%)", value: (step.transition ?? phaser.transition) * 100, range: 0...100) { model.presetDraft.phaser?.steps[selectedStep].transition = $0 / 100 }
-                Picker("Curve", selection: Binding(get: { step.curve ?? .linear }, set: { model.presetDraft.phaser?.steps[selectedStep].curve = $0 })) {
+                number("Relative step width", value: step.width, range: 0.1...8) { value in editStep { $0.width = value } }
+                number("Transition (%)", value: (step.transition ?? phaser.transition) * 100, range: 0...100) { value in editStep { $0.transition = value / 100 } }
+                Picker("Curve", selection: Binding(get: { step.curve ?? .linear }, set: { value in editStep { $0.curve = value } })) {
                     Text("Linear").tag(PhaserCurve.linear); Text("Sine").tag(PhaserCurve.sine)
                 }
                 Text("Transition reaches this step’s value first, then holds it.").font(.caption).foregroundStyle(.secondary)
                 HStack {
-                    Button("Hold") { model.presetDraft.phaser?.steps[selectedStep].transition = 0; remember() }
-                    Button("Fade") { model.presetDraft.phaser?.steps[selectedStep].transition = 1; remember() }
+                    Button("Hold") { editStep { $0.transition = 0 }; remember() }
+                    Button("Fade") { editStep { $0.transition = 1 }; remember() }
                     Button("Remember step") { remember() }
                 }
                 if model.presetDraft.channelMask == Set([0]) {
@@ -158,18 +209,29 @@ struct PhaserProgrammerView: View {
                     Menu("Recently used steps") {
                         ForEach(recent.indices, id: \.self) { index in
                             let saved = recent[index]
-                            Button(saved.paletteID.flatMap { id in compatibleSources.first { $0.id == id }?.name } ?? "Custom · width \(saved.width.formatted()) · \(Int((saved.transition ?? phaser.transition) * 100))% fade") { model.presetDraft.phaser?.steps[selectedStep] = saved }
+                            Button(saved.paletteID.flatMap { id in compatibleSources.first { $0.id == id }?.name } ?? "Custom · width \(saved.width.formatted()) · \(Int((saved.transition ?? phaser.transition) * 100))% fade") { editStep { $0 = saved } }
                         }
                     }
                 }
                 HStack {
-                    Button("Add step", systemImage: "plus") { model.presetDraft.phaser?.steps.append(step); selectedStep = phaser.steps.count }.disabled(phaser.steps.count >= 32)
-                    Button("Remove", role: .destructive) { model.presetDraft.phaser?.steps.remove(at: selectedStep); selectedStep = max(0, selectedStep - 1) }.disabled(phaser.steps.count <= 2)
+                    Button("Add step", systemImage: "plus") {
+                        guard var current = model.presetDraft.phaser, current.steps.count < 32 else { return }
+                        current.steps.append(step); model.presetDraft.phaser = current; selectedStep = current.steps.count-1
+                    }.disabled(phaser.steps.count >= 32)
+                    Button("Remove", role: .destructive) {
+                        guard var current = model.presetDraft.phaser, current.steps.count > 2,
+                              current.steps.indices.contains(selectedStep) else { return }
+                        current.steps.remove(at: selectedStep); selectedStep = max(0, selectedStep-1); model.presetDraft.phaser = current
+                    }.disabled(phaser.steps.count <= 2)
                 }
             }
         }
     }
-    private func use(_ step: PhaserStep) { model.presetDraft.phaser?.steps[selectedStep] = step; remember() }
+    private func editStep(_ change: (inout PhaserStep) -> Void) {
+        guard var current = model.presetDraft.phaser, current.updateStep(at: selectedStep, change) else { return }
+        model.presetDraft.phaser = current
+    }
+    private func use(_ step: PhaserStep) { editStep { $0 = step }; remember() }
     private func tap() { if let bpm = tapTempo.tap(at: ProcessInfo.processInfo.systemUptime) { model.presetDraft.phaser?.beatsPerMinute = bpm } }
     private func remember() { if let step = phaser?.steps[safe: selectedStep] { model.rememberPhaserStep(step) } }
     private func number(_ label: String, value: Double, range: ClosedRange<Double>, set: @escaping (Double) -> Void) -> some View {

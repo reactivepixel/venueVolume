@@ -34,3 +34,12 @@ import Testing
     let decoded = try JSONDecoder().decode(Fixture.self, from: JSONSerialization.data(withJSONObject: legacy))
     #expect(decoded.assetID == nil && decoded.presetID == nil)
 }
+
+@Test func everyPaletteChannelHasAnEditorLabel() {
+    for index in 0..<16 {
+        let label = LightingPreview.channelName(at: index)
+        #expect(!label.isEmpty)
+        if index < LightingPreview.channelNames.count { #expect(label == LightingPreview.channelNames[index]) }
+        else { #expect(label == "Channel \(index + 1)") }
+    }
+}

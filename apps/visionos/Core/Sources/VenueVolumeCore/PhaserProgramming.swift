@@ -22,6 +22,21 @@ public struct TapTempo: Sendable {
 }
 
 extension Phaser {
+    /// SwiftUI can render the new step count before its selection onChange runs.
+    public func stepBank(containing selectedStep: Int) -> Range<Int> {
+        guard !steps.isEmpty else { return 0..<0 }
+        let index = min(max(0,selectedStep),steps.count-1)
+        let first = index / 8 * 8
+        return first..<min(first+8,steps.count)
+    }
+
+    /// A control from the previous render can outlive a removed step.
+    @discardableResult public mutating func updateStep(at index: Int, _ change: (inout PhaserStep) -> Void) -> Bool {
+        guard steps.indices.contains(index) else { return false }
+        change(&steps[index])
+        return true
+    }
+
     /// Step count and cycle duration are independent. New steps repeat the last source.
     public mutating func resizeSteps(to proposed: Int) {
         let count = min(32, max(2, proposed))

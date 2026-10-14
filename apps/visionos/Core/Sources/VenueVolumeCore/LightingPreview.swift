@@ -5,6 +5,11 @@ public struct LightingPreview: Equatable, Sendable {
     public static let assetID = "chauvet-professional/rogue-r1x-spot"
     public static let profileName = "VV Preview 16 · simulation"
     public static let channelNames = ["Dimmer", "Red", "Green", "Blue", "Pan", "Tilt", "Beam width"]
+    /// All 16 palette channels remain editable, including channels without a
+    /// named behavior in the seven-attribute simulation profile.
+    public static func channelName(at index: Int) -> String {
+        channelNames.indices.contains(index) ? channelNames[index] : "Channel \(index + 1)"
+    }
     public static let footprintRadius: Float = 0.23 // conservative envelope at any base yaw
     public static let height: Float = 0.447
     public let intensity: Float

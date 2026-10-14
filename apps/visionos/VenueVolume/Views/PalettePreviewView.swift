@@ -69,7 +69,7 @@ struct PhaserCurveView: View {
         if let phaser = palette.phaser {
             let channel = palette.channelMask.sorted().first ?? 0
             VStack(alignment: .leading, spacing: 8) {
-                HStack { Text(LightingPreview.channelNames[channel]); Spacer(); Text("\(phaser.measure, specifier: "%.1f") beats · \(60 * phaser.measure / phaser.beatsPerMinute, specifier: "%.2f") s") }.font(.caption).foregroundStyle(.secondary)
+                HStack { Text(LightingPreview.channelName(at: channel)); Spacer(); Text("\(phaser.measure, specifier: "%.1f") beats · \(60 * phaser.measure / phaser.beatsPerMinute, specifier: "%.2f") s") }.font(.caption).foregroundStyle(.secondary)
                 Canvas { context, size in
                     for i in 0...4 {
                         var grid = Path(); let y = size.height * Double(i) / 4
@@ -83,7 +83,7 @@ struct PhaserCurveView: View {
                         if i == 0 { curve.move(to: point) } else { curve.addLine(to: point) }
                     }
                     context.stroke(curve, with: .color(.white), lineWidth: 2)
-                }.frame(height: 86).accessibilityLabel("\(LightingPreview.channelNames[channel]) curve over one phaser cycle")
+                }.frame(height: 86).accessibilityLabel("\(LightingPreview.channelName(at: channel)) curve over one phaser cycle")
             }
         }
     }

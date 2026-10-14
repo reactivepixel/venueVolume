@@ -141,6 +141,7 @@ struct VenueSpaceView: View {
             await runCueProgrammingSmoke()
             await runEditorRecallSmoke()
             await runToolboxWindowSmoke()
+            await scene.runPlacementWristSmoke(model: model)
             await scene.runInputSmoke(model: model)
             await scene.runFixtureMovementSmoke(model: model)
             await scene.runNavigationSmoke(model: model)
@@ -322,9 +323,9 @@ struct VenueSpaceView: View {
             try await Task.sleep(for: .milliseconds(200))
             guard paused == model.renderedChannels(for: first) else { throw EnvironmentError.invalid("Fixture moved while preview paused") }
             model.setPalettePlaying(true)
-            model.updateHandToolboxActivation(attended: false, palmVisible: false, now: 0)
-            model.updateHandToolboxActivation(attended: true, palmVisible: true, now: 1)
-            model.updateHandToolboxActivation(attended: true, palmVisible: true, now: 2)
+            model.updateHandToolboxActivation(attended: false, now: 0)
+            model.updateHandToolboxActivation(attended: true, now: 1)
+            model.updateHandToolboxActivation(attended: true, now: 2)
             guard model.toolboxRequestID != nil, !model.palmMapVisible else { throw EnvironmentError.invalid("Wrist routing failed") }
             model.presetWindowVisible = !model.presetEditor.windowIDs.isEmpty
             model.resetToolboxActivation()

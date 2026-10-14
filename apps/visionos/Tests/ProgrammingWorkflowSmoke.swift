@@ -13,11 +13,17 @@ import VenueVolumeCore
         if ProcessInfo.processInfo.arguments.contains("--interaction-regression") {
             var failures: [String] = []
             func expect(_ condition: Bool, _ text: String) { if !condition { failures.append(text) } }
-            // Drive the same palm attention samples used by VenueScene, including dwell.
-            model.updateHandToolboxActivation(attended: true, palmVisible: true, now: 0)
-            model.updateHandToolboxActivation(attended: true, palmVisible: true, now: 1)
+            // Drive the same wrist attention samples used by VenueScene, including dwell.
+            model.updateHandToolboxActivation(attended: true, now: 0)
+            model.updateHandToolboxActivation(attended: true, now: 1)
             expect(!model.palmMapVisible && model.toolboxRequestID != nil,
                    "Left-hand attention must recall the selection Toolbox, never Palm Map")
+            let firstRecall = model.toolboxRequestID
+            model.updateHandToolboxActivation(attended: false, now: 2)
+            model.updateHandToolboxActivation(attended: true, now: 3)
+            model.updateHandToolboxActivation(attended: true, now: 3.4)
+            expect(model.toolboxRequestID != firstRecall,
+                   "Looking away then back at the wrist must recall Toolbox without lowering the hand")
             model.reserveLeftHandInput()
             expect(!model.navigationInputReserved, "A UI pinch must not disable its own palette controls")
             _ = model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 2.66, y: 0, z: -2), surfaceID: "floor")

@@ -289,7 +289,7 @@ struct PresetEditorView: View {
     }
 
     private func channel(_ index: Int) -> some View {
-        let name = (index < LightingPreview.channelNames.count ? LightingPreview.channelNames[index] : "Unused")
+        let name = LightingPreview.channelName(at: index)
         let value = model.presetDraft.channels.indices.contains(index) ? model.presetDraft.channels[index] : 0
         return VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .firstTextBaseline, spacing: 12) {
