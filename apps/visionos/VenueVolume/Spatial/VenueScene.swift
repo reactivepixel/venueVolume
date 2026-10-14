@@ -55,6 +55,15 @@ final class VenueScene {
         manifest.map { PalmMapProjection.includingFixtures(model?.fixtures ?? [], in: $0) }
     }
     private let placementGhost = Entity()
+    private struct PlacementTarget {
+        let point: SIMD3<Float>
+        let surfaceID: String?
+        let kind: FixtureKind
+        let unitID: UUID?
+        let roomToken: UUID
+        let sessionID: UUID
+    }
+    private var placementTarget: PlacementTarget?
     private let groupLinks = Entity()
     private var navigationGestureCancelled = false
     private var blackoutCover: ModelEntity?
@@ -339,7 +348,19 @@ final class VenueScene {
         }
         guard !model.palmMapVisible else { return }
         if FixtureTransformGizmo.handle(entity) != nil { return }
-        if let id = UUID(uuidString: entity.name), !model.isPlacing && !model.isRetargeting {
+        if model.isPlacing {
+            // Commit the last displayed outline. The system's gaze target only
+            // confirms the click; it must never choose a different placement.
+            guard model.canPlace, placementGhost.isEnabled, let target = placementTarget,
+                  target.kind == model.fixtureKind, target.unitID == model.placementUnitID,
+                  target.roomToken == model.roomLoadToken, target.sessionID == model.placementSessionID else {
+                model.message = "Move the placement box onto a clear floor or tabletop, then pinch."
+                return
+            }
+            if let surfaceID = target.surfaceID { model.place(at: target.point, surfaceID: surfaceID) }
+            else { model.placeOnMesh(at: .init(x: target.point.x, y: target.point.y, z: target.point.z)) }
+            placementTarget = nil; placementGhost.isEnabled = false
+        } else if let id = UUID(uuidString: entity.name), !model.isRetargeting {
             model.tapFixture(id)
         } else if model.isSurfaceMoveActive, isRoomSurface(entity) {
             guard let hit = surfaceHit(entity: entity, point: position),
@@ -354,10 +375,6 @@ final class VenueScene {
             if isRoomSurface(entity) { model.deselect() }
         } else if entity.name.hasPrefix("aim-surface:"), model.isRetargeting {
             _ = model.acceptTarget(point)
-        } else if entity.name.hasPrefix("aim-surface:"), model.scannedMesh != nil, model.isPlacing {
-            model.placeOnMesh(at: point)
-        } else if entity.name.hasPrefix("room-collider:"), model.isPlacing {
-            model.place(at: position, surfaceID: String(entity.name.dropFirst("room-collider:".count)))
         }
     }
 
@@ -586,6 +603,83 @@ final class VenueScene {
     #endif
 
     #if DEBUG
+    /// Keep the visible placement box and click target deliberately separated.
+    func runPlacementWristSmoke(model: VenueModel) async {
+        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--placement-wrist-smoke") else { return }
+        do {
+            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
+            try await Task.sleep(for: .milliseconds(500))
+            model.clearScene(); model.closePalmMap(); model.fixtureKind = .movingHead
+            model.beginPlacement()
+            guard let physics = root.scene else { throw EnvironmentError.invalid("Missing physics scene") }
+            let previewPoint = SIMD3<Float>(2.66,0,-2.3)
+            let clickPoint = SIMD3<Float>(4,0,-2.3)
+            let eye = root.convert(position: previewPoint+[0,1,0.5], to: nil)
+            let target = root.convert(position: previewPoint, to: nil)
+            let originalDevice = deviceTransform
+            defer { deviceTransform = originalDevice }
+            deviceTransform = Transform(rotation: simd_quatf(from: [0,0,-1], to: simd_normalize(target-eye)), translation: eye).matrix
+            updatePlacementGhost()
+            guard placementGhost.isEnabled else { throw EnvironmentError.invalid("Preview outline was not rendered") }
+            let shownBase = placementGhost.position
+            guard let click = physics.raycast(origin: clickPoint+[0,0.3,0],direction: [0,-1,0],length: 0.6,
+                query: .all,mask: .all,relativeTo: root).first(where: { $0.entity.name == "room-collider:floor" }) else {
+                throw EnvironmentError.invalid("Missing floor click target")
+            }
+            handleTap(entity: click.entity,position: click.position,model: model)
+            guard let fixture = model.fixtures.last, simd_distance(FixtureAiming.vector(fixture.position),shownBase) < 0.001 else {
+                throw EnvironmentError.invalid("Placed fixture at \(String(describing: model.fixtures.last?.position)); visible box was at \(shownBase)")
+            }
+            model.undo()
+            guard model.fixtures.isEmpty else { throw EnvironmentError.invalid("Placement Undo failed") }
+            model.redo()
+            guard model.fixtures == [fixture] else { throw EnvironmentError.invalid("Placement Redo failed") }
+            handleTap(entity: click.entity,position: click.position,model: model)
+            guard model.fixtures.count == 1 else { throw EnvironmentError.invalid("Consumed preview placed twice") }
+            model.isPlacing = true
+            updatePlacementGhost()
+            model.finishPlacement(); model.beginPlacement()
+            handleTap(entity: click.entity,position: click.position,model: model)
+            guard model.fixtures.count == 1 else { throw EnvironmentError.invalid("Cancelled placement reused stale preview") }
+            updatePlacementGhost()
+            model.fixtureKind = .cube
+            handleTap(entity: click.entity,position: click.position,model: model)
+            guard model.fixtures.count == 1 else { throw EnvironmentError.invalid("Changed fixture reused stale preview") }
+            updatePlacementGhost()
+            let cubeBase = placementGhost.position
+            handleTap(entity: click.entity,position: click.position,model: model)
+            guard model.fixtures.count == 2, let cube = model.fixtures.last,
+                  simd_distance(FixtureAiming.vector(cube.position),cubeBase+[0,model.fixtureKind.radius,0]) < 0.001 else {
+                throw EnvironmentError.invalid("Cube outline and placement bounds disagree")
+            }
+            updatePlacementGhost()
+            model.canPlace = false
+            handleTap(entity: click.entity,position: click.position,model: model)
+            guard model.fixtures.count == 2 else { throw EnvironmentError.invalid("Tracking loss accepted placement") }
+            model.canPlace = true
+            handleTap(entity: click.entity,position: click.position,model: model)
+            guard model.fixtures.count == 2 else { throw EnvironmentError.invalid("Tracking recovery reused stale preview") }
+            deviceTransform = Transform(rotation: simd_quatf(from: [0,0,-1],to: [0,1,0]),translation: eye).matrix
+            updatePlacementGhost()
+            handleTap(entity: click.entity,position: click.position,model: model)
+            guard !placementGhost.isEnabled, model.fixtures.count == 2 else {
+                throw EnvironmentError.invalid("Hidden preview fell back to gaze placement")
+            }
+            model.finishPlacement(); model.resetToolboxActivation()
+            let attended = WristAttention.isAttended(wrist: [0,0,-0.45],eye: .zero,forward: [0,0,-1])
+            model.updateHandToolboxActivation(attended: attended,now: 0)
+            model.updateHandToolboxActivation(attended: attended,now: 0.4)
+            let firstRequest = model.toolboxRequestID
+            model.updateHandToolboxActivation(attended: false,now: 1)
+            model.updateHandToolboxActivation(attended: attended,now: 2)
+            model.updateHandToolboxActivation(attended: attended,now: 2.4)
+            guard firstRequest != nil, model.toolboxRequestID != firstRequest, !model.palmMapVisible else {
+                throw EnvironmentError.invalid("Wrist attention did not recall Toolbox again")
+            }
+            print("PLACEMENT_WRIST_SMOKE_PASS boxPosition=true gazeIndependent=true undoRedo=true stalePreviewRejected=true cubeBounds=true trackingGuard=true noGazeFallback=true wristRecall=true")
+        } catch { print("PLACEMENT_WRIST_SMOKE_FAIL \(error)") }
+    }
+
     /// Native renderer routing check, separate from human pinch acceptance.
     func runInputSmoke(model: VenueModel) async {
         guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--input-smoke") else { return }
@@ -1104,7 +1198,7 @@ final class VenueScene {
     func runTracking(model: VenueModel) async {
         defer {
             model.canPlace = false
-            model.updateHandToolboxActivation(attended: false, palmVisible: false, now: CACurrentMediaTime())
+            model.updateHandToolboxActivation(attended: false, now: CACurrentMediaTime())
             model.resetToolboxActivation()
             leftNavigation.cancel(at: ProcessInfo.processInfo.systemUptime)
             model.endViewerNavigation(); model.navigationInputReserved = false
@@ -1158,8 +1252,6 @@ final class VenueScene {
             while !Task.isCancelled {
                 let now = CACurrentMediaTime()
                 var eligible = false
-                var palmAttended = false
-                var palmVisible = false
                 var navigation: NavigationHandSample?
                 if world.state == .running,
                    let device = world.queryDeviceAnchor(atTimestamp: now), device.isTracked {
@@ -1168,10 +1260,7 @@ final class VenueScene {
                     model.canPlace = manifest != nil
                     model.trackingStatus = "World tracking active"
                     if handAccess, hands.state == .running, now - lastHandUpdate < 0.25, let hand = latestLeftHand {
-                        let attention = handAttention(hand)
-                        eligible = attention.wrist || attention.palm
-                        palmAttended = attention.palm
-                        palmVisible = attention.facing
+                        eligible = wristAttended(hand)
                         navigation = navigationSample(hand)
                     }
                 } else {
@@ -1182,14 +1271,14 @@ final class VenueScene {
                     model.needsManualToolbox = true
                     model.handTrackingStatus = "Hand tracking stopped · use navigation controls or re-enter to retry"
                 }
-                model.updateHandToolboxActivation(attended: eligible || palmAttended, palmVisible: palmVisible, now: now)
+                model.updateHandToolboxActivation(attended: eligible, now: now)
                 updateLeftNavigation(navigation, at: ProcessInfo.processInfo.systemUptime, model: model)
                 try await Task.sleep(for: .milliseconds(33))
             }
         } catch is CancellationError {
         } catch {
             model.trackingStatus = "Tracking unavailable: \(error.localizedDescription)"
-            model.updateHandToolboxActivation(attended: false, palmVisible: false, now: CACurrentMediaTime())
+            model.updateHandToolboxActivation(attended: false, now: CACurrentMediaTime())
             model.needsManualToolbox = true
             model.handTrackingStatus = "Use navigation controls or re-enter the venue to retry tracking."
             // Keep the explicit fallback responsive even after authorization/session failure.
@@ -1200,29 +1289,16 @@ final class VenueScene {
         #endif
     }
 
-    /// Head-attention is an approximation, not raw eye gaze. System hover handles
-    /// precise gaze targeting of the map marker, translation handles and context bar.
-    private func handAttention(_ hand: HandAnchor) -> (wrist: Bool, palm: Bool, facing: Bool, center: SIMD3<Float>) {
-        guard hand.chirality == .left, hand.isTracked, let skeleton = hand.handSkeleton else { return (false,false,false,.zero) }
-        let joints = [HandSkeleton.JointName.wrist, .indexFingerKnuckle, .littleFingerKnuckle].map { skeleton.joint($0) }
-        guard joints.allSatisfy(\.isTracked) else { return (false,false,false,.zero) }
-        let points = joints.map { joint -> SIMD3<Float> in
-            let t = hand.originFromAnchorTransform * joint.anchorFromJointTransform
-            return SIMD3(t.columns.3.x,t.columns.3.y,t.columns.3.z)
-        }
-        let center = (points[0]+points[1]+points[2])/3
-        let normal = simd_cross(points[1]-points[0],points[2]-points[0])
-        let eye = SIMD3(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
-        let ray = center-eye, distance = simd_length(ray)
-        guard distance > 0.12, distance < 1.2, simd_length(normal) > 0.0001 else { return (false,false,false,center) }
-        let forward = -SIMD3(deviceTransform.columns.2.x,deviceTransform.columns.2.y,deviceTransform.columns.2.z)
-        let attending = simd_dot(simd_normalize(ray),forward) > 0.88
-        let facing = simd_dot(simd_normalize(normal),-simd_normalize(ray)) > 0.35 && simd_dot(simd_normalize(ray),forward) > 0.35
-        // Wrist activation accepts either side: users shouldn't need to find a
-        // narrow palm angle merely to recall their toolbox. Map requires palm up.
-        let wristRay = points[0]-eye
-        let wristAttended = simd_dot(simd_normalize(wristRay),forward) > 0.9
-        return (wristAttended,attending && facing,facing,center)
+    /// Head direction approximates attention; visionOS does not expose eye gaze.
+    /// A wrist remains usable when its fingers are hidden or the palm is edge-on.
+    private func wristAttended(_ hand: HandAnchor) -> Bool {
+        guard hand.chirality == .left, hand.isTracked,
+              let wrist = hand.handSkeleton?.joint(.wrist), wrist.isTracked else { return false }
+        let transform = hand.originFromAnchorTransform * wrist.anchorFromJointTransform
+        return WristAttention.isAttended(
+            wrist: [transform.columns.3.x, transform.columns.3.y, transform.columns.3.z],
+            eye: [deviceTransform.columns.3.x, deviceTransform.columns.3.y, deviceTransform.columns.3.z],
+            forward: -SIMD3(deviceTransform.columns.2.x, deviceTransform.columns.2.y, deviceTransform.columns.2.z))
     }
 
     var isNavigationDragging: Bool { palmMap.dragging }
@@ -1318,11 +1394,13 @@ final class VenueScene {
     }
 
     private func updatePlacementGhost() {
+        placementTarget = nil
+        placementGhost.isEnabled = false
         guard let model, model.isPlacing, model.canPlace, !model.palmMapVisible, !palmMap.dragging else { placementGhost.isEnabled = false; return }
         let eye = SIMD3(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
         let direction = -SIMD3(deviceTransform.columns.2.x,deviceTransform.columns.2.y,deviceTransform.columns.2.z)
-        // No eye ray is exposed by visionOS. Head-forward surface preview is a
-        // deliberately documented approximation; the pinch's system target is authoritative.
+        // Head-forward chooses the displayed outline and the committed position.
+        // Cache this hit so a gaze-targeted click cannot move the fixture elsewhere.
         guard let hits = root.scene?.raycast(origin: eye,direction: direction,length: 30,query: .all,mask: .all,relativeTo: nil),
               let hit = hits.sorted(by: { $0.distance < $1.distance }).first(where: {
                   model.scannedMesh != nil ? $0.entity.name.hasPrefix("aim-surface:") : $0.entity.name.hasPrefix("room-collider:")
@@ -1357,6 +1435,10 @@ final class VenueScene {
             placementGhost.components.set(OpacityComponent(opacity: 0.55))
         }
         placementGhost.position = base; placementGhost.isEnabled = true
+        placementTarget = PlacementTarget(point: point,
+            surfaceID: model.scannedMesh == nil ? String(hit.entity.name.dropFirst("room-collider:".count)) : nil,
+            kind: model.fixtureKind, unitID: model.placementUnitID,
+            roomToken: model.roomLoadToken, sessionID: model.placementSessionID)
     }
 
     private func updateGroupLinks(model: VenueModel) {

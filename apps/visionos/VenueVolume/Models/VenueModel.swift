@@ -168,10 +168,14 @@ final class VenueModel {
     private var toolboxAttention = PalmMapToggle()
     /// Both sides of the left wrist recall the same selection toolbox. The map
     /// is now explicitly opened from Room placement in the context menu.
-    func updateHandToolboxActivation(attended: Bool, palmVisible: Bool, now: Double) {
+    func updateHandToolboxActivation(attended: Bool, now: Double) {
         let wasVisible = toolboxAttention.isVisible
-        let revealed = toolboxAttention.update(attended: attended || (wasVisible && palmVisible), now: now)
-        if revealed && !wasVisible && isImmersed && canPlace && !libraryBusy && !navigationBlackoutActive {
+        guard isImmersed, canPlace, !libraryBusy, !navigationBlackoutActive else {
+            toolboxAttention = PalmMapToggle()
+            return
+        }
+        let revealed = toolboxAttention.update(attended: attended, now: now)
+        if revealed && !wasVisible {
             requestToolbox()
         }
     }
@@ -304,7 +308,7 @@ final class VenueModel {
         switch scenePick {
         case .move: "Click a surface to move and align the fixture, or drag its body along its current plane."
         case .aim: "Look and click to preview DMX aim. Hold and move your hand to adjust. Save updates this preset and its assigned fixtures; Cancel restores."
-        case nil: "Look at a clear floor or tabletop, then pinch to place."
+        case nil: "Move the box onto a clear floor or tabletop, then pinch to place there."
         }
     }
     var programmingMacros: [ProgrammingMacro] = ProgrammingMacro.starters
@@ -337,9 +341,17 @@ final class VenueModel {
     }
     var isImmersed = false { didSet { if !isImmersed { closePalmMap() } } }
     var isTransitioning = false
-    var isPlacing = false
+    private(set) var placementSessionID = UUID()
+    var isPlacing = false {
+        didSet { if oldValue != isPlacing { placementSessionID = UUID() } }
+    }
     var trackingStatus = "Starting spatial tracking…"
-    var canPlace = false { didSet { if !canPlace { closePalmMap() } } }
+    var canPlace = false {
+        didSet {
+            if oldValue && !canPlace { placementSessionID = UUID() }
+            if !canPlace { closePalmMap() }
+        }
+    }
     private(set) var environment: EnvironmentManifest?
     var environmentStatus = "Loading classroom…"
     private(set) var persistenceStatus = "Placements save on this device"
