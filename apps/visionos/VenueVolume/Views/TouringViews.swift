@@ -267,7 +267,7 @@ private struct AddEquipmentSheet: View {
         NavigationStack {
             Form {
                 Section {
-                    Toggle("Quantity-only equipment (no DMX)", isOn: $quantityOnly)
+                    Toggle("Quantity-only equipment", isOn: $quantityOnly)
                     if quantityOnly { TextField("Equipment name", text: $name) }
                     else {
                         Toggle("Only for this venue", isOn: $venueOnly)

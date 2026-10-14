@@ -148,6 +148,7 @@ struct VenueSpaceView: View {
                 dismissWindow(id: "presets"); dismissWindow(id: "room-placement")
                 await scene.runRoomLightSmoke(model: model)
             }
+            await scene.runPaletteTargetSmoke(model: model)
             await scene.runPlacementWristSmoke(model: model)
             await scene.runInputSmoke(model: model)
             await scene.runFixtureMovementSmoke(model: model)

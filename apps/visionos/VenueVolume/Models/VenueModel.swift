@@ -3,7 +3,7 @@ import Observation
 import VenueVolumeCore
 
 enum ScenePick: Equatable { case move(UUID), aim(UUID) }
-private enum TargetPresetSource { case saved(UUID), draft(UUID) }
+private enum TargetPresetSource { case saved(UUID), draft(UUID), cueDraft(UUID) }
 enum FixtureTransformMode: String, CaseIterable, Identifiable { case move = "Move", rotate = "Rotate"; var id: String { rawValue } }
 private struct FixtureTransformDrag {
     var fixture: Fixture
@@ -274,6 +274,7 @@ final class VenueModel {
     var previewBlackout = false { didSet { queueHistoryEdit("Change palette simulation blackout") } }
     var toolboxBlackout: Bool { blackout || (previewDraft && previewBlackout && selectedID != nil) }
     private var targetPresetSource: TargetPresetSource?
+    private var paletteDraftTarget: Position3D?
     var blackout = false { didSet { queueHistoryEdit("Change blackout") } }
     var houseLight: Float = 0.15 { didSet { queueHistoryEdit("Adjust room light") } }
     var whiteRoom = true { didSet { queueHistoryEdit("Change room materials") } }
@@ -721,6 +722,7 @@ final class VenueModel {
         defer { loadingProgrammer = false; programmerEdited = false; programmerSelection = selectedFixtureIDs; programmerCue = currentCue }
         cancelTourPreview(); cancelPicking()
         previewDraft = true; previewBlackout = false
+        paletteDraftTarget = nil
         presetDraft = preset
         editingPresetID = preset.id
         presetMessage = nil
@@ -732,7 +734,7 @@ final class VenueModel {
         beginHistoryAction("New palette draft"); defer { endHistoryAction() }
         loadingProgrammer = true
         defer { loadingProgrammer = false; programmerEdited = false; programmerSelection = selectedFixtureIDs; programmerCue = currentCue }
-        editingPresetID = nil
+        editingPresetID = nil; paletteDraftTarget = nil
         cancelTourPreview(); cancelPicking()
         previewDraft = true; previewBlackout = false
         presetDraft = DMXPreset(name: "", channels: [255,255,255,255,128,128,128] + Array(repeating: 0, count: 9))
@@ -863,8 +865,11 @@ final class VenueModel {
     }
 
     func renderedChannels(for fixture: Fixture, at time: Double? = nil) -> [Int] {
-        if let preview = tourPreview?.first(where: { $0.id == fixture.id }) { return preview.channels }
         if isRetargeting, let targetPreview, actionIDs(for: targetPreview.id).contains(fixture.id) { return renderedFixture(fixture).channels }
+        return channelsWithoutTarget(for: fixture, at: time)
+    }
+    private func channelsWithoutTarget(for fixture: Fixture, at time: Double? = nil) -> [Int] {
+        if let preview = tourPreview?.first(where: { $0.id == fixture.id }) { return preview.channels }
         if let channels = cueSheet.sample(fixture.id, at: time ?? paletteSeconds(), order: fixtures.map(\.id)) {
             var rendered = fixture; rendered.channels = channels
             if previewDraft && selectedFixtureIDs.contains(fixture.id) {
@@ -899,9 +904,6 @@ final class VenueModel {
             }
             return values
         }
-        if isRetargeting, let targetPreview, actionIDs(for: targetPreview.id).contains(fixture.id) {
-            return renderedFixture(fixture).channels
-        }
         let seconds = time ?? paletteSeconds()
         func phasePosition(for paletteID: UUID, draft: Bool = false) -> (index: Int, count: Int) {
             let members = fixtures.filter { draft ? selectedFixtureIDs.contains($0.id) : $0.referencedPaletteIDs.contains(paletteID) }
@@ -931,6 +933,8 @@ final class VenueModel {
 
     func renderedFixture(_ fixture: Fixture) -> Fixture {
         if let preview = tourPreview?.first(where: { $0.id == fixture.id }) { return preview }
+        if isPaletteCueTarget, selectedFixtureIDs.contains(fixture.id), let target = pendingTarget,
+           let aimed = try? paletteTargetFixture(fixture, at: target) { return aimed }
         guard let preview = targetPreview, isRetargeting else { return fixture }
         if preview.id != fixture.id {
             guard actionIDs(for: preview.id).contains(fixture.id), let target = pendingTarget else { return fixture }
@@ -1065,6 +1069,86 @@ final class VenueModel {
         scenePick = .aim(id); lastTarget = nil; message = nil
     }
 
+    var isPaletteCueTarget: Bool {
+        if case .cueDraft = targetPresetSource { return isRetargeting }
+        return false
+    }
+    var paletteTargetIssue: String? {
+        if !canPlace { return "Enter a venue before targeting fixtures." }
+        if selectedFixtures.isEmpty { return "Select fixtures to target." }
+        if presetDraft.channels.count < 6 { return "This palette needs Pan and Tilt channels before targeting." }
+        if selectedFixtures.contains(where: { $0.asset?.headAim != true }) {
+            return "Select fixtures that support Pan/Tilt targeting. Use mount controls for fixed or multi-head fixtures."
+        }
+        return presetDraft.validationIssue ?? presetDraft.referenceIssue(in: presets)
+    }
+    /// Targeting from the cue programmer never rewrites a shared library palette.
+    func beginPaletteTarget() {
+        guard !libraryBusy, let first = selectedFixtures.first else { return }
+        if let issue = paletteTargetIssue { presetMessage = issue; return }
+        cancelPicking(); gizmoVisible = false; previewDraft = true
+        targetPresetSource = .cueDraft(presetDraft.id)
+        scenePick = .aim(first.id); lastTarget = nil
+        message = "Look at a room surface and pinch to preview the target. Hold and move to adjust. Save records the selected fixtures in cue \(currentCueLabel)."
+    }
+    private func paletteTargetFixture(_ fixture: Fixture, at target: Position3D) throws -> Fixture {
+        var candidate = fixture
+        candidate.channels = channelsWithoutTarget(for: fixture)
+        guard candidate.channels.count >= 6 else { throw PresetError("Target requires Pan and Tilt channels.") }
+        let aim = try FixtureAiming.articulated(candidate, target: target)
+        candidate.channels[4] = aim.pan; candidate.channels[5] = aim.tilt
+        candidate.aimOverride = nil
+        candidate.jointOverrides?.removeValue(forKey: "pan")
+        candidate.jointOverrides?.removeValue(forKey: "tilt")
+        return candidate
+    }
+    private func previewPaletteTarget(_ target: Position3D) -> Bool {
+        guard !libraryBusy, paletteTargetIssue == nil, targetingPreset != nil else { return false }
+        do {
+            let previews = try selectedFixtures.map { fixture in
+                do { return try paletteTargetFixture(fixture, at: target) }
+                catch { throw PresetError("\(fixture.name): \(error.localizedDescription)") }
+            }
+            targetPreview = previews.first; pendingTarget = target
+            message = "Previewing \(previews.count) fixtures at one target. Save to cue \(currentCueLabel), or Cancel to restore."
+            return true
+        } catch {
+            targetPreview = nil; pendingTarget = nil
+            message = error.localizedDescription
+            return false
+        }
+    }
+    private func savePaletteTarget() -> Bool {
+        guard let target = pendingTarget, previewPaletteTarget(target) else { return false }
+        do {
+            // Validate every fixture and cue layer before publishing any of them.
+            let aimed = try selectedFixtures.map { try paletteTargetFixture($0, at: target) }
+            var sheet = cueSheet
+            sheet.include(fixtures, palettes: presets)
+            for fixture in aimed {
+                try sheet.record(try cuePalette(presetDraft, fixtureID: fixture.id), for: [fixture.id], sources: presets)
+                let position = DMXPreset(name: "Target · \(presetDraft.name)", channels: fixture.channels,
+                                         category: .position, attributeIndices: [4,5])
+                try sheet.record(position, for: [fixture.id], sources: presets)
+            }
+            try sheet.validate()
+            beginHistoryAction("Target fixtures · cue \(currentCueLabel)"); defer { endHistoryAction() }
+            cueSheets[cueScope] = sheet
+            // Show the primary fixture's solved values without projecting its
+            // angles onto other fixtures or marking another auto-save pending.
+            loadingProgrammer = true
+            if let first = aimed.first {
+                presetDraft = paletteHoldingAim(presetDraft, aim: .init(pan: first.channels[4], tilt: first.channels[5]))
+            }
+            paletteDraftTarget = target
+            loadingProgrammer = false; programmerEdited = false; previewDraft = false
+            cancelPicking(); lastTarget = target; revision += 1; fixtureRenderRevision += 1
+            presetMessage = "Targeted \(aimed.count) fixtures · cue \(currentCueLabel). Pan/Tilt holds the target; other phaser attributes keep playing."
+            message = presetMessage
+            return true
+        } catch { message = error.localizedDescription; return false }
+    }
+
     /// Editor targeting uses all current draft values and saves/assigns that preset.
     func beginPresetTarget() {
         if tour != nil { beginTourTarget(presetDraft, fromDraft: true); return }
@@ -1081,7 +1165,7 @@ final class VenueModel {
     private var targetingPreset: DMXPreset? {
         switch targetPresetSource {
         case .saved(let id): return presets.first { $0.id == id }
-        case .draft(let id): return presetDraft.id == id ? presetDraft : nil
+        case .draft(let id), .cueDraft(let id): return presetDraft.id == id ? presetDraft : nil
         case nil: return nil
         }
     }
@@ -1097,6 +1181,7 @@ final class VenueModel {
     }
 
     @discardableResult func acceptTarget(_ target: Position3D) -> Bool {
+        if isPaletteCueTarget { return previewPaletteTarget(target) }
         if let focusPickID { return previewFocusLocation(focusPickID, at: target) }
         guard !libraryBusy, canPlace, case .aim(let id) = scenePick,
               var candidate = fixture(id), let preset = targetingPreset else { return false }
@@ -1121,6 +1206,7 @@ final class VenueModel {
     }
 
     @discardableResult func saveTarget() -> Bool {
+        if isPaletteCueTarget { return savePaletteTarget() }
         if focusPickID != nil { return commitTourPreview() }
         guard !libraryBusy, canPlace, case .aim(let id) = scenePick, let target = pendingTarget,
               var preset = targetingPreset, acceptTarget(target), let candidate = targetPreview else { return false }
@@ -1835,7 +1921,7 @@ extension VenueModel {
     }
     private func applyHistoryState(_ state: VenueAuditState) {
         touring = state.touring ?? TouringArchive(); selectedUnitIDs = state.selectedUnitIDs ?? []; selectedGroupID = state.selectedGroupID; tourPreview = nil; tourPreviewSession = nil
-        restoringHistory = true; message = nil
+        restoringHistory = true; message = nil; paletteDraftTarget = nil
         defer { restoringHistory = false }
         cancelPicking(); endPresetDrag(); gizmoVisible = false; lastTarget = nil; recent = RecentItems()
         rooms = state.rooms; mergeBundledRooms(); savedSetups = state.setups
@@ -2517,6 +2603,9 @@ extension VenueModel {
     }
     private func programmerDidChange(from old: DMXPreset) {
         guard old != presetDraft, !loadingProgrammer, !restoringHistory, presetWindowVisible else { return }
+        if [4,5].contains(where: { old.channels.indices.contains($0) && presetDraft.channels.indices.contains($0) && old.channels[$0] != presetDraft.channels[$0] }) {
+            paletteDraftTarget = nil
+        }
         previewDraft = !selectedFixtureIDs.isEmpty
         programmerEdited = true
         programmerSelection = selectedFixtureIDs
@@ -2531,6 +2620,7 @@ extension VenueModel {
     func finishPaletteEditing() { _ = savePendingCueEdits() }
     func refreshPaletteSelection() {
         guard presetWindowVisible, !restoringHistory else { return }
+        paletteDraftTarget = nil
         loadingProgrammer = true
         defer { loadingProgrammer = false; programmerEdited = false; programmerSelection = selectedFixtureIDs; programmerCue = currentCue }
         previewDraft = false
@@ -2561,7 +2651,29 @@ extension VenueModel {
         // onto every other fixture. The first deliberate edit enables preview.
         presetMessage = nil
     }
+    /// Preserve other dynamic attributes, including linked step values, while
+    /// holding position. The cue stores a separate solution for each fixture.
+    private func paletteHoldingAim(_ palette: DMXPreset, aim: PanTiltOverride) -> DMXPreset {
+        var result = palette
+        result.focusTargetID = nil
+        result.channels[4] = aim.pan; result.channels[5] = aim.tilt
+        if var phaser = result.phaser, !result.channelMask.isDisjoint(with: [4,5]) {
+            for index in phaser.steps.indices {
+                if let id = phaser.steps[index].paletteID, let source = presets.first(where: { $0.id == id }) {
+                    for channel in result.channelMask { phaser.steps[index].values[channel] = source.channels[channel] }
+                    phaser.steps[index].paletteID = nil
+                }
+                phaser.steps[index].values[4] = aim.pan; phaser.steps[index].values[5] = aim.tilt
+            }
+            result.phaser = phaser
+        }
+        return result
+    }
     private func cuePalette(_ palette: DMXPreset, fixtureID: UUID) throws -> DMXPreset {
+        if let target = paletteDraftTarget, palette.id == presetDraft.id, let fixture = fixture(fixtureID),
+           palette.channels.count >= 6, !palette.channelMask.isDisjoint(with: [4,5]) {
+            return paletteHoldingAim(palette, aim: try FixtureAiming.articulated(fixture, target: target))
+        }
         guard palette.focusTargetID != nil, var session = tour, let fixture = fixture(fixtureID) else { return palette }
         session.presetOverrides.removeAll { $0.id == palette.id }; session.presetOverrides.append(palette)
         for channel in palette.channelMask { session.programming.units[fixtureID, default: [:]][channel] = palette.id }

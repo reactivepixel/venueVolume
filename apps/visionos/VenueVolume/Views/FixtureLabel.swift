@@ -34,7 +34,6 @@ struct FixtureLabel: View {
             if selected {
                 Menu("Fixture actions", systemImage: "ellipsis.circle") {
                     Button("Move", systemImage: "arrow.up.and.down.and.arrow.left.and.right") { model.beginReposition(fixture.id) }.disabled(!model.canPlace)
-                    Button("Retarget DMX", systemImage: "scope") { model.beginRetarget(fixture.id) }.disabled(!model.canPlace || fixture.asset?.headAim != true)
                     Button("Transform", systemImage: "rotate.3d") { model.beginTransform(fixture.id) }.disabled(!model.canPlace)
                     if fixture.aimOverride != nil { Button("Use palette aim") { model.resetAim(fixture.id) } }
                 }.frame(minHeight: 60)

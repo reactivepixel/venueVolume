@@ -606,6 +606,38 @@ final class VenueScene {
     #endif
 
     #if DEBUG
+    func runPaletteTargetSmoke(model: VenueModel) async {
+        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--palette-target-smoke") else { return }
+        do {
+            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
+            try await Task.sleep(for: .seconds(2))
+            guard model.canPlace, let first = model.fixtures.first,
+                  model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 4,y: 0,z: -2), surfaceID: "floor"),
+                  let second = model.fixtures.last, first.id != second.id else { throw EnvironmentError.invalid("Target fixtures unavailable") }
+            model.finishPlacement(); model.select(first.id, extendSelection: false)
+            model.multiSelectionMode = true; model.select(second.id)
+            try await Task.sleep(for: .seconds(1))
+            guard let palette = model.presets.first(where: { $0.pool == .color && $0.phaser != nil }) else { throw EnvironmentError.invalid("Target palette unavailable") }
+            model.choosePreset(palette)
+            let library = model.presets
+            let point = Position3D(x: 3,y: 1.5,z: -7)
+            model.beginPaletteTarget()
+            guard model.acceptTarget(point) else { throw EnvironmentError.invalid(model.message ?? "Target rejected") }
+            try await Task.sleep(for: .seconds(2))
+            for fixture in [first,second] {
+                let aim = try FixtureAiming.articulated(fixture, target: point)
+                guard model.renderedChannels(for: fixture)[4] == aim.pan,
+                      model.renderedChannels(for: fixture)[5] == aim.tilt,
+                      rigs[fixture.id] != nil else { throw EnvironmentError.invalid("Target preview did not render") }
+            }
+            guard model.saveTarget(), model.presets == library else { throw EnvironmentError.invalid("Target cue save failed: \(model.message ?? model.presetMessage ?? "no message")") }
+            try await Task.sleep(for: .seconds(2))
+            guard !model.isRetargeting, model.currentCue == 1 else { throw EnvironmentError.invalid("Target save did not finish") }
+            FileHandle.standardOutput.write(Data("PALETTE_TARGET_SMOKE_PASS multiFixture=true livePreview=true cueSave=true libraryUnchanged=true\n".utf8))
+        } catch is CancellationError { }
+        catch { FileHandle.standardOutput.write(Data("PALETTE_TARGET_SMOKE_FAIL \(error)\n".utf8)) }
+    }
+
     /// Native render capture checks room ambience independently of fixture data.
     func runRoomLightSmoke(model: VenueModel) async {
         do {

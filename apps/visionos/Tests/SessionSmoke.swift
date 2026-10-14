@@ -16,6 +16,7 @@ struct SessionSmoke {
         if ProcessInfo.processInfo.arguments.contains("--interaction-regression") {
             try ProgrammingWorkflowSmoke.run(environment: environment)
             try CueProgrammingSmoke.run(environment: environment)
+            try PaletteTargetSmoke.run(environment: environment)
             return
         }
         let model = VenueModel(arguments: [], defaults: defaults, placementDirectory: directory)
@@ -221,5 +222,6 @@ struct SessionSmoke {
         try PalettePalmSelectionSmoke.run(environment: environment)
         try ProgrammingWorkflowSmoke.run(environment: environment)
         try CueProgrammingSmoke.run(environment: environment)
+        try PaletteTargetSmoke.run(environment: environment)
     }
 }
