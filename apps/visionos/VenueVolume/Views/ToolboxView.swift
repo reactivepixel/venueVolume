@@ -23,14 +23,11 @@ struct ToolboxView: View {
                     @Bindable var model = model
                     Picker("Toolbox section", selection: $model.toolboxTab) {
                         Text("Fixtures & palettes").tag(0)
-                        Text("Rooms & saves").tag(1)
                         Text("History").tag(2)
                     }.pickerStyle(.menu).accessibilityLabel("Toolbox section")
                     Group {
                         if model.toolboxTab == 2 {
                             AuditHistoryView()
-                        } else if model.toolboxTab == 1 {
-                            RoomLibraryView()
                         } else {
                             let layout = compact ? AnyLayout(VStackLayout(alignment: .leading, spacing: 24)) : AnyLayout(HStackLayout(alignment: .top, spacing: 24))
                             layout {
@@ -40,8 +37,6 @@ struct ToolboxView: View {
                             }
                         }
                     }.disabled(model.libraryBusy || model.tourPreview != nil)
-                    Divider()
-                    roomControls(compact: compact).disabled(model.libraryBusy)
                     VStack(alignment: .leading, spacing: 8) {
                         if model.libraryBusy { ProgressView("Loading venue…") }
                         if let historyMessage = model.historyMessage, historyMessage.localizedCaseInsensitiveContains("failed") || historyMessage.localizedCaseInsensitiveContains("disabled") {
@@ -76,9 +71,6 @@ struct ToolboxView: View {
             Button(model.tour == nil ? "Clear all fixtures" : "Return all fixtures", role: .destructive) { model.clearScene() }
         } message: { Text("Undo restores the placements. Saved setups stay available.") }
         .presetEditorPresenter(when: !model.isImmersed)
-        .sheet(isPresented: Binding(get: { model.isImmersed && model.newVenuePresented }, set: { model.newVenuePresented = $0 })) {
-            NewVenueSheet().environment(model)
-        }
         .sheet(isPresented: Binding(get: { model.touringPanelPresented }, set: { model.touringPanelPresented = $0 })) { TouringLibrarySheet() }
         .onAppear {
             model.toolboxAppeared(instanceID)
@@ -112,22 +104,7 @@ struct ToolboxView: View {
                 Menu {
                     Button("Settings", systemImage: "gearshape") { settingsPresented = true }
                     Button("Touring shows…", systemImage: "shippingbox") { model.touringPanelPresented = true }
-                    Button("New venue…", systemImage: "plus") { model.requestNewVenue(); if !model.isImmersed { openWindow(id: "launch") } }
-                    Button("Return to spawn", systemImage: "location") { model.resetViewerToSpawn() }
-                    Menu("Navigation controls") {
-                        Button("Forward") { model.stepViewer(offset: [0,0,-0.5]) }
-                        Button("Backward") { model.stepViewer(offset: [0,0,0.5]) }
-                        Button("Left") { model.stepViewer(offset: [-0.5,0,0]) }
-                        Button("Right") { model.stepViewer(offset: [0.5,0,0]) }
-                        Button("Up") { model.stepViewer(offset: [0,0.5,0]) }
-                        Button("Down") { model.stepViewer(offset: [0,-0.5,0]) }
-                        Button("Turn left") { model.stepViewer(yaw: 15) }
-                        Button("Turn right") { model.stepViewer(yaw: -15) }
-                        Button("Look up") { model.stepViewer(pitch: 15) }
-                        Button("Look down") { model.stepViewer(pitch: -15) }
-                        Button("Roll left") { model.stepViewer(roll: 15) }
-                        Button("Roll right") { model.stepViewer(roll: -15) }
-                    }
+                    Button("New venue…", systemImage: "plus") { model.requestNewVenue(); openWindow(id: model.isImmersed ? "room-placement" : "launch") }
                     Button("Diagnostics & sync") { openWindow(id: "diagnostics") }
                     Button(model.tour == nil ? "Clear all scene fixtures…" : "Return all fixtures to inventory…", role: .destructive) { confirmClearScene = true }
                         .disabled(model.fixtures.isEmpty || model.libraryBusy)
@@ -163,6 +140,7 @@ struct ToolboxView: View {
                 .frame(minHeight: 60)
                 .accessibilityLabel("Open palettes and phasers")
                 .accessibilityHint("Opens the palette editor with your current fixture selection.")
+                Button("Macros", systemImage: "list.bullet.rectangle") { model.macroSeed = nil; model.macrosPresented = true; model.presetEditor.request() }
             }
             if model.tour != nil {
                 InventoryLibraryView()
@@ -182,22 +160,6 @@ struct ToolboxView: View {
                 .sheet(isPresented: $browsingFixtures) {
                     FixtureCatalogBrowser { kind in model.selectFixtureKind(kind); model.beginPlacement() }
                 }
-            }
-        }
-    }
-
-    private func roomControls(compact: Bool) -> some View {
-        @Bindable var model = model
-        let layout = compact ? AnyLayout(VStackLayout(alignment: .leading, spacing: 18)) : AnyLayout(HStackLayout(spacing: 20))
-        return layout {
-            Toggle("White model", isOn: $model.whiteRoom).toggleStyle(.button).frame(minHeight: 60)
-            Toggle("Blackout", isOn: $model.blackout).toggleStyle(.button).frame(minHeight: 60)
-            VStack(alignment: .leading, spacing: 6) {
-                Text("Room light").font(.callout)
-                Slider(value: $model.houseLight, in: 0...1, onEditingChanged: { editing in
-                    if editing { model.beginHistoryAction("Adjust room light") } else { model.endHistoryAction() }
-                }).frame(minWidth: 160, minHeight: 60).accessibilityLabel("Room light")
-                    .accessibilityValue("\(Int(model.houseLight * 100)) percent")
             }
         }
     }

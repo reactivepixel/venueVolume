@@ -1,104 +1,92 @@
 import SwiftUI
-import UIKit
-import RealityKit
 import VenueVolumeCore
 
-/// A self-contained sample room; never depends on fixture selection or venue state.
+/// Flat output preview uses the same palette sampler as the immersive fixtures.
 struct PalettePreviewView: View {
+    var palette: DMXPreset
     @Environment(VenueModel.self) private var model
-    let palette: DMXPreset
-    @State private var position = SIMD3<Float>(0, 1, 0)
-    @State private var selected = false
-    @State private var dragStart: SIMD3<Float>?
-    private func fit(_ root: Entity, in bounds: BoundingBox) {
-        let scale = min(bounds.extents.x / 5.6, bounds.extents.y / 5.0) * 0.88
-        root.scale = SIMD3(repeating: max(0.001, scale))
-        root.orientation = simd_quatf(angle: .pi / 4, axis: [1,0,0]) * simd_quatf(angle: -.pi / 4, axis: [0,1,0])
-        root.position = -root.orientation.act(SIMD3<Float>(0,1.5,0)) * scale
-        // Keep all geometry in front of the window surface.
-        root.position.z = scale * 3.5
-    }
-
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var playing = true
+    @State private var start = Date()
+    @State private var pausedSeconds = 0.0
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Live sample · cube 1 m above the floor").font(.headline)
-            GeometryReader3D { geometry in
-            TimelineView(.animation(minimumInterval: 1 / 30)) { timeline in
-                let channels = palette.sampledChannels(at: timeline.date.timeIntervalSinceReferenceDate, palettes: model.presets)
-                RealityView { content in
-                    let root = Entity(); root.name = "sampleRoom"
-                    let bounds = content.convert(geometry.frame(in: .local), from: .local, to: .scene)
-                    fit(root, in: bounds)
-                    @MainActor func box(_ size: SIMD3<Float>, _ point: SIMD3<Float>, _ color: UIColor, name: String = "") -> ModelEntity {
-                        let entity = ModelEntity(mesh: .generateBox(size: size), materials: [SimpleMaterial(color: color, isMetallic: false)])
-                        entity.name = name; entity.position = point; root.addChild(entity); return entity
-                    }
-                    _ = box([4, 0.025, 4], [0, 0, 0], .white)
-                    _ = box([4, 3, 0.025], [0, 1.5, -2], .white)
-                    _ = box([0.025, 3, 4], [-2, 1.5, 0], .white)
-                    for index in -4...4 {
-                        let coordinate = Float(index) * 0.5
-                        _ = box([0.012, 0.012, 4], [coordinate, 0.02, 0], .lightGray)
-                        _ = box([4, 0.012, 0.012], [0, 0.02, coordinate], .lightGray)
-                        if index <= 2 { _ = box([4, 0.012, 0.012], [0, coordinate + 2, -1.975], .lightGray) }
-                        _ = box([0.012, 3, 0.012], [coordinate, 1.5, -1.975], .lightGray)
-                    }
-                    let cube = box([0.3, 0.3, 0.3], position, .white, name: "sampleCube")
-                    cube.components.set(InputTargetComponent()); cube.generateCollisionShapes(recursive: false)
-                    for (axis, color) in [(0, UIColor.systemRed), (1, UIColor.systemGreen), (2, UIColor.systemBlue)] {
-                        var offset = SIMD3<Float>.zero; offset[axis] = 0.45
-                        let handle = box([0.13, 0.13, 0.13], position + offset, color, name: "axis\(axis)")
-                        handle.components.set(InputTargetComponent()); handle.generateCollisionShapes(recursive: false)
-                    }
-                    let light = SpotLight(); light.name = "sampleLight"; light.position = position
-                    root.addChild(light)
-                    let fill = DirectionalLight(); fill.light.intensity = 1200
-                    fill.orientation = simd_quatf(angle: -.pi / 3, axis: [1,0,0])
-                    root.addChild(fill); content.add(root)
-                } update: { content in
-                    guard let root = content.entities.first,
-                          let cube = root.findEntity(named: "sampleCube") as? ModelEntity,
-                          let light = root.findEntity(named: "sampleLight") as? SpotLight else { return }
-                    fit(root, in: content.convert(geometry.frame(in: .local), from: .local, to: .scene))
-                    let preview = LightingPreview(channels: channels)
-                    cube.position = position
-                    cube.model?.materials = [SimpleMaterial(color: selected ? .lightGray : .white, isMetallic: false)]
-                    light.light.intensity = preview.intensity
-                    light.light.color = UIColor(red: CGFloat(preview.rgb[0]), green: CGFloat(preview.rgb[1]), blue: CGFloat(preview.rgb[2]), alpha: 1)
-                    light.light.outerAngleInDegrees = preview.outerAngle
-                    let pan = preview.panDegrees * .pi / 180, tilt = preview.tiltDegrees * .pi / 180
-                    // Neutral aim faces down. Pan sweeps horizontally; tilt moves the beam off vertical.
-                    let direction = SIMD3<Float>(sin(pan) * sin(tilt), -cos(tilt), -cos(pan) * sin(tilt))
-                    light.light.attenuationRadius = 8
-                    light.light.innerAngleInDegrees = preview.outerAngle * 0.7
-                    light.look(at: position + direction, from: position, relativeTo: root)
-                    for axis in 0...2 {
-                        var offset = SIMD3<Float>.zero; offset[axis] = 0.45
-                        root.findEntity(named: "axis\(axis)")?.position = position + offset
-                        root.findEntity(named: "axis\(axis)")?.isEnabled = selected
-                    }
-                }
-                .modifier(CenteredPreviewLayout())
-                .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded { value in
-                    if value.entity.name == "sampleCube" { selected.toggle() }
-                })
-                .simultaneousGesture(DragGesture().targetedToAnyEntity().onChanged { value in
-                    guard let axis = Int(value.entity.name.replacingOccurrences(of: "axis", with: "")) else { return }
-                    if dragStart == nil { dragStart = position }
-                    guard let room = value.entity.parent else { return }
-                    let translation = value.convert(value.translation3D, from: .global, to: room)
-                    position[axis] = min(axis == 1 ? 2.7 : 1.7, max(axis == 1 ? 0.2 : -1.7, (dragStart ?? position)[axis] + translation[axis]))
-                }.onEnded { _ in dragStart = nil })
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Label("Live preview", systemImage: "light.beacon.max").font(.headline)
+                Spacer()
+                Text(model.selectedFixtures.isEmpty ? "4 sample fixtures" : "\(model.selectedFixtures.count) selected fixtures").font(.caption).foregroundStyle(.secondary)
+                Button {
+                    if playing { pausedSeconds = Date().timeIntervalSince(start) }
+                    else { start = Date().addingTimeInterval(-pausedSeconds) }
+                    playing.toggle()
+                } label: { Image(systemName: playing && !reduceMotion ? "pause.fill" : "play.fill").frame(width: 44, height: 44) }
+                    .accessibilityLabel(playing ? "Pause preview" : "Play preview").disabled(reduceMotion)
             }
-            }.frame(height: 210)
-            Text("Select the cube, then drag a red X, green Y or blue Z handle. Preview uses the VV simulation profile.").font(.caption).foregroundStyle(.secondary)
-        }.padding(16).background(.white.opacity(0.08), in: RoundedRectangle(cornerRadius: 16))
+            TimelineView(.animation(minimumInterval: 1 / 30, paused: !playing || reduceMotion || palette.phaser == nil)) { timeline in
+                let seconds = reduceMotion ? 0 : playing ? timeline.date.timeIntervalSince(start) : pausedSeconds
+                Canvas { context, size in
+                    let count = min(8, max(1, model.selectedFixtures.isEmpty ? 4 : model.selectedFixtures.count))
+                    for index in 0..<count {
+                        let channels = palette.sampledChannels(at: seconds, fixtureIndex: index, fixtureCount: count, palettes: model.presets)
+                        let light = LightingPreview(channels: channels)
+                        let color = Color(red: Double(light.rgb[0]), green: Double(light.rgb[1]), blue: Double(light.rgb[2]))
+                        let x = size.width * (Double(index) + 0.5) / Double(count)
+                        let half = min(55, size.width / Double(count) * 0.42)
+                        let brightness = Double(channels.first ?? 0) / 255
+                        var beam = Path(); beam.move(to: .init(x: x - 5, y: 12)); beam.addLine(to: .init(x: x + 5, y: 12)); beam.addLine(to: .init(x: x + half, y: size.height - 18)); beam.addLine(to: .init(x: x - half, y: size.height - 18)); beam.closeSubpath()
+                        context.fill(beam, with: .linearGradient(.init(colors: [color.opacity(brightness * 0.15), color.opacity(brightness * 0.6)]), startPoint: .init(x: x, y: 12), endPoint: .init(x: x, y: size.height)))
+                        context.fill(Path(ellipseIn: .init(x: x - half, y: size.height - 26, width: half * 2, height: 16)), with: .color(color.opacity(max(0.04, brightness))))
+                        context.fill(Path(roundedRect: .init(x: x - 8, y: 0, width: 16, height: 8), cornerRadius: 3), with: .color(.white.opacity(0.4 + brightness * 0.6)))
+                    }
+                }.frame(height: 86).accessibilityLabel("Animated fixture output preview")
+            }
+        }.padding(18).background(.black.opacity(0.16), in: RoundedRectangle(cornerRadius: 22))
     }
 }
 
-private struct CenteredPreviewLayout: ViewModifier {
-    @ViewBuilder func body(content: Content) -> some View {
-        if #available(visionOS 26.0, *) { content.realityViewLayoutBehavior(.centered).offset(y: 60).offset(z: 140) }
-        else { content }
+struct PaletteSwatch: View {
+    let palette: DMXPreset
+    @Environment(VenueModel.self) private var model
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    var body: some View {
+        TimelineView(.animation(minimumInterval: 0.1, paused: reduceMotion || palette.phaser == nil)) { time in
+            Canvas { context, size in
+                for index in 0..<12 {
+                    let seconds = reduceMotion ? 0 : time.date.timeIntervalSinceReferenceDate
+                    let channels = palette.sampledChannels(at: seconds, fixtureIndex: index, fixtureCount: 12, palettes: model.presets)
+                    let light = LightingPreview(channels: channels)
+                    let value = palette.channelMask.contains(0) ? Double(channels[0]) / 255 : 1
+                    let color = Color(red: Double(light.rgb[0]), green: Double(light.rgb[1]), blue: Double(light.rgb[2]))
+                    context.fill(Path(.init(x: Double(index) * size.width / 12, y: 0, width: size.width / 12 + 1, height: size.height)), with: .color(color.opacity(max(0.08, value))))
+                }
+            }
+        }.frame(width: 56, height: 48).clipShape(RoundedRectangle(cornerRadius: 10)).accessibilityHidden(true)
+    }
+}
+
+struct PhaserCurveView: View {
+    let palette: DMXPreset
+    @Environment(VenueModel.self) private var model
+    var body: some View {
+        if let phaser = palette.phaser {
+            let channel = palette.channelMask.sorted().first ?? 0
+            VStack(alignment: .leading, spacing: 8) {
+                HStack { Text(LightingPreview.channelNames[channel]); Spacer(); Text("\(phaser.measure, specifier: "%.1f") beats · \(60 * phaser.measure / phaser.beatsPerMinute, specifier: "%.2f") s") }.font(.caption).foregroundStyle(.secondary)
+                Canvas { context, size in
+                    for i in 0...4 {
+                        var grid = Path(); let y = size.height * Double(i) / 4
+                        grid.move(to: .init(x: 0, y: y)); grid.addLine(to: .init(x: size.width, y: y)); context.stroke(grid, with: .color(.white.opacity(0.1)))
+                    }
+                    var curve = Path()
+                    for i in 0...120 {
+                        let seconds = Double(i) / 120 * 60 * phaser.measure / phaser.beatsPerMinute
+                        let value = palette.sampledChannels(at: seconds, palettes: model.presets)[channel]
+                        let point = CGPoint(x: Double(i) / 120 * size.width, y: (1 - Double(value) / 255) * (size.height - 4) + 2)
+                        if i == 0 { curve.move(to: point) } else { curve.addLine(to: point) }
+                    }
+                    context.stroke(curve, with: .color(.white), lineWidth: 2)
+                }.frame(height: 86).accessibilityLabel("\(LightingPreview.channelNames[channel]) curve over one phaser cycle")
+            }
+        }
     }
 }

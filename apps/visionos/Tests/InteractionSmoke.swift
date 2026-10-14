@@ -392,9 +392,9 @@ import VenueVolumeCore
         let relaunched = VenueModel(arguments: [],defaults: defaults,placementDirectory: folder)
         check(relaunched.quickFixtureKinds == model.quickFixtureKinds,"Recent model choices persist independently of venues")
         model.isImmersed = true
-        check(!model.contextBarVisible, "No selection hides the context bar")
+        check(model.contextBarVisible && !model.contextBarHasSelection, "No selection leaves only the compact context menu")
         model.beginPlacement()
-        check(!model.contextBarVisible, "Placement mode alone does not show the context bar")
+        check(model.contextBarVisible && !model.contextBarHasSelection, "Placement mode alone keeps the context menu compact")
         model.finishPlacement()
         model.select(id)
         check(model.contextBarVisible, "Selecting a fixture shows the context bar")
@@ -403,13 +403,13 @@ import VenueVolumeCore
         model.closePalmMap()
         check(model.contextBarVisible, "Closing the map restores selected fixture context")
         model.deselect()
-        check(!model.contextBarVisible, "Background deselection hides the context bar")
+        check(model.contextBarVisible && !model.contextBarHasSelection, "Background deselection collapses the context bar")
         model.activatePresetApplication(model.presets[0].id)
         check(model.contextBarVisible, "An active palette selection exposes its application context")
         model.endPresetDrag()
-        check(!model.contextBarVisible, "Cancelling palette application clears its context")
+        check(model.contextBarVisible && !model.contextBarHasSelection, "Cancelling palette application clears its context")
         model.selectedID = UUID()
-        check(!model.contextBarVisible, "A stale selection cannot show an empty context bar")
+        check(model.contextBarVisible && !model.contextBarHasSelection, "A stale selection cannot expand the context bar")
         print("Fixture movement checks passed: second click, floor/wall/ceiling moves, plane dragging, atomic Undo/Redo, persistence, compact recents and selection-driven context bar.")
     }
 }

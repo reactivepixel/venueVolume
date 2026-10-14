@@ -105,3 +105,23 @@
 .palette-selection-row .palette-apply-row{margin-top:12px}
 }
 
+
+.macro-workbench{grid-column:1/-1;border-bottom:1px solid #d5dce1;padding:20px 24px}
+.macro-workbench summary{cursor:pointer;font-weight:600}
+.macro-editor{padding-top:20px;max-width:1050px}
+.macro-line{display:flex;align-items:center;gap:16px;margin:14px 0}
+.macro-line>.field{flex:1}
+@media(max-width:720px){.macro-line{flex-wrap:wrap}.macro-line>.field{min-width:70%}}
+
+.phaser-rhythm{display:grid;grid-template-columns:300px minmax(0,1fr);gap:28px;align-items:center;margin:22px 0}
+.tempo-ring{width:300px;height:300px;position:relative}
+.tempo-ring:before{content:"";position:absolute;inset:30px;border:1px solid #c8d2d8;border-radius:50%}
+.palette-console .tempo-ring button{position:absolute;width:44px;height:44px;border-radius:50%;transform:translate(-50%,-50%);background:#e9eff2}
+.palette-console .tempo-ring .tempo-tap{left:150px;top:150px;width:156px;height:156px;background:#f3f6f7;display:flex;flex-direction:column;justify-content:center;gap:5px}
+.tempo-tap strong{font-size:42px}.tempo-tap span{font-size:12px}.tempo-controls input[type=range]{display:block;width:100%;margin:12px 0}
+.phaser-rhythm svg{display:block;width:100%;border-block:1px solid #dce4e8;color:#257c97;margin:20px 0}
+.palette-cell-detail i{width:28px;height:22px;flex-shrink:0}
+.palette-phaser-swatch{background-size:200% 100%!important;animation:palette-flow 4s linear infinite}
+@keyframes palette-flow{to{background-position:200% 0}}
+@media(prefers-reduced-motion:reduce){.palette-phaser-swatch{animation:none}}
+@media(max-width:1100px){.phaser-rhythm{grid-template-columns:1fr}.tempo-controls{max-width:340px}}

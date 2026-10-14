@@ -38,7 +38,7 @@ final class PalettesPhasersTests: XCTestCase {
         var smooth = phaser; smooth.transition = 1; smooth.measure = 2
         XCTAssertEqual(smooth.sample(base: [42], seconds: 0.5), [128])
         smooth.steps[0].width = 3
-        XCTAssertEqual(smooth.sample(base: [42], seconds: 1), [85])
+        XCTAssertEqual(smooth.sample(base: [42], seconds: 1), [170])
     }
     func testAttributePalettePreservesOtherChannelsAndDuplicatesIndependently() {
         var original = PaletteLibrary.baseline.first { $0.category == .color }!

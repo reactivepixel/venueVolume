@@ -214,5 +214,6 @@ struct SessionSmoke {
         EditorPresentationSmoke.run()
         try TouringSmoke.run(environment: environment)
         try PalettePalmSelectionSmoke.run(environment: environment)
+        try ProgrammingWorkflowSmoke.run(environment: environment)
     }
 }

@@ -36,14 +36,17 @@ struct PresetEditorView: View {
                     Divider()
                 }
                 VStack(spacing: 0) {
-                    PalettePreviewView(palette: model.presetDraft).padding(.horizontal, 28)
-                    selectionBar.padding(.horizontal, 28).padding(.vertical, 12)
-                    Divider()
                 ScrollView {
                     VStack(alignment: .leading, spacing: 24) {
                         if !showsSidebar { compactLibrary.disabled(model.tourPreview != nil) }
                         navigation(stacked: stacked).disabled(model.tourPreview != nil)
-                        HistoryControls()
+                        ViewThatFits(in: .horizontal) {
+                            HStack(alignment: .center, spacing: 24) {
+                                PalettePreviewView(palette: model.presetDraft).frame(minWidth: 310)
+                                if model.presetDraft.phaser != nil { PhaserCurveView(palette: model.presetDraft).frame(minWidth: 280) }
+                            }
+                            PalettePreviewView(palette: model.presetDraft)
+                        }
                         if model.tourPreview != nil { TourPreviewControls() }
                         else { editor(stacked: stacked); footer(stacked: stacked) }
                     }
@@ -54,6 +57,10 @@ struct PresetEditorView: View {
             }
         }
         .disabled(model.libraryBusy)
+        .ornament(visibility: model.selectedFixtures.isEmpty ? .hidden : .visible, attachmentAnchor: .scene(.bottom)) {
+            selectionBar.padding(20).frame(width: 850).glassBackgroundEffect()
+        }
+        .sheet(isPresented: Binding(get: { model.macrosPresented }, set: { model.macrosPresented = $0 })) { MacroEditorView(seed: model.macroSeed) }
         .onAppear {
             model.presetEditor.registerWindow(windowID)
             if !model.isImmersed && model.presetEditor.windowIDs.count > 1 {
@@ -120,6 +127,7 @@ struct PresetEditorView: View {
                     ForEach(pooledPresets) { preset in
                         Button { request(.preset(preset.id)) } label: {
                             HStack(alignment: .top, spacing: 12) {
+                                PaletteSwatch(palette: preset)
                                 VStack(alignment: .leading, spacing: 6) {
                                     Text(preset.name).font(.headline)
                                     Text("\(preset.pool.label) · \(preset.phaser.map { "\($0.steps.count) steps" } ?? "Static") · \(model.fixtures.filter { $0.referencedPaletteIDs.contains(preset.id) }.count) fixtures")
@@ -182,15 +190,22 @@ struct PresetEditorView: View {
 
     private func navigation(stacked: Bool) -> some View {
         actionLayout(stacked: stacked) {
-            Label("Palette programmer", systemImage: "slider.horizontal.3").font(.title2.weight(.semibold))
+            Text(model.presetDraft.name.isEmpty ? "New palette" : model.presetDraft.name).font(.title.weight(.semibold)).lineLimit(2).frame(maxWidth: .infinity, alignment: .leading)
                 .accessibilityAddTraits(.isHeader)
             if !stacked { Spacer() }
             HStack(spacing: 12) {
+                Button { model.macroSeed = nil; model.macrosPresented = true } label: {
+                    Image(systemName: "list.bullet.rectangle").frame(width: 60, height: 60)
+                }.accessibilityLabel("Macros")
                 Button { adjacent(-1) } label: { Image(systemName: "chevron.left").frame(minWidth: 60, minHeight: 60) }
                     .disabled(adjacentID(-1) == nil).accessibilityLabel("Previous palette")
                 Button { adjacent(1) } label: { Image(systemName: "chevron.right").frame(minWidth: 60, minHeight: 60) }
                     .disabled(adjacentID(1) == nil).accessibilityLabel("Next palette")
                 Menu {
+                    Button("Make macro from saved palette") {
+                        model.macroSeed = ProgrammingMacro(name: model.presetDraft.name, lines: [.init(paletteID: model.editingPresetID)])
+                        model.macrosPresented = true
+                    }.disabled(model.editingPresetID == nil || model.draftHasChanges)
                     Button("Clear channel values") {
                         model.presetDraft.channels = Array(repeating: 0, count: model.presetDraft.channels.count)
                         model.presetMessage = "Draft cleared. Save to update assigned objects."
@@ -219,7 +234,7 @@ struct PresetEditorView: View {
             actionLayout(stacked: stacked) {
                 Text(model.draftHasChanges ? "Unsaved changes" : "Saved palette").foregroundStyle(model.draftHasChanges ? Color.orange : .secondary)
                 if !stacked { Spacer() }
-                Text("VV Preview 16 · Simulation").foregroundStyle(.secondary)
+                Text("\(model.selectedFixtures.count) fixtures selected").foregroundStyle(.secondary)
             }.font(.subheadline)
             if model.tour != nil { TouringPresetOptions() }
             TourPreviewControls()
@@ -285,79 +300,9 @@ struct PresetEditorView: View {
     }
 
     private var phaserEditor: some View {
-        VStack(alignment: .leading, spacing: 18) {
-            Picker("Value mode", selection: Binding(get: { model.presetDraft.phaser != nil }, set: { enabled in
-                if enabled {
-                    let values = Dictionary(uniqueKeysWithValues: model.presetDraft.channelMask.map { ($0, model.presetDraft.channels[$0]) })
-                    var next = values
-                    if model.presetDraft.channelMask.contains(0) { next[0] = 0 }
-                    if model.presetDraft.channelMask.contains(4) { next[4] = 180 }
-                    if model.presetDraft.pool == .color { next[1] = 0; next[2] = 60; next[3] = 255 }
-                    model.presetDraft.phaser = Phaser(steps: [.init(values: values), .init(values: next)])
-                } else { model.presetDraft.phaser = nil }
-                selectedStep = 0
-            })) { Text("Static values").tag(false); Text("Phaser steps").tag(true) }.pickerStyle(.segmented)
-            if let phaser = model.presetDraft.phaser {
-                ScrollView(.horizontal) {
-                    HStack(spacing: 12) {
-                        ForEach(phaser.steps.indices, id: \.self) { index in
-                            Button { selectedStep = index } label: {
-                                VStack(alignment: .leading) {
-                                    Text("Step \(index + 1)").font(.headline)
-                                    Text(phaser.steps[index].paletteID.flatMap { id in model.presets.first { $0.id == id }?.name } ?? "Custom values").font(.caption).lineLimit(1)
-                                }.frame(minWidth: 110, minHeight: 60)
-                            }.tint(selectedStep == index ? .cyan : .gray)
-                        }
-                        Button("Add step", systemImage: "plus") {
-                            model.presetDraft.phaser?.steps.append(phaser.steps.last ?? .init(values: [:]))
-                            selectedStep = phaser.steps.count
-                        }.disabled(phaser.steps.count >= 32)
-                    }
-                }
-                if phaser.steps.indices.contains(selectedStep) {
-                    let step = phaser.steps[selectedStep]
-                    Picker("Step source", selection: Binding(get: { step.paletteID }, set: { model.presetDraft.phaser?.steps[selectedStep].paletteID = $0 })) {
-                        Text("Custom values").tag(nil as UUID?)
-                        ForEach(model.presets.filter { $0.phaser == nil && $0.id != model.presetDraft.id && model.presetDraft.channelMask.isSubset(of: $0.channelMask) }) { palette in
-                            Text(palette.name).tag(Optional(palette.id))
-                        }
-                    }
-                    if step.paletteID != nil {
-                        Text("Linked palette · updating its values updates this step.").font(.callout).foregroundStyle(.secondary)
-                    } else {
-                        ForEach(visibleChannels, id: \.self) { channel in
-                            phaserSlider(LightingPreview.channelNames[channel], value: Double(step.values[channel] ?? model.presetDraft.channels[channel]) / 255 * 100, range: 0...100) {
-                                model.presetDraft.phaser?.steps[selectedStep].values[channel] = Int(($0 / 100 * 255).rounded())
-                            }
-                        }
-                    }
-                    phaserSlider("Step width (ratio)", value: step.width, range: 0.1...8) { model.presetDraft.phaser?.steps[selectedStep].width = $0 }
-                    Button("Remove step", role: .destructive) {
-                        model.presetDraft.phaser?.steps.remove(at: selectedStep); selectedStep = max(0, selectedStep - 1)
-                    }.disabled(phaser.steps.count <= 2)
-                }
-                Divider()
-                Text("Timing & distribution").font(.headline)
-                phaserSlider("Speed (BPM)", value: phaser.beatsPerMinute, range: 1...240) { model.presetDraft.phaser?.beatsPerMinute = $0 }
-                phaserSlider("Beats per cycle", value: phaser.measure, range: 0.25...16) { model.presetDraft.phaser?.measure = $0 }
-                phaserSlider("Phase offset (°)", value: phaser.phaseDegrees, range: -360...360) { model.presetDraft.phaser?.phaseDegrees = $0 }
-                phaserSlider("Phase spread (°)", value: phaser.phaseSpreadDegrees, range: -360...360) { model.presetDraft.phaser?.phaseSpreadDegrees = $0 }
-                HStack {
-                    Button("Together") { model.presetDraft.phaser?.phaseSpreadDegrees = 0 }
-                    Button("Wave 0–360°") { model.presetDraft.phaser?.phaseSpreadDegrees = 360 }
-                    Button("Reverse wave") { model.presetDraft.phaser?.phaseSpreadDegrees = -360 }
-                }
-                phaserSlider("Transition", value: phaser.transition, range: 0...1) { model.presetDraft.phaser?.transition = $0 }
-                Text("\(60 * phaser.measure / phaser.beatsPerMinute, specifier: "%.2f") seconds per cycle · distributed in fixture list order")
-                    .font(.caption).foregroundStyle(.secondary)
-            }
+        VStack(alignment: .leading, spacing: 16) {
+            PhaserProgrammerView()
             if let issue = model.presetDraft.referenceIssue(in: model.presets) { Text(issue).foregroundStyle(.orange) }
-        }
-    }
-    private func phaserSlider(_ name: String, value: Double, range: ClosedRange<Double>, set: @escaping @MainActor @Sendable (Double) -> Void) -> some View {
-        VStack(alignment: .leading) {
-            Text("\(name): \(value, specifier: "%.2f")")
-            Slider(value: Binding(get: { value }, set: set), in: range)
         }
     }
 

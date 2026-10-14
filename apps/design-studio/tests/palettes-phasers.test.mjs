@@ -81,3 +81,26 @@ test('a later static layer stops the phaser only for overlapping attributes', ()
  const run={snapshot,activeId:'cue',activeValues:cueValues(snapshot,entry),programmer:{},armed:true,master:100,groupMasters:{},connected:true};
  assert.equal(outputValue(run,fixture,.5).intensity,50);
 });
+
+test('transition enters target then holds, with a per-step override',()=>{
+ const p={...createPalette(),phaser:{bpm:60,measure:2,transition:1,steps:[{intensity:100,transition:.5},{intensity:0,transition:0}]}};
+ assert.equal(samplePhaser(p,0).intensity,0);
+ assert.equal(samplePhaser(p,.25).intensity,50);
+ assert.equal(samplePhaser(p,.75).intensity,100);
+ assert.equal(samplePhaser(p,1).intensity,0);
+});
+import {planMacro, starterMacros} from '../src/programming-macros.js';
+test('macro preflights every row, resolves scope once and remains repeatable',()=>{
+ const fixtures=[{id:'a',role:'Wash'},{id:'b',role:'Spot'}],script=[{entryId:'cue'}];
+ const args={selection:['a'],fixtures,palettes:baselinePalettes,script,entryId:'cue'};
+ const macro=starterMacros[0],plan=planMacro(macro,args);
+ assert.deepEqual(plan.ids,['a']);assert.equal(plan.script[0].assignments.length,1);
+ assert.equal(plan.script[0].assignments[0].fixtureId,'a');assert.deepEqual(script,[{entryId:'cue'}]);
+ assert.deepEqual(planMacro(macro,{...args,script:plan.script}).script,plan.script);
+ assert.throws(()=>planMacro(macro,{...args,selection:[]}));
+ assert.throws(()=>planMacro({...macro,lines:[...macro.lines,{paletteName:'Missing',enabled:true}]},args));
+ assert.deepEqual(planMacro({...macro,lines:[...macro.lines,{paletteName:'Missing',enabled:false}]},args).script,plan.script);
+ assert.deepEqual(planMacro({...macro,target:{kind:'role',role:'Spot'}},args).ids,['b']);
+ const renamed=renamePaletteReferences({presets:baselinePalettes,script,macros:[macro]}, {...baselinePalettes[0],name:'Full renamed'},baselinePalettes[0].name);
+ assert.equal(renamed.macros[0].lines[0].paletteName,'Full renamed');
+});

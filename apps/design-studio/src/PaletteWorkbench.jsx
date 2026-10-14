@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { attributesOf, createPalette, createPhaser, paletteIssue, palettePools, poolAttributes, poolOf, samplePhaser } from './palettes-phasers';
 import { Button, Field } from './components';
 import './palettes.css';
+import MacroWorkbench from './MacroWorkbench';
+import PhaserRhythm from './PhaserRhythm';
 
 const attributeLabels = {intensity: 'Dimmer', color: 'Color', pan: 'Pan', tilt: 'Tilt'};
-export default function PaletteWorkbench({ palettes, fixtures = [], script = [], onSave, onApply }) {
+export default function PaletteWorkbench({ palettes, fixtures = [], script = [], macros, onSaveMacro, onApplyMacro, onSave, onApply }) {
   const initial = palettes[0] ?? createPalette();
   const [selected, select] = useState(initial.name);
   const [draft, edit] = useState(() => structuredClone(initial));
@@ -65,6 +67,7 @@ export default function PaletteWorkbench({ palettes, fixtures = [], script = [],
         <div className="palette-apply-row"><Field label="Destination cue"><select value={entryId} onChange={e => setEntry(e.target.value)}><option value="" disabled>Choose a cue</option>{script.map(e => <option key={e.entryId} value={e.entryId}>{e.name}</option>)}</select></Field><Button primary onClick={apply} disabled={!onApply || !currentIds.length || !targetEntry || dirty || !selected || !!issue || busy}>Apply to {currentIds.length} selected</Button></div>
         <p className="palette-muted">Stores palette references in the cue. {dirty ? 'Store your changes before applying.' : 'Unselected fixtures keep their current look.'}</p>
       </section>
+    <MacroWorkbench macros={macros} palettes={palettes} fixtures={fixtures} selection={currentIds} script={script} entryId={entryId} onStore={onSaveMacro} onApply={onApplyMacro}/>
     <aside className="palette-pools">
       <div className="palette-section-heading"><h2>Preset pools</h2><span>{palettes.length}</span></div>
       <input aria-label="Search palettes" placeholder="Search palettes…" value={query} onChange={e => search(e.target.value)}/>
@@ -73,7 +76,7 @@ export default function PaletteWorkbench({ palettes, fixtures = [], script = [],
       <div className="palette-pool-grid">{filtered.map(p => <button key={p.name} className="palette-pool-cell" aria-pressed={selected === p.name} onClick={() => navigate(() => load(p))}>
         <span className="palette-cell-meta"><span>{String(palettes.indexOf(p) + 1).padStart(2,'0')} · {poolOf(p)}</span><span>{p.phaser ? '↝' : '●'}</span></span>
         <strong>{p.name.replace(/^(Intensity|Color|Position|All|Phaser) · /,'')}</strong>
-        <span className="palette-cell-detail"><i style={{background: attributesOf(p).includes('color') ? p.color : '#b9c9d4'}}/>{p.phaser ? `${p.phaser.steps.length} steps · ${p.phaser.bpm} BPM` : 'Static'}</span>
+        <span className="palette-cell-detail"><i className={p.phaser ? 'palette-phaser-swatch' : ''} style={{background: p.phaser ? `repeating-linear-gradient(90deg, #122b35, ${attributesOf(p).includes('color') ? p.color : '#b9c9d4'} 35%, #122b35 70%)` : attributesOf(p).includes('color') ? p.color : '#b9c9d4'}}/>{p.phaser ? `${p.phaser.steps.length} steps · ${p.phaser.bpm} BPM` : 'Static'}</span>
       </button>)}</div>
       {!filtered.length && <p className="palette-muted">No palettes in this pool.</p>}
       <Button onClick={() => navigate(newPalette)}>New palette</Button>
@@ -92,9 +95,13 @@ export default function PaletteWorkbench({ palettes, fixtures = [], script = [],
       <div className="palette-mode"><button aria-pressed={!draft.phaser} onClick={() => { update({phaser: undefined}); selectStep(0); }}>Static values</button><button aria-pressed={!!draft.phaser} onClick={() => { if (!draft.phaser) update({phaser: createPhaser(draft)}); }}>Phaser steps</button></div>
       <p className="palette-muted">Owns {attributesOf(draft).map(k => attributeLabels[k]).join(', ')}. Applying preserves other attributes.</p>
       {draft.phaser ? <>
+        <PhaserRhythm draft={draft} palettes={palettes} stepIndex={stepIndex} selectStep={selectStep} updatePhaser={updatePhaser}/>
         <div className="palette-step-strip" aria-label="Phaser steps">{draft.phaser.steps.map((step,index) => <button key={index} aria-pressed={stepIndex === index} onClick={() => selectStep(index)}><b>Step {index+1}</b><span>{step.paletteName || 'Custom values'}</span></button>)}<button disabled={draft.phaser.steps.length >= 32} onClick={() => { updatePhaser({steps:[...draft.phaser.steps, structuredClone(draft.phaser.steps.at(-1))]}); selectStep(draft.phaser.steps.length); }}>+ Add step</button></div>
-        <div className="palette-step-editor"><div className="palette-top-fields"><Field label="Step source"><select value={currentStep.paletteName ?? ''} onChange={e => updateStep({paletteName:e.target.value || undefined})}><option value="">Custom values</option>{palettes.filter(p => !p.phaser && p.name !== selected && attributesOf(draft).every(a => attributesOf(p).includes(a))).map(p => <option key={p.name}>{p.name}</option>)}</select></Field><Field label="Step width (ratio)"><input type="number" min="0.1" max="64" step="0.1" value={currentStep.width ?? 1} onChange={e => updateStep({width:+e.target.value})}/></Field></div>
+        <div className="palette-step-editor"><div className="palette-top-fields"><Field label="Step source"><select aria-label="Step source" value={currentStep.paletteName ?? ''} onChange={e => updateStep({paletteName:e.target.value || undefined})}><option value="">Custom values</option>{palettes.filter(p => !p.phaser && p.name !== selected && attributesOf(draft).every(a => attributesOf(p).includes(a))).map(p => <option key={p.name}>{p.name}</option>)}</select></Field><Field label="Step width (ratio)"><input type="number" min="0.1" max="64" step="0.1" value={currentStep.width ?? 1} onChange={e => updateStep({width:+e.target.value})}/></Field></div>
           {currentStep.paletteName ? <p className="palette-reference">↳ Linked to {currentStep.paletteName}. Updating that palette updates this step.</p> : <div className="palette-attributes">{attributesOf(draft).map(k => valueControl(k, currentStep[k] ?? draft[k], value => updateStep({[k]:value})))}</div>}
+          <div className="palette-top-fields"><Field label="Transition into step (%)"><input type="number" min="0" max="100" value={(currentStep.transition ?? draft.phaser.transition ?? 1)*100} onChange={e=>updateStep({transition:+e.target.value/100})}/></Field><Field label="Step curve"><select value={currentStep.curve ?? 'linear'} onChange={e=>updateStep({curve:e.target.value})}><option value="linear">Linear</option><option value="sine">Sine</option></select></Field></div>
+          <p className="palette-muted">Transition reaches this step’s value first, then holds it. Widths divide the cycle proportionally.</p>
+          <div className="palette-quick"><span>Step configurations</span><button onClick={()=>updateStep({transition:0})}>Hold</button><button onClick={()=>updateStep({transition:1,curve:'sine'})}>Smooth fade</button></div>
           <Button disabled={draft.phaser.steps.length <= 2} onClick={() => { updatePhaser({steps:draft.phaser.steps.filter((_,i) => i !== stepIndex)}); selectStep(Math.max(0,stepIndex-1)); }}>Remove step</Button>
         </div>
         <div className="palette-timing">{[['bpm','Speed (BPM)',1,600],['measure','Beats per cycle',0.25,64],['phase','Phase offset (°)',-360,360],['spread','Phase spread (°)',-360,360],['transition','Transition',0,1]].map(([key,label,min,max]) => <Field key={key} label={label}><input type="number" min={min} max={max} step={key === 'transition' ? 0.1 : 0.25} value={draft.phaser[key] ?? (key === 'transition' ? 1 : 0)} onChange={e => updatePhaser({[key]:+e.target.value})}/></Field>)}</div>

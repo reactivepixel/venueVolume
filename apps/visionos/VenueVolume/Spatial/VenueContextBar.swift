@@ -4,12 +4,23 @@ import SwiftUI
 struct VenueContextBar: View {
     @Environment(VenueModel.self) private var model
     @Environment(\.openWindow) private var openWindow
+    @State private var expanded = false
 
     var body: some View {
         if model.contextBarVisible {
             ScrollView(.horizontal) {
                 HStack(spacing: 20) {
-                    Label("Context bar", systemImage: "scope").font(.headline)
+                    Button { expanded.toggle() } label: {
+                        Image(systemName: "ellipsis").frame(width: 60, height: 60)
+                    }.buttonStyle(.plain).hoverEffect(.highlight)
+                        .accessibilityLabel(expanded ? "Collapse context menu" : "Expand context menu")
+                        .accessibilityValue(expanded ? "Expanded" : "Collapsed")
+                    if expanded {
+                        Button("Room placement", systemImage: "building.2") {
+                            openWindow(id: "room-placement"); expanded = false
+                        }.frame(minHeight: 60)
+                    }
+                    if model.contextBarHasSelection {
                     Divider().frame(height: 56)
                     if let session = model.presetDrag.session {
                         let paletteName = model.presets.first { $0.id == session.presetID }?.name ?? "Palette"
@@ -41,12 +52,14 @@ struct VenueContextBar: View {
                             openWindow(id: "fixture-editor", value: "selection")
                         }.frame(minHeight: 60)
                     }
-                }.padding(20).frame(minHeight: 100)
-            }.frame(width: 1120)
+                    }
+                }.padding(model.contextBarHasSelection ? 20 : 10).frame(minHeight: model.contextBarHasSelection ? 100 : 80)
+            }.frame(width: model.contextBarHasSelection ? (expanded ? 1360 : 1120) : (expanded ? 380 : 80))
                 .glassBackgroundEffect(in: RoundedRectangle(cornerRadius: 24))
                 .accessibilityElement(children: .contain)
                 .accessibilityLabel("Context bar")
-                .hoverEffect { effect, active, _ in effect.opacity(active ? 1 : 0.35) }
+                .onChange(of: model.contextBarHasSelection) { _, _ in expanded = false }
+                .onChange(of: model.palmMapVisible) { _, _ in expanded = false }
         }
     }
 }

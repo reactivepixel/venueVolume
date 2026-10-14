@@ -143,6 +143,7 @@ struct VenueSpaceView: View {
             #if DEBUG
             await scene.runPresetDragSmoke(model: model) { dismissWindow(id: "toolbox") }
             await runContextBarSmoke()
+            await runProgrammingSmoke()
             await runEditorRecallSmoke()
             await runToolboxWindowSmoke()
             await scene.runInputSmoke(model: model)
@@ -175,6 +176,7 @@ struct VenueSpaceView: View {
             model.expandedID = nil
             model.gizmoVisible = false
             dismissWindow(id: "fixture-editor")
+            dismissWindow(id: "room-placement")
             for identity in model.toolboxWindowIDs { dismissWindow(id: "toolbox", value: identity) }
             if model.unvaluedToolboxVisible { dismissWindow(id: "toolbox") }
             model.resetToolboxActivation()
@@ -269,6 +271,41 @@ struct VenueSpaceView: View {
         }
     }
 
+    private func runProgrammingSmoke() async {
+        let args = ProcessInfo.processInfo.arguments
+        guard model.isDemoMode, args.contains("--programming-smoke") || args.contains("--collapsed-context") || args.contains("--show-room-placement") || args.contains("--show-macros") else { return }
+        do {
+            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
+            if args.contains("--programming-smoke") {
+                guard model.canPlace, let fixture = model.fixtures.first,
+                      let full = model.presets.first(where: { $0.name == "Intensity · Full" }) else { throw EnvironmentError.invalid("Programming fixture or source unavailable") }
+                model.select(fixture.id, extendSelection: false)
+                model.newPreset(pool: .intensity); model.presetDraft.name = "Dimmer wave"
+                model.presetDraft.phaser = DimmerPattern.wave.make(beatsPerMinute: 120, measure: 8)
+                model.presetDraft.phaser?.resizeSteps(to: 8)
+                model.presetDraft.phaser?.steps[1].paletteID = full.id
+                guard model.savePreset() else { throw EnvironmentError.invalid(model.presetMessage ?? "Cannot store phaser") }
+                let before = model.fixtures
+                let macro = ProgrammingMacro(name: "Wave selection", lines: [.init(paletteID: full.id), .init(paletteID: model.editingPresetID)])
+                guard model.runMacro(macro) else { throw EnvironmentError.invalid(model.macroMessage ?? "Cannot run macro") }
+                model.undo()
+                guard model.fixtures == before else { throw EnvironmentError.invalid("Macro Undo did not restore output") }
+                let result = "PROGRAMMING_SMOKE_PASS linkedSources=true stepCount=8 cycleBeats=8 bpm=120 macroAtomic=true undo=true\n"
+                FileHandle.standardOutput.write(Data(result.utf8))
+            }
+            if args.contains("--collapsed-context") {
+                model.deselect()
+                guard model.contextBarVisible, !model.contextBarHasSelection else { throw EnvironmentError.invalid("Context did not collapse") }
+                FileHandle.standardOutput.write(Data("CONTEXT_COLLAPSED_PASS ellipsisOnly=true\n".utf8))
+            }
+            if args.contains("--show-macros") { model.presetEditor.request(); model.macrosPresented = true }
+            if args.contains("--show-room-placement") { openWindow(id: "room-placement") }
+            if args.contains("--collapsed-context") || args.contains("--show-room-placement") {
+                for identity in model.toolboxWindowIDs { dismissWindow(id: "toolbox", value: identity) }
+            }
+        } catch { FileHandle.standardOutput.write(Data("PROGRAMMING_SMOKE_FAIL \(error)\n".utf8)) }
+    }
+
     private func runContextBarSmoke() async {
         guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--audit-controls-smoke") else { return }
         do {
@@ -287,12 +324,11 @@ struct VenueSpaceView: View {
             model.undo()
             guard model.fixture(fixture.id)?.channels == fixture.channels else { throw EnvironmentError.invalid("Target undo failed") }
             model.deselect()
-            for _ in 0..<100 where bar.isEnabled { try await Task.sleep(for: .milliseconds(50)) }
-            guard !model.contextBarVisible, !bar.isEnabled else { throw EnvironmentError.invalid("Deselection left the context bar visible") }
+            guard model.contextBarVisible, !model.contextBarHasSelection, bar.isEnabled else { throw EnvironmentError.invalid("Deselection did not reduce the context bar to overflow") }
             model.select(fixture.id)
             for _ in 0..<100 where !bar.isEnabled { try await Task.sleep(for: .milliseconds(50)) }
             guard model.contextBarVisible, bar.isEnabled else { throw EnvironmentError.invalid("Selection did not restore the context bar") }
-            print("CONTEXT_BAR_SMOKE_PASS selectionShows=true deselectionHides=true cancel=true save=true undo=true")
+            FileHandle.standardOutput.write(Data("CONTEXT_BAR_SMOKE_PASS selectionShows=true deselectionCollapses=true cancel=true save=true undo=true\n".utf8))
         } catch { print("CONTEXT_BAR_SMOKE_FAIL \(error)") }
     }
 

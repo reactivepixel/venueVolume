@@ -66,6 +66,7 @@ import {
 import "./styles.css";
 import CuePaletteAssignments from "./CuePaletteAssignments";
 import PaletteWorkbench from "./PaletteWorkbench";
+import {starterMacros} from "./programming-macros";
 import { renamePaletteReferences, applyPaletteToCue } from "./palettes-phasers";
 import { baselinePalettes } from "./palettes-phasers";
 import LiveConsole from "./LiveConsole";
@@ -407,8 +408,11 @@ function App({ embeddedRoute, onNavigate, context }) {
         return <>
           {header("Palettes & phasers", "Select fixtures · build attribute values · store and apply")}
           <PaletteWorkbench palettes={data.presets} fixtures={data.fixtures} script={makeSnapshot(data, venue).script}
+            macros={data.macros ?? starterMacros}
+            onSaveMacro={async macro => { const macros = data.macros ?? starterMacros; await update({macros:macros.some(m=>m.id===macro.id) ? macros.map(m=>m.id===macro.id?macro:m) : [...macros,macro]}); setDirty(true); }}
+            onApplyMacro={async script => { await update({script}); setDirty(true); }}
             onSave={async (palette, originalName) => {
-              await update(renamePaletteReferences(data, palette, originalName));
+              await update(renamePaletteReferences({...data, macros:data.macros ?? starterMacros}, palette, originalName));
               setDirty(true);
             }}
             onApply={async (palette, ids, entryId) => {

@@ -8,12 +8,18 @@ public enum PaletteCategory: String, Codable, CaseIterable, Sendable {
     }
 }
 
+public enum PhaserCurve: String, Codable, CaseIterable, Sendable { case linear, sine }
+
 /// Independent attribute values per step; absent attributes retain the base palette.
 public struct PhaserStep: Codable, Equatable, Sendable {
     public var values: [Int: Int]
     public var width: Double
     public var paletteID: UUID?
-    public init(values: [Int: Int], width: Double = 1, paletteID: UUID? = nil) { self.values = values; self.width = width; self.paletteID = paletteID }
+    public var transition: Double?
+    public var curve: PhaserCurve?
+    public init(values: [Int: Int], width: Double = 1, paletteID: UUID? = nil, transition: Double? = nil, curve: PhaserCurve? = nil) {
+        self.values = values; self.width = width; self.paletteID = paletteID; self.transition = transition; self.curve = curve
+    }
 }
 
 /// Console-inspired cyclic steps, measured in beats, with fixture phase distribution.
@@ -35,7 +41,7 @@ public struct Phaser: Codable, Equatable, Sendable {
               measure.isFinite, measure > 0, measure <= 64,
               phaseDegrees.isFinite, abs(phaseDegrees) <= 360_000, phaseSpreadDegrees.isFinite, abs(phaseSpreadDegrees) <= 360_000,
               transition.isFinite, (0...1).contains(transition) else { return "Check phaser speed, measure, phase and transition." }
-        guard steps.allSatisfy({ $0.width.isFinite && $0.width > 0 && $0.width <= 64 && $0.values.allSatisfy { (0..<16).contains($0.key) && (0...255).contains($0.value) } }) else { return "Check phaser step widths and channel values." }
+        guard steps.allSatisfy({ $0.width.isFinite && $0.width > 0 && $0.width <= 64 && ($0.transition.map { $0.isFinite && (0...1).contains($0) } ?? true) && $0.values.allSatisfy { (0..<16).contains($0.key) && (0...255).contains($0.value) } }) else { return "Check phaser step widths and channel values." }
         return nil
     }
     public func sample(base: [Int], seconds: Double, fixtureIndex: Int = 0, fixtureCount: Int = 1) -> [Int] {
@@ -47,12 +53,15 @@ public struct Phaser: Codable, Equatable, Sendable {
         var cursor = unit * total
         var index = 0
         while index < steps.count - 1 && cursor >= steps[index].width { cursor -= steps[index].width; index += 1 }
-        let current = steps[index], next = steps[(index + 1) % steps.count]
+        let current = steps[index], previous = steps[(index + steps.count - 1) % steps.count]
         let fraction = cursor / current.width
-        let blend = transition == 0 ? 0 : max(0, min(1, (fraction - (1 - transition)) / transition))
+        let fade = current.transition ?? transition
+        // Reach this step's target first, then hold it for the remainder of its width.
+        let progress = fade == 0 ? 1 : min(1, fraction / fade)
+        let blend = current.curve == .sine ? (1 - cos(progress * .pi)) / 2 : progress
         return base.enumerated().map { channel, original in
-            let from = current.values[channel] ?? original
-            let to = next.values[channel] ?? original
+            let from = previous.values[channel] ?? original
+            let to = current.values[channel] ?? original
             return Int((Double(from) + Double(to - from) * blend).rounded())
         }
     }

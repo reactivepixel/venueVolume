@@ -5,6 +5,8 @@ export function validPhaser(p) {
     && ['phase','spread'].every(k => Number.isFinite(p[k] ?? 0) && Math.abs(p[k] ?? 0) <= 360000)
     && Number.isFinite(p.transition ?? 1) && (p.transition ?? 1) >= 0 && (p.transition ?? 1) <= 1
     && p.steps.every(s => s && Number.isFinite(s.width ?? 1) && (s.width ?? 1) > 0 && (s.width ?? 1) <= 64
+      && (s.transition === undefined || Number.isFinite(s.transition) && s.transition >= 0 && s.transition <= 1)
+      && (s.curve === undefined || ['linear','sine'].includes(s.curve))
       && ['intensity','pan','tilt'].every(k => s[k] === undefined || (Number.isFinite(s[k]) && (k === 'intensity' ? s[k] >= 0 && s[k] <= 100 : Math.abs(s[k]) <= 180)))
       && (s.color === undefined || /^#[0-9a-f]{6}$/i.test(s.color)));
 }
@@ -21,9 +23,10 @@ export function samplePhaser(palette, seconds, index = 0, count = 1, library = [
   const cycles = seconds * p.bpm / (60 * p.measure) + phase / 360;
   let position = (cycles - Math.floor(cycles)) * total, stepIndex = 0;
   while (stepIndex < p.steps.length - 1 && position >= (p.steps[stepIndex].width ?? 1)) position -= p.steps[stepIndex++].width ?? 1;
-  const a = p.steps[stepIndex], b = p.steps[(stepIndex + 1) % p.steps.length];
-  const transition = p.transition ?? 1;
-  const mix = transition === 0 ? 0 : Math.max(0, Math.min(1, (position / (a.width ?? 1) - (1 - transition)) / transition));
+  const b = p.steps[stepIndex], a = p.steps[(stepIndex + p.steps.length - 1) % p.steps.length];
+  const transition = b.transition ?? p.transition ?? 1;
+  const progress = transition === 0 ? 1 : Math.min(1, position / (b.width ?? 1) / transition);
+  const mix = b.curve === 'sine' ? (1 - Math.cos(progress * Math.PI)) / 2 : progress;
   const interpolate = (key, fallback) => (a[key] ?? fallback) + ((b[key] ?? fallback) - (a[key] ?? fallback)) * mix;
   const rgb = (hex) => [1, 3, 5].map(n => parseInt((hex || '#ffffff').slice(n, n + 2), 16));
   const from = rgb(a.color ?? palette.color), to = rgb(b.color ?? palette.color);
@@ -89,7 +92,8 @@ export function renamePaletteReferences(data, palette, originalName) {
     const issue = paletteIssue(p, presets);
     if (issue && (p.name === palette.name || p.phaser?.steps.some(s => s.paletteName === palette.name))) throw new Error(issue);
   }
-  return {presets, script};
+  const macros = data.macros?.map(macro => ({...macro, lines: macro.lines.map(line => ({...line, paletteName: rename(line.paletteName)}))}));
+  return {presets, script, ...(macros ? {macros} : {})};
 }
 /** Store fixture-level references in a cue while preserving its group defaults. */
 export function applyPaletteToCue(script, entryId, fixtureIds, palette, fixtures, library) {
