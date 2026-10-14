@@ -1257,13 +1257,21 @@ final class VenueModel {
         } catch { message = error.localizedDescription; return false }
     }
 
+    func selectTransformMode(_ mode: FixtureTransformMode) {
+        endTransformDrag()
+        transformMode = mode
+        message = nil
+    }
+
     func beginTransform(_ id: UUID) {
         guard canPlace, fixture(id) != nil else { return }
         focusSelection(id); gizmoVisible = true; transformMode = .move; previewDraft = false
     }
 
     func tapFixture(_ id: UUID) {
-        if selectedID == id && !multiSelection && !multiSelectionMode { beginTransform(id) }
+        if selectedID == id && !multiSelection && !multiSelectionMode {
+            if !gizmoVisible { beginTransform(id) }
+        }
         else { select(id) }
     }
 
@@ -1397,7 +1405,7 @@ final class VenueModel {
     }
 
     func beginSurfaceDrag(_ id: UUID, at point: SIMD3<Float>) {
-        guard canPlace, !libraryBusy, gizmoVisible, selectedID == id, !isTransformDragging,
+        guard canPlace, !libraryBusy, gizmoVisible, transformMode == .move, selectedID == id, !isTransformDragging,
               !isRetargeting, !isPlacing, let fixture = fixture(id) else { return }
         cancelPicking(); previewDraft = false; transformMode = .move
         beginHistoryAction("Slide fixture on its surface")

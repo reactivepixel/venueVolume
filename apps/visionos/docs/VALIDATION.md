@@ -90,3 +90,7 @@ The [room light regression report](validation/2026-10-14-room-light.md) records 
 ## v0.2.15 palette targeting
 
 The [palette targeting report](validation/2026-10-14-palette-target.md) covers the restored editor Target action, per-fixture cue solutions, removal of legacy DMX buttons and regression checks.
+
+## v0.2.16 transform controls
+
+The [transform gizmo report](validation/2026-10-14-transform-gizmo.md) records the reproduced Rotate reset, exclusive handle modes, foreground rendering and hit selection, and selected-axis brightness checks.
