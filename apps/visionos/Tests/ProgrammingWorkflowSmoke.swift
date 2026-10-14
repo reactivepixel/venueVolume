@@ -246,3 +246,39 @@ import VenueVolumeCore
         print("Palette target checks passed: individual Pan/Tilt, preview, cancel, reachability, cue scope, unselected isolation, phaser preservation, Undo/Redo and persistence.")
     }
 }
+
+@MainActor enum TransformModeSmoke {
+    static func run(environment: EnvironmentManifest) throws {
+        let suite = "transform-mode-" + UUID().uuidString
+        let defaults = UserDefaults(suiteName: suite)!
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(suite)
+        defer { defaults.removePersistentDomain(forName: suite); try? FileManager.default.removeItem(at: directory) }
+        let model = VenueModel(arguments: [], defaults: defaults, placementDirectory: directory)
+        model.activate(environment: environment); model.canPlace = true
+        precondition(model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 2,y: 0,z: -2), surfaceID: "floor"))
+        model.finishPlacement()
+        let fixture = model.fixtures[0]
+        model.beginTransform(fixture.id)
+        model.transformMode = .rotate
+        model.tapFixture(fixture.id)
+        precondition(model.transformMode == .rotate, "An already selected fixture must not reset Rotate")
+        model.beginSurfaceDrag(fixture.id, at: FixtureAiming.vector(fixture.position))
+        precondition(model.transformMode == .rotate && !model.isTransformDragging, "TRANSFORM_MODE_FAIL: body hit reset Rotate to Move")
+        model.selectTransformMode(.move)
+        let center = FixtureAiming.vector(fixture.visualCenter)
+        model.beginTransformDrag(axis: .x, mode: .move, at: center)
+        precondition(model.isTransformDragging)
+        model.selectTransformMode(.rotate)
+        precondition(model.transformMode == .rotate && !model.isTransformDragging, "Rotate must finish a stale Move drag")
+        model.beginTransformDrag(axis: .y, mode: .rotate, at: center+[0,0,0.42])
+        model.updateTransformDrag(to: center+[0.42,0,0])
+        model.endTransformDrag()
+        precondition(model.fixtures[0].orientation != fixture.orientation && model.fixtures[0].position == fixture.position, "Rotate changes orientation, not placement")
+        precondition(model.fixtures[0].channels == fixture.channels, "Mount rotation preserves programming")
+        model.undo(); precondition(model.fixtures[0].orientation == fixture.orientation)
+        model.redo(); precondition(model.fixtures[0].orientation != fixture.orientation)
+        model.selectTransformMode(.move)
+        precondition(model.transformMode == .move && !model.isTransformDragging)
+        print("TRANSFORM_MODE_PASS rotateSurvivesBodyHit=true modeSwitchEndsDrag=true rotation=true undoRedo=true")
+    }
+}

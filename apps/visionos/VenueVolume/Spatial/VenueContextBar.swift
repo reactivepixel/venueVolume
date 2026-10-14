@@ -57,7 +57,7 @@ struct VenueContextBar: View {
                     }
                     }
                 }.padding(model.contextBarHasSelection ? 20 : 10).frame(minHeight: model.contextBarHasSelection ? 100 : 80)
-            }.frame(width: model.contextBarHasSelection ? (expanded ? 1440 : 880) : (expanded ? 1140 : 80))
+            }.frame(width: model.contextBarHasSelection ? (expanded ? 1440 : model.gizmoVisible ? 1080 : 880) : (expanded ? 1140 : 80))
                 .glassBackgroundEffect(in: RoundedRectangle(cornerRadius: 24))
                 .accessibilityElement(children: .contain)
                 .accessibilityLabel("Context bar")

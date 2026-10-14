@@ -412,6 +412,17 @@ final class VenueScene {
         }
     }
 
+    /// Select the editing overlay even when a closer room/fixture mesh won the
+    /// system hit. This uses only the system-provided interaction ray, not eye data.
+    func transformHandle(origin: SIMD3<Float>, direction: SIMD3<Float>, model: VenueModel) -> CollisionCastHit? {
+        guard model.gizmoVisible, !model.isPickingRoom, !model.palmMapVisible,
+              simd_length(direction) > 0.001, let scene = root.scene else { return nil }
+        return scene.raycast(origin: origin, direction: simd_normalize(direction), length: 100,
+                             query: .all, mask: .all, relativeTo: root).first {
+            FixtureTransformGizmo.handle($0.entity)?.1 == model.transformMode
+        }
+    }
+
     func handleDrag(entity: Entity, position: SIMD3<Float>, start: SIMD3<Float>, model: VenueModel) -> Bool {
         guard !model.navigationBlackoutActive else { return false }
         tickNavigation()
@@ -423,12 +434,12 @@ final class VenueScene {
             _ = model.acceptTarget(.init(x: position.x, y: position.y, z: position.z))
             return true
         }
-        if let (axis, mode) = FixtureTransformGizmo.handle(entity), model.gizmoVisible {
+        if let (axis, mode) = FixtureTransformGizmo.handle(entity), model.gizmoVisible, mode == model.transformMode {
             if !model.isTransformDragging { model.beginTransformDrag(axis: axis, mode: mode, at: start) }
             model.updateTransformDrag(to: position)
             return true
         }
-        if let id = UUID(uuidString: entity.name), id == model.selectedID, model.gizmoVisible,
+        if let id = UUID(uuidString: entity.name), id == model.selectedID, model.gizmoVisible, model.transformMode == .move,
            !model.isRetargeting && !model.isPlacing {
             if !model.isTransformDragging { model.beginSurfaceDrag(id, at: start) }
             if let candidate = model.surfaceDragDestination(to: position),
@@ -606,6 +617,76 @@ final class VenueScene {
     #endif
 
     #if DEBUG
+    func runTransformGizmoSmoke(model: VenueModel) async {
+        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--gizmo-smoke") else { return }
+        do {
+            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
+            guard let fixture = model.fixtures.first else { throw EnvironmentError.invalid("No fixture") }
+            model.finishPlacement(); model.beginTransform(fixture.id)
+            func enabledHandles(_ entity: Entity) -> [Entity] {
+                guard entity.isEnabled else { return [] }
+                return (FixtureTransformGizmo.handle(entity) == nil ? [] : [entity]) + entity.children.flatMap { enabledHandles($0) }
+            }
+            for mode in FixtureTransformMode.allCases {
+                model.transformMode = mode
+                transformGizmo.update(fixture: fixture, visible: true, mode: mode)
+                let handles = enabledHandles(transformGizmo.entity)
+                guard !handles.isEmpty, handles.allSatisfy({ FixtureTransformGizmo.handle($0)?.1 == mode }) else {
+                    throw EnvironmentError.invalid("\(mode.rawValue) displays handles from the other action")
+                }
+            }
+            model.selectTransformMode(.move)
+            transformGizmo.update(fixture: fixture, visible: true, mode: .move)
+            let models = enabledHandles(transformGizmo.entity).compactMap { $0 as? ModelEntity }
+            guard let x = models.first(where: { FixtureTransformGizmo.handle($0)?.0 == .x }),
+                  let y = models.first(where: { FixtureTransformGizmo.handle($0)?.0 == .y }) else { throw EnvironmentError.invalid("Axis handles missing") }
+            func brightness(_ entity: ModelEntity) -> CGFloat {
+                guard let material = entity.model?.materials.first as? UnlitMaterial else { return -1 }
+                var hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0, alpha: CGFloat = 0
+                material.color.tint.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+                return brightness
+            }
+            let idleX = brightness(x), idleY = brightness(y)
+            transformGizmo.update(fixture: fixture, visible: true, mode: .move, selectedAxis: .x)
+            guard brightness(x) > idleX*2, brightness(y) == idleY,
+                  models.allSatisfy({ entity in
+                      guard let material = entity.model?.materials.first as? UnlitMaterial else { return false }
+                      return !material.readsDepth && !material.writesDepth && entity.components.has(HoverEffectComponent.self)
+                  }) else { throw EnvironmentError.invalid("Overlay or selected-axis material failed") }
+            let blocker = ModelEntity(mesh: .generateBox(size: [1.6,1.6,0.1]), materials: [UnlitMaterial(color: .gray)])
+            blocker.name = "aim-surface:gizmo-test-blocker"
+            let center = FixtureAiming.vector(fixture.visualCenter)
+            blocker.position = center+[0,0,0.2]
+            blocker.components.set(CollisionComponent(shapes: [.generateBox(size: [1.6,1.6,0.1])]))
+            blocker.components.set(InputTargetComponent(allowedInputTypes: [.indirect]))
+            root.addChild(blocker)
+            defer { blocker.removeFromParent() }
+            try await Task.sleep(for: .milliseconds(300))
+            let origin = center+[0.63,0,2]
+            guard let scene = root.scene,
+                  scene.raycast(origin: origin, direction: [0,0,-1], length: 2, query: .all, mask: .all, relativeTo: root).first?.entity === blocker,
+                  let hit = transformHandle(origin: origin, direction: [0,0,-1], model: model),
+                  FixtureTransformGizmo.handle(hit.entity)?.0 == .x else { throw EnvironmentError.invalid("Obstructed handle could not be picked") }
+            guard handleDrag(entity: hit.entity, position: hit.position, start: hit.position, model: model) else { throw EnvironmentError.invalid("Handle did not start dragging") }
+            for mode in FixtureTransformMode.allCases {
+                if mode == .rotate { model.selectTransformMode(mode) }
+                transformGizmo.update(fixture: fixture, visible: true, mode: mode, selectedAxis: model.activeTransformAxis)
+                for blocked in [false,true] {
+                    blocker.isEnabled = blocked
+                    try await Task.sleep(for: .seconds(1))
+                    guard model.transformMode == mode,
+                          enabledHandles(transformGizmo.entity).allSatisfy({ FixtureTransformGizmo.handle($0)?.1 == mode }) else {
+                        throw EnvironmentError.invalid("Selected mode changed after rendering")
+                    }
+                    let stage = mode.rawValue.uppercased() + (blocked ? "_BLOCKED" : "_CLEAR")
+                    FileHandle.standardOutput.write(Data("GIZMO_CAPTURE_\(stage)\n".utf8))
+                    try await Task.sleep(for: .seconds(5))
+                }
+            }
+            FileHandle.standardOutput.write(Data("GIZMO_SMOKE_PASS exclusiveModes=true overlay=true obstructedHit=true selectedBrightness=true\n".utf8))
+        } catch { FileHandle.standardOutput.write(Data("GIZMO_SMOKE_FAIL \(error)\n".utf8)) }
+    }
+
     func runPaletteTargetSmoke(model: VenueModel) async {
         guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--palette-target-smoke") else { return }
         do {
@@ -1086,7 +1167,7 @@ final class VenueScene {
                 }
                 rigs[fixture.id]?.update(fixture: displayed, channels: model.renderedChannels(for: fixture),
                                          selected: selected, blackout: model.isBlackedOut(fixture), placing: model.isPickingRoom,
-                                         interactive: model.isTransformDragging, bodyDraggable: model.gizmoVisible && model.selectedID == fixture.id && !model.isRetargeting && !model.isPlacing, lightBudget: budgets[fixture.id] ?? 0)
+                                         interactive: model.isTransformDragging, bodyDraggable: model.gizmoVisible && model.transformMode == .move && model.selectedID == fixture.id && !model.isRetargeting && !model.isPlacing, lightBudget: budgets[fixture.id] ?? 0)
                 } else {
                     requestFixture(descriptor, model: model)
                     let placeholder = cubes[fixture.id] ?? Self.makeCube(id: fixture.id)
@@ -1101,7 +1182,7 @@ final class VenueScene {
                 cube.scale = FixtureAiming.vector(fixture.scale)
                 cube.model?.materials = [Self.glass(opacity: selected ? 0.16 : 0.07)]
                 cube.components.set(InputTargetComponent(allowedInputTypes: model.isPickingRoom && !model.isSurfaceMoveActive ? [] : [.indirect]))
-                if model.gizmoVisible && model.selectedID == fixture.id && !model.isRetargeting && !model.isPlacing { cube.components.set(SpatialDragTarget()) }
+                if model.gizmoVisible && model.transformMode == .move && model.selectedID == fixture.id && !model.isRetargeting && !model.isPlacing { cube.components.set(SpatialDragTarget()) }
                 else { cube.components.remove(SpatialDragTarget.self) }
             }
             if let cube = cubes[fixture.id] {
@@ -1129,6 +1210,12 @@ final class VenueScene {
     /// their projected rectangles overlap. Every object remains in the wrist list.
     private func layoutFixtureLabels() {
         guard let model else { return }
+        // The context bar carries the selected name during transformation.
+        // Floating fixture controls must not steal gaze/pinch from the gizmo.
+        if model.gizmoVisible {
+            for label in labels.values { label.isEnabled = false }
+            return
+        }
         let eye = SIMD3(deviceTransform.columns.3.x, deviceTransform.columns.3.y, deviceTransform.columns.3.z)
         let view = simd_inverse(deviceTransform)
         var candidates: [SpatialLabelLayout.Candidate] = []

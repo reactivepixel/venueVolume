@@ -54,16 +54,13 @@ struct TargetingPrompt: View {
     @Environment(VenueModel.self) private var model
     @Environment(\.dynamicTypeSize) private var textSize
     var body: some View {
-        @Bindable var model = model
         HStack(spacing: 16) {
             if model.gizmoVisible && !model.isRetargeting && !model.isPlacing {
                 Text(model.selectedID.flatMap { model.fixture($0)?.name } ?? "Selected fixtures")
-                    .font(.callout.weight(.semibold)).lineLimit(1).frame(width: 210, alignment: .leading)
-                Picker("Transform mode", selection: $model.transformMode) {
-                    ForEach(FixtureTransformMode.allCases) { mode in Text(mode.rawValue).tag(mode) }
-                }.pickerStyle(.segmented).frame(width: 220).disabled(model.isTransformDragging)
-                Text(model.transformMode == .move ? "Drag body to slide. Click a surface to move. Rings rotate." : "Drag a ring to rotate, or drag the body to slide.")
-                    .font(.caption).foregroundStyle(.secondary).frame(width: 250, alignment: .leading)
+                    .font(.callout.weight(.semibold)).lineLimit(1).frame(width: 160, alignment: .leading)
+                TransformModeButtons().frame(width: 300)
+                Text(model.transformMode == .move ? "Drag an arrow to move on its axis, or drag the body to slide." : "Drag a ring to rotate on its axis.")
+                    .font(.caption).foregroundStyle(.secondary).frame(width: 200, alignment: .leading)
                 Button("Done") { model.endTransformDrag(); model.cancelPicking(); model.gizmoVisible = false }.frame(minHeight: 60)
             } else {
                 Text(model.isRetargeting ? "Retarget palette" : "Place \(model.fixtureKind.name)")
@@ -76,5 +73,23 @@ struct TargetingPrompt: View {
                 }
             }
         }
+    }
+}
+
+struct TransformModeButtons: View {
+    @Environment(VenueModel.self) private var model
+    var body: some View {
+        HStack(spacing: 10) {
+            ForEach(FixtureTransformMode.allCases) { mode in
+                Button { model.selectTransformMode(mode) } label: {
+                    Label(mode.rawValue, systemImage: mode == .move ? "arrow.up.and.down.and.arrow.left.and.right" : "rotate.3d")
+                        .lineLimit(1).fixedSize(horizontal: true, vertical: false)
+                        .frame(maxWidth: .infinity, minHeight: 60)
+                }
+                .buttonStyle(.bordered)
+                .tint(model.transformMode == mode ? Color.cyan : Color.gray)
+                .accessibilityAddTraits(model.transformMode == mode ? [.isSelected] : [])
+            }
+        }.accessibilityElement(children: .contain).accessibilityLabel("Transform mode")
     }
 }

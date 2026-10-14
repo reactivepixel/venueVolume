@@ -10,10 +10,7 @@ struct FixturePlacementView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     Text(fixture.name).font(.title2.weight(.semibold))
                     Text("Transform in the scene").font(.headline)
-                    @Bindable var model = model
-                    Picker("Axis control", selection: $model.transformMode) {
-                        ForEach(FixtureTransformMode.allCases) { mode in Text(mode.rawValue).tag(mode) }
-                    }.pickerStyle(.segmented).disabled(model.isTransformDragging)
+                    TransformModeButtons()
                     HStack(spacing: 24) {
                         Label("X", systemImage: "circle.fill").foregroundStyle(.red)
                         Label("Y", systemImage: "circle.fill").foregroundStyle(.green)
@@ -24,7 +21,7 @@ struct FixturePlacementView: View {
                          : "Look at a colored arrow handle, then hold and drag to move along that axis.")
                     Button(model.gizmoVisible ? "Hide axis controls" : "Show axis controls", systemImage: "rotate.3d") {
                         if model.gizmoVisible { model.endTransformDrag(); model.gizmoVisible = false }
-                        else { model.beginTransform(id) }
+                        else { let mode = model.transformMode; model.beginTransform(id); model.selectTransformMode(mode) }
                     }.disabled(!model.canPlace)
                     Text("Release to finish. Each gesture is one Undo step. Mount transforms preserve the fixture's DMX values.")
                         .font(.caption).foregroundStyle(.secondary)

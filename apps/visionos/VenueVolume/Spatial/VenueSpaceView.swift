@@ -14,6 +14,7 @@ struct VenueSpaceView: View {
         var entity: Entity
         var start: SIMD3<Float>
         var point: SIMD3<Float>
+        var offset = SIMD3<Float>.zero
         var dragged = false
         var fixtureID: UUID?
     }
@@ -52,6 +53,9 @@ struct VenueSpaceView: View {
                 model.endTransformDrag(); activeSpatialEvents.removeAll(); presetSpatialEvents.removeAll()
             })
         .onChange(of: model.selectedID) { _, selected in
+            activeSpatialEvents.removeAll(); model.endTransformDrag()
+        }
+        .onChange(of: model.transformMode) { _, _ in
             activeSpatialEvents.removeAll(); model.endTransformDrag()
         }
         .onChange(of: model.canPlace, initial: true) { _, ready in
@@ -148,6 +152,12 @@ struct VenueSpaceView: View {
                 dismissWindow(id: "presets"); dismissWindow(id: "room-placement")
                 await scene.runRoomLightSmoke(model: model)
             }
+            if model.isDemoMode && ProcessInfo.processInfo.arguments.contains("--gizmo-smoke") {
+                model.resetToolboxActivation()
+                for identity in model.toolboxWindowIDs { dismissWindow(id: "toolbox", value: identity) }
+                dismissWindow(id: "presets")
+            }
+            await scene.runTransformGizmoSmoke(model: model)
             await scene.runPaletteTargetSmoke(model: model)
             await scene.runPlacementWristSmoke(model: model)
             await scene.runInputSmoke(model: model)
@@ -233,9 +243,23 @@ struct VenueSpaceView: View {
             let point = value.convert(event.location3D, from: .local, to: scene.root)
             switch event.phase {
             case .active:
-                var input = activeSpatialEvents[event.id] ?? SpatialInput(entity: entity,start: point,point: point,fixtureID: model.selectedID)
+                var initial = SpatialInput(entity: entity,start: point,point: point,fixtureID: model.selectedID)
+                // Keep SwiftUI controls on their own input route. Only redirect
+                // room/fixture hits to the visible transformation overlay.
+                if activeSpatialEvents[event.id] == nil,
+                   entity.name.hasPrefix("aim-surface:") || entity.name.hasPrefix("room-collider:") || UUID(uuidString: entity.name) != nil,
+                   let ray = event.selectionRay {
+                    let origin = value.convert(ray.origin, from: .local, to: scene.root)
+                    let end = value.convert(ray.origin + ray.direction, from: .local, to: scene.root)
+                    if let hit = scene.transformHandle(origin: origin, direction: end-origin, model: model) {
+                        initial.entity = hit.entity; initial.start = hit.position
+                        initial.offset = hit.position-point
+                    }
+                }
+                var input = activeSpatialEvents[event.id] ?? initial
+                let point = point + input.offset
                 input.point = point
-                if input.fixtureID == model.selectedID, FixtureAiming.length(point-input.start) > 0.015 || input.dragged {
+                if input.fixtureID == model.selectedID, FixtureTransformGizmo.handle(input.entity) != nil || FixtureAiming.length(point-input.start) > 0.015 || input.dragged {
                     if input.entity.components.has(SpatialDragTarget.self),
                        scene.handleDrag(entity: input.entity,position: point,start: input.start,model: model) { input.dragged = true }
                 }
@@ -243,7 +267,7 @@ struct VenueSpaceView: View {
             case .ended:
                 guard let input = activeSpatialEvents.removeValue(forKey: event.id) else { continue }
                 if input.dragged {
-                    if input.fixtureID == model.selectedID { _ = scene.handleDrag(entity: input.entity,position: point,start: input.start,model: model) }
+                    if input.fixtureID == model.selectedID { _ = scene.handleDrag(entity: input.entity,position: point + input.offset,start: input.start,model: model) }
                     scene.endSpatialDrag(model: model)
                 } else { scene.handleTap(entity: input.entity,position: point,model: model) }
             case .cancelled:
