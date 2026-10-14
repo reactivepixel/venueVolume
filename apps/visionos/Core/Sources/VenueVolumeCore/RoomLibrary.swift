@@ -37,21 +37,23 @@ public struct VenueSetup: Codable, Equatable, Identifiable, Sendable {
     public var whiteRoom: Bool
     public var houseLight: Float
     public var tour: TourSession?
+    public var cues: CueSheet?
     public init(id: UUID = UUID(), name: String, room: LibraryRoom, fixtures: [Fixture], presets: [DMXPreset], revision: Int,
-                whiteRoom: Bool, houseLight: Float, tour: TourSession? = nil) {
+                whiteRoom: Bool, houseLight: Float, tour: TourSession? = nil, cues: CueSheet? = nil) {
         self.id = id; self.name = name; modified = Date(); roomID = room.id
         placements = .init(environment: room.manifest, fixtures: fixtures, revision: revision)
-        self.presets = tour == nil ? presets.filter { preset in fixtures.contains { $0.referencedPaletteIDs.contains(preset.id) } } : presets
-        self.tour = tour
+        self.presets = tour == nil ? PaletteLibrary.dependencies(for: fixtures, in: presets) : presets
+        self.tour = tour; self.cues = cues
         self.whiteRoom = whiteRoom; self.houseLight = houseLight
     }
     public func validate(room: LibraryRoom) throws {
         guard schemaVersion == 1, roomID == room.id, !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
               name.count <= 120, houseLight.isFinite, (0...1).contains(houseLight),
-              presets.allSatisfy({ $0.validationIssue == nil }), Set(presets.map(\.id)).count == presets.count else {
+              presets.allSatisfy({ $0.validationIssue == nil && $0.referenceIssue(in: presets) == nil }), Set(presets.map(\.id)).count == presets.count else {
             throw EnvironmentError.invalid("invalid saved setup")
         }
         if let tour, presets != tour.presets { throw PresetError("Saved presets do not match the pinned show and venue overrides.") }
+        try cues?.validate()
         try tour?.validate(fixtures: placements.fixtures)
         try placements.validate(environment: room.manifest)
         guard placements.fixtures.allSatisfy({ fixture in fixture.referencedPaletteIDs.isSubset(of: Set(presets.map(\.id))) }) else {

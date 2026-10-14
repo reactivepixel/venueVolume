@@ -36,7 +36,6 @@ struct SceneSelectionPane: View {
                     if let fixture = model.selectedFixtures.first {
                         if let group = fixture.groupID { Button("Break group", systemImage: "square.3.layers.3d.slash") { model.ungroup(group) } }
                         Button("Palette editor", systemImage: "slider.horizontal.3") { model.presetEditor.request(presetID: fixture.presetID) }
-                        Button("Pop out item editor", systemImage: "arrow.up.right.square") { openWindow(id: "fixture-editor", value: "selection") }
                         FixtureActions(fixture: fixture)
                         if model.selectedFixtures.count == 1 {
                             Divider()
@@ -119,89 +118,5 @@ struct FixtureActions: View {
             Button(role: .destructive) { model.remove(fixture.id) } label: { Image(systemName: "trash").frame(minWidth: 60, minHeight: 60) }
                 .accessibilityLabel(model.tour == nil ? "Delete \(fixture.name)" : "Return \(fixture.name) to inventory")
         }.font(.caption)
-    }
-}
-
-struct FixtureEditorView: View {
-    @Environment(VenueModel.self) private var model
-    @Environment(\.dismissWindow) private var dismissWindow
-    @State private var tab = 0
-    var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            if let id = model.selectedID, let fixture = model.fixture(id) {
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(fixture.name).font(.largeTitle.weight(.semibold))
-                        Text("Selected item editor").foregroundStyle(.secondary)
-                    }
-                    Spacer()
-                    HistoryControls()
-                }
-                Picker("Item editor", selection: $tab) {
-                    Text("Info & palette").tag(0)
-                    Text("Transform").tag(1)
-                }.pickerStyle(.segmented)
-                if tab == 0 {
-                    ScrollView {
-                        VStack(alignment: .leading, spacing: 20) {
-                            Button("Palette editor", systemImage: "slider.horizontal.3") {
-                                model.presetEditor.request(presetID: fixture.presetID)
-                            }.frame(minHeight: 60)
-                            FixtureActions(fixture: fixture)
-                            FixtureDetailsEditor(fixture: fixture).id(fixture.id)
-                            Divider()
-                            FixturePanel(fixture: model.renderedFixture(fixture))
-                        }
-                    }
-                } else { FixturePlacementView() }
-            } else {
-                ContentUnavailableView("Select a fixture", systemImage: "cube.transparent")
-            }
-            // visionOS may restore this companion window as the only scene.
-            // Keep entry reachable until the room has restored selection.
-            if !model.isImmersed { VenueEntryButton() }
-        }.padding(28).frame(minWidth: 620, minHeight: 600)
-        .presetEditorPresenter(when: !model.isImmersed)
-        .onAppear {
-            if model.isImmersed && model.selectedID == nil { dismissWindow(id: "fixture-editor") }
-            if model.controlsTab == 1 { tab = 1 }
-        }
-        .onChange(of: model.selectedID) { _, id in if id == nil && model.isImmersed { dismissWindow(id: "fixture-editor") } }
-        .disabled(model.libraryBusy)
-    }
-}
-
-private struct FixtureDetailsEditor: View {
-    @Environment(VenueModel.self) private var model
-    let fixture: Fixture
-    @State private var name: String
-    @State private var universe: Int
-    @State private var address: Int
-    init(fixture: Fixture) {
-        self.fixture = fixture
-        _name = State(initialValue: fixture.name)
-        _universe = State(initialValue: fixture.universe)
-        _address = State(initialValue: fixture.startAddress)
-    }
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Item details").font(.headline)
-            TextField("Fixture name", text: $name)
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Universe").font(.caption)
-                    TextField("Universe", value: $universe, format: .number)
-                }
-                VStack(alignment: .leading) {
-                    Text("Start address").font(.caption)
-                    TextField("Start address", value: $address, format: .number)
-                }
-            }
-            Button("Save item details") { model.updateFixtureDetails(fixture.id, name: name, universe: universe, address: address) }
-                .disabled(name == fixture.name && universe == fixture.universe && address == fixture.startAddress)
-            if let message = model.message { Text(message).font(.caption).foregroundStyle(.secondary) }
-        }.onChange(of: fixture) { _, current in
-            name = current.name; universe = current.universe; address = current.startAddress
-        }
     }
 }

@@ -25,13 +25,16 @@ struct PresetDragSource: View {
                         Image(systemName: "slider.horizontal.3").frame(width: 28)
                         VStack(alignment: .leading, spacing: 4) {
                             Text(preset.name).font(.headline)
-                            Text("\(preset.channels.count) channels · Edit palette")
+                            Text("\(preset.pool.label) · \(preset.phaser.map { "\($0.steps.count) steps" } ?? "Static") · Edit")
                                 .font(.caption).foregroundStyle(.secondary)
                         }
                         Spacer(minLength: 0)
                     }.frame(minHeight: 60).contentShape(Rectangle())
                 }.buttonStyle(.plain)
                 HStack(spacing: 16) {
+                Button("Apply") { _ = model.applyPaletteToSelection(preset.id) }
+                    .disabled(model.selectedFixtureIDs.isEmpty || unavailableReason != nil)
+                    .accessibilityLabel("Apply \(preset.name) to \(model.selectedFixtureIDs.count) selected fixtures")
                 Button {
                     model.activatePresetApplication(preset.id)
                 } label: {
@@ -40,7 +43,7 @@ struct PresetDragSource: View {
                 }
                 .disabled(unavailableReason != nil)
                 .accessibilityLabel("Apply \(preset.name) in venue")
-                .accessibilityHint("Activates a connector from you. Pinch a fixture to apply, or cancel in Venue controls.")
+                .accessibilityHint("Activates a connector from you. Pinch a fixture to apply, or cancel in the context bar.")
                 Menu {
                     if model.tour != nil {
                         Button("Preview on selected \(model.tourSelection.count) units") { model.applyTourPreset(preset.id, preview: true) }.disabled(model.tourSelection.isEmpty)
@@ -65,7 +68,7 @@ struct PresetDragSource: View {
                 Text(reason).font(.caption).foregroundStyle(.secondary)
             }
             if model.presetDrag.session?.presetID == preset.id {
-                Label("Applying in venue · controls below", systemImage: "scope")
+                Label("Applying in venue · context bar below", systemImage: "scope")
                     .font(.caption).foregroundStyle(.secondary)
             } else if let feedback = model.presetDrag.feedback, feedback.presetID == preset.id {
                 Label(feedback.succeeded ? "Palette applied" : "Could not apply palette · \(feedback.message ?? "Try again")",

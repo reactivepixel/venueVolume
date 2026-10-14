@@ -9,7 +9,6 @@ struct ToolboxView: View {
     @Environment(\.dismissImmersiveSpace) private var dismissSpace
     @Environment(\.dynamicTypeSize) private var textSize
     @State private var browsingFixtures = false
-    @State private var presetSearch = ""
     @State private var settingsPresented = false
     @State private var confirmClearScene = false
     var body: some View {
@@ -24,14 +23,11 @@ struct ToolboxView: View {
                     @Bindable var model = model
                     Picker("Toolbox section", selection: $model.toolboxTab) {
                         Text("Fixtures & palettes").tag(0)
-                        Text("Rooms & saves").tag(1)
                         Text("History").tag(2)
                     }.pickerStyle(.menu).accessibilityLabel("Toolbox section")
                     Group {
                         if model.toolboxTab == 2 {
                             AuditHistoryView()
-                        } else if model.toolboxTab == 1 {
-                            RoomLibraryView()
                         } else {
                             let layout = compact ? AnyLayout(VStackLayout(alignment: .leading, spacing: 24)) : AnyLayout(HStackLayout(alignment: .top, spacing: 24))
                             layout {
@@ -41,8 +37,6 @@ struct ToolboxView: View {
                             }
                         }
                     }.disabled(model.libraryBusy || model.tourPreview != nil)
-                    Divider()
-                    roomControls(compact: compact).disabled(model.libraryBusy)
                     VStack(alignment: .leading, spacing: 8) {
                         if model.libraryBusy { ProgressView("Loading venue…") }
                         if let historyMessage = model.historyMessage, historyMessage.localizedCaseInsensitiveContains("failed") || historyMessage.localizedCaseInsensitiveContains("disabled") {
@@ -77,9 +71,6 @@ struct ToolboxView: View {
             Button(model.tour == nil ? "Clear all fixtures" : "Return all fixtures", role: .destructive) { model.clearScene() }
         } message: { Text("Undo restores the placements. Saved setups stay available.") }
         .presetEditorPresenter(when: !model.isImmersed)
-        .sheet(isPresented: Binding(get: { model.isImmersed && model.newVenuePresented }, set: { model.newVenuePresented = $0 })) {
-            NewVenueSheet().environment(model)
-        }
         .sheet(isPresented: Binding(get: { model.touringPanelPresented }, set: { model.touringPanelPresented = $0 })) { TouringLibrarySheet() }
         .onAppear {
             model.toolboxAppeared(instanceID)
@@ -108,13 +99,10 @@ struct ToolboxView: View {
                     }
                 }
                 Spacer(minLength: 12)
-                Button(model.palmMapVisible ? "Close Palm Map" : "Palm Map", systemImage: "map") { model.togglePalmMap() }
-                    .disabled(!model.palmMapVisible && (!model.isImmersed || !model.canPlace || model.libraryBusy || model.navigationBlackoutActive))
                 Menu {
                     Button("Settings", systemImage: "gearshape") { settingsPresented = true }
                     Button("Touring shows…", systemImage: "shippingbox") { model.touringPanelPresented = true }
-                    Button("New venue…", systemImage: "plus") { model.requestNewVenue(); if !model.isImmersed { openWindow(id: "launch") } }
-                    Button("Venue controls", systemImage: "scope") { model.showVenueControls() }
+                    Button("New venue…", systemImage: "plus") { model.requestNewVenue(); openWindow(id: model.isImmersed ? "room-placement" : "launch") }
                     Button("Diagnostics & sync") { openWindow(id: "diagnostics") }
                     Button(model.tour == nil ? "Clear all scene fixtures…" : "Return all fixtures to inventory…", role: .destructive) { confirmClearScene = true }
                         .disabled(model.fixtures.isEmpty || model.libraryBusy)
@@ -139,15 +127,22 @@ struct ToolboxView: View {
     }
 
     private var library: some View {
-        @Bindable var model = model
-        return VStack(alignment: .leading, spacing: 14) {
-            Picker("Library", selection: $model.toolboxLibraryTab) {
-                Text("Fixtures").tag(0)
-                Text("Palettes").tag(1)
-            }.pickerStyle(.segmented)
-            if model.toolboxLibraryTab == 0, model.tour != nil {
+        VStack(alignment: .leading, spacing: 14) {
+            HStack {
+                Text("Fixtures").font(.headline)
+                Spacer()
+                Button("Palettes", systemImage: "slider.horizontal.3") {
+                    // Generic recall preserves the current draft and fixture selection.
+                    model.presetEditor.request()
+                }
+                .frame(minHeight: 60)
+                .accessibilityLabel("Open palettes and phasers")
+                .accessibilityHint("Opens the palette editor with your current fixture selection.")
+                Button("Macros", systemImage: "list.bullet.rectangle") { model.macroSeed = nil; model.macrosPresented = true; model.presetEditor.request() }
+            }
+            if model.tour != nil {
                 InventoryLibraryView()
-            } else if model.toolboxLibraryTab == 0 {
+            } else {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 12) {
                         Text("Pinned fixture").font(.caption).foregroundStyle(.secondary)
@@ -163,37 +158,6 @@ struct ToolboxView: View {
                 .sheet(isPresented: $browsingFixtures) {
                     FixtureCatalogBrowser { kind in model.selectFixtureKind(kind); model.beginPlacement() }
                 }
-            } else {
-                HStack {
-                    TextField("Search palettes", text: $presetSearch).textFieldStyle(.roundedBorder)
-                    Button { model.presetEditor.request() } label: { Image(systemName: "slider.horizontal.3").frame(minWidth: 60, minHeight: 60) }
-                        .accessibilityLabel("Open palette editor")
-                }
-                ScrollView {
-                    LazyVStack(alignment: .leading, spacing: 18) {
-                        ForEach(model.presets.filter { presetSearch.isEmpty || $0.name.localizedCaseInsensitiveContains(presetSearch) }) { preset in
-                            PresetDragSource(preset: preset, openEditor: { model.record(.preset(preset.id)); model.presetEditor.request(presetID: preset.id) })
-                        }
-                        if model.presets.isEmpty { Text("Create a palette with the editor button above, then drag its handle onto a fixture or use Apply.") }
-                        else if !presetSearch.isEmpty && !model.presets.contains(where: { $0.name.localizedCaseInsensitiveContains(presetSearch) }) { ContentUnavailableView.search(text: presetSearch) }
-                    }
-                }
-            }
-        }
-    }
-
-    private func roomControls(compact: Bool) -> some View {
-        @Bindable var model = model
-        let layout = compact ? AnyLayout(VStackLayout(alignment: .leading, spacing: 18)) : AnyLayout(HStackLayout(spacing: 20))
-        return layout {
-            Toggle("White model", isOn: $model.whiteRoom).toggleStyle(.button).frame(minHeight: 60)
-            Toggle("Blackout", isOn: $model.blackout).toggleStyle(.button).frame(minHeight: 60)
-            VStack(alignment: .leading, spacing: 6) {
-                Text("Room light").font(.callout)
-                Slider(value: $model.houseLight, in: 0...1, onEditingChanged: { editing in
-                    if editing { model.beginHistoryAction("Adjust room light") } else { model.endHistoryAction() }
-                }).frame(minWidth: 160, minHeight: 60).accessibilityLabel("Room light")
-                    .accessibilityValue("\(Int(model.houseLight * 100)) percent")
             }
         }
     }
@@ -223,87 +187,12 @@ struct ToolboxView: View {
     }
 }
 
-/// A single row attached below the viewer in the immersive venue.
-struct VenueControlsView: View {
-    @State private var attended = false
-    @Environment(VenueModel.self) private var model
-    var body: some View {
-        @Bindable var model = model
-        ScrollView(.horizontal) {
-            HStack(spacing: 20) {
-                Label("Venue controls", systemImage: "scope").font(.headline)
-                Divider().frame(height: 56)
-                Button(model.palmMapVisible ? "Close Palm Map" : "Palm Map", systemImage: "map") { model.togglePalmMap() }
-                    .disabled(!model.palmMapVisible && (!model.canPlace || model.libraryBusy || model.navigationBlackoutActive))
-                if model.palmMapVisible {
-                    Text("Select the cube, drag its handles, then Teleport. Yellow means obstructed; raise it or choose another spot.").font(.callout).frame(width: 460, alignment: .leading)
-                    Button("Done") { model.closePalmMap() }.frame(minHeight: 60)
-                } else if let session = model.presetDrag.session {
-                    let presetName = model.presets.first { $0.id == session.presetID }?.name ?? "Preset"
-                    let target = model.presetDrag.proposedFixtureID.flatMap { model.fixture($0) }
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Apply · \(presetName)").font(.headline).lineLimit(1)
-                        Text(target.map { "Pinch to apply to \($0.name)" } ?? "Aim toward a fixture, then pinch. Hold to adjust.")
-                            .font(.callout).foregroundStyle(.secondary).lineLimit(2)
-                    }.frame(width: 460, alignment: .leading)
-                    Button("Cancel", role: .cancel) { model.endPresetDrag() }.frame(minHeight: 60)
-                    Button("Apply to fixture") { model.applyProposedPreset() }
-                        .buttonStyle(.borderedProminent).disabled(target == nil).frame(minHeight: 60)
-                } else if model.tourPreview != nil {
-                    Text(model.tourPreviewTitle).font(.callout).frame(width: 300, alignment: .leading)
-                    Button("Cancel") { model.cancelTourPreview() }.frame(minHeight: 60)
-                    Button("Save change") { model.commitTourPreview() }.buttonStyle(.borderedProminent).frame(minHeight: 60)
-                } else if model.isPickingRoom || model.gizmoVisible {
-                    TargetingPrompt()
-                } else if let feedback = model.presetDrag.feedback {
-                    Label(feedback.succeeded ? "Preset applied" : feedback.message ?? "Could not apply preset",
-                          systemImage: feedback.succeeded ? "checkmark.circle" : "exclamationmark.triangle")
-                        .font(.callout).frame(width: 460, alignment: .leading)
-                    Button("Done") { model.presetDrag.clearFeedback() }.frame(minHeight: 60)
-                } else {
-                    Text("Select a fixture, then click it again to move or transform.")
-                        .font(.callout).foregroundStyle(.secondary).frame(width: 460, alignment: .leading)
-                }
-                Spacer(minLength: 12)
-                Menu {
-                    Button("Toolbox", systemImage: "rectangle.on.rectangle") { model.requestToolbox() }
-                    Button("Return to spawn", systemImage: "location") { model.resetViewerToSpawn() }
-                    Menu("Navigation controls") {
-                        Button("Forward") { model.stepViewer(offset: [0,0,-0.5]) }
-                        Button("Backward") { model.stepViewer(offset: [0,0,0.5]) }
-                        Button("Left") { model.stepViewer(offset: [-0.5,0,0]) }
-                        Button("Right") { model.stepViewer(offset: [0.5,0,0]) }
-                        Button("Up") { model.stepViewer(offset: [0,0.5,0]) }
-                        Button("Down") { model.stepViewer(offset: [0,-0.5,0]) }
-                        Button("Turn left") { model.stepViewer(yaw: 15) }
-                        Button("Turn right") { model.stepViewer(yaw: -15) }
-                        Button("Look up") { model.stepViewer(pitch: 15) }
-                        Button("Look down") { model.stepViewer(pitch: -15) }
-                        Button("Roll left") { model.stepViewer(roll: 15) }
-                        Button("Roll right") { model.stepViewer(roll: -15) }
-                    }
-                    Text("Left index pinch + drag: move")
-                    Text("Left middle pinch + drag: rotate")
-                    Text("Double index: spawn · double middle: orientation")
-                } label: { Image(systemName: "ellipsis").frame(minWidth: 60,minHeight: 60) }
-                    .accessibilityLabel("Venue and navigation options")
-                HistoryControls()
-            }.padding(20).frame(minWidth: 1560, minHeight: 100)
-        }.frame(width: 1560)
-        .glassBackgroundEffect(in: RoundedRectangle(cornerRadius: 24))
-        .hoverEffect { effect, active, _ in effect.opacity(active ? 1 : 0.35) }
-        .onAppear { model.showVenueControls() }
-        .onDisappear { model.venueControlsVisible = false }
-    }
-}
-
-/// Left pinches are reserved for navigation; avoid activating a button on release.
+/// A pinch targeted at a window belongs to that control. Reserve it from
+/// free-space navigation without disabling the view midway through its click.
 struct NavigationInputShield: ViewModifier {
     var model: VenueModel
     func body(content: Content) -> some View {
         content
-            .disabled(model.isImmersed && model.navigationInputReserved)
-            .allowsHitTesting(!model.isImmersed || !model.navigationInputReserved)
             .simultaneousGesture(SpatialEventGesture().onChanged { events in
                 if model.isImmersed && events.contains(where: { $0.chirality == .left }) { model.reserveLeftHandInput() }
             })

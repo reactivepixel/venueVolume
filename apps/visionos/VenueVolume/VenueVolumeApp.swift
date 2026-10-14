@@ -22,22 +22,18 @@ struct VenueVolumeApp: App {
         .windowResizability(.contentMinSize)
         .defaultSize(width: 1040, height: 860)
 
+        WindowGroup(id: "room-placement") {
+            RoomPlacementView().placementLinkReceiver().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model)
+        }
+        .windowResizability(.contentMinSize)
+        .defaultSize(width: 900, height: 760)
+
         WindowGroup(id: "presets", for: UUID.self) { identity in
             PresetEditorView(instanceID: identity.wrappedValue).placementLinkReceiver().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model)
                 .frame(minWidth: 680, minHeight: 500)
         }
         .windowResizability(.contentMinSize)
-        .defaultSize(width: 1040, height: 820)
-
-        WindowGroup(id: "fixture-editor", for: String.self) { _ in FixtureEditorView().placementLinkReceiver().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model) } defaultValue: { "selection" }
-            .windowResizability(.contentMinSize)
-            .defaultSize(width: 620, height: 760)
-
-        WindowGroup(id: "venue-controls", for: String.self) { _ in
-            VenueControlsView().placementLinkReceiver().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model)
-        } defaultValue: { "controls" }
-        .windowResizability(.contentMinSize)
-        .defaultSize(width: 620, height: 480)
+        .defaultSize(width: 1320, height: 1000)
 
         WindowGroup(id: "diagnostics") {
             DebugPanel().placementLinkReceiver().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model)

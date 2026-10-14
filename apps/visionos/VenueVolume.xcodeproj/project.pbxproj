@@ -25,8 +25,12 @@
 		7054BEF7B60581E099871C7B /* RoomLibrarySmoke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7173CF5099A0437DFF8633DD /* RoomLibrarySmoke.swift */; };
 		8181CAB0B7361F02B67892F5 /* PresetEditorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6645148B15A2D221C051A4 /* PresetEditorPresenter.swift */; };
 		82005BDBC395435482A872C4 /* VenueScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE7A9FA3734E0BB7EE95721 /* VenueScene.swift */; };
+		8685479E602E1BD5E4A88AC4 /* MacroEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5063B5DA775538EEAD3BAD /* MacroEditorView.swift */; };
+		8A1C9698C4E6C0AA080D9B46 /* RoomPlacementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B62F3580F6D134658FD44D /* RoomPlacementView.swift */; };
 		8FC4C74944432D3BD74698FB /* RoomLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9926915861960E1C383B16B3 /* RoomLibraryView.swift */; };
+		8FD0ECA388B52276E0C64309 /* CueControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1063F59F92913FF258EFFF7 /* CueControlsView.swift */; };
 		938B46F588650451BEE87870 /* PalettePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CBC41F912B83FC8344598 /* PalettePreviewView.swift */; };
+		967C8E8E6ED8A01534E8AAE3 /* PhaserProgrammerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59D2CAFA7EF1C88962E0A63 /* PhaserProgrammerView.swift */; };
 		9BB968DBAB077D17CF8A74FA /* VenueVolumeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 9F29BE575556521651280192 /* VenueVolumeCore */; };
 		A3AD2D01A086CDCF6D63E473 /* VenueVolumeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC612EAB7EDA7D85628811 /* VenueVolumeApp.swift */; };
 		A47925E260E69D1A691339F6 /* PalmNavigationVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D796A0035A970913D8620D0 /* PalmNavigationVisual.swift */; };
@@ -52,6 +56,7 @@
 		1BE7A9FA3734E0BB7EE95721 /* VenueScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueScene.swift; sourceTree = "<group>"; };
 		1D796A0035A970913D8620D0 /* PalmNavigationVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalmNavigationVisual.swift; sourceTree = "<group>"; };
 		1FDC612EAB7EDA7D85628811 /* VenueVolumeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueVolumeApp.swift; sourceTree = "<group>"; };
+		21B62F3580F6D134658FD44D /* RoomPlacementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomPlacementView.swift; sourceTree = "<group>"; };
 		2F4CBC41F912B83FC8344598 /* PalettePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettePreviewView.swift; sourceTree = "<group>"; };
 		3055105B38C0B40683E01E33 /* RoomAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAssets.swift; sourceTree = "<group>"; };
 		31D6480D9EF8B26C0AD2C6F7 /* VenueSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueSpaceView.swift; sourceTree = "<group>"; };
@@ -74,10 +79,13 @@
 		A9884C7646F7F1557F4C9008 /* TouringViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouringViews.swift; sourceTree = "<group>"; };
 		AD38AEB3AC858868B97CE99D /* FixturePlacementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturePlacementView.swift; sourceTree = "<group>"; };
 		CDAD85CBEF3AD8C985E74BDC /* FixturePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturePanel.swift; sourceTree = "<group>"; };
+		D59D2CAFA7EF1C88962E0A63 /* PhaserProgrammerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaserProgrammerView.swift; sourceTree = "<group>"; };
 		D6E68505DBBA6EEE51BDB540 /* UXPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UXPreview.swift; sourceTree = "<group>"; };
 		E260FA10C86461CAC4469D57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E5F9AB0517B709A3147A42E0 /* PresetDragSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetDragSource.swift; sourceTree = "<group>"; };
+		EE5063B5DA775538EEAD3BAD /* MacroEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroEditorView.swift; sourceTree = "<group>"; };
 		EEF95065B787765F9A8BA540 /* VenueContextBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueContextBar.swift; sourceTree = "<group>"; };
+		F1063F59F92913FF258EFFF7 /* CueControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueControlsView.swift; sourceTree = "<group>"; };
 		F58C9AC408DE096B035A72DE /* DebugPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPanel.swift; sourceTree = "<group>"; };
 		F949E3AA522D9D9A396D62E4 /* VenueSaveDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueSaveDocument.swift; sourceTree = "<group>"; };
 		FC6645148B15A2D221C051A4 /* PresetEditorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetEditorPresenter.swift; sourceTree = "<group>"; };
@@ -167,18 +175,22 @@
 			isa = PBXGroup;
 			children = (
 				6DCC5AEC820ED40A582D3DE4 /* AuditHistoryView.swift */,
+				F1063F59F92913FF258EFFF7 /* CueControlsView.swift */,
 				F58C9AC408DE096B035A72DE /* DebugPanel.swift */,
 				36264B9671A4D573E153004E /* FixtureInspector.swift */,
 				00372CBAA7C8480C7AC8437A /* FixtureLabel.swift */,
 				CDAD85CBEF3AD8C985E74BDC /* FixturePanel.swift */,
 				AD38AEB3AC858868B97CE99D /* FixturePlacementView.swift */,
 				35673AE49B168A54E86ACC38 /* LaunchView.swift */,
+				EE5063B5DA775538EEAD3BAD /* MacroEditorView.swift */,
 				2F4CBC41F912B83FC8344598 /* PalettePreviewView.swift */,
+				D59D2CAFA7EF1C88962E0A63 /* PhaserProgrammerView.swift */,
 				96638EF189903FA65F23968A /* PlacementLinkReceiver.swift */,
 				E5F9AB0517B709A3147A42E0 /* PresetDragSource.swift */,
 				FC6645148B15A2D221C051A4 /* PresetEditorPresenter.swift */,
 				16DE72BEDB41CF8A53707C9C /* PresetEditorView.swift */,
 				9926915861960E1C383B16B3 /* RoomLibraryView.swift */,
+				21B62F3580F6D134658FD44D /* RoomPlacementView.swift */,
 				97A77C35DB1F4AA96F5DAE3C /* ToolboxView.swift */,
 				A9884C7646F7F1557F4C9008 /* TouringViews.swift */,
 				D6E68505DBBA6EEE51BDB540 /* UXPreview.swift */,
@@ -265,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31168DE9ABBE06BB43C628B8 /* AuditHistoryView.swift in Sources */,
+				8FD0ECA388B52276E0C64309 /* CueControlsView.swift in Sources */,
 				401DB4EDFCC193C6117F2594 /* DebugPanel.swift in Sources */,
 				AD8C275DDC1945BB1092CD89 /* FixtureInspector.swift in Sources */,
 				2783645E3DCA12EDFCFABF73 /* FixtureLabel.swift in Sources */,
@@ -274,8 +287,10 @@
 				4073CEA2DD7557680EFADB2B /* FixtureRig.swift in Sources */,
 				BB110DD60C104F77B97D2B11 /* FixtureTransformGizmo.swift in Sources */,
 				2B78E9F222443AE2BBD9F507 /* LaunchView.swift in Sources */,
+				8685479E602E1BD5E4A88AC4 /* MacroEditorView.swift in Sources */,
 				938B46F588650451BEE87870 /* PalettePreviewView.swift in Sources */,
 				A47925E260E69D1A691339F6 /* PalmNavigationVisual.swift in Sources */,
+				967C8E8E6ED8A01534E8AAE3 /* PhaserProgrammerView.swift in Sources */,
 				11AB1EC49D17341E62AD8DBE /* PlacementLinkReceiver.swift in Sources */,
 				0F6BD67A81CC019A84C0DDF5 /* PresetDragSource.swift in Sources */,
 				FFCDD751EB44DD4C0CB35879 /* PresetDragVisual.swift in Sources */,
@@ -285,6 +300,7 @@
 				BA725057435FA665998EB8E4 /* RoomAssets.swift in Sources */,
 				7054BEF7B60581E099871C7B /* RoomLibrarySmoke.swift in Sources */,
 				8FC4C74944432D3BD74698FB /* RoomLibraryView.swift in Sources */,
+				8A1C9698C4E6C0AA080D9B46 /* RoomPlacementView.swift in Sources */,
 				3B0F47C7CCF1063038398EAF /* RoomScanner.swift in Sources */,
 				0AAFA831C65D19BFAD1B3037 /* ToolboxView.swift in Sources */,
 				03DAFB7D5CE1B2CD30C5EF3B /* TouringViews.swift in Sources */,
@@ -433,7 +449,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.11;
+				MARKETING_VERSION = 0.2.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.venuevolume.VenueVolume;
 				PRODUCT_NAME = "Venue Volume";
 				SDKROOT = xros;
@@ -452,7 +468,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.11;
+				MARKETING_VERSION = 0.2.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.venuevolume.VenueVolume;
 				PRODUCT_NAME = "Venue Volume";
 				SDKROOT = xros;

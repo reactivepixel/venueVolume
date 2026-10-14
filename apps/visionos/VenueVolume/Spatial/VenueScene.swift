@@ -47,7 +47,6 @@ final class VenueScene {
     private var cubes: [UUID: ModelEntity] = [:]
     private var labels: [UUID: Entity] = [:]
     private var drops: [UUID: Entity] = [:]
-    private var palmGate = PalmRevealGate()
     private var displayedMapRequestID: UUID?
     private var mapWorldPosition = SIMD3<Float>.zero
     private var mapWorldOrientation = simd_quatf(angle: 0,axis: [0,1,0])
@@ -568,8 +567,8 @@ final class VenueScene {
             model.deselect()
             try await Task.sleep(for: .milliseconds(200))
             guard !target.components.has(SpatialDragTarget.self),
-                  let dock = headAnchor.children.first(where: { $0.name == "venue-controls-dock" }),
-                  dock.visualBounds(relativeTo: dock).extents.x > dock.visualBounds(relativeTo: dock).extents.y*4 else { throw EnvironmentError.invalid("Deselection or horizontal controls dock failed") }
+                  let dock = headAnchor.children.first(where: { $0.name == "context-bar" }),
+                  !dock.isEnabled else { throw EnvironmentError.invalid("Deselection did not hide the context bar") }
             // Presentation follows the same user commands after assertions.
             model.beginTransform(fixture.id)
             handleTap(entity: floor.entity,position: floor.position,model: model)
@@ -648,7 +647,7 @@ final class VenueScene {
         guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--preset-drag-smoke") else { return }
         do {
             for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
-            model.toolboxLibraryTab = 1; model.requestToolbox()
+            model.requestToolbox()
             guard let fixture = model.fixtures.first,
                   let preset = model.presets.first(where: { $0.id != fixture.presetID }),
                   let entity = rigs[fixture.id]?.entity ?? cubes[fixture.id] else {
@@ -800,6 +799,10 @@ final class VenueScene {
         guard aligned, model.canPlace, !model.libraryBusy, !model.navigationBlackoutActive, !model.palmMapVisible, !palmMap.dragging else {
             leftNavigation.cancel(at: time); model.endViewerNavigation(); model.navigationInputReserved = false; return
         }
+        if time < model.leftUIReservedUntil {
+            leftNavigation.cancel(at: time); model.endViewerNavigation(); model.navigationInputReserved = false
+            return
+        }
         if leftNavigation.activeFinger == nil { leftNavigation.restore(model.viewerPose) }
         let previous = leftNavigation.activeFinger
         let head = spawnFrameRotation.inverse*simd_quatf(deviceTransform)
@@ -808,7 +811,7 @@ final class VenueScene {
         model.updateViewerNavigation(leftNavigation.pose)
         if let reset = leftNavigation.reset, reset == .spawn { model.viewerResetToken = UUID() }
         if previous != nil && leftNavigation.activeFinger == nil { model.endViewerNavigation() }
-        let reserved = leftNavigation.reservesInput(at: time) || time < model.leftUIReservedUntil
+        let reserved = leftNavigation.reservesInput(at: time)
         if model.navigationInputReserved != reserved { model.navigationInputReserved = reserved }
         applyViewerNavigation(model: model)
     }
@@ -829,12 +832,13 @@ final class VenueScene {
         if placementGhost.parent == nil { root.addChild(placementGhost) }
         if groupLinks.parent == nil { root.addChild(groupLinks) }
         updateGroupLinks(model: model)
-        if let controls = attachments.entity(for: "venue-controls-dock") {
+        if let controls = attachments.entity(for: "context-bar") {
             if controls.parent != headAnchor { headAnchor.addChild(controls) }
-            controls.name = "venue-controls-dock"
+            controls.name = "context-bar"
             controls.position = [0,-0.42,-1.15]
             controls.scale = [1,1,1]
         }
+        headAnchor.children.first { $0.name == "context-bar" }?.isEnabled = model.contextBarVisible
         _ = model.fixtureRenderRevision // Rebuild placeholders when an asynchronous catalog asset becomes ready.
         if targetMarker.parent == nil { root.addChild(targetMarker) }
         targetMarker.components.set(DynamicLightShadowComponent(castsShadow: false))
@@ -1100,7 +1104,7 @@ final class VenueScene {
     func runTracking(model: VenueModel) async {
         defer {
             model.canPlace = false
-            model.updatePalmMapActivation(attended: false, palmVisible: false, now: CACurrentMediaTime())
+            model.updateHandToolboxActivation(attended: false, palmVisible: false, now: CACurrentMediaTime())
             model.resetToolboxActivation()
             leftNavigation.cancel(at: ProcessInfo.processInfo.systemUptime)
             model.endViewerNavigation(); model.navigationInputReserved = false
@@ -1112,7 +1116,7 @@ final class VenueScene {
         // ARKit device tracking is unavailable in Simulator; use its floor origin and forward direction.
         while !Task.isCancelled {
             model.handTrackingStatus = "Left index: move · left middle: rotate · double pinch: reset"
-            let reserved = ProcessInfo.processInfo.systemUptime < model.leftUIReservedUntil
+            let reserved = false
             if model.navigationInputReserved != reserved { model.navigationInputReserved = reserved }
             applyViewerNavigation(model: model)
             try? await Task.sleep(for: .milliseconds(33))
@@ -1165,7 +1169,7 @@ final class VenueScene {
                     model.trackingStatus = "World tracking active"
                     if handAccess, hands.state == .running, now - lastHandUpdate < 0.25, let hand = latestLeftHand {
                         let attention = handAttention(hand)
-                        eligible = attention.wrist && !attention.palm
+                        eligible = attention.wrist || attention.palm
                         palmAttended = attention.palm
                         palmVisible = attention.facing
                         navigation = navigationSample(hand)
@@ -1178,16 +1182,14 @@ final class VenueScene {
                     model.needsManualToolbox = true
                     model.handTrackingStatus = "Hand tracking stopped · use navigation controls or re-enter to retry"
                 }
-                let revealed = palmGate.update(eligible: eligible, now: now)
-                model.updateToolboxActivation(raised: revealed)
-                model.updatePalmMapActivation(attended: palmAttended, palmVisible: palmVisible, now: now)
+                model.updateHandToolboxActivation(attended: eligible || palmAttended, palmVisible: palmVisible, now: now)
                 updateLeftNavigation(navigation, at: ProcessInfo.processInfo.systemUptime, model: model)
                 try await Task.sleep(for: .milliseconds(33))
             }
         } catch is CancellationError {
         } catch {
             model.trackingStatus = "Tracking unavailable: \(error.localizedDescription)"
-            model.updatePalmMapActivation(attended: false, palmVisible: false, now: CACurrentMediaTime())
+            model.updateHandToolboxActivation(attended: false, palmVisible: false, now: CACurrentMediaTime())
             model.needsManualToolbox = true
             model.handTrackingStatus = "Use navigation controls or re-enter the venue to retry tracking."
             // Keep the explicit fallback responsive even after authorization/session failure.

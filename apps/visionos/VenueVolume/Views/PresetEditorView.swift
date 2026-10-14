@@ -12,12 +12,15 @@ struct PresetEditorView: View {
     @State private var showUnsaved = false
     @State private var showDelete = false
     @State private var showSaveAs = false
+    @State private var showCueSave = false
     @State private var copyName = ""
+    @State private var poolFilter: PaletteCategory?
+    @State private var selectedStep = 0
+    private var pooledPresets: [DMXPreset] { model.presets.filter { poolFilter == nil || $0.pool == poolFilter } }
     private enum Navigation { case preset(UUID), new }
     private var windowID: UUID { instanceID ?? restoredWindowID }
     private var visibleChannels: [Int] {
         model.presetDraft.channels.indices.filter { index in
-            guard model.tour != nil else { return true }
             return model.presetDraft.channelMask.contains(index) && !(model.presetDraft.focusTargetID != nil && [4,5].contains(index))
         }
     }
@@ -34,13 +37,17 @@ struct PresetEditorView: View {
                     Divider()
                 }
                 VStack(spacing: 0) {
-                    PalettePreviewView(palette: model.presetDraft).padding(.horizontal, 28)
                 ScrollView {
                     VStack(alignment: .leading, spacing: 24) {
                         if !showsSidebar { compactLibrary.disabled(model.tourPreview != nil) }
                         navigation(stacked: stacked).disabled(model.tourPreview != nil)
-                        HistoryControls()
-                        phaserEditor
+                        ViewThatFits(in: .horizontal) {
+                            HStack(alignment: .center, spacing: 24) {
+                                PalettePreviewView(palette: model.presetDraft).frame(minWidth: 310)
+                                if model.presetDraft.phaser != nil { PhaserCurveView(palette: model.presetDraft).frame(minWidth: 280) }
+                            }
+                            PalettePreviewView(palette: model.presetDraft)
+                        }
                         if model.tourPreview != nil { TourPreviewControls() }
                         else { editor(stacked: stacked); footer(stacked: stacked) }
                     }
@@ -51,6 +58,11 @@ struct PresetEditorView: View {
             }
         }
         .disabled(model.libraryBusy)
+        .ornament(visibility: model.selectedFixtures.isEmpty ? .hidden : .visible, attachmentAnchor: .scene(.bottom)) {
+            selectionBar.padding(20).frame(width: 850).glassBackgroundEffect()
+        }
+        .sheet(isPresented: $showCueSave) { SaveCueSheet(current: model.currentCue) }
+        .sheet(isPresented: Binding(get: { model.macrosPresented }, set: { model.macrosPresented = $0 })) { MacroEditorView(seed: model.macroSeed) }
         .onAppear {
             model.presetEditor.registerWindow(windowID)
             if !model.isImmersed && model.presetEditor.windowIDs.count > 1 {
@@ -59,13 +71,15 @@ struct PresetEditorView: View {
                 openWindow(id: "launch")
             }
             model.presetWindowVisible = true
-            model.previewDraft = true
+            model.refreshPaletteSelection()
             model.previewBlackout = false
             if let presetID = model.presetEditor.requestedPreset(for: windowID), presetID != model.editingPresetID {
                 request(.preset(presetID))
             }
         }
+        .onChange(of: model.selectedFixtureIDs) { _, _ in model.paletteSelectionChanged() }
         .onDisappear {
+            model.finishPaletteEditing()
             model.finishHistoryGesture()
             if model.presetEditor.unregisterWindow(windowID) {
                 model.previewDraft = false
@@ -75,15 +89,11 @@ struct PresetEditorView: View {
             model.presetWindowVisible = !model.presetEditor.windowIDs.isEmpty
             model.flushHistoryEdits()
         }
-        .onChange(of: model.selectedID) { _, id in
-            guard let id, let presetID = model.fixture(id)?.presetID, presetID != model.editingPresetID else { return }
-            request(.preset(presetID))
-        }
         .onChange(of: scenePhase) { _, phase in
             if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits() }
         }
         .confirmationDialog("Unsaved palette changes", isPresented: $showUnsaved, titleVisibility: .visible) {
-            Button("Save and continue") { if model.savePreset() { navigate() } }
+            Button("Save and continue") { if model.selectedFixtures.isEmpty ? model.savePreset() : model.saveCue() { navigate() } }
             Button("Discard changes", role: .destructive) { navigate() }
             Button("Keep editing", role: .cancel) { pendingNavigation = nil }
         } message: { Text("Save or discard your draft before switching palettes. Simulation is paused until you choose a palette or turn it back on.") }
@@ -113,13 +123,18 @@ struct PresetEditorView: View {
                 Button { request(.new) } label: {
                     Label("New palette", systemImage: "plus").frame(minHeight: 60)
                 }
+                Picker("Attribute pool", selection: $poolFilter) {
+                    Text("All pools").tag(nil as PaletteCategory?)
+                    ForEach(PaletteCategory.allCases, id: \.self) { Text($0.label).tag(Optional($0)) }
+                }
                 LazyVStack(spacing: 12) {
-                    ForEach(model.presets) { preset in
+                    ForEach(pooledPresets) { preset in
                         Button { request(.preset(preset.id)) } label: {
                             HStack(alignment: .top, spacing: 12) {
+                                PaletteSwatch(palette: preset)
                                 VStack(alignment: .leading, spacing: 6) {
                                     Text(preset.name).font(.headline)
-                                    Text("\(preset.channels.count) channels · \(model.fixtures.filter { $0.referencedPaletteIDs.contains(preset.id) }.count) objects")
+                                    Text("\(preset.pool.label) · \(preset.phaser.map { "\($0.steps.count) steps" } ?? "Static") · \(model.fixtures.filter { $0.referencedPaletteIDs.contains(preset.id) }.count) fixtures")
                                         .font(.subheadline).foregroundStyle(.secondary)
                                 }
                                 Spacer(minLength: 0)
@@ -179,15 +194,22 @@ struct PresetEditorView: View {
 
     private func navigation(stacked: Bool) -> some View {
         actionLayout(stacked: stacked) {
-            Label("Palette editor", systemImage: "slider.horizontal.3").font(.title2.weight(.semibold))
+            Text(model.presetDraft.name.isEmpty ? "New palette" : model.presetDraft.name).font(.title.weight(.semibold)).lineLimit(2).frame(maxWidth: .infinity, alignment: .leading)
                 .accessibilityAddTraits(.isHeader)
             if !stacked { Spacer() }
             HStack(spacing: 12) {
+                Button { model.macroSeed = nil; model.macrosPresented = true } label: {
+                    Image(systemName: "list.bullet.rectangle").frame(width: 60, height: 60)
+                }.accessibilityLabel("Macros")
                 Button { adjacent(-1) } label: { Image(systemName: "chevron.left").frame(minWidth: 60, minHeight: 60) }
                     .disabled(adjacentID(-1) == nil).accessibilityLabel("Previous palette")
                 Button { adjacent(1) } label: { Image(systemName: "chevron.right").frame(minWidth: 60, minHeight: 60) }
                     .disabled(adjacentID(1) == nil).accessibilityLabel("Next palette")
                 Menu {
+                    Button("Make macro from saved palette") {
+                        model.macroSeed = ProgrammingMacro(name: model.presetDraft.name, lines: [.init(paletteID: model.editingPresetID)])
+                        model.macrosPresented = true
+                    }.disabled(model.editingPresetID == nil || model.draftHasChanges)
                     Button("Clear channel values") {
                         model.presetDraft.channels = Array(repeating: 0, count: model.presetDraft.channels.count)
                         model.presetMessage = "Draft cleared. Save to update assigned objects."
@@ -208,35 +230,23 @@ struct PresetEditorView: View {
             actionLayout(stacked: stacked) {
                 TextField("Palette name", text: $model.presetDraft.name).textFieldStyle(.roundedBorder)
                     .frame(minHeight: 60).accessibilityLabel("Palette name")
-                Picker("Channels", selection: Binding(
-                    get: { model.presetDraft.channels.count },
-                    set: { count in
-                        model.presetDraft.channels = Array((model.presetDraft.channels + Array(repeating: 0, count: 16)).prefix(count))
-                        model.presetDraft.attributeIndices = model.presetDraft.attributeIndices?.filter { $0 < count }
-                        if var phaser = model.presetDraft.phaser {
-                            for index in phaser.steps.indices { phaser.steps[index].values = phaser.steps[index].values.filter { $0.key < count } }
-                            model.presetDraft.phaser = phaser
-                        }
-                    }
-                )) { ForEach(1...16, id: \.self) { Text("\($0) channels").tag($0) } }
-                    .frame(minHeight: 60).accessibilityLabel("Number of palette channels").disabled(model.tour != nil)
+                Picker("Store in pool", selection: Binding(get: { model.presetDraft.pool }, set: { model.presetDraft.setPool($0) })) {
+                    ForEach(PaletteCategory.allCases, id: \.self) { Text($0.label).tag($0) }
+                }.frame(minHeight: 60)
+
             }
             actionLayout(stacked: stacked) {
-                Text(model.draftHasChanges ? "Unsaved changes" : "Saved palette").foregroundStyle(model.draftHasChanges ? Color.orange : .secondary)
+                Text(model.programmerEdited ? "Live edits · cue \(model.currentCueLabel)" : "Cue \(model.currentCueLabel)").foregroundStyle(model.programmerEdited ? Color.orange : .secondary)
                 if !stacked { Spacer() }
-                Text("VV Preview 16 · Simulation").foregroundStyle(.secondary)
+                Text("\(model.selectedFixtures.count) fixtures selected").foregroundStyle(.secondary)
             }.font(.subheadline)
-            actionLayout(stacked: stacked) {
-                Toggle(model.tour == nil ? "Simulate on selected fixture" : "Simulate on selected fixtures", isOn: $model.previewDraft)
-                    .frame(minHeight: 60).disabled(model.selectedID == nil)
-                Toggle(isOn: $model.previewBlackout) {
-                    Text("Blackout simulation").frame(minHeight: 60)
-                }.toggleStyle(.button).disabled(!model.previewDraft || model.selectedID == nil)
-            }
             if model.tour != nil { TouringPresetOptions() }
             TourPreviewControls()
+            phaserEditor
+            if model.presetDraft.phaser == nil {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 24), count: stacked ? 1 : 2), spacing: 24) {
                 ForEach(visibleChannels, id: \.self) { index in channel(index) }
+            }
             }
             Divider()
             if model.isRetargeting {
@@ -250,88 +260,43 @@ struct PresetEditorView: View {
                     }
                 }
             }
-            if model.tour == nil, let id = model.selectedID, let fixture = model.fixture(id) {
-                VStack(alignment: .leading, spacing: 12) {
-                    Text(fixture.name).font(.headline)
-                    Text("Assigned: \(model.presets.first(where: { $0.id == fixture.presetID })?.name ?? "None")")
-                        .foregroundStyle(.secondary)
-                    actionLayout(stacked: stacked) {
-                        Button { model.beginPresetTarget() } label: {
-                            Label("Target", systemImage: "scope").frame(minHeight: 60)
-                        }.disabled(!model.canPlace || fixture.asset?.headAim != true || model.isRetargeting)
-                        Button { model.clearAssignment(id) } label: { Text("Clear assignment").frame(minHeight: 60) }
-                            .disabled(fixture.presetID == nil)
-                        Button {
-                            if let presetID = model.editingPresetID {
-                                _ = model.applyPreset(presetID, to: id)
-                                model.presetMessage = model.message
-                            }
-                        } label: { Text("Apply saved").frame(minHeight: 60) }
-                            .disabled(model.editingPresetID == nil || model.draftHasChanges)
-                    }
-                }
-            } else {
-                Text("Select an object or drag a saved palette from the toolbox onto a fixture.")
+            if model.selectedFixtures.isEmpty {
+                Text("Select fixtures to edit their cue output. You can also create a palette in the library.")
                     .foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
             }
         }
     }
 
-    private var phaserEditor: some View {
-        @Bindable var model = model
-        return VStack(alignment: .leading, spacing: 12) {
-            Picker("Palette family", selection: Binding(get: { model.presetDraft.category ?? .all }, set: { model.presetDraft.category = $0 })) {
-                ForEach(PaletteCategory.allCases, id: \.self) { Text($0.rawValue.capitalized).tag($0) }
+    private var selectionBar: some View {
+        HStack(spacing: 16) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text("\(model.selectedFixtures.count) fixtures selected").font(.headline)
+                Text(model.paletteSelectionIsMixed && !model.previewDraft ? "Mixed look · editing affects the selection" : model.palettePlayback.isPlaying ? "Live fixture output" : "Diagram and fixtures paused")
+                    .font(.caption).foregroundStyle(.secondary)
             }
-            Toggle("Animate as phaser", isOn: Binding(get: { model.presetDraft.phaser != nil }, set: { enabled in
-                model.presetDraft.phaser = enabled ? Phaser(steps: [.init(values: Dictionary(uniqueKeysWithValues: model.presetDraft.channels.enumerated().map { ($0.offset, $0.element) })), .init(values: [0: 0])]) : nil
-            }))
-            if let phaser = model.presetDraft.phaser {
-                Text("Steps use independent channel values; speed, phase and measure apply to the whole cycle.").font(.caption)
-                phaserSlider("Speed (BPM)", value: phaser.beatsPerMinute, range: 1...240) { model.presetDraft.phaser?.beatsPerMinute = $0 }
-                phaserSlider("Measure (beats per cycle)", value: phaser.measure, range: 0.25...16) { model.presetDraft.phaser?.measure = $0 }
-                phaserSlider("Phase (degrees)", value: phaser.phaseDegrees, range: 0...360) { model.presetDraft.phaser?.phaseDegrees = $0 }
-                phaserSlider("Fixture phase spread", value: phaser.phaseSpreadDegrees, range: 0...360) { model.presetDraft.phaser?.phaseSpreadDegrees = $0 }
-                phaserSlider("Transition", value: phaser.transition, range: 0...1) { model.presetDraft.phaser?.transition = $0 }
-                ForEach(phaser.steps.indices, id: \.self) { index in
-                    DisclosureGroup("Step \(index + 1)") {
-                        phaserSlider("Width", value: phaser.steps[index].width, range: 0.1...8) { model.presetDraft.phaser?.steps[index].width = $0 }
-                        ForEach(model.presetDraft.channels.indices, id: \.self) { channel in
-                            phaserSlider("Channel \(channel + 1)", value: Double(phaser.steps[index].values[channel] ?? model.presetDraft.channels[channel]), range: 0...255) { model.presetDraft.phaser?.steps[index].values[channel] = Int($0) }
-                        }
-                        Button("Remove step", role: .destructive) { model.presetDraft.phaser?.steps.remove(at: index) }.disabled(phaser.steps.count <= 2)
-                    }
-                }
-                Button("Add step") { model.presetDraft.phaser?.steps.append(phaser.steps.last ?? .init(values: [:])) }.disabled(phaser.steps.count >= 32)
-            }
-        }
+            Spacer()
+            CueControlsView()
+            Button("Save to cue \(model.currentCueLabel)") { model.saveCue() }
+                .buttonStyle(.borderedProminent).disabled(!model.canSaveCue)
+        }.frame(minHeight: 60)
     }
-    private func phaserSlider(_ name: String, value: Double, range: ClosedRange<Double>, set: @escaping (Double) -> Void) -> some View {
-        VStack(alignment: .leading) {
-            Text("\(name): \(value, specifier: "%.2f")")
-            Slider(value: Binding(get: { value }, set: set), in: range)
+
+    private var phaserEditor: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            PhaserProgrammerView()
+            if let issue = model.presetDraft.referenceIssue(in: model.presets) { Text(issue).foregroundStyle(.orange) }
         }
     }
 
     private func channel(_ index: Int) -> some View {
-        let asset = model.selectedID.flatMap { model.fixture($0)?.asset }
-        let name = asset?.channelName(index) ?? (index < LightingPreview.channelNames.count ? LightingPreview.channelNames[index] : "Unused")
+        let name = (index < LightingPreview.channelNames.count ? LightingPreview.channelNames[index] : "Unused")
         let value = model.presetDraft.channels.indices.contains(index) ? model.presetDraft.channels[index] : 0
         return VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .firstTextBaseline, spacing: 12) {
-                Text("\(index + 1) · \(name)").font(.headline)
+                Text(name).font(.headline)
                 Spacer(minLength: 0)
-                Text("\(value)").font(.body.monospacedDigit()).foregroundStyle(.cyan)
+                Text("\(Int((Double(value) / 255 * 100).rounded()))%").font(.body.monospacedDigit()).foregroundStyle(.cyan)
             }.accessibilityHidden(true)
-            Toggle("Include this attribute", isOn: Binding(
-                get: { model.presetDraft.attributeIndices?.contains(index) ?? true },
-                set: { included in
-                    var indices = model.presetDraft.attributeIndices ?? Array(model.presetDraft.channels.indices)
-                    indices.removeAll { $0 == index }
-                    if included { indices.append(index) }
-                    model.presetDraft.attributeIndices = indices.sorted()
-                }
-            ))
             Slider(value: Binding(
                 get: { model.presetDraft.channels.indices.contains(index) ? Double(model.presetDraft.channels[index]) : 0 },
                 set: { if model.presetDraft.channels.indices.contains(index) { model.presetDraft.channels[index] = Int($0) } }
@@ -347,23 +312,31 @@ struct PresetEditorView: View {
 
     private func footer(stacked: Bool) -> some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(model.presetMessage ?? (model.tour == nil ? "Saving updates all objects assigned to this palette." : "Saving updates assigned parameters in this scope. Named focus changes require Refocus."))
-                .foregroundStyle(.secondary)
-                .fixedSize(horizontal: false, vertical: true)
+            Text(model.presetMessage ?? (model.selectedFixtures.isEmpty ? "Store a reusable palette, or select fixtures to record a cue." : "Changes preview live. Save records this cue; changing selection or cue also records your edits here."))
+                .foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .leading)
             actionLayout(stacked: stacked) {
-                Button { copyName = ""; showSaveAs = true } label: { Text("Save as new…").frame(minHeight: 60) }
-                    .disabled(model.isRetargeting)
+                Menu("Palette library") {
+                    Button("Store as new palette…") { copyName = model.presetDraft.name; showSaveAs = true }
+                    Button("Update library palette") { model.savePreset() }.disabled(model.editingPresetID == nil || !model.canSavePreset)
+                }.frame(minHeight: 60)
                 if !stacked { Spacer() }
-                Button { model.savePreset() } label: { Text("Save palette").frame(minHeight: 60) }
-                    .buttonStyle(.borderedProminent).disabled(!model.canSavePreset || model.isRetargeting)
+                if !model.selectedFixtures.isEmpty {
+                    Button("Save to specific cue…") { showCueSave = true }.disabled(!model.canSaveCue).frame(minHeight: 60)
+                    Button("Save to cue \(model.currentCueLabel)") { model.saveCue() }
+                        .buttonStyle(.borderedProminent).disabled(!model.canSaveCue).frame(minHeight: 60)
+                } else {
+                    Button("Store palette") { model.savePreset() }.buttonStyle(.borderedProminent).disabled(!model.canSavePreset)
+                }
             }
         }
     }
 
     private func request(_ destination: Navigation) {
         pendingNavigation = destination
-        if model.draftHasChanges {
+        if !model.selectedFixtureIDs.isEmpty {
+            if !model.programmerEdited || model.saveCue() { navigate() }
+        } else if model.draftHasChanges {
             // Keep the draft intact without projecting it onto a newly selected
             // fixture while the user is deciding which preset to edit.
             model.previewDraft = false
@@ -374,10 +347,11 @@ struct PresetEditorView: View {
         switch pendingNavigation {
         case .preset(let id):
             if let preset = model.presets.first(where: { $0.id == id }) { model.choosePreset(preset) }
-        case .new: model.newPreset()
+        case .new: model.newPreset(pool: poolFilter ?? .intensity)
         case nil: break
         }
         pendingNavigation = nil
+        selectedStep = 0
     }
     private func adjacentID(_ offset: Int) -> UUID? {
         guard let index = model.presets.firstIndex(where: { $0.id == model.editingPresetID }),

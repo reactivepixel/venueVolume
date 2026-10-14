@@ -8,6 +8,15 @@ The 15-entry native library includes three complete looks (Warm room wash, Blue 
 
 The native editor pins an independent white sample room with floor and wall grid lines above the scrolling controls. Its cube starts 1 m above the floor. Select the cube to expose X/Y/Z handles and drag one axis at a time. Lighting samples the current draft continuously even with no venue fixture selected. Assigned fixture preview and SaaS live playback sample phasers on their render clocks; manual programmer values take precedence in the SaaS console.
 
-This is a focused console-inspired implementation, not a grandMA3 show-file importer or full console engine. It does not yet implement relative/additive layers, easing acceleration/deceleration, recipes, MAtricks, speed masters, selective/global/universal fixture resolution, embedded palette references or network DMX playback. Position effects use the current fixture's channel personality; sample beam output is intentionally synthetic.
+This is a focused console-inspired implementation, not a grandMA3 show-file importer or full console engine. It does not yet implement relative/additive layers, easing acceleration/deceleration, recipes, MAtricks, speed masters, selective/global/universal fixture resolution, general nested preset recipes or network DMX playback. Static palette references within phaser steps are supported. Position effects use the current fixture's channel personality; sample beam output is intentionally synthetic.
 
 MA Lighting calls its static reusable values presets and its effects engine phasers. Venue Volume uses the broader palette name to distinguish static attribute libraries from dynamic effects. Sources: [grandMA3 presets](https://help.malighting.com/grandMA3/2.4/HTML/presets.html), [grandMA3 phasers](https://help.malighting.com/grandMA3/2.4/HTML/phaser.html), [Phaser Editor](https://help2.malighting.com/grandMA3/2.3/HTML/phaser_editor.html). Those references inform the workflow; Venue Volume's measure and transition definitions above are the implemented contract.
+
+
+## Console workflow redesign
+
+The SaaS and native editors use attribute pools, a static/phaser mode selector, numbered step selection, linked static palette sources, timing/distribution controls and explicit Store/Update actions. Native new palettes inherit their selected pool mask, and the pinned selection strip applies saved values to all selected fixtures in one Undo action. The wrist library filters by pool and separates Apply from Edit.
+
+SaaS fixture selection and destination cue are visible above the workbench. Application writes fixture-level palette references while preserving group defaults and other attribute layers. Cue recipes show group selections and palette references, with individual exceptions below. Renaming updates every layered cue and phaser source reference. Source edits flow through linked steps; native portable saves include those source palettes. Invalid or dynamic step sources are rejected.
+
+Research, tutorial links, rationale, implemented semantics and limitations: [Console palette workflow research](../../03%20Design/Console%20palette%20workflow%20research.md).

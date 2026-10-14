@@ -418,7 +418,6 @@ struct TourSelectionPane: View {
                     }
                     if model.tourSelection.count == 1, let id = model.selectedID, let fixture = model.fixture(id) {
                         Divider()
-                        Button("Pop out item editor", systemImage: "arrow.up.right.square") { openWindow(id: "fixture-editor", value: "selection") }.frame(minHeight: 60)
                         FixtureActions(fixture: fixture)
                         FixturePanel(fixture: model.renderedFixture(fixture))
                     }
@@ -520,7 +519,7 @@ private struct FocusTargetList: View {
             HStack { Text("Venue focus targets").font(.headline); Spacer(); Button { name = ""; newTarget = true } label: { Image(systemName: "plus").frame(minWidth: 60, minHeight: 60) }.accessibilityLabel("New focus target") }
             ForEach(model.tour?.show.targets ?? []) { target in
                 Button {
-                    model.beginFocusLocation(target.id); model.showVenueControls()
+                    model.beginFocusLocation(target.id)
                 } label: {
                     HStack {
                         Text(target.name); Spacer()
