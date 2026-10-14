@@ -96,6 +96,7 @@ final class VenueModel {
     var draggingFixture: FixtureKind?
     var activeRoom: LibraryRoom? { rooms.first { $0.manifest.id == environment?.id && $0.manifest.version == environment?.version } }
     var hasUnsavedSetup: Bool {
+        if let savedSetup, (savedSetup.cues ?? CueSheet()) != cueSheet { return true }
         if let savedSetup, savedSetup.tour != touring.active { return true }
         guard let savedSetup else {
             if let tour, tour != TourSession(show: tour.show, configurationID: tour.configurationID) { return true }
@@ -164,14 +165,14 @@ final class VenueModel {
         for i in fixtures.indices where fixtures[i].groupID == group { fixtures[i].groupID = nil; fixtures[i].groupName = nil }
         additionalSelection = []; revision += 1; persist()
     }
-    private var palmMapAttention = PalmMapToggle()
-    private var palmMapFollowsHand = false
-    func updatePalmMapActivation(attended: Bool, palmVisible: Bool, now: Double) {
-        let wasVisible = palmMapAttention.isVisible
-        let revealed = palmMapAttention.update(attended: attended || (wasVisible && palmVisible), now: now)
-        if !palmVisible, palmMapFollowsHand { closePalmMap() }
-        if revealed && !wasVisible && !palmMapVisible && isImmersed && canPlace && !libraryBusy && !navigationBlackoutActive {
-            palmMapRequestID = UUID(); palmMapFollowsHand = true
+    private var toolboxAttention = PalmMapToggle()
+    /// Both sides of the left wrist recall the same selection toolbox. The map
+    /// is now explicitly opened from Room placement in the context menu.
+    func updateHandToolboxActivation(attended: Bool, palmVisible: Bool, now: Double) {
+        let wasVisible = toolboxAttention.isVisible
+        let revealed = toolboxAttention.update(attended: attended || (wasVisible && palmVisible), now: now)
+        if revealed && !wasVisible && isImmersed && canPlace && !libraryBusy && !navigationBlackoutActive {
+            requestToolbox()
         }
     }
     private(set) var palmMapRequestID: UUID?
@@ -181,7 +182,7 @@ final class VenueModel {
         guard isImmersed, canPlace, !libraryBusy, !navigationBlackoutActive else { return }
         palmMapRequestID = UUID()
     }
-    func closePalmMap() { palmMapRequestID = nil; palmMapFollowsHand = false }
+    func closePalmMap() { palmMapRequestID = nil }
     var navigationBlackoutActive = false
     var navigationFadeMilliseconds: Double = 333 {
         didSet { defaults.set(navigationFadeMilliseconds, forKey: "venue.navigationFadeMilliseconds") }
@@ -189,7 +190,7 @@ final class VenueModel {
     var expandedID: UUID?
     private(set) var presets: [DMXPreset] = PaletteLibrary.baseline
     private(set) var recent = RecentItems()
-    var presetDraft = DMXPreset(name: "New palette") { didSet { queueHistoryEdit("Edit palette draft") } }
+    var presetDraft = DMXPreset(name: "New palette") { didSet { programmerDidChange(from: oldValue); queueHistoryEdit("Edit palette draft") } }
     var editingPresetID: UUID?
     var presetMessage: String?
     var toolboxVisible = false
@@ -214,9 +215,9 @@ final class VenueModel {
         palmActivationHeld = raised
     }
 
-    func requestToolbox() { toolboxTab = 0; toolboxRequestID = UUID() }
+    func requestToolbox() { closePalmMap(); toolboxTab = 0; toolboxRequestID = UUID() }
     func resetToolboxActivation() {
-        palmActivationHeld = false
+        palmActivationHeld = false; toolboxAttention = PalmMapToggle()
         toolboxRequestID = nil
     }
     var simulatedPalm = true
@@ -226,7 +227,7 @@ final class VenueModel {
     var navigationInputReserved = false
     @ObservationIgnored var leftUIReservedUntil: Double = 0
     func reserveLeftHandInput() {
-        leftUIReservedUntil = ProcessInfo.processInfo.systemUptime+0.35; navigationInputReserved = true
+        leftUIReservedUntil = ProcessInfo.processInfo.systemUptime+0.35
         Task { @MainActor [weak self] in
             try? await Task.sleep(for: .milliseconds(360))
             if let self, !self.viewerNavigationActive, ProcessInfo.processInfo.systemUptime >= self.leftUIReservedUntil { self.navigationInputReserved = false }
@@ -257,7 +258,12 @@ final class VenueModel {
     }
     private(set) var draggingPresetID: UUID?
     private var fixtureDragLease: Task<Void, Never>?
-    private let paletteClockOrigin = ProcessInfo.processInfo.systemUptime
+    private(set) var palettePlayback = PalettePlayback(now: ProcessInfo.processInfo.systemUptime)
+    private(set) var cueSheets: [String: CueSheet] = [:]
+    private var loadingProgrammer = false
+    private(set) var programmerEdited = false
+    private var programmerSelection = Set<UUID>()
+    private var programmerCue = 1
     private let defaults: UserDefaults
     private let arguments: [String]
     var previewDraft = false { didSet { queueHistoryEdit("Change draft preview") } }
@@ -466,6 +472,8 @@ final class VenueModel {
                     persistenceStatus = "Autosave disabled to preserve an unreadable working file. Named setups can still be saved."
                 }
             }
+            if let setup = request.setup { cueSheets[cueScope] = setup.cues }
+            else if request.blank { cueSheets[cueScope] = nil }
             revision += 1; syncedRevision = nil; activeSetupID = request.setup?.id
             setupName = request.setup?.name ?? "Untitled setup"
             savedSetup = request.setup.map { setup in
@@ -600,6 +608,8 @@ final class VenueModel {
 
     func select(_ id: UUID, expand: Bool = false, extendSelection: Bool = true) {
         guard !libraryBusy else { return }
+        guard savePendingCueEdits() else { return }
+        defer { refreshPaletteSelection() }
         endTransformDrag()
         beginHistoryAction(expand ? "Toggle fixture info" : "Select fixture"); defer { endHistoryAction() }
         guard fixture(id) != nil else { return }
@@ -633,6 +643,8 @@ final class VenueModel {
     }
 
     func deselect() {
+        guard savePendingCueEdits() else { return }
+        defer { refreshPaletteSelection() }
         cancelTourPreview(); selectedUnitIDs = []; selectedGroupID = nil
         guard !libraryBusy else { return }
         endTransformDrag()
@@ -677,6 +689,10 @@ final class VenueModel {
     func openPreset(_ id: UUID?) {
         // The editor manages dirty-navigation confirmation; external open requests
         // keep the current draft intact while bringing its window forward.
+        if !selectedFixtureIDs.isEmpty {
+            if presetWindowVisible { paletteSelectionChanged() }
+            return
+        }
         if draftHasChanges {
             presetMessage = "Your unsaved draft is still open. Use the palette list to save or discard it before switching."
             return
@@ -689,6 +705,8 @@ final class VenueModel {
     func choosePreset(_ preset: DMXPreset) {
         guard !libraryBusy else { return }
         beginHistoryAction("Open palette · \(preset.name)"); defer { endHistoryAction() }
+        loadingProgrammer = true
+        defer { loadingProgrammer = false; programmerEdited = false; programmerSelection = selectedFixtureIDs; programmerCue = currentCue }
         cancelTourPreview(); cancelPicking()
         previewDraft = true; previewBlackout = false
         presetDraft = preset
@@ -700,6 +718,8 @@ final class VenueModel {
     func newPreset(pool: PaletteCategory = .all) {
         guard !libraryBusy else { return }
         beginHistoryAction("New palette draft"); defer { endHistoryAction() }
+        loadingProgrammer = true
+        defer { loadingProgrammer = false; programmerEdited = false; programmerSelection = selectedFixtureIDs; programmerCue = currentCue }
         editingPresetID = nil
         cancelTourPreview(); cancelPicking()
         previewDraft = true; previewBlackout = false
@@ -727,6 +747,7 @@ final class VenueModel {
             // Persist the validated library before publishing the new live snapshot.
             if !isDemoMode { defaults.set(try JSONEncoder().encode(library), forKey: "venue.presets.v1") }
             presets = library
+            if !asNew { updateCueLibrary(candidate) }
             if fixtures != updated { fixtures = updated; revision += 1; persist() }
             choosePreset(candidate)
             presetMessage = asNew ? "Saved as a new palette. Existing assignments are unchanged." : "Saved. Assigned fixtures are updated."
@@ -775,10 +796,12 @@ final class VenueModel {
             return false
         }
         do {
+            let targets = actionIDs(for: fixtureID)
+            guard recordCuePalette(preset, targets: targets, linked: true) else { return false }
             var updated = fixtures
-            for memberID in actionIDs(for: fixtureID) { updated = try PresetOperations.applying(preset, to: memberID, fixtures: updated) }
+            for memberID in targets { updated = try PresetOperations.applying(preset, to: memberID, fixtures: updated) }
             if updated != fixtures { fixtures = updated; revision += 1; persist() }
-            previewDraft = false
+            programmerEdited = false; previewDraft = false
             let selectingMultiple = multiSelectionMode
             multiSelectionMode = false; select(fixtureID); multiSelectionMode = selectingMultiple
             recent.use(.preset(presetID))
@@ -802,6 +825,8 @@ final class VenueModel {
         beginHistoryAction("Clear fixture palette"); defer { endHistoryAction() }
         guard let index = fixtures.firstIndex(where: { $0.id == id }), !fixtures[index].referencedPaletteIDs.isEmpty else { return }
         if case .aim(let targetID) = scenePick, targetID == id { cancelPicking() }
+        let cleared = DMXPreset(name: "Clear assignment", channels: Array(repeating: 0, count: fixtures[index].channels.count))
+        guard recordCuePalette(cleared, targets: [id]) else { return }
         fixtures[index].presetID = nil
         fixtures[index].channelPaletteIDs = nil
         fixtures[index].channels = Array(repeating: 0, count: fixtures[index].channels.count)
@@ -812,6 +837,7 @@ final class VenueModel {
     }
 
     func hasAnimatedPalette(for fixture: Fixture) -> Bool {
+        if cueSheet.look(for: fixture.id)?.layers.contains(where: { $0.palette.phaser != nil }) == true { return true }
         if previewDraft && selectedFixtureIDs.contains(fixture.id) && presetDraft.phaser != nil { return true }
         if let session = tour, let unit = session.allUnits.first(where: { $0.id == fixture.id }) {
             return session.presets.contains { palette in
@@ -823,6 +849,15 @@ final class VenueModel {
 
     func renderedChannels(for fixture: Fixture, at time: Double? = nil) -> [Int] {
         if let preview = tourPreview?.first(where: { $0.id == fixture.id }) { return preview.channels }
+        if isRetargeting, let targetPreview, actionIDs(for: targetPreview.id).contains(fixture.id) { return renderedFixture(fixture).channels }
+        if let channels = cueSheet.sample(fixture.id, at: time ?? paletteSeconds(), order: fixtures.map(\.id)) {
+            var rendered = fixture; rendered.channels = channels
+            if previewDraft && selectedFixtureIDs.contains(fixture.id) {
+                let draft = (try? cuePalette(presetDraft, fixtureID: fixture.id)) ?? presetDraft
+                rendered.channels = PresetOperations.mergedChannels(draft, existing: channels, at: time ?? paletteSeconds(), fixtureIndex: selectedFixtures.firstIndex(where: { $0.id == fixture.id }) ?? 0, fixtureCount: max(1, selectedFixtures.count), palettes: presets)
+            }
+            return rendered.channels
+        }
         if touring.active != nil, previewDraft, selectedUnitIDs.contains(fixture.id), Touring.compatible(presetDraft, with: fixture) {
             if presetDraft.focusTargetID != nil, var session = tour {
                 session.presetOverrides.removeAll { $0.id == presetDraft.id }; session.presetOverrides.append(presetDraft)
@@ -830,12 +865,12 @@ final class VenueModel {
                 return (try? Touring.resolved(fixture, in: session, solveFocus: true).channels) ?? fixture.channels
             }
             var values = fixture.channels
-            let sample = presetDraft.sampledChannels(at: time ?? (ProcessInfo.processInfo.systemUptime - paletteClockOrigin), fixtureIndex: selectedFixtures.firstIndex(where: { $0.id == fixture.id }) ?? 0, fixtureCount: max(1, selectedFixtures.count), palettes: presets)
+            let sample = presetDraft.sampledChannels(at: time ?? paletteSeconds(), fixtureIndex: selectedFixtures.firstIndex(where: { $0.id == fixture.id }) ?? 0, fixtureCount: max(1, selectedFixtures.count), palettes: presets)
             for i in presetDraft.channelMask { values[i] = sample[i] }
             return values
         }
         if let session = tour, let unit = session.allUnits.first(where: { $0.id == fixture.id }) {
-            let seconds = time ?? (ProcessInfo.processInfo.systemUptime - paletteClockOrigin)
+            let seconds = time ?? paletteSeconds()
             var values = fixture.channels
             for channel in values.indices {
                 guard let id = session.binding(for: unit, channel: channel),
@@ -852,7 +887,7 @@ final class VenueModel {
         if isRetargeting, let targetPreview, actionIDs(for: targetPreview.id).contains(fixture.id) {
             return renderedFixture(fixture).channels
         }
-        let seconds = time ?? (ProcessInfo.processInfo.systemUptime - paletteClockOrigin)
+        let seconds = time ?? paletteSeconds()
         func phasePosition(for paletteID: UUID, draft: Bool = false) -> (index: Int, count: Int) {
             let members = fixtures.filter { draft ? selectedFixtureIDs.contains($0.id) : $0.referencedPaletteIDs.contains(paletteID) }
             return (members.firstIndex(where: { $0.id == fixture.id }) ?? 0, max(1, members.count))
@@ -927,6 +962,7 @@ final class VenueModel {
         candidate.preserveAimOverride()
         guard candidate != fixtures[index], candidate.validationIssue(among: fixtures) == nil else { return }
         cancelPicking()
+        guard recordCuePalette(DMXPreset(name: "Manual aim", channels: candidate.channels, category: .position, attributeIndices: [4,5]), targets: [id]) else { return }
         fixtures[index] = candidate
         previewDraft = false
         lastTarget = nil
@@ -952,6 +988,7 @@ final class VenueModel {
         candidate.jointOverrides?[jointID] = joint.byte(for: value)
         candidate.preserveAimOverride()
         guard candidate != fixtures[index], candidate.validationIssue(among: fixtures) == nil else { return }
+        guard recordCuePalette(DMXPreset(name: joint.label, channels: candidate.channels, attributeIndices: [joint.channel]), targets: [id]) else { return }
         cancelPicking(); fixtures[index] = candidate; previewDraft = false; lastTarget = nil
         revision += 1; persist()
     }
@@ -1105,7 +1142,10 @@ final class VenueModel {
             let refreshEditor = editingPresetID == preset.id && !draftHasChanges
             beginHistoryAction("Retarget palette · \(preset.name)"); defer { endHistoryAction() }
             if !isDemoMode { defaults.set(encoded, forKey: "venue.presets.v1") }
-            presets = library; fixtures = updated
+            for fixture in updated where memberIDs.contains(fixture.id) {
+                guard recordCuePalette(DMXPreset(name: "Target · \(preset.name)", channels: fixture.channels, category: .position, attributeIndices: [4,5]), targets: [fixture.id]) else { return false }
+            }
+            presets = library; fixtures = updated; updateCueLibrary(preset)
             // Preserve an unrelated unsaved editor draft when targeting from the scene.
             if case .draft = targetPresetSource { presetDraft = preset; editingPresetID = preset.id }
             else if refreshEditor { presetDraft = preset }
@@ -1403,6 +1443,8 @@ final class VenueModel {
         for joint in fixtures[index].asset?.joints ?? [] where fixtures[index].channels.indices.contains(joint.channel) {
             fixtures[index].channels[joint.channel] = saved.flatMap { $0.channels.indices.contains(joint.channel) ? $0.channels[joint.channel] : nil } ?? (joint.continuous ? 0 : 128)
         }
+        let channels = (fixtures[index].asset?.joints ?? []).map(\.channel)
+        if !channels.isEmpty { _ = recordCuePalette(DMXPreset(name: "Reset motion", channels: fixtures[index].channels, attributeIndices: channels), targets: [id]) }
         previewDraft = false; lastTarget = nil
         revision += 1; persist(); message = saved == nil ? "Returned moving parts to rest." : "Restored the palette's motion values."
     }
@@ -1596,7 +1638,7 @@ final class VenueModel {
     func currentSetupSnapshot() throws -> VenueSetup {
         guard let room = activeRoom, !libraryBusy else { throw EnvironmentError.invalid("open a venue before exporting") }
         let snapshot = VenueSetup(id: activeSetupID ?? UUID(), name: setupName.trimmingCharacters(in: .whitespacesAndNewlines), room: room,
-                                  fixtures: fixtures, presets: presets, revision: revision, whiteRoom: whiteRoom, houseLight: houseLight, tour: touring.active)
+                                  fixtures: fixtures, presets: presets, revision: revision, whiteRoom: whiteRoom, houseLight: houseLight, tour: touring.active, cues: cueSheet == CueSheet() ? nil : cueSheet)
         try snapshot.validate(room: room)
         return snapshot
     }
@@ -1641,7 +1683,7 @@ final class VenueModel {
         beginHistoryAction(asNew ? "Save setup as new" : "Save setup"); defer { endHistoryAction() }
         let name = setupName.trimmingCharacters(in: .whitespacesAndNewlines)
         let snapshot = VenueSetup(id: asNew ? UUID() : (activeSetupID ?? UUID()), name: name, room: room,
-                                  fixtures: fixtures, presets: presets, revision: revision, whiteRoom: whiteRoom, houseLight: houseLight, tour: touring.active)
+                                  fixtures: fixtures, presets: presets, revision: revision, whiteRoom: whiteRoom, houseLight: houseLight, tour: touring.active, cues: cueSheet == CueSheet() ? nil : cueSheet)
         do {
             try library.save(snapshot, room: room)
             activeSetupID = snapshot.id; savedSetup = snapshot; setupName = name
@@ -1658,7 +1700,7 @@ extension VenueModel {
         return .init(rooms: rooms, setups: savedSetups, roomID: room.id, fixtures: fixtures, presets: presets,
                      draft: presetDraft, editingPresetID: editingPresetID, setupName: setupName, activeSetupID: activeSetupID,
                      savedSetup: savedSetup, whiteRoom: whiteRoom, houseLight: houseLight, blackout: blackout,
-                     selectedID: selectedID, expandedID: expandedID, previewDraft: previewDraft, previewBlackout: previewBlackout, touring: touring, selectedUnitIDs: tour == nil ? nil : selectedUnitIDs, selectedGroupID: selectedGroupID, viewerPose: viewerPose == .init() ? nil : viewerPose)
+                     selectedID: selectedID, expandedID: expandedID, previewDraft: previewDraft, previewBlackout: previewBlackout, touring: touring, selectedUnitIDs: tour == nil ? nil : selectedUnitIDs, selectedGroupID: selectedGroupID, viewerPose: viewerPose == .init() ? nil : viewerPose, cueSheets: cueSheets.isEmpty ? nil : cueSheets)
     }
 
     private func startHistoryIfNeeded() {
@@ -1783,6 +1825,7 @@ extension VenueModel {
         cancelPicking(); endPresetDrag(); gizmoVisible = false; lastTarget = nil; recent = RecentItems()
         rooms = state.rooms; mergeBundledRooms(); savedSetups = state.setups
         environment = state.rooms.first { $0.id == state.roomID }!.manifest
+        cueSheets = state.cueSheets ?? [:]; programmerEdited = false
         fixtures = state.fixtures; presets = state.presets; presetDraft = state.draft; editingPresetID = state.editingPresetID
         setupName = state.setupName; activeSetupID = state.activeSetupID; savedSetup = state.savedSetup
         viewerPose = state.viewerPose ?? .init()
@@ -1793,6 +1836,7 @@ extension VenueModel {
         persistenceBlocked = false
         if let environment { do { _ = try placements.load(environment: environment) } catch { persistenceBlocked = true } }
         persist()
+        programmerSelection = selectedFixtureIDs; programmerCue = currentCue
         environmentStatus = environment!.title
         historyMessage = "Restored · \(history?.current.title ?? "state")"
     }
@@ -2005,6 +2049,7 @@ extension VenueModel {
     }
     func selectGroup(_ id: UUID?) {
         guard !libraryBusy, let tour else { return }
+        guard savePendingCueEdits() else { return }; defer { refreshPaletteSelection() }
         endTransformDrag(); beginHistoryAction("Select fixture group"); defer { endHistoryAction() }
         cancelTourPreview(); cancelPicking(); previewDraft = false; gizmoVisible = false
         selectedGroupID = id; selectedUnitIDs = tour.members(of: id)
@@ -2012,6 +2057,7 @@ extension VenueModel {
     }
     func toggleUnitSelection(_ id: UUID) {
         guard !libraryBusy, tour?.eligibleIDs.contains(id) == true else { return }
+        guard savePendingCueEdits() else { return }; defer { refreshPaletteSelection() }
         endTransformDrag(); beginHistoryAction("Change inventory selection"); defer { endHistoryAction() }
         cancelTourPreview(); cancelPicking(); previewDraft = false; selectedGroupID = nil
         if selectedUnitIDs.contains(id) { selectedUnitIDs.remove(id) } else { selectedUnitIDs.insert(id) }
@@ -2088,7 +2134,16 @@ extension VenueModel {
             let scope = toShow ? "show" : "venue"
             let title = "Apply \(session.presets.first { $0.id == id }?.name ?? "preset") to \(chosen.count) units · \(scope)\(group != nil && !allDescendants ? " · preserve exceptions" : "")"
             if preview { setTourPreview(next, fixtures: updated, title: title, publish: toShow); return true }
-            let result = commitTour(next, fixtures: updated, title: title, publish: toShow); endPresetDrag(); return result
+            beginHistoryAction(title); defer { endHistoryAction() }
+            let oldCues = cueSheets
+            if let palette = session.presets.first(where: { $0.id == id }) {
+                let placed = chosen.intersection(Set(fixtures.map(\.id)))
+                if !placed.isEmpty, !recordCuePalette(palette, targets: placed, linked: true) { return false }
+            }
+            let result = commitTour(next, fixtures: updated, title: title, publish: toShow)
+            if !result { cueSheets = oldCues }
+            else { programmerEdited = false; previewDraft = false; refreshPaletteSelection() }
+            endPresetDrag(); return result
         } catch { message = error.localizedDescription; presetMessage = message; return false }
     }
     private func setTourPreview(_ session: TourSession, fixtures: [Fixture], title: String, publish: Bool = false) {
@@ -2381,11 +2436,17 @@ extension VenueModel {
     @discardableResult func runMacro(_ macro: ProgrammingMacro) -> Bool {
         do {
             let (plan, session, updated) = try prepareMacro(macro)
+            var sheet = cueSheet
+            sheet.include(fixtures, palettes: presets)
+            for palette in plan.palettes { try sheet.record(palette, for: plan.targetIDs, sources: presets, linked: true) }
+            try sheet.validate()
             beginHistoryAction("Run macro · \(macro.name)"); defer { endHistoryAction() }
+            let previousCues = cueSheets
+            cueSheets[cueScope] = sheet
             if let session {
-                guard commitTour(session, fixtures: updated, title: "Run macro · \(macro.name)") else { macroMessage = message; return false }
+                guard commitTour(session, fixtures: updated, title: "Run macro · \(macro.name)") else { cueSheets = previousCues; macroMessage = message; return false }
             } else if fixtures != updated { fixtures = updated; revision += 1; persist() }
-            previewDraft = false; endPresetDrag()
+            programmerEdited = false; previewDraft = false; endPresetDrag(); refreshPaletteSelection()
             macroMessage = "Ran \(macro.name) on \(plan.targetIDs.count) fixtures. Undo restores the whole run."
             return true
         } catch { macroMessage = error.localizedDescription; return false }
@@ -2405,4 +2466,146 @@ extension VenueModel {
         recentPhaserSteps.removeAll { $0 == step }; recentPhaserSteps.insert(step, at: 0)
         recentPhaserSteps = Array(recentPhaserSteps.prefix(6))
     }
+}
+
+// Cue programming is independent of fixture placement and the reusable library.
+extension VenueModel {
+    private var cueScope: String {
+        if let tour { return "show:\(tour.show.id.uuidString):\(tour.configurationID.uuidString)" }
+        return "room:\(environment?.id ?? "none"):\(environment?.version ?? "none")"
+    }
+    var cueSheet: CueSheet { cueSheets[cueScope] ?? CueSheet() }
+    var currentCue: Int { cueSheet.current }
+    var currentCueLabel: String { CueSheet.label(currentCue) }
+    var canSaveCue: Bool { !selectedFixtureIDs.isEmpty && !libraryBusy && !isRetargeting && tourPreview == nil && presetDraft.validationIssue == nil && presetDraft.referenceIssue(in: presets) == nil }
+    var paletteSelectionIsMixed: Bool {
+        guard let first = selectedFixtures.first else { return false }
+        let sample = renderedChannels(for: first, at: 0)
+        return selectedFixtures.dropFirst().contains { renderedChannels(for: $0, at: 0) != sample }
+    }
+    func paletteSeconds(at now: Double = ProcessInfo.processInfo.systemUptime) -> Double { palettePlayback.seconds(at: now) }
+    func setPalettePlaying(_ playing: Bool, at now: Double = ProcessInfo.processInfo.systemUptime) {
+        palettePlayback.setPlaying(playing, at: now); fixtureRenderRevision += 1
+    }
+    func setPhaserMode(_ enabled: Bool) {
+        guard enabled != (presetDraft.phaser != nil) else { return }
+        beginHistoryAction(enabled ? "Use phaser values" : "Use static values"); defer { endHistoryAction() }
+        if enabled {
+            let values = Dictionary(uniqueKeysWithValues: presetDraft.channelMask.map { ($0, presetDraft.channels[$0]) })
+            presetDraft.phaser = Phaser(steps: [.init(values: values), .init(values: values)], beatsPerMinute: 120, measure: 4)
+        } else {
+            let channels = presetDraft.sampledChannels(at: paletteSeconds(), palettes: presets)
+            presetDraft.phaser = nil; presetDraft.channels = channels
+        }
+    }
+    private func programmerDidChange(from old: DMXPreset) {
+        guard old != presetDraft, !loadingProgrammer, !restoringHistory, presetWindowVisible else { return }
+        previewDraft = !selectedFixtureIDs.isEmpty
+        programmerEdited = true
+        programmerSelection = selectedFixtureIDs
+        programmerCue = currentCue
+    }
+    /// Call whenever the editor opens or selection changes. Cue layers take
+    /// priority over pool definitions, so edits start from the selected output.
+    func paletteSelectionChanged() {
+        guard savePendingCueEdits() else { return }
+        refreshPaletteSelection()
+    }
+    func finishPaletteEditing() { _ = savePendingCueEdits() }
+    func refreshPaletteSelection() {
+        guard presetWindowVisible, !restoringHistory else { return }
+        loadingProgrammer = true
+        defer { loadingProgrammer = false; programmerEdited = false; programmerSelection = selectedFixtureIDs; programmerCue = currentCue }
+        previewDraft = false
+        guard let first = selectedFixtures.first else { return }
+        let pool = presetDraft.pool
+        let look = cueSheet.look(for: first.id)
+        let layer = look?.layers.last(where: { $0.palette.pool == pool }) ?? look?.layers.last
+        let assigned = layer?.palette ?? presets.last(where: { first.referencedPaletteIDs.contains($0.id) && $0.pool == pool }) ?? presets.last(where: { first.referencedPaletteIDs.contains($0.id) })
+        if var assigned {
+            // Keep the values pinned in this cue even if a library source was
+            // subsequently edited. Selecting a source again opts into its update.
+            if let layer, var phaser = assigned.phaser {
+                for index in phaser.steps.indices {
+                    if let id = phaser.steps[index].paletteID, let source = layer.sources.first(where: { $0.id == id }), !presets.contains(source) {
+                        for channel in assigned.channelMask { phaser.steps[index].values[channel] = source.channels[channel] }
+                        phaser.steps[index].paletteID = nil
+                    }
+                }
+                assigned.phaser = phaser
+            }
+            presetDraft = assigned
+            editingPresetID = presets.contains(where: { $0.id == assigned.id }) ? assigned.id : nil
+        } else {
+            var draft = DMXPreset(name: "\(pool.label) · \(first.name)", channels: renderedChannels(for: first, at: 0))
+            draft.setPool(pool); presetDraft = draft; editingPresetID = nil
+        }
+        // Reading a mixed selection must never project the first fixture's look
+        // onto every other fixture. The first deliberate edit enables preview.
+        presetMessage = nil
+    }
+    private func cuePalette(_ palette: DMXPreset, fixtureID: UUID) throws -> DMXPreset {
+        guard palette.focusTargetID != nil, var session = tour, let fixture = fixture(fixtureID) else { return palette }
+        session.presetOverrides.removeAll { $0.id == palette.id }; session.presetOverrides.append(palette)
+        for channel in palette.channelMask { session.programming.units[fixtureID, default: [:]][channel] = palette.id }
+        let channels = try Touring.resolved(fixture, in: session, solveFocus: true).channels
+        var resolved = palette; resolved.focusTargetID = nil
+        for channel in [4,5] { resolved.channels[channel] = channels[channel] }
+        if var phaser = resolved.phaser {
+            for index in phaser.steps.indices {
+                if let id = phaser.steps[index].paletteID, let source = presets.first(where: { $0.id == id }) {
+                    for channel in resolved.channelMask { phaser.steps[index].values[channel] = source.channels[channel] }
+                    phaser.steps[index].paletteID = nil
+                }
+                for channel in [4,5] { phaser.steps[index].values[channel] = channels[channel] }
+            }
+            resolved.phaser = phaser
+        }
+        return resolved
+    }
+    private func updateCueLibrary(_ palette: DMXPreset) {
+        for scope in cueSheets.keys { cueSheets[scope]?.updateLibrary(palette) }
+        fixtureRenderRevision += 1
+    }
+    @discardableResult private func recordCuePalette(_ palette: DMXPreset, targets: Set<UUID>, number: Int? = nil, linked: Bool = false) -> Bool {
+        var sheet = cueSheet
+        sheet.include(fixtures, palettes: presets)
+        do {
+            for id in targets {
+                let resolved = try cuePalette(palette, fixtureID: id)
+                try sheet.record(resolved, for: [id], at: number, sources: presets, linked: linked && palette.focusTargetID == nil)
+            }
+            try sheet.validate()
+            cueSheets[cueScope] = sheet
+            fixtureRenderRevision += 1
+            return true
+        } catch { presetMessage = error.localizedDescription; return false }
+    }
+    @discardableResult func saveCue(number: Int? = nil) -> Bool {
+        guard canSaveCue else { presetMessage = presetDraft.validationIssue ?? "Select fixtures before recording a cue."; return false }
+        let number = number ?? currentCue
+        beginHistoryAction("Record cue \(CueSheet.label(number)) · \(presetDraft.name)"); defer { endHistoryAction() }
+        guard recordCuePalette(presetDraft, targets: selectedFixtureIDs, number: number) else { return false }
+        revision += 1; programmerEdited = false; previewDraft = false
+        if number != currentCue { refreshPaletteSelection() }
+        presetMessage = "Saved \(selectedFixtureIDs.count) fixtures to cue \(CueSheet.label(number))."
+        return true
+    }
+    @discardableResult private func savePendingCueEdits() -> Bool {
+        guard programmerEdited, presetWindowVisible, !programmerSelection.isEmpty, !restoringHistory else { return true }
+        beginHistoryAction("Record cue \(CueSheet.label(programmerCue))"); defer { endHistoryAction() }
+        guard recordCuePalette(presetDraft, targets: programmerSelection, number: programmerCue) else { return false }
+        revision += 1; programmerEdited = false; previewDraft = false
+        return true
+    }
+    func selectCue(_ number: Int) {
+        guard !libraryBusy, !isRetargeting, tourPreview == nil, CueSheet.numbers.contains(number), number != currentCue, savePendingCueEdits() else { return }
+        beginHistoryAction("Go to cue \(CueSheet.label(number))"); defer { endHistoryAction() }
+        var sheet = cueSheet; sheet.include(fixtures, palettes: presets); sheet.select(number)
+        cueSheets[cueScope] = sheet
+        previewDraft = false; revision += 1; fixtureRenderRevision += 1
+        refreshPaletteSelection()
+        presetMessage = "Cue \(currentCueLabel) · unchanged attributes track from earlier cues."
+    }
+    func stepCue(_ offset: Int) { selectCue(currentCue + offset) }
 }

@@ -13,6 +13,11 @@ struct SessionSmoke {
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(suite)
         defer { try? FileManager.default.removeItem(at: directory) }
         let environment = try JSONDecoder().decode(EnvironmentManifest.self, from: Data(contentsOf: URL(fileURLWithPath: "VenueVolume/Environments/Classroom/environment.json")))
+        if ProcessInfo.processInfo.arguments.contains("--interaction-regression") {
+            try ProgrammingWorkflowSmoke.run(environment: environment)
+            try CueProgrammingSmoke.run(environment: environment)
+            return
+        }
         let model = VenueModel(arguments: [], defaults: defaults, placementDirectory: directory)
         model.activate(environment: environment)
         check(model.recent.items.isEmpty, "New session must show the recent guide")
@@ -215,5 +220,6 @@ struct SessionSmoke {
         try TouringSmoke.run(environment: environment)
         try PalettePalmSelectionSmoke.run(environment: environment)
         try ProgrammingWorkflowSmoke.run(environment: environment)
+        try CueProgrammingSmoke.run(environment: environment)
     }
 }

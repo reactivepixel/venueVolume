@@ -99,8 +99,6 @@ struct ToolboxView: View {
                     }
                 }
                 Spacer(minLength: 12)
-                Button(model.palmMapVisible ? "Close Palm Map" : "Palm Map", systemImage: "map") { model.togglePalmMap() }
-                    .disabled(!model.palmMapVisible && (!model.isImmersed || !model.canPlace || model.libraryBusy || model.navigationBlackoutActive))
                 Menu {
                     Button("Settings", systemImage: "gearshape") { settingsPresented = true }
                     Button("Touring shows…", systemImage: "shippingbox") { model.touringPanelPresented = true }
@@ -189,13 +187,12 @@ struct ToolboxView: View {
     }
 }
 
-/// Left pinches are reserved for navigation; avoid activating a button on release.
+/// A pinch targeted at a window belongs to that control. Reserve it from
+/// free-space navigation without disabling the view midway through its click.
 struct NavigationInputShield: ViewModifier {
     var model: VenueModel
     func body(content: Content) -> some View {
         content
-            .disabled(model.isImmersed && model.navigationInputReserved)
-            .allowsHitTesting(!model.isImmersed || !model.navigationInputReserved)
             .simultaneousGesture(SpatialEventGesture().onChanged { events in
                 if model.isImmersed && events.contains(where: { $0.chirality == .left }) { model.reserveLeftHandInput() }
             })

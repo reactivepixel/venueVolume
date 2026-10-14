@@ -35,10 +35,6 @@ struct VenueVolumeApp: App {
         .windowResizability(.contentMinSize)
         .defaultSize(width: 1320, height: 1000)
 
-        WindowGroup(id: "fixture-editor", for: String.self) { _ in FixtureEditorView().placementLinkReceiver().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model) } defaultValue: { "selection" }
-            .windowResizability(.contentMinSize)
-            .defaultSize(width: 620, height: 760)
-
         WindowGroup(id: "diagnostics") {
             DebugPanel().placementLinkReceiver().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model)
         }

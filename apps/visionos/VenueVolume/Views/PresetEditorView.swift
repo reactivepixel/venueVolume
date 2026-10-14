@@ -12,6 +12,7 @@ struct PresetEditorView: View {
     @State private var showUnsaved = false
     @State private var showDelete = false
     @State private var showSaveAs = false
+    @State private var showCueSave = false
     @State private var copyName = ""
     @State private var poolFilter: PaletteCategory?
     @State private var selectedStep = 0
@@ -60,6 +61,7 @@ struct PresetEditorView: View {
         .ornament(visibility: model.selectedFixtures.isEmpty ? .hidden : .visible, attachmentAnchor: .scene(.bottom)) {
             selectionBar.padding(20).frame(width: 850).glassBackgroundEffect()
         }
+        .sheet(isPresented: $showCueSave) { SaveCueSheet(current: model.currentCue) }
         .sheet(isPresented: Binding(get: { model.macrosPresented }, set: { model.macrosPresented = $0 })) { MacroEditorView(seed: model.macroSeed) }
         .onAppear {
             model.presetEditor.registerWindow(windowID)
@@ -69,13 +71,15 @@ struct PresetEditorView: View {
                 openWindow(id: "launch")
             }
             model.presetWindowVisible = true
-            model.previewDraft = true
+            model.refreshPaletteSelection()
             model.previewBlackout = false
             if let presetID = model.presetEditor.requestedPreset(for: windowID), presetID != model.editingPresetID {
                 request(.preset(presetID))
             }
         }
+        .onChange(of: model.selectedFixtureIDs) { _, _ in model.paletteSelectionChanged() }
         .onDisappear {
+            model.finishPaletteEditing()
             model.finishHistoryGesture()
             if model.presetEditor.unregisterWindow(windowID) {
                 model.previewDraft = false
@@ -89,7 +93,7 @@ struct PresetEditorView: View {
             if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits() }
         }
         .confirmationDialog("Unsaved palette changes", isPresented: $showUnsaved, titleVisibility: .visible) {
-            Button("Save and continue") { if model.savePreset() { navigate() } }
+            Button("Save and continue") { if model.selectedFixtures.isEmpty ? model.savePreset() : model.saveCue() { navigate() } }
             Button("Discard changes", role: .destructive) { navigate() }
             Button("Keep editing", role: .cancel) { pendingNavigation = nil }
         } message: { Text("Save or discard your draft before switching palettes. Simulation is paused until you choose a palette or turn it back on.") }
@@ -232,7 +236,7 @@ struct PresetEditorView: View {
 
             }
             actionLayout(stacked: stacked) {
-                Text(model.draftHasChanges ? "Unsaved changes" : "Saved palette").foregroundStyle(model.draftHasChanges ? Color.orange : .secondary)
+                Text(model.programmerEdited ? "Live edits · cue \(model.currentCueLabel)" : "Cue \(model.currentCueLabel)").foregroundStyle(model.programmerEdited ? Color.orange : .secondary)
                 if !stacked { Spacer() }
                 Text("\(model.selectedFixtures.count) fixtures selected").foregroundStyle(.secondary)
             }.font(.subheadline)
@@ -256,46 +260,24 @@ struct PresetEditorView: View {
                     }
                 }
             }
-            if model.tour == nil, let id = model.selectedID, let fixture = model.fixture(id) {
-                VStack(alignment: .leading, spacing: 12) {
-                    Text(fixture.name).font(.headline)
-                    Text("Assigned: \(model.presets.first(where: { $0.id == fixture.presetID })?.name ?? "None")")
-                        .foregroundStyle(.secondary)
-                    actionLayout(stacked: stacked) {
-                        Button { model.beginPresetTarget() } label: {
-                            Label("Target", systemImage: "scope").frame(minHeight: 60)
-                        }.disabled(!model.canPlace || fixture.asset?.headAim != true || model.isRetargeting)
-                        Button { model.clearAssignment(id) } label: { Text("Clear assignment").frame(minHeight: 60) }
-                            .disabled(fixture.presetID == nil)
-                        Button {
-                            if let presetID = model.editingPresetID {
-                                _ = model.applyPaletteToSelection(presetID)
-                                model.presetMessage = model.message
-                            }
-                        } label: { Text("Apply to selection").frame(minHeight: 60) }
-                            .disabled(model.editingPresetID == nil || model.draftHasChanges)
-                    }
-                }
-            } else {
-                Text("Select an object or drag a saved palette from the toolbox onto a fixture.")
+            if model.selectedFixtures.isEmpty {
+                Text("Select fixtures to edit their cue output. You can also create a palette in the library.")
                     .foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
             }
         }
     }
 
     private var selectionBar: some View {
-        @Bindable var model = model
-        return HStack(spacing: 16) {
+        HStack(spacing: 16) {
             VStack(alignment: .leading, spacing: 4) {
                 Text("\(model.selectedFixtures.count) fixtures selected").font(.headline)
-                Text("Owns \(model.presetDraft.pool.label.lowercased()) · other attributes stay unchanged")
+                Text(model.paletteSelectionIsMixed && !model.previewDraft ? "Mixed look · editing affects the selection" : model.palettePlayback.isPlaying ? "Live fixture output" : "Diagram and fixtures paused")
                     .font(.caption).foregroundStyle(.secondary)
             }
             Spacer()
-            Toggle("Preview", isOn: $model.previewDraft).toggleStyle(.button).disabled(model.selectedFixtures.isEmpty)
-            Button("Apply saved") { if let id = model.editingPresetID { _ = model.applyPaletteToSelection(id) } }
-                .buttonStyle(.borderedProminent)
-                .disabled(model.selectedFixtures.isEmpty || model.editingPresetID == nil || model.draftHasChanges || model.isRetargeting || model.tourPreview != nil)
+            CueControlsView()
+            Button("Save to cue \(model.currentCueLabel)") { model.saveCue() }
+                .buttonStyle(.borderedProminent).disabled(!model.canSaveCue)
         }.frame(minHeight: 60)
     }
 
@@ -330,23 +312,31 @@ struct PresetEditorView: View {
 
     private func footer(stacked: Bool) -> some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(model.presetMessage ?? (model.tour == nil ? "Saving updates all objects assigned to this palette." : "Saving updates assigned parameters in this scope. Named focus changes require Refocus."))
-                .foregroundStyle(.secondary)
-                .fixedSize(horizontal: false, vertical: true)
+            Text(model.presetMessage ?? (model.selectedFixtures.isEmpty ? "Store a reusable palette, or select fixtures to record a cue." : "Changes preview live. Save records this cue; changing selection or cue also records your edits here."))
+                .foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .leading)
             actionLayout(stacked: stacked) {
-                Button { copyName = ""; showSaveAs = true } label: { Text("Save as new…").frame(minHeight: 60) }
-                    .disabled(model.isRetargeting)
+                Menu("Palette library") {
+                    Button("Store as new palette…") { copyName = model.presetDraft.name; showSaveAs = true }
+                    Button("Update library palette") { model.savePreset() }.disabled(model.editingPresetID == nil || !model.canSavePreset)
+                }.frame(minHeight: 60)
                 if !stacked { Spacer() }
-                Button { model.savePreset() } label: { Text(model.editingPresetID == nil ? "Store palette" : "Update palette").frame(minHeight: 60) }
-                    .buttonStyle(.borderedProminent).disabled(!model.canSavePreset || model.isRetargeting)
+                if !model.selectedFixtures.isEmpty {
+                    Button("Save to specific cue…") { showCueSave = true }.disabled(!model.canSaveCue).frame(minHeight: 60)
+                    Button("Save to cue \(model.currentCueLabel)") { model.saveCue() }
+                        .buttonStyle(.borderedProminent).disabled(!model.canSaveCue).frame(minHeight: 60)
+                } else {
+                    Button("Store palette") { model.savePreset() }.buttonStyle(.borderedProminent).disabled(!model.canSavePreset)
+                }
             }
         }
     }
 
     private func request(_ destination: Navigation) {
         pendingNavigation = destination
-        if model.draftHasChanges {
+        if !model.selectedFixtureIDs.isEmpty {
+            if !model.programmerEdited || model.saveCue() { navigate() }
+        } else if model.draftHasChanges {
             // Keep the draft intact without projecting it onto a newly selected
             // fixture while the user is deciding which preset to edit.
             model.previewDraft = false

@@ -16,6 +16,9 @@ struct VenueContextBar: View {
                         .accessibilityLabel(expanded ? "Collapse context menu" : "Expand context menu")
                         .accessibilityValue(expanded ? "Expanded" : "Collapsed")
                     if expanded {
+                        HistoryControls()
+                        Button("Toolbox", systemImage: "wrench.and.screwdriver") { model.requestToolbox() }.frame(minHeight: 60)
+                        CueControlsView()
                         Button("Room placement", systemImage: "building.2") {
                             openWindow(id: "room-placement"); expanded = false
                         }.frame(minHeight: 60)
@@ -48,13 +51,13 @@ struct VenueContextBar: View {
                             Text("Select again to move or transform.")
                                 .font(.callout).foregroundStyle(.secondary)
                         }.frame(width: 360, alignment: .leading)
-                        Button("Edit selection", systemImage: "slider.horizontal.3") {
-                            openWindow(id: "fixture-editor", value: "selection")
-                        }.frame(minHeight: 60)
+                        if !expanded {
+                            Button("Toolbox", systemImage: "slider.horizontal.3") { model.requestToolbox() }.frame(minHeight: 60)
+                        }
                     }
                     }
                 }.padding(model.contextBarHasSelection ? 20 : 10).frame(minHeight: model.contextBarHasSelection ? 100 : 80)
-            }.frame(width: model.contextBarHasSelection ? (expanded ? 1360 : 1120) : (expanded ? 380 : 80))
+            }.frame(width: model.contextBarHasSelection ? (expanded ? 1440 : 880) : (expanded ? 1140 : 80))
                 .glassBackgroundEffect(in: RoundedRectangle(cornerRadius: 24))
                 .accessibilityElement(children: .contain)
                 .accessibilityLabel("Context bar")

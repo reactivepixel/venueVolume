@@ -418,7 +418,6 @@ struct TourSelectionPane: View {
                     }
                     if model.tourSelection.count == 1, let id = model.selectedID, let fixture = model.fixture(id) {
                         Divider()
-                        Button("Pop out item editor", systemImage: "arrow.up.right.square") { openWindow(id: "fixture-editor", value: "selection") }.frame(minHeight: 60)
                         FixtureActions(fixture: fixture)
                         FixturePanel(fixture: model.renderedFixture(fixture))
                     }

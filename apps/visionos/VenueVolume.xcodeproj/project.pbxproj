@@ -28,6 +28,7 @@
 		8685479E602E1BD5E4A88AC4 /* MacroEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5063B5DA775538EEAD3BAD /* MacroEditorView.swift */; };
 		8A1C9698C4E6C0AA080D9B46 /* RoomPlacementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B62F3580F6D134658FD44D /* RoomPlacementView.swift */; };
 		8FC4C74944432D3BD74698FB /* RoomLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9926915861960E1C383B16B3 /* RoomLibraryView.swift */; };
+		8FD0ECA388B52276E0C64309 /* CueControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1063F59F92913FF258EFFF7 /* CueControlsView.swift */; };
 		938B46F588650451BEE87870 /* PalettePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CBC41F912B83FC8344598 /* PalettePreviewView.swift */; };
 		967C8E8E6ED8A01534E8AAE3 /* PhaserProgrammerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59D2CAFA7EF1C88962E0A63 /* PhaserProgrammerView.swift */; };
 		9BB968DBAB077D17CF8A74FA /* VenueVolumeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 9F29BE575556521651280192 /* VenueVolumeCore */; };
@@ -84,6 +85,7 @@
 		E5F9AB0517B709A3147A42E0 /* PresetDragSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetDragSource.swift; sourceTree = "<group>"; };
 		EE5063B5DA775538EEAD3BAD /* MacroEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroEditorView.swift; sourceTree = "<group>"; };
 		EEF95065B787765F9A8BA540 /* VenueContextBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueContextBar.swift; sourceTree = "<group>"; };
+		F1063F59F92913FF258EFFF7 /* CueControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueControlsView.swift; sourceTree = "<group>"; };
 		F58C9AC408DE096B035A72DE /* DebugPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPanel.swift; sourceTree = "<group>"; };
 		F949E3AA522D9D9A396D62E4 /* VenueSaveDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueSaveDocument.swift; sourceTree = "<group>"; };
 		FC6645148B15A2D221C051A4 /* PresetEditorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetEditorPresenter.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				6DCC5AEC820ED40A582D3DE4 /* AuditHistoryView.swift */,
+				F1063F59F92913FF258EFFF7 /* CueControlsView.swift */,
 				F58C9AC408DE096B035A72DE /* DebugPanel.swift */,
 				36264B9671A4D573E153004E /* FixtureInspector.swift */,
 				00372CBAA7C8480C7AC8437A /* FixtureLabel.swift */,
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31168DE9ABBE06BB43C628B8 /* AuditHistoryView.swift in Sources */,
+				8FD0ECA388B52276E0C64309 /* CueControlsView.swift in Sources */,
 				401DB4EDFCC193C6117F2594 /* DebugPanel.swift in Sources */,
 				AD8C275DDC1945BB1092CD89 /* FixtureInspector.swift in Sources */,
 				2783645E3DCA12EDFCFABF73 /* FixtureLabel.swift in Sources */,

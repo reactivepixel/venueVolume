@@ -14,9 +14,10 @@ struct PhaserProgrammerView: View {
     }
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
-            Picker("Value mode", selection: Binding(get: { phaser != nil }, set: setMode)) {
-                Text("Static values").tag(false); Text("Phaser").tag(true)
-            }.pickerStyle(.segmented)
+            HStack(spacing: 12) {
+                modeButton("Static", enabled: false)
+                modeButton("Dynamic · Phaser", enabled: true)
+            }.accessibilityElement(children: .contain).accessibilityLabel("Value mode")
             if let phaser {
                 if model.presetDraft.channelMask == Set([0]) {
                     HStack(spacing: 16) {
@@ -55,13 +56,15 @@ struct PhaserProgrammerView: View {
             Button("Cancel", role: .cancel) { pendingPattern = nil }
         } message: { Text("The pattern replaces step sources and distribution. Your tempo and cycle length are kept.") }
     }
-    private func setMode(_ enabled: Bool) {
-        if enabled {
-            let values = Dictionary(uniqueKeysWithValues: model.presetDraft.channelMask.map { ($0, model.presetDraft.channels[$0]) })
-            let source = model.editingPresetID.flatMap { id in compatibleSources.first { $0.id == id } }
-            model.presetDraft.phaser = Phaser(steps: [.init(values: values, paletteID: source?.id), .init(values: values)], beatsPerMinute: 120, measure: 4)
-        } else { model.presetDraft.phaser = nil }
-        selectedStep = 0
+    private func modeButton(_ title: String, enabled: Bool) -> some View {
+        Button { model.setPhaserMode(enabled); selectedStep = 0 } label: {
+            HStack { Image(systemName: enabled ? "waveform.path" : "line.diagonal"); Text(title) }
+                .frame(maxWidth: .infinity, minHeight: 60).contentShape(.rect)
+        }
+        .buttonStyle(.bordered)
+        .tint((phaser != nil) == enabled ? .accentColor : .gray)
+        .accessibilityIdentifier(enabled ? "palette-mode-dynamic" : "palette-mode-static")
+        .accessibilityAddTraits((phaser != nil) == enabled ? .isSelected : [])
     }
     private func rhythm(_ phaser: Phaser) -> some View {
         VStack(alignment: .leading, spacing: 16) {

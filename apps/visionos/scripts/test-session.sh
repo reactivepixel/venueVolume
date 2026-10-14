@@ -14,4 +14,4 @@ swiftc -swift-version 6 -parse-as-library \
     -Xlinker -rpath -Xlinker "$venue_test_build" \
     VenueVolume/Models/*.swift Tests/SessionSmoke.swift Tests/AuditSmoke.swift Tests/InteractionSmoke.swift Tests/StartupSmoke.swift Tests/EditorPresentationSmoke.swift Tests/PlacementHandoffSmoke.swift Tests/TouringSmoke.swift Tests/ProgrammingWorkflowSmoke.swift \
     -o "$venue_test_build/session-tests"
-"$venue_test_build/session-tests"
+"$venue_test_build/session-tests" "$@"

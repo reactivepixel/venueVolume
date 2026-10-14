@@ -6,28 +6,25 @@ struct PalettePreviewView: View {
     var palette: DMXPreset
     @Environment(VenueModel.self) private var model
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var playing = true
-    @State private var start = Date()
-    @State private var pausedSeconds = 0.0
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Label("Live preview", systemImage: "light.beacon.max").font(.headline)
                 Spacer()
                 Text(model.selectedFixtures.isEmpty ? "4 sample fixtures" : "\(model.selectedFixtures.count) selected fixtures").font(.caption).foregroundStyle(.secondary)
-                Button {
-                    if playing { pausedSeconds = Date().timeIntervalSince(start) }
-                    else { start = Date().addingTimeInterval(-pausedSeconds) }
-                    playing.toggle()
-                } label: { Image(systemName: playing && !reduceMotion ? "pause.fill" : "play.fill").frame(width: 44, height: 44) }
-                    .accessibilityLabel(playing ? "Pause preview" : "Play preview").disabled(reduceMotion)
+                Button { model.setPalettePlaying(!model.palettePlayback.isPlaying) } label: {
+                    Image(systemName: model.palettePlayback.isPlaying ? "pause.fill" : "play.fill").frame(width: 60, height: 60)
+                }.accessibilityLabel(model.palettePlayback.isPlaying ? "Pause diagram and fixtures" : "Play diagram and fixtures")
             }
-            TimelineView(.animation(minimumInterval: 1 / 30, paused: !playing || reduceMotion || palette.phaser == nil)) { timeline in
-                let seconds = reduceMotion ? 0 : playing ? timeline.date.timeIntervalSince(start) : pausedSeconds
+            TimelineView(.animation(minimumInterval: 1 / 30, paused: !model.palettePlayback.isPlaying)) { timeline in
+                let _ = timeline.date
+                let seconds = model.paletteSeconds()
                 Canvas { context, size in
                     let count = min(8, max(1, model.selectedFixtures.isEmpty ? 4 : model.selectedFixtures.count))
                     for index in 0..<count {
-                        let channels = palette.sampledChannels(at: seconds, fixtureIndex: index, fixtureCount: count, palettes: model.presets)
+                        let channels = model.selectedFixtures.indices.contains(index)
+                            ? model.renderedChannels(for: model.selectedFixtures[index], at: seconds)
+                            : palette.sampledChannels(at: seconds, fixtureIndex: index, fixtureCount: count, palettes: model.presets)
                         let light = LightingPreview(channels: channels)
                         let color = Color(red: Double(light.rgb[0]), green: Double(light.rgb[1]), blue: Double(light.rgb[2]))
                         let x = size.width * (Double(index) + 0.5) / Double(count)
@@ -41,6 +38,7 @@ struct PalettePreviewView: View {
                 }.frame(height: 86).accessibilityLabel("Animated fixture output preview")
             }
         }.padding(18).background(.black.opacity(0.16), in: RoundedRectangle(cornerRadius: 22))
+            .onChange(of: reduceMotion, initial: true) { _, reduce in if reduce { model.setPalettePlaying(false) } }
     }
 }
 

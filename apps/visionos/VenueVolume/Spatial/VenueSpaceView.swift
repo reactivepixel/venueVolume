@@ -53,9 +53,6 @@ struct VenueSpaceView: View {
             })
         .onChange(of: model.selectedID) { _, selected in
             activeSpatialEvents.removeAll(); model.endTransformDrag()
-            if selected == nil {
-                dismissWindow(id: "fixture-editor")
-            }
         }
         .onChange(of: model.canPlace, initial: true) { _, ready in
             if !ready { model.closePalmMap() }
@@ -102,9 +99,9 @@ struct VenueSpaceView: View {
                 guard !Task.isCancelled else { return }
                 if arguments.contains("--position-tab") {
                     if let id = model.selectedID { model.beginTransform(id) }
-                    openWindow(id: "fixture-editor", value: "selection")
+                    model.requestToolbox()
                 } else if arguments.contains("--show-item-editor") {
-                    openWindow(id: "fixture-editor", value: "selection")
+                    model.requestToolbox()
                 } else {
                     let phaserID = arguments.contains("--phaser-editor") ? model.presets.first(where: { $0.phaser != nil })?.id : nil
                     model.presetEditor.request(presetID: phaserID)
@@ -135,15 +132,13 @@ struct VenueSpaceView: View {
             if model.isDemoMode && !arguments.contains("--show-preset-editor") && !arguments.contains("--position-tab") {
                 dismissWindow(id: "presets")
             }
-            if model.isDemoMode && !arguments.contains("--position-tab") && !arguments.contains("--show-item-editor") {
-                dismissWindow(id: "fixture-editor")
-            }
         }
         .task {
             #if DEBUG
             await scene.runPresetDragSmoke(model: model) { dismissWindow(id: "toolbox") }
             await runContextBarSmoke()
             await runProgrammingSmoke()
+            await runCueProgrammingSmoke()
             await runEditorRecallSmoke()
             await runToolboxWindowSmoke()
             await scene.runInputSmoke(model: model)
@@ -175,7 +170,6 @@ struct VenueSpaceView: View {
             model.canPlace = false
             model.expandedID = nil
             model.gizmoVisible = false
-            dismissWindow(id: "fixture-editor")
             dismissWindow(id: "room-placement")
             for identity in model.toolboxWindowIDs { dismissWindow(id: "toolbox", value: identity) }
             if model.unvaluedToolboxVisible { dismissWindow(id: "toolbox") }
@@ -304,6 +298,42 @@ struct VenueSpaceView: View {
                 for identity in model.toolboxWindowIDs { dismissWindow(id: "toolbox", value: identity) }
             }
         } catch { FileHandle.standardOutput.write(Data("PROGRAMMING_SMOKE_FAIL \(error)\n".utf8)) }
+    }
+
+    private func runCueProgrammingSmoke() async {
+        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--cue-smoke") else { return }
+        do {
+            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
+            guard let first = model.fixtures.first, let full = model.presets.first(where: { $0.pool == .intensity && $0.phaser == nil }) else { throw EnvironmentError.invalid("Cue fixtures unavailable") }
+            model.select(first.id, extendSelection: false); model.presetWindowVisible = true
+            model.choosePreset(full); model.presetDraft.channels[0] = 80
+            guard model.renderedChannels(for: first)[0] == 80, model.saveCue() else { throw EnvironmentError.invalid("Live edit or current cue save failed") }
+            model.selectCue(2); model.presetDraft.channels[0] = 25
+            guard model.saveCue(number: 3), model.currentCue == 2, model.renderedChannels(for: first)[0] == 80 else { throw EnvironmentError.invalid("Explicit cue save changed active output") }
+            model.selectCue(3)
+            guard model.renderedChannels(for: first)[0] == 25 else { throw EnvironmentError.invalid("Cue recall failed") }
+            model.undo(); guard model.currentCue == 2 else { throw EnvironmentError.invalid("Cue Undo failed") }
+            model.redo(); guard model.currentCue == 3 else { throw EnvironmentError.invalid("Cue Redo failed") }
+            for _ in 0..<10 { model.setPhaserMode(true); guard model.presetDraft.phaser != nil else { throw EnvironmentError.invalid("Dynamic mode failed") }; model.setPhaserMode(false) }
+            model.presetDraft.phaser = DimmerPattern.wave.make()
+            guard model.saveCue() else { throw EnvironmentError.invalid("Phaser cue save failed") }
+            model.setPalettePlaying(false)
+            let paused = model.renderedChannels(for: first)
+            try await Task.sleep(for: .milliseconds(200))
+            guard paused == model.renderedChannels(for: first) else { throw EnvironmentError.invalid("Fixture moved while preview paused") }
+            model.setPalettePlaying(true)
+            model.updateHandToolboxActivation(attended: false, palmVisible: false, now: 0)
+            model.updateHandToolboxActivation(attended: true, palmVisible: true, now: 1)
+            model.updateHandToolboxActivation(attended: true, palmVisible: true, now: 2)
+            guard model.toolboxRequestID != nil, !model.palmMapVisible else { throw EnvironmentError.invalid("Wrist routing failed") }
+            model.presetWindowVisible = !model.presetEditor.windowIDs.isEmpty
+            model.resetToolboxActivation()
+            try await Task.sleep(for: .milliseconds(300))
+            for identity in model.toolboxWindowIDs { dismissWindow(id: "toolbox", value: identity) }
+            if model.unvaluedToolboxVisible { dismissWindow(id: "toolbox") }
+            model.presetEditor.request()
+            FileHandle.standardOutput.write(Data("CUE_SMOKE_PASS currentCue=03 explicitSave=true undoRedo=true repeatedModeSwitch=true fixturePause=true wristToolbox=true\n".utf8))
+        } catch { FileHandle.standardOutput.write(Data("CUE_SMOKE_FAIL \(error)\n".utf8)) }
     }
 
     private func runContextBarSmoke() async {

@@ -17,7 +17,7 @@ struct FixtureLabel: View {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(fixture.name).font(.headline)
                         if selected {
-                            Text(model.presets.first(where: { $0.id == fixture.presetID })?.name ?? "No palette")
+                            Text("Cue \(model.currentCueLabel)")
                                 .font(.callout).foregroundStyle(.secondary)
                         }
                     }
@@ -26,13 +26,6 @@ struct FixtureLabel: View {
                     .accessibilityAddTraits(selected ? .isSelected : [])
                 if selected {
                     HStack(spacing: 12) {
-                    Button {
-                        model.select(fixture.id, extendSelection: false)
-                        model.toolboxTab = 0
-                        model.requestToolbox()
-                    } label: {
-                        Image(systemName: "info.circle").frame(minWidth: 60, minHeight: 60)
-                    }.accessibilityLabel("Info for \(fixture.name)")
                     Button(role: .destructive) { model.remove(fixture.id) } label: { Image(systemName: "trash").frame(minWidth: 60, minHeight: 60) }
                         .accessibilityLabel(model.tour == nil ? "Delete \(fixture.name)" : "Return \(fixture.name) to inventory")
                     }
