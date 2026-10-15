@@ -2,22 +2,6 @@ import SwiftUI
 import VenueVolumeCore
 
 extension VenueModel {
-    func openPreset(_ id: UUID?) {
-        // The editor manages dirty-navigation confirmation; external open requests
-        // keep the current draft intact while bringing its window forward.
-        if !selectedFixtureIDs.isEmpty {
-            if presetWindowVisible { paletteSelectionChanged() }
-            return
-        }
-        if draftHasChanges {
-            presetMessage = "Your unsaved draft is still open. Use the palette list to save or discard it before switching."
-            return
-        }
-        if let saved = presets.first(where: { $0.id == id }) {
-            choosePreset(saved)
-        }
-    }
-
     func choosePreset(_ preset: DMXPreset) {
         guard !libraryBusy else { return }
         beginHistoryAction("Open palette · \(preset.name)"); defer { endHistoryAction() }
@@ -94,42 +78,6 @@ extension VenueModel {
         if let first = presets.first { choosePreset(first) } else { newPreset() }
         previewDraft = false
         presetMessage = "Palette deleted. Its attributes are cleared; other palette layers and aim overrides are preserved."
-    }
-
-    @discardableResult func applyPaletteToSelection(_ id: UUID) -> Bool {
-        guard !selectedFixtureIDs.isEmpty else { presetMessage = "Select fixtures or a group first."; return false }
-        if tour != nil { return applyTourPreset(id, ids: selectedFixtureIDs) }
-        guard let first = selectedFixtures.first else { return false }
-        let count = selectedFixtureIDs.count
-        let applied = applyPreset(id, to: first.id)
-        if applied { presetMessage = "Applied to \(count) selected fixtures. Other attributes are preserved." }
-        return applied
-    }
-
-    @discardableResult func applyPreset(_ presetID: UUID, to fixtureID: UUID) -> Bool {
-        if touring.active != nil { return applyTourPreset(presetID, ids: [fixtureID]) }
-        guard !libraryBusy else { return false }
-        beginHistoryAction("Apply palette"); defer { endHistoryAction() }
-        guard let preset = presets.first(where: { $0.id == presetID }) else {
-            message = "That palette no longer exists."
-            return false
-        }
-        do {
-            let targets = actionIDs(for: fixtureID)
-            var updated = fixtures
-            for memberID in targets { updated = try PresetOperations.applying(preset, to: memberID, fixtures: updated) }
-            guard recordCuePalette(preset, targets: targets, linked: true) else { return false }
-            if updated != fixtures { fixtures = updated; revision += 1; persist() }
-            programmerEdited = false; previewDraft = false
-            let selectingMultiple = multiSelectionMode
-            multiSelectionMode = false; select(fixtureID); multiSelectionMode = selectingMultiple
-            recent.use(.preset(presetID))
-            message = "Applied \(preset.name) to \(fixture(fixtureID)?.name ?? "fixture")."
-            return true
-        } catch {
-            message = error.localizedDescription
-            return false
-        }
     }
 
     func clearAssignment(_ id: UUID) {
@@ -260,99 +208,6 @@ extension VenueModel {
     func isBlackedOut(_ fixture: Fixture) -> Bool {
         blackout || (previewDraft && previewBlackout && (selectedFixtureIDs.contains(fixture.id) || selectedUnitIDs.contains(fixture.id)))
     }
-
-    /// Direct preview articulation belongs to this placed fixture, not its shared preset.
-    func setHeadAim(_ id: UUID, panDegrees: Float? = nil, tiltDegrees: Float? = nil) {
-        if !groupActionActive, actionIDs(for: id).count > 1 {
-            beginHistoryAction("Adjust group motion"); groupActionActive = true
-            defer { groupActionActive = false; endHistoryAction() }
-            for member in actionIDs(for: id) { setHeadAim(member, panDegrees: panDegrees, tiltDegrees: tiltDegrees) }
-            return
-        }
-        guard !libraryBusy else { return }
-        beginHistoryAction("Adjust fixture motion"); defer { endHistoryAction() }
-        guard let index = fixtures.firstIndex(where: { $0.id == id }),
-              let asset = fixtures[index].asset,
-              asset.pan != nil || asset.tilt != nil,
-              fixtures[index].channels.count >= 6,
-              [panDegrees, tiltDegrees].compactMap({ $0 }).allSatisfy(\.isFinite) else { return }
-        var candidate = fixtures[index]
-        let pan = panDegrees.flatMap { asset.pan?.byte(for: $0) } ?? candidate.channels[4]
-        let tilt = tiltDegrees.flatMap { asset.tilt?.byte(for: $0) } ?? candidate.channels[5]
-        candidate.aimOverride = .init(pan: pan, tilt: tilt)
-        candidate.preserveAimOverride()
-        guard candidate != fixtures[index], candidate.validationIssue(among: fixtures) == nil else { return }
-        cancelPicking()
-        guard recordCuePalette(DMXPreset(name: "Manual aim", channels: candidate.channels, category: .position, attributeIndices: [4,5]), targets: [id]) else { return }
-        fixtures[index] = candidate
-        previewDraft = false
-        lastTarget = nil
-        revision += 1
-        persist()
-    }
-
-    func setJoint(_ id: UUID, jointID: String, value: Float) {
-        if !groupActionActive, actionIDs(for: id).count > 1 {
-            beginHistoryAction("Adjust group joint"); groupActionActive = true
-            defer { groupActionActive = false; endHistoryAction() }
-            for member in actionIDs(for: id) { setJoint(member, jointID: jointID, value: value) }
-            return
-        }
-        guard !libraryBusy, value.isFinite, let index = fixtures.firstIndex(where: { $0.id == id }),
-              let joint = fixtures[index].asset?.joints.first(where: { $0.id == jointID }),
-              fixtures[index].channels.indices.contains(joint.channel) else { return }
-        if jointID == "pan" { setHeadAim(id, panDegrees: value); return }
-        if jointID == "tilt" { setHeadAim(id, tiltDegrees: value); return }
-        beginHistoryAction("Adjust \(joint.label)"); defer { endHistoryAction() }
-        var candidate = fixtures[index]
-        if candidate.jointOverrides == nil { candidate.jointOverrides = [:] }
-        candidate.jointOverrides?[jointID] = joint.byte(for: value)
-        candidate.preserveAimOverride()
-        guard candidate != fixtures[index], candidate.validationIssue(among: fixtures) == nil else { return }
-        guard recordCuePalette(DMXPreset(name: joint.label, channels: candidate.channels, attributeIndices: [joint.channel]), targets: [id]) else { return }
-        cancelPicking(); fixtures[index] = candidate; previewDraft = false; lastTarget = nil
-        revision += 1; persist()
-    }
-
-    func moveFixture(_ id: UUID, position: Position3D, yawDegrees: Float) {
-        guard let fixture = fixture(id) else { return }
-        let angles = FixtureAiming.angles(fixture.orientation)
-        transformFixture(id, position: position, yaw: yawDegrees, pitch: angles.pitch, roll: angles.roll)
-    }
-
-    func transformFixture(_ id: UUID, position: Position3D, yaw: Float, pitch: Float, roll: Float) {
-        guard !libraryBusy else { return }
-        beginHistoryAction("Transform fixture"); defer { endHistoryAction() }
-        guard let index = fixtures.firstIndex(where: { $0.id == id }), let environment else { return }
-        guard [yaw,pitch,roll].allSatisfy(\.isFinite) else { return }
-        var candidate = fixtures[index]
-        candidate.position = position
-        candidate.orientation = FixtureAiming.euler(yaw: yaw, pitch: pitch, roll: roll)
-        candidate.surfaceID = nil
-        if let issue = candidate.placementIssue(in: environment) { message = issue; return }
-        candidate.surfaceID = nil
-        guard candidate != fixtures[index] else { return }
-        cancelPicking()
-        var updated = fixtures
-        let original = fixtures[index]
-        let delta = FixtureAiming.vector(position) - FixtureAiming.vector(original.position)
-        let oldAngles = FixtureAiming.angles(original.orientation)
-        for memberIndex in updated.indices where actionIDs(for: id).contains(updated[memberIndex].id) {
-            var member = updated[memberIndex]
-            let p = FixtureAiming.vector(member.position) + delta
-            member.position = member.id == id ? position : .init(x: p.x, y: p.y, z: p.z)
-            let angles = FixtureAiming.angles(member.orientation)
-            member.orientation = FixtureAiming.euler(yaw: angles.yaw + yaw - oldAngles.yaw, pitch: angles.pitch + pitch - oldAngles.pitch, roll: angles.roll + roll - oldAngles.roll)
-            member.surfaceID = nil
-            if let issue = member.placementIssue(in: environment) { message = issue; return }
-            updated[memberIndex] = member
-        }
-        fixtures = updated
-        lastTarget = nil
-        revision += 1; persist(); message = nil
-    }
-
-    func yawDegrees(for fixture: Fixture) -> Float { FixtureAiming.angles(fixture.orientation).yaw }
 
     /// Scene retarget always starts from the fixture's assigned, saved preset.
     func beginRetarget(_ id: UUID) {

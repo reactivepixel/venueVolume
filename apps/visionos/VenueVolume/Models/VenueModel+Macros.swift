@@ -33,6 +33,8 @@ extension VenueModel {
     func canRunMacro(_ macro: ProgrammingMacro) -> Bool { (try? prepareMacro(macro)) != nil }
     @discardableResult func runMacro(_ macro: ProgrammingMacro) -> Bool {
         do {
+            _ = try prepareMacro(macro)
+            guard savePendingCueEdits() else { macroMessage = presetMessage; return false }
             let (plan, session, updated) = try prepareMacro(macro)
             var sheet = cueSheet
             sheet.include(fixtures, palettes: presets)

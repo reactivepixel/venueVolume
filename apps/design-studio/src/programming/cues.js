@@ -1,4 +1,5 @@
 import { attributesOf, paletteIssue, subtractAttributes } from '../palettes-phasers.js';
+import {normalizeScript} from '../model.js';
 
 export const cueLabel = number => String(number).padStart(2, '0');
 export function cueAt(script, number) {
@@ -8,8 +9,8 @@ export function ensureCue(script, number) {
   if (!Number.isInteger(number) || number < 1 || number > 255) throw new Error('Choose a cue from 01–255.');
   const numbered = script.map((entry, index) => ({...entry, cueNumber: entry.cueNumber ?? index + 1}));
   if (cueAt(numbered, number)) return numbered;
-  return [...numbered, {entryId: crypto.randomUUID(), cueNumber: number, name: `Cue ${cueLabel(number)}`, assignments: [], fade: 0, hold: 0, trigger: 'Manual'}]
-    .sort((a, b) => a.cueNumber - b.cueNumber);
+  return normalizeScript([...numbered, {entryId: crypto.randomUUID(), cueNumber: number, name: `Cue ${cueLabel(number)}`, assignments: [], fade: 0, hold: 0, trigger: 'Manual'}]
+    .sort((a, b) => a.cueNumber - b.cueNumber));
 }
 /** A cue draft is independent of the reusable library; only owned attributes change. */
 export function storeCueDraft(script, number, ids, palette, fixtures, library) {

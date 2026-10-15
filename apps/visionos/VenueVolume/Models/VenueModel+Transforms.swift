@@ -20,37 +20,6 @@ extension VenueModel {
         else { select(id) }
     }
 
-    @discardableResult func updateFixtureDetails(_ id: UUID, name: String, universe: Int, address: Int) -> Bool {
-        guard !libraryBusy, let i = fixtures.firstIndex(where: { $0.id == id }) else { return false }
-        var candidate = fixtures[i]
-        candidate.name = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        candidate.universe = universe; candidate.startAddress = address
-        if let issue = candidate.validationIssue(among: fixtures) { message = issue; return false }
-        if var session = tour {
-            let shared = session.show.units.contains { $0.id == id }
-            if let i = session.show.units.firstIndex(where: { $0.id == id }), session.show.units[i].fixture.name != candidate.name {
-                session.show.units[i].fixture.name = candidate.name; session.show.revision += 1
-            }
-            if let i = session.localUnits.firstIndex(where: { $0.id == id }) { session.localUnits[i].fixture.name = candidate.name }
-            var updated = fixtures; updated[i] = candidate
-            return commitTour(session, fixtures: updated, title: "Edit inventory name and venue patch", publish: shared && session.show != tour?.show)
-        }
-        var updated = fixtures
-        let ids = actionIDs(for: id)
-        var nextAddress = address
-        for index in updated.indices where ids.contains(updated[index].id) {
-            updated[index].universe = universe; updated[index].startAddress = nextAddress
-            if updated[index].id == id { updated[index].name = candidate.name }
-            nextAddress += updated[index].channels.count
-        }
-        for member in updated { if let issue = member.validationIssue(among: updated) { message = issue; return false } }
-        endTransformDrag()
-        beginHistoryAction("Edit fixture details"); defer { endHistoryAction() }
-        cancelPicking(); fixtures = updated; revision += 1; persist()
-        message = "Saved item details."
-        return true
-    }
-
     var transformFixtureContext: Fixture? {
         guard var selected = selectedID.flatMap({ fixture($0) }) else { return nil }
         let members = fixtures.filter { tourSelection.contains($0.id) }
@@ -245,38 +214,6 @@ extension VenueModel {
         }
         for member in updates { if let issue = member.validationIssue(among: updates) { message = issue; return nil } }
         return updates
-    }
-
-    func reposition(at hit: Position3D, surfaceID: String) {
-        guard let surface = environment?.surfaces.first(where: { $0.id == surfaceID }) else { return }
-        _ = moveToSurface(at: hit, normal: .init(x: surface.normal[0],y: surface.normal[1],z: surface.normal[2]), surfaceID: surfaceID)
-    }
-
-    func repositionOnMesh(at point: Position3D) {
-        _ = moveToSurface(at: point, normal: .init(x: 0,y: 1,z: 0))
-    }
-
-    private func relocateGroup(_ id: UUID, to destination: Position3D, surfaceID: String?) -> Bool {
-        guard let anchor = fixture(id), let environment else { return false }
-        let delta = FixtureAiming.vector(destination) - FixtureAiming.vector(anchor.position)
-        let ids = actionIDs(for: id)
-        var updated = fixtures
-        for index in updated.indices where ids.contains(updated[index].id) {
-            let p = FixtureAiming.vector(updated[index].position) + delta
-            updated[index].position = updated[index].id == id ? destination : .init(x: p.x, y: p.y, z: p.z)
-            updated[index].surfaceID = surfaceID
-            if let surfaceID, let surface = environment.surfaces.first(where: { $0.id == surfaceID }) {
-                let radius = updated[index].footprintRadius
-                let base = updated[index].position
-                guard surface.fixturePosition(hit: .init(x: base.x, y: base.y, z: base.z), halfSize: radius) != nil else {
-                    message = "Choose a surface with enough space for the entire group."; return false
-                }
-            } else if let scannedMesh, !scannedMesh.supports(updated[index].position, radius: updated[index].footprintRadius) {
-                message = "Scan enough support for the entire group."; return false
-            }
-        }
-        fixtures = updated
-        return true
     }
 
     func resetAim(_ id: UUID) {

@@ -144,7 +144,7 @@ export default function PaletteWorkbench({palettes, fixtures = [], script = [], 
     </aside>
     <div className="palette-programmer">
       <header className="palette-editor-heading"><div><p className="palette-eyebrow">{poolOf(draft)} pool</p><h2>{draft.name.replace(/^(Intensity|Color|Position|Beam|All|Phaser) · /,'')}</h2></div><div className="palette-mode" aria-label="Palette mode"><button aria-pressed={!draft.phaser} onClick={() => {update({phaser:undefined}); selectStep(null);}}>Static</button><button aria-pressed={!!draft.phaser} onClick={() => {if (!draft.phaser) update({phaser:createPhaser(draft)});}}>Dynamic</button></div></header>
-      <PalettePreview draft={draft} previewDraft={touched} palettes={palettes} script={script} fixtures={selectedFixtures} entry={targetEntry} seconds={seconds} playing={playing} onPlay={play} onRestart={() => {clock(0); play(false);}}/>
+      <PalettePreview draft={draft} previewDraft={touched} palettes={palettes} script={script} fixtures={selectedFixtures} allFixtures={fixtures} entry={targetEntry} seconds={seconds} playing={playing} onPlay={play} onRestart={() => {clock(0); play(false);}}/>
       {draft.phaser ? <>
         <PhaserRhythm draft={draft} palettes={palettes} stepIndex={stepIndex} selectStep={selectStep} updatePhaser={updatePhaser}/>
         {currentStep && <section className="palette-step-editor"><header className="palette-section-heading"><h3>Step {stepIndex + 1}</h3><button onClick={() => selectStep(null)}>Close step</button></header>

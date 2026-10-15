@@ -62,18 +62,11 @@ public struct DMXPreset: Identifiable, Codable, Equatable, Sendable {
         for index in phaser.steps.indices {
             guard let id = phaser.steps[index].paletteID,
                   let source = palettes.first(where: { $0.id == id && $0.phaser == nil }) else { continue }
-            for channel in channelMask.intersection(source.channelMask) {
+            for channel in channelMask.intersection(source.channelMask) where source.channels.indices.contains(channel) {
                 phaser.steps[index].values[channel] = source.channels[channel]
             }
         }
         return phaser.sample(base: channels, seconds: seconds, fixtureIndex: fixtureIndex, fixtureCount: fixtureCount)
-    }
-
-    public func duplicated(name: String? = nil) -> DMXPreset {
-        var copy = self
-        copy.id = UUID()
-        copy.name = name ?? "\(self.name) copy"
-        return copy
     }
 
     public static let examples = [

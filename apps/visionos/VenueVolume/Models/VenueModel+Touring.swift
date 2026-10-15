@@ -262,7 +262,7 @@ extension VenueModel {
         } catch { message = error.localizedDescription }
     }
     @discardableResult func applyTourPreset(_ id: UUID, ids: Set<UUID>? = nil, group: UUID? = nil, allDescendants: Bool = false, preview: Bool = false, toShow: Bool = false) -> Bool {
-        guard let session = tour else { return false }
+        guard let session = tour, savePendingCueEdits() else { return false }
         let chosen = ids ?? tourSelection
         do {
             var (next, updated) = try Touring.applying(id, to: chosen, group: group, replaceDescendants: allDescendants, in: session, fixtures: fixtures)
@@ -287,23 +287,51 @@ extension VenueModel {
             }
             let scope = toShow ? "show" : "venue"
             let title = "Apply \(session.presets.first { $0.id == id }?.name ?? "preset") to \(chosen.count) units · \(scope)\(group != nil && !allDescendants ? " · preserve exceptions" : "")"
-            if preview { setTourPreview(next, fixtures: updated, title: title, publish: toShow); return true }
+            let proposedCues = try tourCueSheet(applying: id, to: chosen, in: next, fixtures: updated)
+            if preview { setTourPreview(next, fixtures: updated, title: title, publish: toShow, cues: proposedCues); return true }
             beginHistoryAction(title); defer { endHistoryAction() }
             let oldCues = cueSheets
-            if let palette = session.presets.first(where: { $0.id == id }) {
-                let placed = chosen.intersection(Set(fixtures.map(\.id)))
-                if !placed.isEmpty, !recordCuePalette(palette, targets: placed, linked: true) { return false }
-            }
+            cueSheets[cueScope] = proposedCues
             let result = commitTour(next, fixtures: updated, title: title, publish: toShow)
             if !result { cueSheets = oldCues }
             else { programmerEdited = false; previewDraft = false; refreshPaletteSelection() }
             return result
         } catch { message = error.localizedDescription; presetMessage = message; return false }
     }
-    private func setTourPreview(_ session: TourSession, fixtures: [Fixture], title: String, publish: Bool = false) {
+    /// Prepare the cue and assignment together; group exceptions retain their owners.
+    private func tourCueSheet(applying id: UUID, to ids: Set<UUID>, in session: TourSession, fixtures updated: [Fixture]) throws -> CueSheet {
+        var sheet = cueSheet
+        sheet.include(fixtures, palettes: presets)
+        guard let palette = session.presets.first(where: { $0.id == id }) else { throw PresetError("That palette no longer exists.") }
+        for fixture in updated where ids.contains(fixture.id) {
+            guard let unit = session.allUnits.first(where: { $0.id == fixture.id }) else { continue }
+            let channels = palette.channelMask.filter { session.binding(for: unit, channel: $0) == id }
+            guard !channels.isEmpty else { continue }
+            var resolved = palette
+            resolved.includedChannels = channels.sorted()
+            if palette.focusTargetID != nil, fixture.channels.count >= 6 {
+                resolved = paletteHoldingAim(resolved, aim: .init(pan: fixture.channels[4], tilt: fixture.channels[5]), sources: session.presets)
+            }
+            try sheet.record(resolved, for: [fixture.id], sources: session.presets, linked: palette.focusTargetID == nil)
+        }
+        try sheet.validate()
+        return sheet
+    }
+    private func focusCueSheet(_ updated: [Fixture], ids: Set<UUID>) throws -> CueSheet {
+        var sheet = cueSheet
+        sheet.include(fixtures, palettes: presets)
+        for fixture in updated where ids.contains(fixture.id) {
+            let palette = DMXPreset(name: "Focus · \(fixture.name)", channels: fixture.channels, category: .position, attributeIndices: [4,5])
+            try sheet.record(palette, for: [fixture.id], sources: [])
+        }
+        try sheet.validate()
+        return sheet
+    }
+    private func setTourPreview(_ session: TourSession, fixtures: [Fixture], title: String, publish: Bool = false, cues: CueSheet? = nil) {
         guard !libraryBusy else { return }
         endTransformDrag(); gizmoVisible = false
         tourPreviewRevision = revision; tourPreviewSource = touring
+        tourPreviewCueSheet = cues
         tourPreviewSession = session; tourPreview = fixtures; tourPreviewTitle = title; tourPreviewPublishes = publish; previewDraft = false; message = "Preview · \(title)"
     }
     @discardableResult func commitTourPreview() -> Bool {
@@ -311,14 +339,17 @@ extension VenueModel {
         guard tourPreviewRevision == revision, tourPreviewSource == touring else { cancelTourPreview(); message = "The scene changed after this preview. Preview again before saving."; return false }
         beginHistoryAction(tourPreviewTitle); defer { endHistoryAction() }
         let savedFocus = focusDraftPresetID
-        guard commitTour(session, fixtures: updated, title: tourPreviewTitle, publish: tourPreviewPublishes) else { return false }
+        let oldCues = cueSheets
+        if let proposedCues = tourPreviewCueSheet { cueSheets[cueScope] = proposedCues }
+        guard commitTour(session, fixtures: updated, title: tourPreviewTitle, publish: tourPreviewPublishes) else { cueSheets = oldCues; return false }
         cancelTourPreview(); cancelPicking()
+        programmerEdited = false; previewDraft = false; fixtureRenderRevision += 1; refreshPaletteSelection()
         if let savedFocus, let preset = presets.first(where: { $0.id == savedFocus }) { presetDraft = preset; editingPresetID = preset.id }
         return true
     }
     func cancelTourPreview() {
         tourPreview = nil; tourPreviewSession = nil; tourPreviewTitle = ""; tourPreviewPublishes = false
-        tourPreviewSource = nil
+        tourPreviewSource = nil; tourPreviewCueSheet = nil
         focusPickID = nil; focusBaseSession = nil; focusDraftPresetID = nil; pendingTarget = nil
     }
     func resetTourAssignment(_ ids: Set<UUID>) {
@@ -377,12 +408,12 @@ extension VenueModel {
     }
     func createFocusTarget(name: String) { editTourShow("Create focus target · \(name)") { $0.show.targets.append(FocusTarget(name: name)) } }
     func beginFocusLocation(_ id: UUID) {
-        guard canPlace, tour?.show.targets.contains(where: { $0.id == id }) == true else { return }
+        guard canPlace, tour?.show.targets.contains(where: { $0.id == id }) == true, savePendingCueEdits() else { return }
         cancelPicking(); cancelTourPreview(); gizmoVisible = false; previewDraft = false
         focusPickID = id; focusBaseSession = tour; message = "Look and pinch to preview the target. Save or Cancel in the context bar."
     }
     func beginTourTarget(_ preset: DMXPreset, fromDraft: Bool) {
-        guard canPlace, var session = tour, !tourSelection.isEmpty else { return }
+        guard canPlace, var session = tour, !tourSelection.isEmpty, savePendingCueEdits() else { return }
         var updated = preset
         if updated.validationIssue != nil { presetMessage = updated.validationIssue; return }
         if updated.focusTargetID == nil {
@@ -427,18 +458,23 @@ extension VenueModel {
             }
             try session.validate(fixtures: updated)
             let publishes = tourPreviewPublishes
-            setTourPreview(session, fixtures: updated, title: "Locate \(session.show.targets.first { $0.id == id }?.name ?? "target")", publish: publishes)
+            let ids = Set(updated.filter { fixture in
+                guard let unit = session.allUnits.first(where: { $0.id == fixture.id }), let binding = session.binding(for: unit, channel: 4) else { return false }
+                return session.presets.first(where: { $0.id == binding })?.focusTargetID == id
+            }.map(\.id))
+            let proposedCues = try focusCueSheet(updated, ids: ids)
+            setTourPreview(session, fixtures: updated, title: "Locate \(session.show.targets.first { $0.id == id }?.name ?? "target")", publish: publishes, cues: proposedCues)
             pendingTarget = point; return true
-        } catch { tourPreview = nil; tourPreviewSession = nil; pendingTarget = nil; message = error.localizedDescription; return false }
+        } catch { tourPreview = nil; tourPreviewSession = nil; tourPreviewCueSheet = nil; pendingTarget = nil; message = error.localizedDescription; return false }
     }
     func refocusSelection() {
-        guard let session = tour, !tourSelection.isEmpty else { return }
+        guard let session = tour, !tourSelection.isEmpty, savePendingCueEdits() else { return }
         do {
             for fixture in fixtures where tourSelection.contains(fixture.id) {
                 guard hasLocatedFocus(fixture, in: session) else { throw PresetError("\(fixture.name): assign a focus preset and locate its target first.") }
             }
             let updated = try fixtures.map { tourSelection.contains($0.id) ? try Touring.resolved($0, in: session, solveFocus: true) : $0 }
-            setTourPreview(session, fixtures: updated, title: "Refocus \(tourSelection.count) units")
+            setTourPreview(session, fixtures: updated, title: "Refocus \(tourSelection.count) units", cues: try focusCueSheet(updated, ids: tourSelection))
         } catch { message = error.localizedDescription }
     }
     func previewGroupTransform(translation: Position3D, yaw: Float = 0, spacing: Float? = nil, mirror: Bool = false, align: FixtureAxis? = nil) {
@@ -557,5 +593,3 @@ extension VenueModel {
         } catch { message = "Import failed; current show preserved. \(error.localizedDescription)" }
     }
 }
-
-

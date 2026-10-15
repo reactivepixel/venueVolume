@@ -64,6 +64,7 @@ final class VenueModel {
     var tourAssignmentToShow = false
     var tourPreview: [Fixture]?
     var tourPreviewSession: TourSession?
+    var tourPreviewCueSheet: CueSheet?
     var tourPreviewTitle = ""
     var focusPickID: UUID?
     var touringPanelPresented = false
@@ -209,20 +210,12 @@ final class VenueModel {
         if toolboxPresentedID == id { toolboxPresentedID = toolboxWindowIDs.first }
     }
     private(set) var toolboxRequestID: UUID?
-    private var palmActivationHeld = false
-
-    /// A raised palm requests a window once; lowering the hand never closes it.
-    func updateToolboxActivation(raised: Bool) {
-        if raised && !palmActivationHeld { requestToolbox() }
-        palmActivationHeld = raised
-    }
 
     func requestToolbox() { closePalmMap(); toolboxTab = 0; toolboxRequestID = UUID() }
     func resetToolboxActivation() {
-        palmActivationHeld = false; toolboxAttention = PalmMapToggle()
+        toolboxAttention = PalmMapToggle()
         toolboxRequestID = nil
     }
-    var simulatedPalm = true
     var needsManualToolbox = false
     var handTrackingStatus = "Left index: move · left middle: rotate · double pinch: reset"
     var viewerPose = ViewerNavigationPose()
@@ -311,7 +304,6 @@ final class VenueModel {
     var macrosPresented = false
     var macroSeed: ProgrammingMacro?
     var recentPhaserSteps: [PhaserStep] = []
-    var controlsTab = 0
     var presetWindowVisible = false
     var fixtureRenderRevision = 0
     var fixtureAssetStatus = "Loading fixture asset…"
@@ -327,13 +319,6 @@ final class VenueModel {
         return tour.show.presets.first(where: { $0.id == presetDraft.id }) != presetDraft || tour.presetOverrides.contains { $0.id == presetDraft.id }
     }
 
-    var canSimulatePalm: Bool {
-        #if targetEnvironment(simulator)
-        true
-        #else
-        false
-        #endif
-    }
     var isImmersed = false { didSet { if !isImmersed { closePalmMap() } } }
     var isTransitioning = false
     private(set) var placementSessionID = UUID()
@@ -388,7 +373,6 @@ final class VenueModel {
         loadTouring()
         if let first = presets.first { presetDraft = first; editingPresetID = first.id }
         guard isDemoMode else { return }
-        simulatedPalm = !arguments.contains("--palm-hidden")
 
     }
 
@@ -499,7 +483,6 @@ final class VenueModel {
             blackout = arguments.contains("--blackout")
             if arguments.contains("--aim-left") { fixtures[0].channels[4] = 155 }
             if arguments.contains("--fixture-near") { fixtures[0].position = .init(x: 2.66, y: 0, z: -2.3); fixtures[0].surfaceID = "floor" }
-            if arguments.contains("--position-tab") { controlsTab = 1 }
             if arguments.contains("--rooms-tab") { toolboxTab = 1 }
             if arguments.contains("--scene-overview") { selectedID = nil }
             if arguments.contains("--show-recents") {
@@ -637,8 +620,6 @@ final class VenueModel {
         cancelPicking(); selectedID = nil; additionalSelection = []; lastTarget = nil
         gizmoVisible = false; previewDraft = false
     }
-
-    func finishPlacement() { cancelPicking(); fixtureDragLease?.cancel() }
 
     func beginPlacement() {
         rememberFixtureKind(fixtureKind)

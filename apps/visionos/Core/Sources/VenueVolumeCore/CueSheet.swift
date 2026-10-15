@@ -105,6 +105,9 @@ public struct CueSheet: Codable, Equatable, Sendable {
         }
         let layers = baseline.values.flatMap(\.layers) + changes.values.flatMap { $0.values.flatMap { $0 } }
         for layer in layers {
+            for source in layer.sources {
+                if let issue = source.validationIssue { throw PresetError(issue) }
+            }
             if let issue = layer.palette.validationIssue ?? layer.palette.referenceIssue(in: layer.sources) { throw PresetError(issue) }
             guard !layer.channels.isEmpty, layer.channels.isSubset(of: layer.palette.channelMask) else { throw PresetError("Invalid cue attributes.") }
         }

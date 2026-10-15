@@ -164,7 +164,8 @@ function App({ embeddedRoute, onNavigate, context }) {
   function update(values) {
     return setData((d) => {
       const presets = d.presets ?? initial.presets;
-      return { ...d, presets: d.paletteLibraryVersion === 3 ? presets : [...presets, ...baselinePalettes.filter(p => !presets.some(existing => existing.name === p.name))], paletteLibraryVersion: 3, ...(typeof values === 'function' ? values(d) : values) };
+      const current = {...d, presets:d.paletteLibraryVersion === 3 ? presets : [...presets, ...baselinePalettes.filter(p => !presets.some(existing => existing.name === p.name))], paletteLibraryVersion:3};
+      return {...current, ...(typeof values === 'function' ? values(current) : values)};
     });
   }
   function notify(message) {

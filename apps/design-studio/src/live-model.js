@@ -81,6 +81,10 @@ export function paletteOutput(palette, seconds = 0, index = 0, count = 1, librar
   const attributes = attributesOf(palette);
   return Object.fromEntries(Object.entries(sampled).filter(([key]) => attributes.includes(key)));
 }
+export function paletteDistribution(snapshot, entry, fixture, palette) {
+  const targets = snapshot.fixtures.filter(f => assignmentPalettes(snapshot, entry, f).some(p => p.name === palette.name && attributesOf(p).some(a => attributesOf(palette).includes(a))));
+  return [Math.max(0, targets.findIndex(f => f.id === fixture.id)), targets.length];
+}
 export function cueValues(snapshot, entry) {
   return Object.fromEntries(snapshot.fixtures.map(f => [f.id, Object.assign({ intensity: 0, color: "#dfe9f2", pan: 50, tilt: 50 }, ...assignmentPalettes(snapshot, entry, f).map(p => paletteOutput(p, 0, 0, 1, snapshot.presets)))]));
 }
@@ -93,8 +97,7 @@ export function outputValue(run, fixture, seconds = 0) {
     // Static cue values stay latched through hot edits. Later static ownership
     // still suppresses earlier phasers for overlapping attributes.
     if (!palette.phaser) { for (const key of attributesOf(palette)) delete animated[key]; continue; }
-    const targets = run.snapshot.fixtures.filter(f => assignmentPalettes(run.snapshot, entry, f).some(p => p.name === palette.name));
-    Object.assign(animated, paletteOutput(palette, seconds, Math.max(0, targets.findIndex(f => f.id === fixture.id)), targets.length, run.snapshot.presets));
+    Object.assign(animated, paletteOutput(palette, seconds, ...paletteDistribution(run.snapshot, entry, fixture, palette), run.snapshot.presets));
   }
   const value = { ...base, ...animated, ...run.programmer[fixture.id] };
   const effective = run.blackout || !run.armed ? 0 : Math.round(value.intensity * run.master / 100 * (run.groupMasters[fixture.role] ?? 100) / 100);

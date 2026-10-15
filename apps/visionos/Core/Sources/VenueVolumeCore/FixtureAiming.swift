@@ -90,23 +90,6 @@ public enum FixtureAiming {
         return max(0, min(255, Int((bounded / 120 * 255 + 128).rounded())))
     }
 
-    /// Rotate the entire mount while preserving the existing head channels.
-    /// Solve the ray's intersection with a sphere about the base, accounting for
-    /// the emitter offset; aiming from the base alone produces parallax errors.
-    public static func mounted(_ fixture: Fixture, target: Position3D) throws -> Quaternion3D {
-        let displacement = vector(target) - vector(fixture.position)
-        let ray = localRay(channels: fixture.channels, asset: fixture.asset)
-        let origin = ray.origin * vector(fixture.scale)
-        let forward = normalized(ray.direction * vector(fixture.scale))
-        let projected = dot(origin, forward)
-        let discriminant = projected * projected + dot(displacement, displacement) - dot(origin, origin)
-        guard finite(displacement), discriminant > 0 else { throw PresetError("Choose a target farther from the fixture mount.") }
-        let distance = -projected + sqrt(discriminant)
-        guard distance > 0.15 else { throw PresetError("Choose a target in front of the light emitter.") }
-        let current = rotate(fixture.orientation, origin + forward * distance)
-        return multiply(between(normalized(current), normalized(displacement)), fixture.orientation)
-    }
-
     public static func localRay(channels: [Int], asset: FixtureAsset? = nil) -> (origin: SIMD3<Float>, direction: SIMD3<Float>) {
         if let asset, let emitter = asset.emitters.first {
             var origin = SIMD3<Float>(emitter.position[0], emitter.position[1], emitter.position[2])

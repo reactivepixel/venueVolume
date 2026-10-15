@@ -82,13 +82,13 @@ extension VenueModel {
     }
     /// Preserve other dynamic attributes, including linked step values, while
     /// holding position. The cue stores a separate solution for each fixture.
-    func paletteHoldingAim(_ palette: DMXPreset, aim: PanTiltOverride) -> DMXPreset {
+    func paletteHoldingAim(_ palette: DMXPreset, aim: PanTiltOverride, sources: [DMXPreset]? = nil) -> DMXPreset {
         var result = palette
         result.focusTargetID = nil
         result.channels[4] = aim.pan; result.channels[5] = aim.tilt
         if var phaser = result.phaser, !result.channelMask.isDisjoint(with: [4,5]) {
             for index in phaser.steps.indices {
-                if let id = phaser.steps[index].paletteID, let source = presets.first(where: { $0.id == id }) {
+                if let id = phaser.steps[index].paletteID, let source = (sources ?? presets).first(where: { $0.id == id }) {
                     for channel in result.channelMask { phaser.steps[index].values[channel] = source.channels[channel] }
                     phaser.steps[index].paletteID = nil
                 }

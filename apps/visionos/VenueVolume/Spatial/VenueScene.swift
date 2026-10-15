@@ -213,28 +213,30 @@ final class VenueScene {
         }
     }
 
+    private func canDragBody(_ fixture: Fixture, model: VenueModel) -> Bool {
+        model.gizmoVisible && model.transformMode == .move && model.selectedID == fixture.id && !model.isRetargeting && !model.isPlacing
+    }
+
     private func tickPhasers() {
         guard let model, !model.navigationBlackoutActive else { return }
-        let animated = Set(model.fixtures.filter { model.hasAnimatedPalette(for: $0) }.map(\.id))
+        let animated = Set(model.sceneFixtures.filter { model.hasAnimatedPalette(for: $0) }.map(\.id))
         guard !animated.isEmpty else { return }
-        let channels = Dictionary(uniqueKeysWithValues: model.fixtures.map { ($0.id,model.renderedChannels(for: $0)) })
-        let budgets = LightingBudget.allocate(model.fixtures.map { fixture in
+        let channels = Dictionary(uniqueKeysWithValues: model.sceneFixtures.map { ($0.id,model.renderedChannels(for: $0)) })
+        let budgets = LightingBudget.allocate(model.sceneFixtures.map { fixture in
             let look = LightingPreview(channels: channels[fixture.id] ?? fixture.channels,blackout: model.isBlackedOut(fixture))
             return .init(id: fixture.id,emitters: fixtureTemplates[fixture.assetID ?? ""] == nil ? 0 : fixture.asset?.emitters.count ?? 0,
                          emitting: look.intensity > 0 && look.rgb.contains { $0 > 0 })
         },selected: model.selectedID,limit: model.effectiveLightLimit)
-        for fixture in model.fixtures {
+        for fixture in model.sceneFixtures {
             guard animated.contains(fixture.id) || budgets[fixture.id] != lightBudgets[fixture.id],
                   let rig = rigs[fixture.id] else { continue }
             rig.update(fixture: model.renderedFixture(fixture),channels: channels[fixture.id] ?? fixture.channels,
                        selected: model.selectedFixtureIDs.contains(fixture.id),blackout: model.isBlackedOut(fixture),
                        placing: model.isPickingRoom,interactive: model.isTransformDragging,
-                       lightBudget: budgets[fixture.id] ?? 0)
+                       bodyDraggable: canDragBody(fixture, model: model), lightBudget: budgets[fixture.id] ?? 0)
         }
         lightBudgets = budgets
     }
-
-
 
     private func updateThermalBudget(deltaTime: Double) {
         guard let model else { return }
@@ -364,15 +366,6 @@ final class VenueScene {
             return true
         }
         return false
-    }
-
-
-
-
-
-    private func rememberMaterials(_ entity: Entity) {
-        if let model = entity.components[ModelComponent.self] { roomMaterials.append((entity, model)) }
-        for child in entity.children { rememberMaterials(child) }
     }
 
     private func alignToSpawn() {
@@ -528,7 +521,7 @@ final class VenueScene {
                 }
                 rigs[fixture.id]?.update(fixture: displayed, channels: model.renderedChannels(for: fixture),
                                          selected: selected, blackout: model.isBlackedOut(fixture), placing: model.isPickingRoom,
-                                         interactive: model.isTransformDragging, bodyDraggable: model.gizmoVisible && model.transformMode == .move && model.selectedID == fixture.id && !model.isRetargeting && !model.isPlacing, lightBudget: budgets[fixture.id] ?? 0)
+                                         interactive: model.isTransformDragging, bodyDraggable: canDragBody(fixture, model: model), lightBudget: budgets[fixture.id] ?? 0)
                 } else {
                     requestFixture(descriptor, model: model)
                     let placeholder = cubes[fixture.id] ?? Self.makeCube(id: fixture.id)
@@ -543,7 +536,7 @@ final class VenueScene {
                 cube.scale = FixtureAiming.vector(fixture.scale)
                 cube.model?.materials = [Self.glass(opacity: selected ? 0.16 : 0.07)]
                 cube.components.set(InputTargetComponent(allowedInputTypes: model.isPickingRoom && !model.isSurfaceMoveActive ? [] : [.indirect]))
-                if model.gizmoVisible && model.transformMode == .move && model.selectedID == fixture.id && !model.isRetargeting && !model.isPlacing { cube.components.set(SpatialDragTarget()) }
+                if canDragBody(fixture, model: model) { cube.components.set(SpatialDragTarget()) }
                 else { cube.components.remove(SpatialDragTarget.self) }
             }
             if let cube = cubes[fixture.id] {
@@ -732,7 +725,6 @@ final class VenueScene {
             forward: -SIMD3(deviceTransform.columns.2.x, deviceTransform.columns.2.y, deviceTransform.columns.2.z))
     }
 
-    var isNavigationDragging: Bool { palmMap.dragging }
 
     func endSpatialDrag(model: VenueModel) {
         if model.palmMapVisible, model.canPlace, !navigationGestureCancelled {

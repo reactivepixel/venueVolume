@@ -126,7 +126,7 @@ extension VenueModel {
         historyDestination = nil; preparedHistory = nil; roomRequest = nil; libraryBusy = false
     }
     func applyHistoryState(_ state: VenueAuditState) {
-        touring = state.touring ?? TouringArchive(); selectedUnitIDs = state.selectedUnitIDs ?? []; selectedGroupID = state.selectedGroupID; tourPreview = nil; tourPreviewSession = nil
+        touring = state.touring ?? TouringArchive(); selectedUnitIDs = state.selectedUnitIDs ?? []; selectedGroupID = state.selectedGroupID; tourPreview = nil; tourPreviewSession = nil; tourPreviewCueSheet = nil
         restoringHistory = true; message = nil; paletteDraftTarget = nil
         defer { restoringHistory = false }
         cancelPicking(); gizmoVisible = false; lastTarget = nil; recent = RecentItems()

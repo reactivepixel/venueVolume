@@ -34,7 +34,6 @@ struct FixturePanel: View {
             Button {
                 model.presetEditor.request(presetID: fixture.presetID)
                 model.record(.presets)
-                model.controlsTab = 0
             } label: { Label(fixture.presetID == nil ? "Choose or create palette" : "Edit assigned palette", systemImage: "slider.horizontal.3") }
             Text("Select fixtures in the Toolbox, then recall or edit a palette for the current cue.")
                 .font(.caption).foregroundStyle(.secondary)

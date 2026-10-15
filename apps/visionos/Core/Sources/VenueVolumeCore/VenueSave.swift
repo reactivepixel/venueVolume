@@ -29,26 +29,3 @@ public struct VenueSave: Codable, Equatable, Sendable {
         }
     }
 }
-
-extension RoomLibraryStore {
-    /// Importing always creates a new setup identity and cannot overwrite a local save.
-    /// Publish model state only after this succeeds; rollback newly installed geometry
-    /// when the setup cannot be written.
-    public func importSave(_ document: VenueSave, assetChecksum: String) throws -> (room: LibraryRoom, setup: VenueSetup) {
-        try document.validate(assetChecksum: assetChecksum)
-        var room = document.room
-        room.origin = document.room.manifest.asset.file == "environment.mesh.json" ? .scanned : .imported
-        var setup = document.setup
-        setup.id = UUID(); setup.modified = Date()
-        let folder = try roomDirectory(room)
-        let existed = FileManager.default.fileExists(atPath: folder.path)
-        do {
-            try install(room: room, asset: document.asset)
-            try save(setup, room: room)
-            return (room, setup)
-        } catch {
-            if !existed { try? FileManager.default.removeItem(at: folder) }
-            throw error
-        }
-    }
-}
