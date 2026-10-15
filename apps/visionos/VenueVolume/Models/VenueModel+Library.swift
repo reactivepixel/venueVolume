@@ -139,7 +139,6 @@ extension VenueModel {
         venueIntentID = UUID()
         historyDestination = nil; preparedHistory = nil
         fixtureDragLease?.cancel(); draggingFixture = nil
-        endPresetDrag()
         libraryBusy = true; canPlace = false; previewDraft = false; cancelPicking()
         cancelTourPreview()
         roomRequest = .init(room: room, setup: setup, blank: blank, configurationID: configurationID)

@@ -18,7 +18,6 @@ struct VenueSpaceView: View {
         var dragged = false
         var fixtureID: UUID?
     }
-    @State private var presetSpatialEvents: Set<SpatialEventCollection.Event.ID> = []
     @State private var activeSpatialEvents: [SpatialEventCollection.Event.ID: SpatialInput] = [:]
 
     var body: some View {
@@ -28,10 +27,10 @@ struct VenueSpaceView: View {
             content.add(scene.overlayRoot)
             content.add(scene.headAnchor)
             scene.update(model: model, attachments: attachments)
-            scene.updatePresetDrag(model: model, reduceMotion: reduceMotion)
+            scene.updateAccessibility(reduceMotion: reduceMotion)
         } update: { content, attachments in
             scene.update(model: model, attachments: attachments)
-            scene.updatePresetDrag(model: model, reduceMotion: reduceMotion)
+            scene.updateAccessibility(reduceMotion: reduceMotion)
         } attachments: {
             Attachment(id: "context-bar") { VenueContextBar().environment(model).controlSize(.large).navigationInputShield(model: model) }
             ForEach(model.environment?.surfaces ?? [], id: \.id) { surface in
@@ -41,16 +40,14 @@ struct VenueSpaceView: View {
                 Attachment(id: "label-\(fixture.id)") {
                     FixtureLabel(fixture: fixture).environment(model).navigationInputShield(model: model).disabled(model.palmMapVisible)
                 }
-                Attachment(id: "drop-\(fixture.id)") {
-                    FixtureDropTarget(fixture: fixture).environment(model).navigationInputShield(model: model)
-                }
+
             }
         }
         .gesture(SpatialEventGesture().targetedToAnyEntity()
             .onChanged { value in routeSpatialEvents(value) }
             .onEnded { value in
                 routeSpatialEvents(value)
-                model.endTransformDrag(); activeSpatialEvents.removeAll(); presetSpatialEvents.removeAll()
+                model.endTransformDrag(); activeSpatialEvents.removeAll()
             })
         .onChange(of: model.selectedID) { _, selected in
             activeSpatialEvents.removeAll(); model.endTransformDrag()
@@ -64,7 +61,7 @@ struct VenueSpaceView: View {
         }
         .onChange(of: model.palmMapRequestID) { _, _ in
             scene.cancelSpatialDrag(model: model)
-            activeSpatialEvents.removeAll(); presetSpatialEvents.removeAll()
+            activeSpatialEvents.removeAll()
         }
         .onChange(of: model.isImmersed) { _, _ in model.finishPlacementHandoffIfReady() }
         .task(id: model.toolboxRequestID) {
@@ -150,7 +147,6 @@ struct VenueSpaceView: View {
             for identity in model.toolboxWindowIDs { dismissWindow(id: "toolbox", value: identity) }
             if model.unvaluedToolboxVisible { dismissWindow(id: "toolbox") }
             model.resetToolboxActivation()
-            model.endPresetDrag()
             model.previewDraft = false
             scene.clearAttachments()
             openWindow(id: "launch")
@@ -158,7 +154,7 @@ struct VenueSpaceView: View {
         .onChange(of: scenePhase) { _, phase in
             if phase != .active {
                 model.closePalmMap(); scene.cancelSpatialDrag(model: model)
-                model.finishHistoryGesture(); model.flushHistoryEdits(); model.endPresetDrag()
+                model.finishHistoryGesture(); model.flushHistoryEdits()
             }
         }
         .presetEditorPresenter()
@@ -172,30 +168,6 @@ struct VenueSpaceView: View {
                 model.reserveLeftHandInput(); activeSpatialEvents[event.id] = nil; continue
             }
             if model.navigationInputReserved { continue }
-            if model.presetDrag.session == nil, presetSpatialEvents.contains(event.id) {
-                if event.phase != .active { presetSpatialEvents.remove(event.id) }
-                continue
-            }
-            if let session = model.presetDrag.session {
-                presetSpatialEvents.insert(event.id)
-                func world(_ point: Point3D) -> SIMD3<Float> {
-                    scene.root.convert(position: value.convert(point, from: .local, to: scene.root), to: nil)
-                }
-                let sample = PresetDragState.Sample(cursor: world(event.location3D),
-                    hand: event.inputDevicePose.map { world($0.pose3D.position) },
-                    rayOrigin: event.selectionRay.map { world($0.origin) },
-                    rayPoint: event.selectionRay.map { world($0.origin + $0.direction) })
-                switch event.phase {
-                case .active: model.presetDrag.update(session.id, sample: sample, armed: true)
-                case .ended:
-                    model.presetDrag.update(session.id, sample: sample, armed: true)
-                    model.presetDrag.release(session.id)
-                case .cancelled: model.presetDrag.clearPointer()
-                @unknown default: model.presetDrag.clearPointer()
-                }
-                activeSpatialEvents.removeAll()
-                continue
-            }
             let entity = event.targetedEntity ?? value.entity
             let point = value.convert(event.location3D, from: .local, to: scene.root)
             switch event.phase {

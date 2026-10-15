@@ -1,4 +1,4 @@
-import { attributesOf, paletteIssue } from '../palettes-phasers.js';
+import { attributesOf, paletteIssue, subtractAttributes } from '../palettes-phasers.js';
 
 export const cueLabel = number => String(number).padStart(2, '0');
 export function cueAt(script, number) {
@@ -24,7 +24,7 @@ export function storeCueDraft(script, number, ids, palette, fixtures, library) {
     for (const fixture of targets) {
       const index = assignments.findIndex(item => item.fixtureId === fixture.id);
       const previous = index < 0 ? {fixtureId: fixture.id} : assignments[index];
-      const snapshots = (previous.paletteSnapshots ?? []).filter(p => !attributesOf(p).every(a => attributes.includes(a)));
+      const snapshots = subtractAttributes(previous.paletteSnapshots ?? [], attributes);
       const next = {...previous, paletteSnapshots: [...snapshots, structuredClone(palette)]};
       if (index < 0) assignments.push(next); else assignments[index] = next;
     }

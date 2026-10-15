@@ -50,7 +50,6 @@ final class VenueModel {
     var libraryBusy = false
     var newVenuePresented = false
     let presetEditor = PresetEditorPresentation()
-    let presetDrag = PresetDragState()
     var toolboxTab = 0
     var touring = TouringArchive()
     var touringBlocked = false
@@ -77,7 +76,7 @@ final class VenueModel {
     var contextBarVisible: Bool {
         isImmersed && !palmMapVisible
     }
-    var contextBarHasSelection: Bool { !selectedFixtureIDs.isEmpty || presetDrag.session != nil || focusPickID != nil }
+    var contextBarHasSelection: Bool { !selectedFixtureIDs.isEmpty || focusPickID != nil }
     var setupName = "Untitled setup" { didSet { queueHistoryEdit("Rename setup") } }
     var activeSetupID: UUID?
     var savedSetup: VenueSetup?
@@ -240,7 +239,7 @@ final class VenueModel {
     var viewerResetToken = UUID()
     func beginViewerNavigation(_ finger: NavigationFinger) {
         guard !viewerNavigationActive, !libraryBusy else { return }
-        finishHistoryGesture(); endPresetDrag()
+        finishHistoryGesture()
         beginHistoryAction(finger == .index ? "Move viewer" : "Rotate viewer")
         viewerNavigationActive = true
     }
@@ -259,7 +258,6 @@ final class VenueModel {
         endViewerNavigation(); beginHistoryAction("Return viewer to spawn"); defer { endHistoryAction() }
         viewerPose = .init(); viewerResetToken = UUID()
     }
-    private(set) var draggingPresetID: UUID?
     var fixtureDragLease: Task<Void, Never>?
     var palettePlayback = PalettePlayback(now: ProcessInfo.processInfo.systemUptime)
     var cueSheets: [String: CueSheet] = [:]
@@ -475,7 +473,7 @@ final class VenueModel {
             roomRequest = nil; libraryBusy = false
             selectedGroupID = nil; selectedUnitIDs = []; tourPreview = nil
             cancelPicking(); selectedID = fixtures.first?.id; selectedUnitIDs = tour == nil ? [] : Set(selectedID.map { [$0] } ?? []); lastTarget = nil
-            previewDraft = false; blackout = false; recent = RecentItems(); endPresetDrag(); draggingFixture = nil
+            previewDraft = false; blackout = false; recent = RecentItems(); draggingFixture = nil
             nextFixtureNumber = fixtures.count+1
             environmentStatus = environment.title; libraryMessage = "Opened \(setupName) in \(environment.title)."
             persist()
@@ -670,35 +668,6 @@ final class VenueModel {
         draggingFixture = nil; fixtureDragLease?.cancel()
         if fixtures.count == count { isPlacing = false }
         return fixtures.count > count
-    }
-
-    func activatePresetApplication(_ id: UUID) {
-        guard isImmersed, canPlace, !libraryBusy, !isPickingRoom, !isTransformDragging,
-              tourPreview == nil, presets.contains(where: { $0.id == id }) else { return }
-        endPresetDrag()
-        presetDrag.activate(presetID: id)
-        beginPresetDrag(id)
-    }
-
-    @discardableResult func applyProposedPreset() -> Bool {
-        guard let session = presetDrag.session, let fixtureID = presetDrag.proposedFixtureID else { return false }
-        return finishPresetApplication(presetID: session.presetID, fixtureID: fixtureID)
-    }
-
-    @discardableResult func finishPresetApplication(presetID: UUID, fixtureID: UUID) -> Bool {
-        let success = applyPreset(presetID, to: fixtureID)
-        endPresetDrag()
-        presetDrag.showFeedback(presetID: presetID, fixtureID: fixtureID, succeeded: success, message: success ? nil : message)
-        return success
-    }
-
-    func beginPresetDrag(_ id: UUID) {
-        draggingPresetID = id
-    }
-
-    func endPresetDrag() {
-        draggingPresetID = nil
-        presetDrag.cancel()
     }
 
     func record(_ item: ToolboxItem) { recent.use(item) }

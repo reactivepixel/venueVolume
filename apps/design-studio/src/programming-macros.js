@@ -2,7 +2,7 @@ import {applyPaletteToCue, paletteIssue} from './palettes-phasers.js';
 
 export const starterMacros = [
   {id:'warm-wash',name:'Full warm wash',target:{kind:'selection'},lines:[{paletteName:'Intensity · Full',enabled:true},{paletteName:'Color · Warm',enabled:true}]},
-  {id:'cool-breathe',name:'Cool breathing wash',target:{kind:'selection'},lines:[{paletteName:'Color · Blue',enabled:true},{paletteName:'Phaser · Breathe',enabled:true}]},
+  {id:'cool-breathe',name:'Cool breathing wash',target:{kind:'selection'},lines:[{paletteName:'Color · Blue',enabled:true},{paletteName:'Phaser · Dimmer breathe',enabled:true}]},
 ];
 export function macroIssue(macro) {
   if (!macro?.name?.trim() || macro.name.length > 120) return 'Use a macro name of 1–120 characters.';

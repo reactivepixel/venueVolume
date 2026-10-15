@@ -110,7 +110,6 @@ extension VenueModel {
         if touring.active != nil { return applyTourPreset(presetID, ids: [fixtureID]) }
         guard !libraryBusy else { return false }
         beginHistoryAction("Apply palette"); defer { endHistoryAction() }
-        defer { endPresetDrag() }
         guard let preset = presets.first(where: { $0.id == presetID }) else {
             message = "That palette no longer exists."
             return false

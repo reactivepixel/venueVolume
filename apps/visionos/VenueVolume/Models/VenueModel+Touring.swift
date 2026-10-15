@@ -297,7 +297,7 @@ extension VenueModel {
             let result = commitTour(next, fixtures: updated, title: title, publish: toShow)
             if !result { cueSheets = oldCues }
             else { programmerEdited = false; previewDraft = false; refreshPaletteSelection() }
-            endPresetDrag(); return result
+            return result
         } catch { message = error.localizedDescription; presetMessage = message; return false }
     }
     private func setTourPreview(_ session: TourSession, fixtures: [Fixture], title: String, publish: Bool = false) {

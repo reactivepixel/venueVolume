@@ -167,6 +167,9 @@ class Worker:
             if self.stopping.is_set():
                 return
             for record in self.store.list():
+                if record["status"] == "ready" and not roomscan.ready(self.store.folder(record["id"])):
+                    self.store.update(record["id"], dict(status="failed", stage=None,
+                        error="This venue needs a roomScan model. Retry processing its saved movie, then review the room geometry."))
                 if record["status"] == "processing":
                     ready = roomscan.ready(self.store.folder(record["id"]))
                     review = roomscan.progress(self.store.folder(record["id"])).get("state") == "review_required"
@@ -322,7 +325,7 @@ class Handler(BaseHTTPRequestHandler):
                     file = store.folder(identifier) / "processor.log" if action == "log" else roomscan.artifact(store.folder(identifier), action)
                     if not file:
                         raise Problem(404, "This roomScan artifact is not available yet.")
-                    return self.send_file(file, download=f"venue-{identifier}-{action}{file.suffix}")
+                    return self.send_file(file, download=file.name)
             if path.startswith("/api/") or self.command != "GET":
                 raise Problem(404, "Endpoint not found.")
             relative = unquote(path).lstrip("/")

@@ -76,13 +76,6 @@ public struct DMXPreset: Identifiable, Codable, Equatable, Sendable {
         return copy
     }
 
-    public var dragToken: String { "venue-volume:preset:\(id.uuidString)" }
-    public static func id(from token: String) -> UUID? {
-        let prefix = "venue-volume:preset:"
-        guard token.hasPrefix(prefix) else { return nil }
-        return UUID(uuidString: String(token.dropFirst(prefix.count)))
-    }
-
     public static let examples = [
         DMXPreset(id: UUID(uuidString: "10000000-0000-0000-0000-000000000001")!, name: "Warm Wash",
                   channels: [255, 212, 180, 255, 36, 0, 118, 0, 64, 32, 0, 0, 0, 0, 0, 0]),

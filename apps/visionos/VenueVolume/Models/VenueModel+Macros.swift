@@ -44,7 +44,7 @@ extension VenueModel {
             if let session {
                 guard commitTour(session, fixtures: updated, title: "Run macro · \(macro.name)") else { cueSheets = previousCues; macroMessage = message; return false }
             } else if fixtures != updated { fixtures = updated; revision += 1; persist() }
-            programmerEdited = false; previewDraft = false; endPresetDrag(); refreshPaletteSelection()
+            programmerEdited = false; previewDraft = false; refreshPaletteSelection()
             macroMessage = "Ran \(macro.name) on \(plan.targetIDs.count) fixtures. Undo restores the whole run."
             return true
         } catch { macroMessage = error.localizedDescription; return false }

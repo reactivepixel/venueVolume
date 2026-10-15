@@ -42,7 +42,7 @@ def ready(folder):
         asset = json.loads(manifest.read_text())['asset']
         with model.open('rb') as stream:
             checksum = hashlib.file_digest(stream, 'sha256').hexdigest()
-        return asset['sha256'] == checksum and zipfile.is_zipfile(model)
+        return asset['file'] == model.name and asset['sha256'] == checksum and zipfile.is_zipfile(model)
     except (KeyError, TypeError, ValueError, OSError):
         return False
 

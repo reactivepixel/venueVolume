@@ -7,7 +7,7 @@ export function validPhaser(p) {
     && p.steps.every(s => s && Number.isFinite(s.width ?? 1) && (s.width ?? 1) > 0 && (s.width ?? 1) <= 64
       && (s.transition === undefined || Number.isFinite(s.transition) && s.transition >= 0 && s.transition <= 1)
       && (s.curve === undefined || ['linear','sine'].includes(s.curve))
-      && ['intensity','pan','tilt'].every(k => s[k] === undefined || (Number.isFinite(s[k]) && (k === 'intensity' ? s[k] >= 0 && s[k] <= 100 : Math.abs(s[k]) <= 180)))
+      && ['intensity','pan','tilt','zoom'].every(k => s[k] === undefined || (Number.isFinite(s[k]) && (['intensity','zoom'].includes(k) ? s[k] >= 0 && s[k] <= 100 : Math.abs(s[k]) <= 180)))
       && (s.color === undefined || /^#[0-9a-f]{6}$/i.test(s.color)));
 }
 /** Console-inspired palettes keep static values; phasers cycle weighted steps. */
@@ -17,7 +17,7 @@ export function samplePhaser(palette, seconds, index = 0, count = 1, library = [
     const source = step?.paletteName && library.find(p => p.name === step.paletteName && !p.phaser);
     return source ? {...step, ...Object.fromEntries(attributesOf(palette).filter(k => attributesOf(source).includes(k)).map(k => [k, source[k] ?? 0]))} : step;
   }) : original.steps};
-  if (!validPhaser(p) || !Number.isFinite(seconds)) return { intensity: palette.intensity, color: palette.color, pan: palette.pan ?? 0, tilt: palette.tilt ?? 0 };
+  if (!validPhaser(p) || !Number.isFinite(seconds)) return { intensity: palette.intensity, color: palette.color, pan: palette.pan ?? 0, tilt: palette.tilt ?? 0, zoom:palette.zoom ?? 50 };
   const total = p.steps.reduce((n, step) => n + Math.max(0.01, step.width ?? 1), 0);
   const phase = (p.phase ?? 0) + (count > 1 ? index / count * (p.spread ?? 0) : 0);
   const cycles = seconds * p.bpm / (60 * p.measure) + phase / 360;
@@ -31,23 +31,26 @@ export function samplePhaser(palette, seconds, index = 0, count = 1, library = [
   const rgb = (hex) => [1, 3, 5].map(n => parseInt((hex || '#ffffff').slice(n, n + 2), 16));
   const from = rgb(a.color ?? palette.color), to = rgb(b.color ?? palette.color);
   const color = '#' + from.map((v, n) => Math.round(v + (to[n] - v) * mix).toString(16).padStart(2, '0')).join('');
-  return { intensity: interpolate('intensity', palette.intensity), color, pan: interpolate('pan', palette.pan ?? 0), tilt: interpolate('tilt', palette.tilt ?? 0) };
+  return { intensity: interpolate('intensity', palette.intensity), color, pan: interpolate('pan', palette.pan ?? 0), tilt: interpolate('tilt', palette.tilt ?? 0), zoom:interpolate('zoom', palette.zoom ?? 50) };
 }
 const phaser = (steps, bpm = 60, transition = 1, spread = 0) => ({ steps, bpm, transition, spread, phase: 0, measure: 1 });
 export const baselinePalettes = [
+  { name:'All · Warm room wash', type:'All', intensity:82, color:'#ffaa5f', pan:0, tilt:8, zoom:78, attributes:['intensity','color','pan','tilt','zoom'] },
+  { name:'All · Blue focus', type:'All', intensity:100, color:'#2d73ff', pan:0, tilt:8, zoom:49, attributes:['intensity','color','pan','tilt','zoom'] },
+  { name:'All · White work light', type:'All', intensity:71, color:'#ffffff', pan:0, tilt:0, zoom:94, attributes:['intensity','color','pan','tilt','zoom'] },
   { name: 'Intensity · Full', type: 'Intensity', intensity: 100, color: '#ffffff', attributes: ['intensity'] },
-  { name: 'Intensity · Blackout', type: 'Intensity', intensity: 0, color: '#ffffff', attributes: ['intensity'] },
   ...[['White', '#ffffff'], ['Warm', '#ffaa5f'], ['Red', '#ff0000'], ['Blue', '#003cff']].map(([name, color]) => ({ name: `Color · ${name}`, type: 'Color', intensity: 100, color, attributes: ['color'] })),
   { name: 'Position · Center', type: 'Position', intensity: 100, color: '#ffffff', pan: 0, tilt: 0, attributes: ['pan', 'tilt'] },
+  { name:'Beam · Narrow', type:'Beam', intensity:100, color:'#ffffff', zoom:0, attributes:['zoom'] },
+  { name:'Beam · Wash', type:'Beam', intensity:100, color:'#ffffff', zoom:86, attributes:['zoom'] },
   { name: 'Phaser · Dimmer chase', type: 'Phaser', intensity: 100, color: '#ffffff', attributes: ['intensity'], phaser: phaser([{ intensity: 100 }, { intensity: 0 }], 60, 0, 360) },
-  { name: 'Phaser · Breathe', type: 'Phaser', intensity: 100, color: '#ffffff', attributes: ['intensity'], phaser: phaser([{ intensity: 10 }, { intensity: 100 }], 30) },
+  { name: 'Phaser · Dimmer breathe', type: 'Phaser', intensity: 100, color: '#ffffff', attributes: ['intensity'], phaser: phaser([{ intensity: 13 }, { intensity: 100 }], 30) },
   { name: 'Phaser · Red / blue', type: 'Phaser', intensity: 100, color: '#ff0000', attributes: ['color'], phaser: phaser([{ color: '#ff0000' }, { color: '#003cff' }], 60, 0) },
-  { name: 'Phaser · Pan sweep', type: 'Phaser', intensity: 100, color: '#ffffff', attributes: ['pan'], phaser: phaser([{ pan: -45 }, { pan: 45 }], 20) },
   { name: 'Phaser · Circle', type: 'Phaser', intensity: 100, color: '#ffffff', attributes: ['pan', 'tilt'], phaser: phaser([{ pan: 0, tilt: -30 }, { pan: 45, tilt: 0 }, { pan: 0, tilt: 30 }, { pan: -45, tilt: 0 }], 20) },
 ].map(p => ({ ...p, count: 0 }));
 
-export const palettePools = ['Intensity', 'Color', 'Position', 'All'];
-export const poolAttributes = { Intensity: ['intensity'], Color: ['color'], Position: ['pan', 'tilt'], All: ['intensity', 'color', 'pan', 'tilt'] };
+export const palettePools = ['Intensity', 'Color', 'Position', 'Beam', 'All'];
+export const poolAttributes = { Intensity: ['intensity'], Color: ['color'], Position: ['pan', 'tilt'], Beam:['zoom'], All: ['intensity', 'color', 'pan', 'tilt', 'zoom'] };
 export function attributesOf(palette) { return palette.attributes ?? ['intensity', 'color']; }
 export function poolOf(palette) {
   const attributes = attributesOf(palette);
@@ -58,6 +61,7 @@ export function paletteIssue(palette, library = []) {
   if (!attributesOf(palette).length || attributesOf(palette).some(a => !poolAttributes.All.includes(a))) return 'Choose at least one supported attribute.';
   if (!Number.isFinite(palette.intensity) || palette.intensity < 0 || palette.intensity > 100 || !/^#[0-9a-f]{6}$/i.test(palette.color)) return 'Check intensity and color values.';
   if (['pan','tilt'].some(k => !Number.isFinite(palette[k] ?? 0) || Math.abs(palette[k] ?? 0) > 180)) return 'Position must be between −180° and 180°.';
+  if (!Number.isFinite(palette.zoom ?? 50) || (palette.zoom ?? 50) < 0 || (palette.zoom ?? 50) > 100) return 'Beam zoom must be between 0 and 100%.';
   if (palette.phaser && !validPhaser(palette.phaser)) return 'Check phaser values, speed, measure and step widths.';
   for (const step of palette.phaser?.steps ?? []) {
     if (!step.paletteName) continue;
@@ -68,7 +72,7 @@ export function paletteIssue(palette, library = []) {
   return null;
 }
 export function createPalette(pool = 'Intensity') {
-  return {name: 'New palette', type: pool, intensity: 100, color: '#ffffff', pan: 0, tilt: 0, attributes: [...poolAttributes[pool]], count: 0};
+  return {name: 'New palette', type: pool, intensity: 100, color: '#ffffff', pan: 0, tilt: 0, zoom:50, attributes: [...poolAttributes[pool]], count: 0};
 }
 export function createPhaser(palette) {
   const first = Object.fromEntries(attributesOf(palette).map(k => [k, palette[k] ?? 0]));
@@ -76,6 +80,7 @@ export function createPhaser(palette) {
   if ('intensity' in second) second.intensity = 0;
   if ('color' in second) second.color = '#003cff';
   if ('pan' in second) second.pan = 45;
+  if ('zoom' in second) second.zoom = 100;
   return {bpm: 60, measure: 1, phase: 0, spread: 0, transition: 1, steps: [{...first, width: 1}, {...second, width: 1}]};
 }
 /** Keep independent layers; discard an older reference only when fully replaced. */
@@ -83,12 +88,19 @@ export function layeredNames(names, palette, library) {
   const attributes = attributesOf(palette);
   return [...names.filter(name => name !== palette.name && !attributesOf(library.find(p => p.name === name) ?? {}).every(a => attributes.includes(a))), palette.name];
 }
+/** Retain only channels not replaced by a newer layer. */
+export function subtractAttributes(palettes, attributes) {
+  return palettes.map(palette => ({...palette, attributes: attributesOf(palette).filter(a => !attributes.includes(a))}))
+    .filter(palette => palette.attributes.length);
+}
 export function renamePaletteReferences(data, palette, originalName) {
   const rename = name => name === originalName ? palette.name : name;
+  const renameSteps = p => p.phaser ? {...p, phaser: {...p.phaser, steps: p.phaser.steps.map(s => ({...s, ...(s.paletteName ? {paletteName: rename(s.paletteName)} : {})}))}} : p;
   const presets = (originalName ? data.presets.map(p => p.name === originalName ? palette : p) : [...data.presets, palette])
-    .map(p => p.phaser ? {...p, phaser: {...p.phaser, steps: p.phaser.steps.map(s => ({...s, ...(s.paletteName ? {paletteName: rename(s.paletteName)} : {})}))}} : p);
-  const script = data.script.map(entry => ({...entry, preset: rename(entry.preset), assignments: entry.assignments?.map(a => ({...a, preset: rename(a.preset), ...(a.paletteNames ? {paletteNames: a.paletteNames.map(rename)} : {})}))}));
-  for (const p of presets) {
+    .map(renameSteps);
+  const script = data.script.map(entry => ({...entry, preset: rename(entry.preset), assignments: entry.assignments?.map(a => ({...a, preset: rename(a.preset), ...(a.paletteNames ? {paletteNames: a.paletteNames.map(rename)} : {}), ...(a.paletteSnapshots ? {paletteSnapshots:a.paletteSnapshots.map(renameSteps)} : {})}))}));
+  const snapshots = script.flatMap(entry => (entry.assignments ?? []).flatMap(a => a.paletteSnapshots ?? []));
+  for (const p of [...presets, ...snapshots]) {
     const issue = paletteIssue(p, presets);
     if (issue && (p.name === palette.name || p.phaser?.steps.some(s => s.paletteName === palette.name))) throw new Error(issue);
   }
@@ -106,7 +118,7 @@ export function applyPaletteToCue(script, entryId, fixtureIds, palette, fixtures
       const original = assignments[index] ?? {fixtureId: fixture.id};
       const names = original.paletteNames ?? (original.preset ? [original.preset] : []);
       const paletteNames = layeredNames(names, palette, library);
-      const next = {...original, paletteNames, preset: palette.name, paletteSnapshots: (original.paletteSnapshots ?? []).filter(p => !attributesOf(p).some(a => attributesOf(palette).includes(a)))};
+      const next = {...original, paletteNames, preset: palette.name, paletteSnapshots: subtractAttributes(original.paletteSnapshots ?? [], attributesOf(palette))};
       if (index >= 0) assignments[index] = next; else assignments.push(next);
     }
     return {...entry, assignments};

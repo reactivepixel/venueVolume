@@ -28,10 +28,6 @@ final class VenueScene {
     private var fixtureLoadGeneration = UUID()
     private var rigs: [UUID: FixtureRig] = [:]
     private let transformGizmo = FixtureTransformGizmo()
-    private let presetDragVisual = PresetDragVisual()
-    private var presetReduceMotion = false
-    private var latestRightHand: HandAnchor?
-    private var lastRightHandUpdate: Double = 0
     let headAnchor = AnchorEntity(.head, trackingMode: .continuous)
     private let repository: (any EnvironmentRepository)?
     private let environmentID: String
@@ -39,7 +35,6 @@ final class VenueScene {
     private var aligned = false
     private var cubes: [UUID: ModelEntity] = [:]
     private var labels: [UUID: Entity] = [:]
-    private var drops: [UUID: Entity] = [:]
     private var displayedMapRequestID: UUID?
     private var mapWorldPosition = SIMD3<Float>.zero
     private var mapWorldOrientation = simd_quatf(angle: 0,axis: [0,1,0])
@@ -168,7 +163,7 @@ final class VenueScene {
             // A failed import/open therefore leaves the previous room usable.
             try Task.checkCancellation()
             try model.prepareHistoryRestore()
-            root.children.removeAll(); cubes.removeAll(); rigs.removeAll(); labels.removeAll(); drops.removeAll()
+            root.children.removeAll(); cubes.removeAll(); rigs.removeAll(); labels.removeAll()
             leftNavigation.cancel(at: ProcessInfo.processInfo.systemUptime); model.endViewerNavigation()
             aligned = false; root.transform = Transform(); root.isEnabled = false
             root.addChild(room); proxies.forEach { root.addChild($0) }
@@ -203,8 +198,6 @@ final class VenueScene {
             guard let self else { return }
             if let model = self.model { self.applyViewerNavigation(model: model) }
             self.rigs.values.forEach { $0.tick(deltaTime: event.deltaTime) }
-            if let model = self.model, model.presetDrag.isActive { self.updatePresetDrag(model: model, reduceMotion: self.presetReduceMotion) }
-            self.presetDragVisual.tick()
             self.tickPhasers()
             self.tickNavigation()
             self.updatePlacementGhost()
@@ -507,12 +500,10 @@ final class VenueScene {
         for id in Array(rigs.keys) where !ids.contains(id) {
             rigs.removeValue(forKey: id)?.entity.removeFromParent()
             labels.removeValue(forKey: id)?.removeFromParent()
-            drops.removeValue(forKey: id)?.removeFromParent()
         }
         for id in Array(cubes.keys) where !ids.contains(id) {
             cubes.removeValue(forKey: id)?.removeFromParent()
             labels.removeValue(forKey: id)?.removeFromParent()
-            drops.removeValue(forKey: id)?.removeFromParent()
         }
         // Bound expensive shadow lights; selected fixtures receive preview priority.
         // Geometry and articulation continue for every placed asset.
@@ -566,13 +557,7 @@ final class VenueScene {
                 label.components.set(BillboardComponent())
                 labels[fixture.id] = label
             }
-            if let drop = attachments.entity(for: "drop-\(fixture.id)") {
-                if drop.parent == nil { root.addChild(drop) }
-                drop.position = FixtureAiming.vector(fixture.visualCenter) + [0,0,0.20]
-                drop.components.set(BillboardComponent())
-                drop.isEnabled = model.draggingPresetID != nil && !model.presetDrag.isActive && !model.isPickingRoom && !model.palmMapVisible
-                drops[fixture.id] = drop
-            }
+
         }
     }
 
@@ -608,92 +593,8 @@ final class VenueScene {
         for (id, label) in labels { label.isEnabled = visible.contains(id) }
     }
 
-    /// Input is already in world meters. No preset row geometry enters this path.
-    func updatePresetDrag(model: VenueModel, reduceMotion: Bool) {
-        presetReduceMotion = reduceMotion
+    func updateAccessibility(reduceMotion: Bool) {
         reduceNavigationMotion = reduceMotion
-        if presetDragVisual.root.parent == nil { overlayRoot.addChild(presetDragVisual.root) }
-        func bounds(_ id: UUID) -> BoundingBox? {
-            (rigs[id]?.entity ?? cubes[id]).map { $0.visualBounds(relativeTo: nil, excludeInactive: true) }
-        }
-        if let feedback = model.presetDrag.feedback, let box = bounds(feedback.fixtureID) {
-            presetDragVisual.feedback(id: feedback.id, bounds: box, succeeded: feedback.succeeded, reduceMotion: reduceMotion)
-        }
-        guard let session = model.presetDrag.session else {
-            presetDragVisual.tether(origin: nil, reduceMotion: reduceMotion)
-            return
-        }
-        guard aligned, model.canPlace, !model.libraryBusy, !model.isPickingRoom, !model.palmMapVisible, !model.isTransformDragging,
-              model.presets.contains(where: { $0.id == session.presetID }) else {
-            model.endPresetDrag(); presetDragVisual.clear(); return
-        }
-        let eye = SIMD3<Float>(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
-        let forward = -SIMD3<Float>(deviceTransform.columns.2.x,deviceTransform.columns.2.y,deviceTransform.columns.2.z)
-        let up = SIMD3<Float>(deviceTransform.columns.1.x,deviceTransform.columns.1.y,deviceTransform.columns.1.z)
-        let right = SIMD3<Float>(deviceTransform.columns.0.x,deviceTransform.columns.0.y,deviceTransform.columns.0.z)
-        let sample = session.sample
-        let cursor = sample?.cursor ?? eye+forward*3
-        let hand = sample?.hand ?? rightPinchPosition()
-        let rayOrigin = sample?.rayOrigin ?? eye, rayPoint = sample?.rayPoint ?? cursor
-        // A tracked hand is preferred. Simulator/permission fallback begins below
-        // and to the right of the viewer, never at a preset row or window.
-        let origin = hand ?? eye-up*0.22+right*0.18+forward*0.25
-        var targets = model.fixtures.compactMap { fixture -> PresetDropSnap.Target? in
-            guard let box = bounds(fixture.id) else { return nil }
-            return .init(id: fixture.id, minimum: box.min, maximum: box.max)
-        }
-        var proposed: UUID?
-        var contactPoint: SIMD3<Float>?
-        if session.armed {
-            // Only raycast candidates that can actually snap, rather than one
-            // expensive scene query per fixture for every pointer update.
-            while let candidate = PresetDropSnap.match(cursor: cursor, rayOrigin: rayOrigin, rayPoint: rayPoint,
-                                                       targets: targets, previous: model.presetDrag.proposedFixtureID),
-                  let target = targets.first(where: { $0.id == candidate.id }) {
-                let visibilityOrigin = rayOrigin
-                let delta = candidate.point-visibilityOrigin, length = simd_length(delta)
-                var blocked = false
-                if length > 0.001, let scene = root.scene {
-                    let entry = PresetDropSnap.entryDistance(from: visibilityOrigin, through: candidate.point, target: target) ?? length
-                    let firstWall = scene.raycast(origin: visibilityOrigin, direction: delta/length, length: entry, query: .all,
-                                                 mask: .all, relativeTo: nil).filter {
-                        $0.entity.name.hasPrefix("aim-surface:") || $0.entity.name.hasPrefix("room-collider:")
-                    }.map(\.distance).min()
-                    blocked = firstWall.map { $0 < entry-0.015 } ?? false
-                }
-                if !blocked {
-                    proposed = candidate.id
-                    let cable = candidate.point-origin
-                    if simd_length(cable) > 0.001,
-                       let entry = PresetDropSnap.entryDistance(from: origin, through: candidate.point, target: target) {
-                        // Keep the endpoint ring just outside the nearest bounds
-                        // surface instead of burying it inside the fixture body.
-                        contactPoint = origin+simd_normalize(cable)*max(0,entry-0.012)
-                    } else { contactPoint = candidate.point }
-                    break
-                }
-                targets.removeAll { $0.id == candidate.id }
-            }
-        }
-        model.presetDrag.propose(proposed)
-        presetDragVisual.tether(origin: origin, end: contactPoint ?? cursor, targetID: proposed,
-                                 target: proposed.flatMap(bounds), reduceMotion: reduceMotion)
-        if let release = model.presetDrag.takeRelease(), let fixtureID = release.fixtureID {
-            model.finishPresetApplication(presetID: release.presetID, fixtureID: fixtureID)
-            presetDragVisual.tether(origin: nil, reduceMotion: reduceMotion)
-        }
-    }
-
-    private func rightPinchPosition() -> SIMD3<Float>? {
-        guard CACurrentMediaTime()-lastRightHandUpdate < 0.25,
-              let hand = latestRightHand, hand.isTracked, let skeleton = hand.handSkeleton else { return nil }
-        let joints = [HandSkeleton.JointName.thumbTip,.indexFingerTip].map { skeleton.joint($0) }
-        guard joints.allSatisfy(\.isTracked) else { return nil }
-        let points = joints.map { joint -> SIMD3<Float> in
-            let t = hand.originFromAnchorTransform*joint.anchorFromJointTransform
-            return [t.columns.3.x,t.columns.3.y,t.columns.3.z]
-        }
-        return (points[0]+points[1])/2
     }
 
     private func requestFixture(_ descriptor: FixtureAsset, model: VenueModel) {
@@ -775,9 +676,6 @@ final class VenueScene {
                     if update.anchor.chirality == .left {
                         self.latestLeftHand = update.event == .removed ? nil : update.anchor
                         self.lastHandUpdate = CACurrentMediaTime()
-                    } else {
-                        self.latestRightHand = update.event == .removed ? nil : update.anchor
-                        self.lastRightHandUpdate = CACurrentMediaTime()
                     }
                 }
             } : nil
@@ -1000,13 +898,10 @@ final class VenueScene {
         displayedMapRequestID = nil
         model?.closePalmMap()
         blackoutCover?.removeFromParent(); blackoutCover = nil
-        presetDragVisual.clear()
         fixtureLoadGeneration = UUID()
         fixtureLoads.values.forEach { $0.cancel() }; fixtureLoads.removeAll()
         for entity in labels.values { entity.removeFromParent() }
-        for entity in drops.values { entity.removeFromParent() }
         labels.removeAll()
-        drops.removeAll()
         headAnchor.children.removeAll()
         frameSubscription?.cancel(); frameSubscription = nil
     }

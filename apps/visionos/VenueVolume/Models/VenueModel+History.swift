@@ -129,7 +129,7 @@ extension VenueModel {
         touring = state.touring ?? TouringArchive(); selectedUnitIDs = state.selectedUnitIDs ?? []; selectedGroupID = state.selectedGroupID; tourPreview = nil; tourPreviewSession = nil
         restoringHistory = true; message = nil; paletteDraftTarget = nil
         defer { restoringHistory = false }
-        cancelPicking(); endPresetDrag(); gizmoVisible = false; lastTarget = nil; recent = RecentItems()
+        cancelPicking(); gizmoVisible = false; lastTarget = nil; recent = RecentItems()
         rooms = state.rooms; mergeBundledRooms(); savedSetups = state.setups
         environment = state.rooms.first { $0.id == state.roomID }!.manifest
         cueSheets = state.cueSheets ?? [:]; programmerEdited = false

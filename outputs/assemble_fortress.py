@@ -1,6 +1,6 @@
 """Assemble verified cached movie references into one build-compatible Fortress project.
 
-Run from this task's worktree with apps/room2blender/.venv/bin/python.
+Run from this task's worktree with apps/roomScan/.venv/bin/python.
 No video decoding, metric reconstruction, or geometry approval is performed here.
 """
 from pathlib import Path
@@ -11,7 +11,7 @@ import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT/'apps/room2blender/scripts'))
+sys.path.insert(0, str(ROOT/'apps/roomScan/scripts'))
 from pipeline import digest, inventory, key, project_lock, status, verified, write
 from specification import draft
 from PIL import Image, ImageDraw, ImageFont

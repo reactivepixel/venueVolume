@@ -8,7 +8,7 @@ export default function PhaserRhythm({draft, palettes, stepIndex, selectStep, up
   const points = Array.from({length:121},(_,i)=>{
     const value=samplePhaser(draft,i/120*60*phaser.measure/phaser.bpm,0,1,palettes);
     const attrs=attributesOf(draft);
-    const y=attrs.includes('intensity')?value.intensity/100:attrs.includes('color')?parseInt(value.color.slice(1,3),16)/255:(value.pan+180)/360;
+    const y=attrs.includes('intensity')?value.intensity/100:attrs.includes('color')?parseInt(value.color.slice(1,3),16)/255:attrs.includes('zoom')?value.zoom/100:(value.pan+180)/360;
     return `${i/120*500},${98-y*96}`;
   }).join(' ');
   const pattern = name => {updatePhaser({steps:[{intensity:0,width:1,curve:'sine'},{intensity:100,width:1,curve:'sine'}],transition:name==='Pulse'?0:1,spread:name==='Wave'?360:0});selectStep(0);};

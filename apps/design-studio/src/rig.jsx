@@ -8,7 +8,8 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { paletteOutput } from "./live-model";
-import { fixtureRows, presetRows } from "./catalog";
+import { fixtureRows } from "./catalog";
+import { baselinePalettes } from "./palettes-phasers";
 
 export function SelectionInspector({
   fixtures,
@@ -16,7 +17,7 @@ export function SelectionInspector({
   values,
   onChange,
   onRelease,
-  presets = presetRows,
+  presets = baselinePalettes,
   live = false,
 }) {
   const selected = fixtures.filter((f) => ids.includes(f.id));

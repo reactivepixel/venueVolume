@@ -12,7 +12,7 @@ export function scriptSegments(entries) {
 }
 export function makeSnapshot(data, venue) {
   const presets = data.presets.map((p) =>
-    p.name === "Midnight blue"
+    p.name === "All · Blue focus"
       ? { ...p, intensity: data.venueOverrides?.[venue] ?? data.intensity }
       : p,
   );
@@ -30,7 +30,7 @@ export function makeSnapshot(data, venue) {
       roles.map((role, j) => ({
         role,
         preset:
-          j === 0 ? entry.preset : j === 1 ? "Soft front key" : "Violet bloom",
+          j === 0 ? entry.preset : j === 1 ? "All · White work light" : "All · Blue focus",
       })),
   }));
   const houseEntryId = data.venueProgramming?.[venue]?.houseEntryId ??
@@ -58,18 +58,27 @@ export function createRun(snapshot) {
   };
 }
 export function assignmentPalettes(snapshot, entry, fixture) {
-  const assignments = entry?.assignments ?? [];
-  const group = assignments.find(a => !a.fixtureId && a.role === fixture.role);
-  const individual = assignments.find(a => a.fixtureId === fixture.id);
-  const names = [group, individual].flatMap(a => a?.paletteNames ?? (a?.preset ? [a.preset] : []));
-  return [...names.map(name => snapshot.presets.find(p => p.name === name)).filter(Boolean), ...(group?.paletteSnapshots ?? []), ...(individual?.paletteSnapshots ?? [])];
+  if (!entry) return [];
+  const script = (snapshot.script ?? []).map((cue, index) => ({...cue, cueNumber:cue.cueNumber ?? index + 1}));
+  const number = entry.cueNumber ?? script.find(cue => cue.entryId === entry.entryId)?.cueNumber;
+  const previous = script.filter(cue => cue.cueNumber < number).sort((a, b) => a.cueNumber - b.cueNumber);
+  // A cue changes only the attributes it owns; earlier values track forward.
+  return [...previous, entry].flatMap(cue => {
+    const assignments = cue.assignments ?? [];
+    const group = assignments.find(a => !a.fixtureId && a.role === fixture.role);
+    const individual = assignments.find(a => a.fixtureId === fixture.id);
+    return [group, individual].flatMap(assignment => {
+      const names = assignment?.paletteNames ?? (assignment?.preset ? [assignment.preset] : []);
+      return [...names.map(name => snapshot.presets.find(p => p.name === name)).filter(Boolean), ...(assignment?.paletteSnapshots ?? [])];
+    });
+  });
 }
 export function paletteOutput(palette, seconds = 0, index = 0, count = 1, library = []) {
   const sampled = samplePhaser(palette, seconds, index, count, library);
   // Palette position values are degrees; programmer and rig controls use percentages.
   sampled.pan = Math.max(0, Math.min(100, 50 + sampled.pan / 270 * 100));
   sampled.tilt = Math.max(0, Math.min(100, 50 + sampled.tilt / 120 * 100));
-  const attributes = palette.attributes ?? ["intensity", "color"];
+  const attributes = attributesOf(palette);
   return Object.fromEntries(Object.entries(sampled).filter(([key]) => attributes.includes(key)));
 }
 export function cueValues(snapshot, entry) {

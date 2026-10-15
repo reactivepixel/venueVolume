@@ -62,7 +62,7 @@ export function MovieUploadForm({ library, show = "", templates = [], resumeReco
       } else {
         record = await venueRequest(`/${record.id}`, { signal: controller.current.signal });
       }
-      if (["queued", "processing", "ready", "failed"].includes(record.status)) {
+      if (["queued", "processing", "review_required", "ready", "failed"].includes(record.status)) {
         onQueued(record); return;
       }
       if (record.filename !== file.name || record.size !== file.size) {
@@ -207,6 +207,12 @@ export function VenueMovieDetail({ record, library, shows = [], templates = [], 
       </div>
     </Panel>
     {error && <p role="alert" className="movie-error">{error}</p>}
+    {["review_required", "failed"].includes(record.status) && record.draftUrl && <Panel title="Review room geometry" subtitle="Check the reference frames and measurements, then upload the completed room specification to build the model.">
+      <Field label="Reviewed room specification" hint="JSON · dimensions in meters · up to 1 MB">
+        <input type="file" accept=".json,application/json" disabled={busy || !!library.error} onChange={submitReview} />
+      </Field>
+      {busy && <p role="status">Submitting room review…</p>}
+    </Panel>}
     {["awaiting_upload", "uploading"].includes(record.status) && <Panel title="Finish uploading this movie">
       <MovieUploadForm library={library} resumeRecord={record} onQueued={() => library.refresh()} />
     </Panel>}
