@@ -7,10 +7,10 @@ A local Python service stores original MOV/MP4/M4V recordings and processes them
 Use Python 3.12+, uv, FFmpeg and Blender 4.5+. Install the pipeline dependencies with `uv sync --locked --project apps/roomScan`. Check port 8788 before starting:
 
 ```sh
-python3 services/venue-ingest/server.py --port 8788
+uv run --locked --project apps/roomScan python services/venue-ingest/server.py --port 8788
 ```
 
-The service binds to localhost. The design studio proxies `/api/venues` to it; set `VV_INTAKE_URL` for another local port. Build the design studio first to serve its production output directly from this service. No Docker or GPU service is required.
+Run from the repository root. Set `BLENDER_BIN` to the Blender executable when it is not on PATH; on macOS this is typically `/Applications/Blender.app/Contents/MacOS/Blender`. The service binds to localhost. The design studio proxies `/api/venues` to it; set `VV_INTAKE_URL` for another local port. Build the design studio first to serve its production output directly from this service. No Docker or GPU service is required.
 
 ## Workflow
 
@@ -45,3 +45,7 @@ The default `.venue-ingest/` directory contains `venues.sqlite3` and a folder pe
 | `GET /api/venues/:id/log` | Download the processing log |
 
 This service is for trusted local use. It provides no accounts, remote authorization or multi-host job coordination. Browser Load Outs and native saves remain separate; the Vision Pro placement link navigates to matching existing native IDs and does not transfer their data.
+
+## Verification
+
+A manual end-to-end run on 2026-10-15 uploaded a synthetic movie, paused for review, accepted the reviewed specification through the browser, and completed Blender 4.5.14 rendering and USDZ export. The export passed the pipeline's geometry, manifest, OpenUSD and Blender reimport checks. All three output downloads retained their expected filenames. This checks the handoff, not the accuracy of a measured venue or rendering on a headset.

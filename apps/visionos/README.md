@@ -42,6 +42,8 @@ The palette editor follows the fixture selection. Static attributes and Dynamic 
 
 Views invoke session operations rather than editing persisted structures directly. A gesture owns one history transaction. Spatial rendering consumes resolved fixture output; it does not author palette or cue state. Keep file-private helpers private; cross-file session extension operations are internal to the application module.
 
-The abandoned pop-out fixture-info state, mock sync client, diagnostics window, benchmark and embedded smoke harnesses have been removed. Automated test targets and scripts were removed at the owner's request. Historical validation reports describe earlier builds; current verification is by compilation and direct runtime review.
+The abandoned pop-out fixture-info state, palette drag connector, unused placement pane, mock sync client, diagnostics window, benchmark and embedded smoke harnesses have been removed. Tour previews commit cue changes with their assignments and retain pending programmer edits. Macros flush edits before application; phaser rendering preserves fixture-body drag eligibility. Pinned cue sources are validated before playback.
+
+Automated test targets and scripts were removed at the owner's request. Historical validation reports describe earlier builds; current verification is by compilation and direct runtime review. Headset availability is required to verify spatial interaction on device.
 
 `venuevolume://place?version=1&loadout=<UUID>&fixture=<UUID>` opens an existing native fixture placement. Browser-to-native data transfer is not implemented.

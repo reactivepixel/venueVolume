@@ -51,7 +51,6 @@ public enum FixtureAiming {
         atan2(sin(next-previous), cos(next-previous))
     }
     public static let headPivot = SIMD3<Float>(0, 0.33078, 0.00051424245)
-    public static let emitterOffset = SIMD3<Float>(0, 0, -0.10858966)
     public static let panRange: ClosedRange<Float> = (-128 * 270 / 255)...(127 * 270 / 255)
     public static let tiltRange: ClosedRange<Float> = (-128 * 120 / 255)...(127 * 120 / 255)
 
@@ -90,26 +89,6 @@ public enum FixtureAiming {
         return max(0, min(255, Int((bounded / 120 * 255 + 128).rounded())))
     }
 
-    public static func localRay(channels: [Int], asset: FixtureAsset? = nil) -> (origin: SIMD3<Float>, direction: SIMD3<Float>) {
-        if let asset, let emitter = asset.emitters.first {
-            var origin = SIMD3<Float>(emitter.position[0], emitter.position[1], emitter.position[2])
-            var direction = SIMD3<Float>(emitter.axis[0], emitter.axis[1], emitter.axis[2])
-            var parent = emitter.parent
-            while let id = parent, let joint = asset.joints.first(where: { $0.id == id }) {
-                let pivot = SIMD3<Float>(joint.pivot[0], joint.pivot[1], joint.pivot[2])
-                let half = (joint.continuous ? 0 : joint.value(channels: channels)) * .pi / 360
-                let axis = SIMD3<Float>(joint.axis[0], joint.axis[1], joint.axis[2]) * sin(half)
-                let q = Quaternion3D(x: axis.x, y: axis.y, z: axis.z, w: cos(half))
-                origin = pivot + rotate(q, origin-pivot); direction = rotate(q, direction)
-                parent = joint.parent
-            }
-            return (origin, direction)
-        }
-        let look = LightingPreview(channels: channels)
-        let articulation = euler(yaw: look.panDegrees, pitch: look.tiltDegrees, roll: 0)
-        return (headPivot + rotate(articulation, emitterOffset), rotate(articulation, [0,0,-1]))
-    }
-
     public static func euler(yaw: Float, pitch: Float, roll: Float) -> Quaternion3D {
         func axis(_ angle: Float, _ xyz: SIMD3<Float>) -> Quaternion3D {
             let half = angle * .pi / 360, v = xyz * sin(half)
@@ -146,15 +125,6 @@ public enum FixtureAiming {
         let av = SIMD3(a.x,a.y,a.z), bv = SIMD3(b.x,b.y,b.z)
         let v = a.w*bv+b.w*av+cross(av,bv), w = a.w*b.w-dot(av,bv)
         let n = sqrt(dot(v,v)+w*w)
-        return .init(x: v.x/n, y: v.y/n, z: v.z/n, w: w/n)
-    }
-    private static func between(_ a: SIMD3<Float>, _ b: SIMD3<Float>) -> Quaternion3D {
-        let d = dot(a,b)
-        if d < -0.99999 {
-            let axis = normalized(cross(a, abs(a.x) < 0.8 ? [1,0,0] : [0,1,0]))
-            return .init(x: axis.x, y: axis.y, z: axis.z, w: 0)
-        }
-        let v = cross(a,b), w = 1+d, n = sqrt(dot(v,v)+w*w)
         return .init(x: v.x/n, y: v.y/n, z: v.z/n, w: w/n)
     }
 }
