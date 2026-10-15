@@ -441,8 +441,7 @@ export default function VenueSceneReview() {
             together.
           </p>
           <p>
-            USDZ venues and native scanned meshes are supported. Movie2Splat PLY
-            previews are not supported here yet.
+            roomScan USDZ venues and native scanned meshes are supported.
           </p>
         </div>
       )}

@@ -15,16 +15,8 @@ final class VenueScene {
     let overlayRoot = Entity()
     private var frameSubscription: EventSubscription?
     private weak var model: VenueModel?
-    private var thermalPoll: Double = 0
-    private var benchmarkElapsed: Double = 0
-    private var benchmarkCadence = SceneCadence()
-    private var benchmarkFinished = false
-    private var benchmarkBudgets: [UUID: Int] = [:]
-    private var benchmarkThermals: Set<String> = []
-    private var benchmarkAllocated: Set<Int> = []
-    private var benchmarkInitialThermal = ""
-    private var benchmarkFixtures: [Fixture] = []
-    private var benchmarkRevision = 0
+    private var thermalPoll: Double = 1
+    private var lightBudgets: [UUID: Int] = [:]
     private let metalDevice = MTLCreateSystemDefaultDevice()
     private let targetMarker = ModelEntity(mesh: .generateSphere(radius: 0.025), materials: [UnlitMaterial(color: .cyan)])
     private var roomMaterials: [(Entity, ModelComponent)] = []
@@ -112,10 +104,6 @@ final class VenueScene {
                     }
                 }
                 model.bootstrapLibrary(defaultRoom: bundled.manifest, additionalRooms: additional)
-                if let benchmark = model.lightingBenchmark,
-                   let room = model.rooms.first(where: { $0.manifest.id == benchmark.roomID }) {
-                    model.roomRequest = .init(room: room, setup: nil, blank: true)
-                }
             }
             guard let selected = model.roomRequest?.room ?? model.activeRoom ?? model.rooms.first else { throw EnvironmentError.invalid("room library is empty") }
             let resolved: ResolvedEnvironment
@@ -146,9 +134,6 @@ final class VenueScene {
                 for child in entity.children { collect(child) }
             }
             collect(room)
-            #if DEBUG
-            try validateRoomImport(newMaterials, manifest: resolved.manifest)
-            #endif
             model.environmentStatus = "Preparing room targeting…"
             for (entity, component) in newMaterials {
                 let shape = try await ShapeResource.generateStaticMesh(from: component.mesh)
@@ -195,11 +180,7 @@ final class VenueScene {
             model.scannedMesh = scan
             // Imported opaque PBR meshes receive dynamic light and write depth.
             manifest = resolved.manifest
-            benchmarkElapsed = 0; benchmarkCadence = SceneCadence(); benchmarkFinished = false
-            benchmarkThermals = []; benchmarkAllocated = []; benchmarkInitialThermal = ""
             model.activate(environment: resolved.manifest)
-            benchmarkFixtures = model.lightingBenchmark == nil ? [] : model.fixtures
-            benchmarkRevision = model.revision
             return true
         } catch is CancellationError {
             return false
@@ -235,12 +216,12 @@ final class VenueScene {
                 self.labelLayoutElapsed = 0
                 self.layoutFixtureLabels()
             }
-            self.updateLightingDiagnostics(deltaTime: event.deltaTime)
+            self.updateThermalBudget(deltaTime: event.deltaTime)
         }
     }
 
     private func tickPhasers() {
-        guard let model, model.lightingBenchmark == nil, !model.navigationBlackoutActive else { return }
+        guard let model, !model.navigationBlackoutActive else { return }
         let animated = Set(model.fixtures.filter { model.hasAnimatedPalette(for: $0) }.map(\.id))
         guard !animated.isEmpty else { return }
         let channels = Dictionary(uniqueKeysWithValues: model.fixtures.map { ($0.id,model.renderedChannels(for: $0)) })
@@ -250,91 +231,32 @@ final class VenueScene {
                          emitting: look.intensity > 0 && look.rgb.contains { $0 > 0 })
         },selected: model.selectedID,limit: model.effectiveLightLimit)
         for fixture in model.fixtures {
-            guard animated.contains(fixture.id) || budgets[fixture.id] != benchmarkBudgets[fixture.id],
+            guard animated.contains(fixture.id) || budgets[fixture.id] != lightBudgets[fixture.id],
                   let rig = rigs[fixture.id] else { continue }
             rig.update(fixture: model.renderedFixture(fixture),channels: channels[fixture.id] ?? fixture.channels,
                        selected: model.selectedFixtureIDs.contains(fixture.id),blackout: model.isBlackedOut(fixture),
                        placing: model.isPickingRoom,interactive: model.isTransformDragging,
                        lightBudget: budgets[fixture.id] ?? 0)
         }
-        benchmarkBudgets = budgets
+        lightBudgets = budgets
     }
 
-    private func updateLightingDiagnostics(deltaTime: Double) {
+
+
+    private func updateThermalBudget(deltaTime: Double) {
         guard let model else { return }
         thermalPoll += deltaTime
-        if thermalPoll >= 1 || benchmarkInitialThermal.isEmpty {
-            thermalPoll = 0
-            let thermal: LightingBudget.Thermal
-            switch ProcessInfo.processInfo.thermalState {
-            case .nominal: thermal = .nominal
-            case .fair: thermal = .fair
-            case .serious: thermal = .serious
-            case .critical: thermal = .critical
-            @unknown default: thermal = .serious
-            }
-            if model.lightingThermal != thermal { model.lightingThermal = thermal }
-            if benchmarkInitialThermal.isEmpty { benchmarkInitialThermal = thermal.rawValue }
+        guard thermalPoll >= 1 else { return }
+        thermalPoll = 0
+        let thermal: LightingBudget.Thermal
+        switch ProcessInfo.processInfo.thermalState {
+        case .nominal: thermal = .nominal
+        case .fair: thermal = .fair
+        case .serious: thermal = .serious
+        case .critical: thermal = .critical
+        @unknown default: thermal = .serious
         }
-        guard let benchmark = model.lightingBenchmark, !benchmarkFinished,
-              aligned, root.isEnabled, model.isImmersed, rigs.count == 64 else { return }
-        guard manifest?.id == benchmark.roomID, !model.whiteRoom, !model.blackout, model.houseLight == 0.05,
-              model.selectedID == nil, !model.previewDraft, model.revision == benchmarkRevision else {
-            benchmarkFinished = true
-            model.lightingBenchmarkStatus = "Benchmark invalidated by scene edits. Relaunch to repeat the controlled comparison."
-            return
-        }
-        benchmarkElapsed += deltaTime
-        if benchmark.moving {
-            for (index, fixture) in benchmarkFixtures.enumerated() {
-                var channels = fixture.channels
-                channels[4] = 128 + Int(sin(benchmarkElapsed * 0.65 + Double(index)*0.3) * 65)
-                channels[5] = 158 + Int(sin(benchmarkElapsed * 0.4 + Double(index)*0.2) * 25)
-                rigs[fixture.id]?.update(fixture: fixture, channels: channels, selected: false, blackout: false,
-                                         placing: false, lightBudget: benchmarkBudgets[fixture.id] ?? 0)
-            }
-        }
-        // Exclude cold imports, pipeline compilation and the first five seconds.
-        guard benchmarkElapsed > 5 else { return }
-        benchmarkCadence.append(seconds: deltaTime)
-        benchmarkThermals.insert(model.lightingThermal.rawValue)
-        benchmarkAllocated.insert(benchmarkBudgets.values.reduce(0,+))
-        guard benchmarkElapsed >= 5 + benchmark.seconds, let cadence = benchmarkCadence.summary else { return }
-        benchmarkFinished = true
-        do {
-            let data = try JSONEncoder().encode(cadence)
-            let summary = try JSONSerialization.jsonObject(with: data)
-            #if targetEnvironment(simulator)
-            let execution = "simulator"
-            #else
-            let execution = "device"
-            #endif
-            let report: [String: Any] = [
-                "schemaVersion": 1, "execution": execution, "roomID": manifest?.id ?? "",
-                "roomVersion": manifest?.version ?? "", "assetSHA256": manifest?.asset.sha256 ?? "",
-                "appVersion": Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "unknown",
-                "os": ProcessInfo.processInfo.operatingSystemVersionString, "gpu": metalDevice?.name ?? "unavailable",
-                "requestedShadowLights": benchmark.lights, "allocatedShadowLights": benchmarkAllocated.sorted(),
-                "fixtureObjects": rigs.count, "moving": benchmark.moving, "whiteRoom": model.whiteRoom,
-                "houseLight": model.houseLight, "measurementSeconds": benchmarkElapsed-5,
-                "thermalStart": benchmarkInitialThermal, "thermalStates": benchmarkThermals.sorted(),
-                "sceneUpdateCadence": summary,
-                "lightComponentWritesIncludingWarmup": rigs.values.reduce(0) { $0+$1.lightComponentWrites },
-                "jointTransformWritesIncludingWarmup": rigs.values.reduce(0) { $0+$1.jointTransformWrites },
-                "displayedFPS": NSNull(), "gpuFrameTimeMS": NSNull(),
-                "conclusion": "Cadence diagnostic only. Verify visible light count, shadows, GPU deadlines and thermal stability with RealityKit Trace on device."
-            ]
-            let output = try JSONSerialization.data(withJSONObject: report, options: [.prettyPrinted, .sortedKeys])
-            model.lightingBenchmarkJSON = String(decoding: output, as: UTF8.self)
-            let folder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("Benchmarks")
-            try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
-            let file = folder.appendingPathComponent("lighting-" + UUID().uuidString + ".json")
-            try output.write(to: file, options: .atomic)
-            model.lightingBenchmarkStatus = "Recorded cadence · \(benchmark.lights) requested shadow beams. GPU profiling still required."
-            print("VV_LIGHTING_BENCHMARK " + model.lightingBenchmarkJSON)
-        } catch {
-            model.lightingBenchmarkStatus = "Benchmark report could not be saved: " + error.localizedDescription
-        }
+        if model.lightingThermal != thermal { model.lightingThermal = thermal }
     }
 
     func handleTap(entity: Entity, position: SIMD3<Float>, model: VenueModel) {
@@ -451,561 +373,9 @@ final class VenueScene {
         return false
     }
 
-    #if DEBUG
-    /// Exercise the actual RealityKit map entities, drag coordinates and commit gate.
-    func runPalmMapSmoke(model: VenueModel) async {
-        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--palm-map-smoke") else { return }
-        do {
-            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
-            var room = EnvironmentManifest.simple(id: "map-test", title: "Map", min: [-5,0,-5], max: [5,5,5], spawn: [0,0,3], yaw: 0,
-                file: "room.usdz", checksum: String(repeating: "a", count: 64), bytes: 1, scanned: false)
-            var desk = room.colliders[0]
-            desk.id = "desk"; desk.sourceID = "desk"; desk.center = [0,0.5,0]; desk.size = [2,1,2]
-            room.colliders.append(desk)
-            let visual = PalmNavigationVisual()
-            overlayRoot.addChild(visual.entity)
-            defer { visual.entity.removeFromParent() }
-            func update() { visual.update(environment: room, viewpoint: [0,0,3], worldPosition: .zero, orientation: .init(angle: 0,axis: [0,1,0]), visible: true) }
-            update()
-            guard let floor = visual.entity.findEntity(named: "palm-map-floor"),
-                  let marker = visual.entity.findEntity(named: "palm-map-viewpoint"),
-                  let vertical = visual.entity.findEntity(named: "palm-map-move-1"), let miniature = floor.parent else {
-                throw EnvironmentError.invalid("Map entities missing")
-            }
-            _ = visual.tap(floor, worldPoint: miniature.convert(position: .zero, to: nil), environment: room)
-            update()
-            guard visual.message.contains("Obstructed"),
-                  visual.entity.findEntity(named: "palm-map-teleport")?.components[InputTargetComponent.self] == nil else {
-                throw EnvironmentError.invalid("Blocked proposal allowed teleport")
-            }
-            let start = vertical.position(relativeTo: nil)
-            let scale = PalmMapProjection(minimum: room.bounds.min, maximum: room.bounds.max).metersToMap
-            guard visual.drag(vertical, worldPoint: start+[0,1.2*cos(PalmMapProjection.pitch)*scale,0], worldStart: start, environment: room) else {
-                throw EnvironmentError.invalid("Vertical handle did not route")
-            }
-            visual.finish(); update(); update()
-            guard let button = visual.entity.findEntity(named: "palm-map-teleport"),
-                  button.components[InputTargetComponent.self] != nil,
-                  case .teleport(let point) = visual.tap(button, worldPoint: button.position(relativeTo: nil), environment: room), abs(point.y-1.2) < 0.001 else {
-                throw EnvironmentError.invalid("Raised proposal did not persist and clear the obstacle")
-            }
-            let markerStart = marker.position(relativeTo: nil)
-            _ = visual.drag(marker, worldPoint: markerStart+[2,0,0], worldStart: markerStart, environment: room)
-            visual.finish(); update(); update()
-            guard visual.entity.findEntity(named: "palm-map-teleport")?.components[InputTargetComponent.self] == nil else {
-                throw EnvironmentError.invalid("Out-of-room proposal accepted")
-            }
-            model.togglePalmMap(); tickNavigation()
-            if let cube = palmMap.entity.findEntity(named: "palm-map-viewpoint"), let environment = navigationEnvironment {
-                _ = palmMap.tap(cube, worldPoint: cube.position(relativeTo: nil), environment: environment)
-            }
-            tickNavigation()
-            FileHandle.standardOutput.write(Data("PALM_MAP_SMOKE_PASS isometric=true blockedPersists=true verticalClearance=true explicitTeleport=true bounds=true\n".utf8))
-        } catch { FileHandle.standardOutput.write(Data("PALM_MAP_SMOKE_FAIL \(error)\n".utf8)) }
-    }
 
-    func runNavigationSmoke(model: VenueModel) async {
-        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--navigation-smoke") else { return }
-        do {
-            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
-            model.resetViewerToSpawn(); applyViewerNavigation(model: model)
-            let fixtures = model.fixtures, presets = model.presets
-            let eye = SIMD3<Float>(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
-            let initialEye = root.convert(position: eye,from: nil)
-            var time = ProcessInfo.processInfo.systemUptime
-            func send(_ finger: NavigationFinger? = nil, point: SIMD3<Float> = .zero) {
-                time += 0.04
-                updateLeftNavigation(.init(thumb: point,index: point+[finger == .index ? 0.01 : 0.1,0,0],middle: point+[0,finger == .middle ? 0.01 : 0.1,0]),at: time,model: model)
-            }
-            send(); send(.index); send(.index,point: [10,4,-10]); send(); send()
-            try await Task.sleep(for: .milliseconds(100))
-            let moved = model.viewerPose, movedEye = root.convert(position: eye,from: nil)
-            guard simd_distance(movedEye,initialEye) > 30, model.fixtures == fixtures, model.presets == presets else { throw EnvironmentError.invalid("Travel failed: distance=\(simd_distance(movedEye,initialEye)) offset=\(moved.offset) fixturesEqual=\(model.fixtures == fixtures) presetsEqual=\(model.presets == presets)") }
-            model.undo(); applyViewerNavigation(model: model)
-            try await Task.sleep(for: .milliseconds(100))
-            guard simd_distance(root.convert(position: eye,from: nil),initialEye) < 0.001 else { throw EnvironmentError.invalid("Navigation Undo failed") }
-            model.redo(); applyViewerNavigation(model: model)
-            guard model.viewerPose == moved else { throw EnvironmentError.invalid("Navigation Redo failed") }
-            send(.middle); send(.middle,point: [0.1,0.2,0.1]); send(); send()
-            try await Task.sleep(for: .milliseconds(100))
-            guard model.viewerPose.orientation != .init(), model.viewerPose.offset == moved.offset,
-                  simd_distance(root.convert(position: eye,from: nil),movedEye) < 0.001 else { throw EnvironmentError.invalid("Rotation moved viewer position") }
-            send(.middle); send(); send(); send(.middle); send(); send()
-            guard model.viewerPose.orientation == .init(), model.viewerPose.offset == moved.offset else { throw EnvironmentError.invalid("Double middle reset failed") }
-            send(.index); send(); send(); send(.index); send(); send()
-            try await Task.sleep(for: .milliseconds(100))
-            guard model.viewerPose == .init(), simd_distance(root.convert(position: eye,from: nil),initialEye) < 0.001 else { throw EnvironmentError.invalid("Double index spawn reset failed") }
-            time += 0.5; send()
-            guard !model.navigationInputReserved else { throw EnvironmentError.invalid("Navigation release kept editing blocked") }
-            model.message = "Left index moves · left middle rotates · double pinch resets."
-            print("VIEWER_NAVIGATION_SMOKE_PASS freeTravel=true fixedFixtures=true rotationPivot=true doubleMiddle=true doubleIndex=true undoRedo=true release=true")
-        } catch { print("VIEWER_NAVIGATION_SMOKE_FAIL \(error)") }
-    }
 
-    /// Exercises real collision normals and body-drag routing, not hand input.
-    func runFixtureMovementSmoke(model: VenueModel) async {
-        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--movement-smoke") else { return }
-        do {
-            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
-            model.clearScene()
-            guard model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 2.66,y: 0,z: -2.3), surfaceID: "floor"),
-                  let fixture = model.fixtures.first else { throw EnvironmentError.invalid("Pilot placement failed") }
-            try await Task.sleep(for: .milliseconds(700))
-            model.deselect()
-            guard let fixtureRoot = root.findEntity(named: fixture.id.uuidString),
-                  let target = fixtureRoot.children.first(where: { $0.components.has(InputTargetComponent.self) }) else { throw EnvironmentError.invalid("Fixture input target missing") }
-            let start = target.position(relativeTo: root)
-            handleTap(entity: target,position: start,model: model)
-            guard !model.gizmoVisible else { throw EnvironmentError.invalid("First tap did not stay selection-only") }
-            handleTap(entity: target,position: start,model: model)
-            try await Task.sleep(for: .milliseconds(250))
-            guard model.gizmoVisible, target.components.has(SpatialDragTarget.self),
-                  handleDrag(entity: target,position: start+[0.1,0.2,0.1],start: start,model: model) else { throw EnvironmentError.invalid("Second click/body drag routing failed") }
-            model.endTransformDrag()
-            guard let slid = model.fixture(fixture.id), abs(slid.position.x-fixture.position.x-0.1) < 0.001,
-                  slid.position.y == fixture.position.y, slid.channels == fixture.channels else { throw EnvironmentError.invalid("Rendered body drag left its plane or failed: \(model.message ?? "unknown")") }
-            model.undo(); guard model.fixture(fixture.id) == fixture else { throw EnvironmentError.invalid("Body drag Undo failed") }
-            model.redo(); model.beginTransform(fixture.id)
-            guard let physics = root.scene else { throw EnvironmentError.invalid("Physics scene missing") }
-            let floorPoint = SIMD3<Float>(2.9,0,-2.7)
-            guard let floor = physics.raycast(origin: floorPoint+[0,0.1,0],direction: [0,-1,0],length: 0.2,query: .all,mask: .all,relativeTo: root).first(where: { $0.entity.name.hasPrefix("aim-surface:") }) else { throw EnvironmentError.invalid("Rendered floor missing") }
-            handleTap(entity: floor.entity,position: floor.position,model: model)
-            guard let onFloor = model.fixture(fixture.id), simd_distance(FixtureAiming.vector(onFloor.position),floor.position) < 0.001,
-                  onFloor.mountPlane != nil else { throw EnvironmentError.invalid("Surface tap did not move to rendered floor: \(model.message ?? "unknown")") }
-            var onWall: Fixture?
-            for collider in model.environment?.colliders ?? [] where collider.size[1] > 1 {
-                let axis = collider.size[0] < collider.size[2] ? 0 : 2
-                guard collider.size[axis] < 0.5 else { continue }
-                let rotation = Quaternion3D(x: collider.rotation[0],y: collider.rotation[1],z: collider.rotation[2],w: collider.rotation[3])
-                for sign: Float in [-1,1] {
-                    var local = SIMD3<Float>.zero; local[axis] = sign
-                    let normal = FixtureAiming.rotate(rotation,local)
-                    let face = SIMD3<Float>(collider.center[0],collider.center[1],collider.center[2]) + normal*collider.size[axis]/2
-                    let hits = physics.raycast(origin: face+normal*0.15,direction: -normal,length: 0.3,query: .all,mask: .all,relativeTo: root)
-                    guard let hit = hits.first(where: { $0.entity.name.hasPrefix("aim-surface:") && abs($0.normal.y) < 0.1 }) else { continue }
-                    handleTap(entity: hit.entity,position: hit.position,model: model)
-                    if let candidate = model.fixture(fixture.id), let plane = candidate.mountPlane, abs(plane.normal.y) < 0.1 {
-                        onWall = candidate; break
-                    }
-                }
-                if onWall != nil { break }
-            }
-            guard let onWall, let plane = onWall.mountPlane,
-                  FixtureAiming.length(FixtureAiming.rotate(onWall.orientation,[0,1,0])-FixtureAiming.vector(plane.normal)) < 0.001,
-                  onWall.channels == fixture.channels else { throw EnvironmentError.invalid("No rendered wall accepted mount alignment: \(model.message ?? "unknown")") }
-            model.undo(); guard model.fixture(fixture.id) == onFloor else { throw EnvironmentError.invalid("Wall move Undo failed") }
-            model.redo(); guard model.fixture(fixture.id) == onWall else { throw EnvironmentError.invalid("Wall move Redo failed") }
-            model.deselect()
-            try await Task.sleep(for: .milliseconds(200))
-            guard !target.components.has(SpatialDragTarget.self),
-                  let dock = headAnchor.children.first(where: { $0.name == "context-bar" }),
-                  !dock.isEnabled else { throw EnvironmentError.invalid("Deselection did not hide the context bar") }
-            // Presentation follows the same user commands after assertions.
-            model.beginTransform(fixture.id)
-            handleTap(entity: floor.entity,position: floor.position,model: model)
-            if ProcessInfo.processInfo.arguments.contains("--movement-screenshot") {
-                let tablePoint = SIMD3<Float>(1.5,0.74,-3.68)
-                if let table = physics.raycast(origin: tablePoint+[0,0.1,0],direction: [0,-1,0],length: 0.2,query: .all,mask: .all,relativeTo: root).first(where: { $0.entity.name.hasPrefix("aim-surface:") }) {
-                    handleTap(entity: table.entity,position: table.position,model: model)
-                }
-            }
-            for kind in FixtureKind.allCases.filter({ $0 != .movingHead }).prefix(5) { model.rememberFixtureKind(kind) }
-            model.message = "Movement runtime checks passed."
-            print("FIXTURE_MOVEMENT_SMOKE_PASS secondClick=true bodySlide=true floorHit=true wallNormal=true undoRedo=true horizontalDock=true")
-        } catch { print("FIXTURE_MOVEMENT_SMOKE_FAIL \(error)") }
-    }
-    #endif
 
-    #if DEBUG
-    func runTransformGizmoSmoke(model: VenueModel) async {
-        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--gizmo-smoke") else { return }
-        do {
-            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
-            guard let fixture = model.fixtures.first else { throw EnvironmentError.invalid("No fixture") }
-            model.finishPlacement(); model.beginTransform(fixture.id)
-            func enabledHandles(_ entity: Entity) -> [Entity] {
-                guard entity.isEnabled else { return [] }
-                return (FixtureTransformGizmo.handle(entity) == nil ? [] : [entity]) + entity.children.flatMap { enabledHandles($0) }
-            }
-            for mode in FixtureTransformMode.allCases {
-                model.transformMode = mode
-                transformGizmo.update(fixture: fixture, visible: true, mode: mode)
-                let handles = enabledHandles(transformGizmo.entity)
-                guard !handles.isEmpty, handles.allSatisfy({ FixtureTransformGizmo.handle($0)?.1 == mode }) else {
-                    throw EnvironmentError.invalid("\(mode.rawValue) displays handles from the other action")
-                }
-            }
-            model.selectTransformMode(.move)
-            transformGizmo.update(fixture: fixture, visible: true, mode: .move)
-            let models = enabledHandles(transformGizmo.entity).compactMap { $0 as? ModelEntity }
-            guard let x = models.first(where: { FixtureTransformGizmo.handle($0)?.0 == .x }),
-                  let y = models.first(where: { FixtureTransformGizmo.handle($0)?.0 == .y }) else { throw EnvironmentError.invalid("Axis handles missing") }
-            func brightness(_ entity: ModelEntity) -> CGFloat {
-                guard let material = entity.model?.materials.first as? UnlitMaterial else { return -1 }
-                var hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0, alpha: CGFloat = 0
-                material.color.tint.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
-                return brightness
-            }
-            let idleX = brightness(x), idleY = brightness(y)
-            transformGizmo.update(fixture: fixture, visible: true, mode: .move, selectedAxis: .x)
-            guard brightness(x) > idleX*2, brightness(y) == idleY,
-                  models.allSatisfy({ entity in
-                      guard let material = entity.model?.materials.first as? UnlitMaterial else { return false }
-                      return !material.readsDepth && !material.writesDepth && entity.components.has(HoverEffectComponent.self)
-                  }) else { throw EnvironmentError.invalid("Overlay or selected-axis material failed") }
-            let blocker = ModelEntity(mesh: .generateBox(size: [1.6,1.6,0.1]), materials: [UnlitMaterial(color: .gray)])
-            blocker.name = "aim-surface:gizmo-test-blocker"
-            let center = FixtureAiming.vector(fixture.visualCenter)
-            blocker.position = center+[0,0,0.2]
-            blocker.components.set(CollisionComponent(shapes: [.generateBox(size: [1.6,1.6,0.1])]))
-            blocker.components.set(InputTargetComponent(allowedInputTypes: [.indirect]))
-            root.addChild(blocker)
-            defer { blocker.removeFromParent() }
-            try await Task.sleep(for: .milliseconds(300))
-            let origin = center+[0.63,0,2]
-            guard let scene = root.scene,
-                  scene.raycast(origin: origin, direction: [0,0,-1], length: 2, query: .all, mask: .all, relativeTo: root).first?.entity === blocker,
-                  let hit = transformHandle(origin: origin, direction: [0,0,-1], model: model),
-                  FixtureTransformGizmo.handle(hit.entity)?.0 == .x else { throw EnvironmentError.invalid("Obstructed handle could not be picked") }
-            guard handleDrag(entity: hit.entity, position: hit.position, start: hit.position, model: model) else { throw EnvironmentError.invalid("Handle did not start dragging") }
-            for mode in FixtureTransformMode.allCases {
-                if mode == .rotate { model.selectTransformMode(mode) }
-                transformGizmo.update(fixture: fixture, visible: true, mode: mode, selectedAxis: model.activeTransformAxis)
-                for blocked in [false,true] {
-                    blocker.isEnabled = blocked
-                    try await Task.sleep(for: .seconds(1))
-                    guard model.transformMode == mode,
-                          enabledHandles(transformGizmo.entity).allSatisfy({ FixtureTransformGizmo.handle($0)?.1 == mode }) else {
-                        throw EnvironmentError.invalid("Selected mode changed after rendering")
-                    }
-                    let stage = mode.rawValue.uppercased() + (blocked ? "_BLOCKED" : "_CLEAR")
-                    FileHandle.standardOutput.write(Data("GIZMO_CAPTURE_\(stage)\n".utf8))
-                    try await Task.sleep(for: .seconds(5))
-                }
-            }
-            FileHandle.standardOutput.write(Data("GIZMO_SMOKE_PASS exclusiveModes=true overlay=true obstructedHit=true selectedBrightness=true\n".utf8))
-        } catch { FileHandle.standardOutput.write(Data("GIZMO_SMOKE_FAIL \(error)\n".utf8)) }
-    }
-
-    func runPaletteTargetSmoke(model: VenueModel) async {
-        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--palette-target-smoke") else { return }
-        do {
-            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
-            try await Task.sleep(for: .seconds(2))
-            guard model.canPlace, let first = model.fixtures.first,
-                  model.dropFixture([FixtureKind.movingHead.dragToken], at: .init(x: 4,y: 0,z: -2), surfaceID: "floor"),
-                  let second = model.fixtures.last, first.id != second.id else { throw EnvironmentError.invalid("Target fixtures unavailable") }
-            model.finishPlacement(); model.select(first.id, extendSelection: false)
-            model.multiSelectionMode = true; model.select(second.id)
-            try await Task.sleep(for: .seconds(1))
-            guard let palette = model.presets.first(where: { $0.pool == .color && $0.phaser != nil }) else { throw EnvironmentError.invalid("Target palette unavailable") }
-            model.choosePreset(palette)
-            let library = model.presets
-            let point = Position3D(x: 3,y: 1.5,z: -7)
-            model.beginPaletteTarget()
-            guard model.acceptTarget(point) else { throw EnvironmentError.invalid(model.message ?? "Target rejected") }
-            try await Task.sleep(for: .seconds(2))
-            for fixture in [first,second] {
-                let aim = try FixtureAiming.articulated(fixture, target: point)
-                guard model.renderedChannels(for: fixture)[4] == aim.pan,
-                      model.renderedChannels(for: fixture)[5] == aim.tilt,
-                      rigs[fixture.id] != nil else { throw EnvironmentError.invalid("Target preview did not render") }
-            }
-            guard model.saveTarget(), model.presets == library else { throw EnvironmentError.invalid("Target cue save failed: \(model.message ?? model.presetMessage ?? "no message")") }
-            try await Task.sleep(for: .seconds(2))
-            guard !model.isRetargeting, model.currentCue == 1 else { throw EnvironmentError.invalid("Target save did not finish") }
-            FileHandle.standardOutput.write(Data("PALETTE_TARGET_SMOKE_PASS multiFixture=true livePreview=true cueSave=true libraryUnchanged=true\n".utf8))
-        } catch is CancellationError { }
-        catch { FileHandle.standardOutput.write(Data("PALETTE_TARGET_SMOKE_FAIL \(error)\n".utf8)) }
-    }
-
-    /// Native render capture checks room ambience independently of fixture data.
-    func runRoomLightSmoke(model: VenueModel) async {
-        do {
-            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
-            model.deselect(); model.closePalmMap(); model.setPalettePlaying(false)
-            let fixtures = model.fixtures, cues = model.cueSheet, presets = model.presets
-            let channels = fixtures.map { model.renderedChannels(for: $0) }
-            model.blackout = true
-            for (label, level): (String,Float) in [("LOW",0),("HIGH",1)] {
-                model.houseLight = level
-                try await Task.sleep(for: .seconds(2))
-                FileHandle.standardOutput.write(Data("ROOM_LIGHT_CAPTURE_\(label)\n".utf8))
-                try await Task.sleep(for: .seconds(8))
-            }
-            guard model.fixtures == fixtures, model.presets == presets, model.cueSheet == cues,
-                  model.fixtures.map({ model.renderedChannels(for: $0) }) == channels else {
-                throw EnvironmentError.invalid("Room light changed fixture programming")
-            }
-            func emitters(_ entity: Entity) -> [Float] {
-                var values: [Float] = []
-                if let light = entity.components[SpotLightComponent.self] {
-                    values = [light.intensity,light.innerAngleInDegrees,light.outerAngleInDegrees,light.attenuationRadius]
-                    values += (light.color.cgColor.components ?? []).map(Float.init)
-                }
-                return values + entity.children.flatMap { emitters($0) }
-            }
-            model.blackout = false; model.houseLight = 0
-            try await Task.sleep(for: .milliseconds(500))
-            let darkEmitters = emitters(root)
-            model.houseLight = 1
-            try await Task.sleep(for: .milliseconds(500))
-            guard !darkEmitters.isEmpty, emitters(root) == darkEmitters,
-                  roomMaterials.allSatisfy({ $0.0.components[ImageBasedLightReceiverComponent.self]?.imageBasedLight === roomAmbientLight.entity }),
-                  rigs.values.allSatisfy({ !$0.entity.components.has(ImageBasedLightReceiverComponent.self) }) else {
-                throw EnvironmentError.invalid("Ambient light changed fixture emitters or escaped room geometry")
-            }
-            model.houseLight = 0.15
-            FileHandle.standardOutput.write(Data("ROOM_LIGHT_SMOKE_PASS fixtureProgrammingUnchanged=true fixtureEmittersUnchanged=true roomOnly=true\n".utf8))
-        } catch { FileHandle.standardOutput.write(Data("ROOM_LIGHT_SMOKE_FAIL \(error)\n".utf8)) }
-    }
-
-    /// Keep the visible placement box and click target deliberately separated.
-    func runPlacementWristSmoke(model: VenueModel) async {
-        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--placement-wrist-smoke") else { return }
-        do {
-            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
-            try await Task.sleep(for: .milliseconds(500))
-            model.clearScene(); model.closePalmMap(); model.fixtureKind = .movingHead
-            model.beginPlacement()
-            guard let physics = root.scene else { throw EnvironmentError.invalid("Missing physics scene") }
-            let previewPoint = SIMD3<Float>(2.66,0,-2.3)
-            let clickPoint = SIMD3<Float>(4,0,-2.3)
-            let eye = root.convert(position: previewPoint+[0,1,0.5], to: nil)
-            let target = root.convert(position: previewPoint, to: nil)
-            let originalDevice = deviceTransform
-            defer { deviceTransform = originalDevice }
-            deviceTransform = Transform(rotation: simd_quatf(from: [0,0,-1], to: simd_normalize(target-eye)), translation: eye).matrix
-            updatePlacementGhost()
-            guard placementGhost.isEnabled else { throw EnvironmentError.invalid("Preview outline was not rendered") }
-            let shownBase = placementGhost.position
-            guard let click = physics.raycast(origin: clickPoint+[0,0.3,0],direction: [0,-1,0],length: 0.6,
-                query: .all,mask: .all,relativeTo: root).first(where: { $0.entity.name == "room-collider:floor" }) else {
-                throw EnvironmentError.invalid("Missing floor click target")
-            }
-            handleTap(entity: click.entity,position: click.position,model: model)
-            guard let fixture = model.fixtures.last, simd_distance(FixtureAiming.vector(fixture.position),shownBase) < 0.001 else {
-                throw EnvironmentError.invalid("Placed fixture at \(String(describing: model.fixtures.last?.position)); visible box was at \(shownBase)")
-            }
-            model.undo()
-            guard model.fixtures.isEmpty else { throw EnvironmentError.invalid("Placement Undo failed") }
-            model.redo()
-            guard model.fixtures == [fixture] else { throw EnvironmentError.invalid("Placement Redo failed") }
-            handleTap(entity: click.entity,position: click.position,model: model)
-            guard model.fixtures.count == 1 else { throw EnvironmentError.invalid("Consumed preview placed twice") }
-            model.isPlacing = true
-            updatePlacementGhost()
-            model.finishPlacement(); model.beginPlacement()
-            handleTap(entity: click.entity,position: click.position,model: model)
-            guard model.fixtures.count == 1 else { throw EnvironmentError.invalid("Cancelled placement reused stale preview") }
-            updatePlacementGhost()
-            model.fixtureKind = .cube
-            handleTap(entity: click.entity,position: click.position,model: model)
-            guard model.fixtures.count == 1 else { throw EnvironmentError.invalid("Changed fixture reused stale preview") }
-            updatePlacementGhost()
-            let cubeBase = placementGhost.position
-            handleTap(entity: click.entity,position: click.position,model: model)
-            guard model.fixtures.count == 2, let cube = model.fixtures.last,
-                  simd_distance(FixtureAiming.vector(cube.position),cubeBase+[0,model.fixtureKind.radius,0]) < 0.001 else {
-                throw EnvironmentError.invalid("Cube outline and placement bounds disagree")
-            }
-            updatePlacementGhost()
-            model.canPlace = false
-            handleTap(entity: click.entity,position: click.position,model: model)
-            guard model.fixtures.count == 2 else { throw EnvironmentError.invalid("Tracking loss accepted placement") }
-            model.canPlace = true
-            handleTap(entity: click.entity,position: click.position,model: model)
-            guard model.fixtures.count == 2 else { throw EnvironmentError.invalid("Tracking recovery reused stale preview") }
-            deviceTransform = Transform(rotation: simd_quatf(from: [0,0,-1],to: [0,1,0]),translation: eye).matrix
-            updatePlacementGhost()
-            handleTap(entity: click.entity,position: click.position,model: model)
-            guard !placementGhost.isEnabled, model.fixtures.count == 2 else {
-                throw EnvironmentError.invalid("Hidden preview fell back to gaze placement")
-            }
-            model.finishPlacement(); model.resetToolboxActivation()
-            let attended = WristAttention.isAttended(wrist: [0,0,-0.45],eye: .zero,forward: [0,0,-1])
-            model.updateHandToolboxActivation(attended: attended,now: 0)
-            model.updateHandToolboxActivation(attended: attended,now: 0.4)
-            let firstRequest = model.toolboxRequestID
-            model.updateHandToolboxActivation(attended: false,now: 1)
-            model.updateHandToolboxActivation(attended: attended,now: 2)
-            model.updateHandToolboxActivation(attended: attended,now: 2.4)
-            guard firstRequest != nil, model.toolboxRequestID != firstRequest, !model.palmMapVisible else {
-                throw EnvironmentError.invalid("Wrist attention did not recall Toolbox again")
-            }
-            print("PLACEMENT_WRIST_SMOKE_PASS boxPosition=true gazeIndependent=true undoRedo=true stalePreviewRejected=true cubeBounds=true trackingGuard=true noGazeFallback=true wristRecall=true")
-        } catch { print("PLACEMENT_WRIST_SMOKE_FAIL \(error)") }
-    }
-
-    /// Native renderer routing check, separate from human pinch acceptance.
-    func runInputSmoke(model: VenueModel) async {
-        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--input-smoke") else { return }
-        while !model.canPlace {
-            do { try await Task.sleep(for: .milliseconds(100)) } catch { return }
-        }
-        do {
-            try await Task.sleep(for: .seconds(2))
-            guard let fixture = model.fixtures.first, let fixtureRoot = root.findEntity(named: fixture.id.uuidString),
-                  let target = fixtureRoot.components.has(CollisionComponent.self) ? fixtureRoot : fixtureRoot.children.first(where: { $0.components.has(InputTargetComponent.self) }),
-                  let scene = root.scene, let surface = roomMaterials.first?.0 else {
-                throw EnvironmentError.invalid("missing rendered input targets")
-            }
-            let center = target.position(relativeTo: root)
-            let origin = center + [0,0,0.8]
-            let hits = scene.raycast(origin: origin, direction: [0,0,-1], length: 1,
-                                     query: .all, mask: .all, relativeTo: root)
-            let nearestInput = hits.sorted { $0.distance < $1.distance }.first {
-                $0.entity.components[InputTargetComponent.self]?.allowedInputTypes.contains(.indirect) == true
-            }
-            guard nearestInput?.entity == target,
-                  !target.components.has(SpatialDragTarget.self),
-                  !handleDrag(entity: target, position: center, start: center, model: model),
-                  drops.values.allSatisfy({ !$0.isEnabled }) else {
-                throw EnvironmentError.invalid("fixture collision or tap/drag isolation failed")
-            }
-            model.deselect()
-            model.beginPlacement(); model.togglePalmMap()
-            guard model.palmMapVisible else { throw EnvironmentError.invalid("Toolbar map failed to open") }
-            let count = model.fixtures.count
-            handleTap(entity: target, position: center, model: model)
-            handleTap(entity: surface, position: center, model: model)
-            guard model.isPlacing, model.selectedID == nil, model.fixtures.count == count,
-                  !handleDrag(entity: surface,position: center,start: center,model: model) else {
-                throw EnvironmentError.invalid("Open map allowed editing behind navigation")
-            }
-            model.closePalmMap()
-            guard model.isPlacing else { throw EnvironmentError.invalid("Map close lost prior editing context") }
-            model.finishPlacement()
-            handleTap(entity: target, position: center, model: model)
-            guard model.selectedID == fixture.id else { throw EnvironmentError.invalid("fixture tap did not select") }
-            handleTap(entity: surface, position: center, model: model)
-            guard model.selectedID == nil else { throw EnvironmentError.invalid("room tap did not deselect") }
-            model.beginRetarget(fixture.id)
-            try await Task.sleep(for: .milliseconds(250))
-            guard surface.components.has(SpatialDragTarget.self) else { throw EnvironmentError.invalid("aim surface did not enable held targeting") }
-            model.cancelPicking()
-            try await Task.sleep(for: .milliseconds(250))
-            guard !surface.components.has(SpatialDragTarget.self) else { throw EnvironmentError.invalid("aim drag target survived cancellation") }
-            print("SPATIAL_INPUT_SMOKE_PASS")
-        } catch { print("SPATIAL_INPUT_SMOKE_FAIL: \(error)") }
-    }
-    #endif
-
-    #if DEBUG
-    /// Synthetic world-space pointer samples exercise the real render/commit path.
-    /// They do not establish physical pinch acceptance.
-    func runPresetDragSmoke(model: VenueModel, closeToolbox: () -> Void) async {
-        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--preset-drag-smoke") else { return }
-        do {
-            for _ in 0..<200 where !model.canPlace { try await Task.sleep(for: .milliseconds(100)) }
-            model.requestToolbox()
-            guard let fixture = model.fixtures.first,
-                  let preset = model.presets.first(where: { $0.id != fixture.presetID }),
-                  let entity = rigs[fixture.id]?.entity ?? cubes[fixture.id] else {
-                throw EnvironmentError.invalid("Missing smoke fixture or alternate preset")
-            }
-            model.endPresetDrag(); updatePresetDrag(model: model, reduceMotion: false)
-            guard !presetDragVisual.hasTether else { throw EnvironmentError.invalid("Idle tether is visible") }
-            model.activatePresetApplication(preset.id)
-            guard let id = model.presetDrag.session?.id else { throw EnvironmentError.invalid("Activation failed") }
-            let target = entity.visualBounds(relativeTo: nil, excludeInactive: true).center
-            let eye = SIMD3<Float>(deviceTransform.columns.3.x,deviceTransform.columns.3.y,deviceTransform.columns.3.z)
-            let right = SIMD3<Float>(deviceTransform.columns.0.x,deviceTransform.columns.0.y,deviceTransform.columns.0.z)
-            let up = SIMD3<Float>(deviceTransform.columns.1.x,deviceTransform.columns.1.y,deviceTransform.columns.1.z)
-            let forward = -SIMD3<Float>(deviceTransform.columns.2.x,deviceTransform.columns.2.y,deviceTransform.columns.2.z)
-            let hand = eye+right*0.42-up*0.28+forward*0.5
-            let initial = PresetDragState.Sample(cursor: target+right+up*0.6, hand: hand)
-            model.presetDrag.update(id, sample: initial, armed: true)
-            try await Task.sleep(for: .seconds(1))
-            guard model.presetDrag.proposedFixtureID == nil,
-                  presetDragVisual.visibleOrigin == hand else { throw EnvironmentError.invalid("Dotted tether did not start at the user") }
-            print("PRESET_DRAG_SMOKE_DOTTED viewerOrigin=true rowIndependent=true")
-            try await Task.sleep(for: .seconds(6))
-            closeToolbox()
-            try await Task.sleep(for: .milliseconds(500))
-            guard model.presetDrag.session?.id == id, !model.toolboxVisible else { throw EnvironmentError.invalid("Toolbox dismissal ended Apply or did not close") }
-            model.presetDrag.release(id)
-            try await Task.sleep(for: .milliseconds(200))
-            guard model.presetDrag.session?.id == id else { throw EnvironmentError.invalid("Missed release ended Apply") }
-            let snapped = PresetDragState.Sample(cursor: target, hand: hand)
-            model.presetDrag.update(id, sample: snapped, armed: true)
-            try await Task.sleep(for: .seconds(1))
-            guard model.presetDrag.proposedFixtureID == fixture.id, presetDragVisual.isSnapped else { throw EnvironmentError.invalid("Fixture did not snap") }
-            print("PRESET_DRAG_SMOKE_SOLID curved=true targetRing=true")
-            try await Task.sleep(for: .seconds(6))
-            let oldCount = model.history?.entries.count ?? 0
-            model.presetDrag.release(id)
-            try await Task.sleep(for: .milliseconds(200))
-            guard model.fixture(fixture.id)?.presetID == preset.id,
-                  model.history?.entries.count == oldCount+1,
-                  model.presetDrag.feedback?.succeeded == true,
-                  !presetDragVisual.hasTether,
-                  model.fixture(fixture.id).map({ model.renderedChannels(for: $0) == preset.channels }) == true else {
-                throw EnvironmentError.invalid("Apply did not commit once and clear the tether")
-            }
-            model.presetDrag.release(id)
-            try await Task.sleep(for: .milliseconds(100))
-            guard model.history?.entries.count == oldCount+1 else { throw EnvironmentError.invalid("Duplicate release was applied") }
-            model.undo()
-            guard model.fixture(fixture.id)?.presetID == fixture.presetID else { throw EnvironmentError.invalid("Apply undo failed") }
-            model.redo()
-            guard model.fixture(fixture.id)?.presetID == preset.id else { throw EnvironmentError.invalid("Apply redo failed") }
-            model.activatePresetApplication(preset.id); model.endPresetDrag()
-            updatePresetDrag(model: model, reduceMotion: true)
-            guard !presetDragVisual.hasTether, model.presetDrag.session == nil else { throw EnvironmentError.invalid("Cancel left a tether") }
-            print("PRESET_DRAG_SMOKE_PASS viewerOrigin=true noRowGeometry=true toolboxClose=true missedReleaseStaysActive=true applyOnce=true cancel=true undo=true redo=true syntheticPointer=true")
-        } catch {
-            model.endPresetDrag()
-            print("PRESET_DRAG_SMOKE_FAIL: \(error)")
-        }
-    }
-    #endif
-
-    #if DEBUG
-    /// Checks the material bindings produced by RealityKit, not just USDZ bytes.
-    private func validateRoomImport(_ imported: [(Entity, ModelComponent)], manifest: EnvironmentManifest) throws {
-        guard ProcessInfo.processInfo.arguments.contains("--room-import-smoke"),
-              ["img3153-classroom-v1", "mappedRoom", "the-fortress"].contains(manifest.id) else { return }
-        do {
-            var textures: [MaterialParameters.Texture] = []
-            var bindings: [[String: Any]] = []
-            for (entity, component) in imported {
-                for material in component.materials {
-                    guard let pbr = material as? PhysicallyBasedMaterial else {
-                        throw EnvironmentError.invalid("Room material did not import as PBR: \(entity.name)")
-                    }
-                    guard case .opaque = pbr.blending else {
-                        throw EnvironmentError.invalid("Room material is not opaque: \(entity.name)")
-                    }
-                    if let texture = pbr.baseColor.texture {
-                        if !textures.contains(texture) { textures.append(texture) }
-                        let index = textures.firstIndex(of: texture)!
-                        bindings.append(["entity": entity.name, "textureIndex": index])
-                    }
-                }
-            }
-            let sizes = textures.map { ["width": $0.resource.width, "height": $0.resource.height,
-                                        "mipLevels": $0.resource.mipmapLevelCount] }
-            let expectedMeshes = manifest.id == "the-fortress" ? 135 : 68
-            guard imported.count == expectedMeshes else { throw EnvironmentError.invalid("Expected \(expectedMeshes) imported room meshes, got \(imported.count)") }
-            if manifest.id == "mappedRoom" {
-                guard textures.count == 6,
-                      sizes.filter({ $0["width"] == 512 && $0["height"] == 512 }).count == 2,
-                      sizes.filter({ $0["width"] == 256 && $0["height"] == 256 }).count == 4 else {
-                    throw EnvironmentError.invalid("Expected six native base-color textures: two 512² and four 256²; imported \(sizes)")
-                }
-            } else if !textures.isEmpty { throw EnvironmentError.invalid("Baseline unexpectedly has base-color textures") }
-            let report: [String: Any] = ["roomID": manifest.id, "assetSHA256": manifest.asset.sha256,
-                "modelCount": imported.count, "textureCount": textures.count,
-                "textures": sizes, "bindings": bindings, "opaquePBR": true]
-            let json = try JSONSerialization.data(withJSONObject: report, options: [.sortedKeys])
-            print("ROOM_IMPORT_SMOKE_PASS " + String(decoding: json, as: UTF8.self))
-        } catch {
-            print("ROOM_IMPORT_SMOKE_FAIL \(manifest.id): \(error)")
-            throw error
-        }
-    }
-    #endif
 
     private func rememberMaterials(_ entity: Entity) {
         if let model = entity.components[ModelComponent.self] { roomMaterials.append((entity, model)) }
@@ -1151,7 +521,7 @@ final class VenueScene {
             return .init(id: fixture.id, emitters: fixtureTemplates[fixture.assetID ?? ""] == nil ? 0 : fixture.asset?.emitters.count ?? 0,
                          emitting: look.intensity > 0 && look.rgb.contains { $0 > 0 })
         }, selected: model.selectedID, limit: model.effectiveLightLimit)
-        benchmarkBudgets = budgets
+        lightBudgets = budgets
         for fixture in model.sceneFixtures {
             let displayed = model.renderedFixture(fixture)
             let position = FixtureAiming.vector(displayed.position)

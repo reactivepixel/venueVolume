@@ -16,7 +16,6 @@ Open the URL printed by Astro. The app has one fixed visual direction with no th
 The hero photograph is processed from `src/assets/hero-van-v1.png`; Astro emits responsive WebP variants at build time. Its provenance and creative brief are recorded in `docs/02 Product/Marketing Site.md`.
 
 ```sh
-npm test
 npm run build
 ```
 

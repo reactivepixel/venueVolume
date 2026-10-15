@@ -31,8 +31,8 @@ export default function VisionProHandoff({ loadout, unit }) {
         <p>
           <strong>Existing native Load Out required.</strong> This link
           identifies the Load Out and fixture; it does not transfer them.
-          Automatic SaaS import and Movie2Splat scan loading in visionOS are not
-          available yet. The app will explain if this Load Out is missing.
+          Import the roomScan USDZ and environment manifest separately. Automatic
+          SaaS Load Out transfer is not available yet. The app will explain if this Load Out is missing.
         </p>
       </div>
       <a className="button primary" href={link}>

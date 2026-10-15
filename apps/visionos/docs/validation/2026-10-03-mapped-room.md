@@ -12,7 +12,7 @@ Date: 2026-10-03. Source: `origin/dev` **d8e6f13e568add6a74b32114c88aa45275a9332
 - Physical target: Chris’s Apple Vision Pro `00008112-001619923CC1A01E`, reported **unavailable** by repeated `xcrun devicectl list devices`. [Device evidence](2026-10-03-mapped-room/evidence/device-status.txt).
 - Debug Simulator and unsigned Release device bundles both report `CFBundleShortVersionString = 0.2.2`. [Host record](2026-10-03-mapped-room/evidence/host.txt), [release version check](2026-10-03-mapped-room/evidence/version-check.log).
 
-Read `AGENTS.md`, `README.md`, `docs/VALIDATION.md`, `docs/MAPPED_ROOM_LIGHTING.md`, and `apps/room2blender/mappedRoom/README.md`. Pulled dev by fetching its current remote ref and fast-forwarding. Preserved/restored the primary checkout’s existing Xcode project edits with a path-specific stash. Created the assigned worktree from current dev; all edits, builds and tests ran there. No master changes, release bump, integration or push in this task.
+Read `AGENTS.md`, `README.md`, `docs/VALIDATION.md`, `docs/MAPPED_ROOM_LIGHTING.md`, and `apps/roomScan/mappedRoom/README.md`. Pulled dev by fetching its current remote ref and fast-forwarding. Preserved/restored the primary checkout’s existing Xcode project edits with a path-specific stash. Created the assigned worktree from current dev; all edits, builds and tests ran there. No master changes, release bump, integration or push in this task.
 
 ```sh
 # Primary checkout; existing Xcode edits temporarily stashed/restored around merge.

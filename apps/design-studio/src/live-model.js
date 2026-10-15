@@ -62,7 +62,7 @@ export function assignmentPalettes(snapshot, entry, fixture) {
   const group = assignments.find(a => !a.fixtureId && a.role === fixture.role);
   const individual = assignments.find(a => a.fixtureId === fixture.id);
   const names = [group, individual].flatMap(a => a?.paletteNames ?? (a?.preset ? [a.preset] : []));
-  return names.map(name => snapshot.presets.find(p => p.name === name)).filter(Boolean);
+  return [...names.map(name => snapshot.presets.find(p => p.name === name)).filter(Boolean), ...(group?.paletteSnapshots ?? []), ...(individual?.paletteSnapshots ?? [])];
 }
 export function paletteOutput(palette, seconds = 0, index = 0, count = 1, library = []) {
   const sampled = samplePhaser(palette, seconds, index, count, library);

@@ -93,7 +93,7 @@ public struct DMXPreset: Identifiable, Codable, Equatable, Sendable {
 }
 
 public enum ToolboxItem: Hashable, Codable, Sendable {
-    case addFixture, presets, sync
+    case addFixture, presets
     case fixture(UUID), preset(UUID)
 }
 
@@ -201,24 +201,5 @@ public enum PresetOperations {
         for fixture in fixtures {
             if let issue = fixture.validationIssue(among: fixtures) { throw PresetError(issue) }
         }
-    }
-}
-
-/// Debounces the physical palm pose. A brief tracking gap doesn't flash the pane.
-public struct PalmRevealGate: Sendable {
-    public private(set) var isVisible = false
-    private var eligibleSince: Double?
-    private var lastEligible: Double?
-    public init() {}
-    public mutating func update(eligible: Bool, now: Double) -> Bool {
-        if eligible {
-            if eligibleSince == nil { eligibleSince = now }
-            lastEligible = now
-            if now - (eligibleSince ?? now) >= 0.25 { isVisible = true }
-        } else {
-            eligibleSince = nil
-            if now - (lastEligible ?? -10) >= 0.8 { isVisible = false }
-        }
-        return isVisible
     }
 }

@@ -134,7 +134,6 @@ public struct VenueAuditState: Codable, Equatable, Sendable {
     public var houseLight: Float
     public var blackout: Bool
     public var selectedID: UUID?
-    public var expandedID: UUID?
     public var previewDraft: Bool
     public var previewBlackout: Bool?
     public var touring: TouringArchive?
@@ -145,14 +144,14 @@ public struct VenueAuditState: Codable, Equatable, Sendable {
 
     public init(rooms: [LibraryRoom], setups: [VenueSetup], roomID: String, fixtures: [Fixture], presets: [DMXPreset],
                 draft: DMXPreset, editingPresetID: UUID?, setupName: String, activeSetupID: UUID?, savedSetup: VenueSetup?,
-                whiteRoom: Bool, houseLight: Float, blackout: Bool, selectedID: UUID?, expandedID: UUID?, previewDraft: Bool, previewBlackout: Bool? = nil, touring: TouringArchive? = nil, selectedUnitIDs: Set<UUID>? = nil, selectedGroupID: UUID? = nil, viewerPose: ViewerNavigationPose? = nil, cueSheets: [String: CueSheet]? = nil) {
+                whiteRoom: Bool, houseLight: Float, blackout: Bool, selectedID: UUID?, previewDraft: Bool, previewBlackout: Bool? = nil, touring: TouringArchive? = nil, selectedUnitIDs: Set<UUID>? = nil, selectedGroupID: UUID? = nil, viewerPose: ViewerNavigationPose? = nil, cueSheets: [String: CueSheet]? = nil) {
         self.cueSheets = cueSheets
         self.viewerPose = viewerPose
         self.touring = touring; self.selectedUnitIDs = selectedUnitIDs; self.selectedGroupID = selectedGroupID
         self.rooms = rooms; self.setups = setups; self.roomID = roomID; self.fixtures = fixtures; self.presets = presets
         self.draft = draft; self.editingPresetID = editingPresetID; self.setupName = setupName; self.activeSetupID = activeSetupID
         self.savedSetup = savedSetup; self.whiteRoom = whiteRoom; self.houseLight = houseLight; self.blackout = blackout
-        self.selectedID = selectedID; self.expandedID = expandedID; self.previewDraft = previewDraft; self.previewBlackout = previewBlackout
+        self.selectedID = selectedID; self.previewDraft = previewDraft; self.previewBlackout = previewBlackout
     }
     public func validate() throws {
         guard let room = rooms.first(where: { $0.id == roomID }), Set(rooms.map(\.id)).count == rooms.count,
@@ -163,7 +162,6 @@ public struct VenueAuditState: Codable, Equatable, Sendable {
               activeSetupID == nil || setups.contains(where: { $0.id == activeSetupID }),
               savedSetup?.id == activeSetupID,
               selectedID == nil || fixtures.contains(where: { $0.id == selectedID }),
-              expandedID == nil || fixtures.contains(where: { $0.id == expandedID }),
               (1...16).contains(draft.channels.count), draft.channels.allSatisfy({ (0...255).contains($0) }) else {
             throw EnvironmentError.invalid("invalid audit snapshot")
         }

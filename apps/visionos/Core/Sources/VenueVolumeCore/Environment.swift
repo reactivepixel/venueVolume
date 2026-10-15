@@ -7,7 +7,7 @@ public enum EnvironmentError: LocalizedError {
     }
 }
 
-/// Version 1 contract shared with room2blender. All positions are meters in room-local Y-up space.
+/// Version 1 contract shared with roomScan. All positions are meters in room-local Y-up space.
 public struct EnvironmentManifest: Codable, Equatable, Sendable {
     public struct Asset: Codable, Equatable, Sendable {
         public var file: String

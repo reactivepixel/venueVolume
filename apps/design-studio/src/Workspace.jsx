@@ -355,9 +355,9 @@ export default function Workspace({ ProgrammingPreview }) {
         <>
           <div className="callout">
             <p>
-              Programming design preview · sample cue content, simulated output.
+              Cue programmer · browser-local storage, simulated output.
               Context: <strong>{loadout?.name || "Fixture profiles"}</strong>.
-              Preparation is saved separately in your Load Out.
+              Palettes and cues are stored for this Load Out.
             </p>
           </div>
           <nav className="tabs" aria-label="Programming and operations">
@@ -572,7 +572,7 @@ export default function Workspace({ ProgrammingPreview }) {
           <>
             {heading(
               "Upload a venue movie",
-              "Movie2Splat processes the recording into a scan. Import it before creating a Load Out.",
+              "roomScan extracts references for review, builds a Blender model, and exports USDZ. Import the reviewed room before creating a Load Out.",
             )}
             <Panel title="Capture a room">
               <MovieUploadForm
@@ -866,9 +866,7 @@ export default function Workspace({ ProgrammingPreview }) {
             {chooseContext()}
             <Panel title="A consistent programming sequence">
               <p className="panel-copy">
-                Fixture roles → palettes → cues → scripts → rehearsal. Current
-                editors are design previews with sample cue content. Production
-                programming inheritance across Tours remains to be implemented.
+                Select fixtures → recall palettes → edit static values or phaser steps → store cues → rehearse. Each Load Out owns its cue programming.
               </p>
             </Panel>
           </>
@@ -974,7 +972,7 @@ export default function Workspace({ ProgrammingPreview }) {
             )}
             <Panel
               title="Export preparation data"
-              subtitle="Includes fixture identities, Tours, Load Outs and scan references. Scan files and programming previews are separate."
+              subtitle="Includes fixture identities, Tours, Load Outs and scan references. Scan files and cue programming is stored separately in this browser."
             >
               <Button
                 onClick={() => download(state, "venue-volume-workspace.json")}
@@ -1049,7 +1047,7 @@ export default function Workspace({ ProgrammingPreview }) {
                 } else go("presets");
               }}
             >
-              {operations ? "Review readiness" : "Open programming preview"}
+              {operations ? "Review readiness" : "Open cue programmer"}
             </Button>
           </div>
         ))}
@@ -1199,7 +1197,7 @@ export default function Workspace({ ProgrammingPreview }) {
           <div className="loadout-placement">
             <Panel
               title="Placement plan"
-              subtitle="Coordinate plan tied to the scan. The browser does not yet render Gaussian splats."
+              subtitle="Coordinate plan tied to the roomScan model. Review the USDZ in the 3D workspace."
             >
               <div className="coordinate-plan">
                 <svg

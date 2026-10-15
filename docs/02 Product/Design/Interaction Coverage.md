@@ -20,7 +20,7 @@ This is a design prototype. The screen catalog represents intended production su
 - Inspect generic empty, loading, error/retry, and permission-denied presentations.
 - Search shows, configurations, inventory fixtures, profiles, venues, palettes, and cues.
 - Add local demo show names, templates, venues, palettes, fixture instances, and member entries.
-- Upload actual venue movie bytes from **Add venue → From a movie** or the standalone `/upload` page. The local intake service persists a UUID record, original movie and processing state; its serial worker invokes Movie2Splat. Standalone captures stay in a **Needs setup** inbox until imported into a show with a name and configuration. Retry, pipeline logs and ready PLY downloads are implemented. This flow requires the intake service; processing requires the documented Docker/NVIDIA environment.
+- Upload actual venue movie bytes from **Add venue → From a movie** or the standalone `/upload` page. The local intake service persists a UUID record, original movie and processing state; its serial worker invokes roomScan. Standalone captures stay in a **Needs setup** inbox until imported into a show with a name and configuration. Retry, pipeline logs and ready PLY downloads are implemented. This flow requires the intake service; processing requires the documented Docker/NVIDIA environment.
 - Change palette intensity at show/venue scope, expose provenance, and reset inheritance.
 - Modify patch addresses/universes and detect footprint overflow or overlap.
 - Reorder, remove, or repeat script cue references using separate entry IDs.
@@ -49,7 +49,7 @@ The pop-out remains usable after the editor closes. Active look and manual value
 
 Additional limits: no interpolated physical fades, MTC/audio scheduler, verified physical MIDI, full packet deduplication/CC edge policy, or OS always-on-top/background guarantee. Console run keys use demo show/venue names rather than stable production IDs. Expected timeline offsets are metadata; the playhead advances when cues are called.
 
-Venue movie intake is single-host and local-only, without tenant authentication or cloud storage. Show/configuration assignments reference prototype labels, not production revisions. A processed splat does not establish room scale, editable CAD, rig mappings or output readiness. See [the service guide](../../../services/venue-ingest/README.md) for its API and operational boundaries.
+Venue movie intake is single-host and local-only, without tenant authentication or cloud storage. Show/configuration assignments reference prototype labels, not production revisions. A processed room model does not establish room scale, editable CAD, rig mappings or output readiness. See [the service guide](../../../services/venue-ingest/README.md) for its API and operational boundaries.
 
 ## Required production expansion
 

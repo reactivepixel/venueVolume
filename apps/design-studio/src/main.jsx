@@ -67,7 +67,8 @@ import "./styles.css";
 import CuePaletteAssignments from "./CuePaletteAssignments";
 import PaletteWorkbench from "./PaletteWorkbench";
 import {starterMacros} from "./programming-macros";
-import { renamePaletteReferences, applyPaletteToCue } from "./palettes-phasers";
+import { renamePaletteReferences } from "./palettes-phasers";
+import {storeCueDraft} from "./programming/cues";
 import { baselinePalettes } from "./palettes-phasers";
 import LiveConsole from "./LiveConsole";
 import Workspace from "./Workspace";
@@ -78,6 +79,7 @@ import { StandaloneMovieUpload } from "./VenueMovies";
 
 const initial = {
   paletteLibraryVersion: 2,
+  currentCue: 1,
   showName: "Afterglow · Fall tour",
   shows: ["Afterglow · Fall tour", "Common ground", "The midnight sessions"],
   venues: ["The Glasshouse", "Mercury Hall", "Northside Theater"],
@@ -102,12 +104,13 @@ function load() {
 const urlParams = () => new URLSearchParams(location.search);
 function App({ embeddedRoute, onNavigate, context }) {
   const [storedData, setData] = useSharedState(
-      context ? `vv-programming-preview:${context.id}` : "vv-design-v1",
+      context ? `vv-programming:${context.id}` : "vv-design-v1",
       context
         ? {
             ...initial,
             showName: context.name,
             venues: [context.venue],
+            script: [],
             venueOverrides: {},
           }
         : load(),
@@ -162,7 +165,7 @@ function App({ embeddedRoute, onNavigate, context }) {
   function update(values) {
     return setData((d) => {
       const presets = d.presets ?? initial.presets;
-      return { ...d, presets: d.paletteLibraryVersion === 2 ? presets : [...presets, ...baselinePalettes.filter(p => !presets.some(existing => existing.name === p.name))], paletteLibraryVersion: 2, ...values };
+      return { ...d, presets: d.paletteLibraryVersion === 2 ? presets : [...presets, ...baselinePalettes.filter(p => !presets.some(existing => existing.name === p.name))], paletteLibraryVersion: 2, ...(typeof values === 'function' ? values(d) : values) };
     });
   }
   function notify(message) {
@@ -406,7 +409,7 @@ function App({ embeddedRoute, onNavigate, context }) {
       case "presets":
       case "preset-editor":
         return <>
-          {header("Palettes & phasers", "Select fixtures · build attribute values · store and apply")}
+          {header("Palettes & phasers", "Select fixtures, recall a palette, then shape the current cue.")}
           <PaletteWorkbench palettes={data.presets} fixtures={data.fixtures} script={makeSnapshot(data, venue).script}
             macros={data.macros ?? starterMacros}
             onSaveMacro={async macro => { const macros = data.macros ?? starterMacros; await update({macros:macros.some(m=>m.id===macro.id) ? macros.map(m=>m.id===macro.id?macro:m) : [...macros,macro]}); setDirty(true); }}
@@ -415,9 +418,10 @@ function App({ embeddedRoute, onNavigate, context }) {
               await update(renamePaletteReferences({...data, macros:data.macros ?? starterMacros}, palette, originalName));
               setDirty(true);
             }}
-            onApply={async (palette, ids, entryId) => {
-              await update({script: applyPaletteToCue(makeSnapshot(data, venue).script, entryId, ids, palette, data.fixtures, data.presets)});
-              setDirty(true);
+            currentCue={data.currentCue ?? 1}
+            onCurrentCue={number => update({currentCue:number})}
+            onStoreCue={async (palette, ids, number) => {
+              await update(current => ({script:storeCueDraft(makeSnapshot({...current, fixtures:data.fixtures}, venue).script, number, ids, palette, data.fixtures, current.presets ?? data.presets)}));
             }}/>
         </>;
       case "cues":

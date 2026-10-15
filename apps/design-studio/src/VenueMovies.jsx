@@ -106,7 +106,7 @@ export function MovieUploadForm({ library, show = "", templates = [], resumeReco
     </fieldset>
     <div className="movie-destination"><Building2 size={17} /><p>{deferred
       ? "Saved in the venue inbox. Import the scan later, then create one or more Load Outs."
-      : <>Added to <strong>{resumeRecord?.show || show}</strong> with its movie and processed splat.</>}</p></div>
+      : <>Added to <strong>{resumeRecord?.show || show}</strong> with its movie and reviewed room model.</>}</p></div>
     {busy && <div className="movie-transfer" role="status">
       <div><strong>{progress === 100 ? "Saving movie…" : `Uploading movie · ${progress}%`}</strong><span>Keep this page open until the movie is saved.</span></div>
       <progress aria-label="Movie upload progress" max="100" value={progress} />
@@ -139,7 +139,7 @@ export function VenueMovieLibrary({ library, show, query, onOpen }) {
   return <section className="movie-library" aria-label="Uploaded venues">
     <IntakeConnection library={library} />
     {section("Venue inbox", pending, "Movies uploaded for import or setup later. Shared across shows.")}
-    {!!assigned.length && section("Movies for this show", assigned, "Source movies, processing progress and venue splats.")}
+    {!!assigned.length && section("Movies for this show", assigned, "Source movies, processing progress and room models.")}
     <a className="text-link" href="/upload"><Upload size={15} /> Open standalone movie upload <ArrowRight size={15} /></a>
   </section>;
 }
@@ -152,6 +152,18 @@ export function VenueMovieDetail({ record, library, shows = [], templates = [], 
     try { await venueRequest(`/${record.id}/retry`, { method: "POST", body: "{}" }); library.refresh(); }
     catch (failure) { setError(failure.message); }
     finally { setBusy(false); }
+  }
+  async function submitReview(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setBusy(true); setError("");
+    try {
+      if (file.size > 1024 * 1024) throw new Error("Choose a room specification smaller than 1 MB.");
+      const specification = JSON.parse(await file.text());
+      await venueRequest(`/${record.id}/review`, { method: "POST", body: JSON.stringify(specification) });
+      library.refresh();
+    } catch (failure) { setError(failure.message); }
+    finally { setBusy(false); event.target.value = ""; }
   }
   async function setup(event) {
     event.preventDefault(); setBusy(true); setError("");
@@ -168,12 +180,13 @@ export function VenueMovieDetail({ record, library, shows = [], templates = [], 
       <div className="movie-job-status" role="status">
         {record.status === "ready" ? <CheckCircle2 size={28} /> : <Film size={28} />}
         <div><h2>{processingLabel(record)}</h2><p>{record.status === "ready"
-          ? record.setupStatus === "needs_setup" ? "Your movie has been processed. This venue is saved in the inbox for setup later." : "Your venue and its processed splat are saved. Review the room before adapting your rig."
+          ? record.setupStatus === "needs_setup" ? "Your movie has been processed. This venue is saved in the inbox for setup later." : "Your venue and its reviewed room model are saved. Review the room before adapting your rig."
+          : record.status === "review_required" ? "Review the movie references, complete the room specification in meters, and upload the reviewed JSON to build the Blender model."
           : record.status === "failed" ? record.error
             : record.status === "queued" ? "Your movie is saved. Processing starts when the current job finishes."
               : record.status === "awaiting_upload" ? "The movie has not been saved yet. Resume its upload below."
                 : record.status === "uploading" ? "A movie upload is in progress. Its status will update here."
-                  : "Movie2Splat is building your venue. You can leave this page and return later."}</p>
+                  : "roomScan is preparing your room. You can leave this page and return later."}</p>
           {record.frames > 0 && <small>{record.frames} extracted frames{record.registered > 0 ? ` · ${record.registered} registered` : ""}</small>}
         </div>
       </div>
@@ -183,7 +196,12 @@ export function VenueMovieDetail({ record, library, shows = [], templates = [], 
         {record.city && <span>{record.city}</span>}
       </div>
       <div className="movie-links">
-        {record.assetUrl && <a className="button primary" href={record.assetUrl} download>Download venue splat</a>}
+        {record.assetUrl && <a className="button primary" href={record.assetUrl} download>Download USDZ</a>}
+        {record.manifestUrl && <a className="button" href={record.manifestUrl} download>Environment manifest</a>}
+        {record.blendUrl && <a className="button" href={record.blendUrl} download>Blender scene</a>}
+        {record.referencesUrl && <a className="button" href={record.referencesUrl} download>Movie references</a>}
+        {record.draftUrl && <a className="button" href={record.draftUrl} download>Room specification</a>}
+
         {record.logUrl && <a className="button" href={record.logUrl} download>Processing log</a>}
         {record.status === "failed" && <Button primary onClick={retry} disabled={busy || !!library.error}>{busy ? "Queuing…" : "Retry processing"}</Button>}
       </div>
@@ -219,7 +237,7 @@ export function StandaloneMovieUpload() {
   return <div className="standalone-movie">
     <header className="movie-site-header"><a className="movie-brand" href="/?screen=venues">venue <b>volume</b><span>/ CAPTURE</span></a><a className="text-link" href="/?screen=venues">Venue workspace <ArrowRight size={15} /></a></header>
     <main>
-      <div className="movie-intro"><span className="eyebrow">ONE MOVIE. A NEW VENUE.</span><h1>Capture now.<br />Make it a venue later.</h1><p>Upload a walkthrough of your room. We’ll process the movie into a 3D splat and save a new venue for you to set up when you’re ready.</p></div>
+      <div className="movie-intro"><span className="eyebrow">ONE MOVIE. A NEW VENUE.</span><h1>Capture now.<br />Make it a venue later.</h1><p>Upload a walkthrough of your room. roomScan extracts reference frames for review, builds an editable Blender room, and exports a model for Vision Pro.</p></div>
       {id ? <>
         <Button onClick={() => { history.replaceState({}, "", "/upload"); setId(null); }}><ArrowLeft size={15} /> Upload another movie</Button>
         {record ? <VenueMovieDetail key={record.id} record={record} library={library} standalone />
@@ -229,8 +247,8 @@ export function StandaloneMovieUpload() {
         <aside className="movie-guide">
           <span className="eyebrow">FROM CAMERA TO ROOM</span>
           <ol><li><span>01</span><div><h2>Walk the room</h2><p>Move slowly through a static space. Keep views overlapping and exposure steady.</p></div></li>
-            <li><span>02</span><div><h2>Upload & process</h2><p>Movie2Splat reconstructs the room and creates a 3D Gaussian splat. Processing may take a while.</p></div></li>
-            <li><span>03</span><div><h2>Set up when ready</h2><p>Your venue waits in the inbox. Import the scan later, then prepare its Load Outs.</p></div></li></ol>
+            <li><span>02</span><div><h2>Review the room</h2><p>roomScan extracts reference frames. Review the room dimensions and geometry before building the Blender model.</p></div></li>
+            <li><span>03</span><div><h2>Build & import</h2><p>Download the Blender scene and USDZ bundle, import into Xcode or Vision Pro, then prepare your Load Outs.</p></div></li></ol>
           <p className="movie-guide-note">For a reliable capture, use your phone’s standard camera mode and avoid moving people, mirrors and sudden turns.</p>
         </aside>
       </div>}

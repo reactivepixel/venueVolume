@@ -1,218 +1,47 @@
 # Venue Volume for visionOS
 
-The app now registers `venuevolume://place?version=1&loadout=<UUID>&fixture=<UUID>`. Opening a link on Vision Pro resolves an existing native save and enters placement for the selected existing fixture after room/tracking readiness. SaaS Load Out transfer and Movie2Splat PLY loading remain unimplemented; unavailable IDs produce a clear message.
+A SwiftUI and RealityKit workspace for room-scale fixture placement, palette/phaser programming, cue playback and venue preparation. Requires visionOS 2+.
 
+## Build and run
 
-A runnable RealityKit lighting proof of concept for Simulator and Vision Pro (visionOS 2+). Start with recent saves, **Load save from file**, or **New venue**. Blank choices include **Empty classroom**, **Empty classroom (mapped)**, and **The Fortress**; imported and locally scanned rooms are also available. The fixture library contains 252 models, with 322 preview joints across 175 articulated assets. Search by model or manufacturer, filter by category, place models, preview supported motion and light, and save setups for each environment.
-
-## Run
-
-Open `VenueVolume.xcodeproj` in Xcode. Choose **VenueVolume Demo** for an immediately populated room, or **VenueVolume** for the venue chooser. On a development Vision Pro, select your signing team, pair/unlock the headset, choose it as the destination, and run. Allow hand tracking for left-hand navigation. Right-hand navigation controls are available from the Toolbox menu if permission is denied.
-
-For an already booted visionOS Simulator, from this directory:
+Open `VenueVolume.xcodeproj` in Xcode. Choose **VenueVolume** for the venue chooser or **VenueVolume Demo** for a populated demonstration. Pair/unlock the headset and select your signing team. Allow hand tracking for the wrist Toolbox and navigation. Regenerate the project after moving sources with `xcodegen generate --spec project.yml`.
 
 ```sh
-./scripts/run-demo.sh
-```
-
-The script builds, installs, and launches the demo. `VV_SIMULATOR_ID` selects a particular booted device. Extra arguments are forwarded, for example `./scripts/run-demo.sh --blue --palm-hidden`. Demo mode is available on both Simulator and hardware and never writes normal placements or palettes.
-
-The wrist menu header shows the app's `CFBundleShortVersionString`, sourced from Xcode `MARKETING_VERSION` ([Simulator capture](Screenshots/toolbox-version.png)). Run `python3 scripts/check-version.py` from this directory to confirm it matches the latest reachable `vMAJOR.MINOR.PATCH` Git tag and both npm app versions. Release integration runs the check with `--release` after tagging to require an annotated tag at `HEAD`.
-
-## Touring shows, inventory and groups (v0.2.6)
-
-Choose **Prepare a touring show** on launch, or **Touring shows** in the wrist menu. A show stores individually identified equipment, quantity-only items, configurations, hierarchical groups, presets and named focus targets. Preparation saves independently of a room; Undo/Redo and its event list are available in the show sheet. Existing legacy scenes still work. **Create show from this scene** explicitly adopts their fixture IDs without matching names across unrelated saves.
-
-1. **Add equipment** chooses a catalog model and quantity. Each controllable unit has a stable ID and preferred patch. The wrist inventory reports placed, available and total counts. Equipment can be venue-only, excluded locally, or marked unavailable. Quantity-only equipment has no DMX patch. The limits are 256 inventory units and 64 placed objects.
-2. Select **Place remaining** to place available units of a model successively, or drag a specific available inventory unit onto a surface. **Return to inventory** removes a placement while keeping the unit, groups and programming. Removing equipment from the show is separate and blocks unresolved group/programming/layout dependencies. Historical saved venues retain their pinned copies.
-3. **Groups** creates named groups and parent/child relationships. Select a parent to select its active descendants, or turn on **Select multiple**. **Move selection into group**, reparenting and group removal preview the effective result before Save; removing a group keeps its equipment. New equipment can join the selected group and inherit its defaults.
-4. **Apply preset** lets you choose **This venue** or **Shared show** assignment scope. A group default preserves individual/child exceptions; **Apply to all descendants** replaces exceptions only for included parameters. Group application previews every affected placed unit, validates the entire target set, and saves as one Undo step. Unplaced units keep assignments too. Spatial preset drops remain explicitly individual.
-5. The preset editor has Intensity, Colour, Beam and Focus inclusion controls, advanced preview channels, a named focus target and visible save scope. Excluded values and fixture footprints are preserved. Shared edits travel with the show; venue overrides stay local, with **Reset preset to show**. **Reset individual assignments to group** restores inheritance. Saving a preset does not silently assign it to a different group. Removing an assigned parameter requires **Save as new**; assigned presets cannot be deleted until their bindings are reassigned.
-6. **Arrange / place row** previews numeric offsets, rotation around the group centre, equal X spacing, coordinate alignment or an X mirror. Unplaced selections can form a supported row. **Transform axes** moves or rotates placed selections around their common centre; each gesture is one Undo step. Physical model scale and DMX channels stay unchanged. **Auto-patch selection** previews conflict-free patch allocation. Preferred patches are retained on placement where possible, otherwise the next free range is used.
-7. **Venue focus targets** stores a named room point. **Target draft** or **Retarget DMX** previews articulation, independently solving each assigned fixture's supported Pan/Tilt from its mount. Save commits the target, programming and resolved output together; Cancel restores. Targets are located separately in each venue. Moving a mount preserves its output angles; **Refocus named targets** is an explicit preview. Place focused units only after locating their target.
-8. Save a **configuration** to retain its inventory subset and optional layout. Choose that configuration in **New venue**, open a blank room, then **Adapt configuration layout** to offset and rotate the arrangement before accepting it. Named venue saves retain full inventory, groups, unused presets, programming, patch and target locations. **Export show library** shares the pinned reusable show as JSON; **Export save** includes venue overrides and room geometry. Importing a newer shared revision leaves active and saved venues pinned until **Review changes in venue** is accepted.
-
-All of this uses **VV Preview 16**, not manufacturer DMX personalities or live hardware output. Geometry checks use room bounds and reviewed/scanned supporting surfaces; they are not a physical rigging or inter-fixture collision solver. Physical asset labels, overlapping selection sets, automatic legacy-unit mapping and generalized manufacturer capability mapping remain outside this implementation. The [implementation plan](../../docs/02%20Product/Design/Touring%20Inventory%20and%20Fixture%20Workflows.md) and [dated validation](docs/validation/2026-10-03-touring.md) record coverage and remaining headset work.
-
-## Use
-
-1. **Toolbox** opens on venue entry as a normal movable visionOS window. Close it with **X** or the system close control; look toward the left wrist to recall it. The **context bar** appears below the viewing direction only while a selection is active. Leaving closes Toolbox and removes the context bar. Left-hand pinches are reserved for navigation; looking toward the left wrist can also recall Toolbox: hold **thumb + left index** and drag to move in all six directions; hold **thumb + left middle** and drag horizontally to turn, vertically to pitch, or in depth to roll. Release to stop, then pinch again to continue. A **double middle pinch** resets orientation while keeping location; a **double index pinch** returns to the default spawn and resets orientation. Travel has no collision/bounds constraint and passes through virtual walls, fixtures and furniture. Use the right hand to select/edit fixtures and operate app windows. App controls pause while a left navigation pinch is active. **Toolbox → … → Navigation controls** provides 0.5 m movement and 15° rotation steps for Simulator or unavailable hand tracking.
-2. In **Fixtures & presets → Fixtures**, choose from the five most recently selected models and the pinned **Rogue R1X Spot**, then drag a model onto a highlighted floor/table surface. **Browse all fixtures** opens the full searchable catalog with category filtering. Recent model choices persist across rooms and launches. Alternatively select its row and pinch a clear surface. **Add selected model** repeats that model. Initial light output and continuous motion are zero, with angular joints centered. Setups support 64 objects. The default budget is eight shadowed beam previews, with the selected fixture first; Diagnostics offers experimental budgets up to 64 on supported GPUs, with thermal backoff; all placed models remain visible and articulated. The Toolbox remains a stationary window during drags.
-3. Switch to the **Palettes & phasers** library tab. Select the connector button (**Apply in venue**) beside a preset to activate it. A curved dotted white guide starts at your right hand (or near the viewer when tracking is unavailable), never at the preset row. Aim toward a fixture, then right-pinch it; hold and move to adjust the candidate. A solid white cable and warm target ring indicate a snap. Release on a target to apply once. Releasing elsewhere keeps Apply active; **Cancel** in the **context bar** ends it. The bar shows the preset, target and an **Apply to fixture** alternative. Closing or moving Toolbox leaves the active connector independent of the window. A brief white fixture outline and checkmark confirm success; red and an error message report failure. Reduce Motion removes the settling motion. The preset's **Apply** menu also allows direct selection. Applying ends draft simulation without discarding draft edits. The right Toolbox column lists only selected fixtures. **Add fixtures…** opens a selection chooser; the Toolbox ellipsis menu retains undoable **Clear all scene fixtures** (or **Return all fixtures to inventory** in a touring show).
-4. Select a fixture for **Info**, **Delete**, and a **Fixture actions** menu containing **Move**, **Retarget DMX**, and **Transform**. Info opens the wrist menu, whose right column becomes the selected fixture’s info pane, including **Preset editor**. **Pop out item editor** opens or recalls one full selected-item window, including name/patch editing and a Transform tab. Both panes follow the current selection. Click the selected fixture again to activate Move/Transform and expose the rings. Drag its body to slide along its current supporting plane. In Move mode, click another rendered surface to move the same fixture there and align its mount to the plane; patch and DMX values remain unchanged. Use **Done** before clicking the background to deselect, or use the pane’s deselect button directly.
-5. In **DMX preset**, **Simulate on selected fixture** starts enabled. Channel edits appear immediately without changing saved values. **Blackout simulation** temporarily mutes only that selected fixture, preserving draft and saved channels. Disable simulation or close the window to restore the committed look. **Save preset** updates all assigned fixtures. **Save as new** starts with an empty name field and clears it after a successful save; **New preset** also starts unnamed. **Apply saved** assigns the saved preset.
-6. **Transform** / **Axes** displays colored 3D controls on the selected object: red X, green Y and blue Z. In **Rotate**, hold and drag a circular ring to rotate the mount around that room axis. In **Move**, drag an arrow along its axis, drag the fixture body along its supporting plane, or click a new surface. The rings remain available in both modes, centered on the transformed fixture body. Each gesture forms one Undo step; these controls preserve DMX values. Position and mount angles are readouts in the pop-out editor, with **Upright mount** and **Reposition on surface** actions. **Use preset aim** restores the preset's head angles. DMX sliders remain in the preset editor.
-7. Choose **Retarget DMX** on a fixture to target its currently assigned preset. In the preset editor, **Target** uses the current draft on the selected moving head, including unsaved channel edits. Look at a room point and pinch/click to preview; hold and move your hand to adjust continuously. **Save preset target** saves Pan/Tilt into that preset, updates its assigned fixtures, and assigns it to the selected fixture when started from the editor. A named new draft can be targeted and saved this way. Save is one Undo step; **Cancel** restores the previous look and leaves the editor draft intact. Changing fixture selection or navigating to another preset discards the pending target. The separate mount-aim mode is removed; mount rotation remains available through the axis controls.
-8. **White model** switches between neutral PBR materials and the room's original materials. **Room light** adjusts ambient illumination. **Blackout** temporarily disables all fixture output, leaving room light and saved values intact. While global blackout or selected-fixture simulation blackout is active, Toolbox has a black background, a slowly scrolling starfield and an explicit scope label. The stars stop for Reduce Motion and disappear when blackout ends; no other pane changes its background.
-
-Look toward your exposed **left palm** for a short dwell to reveal **Palm Map**. Hiding the palm or losing hand tracking dismisses an automatically revealed map. The map stays at the world position captured in front of you while you work. **Palm Map** in the Toolbox header remains a manual fallback without hand tracking; use **Close Palm Map** in the Toolbox header to close a manually opened map.
-
-The map displays an isometric miniature. Select its user cube to expose X/Y/Z translation handles, drag the cube across the floor plane, or click anywhere on the map floor to propose a location. The white vertical handle adjusts height above the floor. A blocked position remains yellow with a message; raise it above the obstruction or move it elsewhere. **Teleport** becomes available only when the standing volume clears room colliders and placed fixture envelopes and fits below the ceiling. Releasing a drag keeps the proposal for adjustment; pressing **Teleport** commits it. The map has no rotation controls. Teleport happens behind a short black hold and fades back over **333 ms** by default; adjust this in **Toolbox → … → Settings → Navigation fade**. World-tracking loss, room changes, leaving immersion, hiding the palm, and explicit close cancel unfinished automatic-map gestures. Closing during the black hold cancels the pending teleport. Left-hand navigation gestures are paused while the map is open. Palm attention uses tracked hand orientation and head direction; real headset attention, drag feel and fade timing still require native acceptance.
-
-The **context bar** appears below the viewer only for selected fixtures, an active palette application, or a selected focus target. It shows selection details and relevant edit, transform, targeting, or apply controls. Clearing selection hides it; Palm Map hides fixture context while navigating. Global tools, history, and navigation are not part of the bar.
-
-The wrist selection pane lists **only selected fixtures** and becomes empty on background selection. Use **Add fixtures…** for a separate chooser, or **Select multiple in room**, to grow the selection. Choose **Group** when at least two fixtures are selected, enter a name and create it. Scene and touring groups both support named creation and Undo/Redo; existing palette layers are retained. Selecting a scene-group member selects the whole group. Group names persist in new saves; **Break group** is available while the scene group is selected.
-
-The native library contains **15 standard palettes** in both fresh venues and new touring shows: three complete looks (Warm room wash, Blue focus, White work light), Full intensity, White/Warm/Red/Blue color, Center position, Narrow/Wash beam, and Dimmer chase, Dimmer breathe, Red / blue and Circle phasers. The former three preview presets now resolve to the new complete-look palette IDs. The palette editor keeps a white grid-room preview fixed above the controls; its cube exposes X/Y/Z handles when selected. Static attributes combine with independent phasers. See [palette/phaser workflow](../../docs/02%20Product/Features/F10%20-%20Palettes%20and%20Phasers.md).
-
-This release deliberately resets incompatible user state **once on first launch**: old palette definitions, working placements, named setups, touring shows and undo journals are removed. Imported/scanned room geometry remains available. New palette/phaser saves persist normally on later launches. This is a release boundary, not a migration of old user saves.
-
-The palette programmer separates pool browsing, editing and application. Choose Dimmer, Color, Position, Beam or All; store static values or numbered phaser steps. Steps may link to static palettes so a source update propagates. Timing exposes BPM, beats per cycle, step width, transition and phase distribution. Select fixtures or a named group, then use **Apply saved**; changing the edited palette does not change the applied look. Independent attribute layers remain intact. Portable saves include linked step sources, and source deletion is blocked while linked. See the [research and scope notes](../../docs/03%20Design/Console%20palette%20workflow%20research.md) for the industry references and differences from a full grandMA3 engine.
-
-Opening a palette editor closes other palette editor windows before presenting the latest requested context, preserving a dirty draft until Save/Discard/Cancel resolves it. The editor also supports previous/next, New, clear draft, revert, delete, clear assignment, and dirty-navigation confirmation. If a palette or item window is restored after relaunch without the room, its Choose venue button restores access; demo mode enters automatically. Channel editing stays in the palette window. The mock sync remains available in Toolbox and Diagnostics; it never sends lighting/network output.
-
-## Rooms and saved setups
-
-Open **Rooms & saved setups** in the Toolbox window. The left column lists environments; the right lists saved fixture setups across those environments. Normal launch stays at the chooser until you open a save, resume, or choose **New venue**. The wrist menu’s ellipsis menu offers the same **New venue** chooser. **mappedRoom** is a separate copy with six small photo-derived PBR textures, the same mesh/occlusion and placement surfaces, and independent setups. A blank mappedRoom opens with **White model** off; saved setups retain their material override. Subsequent sessions offer **Resume current venue** for the active room and state from audit history. The Fortress is an estimated, untextured blockout with its own placement surfaces and saved setups.
-
-- **Import** accepts a folder containing `environment.json` and its referenced `environment.usdz` or `environment.mesh.json`, or a standalone meter-scale USDZ. Bundles retain their reviewed placement surfaces, spawn pose, version, and checksum. Standalone USDZ imports infer a rectangular floor from the lowest visual bounds; provide a prepared room bundle for accurate floor/table placement metadata.
-- **Scan** is available on Vision Pro. It opens a mixed-immersion capture view, requests World Sensing permission, and displays the observed mesh over passthrough. Look around to capture floor, walls, and furniture, including the floor beneath you. Name it and choose **Save room & open**. The scan becomes a selectable environment stored on this device. Cancel returns to the previous scene.
-- Select an environment to open a blank setup. Place fixtures, apply palettes, then name the setup and choose **Save**. **Save as new** preserves the previous setup as an independent instance. **New blank** clears the current arrangement while retaining the room geometry and all named saves. Switching away from changed fixtures offers Save, Discard, or Cancel.
-- Select a saved setup to restore its room, fixtures, transforms, patch, resolved DMX values, per-fixture aim overrides, white/original material mode, and room-light level. Referenced palette definitions are included. If a shared palette has changed, restoration reuses an equivalent definition or creates an independent copy, preserving the saved look without modifying other setups.
-
-Room geometry is immutable and shared by its setups. Named snapshots are separate from the existing per-room working-arrangement autosave. Normal library data lives beneath Application Support at `VenueVolume/Placements/Library`; demo saves use `DemoLibrary` and do not alter normal saved data. Saves are atomic, and invalid existing working files are preserved rather than overwritten. **Export save** writes a `.venuevolume` file containing a validated setup snapshot, its referenced palettes, room manifest and immutable room asset. **Load save from file** verifies it before import and keeps a new independent saved instance. There is no cloud backup. The SaaS **3D review** page can import this portable save, show its room and catalog fixtures, export a self-contained GLB, and export eight isometric PNGs. See [web 3D export](../design-studio/README.md#visionos-save--web-3d-export). This is a static review snapshot; it does not synchronize edits or bake live lighting. The web viewer uses the manifest spawn as its initial walking camera and can hide ceiling geometry in isometric exports.
-
-Local capture uses ARKit scene reconstruction, not RoomPlan or movie reconstruction. It stores geometry, not photographic textures, with a limit of one million triangles / 2,048 mesh chunks. Unseen surfaces remain absent. Fixture placement on scan meshes checks horizontal support beneath the center and footprint corners; this is a sampled support check, not a collision or rigging solver. Captured rooms reopen as neutral, lightable meshes in progressive immersion, aligned to the saved spawn pose. They are not relocalized onto the original physical room. Simulator cannot scan, but can import and replay the same saved mesh format.
-
-## Audit history, Undo and Redo
-
-**Undo** and **Redo** stay visible at the top of the Toolbox window and in the fixture editor. A connected keyboard can use Command-Z and Shift-Command-Z. Open **History** in the toolbox for a timestamped event list; **Restore** returns to the state immediately after that event, including its room when necessary.
-
-History covers fixture insertion/deletion/selection/info, position/orientation/aim, palette application/clearing/deletion/saving, palette drafts, room light/materials/blackout, room import or scan registration, room/setup loading, setup naming, and Save/Save as new. Multi-object palette updates, each axis drag and each continuous palette slider gesture form one undo step. Target adjustments remain transient until Save, which creates one step; Cancel does not change the journal. Text/direct edits are grouped after 400 ms of inactivity and flushed before commands, navigation, leaving the venue, and app backgrounding. An abrupt process termination can lose an unfinished gesture or pending text edit. Tracking frames, hover, palette tabs, and transient drag/pick modes do not fill the log; restore cancels in-progress spatial gestures and hides axis controls.
-
-The timeline retains branches: editing after Undo clears the immediate Redo route, but older events remain selectable in History. Undo, Redo, and Restore append navigation entries without deleting prior events. Snapshots include active room identity, fixture state, the palette library and draft, saved-setup catalog and active setup, selection, and lighting settings. Normal sessions resume the current cursor and retain undo/redo after relaunch.
-
-Room geometry stays immutable. Undoing import/capture removes a room from the visible catalog while retaining its bytes for future replay. Undoing a named save restores the earlier catalog/version; retained snapshot files are not treated as new saves on restart. The audit cursor is authoritative once initialized. Asset loading and validation finish before a cross-room restore is committed; a failed restore leaves the current state and history position intact.
-
-Mock sync requests/results, scan start/cancel/save failures, room-load failures, and leaving the venue are logged as external actions. History navigation never resends these actions or reverses a prior network request. Restoring state clears its sync acknowledgment; use Sync explicitly afterward. Live AR sessions, OS windows, physical head/hand poses, and tracking permissions are not time-traveled.
-
-The local journal is `Library/audit-history.json`, with immutable snapshots in `Library/audit-history.states/`, beneath the placement directory. Each change writes its new snapshot once and atomically replaces the smaller event/cursor index. Earlier snapshots and asset files are retained; no automatic history pruning or cloud backup is implemented. Demo runs use DemoLibrary and start a fresh demo timeline. A corrupt journal is preserved and disables history with a visible error; write failures are reported rather than silently claiming an event was logged. This is an application recovery log, not a tamper-proof compliance ledger.
-
-## Retargeting behavior
-
-Normal selection uses fixture colliders and visible room meshes; empty room-surface taps deselect. Spatial palette dragging uses measured window-to-immersive coordinates and snaps to eligible visible fixture bounds. Legacy drop overlays enable only during a palette drag. Held gestures target only axis handles or room meshes during aiming, so ordinary fixture selection does not compete with a zero-distance drag recognizer. There is no enclosing input sphere.
-
-Targeting uses concave static collision shapes generated from the imported room meshes (68 for each classroom; 135 for Fortress). During aiming, these replace the coarse floor/table/wall proxy targets, so a pick resolves to the visible mesh. Repositioning continues to use the reviewed placement surfaces. A cyan marker follows the unsaved target and remains at the saved target. This is a one-time aim, not a target lock: moving or rotating the fixture afterward preserves its channels and therefore changes the beam destination.
-
-Head solving converts the room point through the inverse mounting transform, using the asset's authored head pivot and −Z optical axis. It accounts for the emitter offset and quantizes to the preview profile's 8-bit pan/tilt limits; targets beyond those limits are rejected. Mount changes ease over 0.6 seconds. Pan and tilt interpolate their scalar angles over 0.6 seconds, staying within motor limits rather than taking a quaternion shortcut behind the fixture. The stored/mock-synced DMX bytes are the final destination values; this does not stream a physical motor fade.
-
-Retargeted Pan/Tilt are saved into the **current palette**, with no new per-fixture override. All fixtures assigned to that palette receive the saved DMX values, even though their differing positions may make their beams land elsewhere. To keep another fixture independent, use a different palette. Editor Target previews the draft on the selected fixture, then saves and assigns it; scene Retarget uses the assigned saved palette and preserves any unrelated unsaved editor draft. The complete assignment is validated before publication, including patch overlap, and Undo/Redo restores palette and fixture state together.
-
-Older saved fixtures with aim overrides remain readable. Existing palette application/save compatibility still preserves those legacy overrides until **Use palette aim** or a new palette target save clears them. New targeting never creates an override. Targets outside the preview profile's Pan/Tilt limits are rejected. A palette needs a name and at least six channels for targeting.
-
-## The room and asset
-
-This task was based on GitHub `reactivepixel/venueVolume`, `origin/dev` **619f0d7** (v0.1.15), combined with the earlier wrist-toolbox branch **e29e107**.
-
-The room is the existing **IMG_3153 classroom**, not a newly reconstructed scan. The current documented pipeline is movie references → reviewed room specification → Blender mesh → USDZ + environment manifest (`apps/room2blender`). `mov2splat` is a separate optional Gaussian experiment. This proof does not run movie reconstruction or automatically convert arbitrary splats into meshes.
-
-The shipped classroom has 18,744 triangles, 68 mesh chunks, 96 collision boxes, and 11 floor/table placement surfaces. Its opaque mesh supplies depth occlusion and receives/casts dynamic-light shadows. No `OcclusionMaterial` is required for this fully virtual room: that would hide the surfaces we need to light. The file's estimated meter scale, Y-up coordinates, spawn pose, checksum, and per-room-version placement storage are preserved. The app uses **progressive immersion**, starting at full coverage. Turn the Digital Crown to reveal passthrough or return to the venue without discarding the current scene; it does not register it to the wearer's physical room.
-
-**White model** is a reversible runtime material override of that classroom geometry. The source USDZ is unchanged. Turn it off to see the original materials. The intended room assumption is the reconstructed classroom; there is no separately named white-room asset in the fetched repository.
-
-Each bundled USDZ is an exact copy of its existing library model. `assets/fixtures/runtime-catalog.json` and each model's `models/rig.json` describe its parts, pivots, control channels, bounds, emitter anchors and bundle location. `FixtureRig` inserts transform nodes at those pivots and reparents the specified geometry while preserving the rest pose. It handles pan/tilt, linear fixture tilt, independent Volero Wave modules, scanner mirror motion, manual brackets, the tracking camera, fan rotor and mirror-ball components. Motion is interpolated in degrees over 0.6 seconds; continuous controls integrate rotational speed. These are original procedural approximations with estimated joints and synthetic travel. Existing Blender/USDZ geometry remains unchanged.
-
-The item editor's **Transform → Moving parts** controls are specific to the selected model. A gesture makes one Undo step and stores a per-instance override. **Use palette motion** restores its palette values or neutral pose. Palette application preserves those overrides. Static equipment has placement and mount transforms. Atmosphere and effects equipment use their existing models and outlet metadata; particle effects and operational firing are not simulated.
-
-Assets load on demand and their bytes are checked against the catalog hash. Selection targets use each model's bounds. Spot lights follow the rig's emitter transforms and share the selected shadow-beam budget (eight by default); each multi-head model divides its illustrative intensity across its emitters. Light fixture meshes do not cast shadows, avoiding lens self-occlusion; room meshes do. The original Rogue R1X pilot remains available and old saved setups retain their stable asset IDs.
-
-## Preview personality
-
-**VV Preview 16** is a synthetic visualization profile, **not the Rogue R1X manufacturer's DMX map**. The catalog lists manufacturer modes but their channel definitions are not transcribed. RGB mixing and variable beam width here are visualization controls and must not be interpreted as that product's physical capabilities.
-
-The pilot limits head travel to roughly 270° pan and 120° tilt so its one-shot room targeting has a single, reviewable range. The [manufacturer's Rogue R1X Spot specifications](https://chauvetprofessional.com/product/rogue-r1x-spot/) list 540° pan and 250° tilt for the physical fixture. This pilot is an aiming and placement workflow check, not a full mechanical travel simulation.
-
-| Channel | Preview function | Range |
-| --- | --- | --- |
-| 1 | Dimmer | 0–35,000 nominal lumens |
-| 2–4 | Red, green, blue | 0–255 each |
-| 5 | Pan | roughly −135° to +134°, 128 centered |
-| 6 | Tilt | roughly −60° to +60°, 128 centered |
-| 7 | Beam outer half-angle | 10–60°; inner angle is 70% |
-| 8–15 | Model-specific additional motion | Volero Wave heads 1–8 tilt; channel 8 is speed for fan/mirror components |
-| 16 | Reserved | Stored and synced |
-
-The table describes the general moving-head preview. Model-specific channel labels appear in the editor: scanners use a smaller synthetic mirror range; manual tilt uses channel 6; stationary models omit pan/tilt; passive equipment has no light output. Manufacturer motor travel and calibrated mirror reflection remain outside this preview. Palette DMX targeting is enabled for moving light heads that support Pan/Tilt. Use joint controls and mount axis rotation for other models.
-
-Lumens, RGB, beam, and material response are not photometrically calibrated. This is direct lighting without baked indirect bounce or volumetric haze. No manufacturer gobos, physical strobe, safety/reset channels, Art-Net, sACN, or hardware control are implemented. Room placement is bounded by floor/ceiling/walls; axis movement can intersect furniture and are not a rigging/physics solver. A person can physically walk through virtual geometry; colliders do not constrain wearer movement.
-
-Normal-mode fixtures, asset IDs, transforms, per-fixture aim overrides, palette assignments, and resolved channels autosave per room version. Palettes & phasers are stored separately in UserDefaults and included in named setup snapshots. Legacy cube saves remain readable. Named setups also retain room-light level and material mode; draft preview, blackout, pending targets and axis visibility remain session-only. User-saved older generic palettes retain their channel bytes; on a moving-head proxy those bytes are interpreted using the displayed preview personality.
-
-This is a standalone visualization spike. The production research's immutable profile revisions, semantic partial palettes, publish/arm boundaries, and calibrated lighting remain separate future work.
-
-## Validation
-
-Latest preset connector: [2026-10-04 validation](docs/validation/2026-10-04-preset-tether.md).
-
-Latest left-hand navigation: [2026-10-04 validation](docs/validation/2026-10-04-left-hand-navigation.md).
-
-Latest fixture movement and bottom-controls update: [2026-10-04 validation](docs/validation/2026-10-04-fixture-movement.md).
-
-Latest touring implementation: [v0.2.6 validation and screenshots](docs/validation/2026-10-03-touring.md). Run `./scripts/run-demo.sh --touring-smoke` for the three-room native model-command walkthrough; `--touring-screenshot` stops after the classroom and `--touring-editor` opens the editor. These checks do not generate physical pinch gestures.
-
-Latest UX integration and review: [2026-10-03 UX validation](docs/validation/2026-10-03-ux.md).
-
-Latest native room comparison: [2026-10-03 results and evidence](docs/validation/2026-10-03-mapped-room.md). This records v0.2.2 builds, actual RealityKit texture bindings, the full-catalog import smoke, and static/moving Simulator A/B runs. Headset performance and physical interaction acceptance remain pending.
-
-Use the [current Mac and headset checklist](docs/VALIDATION.md) for acceptance and the [dated validation archive](docs/validation/2026-10-01-to-03-mac-validation.md) for completed results. Run these reusable checks from `apps/visionos` in the assigned worktree:
-
-```sh
-swift test --package-path Core
-./scripts/test-session.sh
-python3 Tests/verify-assets.py
 xcodebuild -project VenueVolume.xcodeproj -scheme VenueVolume \
-  -destination 'generic/platform=visionOS Simulator' \
+  -sdk xrsimulator -destination 'generic/platform=visionOS Simulator' \
   -derivedDataPath DerivedData CODE_SIGNING_ALLOWED=NO build
-xcodebuild -project VenueVolume.xcodeproj -scheme VenueVolume \
-  -destination 'generic/platform=visionOS' \
-  -derivedDataPath DerivedData-device CODE_SIGNING_ALLOWED=NO build
-./scripts/run-demo.sh --blue --catalog-smoke
-./scripts/run-demo.sh --blue --history-smoke
-./scripts/run-demo.sh --blue --input-smoke
 ```
 
-The final recorded integration check on **2026-10-03**, Xcode 27, passed 45 Core tests, five session groups, bundle verification for 252 catalog models and a Simulator build. The model checks cover catalog articulation, room/setup persistence, palette targeting, Undo/Redo and input routing. Earlier native checks exercised pilot import, synthetic mesh replay, history and Toolbox window callbacks. Full-catalog runtime import and interactive visual review remain open; neither bundle verification nor compilation establishes them.
+## RoomScan
 
-The earlier Toolbox repair was signed, installed and launched on a physical Vision Pro. The later palette-target build installed successfully, but its remote launch timed out. Wearer acceptance remains open: actual gaze/pinch and drag gestures, wrist menu recall and movement of the normal Toolbox window, live scan/save/reopen, tracking alignment, comfort and performance. The Toolbox no longer follows the wrist. Synthetic replay and seeded Simulator screenshots do not establish physical headset behavior.
+The [roomScan pipeline](../roomScan/README.md) turns movie references and reviewed geometry into a Blender scene, USDZ and environment manifest. Import the bundle in the room library, or add it under `VenueVolume/Environments` and register its manifest in `BundledEnvironmentRepository`. The manifest supplies meter scale, spawn, colliders and fixture placement surfaces. Existing local native mesh scans are also supported.
 
-Run `./scripts/run-demo.sh --blue --input-smoke` for native window lifecycle and rendered collision/input routing checks. Its console markers are `TOOLBOX_WINDOW_SMOKE_PASS` and `SPATIAL_INPUT_SMOKE_PASS`; these exercise application commands and RealityKit collisions, not physical hand gestures.
+## Interaction
 
-Demo presentation flags: `--blue`, `--blackout`, `--aim-left`, `--fixture-near`, `--palm-hidden`, `--show-info`, `--scene-overview`, `--show-preset-editor`, `--show-item-editor`, `--position-tab`, `--transform-gizmo`, `--targeting`, `--retarget-head`. The latter previews a target five seconds after room alignment and leave Save/Cancel open; `--targeting` leaves the pick pending. `--show-item-editor` opens its Info tab; `--position-tab` opens the selected-item Transform window; `--transform-gizmo` shows rotation rings without that window. Demo launches dismiss a restored palette window unless `--show-preset-editor` is requested. These seed reproducible app states, not simulated user gestures. At default pan the whiteboard is lit; the left-pan case shows the speaker's cast shadow.
+Looking at the left wrist reveals the **Toolbox**. It contains fixture inventory, the selected fixture list, placement, Undo/Redo and the bundle version. Background selection clears the fixture selection; multiple selected fixtures can be named as a group.
 
-Interaction captures: [scene breakdown](Screenshots/interaction-scene-overview.png), [selected-item pane](Screenshots/interaction-selected-item.png), [rotation rings](Screenshots/interaction-axis-rings.png), [target Save/Cancel](Screenshots/interaction-target-preview.png), [full item editor](Screenshots/interaction-full-item-editor.png), and [pop-out Transform editor](Screenshots/interaction-item-editor.png). These are native Simulator renders from seeded presentation states, not gesture acceptance evidence.
+The lower **context bar** collapses to an ellipsis with no selection. Expanding it provides Toolbox, Undo/Redo, room positioning and previous/next cue controls. Room positioning opens the isometric map, where obstructed destinations are marked before teleporting.
 
-Earlier retarget captures: [animation recording](Screenshots/fixture-retarget.mp4), [head aim](Screenshots/fixture-retarget-head.png), [mount aim](Screenshots/fixture-retarget-mount.png), [targeting prompt](Screenshots/fixture-targeting.png), [full transform controls](Screenshots/fixture-transform.png).
+Placement commits the head-centered ghost position. A selected fixture can use Move arrows or Rotate rings; only the chosen mode is interactive. Handles render through room geometry and dim when idle. Pressed axes and native gaze hover highlight the active control.
 
-Room-library captures: [initial room library](Screenshots/room-library.png), [imported rooms and saved setups](Screenshots/room-library-saved.png). Launch `./scripts/run-demo.sh --blue --rooms-tab` to open this toolbox tab. Add `--library-smoke` to run the debug-only native integration check; it writes clearly labelled demo setups and a synthetic mesh replay fixture into DemoLibrary. The synthetic mesh is test data, not a headset scan.
+The palette editor follows the fixture selection. Static attributes and Dynamic phaser steps preview on the actual fixtures and a flat diagram. Playback pause freezes both. Cues run from **01–255**; edits save to the current cue, with a specific-cue destination available. Target Fixture(s) solves aiming channels for the selected room location. Reusable palettes, step references, macros and cue snapshots keep their separate responsibilities.
 
-Audit capture: [history and persistent Undo/Redo controls](Screenshots/audit-history.png). Run `./scripts/run-demo.sh --blue --history-smoke` to exercise room-library operations plus history navigation and finish in the History tab. This invokes the same commands as the UI; it does not simulate pinch gestures or keyboard shortcuts.
+## Source organization
 
-Earlier screenshots: [blue light](Screenshots/white-room-blue.png), [pan and cast shadow](Screenshots/white-room-aim.png), [blackout](Screenshots/white-room-blackout.png), [toolbox](Screenshots/white-room-toolbox.png), [DMX controls](Screenshots/white-room-controls.png), [position controls](Screenshots/white-room-position.png). Older screenshots document earlier milestones.
+- `Models/VenueModel.swift`: observed session state, initialization, selection and fixture placement.
+- `Models/VenueModel+Palettes.swift`: palette library, live preview and targeting.
+- `Models/VenueModel+Cues.swift`: cue storage, recall and programmer selection.
+- `Models/VenueModel+Transforms.swift`: fixture mount gestures and surface placement.
+- `Models/VenueModel+History.swift`: gesture transactions and Undo/Redo.
+- `Models/VenueModel+Library.swift`: room loading, imports and setup handoff.
+- `Models/VenueModel+Touring.swift`: inventory, groups, configurations and touring edits.
+- `Models/VenueModel+Macros.swift`: macro preflight and application.
+- `Spatial/`: RealityKit rendering, tracking, input routing and native room scanning.
+- `Views/`: launch, Toolbox, room placement and palette windows, plus their embedded editors.
+- `Core/Sources/VenueVolumeCore/`: platform-independent value models, validation, persistence and lighting calculations.
 
-`project.yml` is the project source of truth. Regenerate with `xcodegen generate` after adding files. The Environments and FixtureAssets folders must remain folder resources. If XcodeGen emits `BuildableName="VenueVolume.app"`, set it to `Venue Volume.app` in the shared schemes.
+Views invoke session operations rather than editing persisted structures directly. A gesture owns one history transaction. Spatial rendering consumes resolved fixture output; it does not author palette or cue state. Keep file-private helpers private; cross-file session extension operations are internal to the application module.
 
-References: [Apple dynamic lights and shadows](https://developer.apple.com/videos/play/wwdc2024/10103/), [SpotLightComponent](https://developer.apple.com/documentation/realitykit/spotlightcomponent), [static mesh collisions](https://developer.apple.com/documentation/realitykit/shaperesource/generatestaticmesh(from:)), [input targeting](https://developer.apple.com/documentation/realitykit/inputtargetcomponent), [transform animation](https://developer.apple.com/documentation/realitykit/hastransform/move(to:relativeto:duration:timingfunction:)), [environment lighting weight](https://developer.apple.com/documentation/realitykit/environmentlightingconfigurationcomponent), and [the repository's current movie workflow](../../docs/05%20Operations/mov2splat-review.md).
+The abandoned pop-out fixture-info state, mock sync client, diagnostics window, benchmark and embedded smoke harnesses have been removed. Automated test targets and scripts were removed at the owner's request. Historical validation reports describe earlier builds; current verification is by compilation and direct runtime review.
 
-Capture references: [Applying mesh to real-world surroundings](https://developer.apple.com/documentation/visionOS/applying-mesh-to-real-world-surroundings), [SceneReconstructionProvider](https://developer.apple.com/documentation/arkit/scenereconstructionprovider), and [MeshAnchor](https://developer.apple.com/documentation/arkit/meshanchor).
-
-Toolbox window capture: [normal repositionable window with X and move bar](Screenshots/toolbox-window.png).
-
-## Mapped room and lighting performance
-
-See the [asset review and desktop comparison](../room2blender/mappedRoom/README.md) and [native benchmark runbook](docs/MAPPED_ROOM_LIGHTING.md). The packaged room is small; the maximum smooth shadow-light count has **not** been measured on Vision Pro. Experimental 16/32/64 budgets are candidates for testing, not capacity claims.
-
-### UX audit follow-up (v0.2.4)
-
-Windows are resizable. The palette editor switches to a compact palette picker and one channel column at narrow widths or large text sizes; the wrist workspace stacks at accessibility text sizes. Room controls wrap and inspectors scroll. Unselected fixture labels show names only; nearby, non-overlapping labels are prioritized, with the selected label first. Labels scale with distance; all fixtures remain available in the wrist scene list.
-
-Portable save decoding, checksums, native asset validation and export encoding run on a background actor. Cancel checking remains available while importing; cancelled or superseded requests cannot publish a room. Final publication uses metadata checks and atomic file moves. See [UX fixes and validation](docs/validation/2026-10-03-ux-fixes.md) for evidence and remaining device acceptance.
-
-## Touring inventory and groups plan
-
-The [touring workflow plan](../../docs/02%20Product/Design/Touring%20Inventory%20and%20Fixture%20Workflows.md) defines reusable equipment quantities and identities, named hierarchical groups, faster placement, semantic palettes and adaptation across rooms. It includes migration, persistence and acceptance criteria. The touring inventory and hierarchical group implementation is included alongside palettes and phasers in the merged v0.2.10 build.
-
-## Palette and phaser workflow
-
-The editor pins a white grid sample room above its controls. Select the sample cube (initially 1 m above the floor) to expose X/Y/Z grab handles. Current palette and phaser output lights the room continuously, including when no venue fixture is selected. Palette families and included channel controls support partial attribute looks. Enable **Animate as phaser** to edit independent steps, width, BPM, measure, phase, fixture phase spread and transition. **Save as new…** duplicates the complete draft into an independent palette. Baseline intensity, color, position and beam palettes and five standard phaser examples are available for customization.
-
-See [Palettes and Phasers](../../docs/02%20Product/Features/F10%20-%20Palettes%20and%20Phasers.md) for the implemented console-inspired contract and source references. Legacy serialized preset names and IDs remain compatible.
+`venuevolume://place?version=1&loadout=<UUID>&fixture=<UUID>` opens an existing native fixture placement. Browser-to-native data transfer is not implemented.

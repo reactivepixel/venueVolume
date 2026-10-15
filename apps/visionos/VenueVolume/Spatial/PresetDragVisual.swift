@@ -23,11 +23,6 @@ import SwiftUI
     private var reduceMotion = false
     private let warm = UIColor(red: 1, green: 0.82, blue: 0.43, alpha: 1)
 
-    #if DEBUG
-    var visibleOrigin: SIMD3<Float>? { origin }
-    var hasTether: Bool { origin != nil }
-    var isSnapped: Bool { targetID != nil }
-    #endif
 
     init() {
         let mesh = MeshResource.generateBox(size: 1)

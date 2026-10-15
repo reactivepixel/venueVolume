@@ -27,7 +27,7 @@ Workspace → Scanned venues → Load Outs → selected inventory + placement + 
 
 ## Preparation semantics
 
-Only a ready, imported scan can start a Load Out. Import preserves the original venue UUID, movie and splat; it does not assign a show or rig. No blank areas or CAD-created venues are supported. Drawings are supporting documents.
+Only a ready, imported scan can start a Load Out. Import preserves the original venue UUID, movie and room model; it does not assign a show or rig. No blank areas or CAD-created venues are supported. Drawings are supporting documents.
 
 A Load Out stores a scan reference, base-unit IDs (if touring), additional-unit IDs, per-unit placement and per-unit patch. Coordinates are metres: X right, Y up, Z depth; yaw about Y. Production must pin verified scan scale/origin and immutable scan revision. Current intake has one asset per UUID; revision lineage is not implemented.
 
@@ -41,7 +41,7 @@ All production relationships use immutable IDs, never editable labels or array p
 
 The current preparation prototype uses `vv-workspace-v2` in browser storage. It deliberately does not reinterpret old `vv-design-v1` venue/template strings as scanned rooms or physical fixture identities. Old sample data remains untouched. New programming previews use `vv-programming-preview:<loadoutId>` and live sessions use the Load Out ID. They still contain sample programming and are not the production program store.
 
-Movie bytes, pipeline status and splats are persisted by the local intake service. Import sets `setupStatus=configured` with name/city, independently of show/template. Legacy request fields remain compatible but are not part of the new UX. Production cloud storage, tenants and durable preparation records are outstanding.
+Movie bytes, pipeline status and room models are persisted by the local intake service. Import sets `setupStatus=configured` with name/city, independently of show/template. Legacy request fields remain compatible but are not part of the new UX. Production cloud storage, tenants and durable preparation records are outstanding.
 
 ## Programming and runtime
 

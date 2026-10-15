@@ -46,6 +46,7 @@ export function moveEntry(entries, index, direction) {
 export function normalizeScript(entries) {
   return entries.map((entry, i) => ({
     ...entry,
+    cueNumber: entry.cueNumber ?? i + 1,
     song: entry.song ?? (i === 0 ? "Walk-in" : i < 4 ? "01 · Into the blue" : "02 · Afterglow"),
     offset: entry.offset ?? (i === 0 ? 0 : i < 4 ? (i - 1) * 45 : (i - 4) * 60),
     midi: entry.midi ?? { type: "note", channel: 1, number: 60 + i },

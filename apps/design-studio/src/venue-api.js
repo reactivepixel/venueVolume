@@ -86,10 +86,12 @@ export function useVenueLibrary(enabled = true) {
 
 export function processingLabel(record) {
   if (record.status === "processing") return ({
-    init: "Starting Movie2Splat", extract: "Extracting movie frames",
-    colmap: "Reconstructing the room", train: "Training the splat",
-    export: "Exporting the splat", complete: "Finishing processing",
+    init: "Starting roomScan", extracting: "Extracting movie references",
+    references_ready: "Preparing review", building: "Building the Blender room",
+    rendering: "Rendering room views", validating: "Checking room geometry",
+    exporting: "Exporting USDZ", complete: "Finishing roomScan",
   })[record.stage] || "Processing movie";
   return ({ awaiting_upload: "Awaiting movie", uploading: "Uploading movie",
-    queued: "Queued for processing", ready: "Splat ready", failed: "Processing failed" })[record.status] || record.status;
+    queued: "Queued for roomScan", review_required: "Room review required",
+    ready: "Room model ready", failed: "Processing failed" })[record.status] || record.status;
 }

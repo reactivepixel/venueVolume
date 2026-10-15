@@ -106,7 +106,7 @@ export function applyPaletteToCue(script, entryId, fixtureIds, palette, fixtures
       const original = assignments[index] ?? {fixtureId: fixture.id};
       const names = original.paletteNames ?? (original.preset ? [original.preset] : []);
       const paletteNames = layeredNames(names, palette, library);
-      const next = {...original, paletteNames, preset: palette.name};
+      const next = {...original, paletteNames, preset: palette.name, paletteSnapshots: (original.paletteSnapshots ?? []).filter(p => !attributesOf(p).some(a => attributesOf(palette).includes(a)))};
       if (index >= 0) assignments[index] = next; else assignments.push(next);
     }
     return {...entry, assignments};
