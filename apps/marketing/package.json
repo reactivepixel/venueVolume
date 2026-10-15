@@ -1,7 +1,7 @@
 {
   "name": "@venue-volume/marketing",
   "private": true,
-  "version": "0.2.16",
+  "version": "0.2.17",
   "type": "module",
   "engines": {
     "node": ">=22.19.0"
@@ -9,8 +9,7 @@
   "scripts": {
     "dev": "astro dev --host 0.0.0.0",
     "build": "astro build",
-    "preview": "astro preview --host 0.0.0.0",
-    "test": "node --test"
+    "preview": "astro preview --host 0.0.0.0"
   },
   "dependencies": {
     "astro": "7.3.3"

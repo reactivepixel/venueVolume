@@ -62,25 +62,11 @@ public struct DMXPreset: Identifiable, Codable, Equatable, Sendable {
         for index in phaser.steps.indices {
             guard let id = phaser.steps[index].paletteID,
                   let source = palettes.first(where: { $0.id == id && $0.phaser == nil }) else { continue }
-            for channel in channelMask.intersection(source.channelMask) {
+            for channel in channelMask.intersection(source.channelMask) where source.channels.indices.contains(channel) {
                 phaser.steps[index].values[channel] = source.channels[channel]
             }
         }
         return phaser.sample(base: channels, seconds: seconds, fixtureIndex: fixtureIndex, fixtureCount: fixtureCount)
-    }
-
-    public func duplicated(name: String? = nil) -> DMXPreset {
-        var copy = self
-        copy.id = UUID()
-        copy.name = name ?? "\(self.name) copy"
-        return copy
-    }
-
-    public var dragToken: String { "venue-volume:preset:\(id.uuidString)" }
-    public static func id(from token: String) -> UUID? {
-        let prefix = "venue-volume:preset:"
-        guard token.hasPrefix(prefix) else { return nil }
-        return UUID(uuidString: String(token.dropFirst(prefix.count)))
     }
 
     public static let examples = [
@@ -93,7 +79,7 @@ public struct DMXPreset: Identifiable, Codable, Equatable, Sendable {
 }
 
 public enum ToolboxItem: Hashable, Codable, Sendable {
-    case addFixture, presets, sync
+    case addFixture, presets
     case fixture(UUID), preset(UUID)
 }
 
@@ -201,24 +187,5 @@ public enum PresetOperations {
         for fixture in fixtures {
             if let issue = fixture.validationIssue(among: fixtures) { throw PresetError(issue) }
         }
-    }
-}
-
-/// Debounces the physical palm pose. A brief tracking gap doesn't flash the pane.
-public struct PalmRevealGate: Sendable {
-    public private(set) var isVisible = false
-    private var eligibleSince: Double?
-    private var lastEligible: Double?
-    public init() {}
-    public mutating func update(eligible: Bool, now: Double) -> Bool {
-        if eligible {
-            if eligibleSince == nil { eligibleSince = now }
-            lastEligible = now
-            if now - (eligibleSince ?? now) >= 0.25 { isVisible = true }
-        } else {
-            eligibleSince = nil
-            if now - (lastEligible ?? -10) >= 0.8 { isVisible = false }
-        }
-        return isVisible
     }
 }

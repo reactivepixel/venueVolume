@@ -10,7 +10,7 @@ updated: 2026-10-04
 
 A link opened **on Vision Pro** can launch the installed Venue Volume app, open a known native Load Out and enter the placement tool for a selected fixture. A desktop web page cannot remotely launch an app on a separate headset. Copy the placement link and open it on that Vision Pro.
 
-This change implements the URL contract, SaaS handoff UI and native receiver for **existing native saves with matching IDs**. It does **not** make newly created SaaS Load Outs available in the native app: preparation is still browser-local and there is no SaaS-to-native Load Out transfer service. The native room loader supports reviewed USDZ/mesh environments, not Movie2Splat PLY scans. The newly created SaaS Load Out therefore reports unavailable in the headset until a compatible import/sync path exists. This is not a platform restriction on deep linking.
+This change implements the URL contract, SaaS handoff UI and native receiver for **existing native saves with matching IDs**. It does **not** make newly created SaaS Load Outs available in the native app: preparation is still browser-local and there is no SaaS-to-native Load Out transfer service. The native room loader supports reviewed USDZ/mesh environments, not roomScan PLY scans. The newly created SaaS Load Out therefore reports unavailable in the headset until a compatible import/sync path exists. This is not a platform restriction on deep linking.
 
 Existing `.venuevolume` file import creates an independent saved setup with a new ID. Importing such a file does not automatically fulfill a SaaS link with the old ID. Do not match rooms, Load Outs or fixtures by their editable names.
 

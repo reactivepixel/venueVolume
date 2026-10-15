@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Field} from './components';
 import {macroIssue, planMacro, starterMacros} from './programming-macros';
+import {cueAt} from './programming/cues';
 
 export default function MacroWorkbench({macros = starterMacros, palettes, fixtures, selection, script, entryId, onStore, onApply}) {
-  const [draft,setDraft] = useState(() => structuredClone(macros[0]));
-  const [saved,setSaved] = useState(() => JSON.stringify(macros[0]));
+  const [draft,setDraft] = useState(() => structuredClone(macros[0] ?? starterMacros[0]));
+  const [saved,setSaved] = useState(() => JSON.stringify(macros[0] ?? starterMacros[0]));
   const [message,setMessage] = useState('');
   const [busy,setBusy] = useState(false);
   const [lastRun,setLastRun] = useState(null);
@@ -18,8 +19,31 @@ export default function MacroWorkbench({macros = starterMacros, palettes, fixtur
   const load = macro => {setDraft(structuredClone(macro));setSaved(macros.some(m => m.id===macro.id) ? JSON.stringify(macro) : '');setMessage('');};
   const navigate = macro => { if(dirty) setPending(macro); else load(macro); };
   const store = async () => { if(macroIssue(draft)) return false; setBusy(true);try {await onStore(draft);setSaved(JSON.stringify(draft));setMessage('Stored macro.');return true;} catch(e){setMessage(e.message);return false;} finally{setBusy(false);} };
-  const run = async () => {if(!plan || busy || dirty)return;setBusy(true);try{await onApply(plan.script);setLastRun({before:script,after:JSON.stringify(plan.script)});setMessage(`Applied ${plan.actions.length} actions to ${plan.ids.length} fixtures.`);}catch(e){setMessage(e.message);}finally{setBusy(false);} };
-  const undo = async () => {if(!lastRun || lastRun.after!==JSON.stringify(script))return;setBusy(true);try{await onApply(lastRun.before);setLastRun(null);setMessage('Undid the whole macro run.');}catch(e){setMessage(e.message);}finally{setBusy(false);} };
+  const run = async () => {
+    if (!plan || busy || dirty) return;
+    setBusy(true);
+    try {
+      const number = script.find(entry => entry.entryId === entryId)?.cueNumber;
+      let result;
+      await onApply(current => {
+        const latest = planMacro(draft, {selection, fixtures, palettes, script:current, entryId:cueAt(current, number)?.entryId ?? entryId});
+        result = {before:current, after:JSON.stringify(latest.script)};
+        return latest.script;
+      });
+      setLastRun(result); setMessage(`Applied ${plan.actions.length} actions to ${plan.ids.length} fixtures.`);
+    } catch(e) { setMessage(e.message); } finally { setBusy(false); }
+  };
+  const undo = async () => {
+    if (!lastRun || lastRun.after !== JSON.stringify(script)) return;
+    setBusy(true);
+    try {
+      await onApply(current => {
+        if (lastRun.after !== JSON.stringify(current)) throw new Error('The cue changed after this macro. Undo is no longer available.');
+        return lastRun.before;
+      });
+      setLastRun(null); setMessage('Undid the whole macro run.');
+    } catch(e) { setMessage(e.message); } finally { setBusy(false); }
+  };
   return <details className="macro-workbench"><summary>Macros · repeat a palette workflow</summary><div className="macro-editor">
     <p className="palette-muted">Store a named list of palette recalls. Each run resolves one target and applies all enabled rows together to the selected cue.</p>
     <div className="row-actions"><Field label="Macro pool"><select value={macros.some(m=>m.id===draft.id)?draft.id:''} onChange={e=>navigate(macros.find(m=>m.id===e.target.value))}><option value="" disabled>New macro</option>{macros.map(m=><option key={m.id} value={m.id}>{m.name}</option>)}</select></Field><Button onClick={()=>navigate({id:crypto.randomUUID(),name:'New macro',target:{kind:'selection'},lines:[{paletteName:'',enabled:true}]})}>New macro</Button></div>

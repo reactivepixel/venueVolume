@@ -10,39 +10,36 @@ struct VenueVolumeApp: App {
     var body: some Scene {
         WindowGroup(id: "launch") {
             LaunchView()
-                .placementLinkReceiver().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model)
+                .placementLinkReceiver().environment(model).controlSize(.large).navigationInputShield(model: model)
                 .onChange(of: scenePhase) { _, phase in if phase != .active { model.finishHistoryGesture(); model.flushHistoryEdits() } }
         }
         .windowResizability(.contentMinSize)
         .defaultSize(width: 680, height: 700)
 
         WindowGroup(id: "toolbox", for: UUID.self) { identity in
-            ToolboxView(instanceID: identity.wrappedValue).placementLinkReceiver().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model)
+            ToolboxView(instanceID: identity.wrappedValue).placementLinkReceiver().environment(model).controlSize(.large).navigationInputShield(model: model)
         }
         .windowResizability(.contentMinSize)
         .defaultSize(width: 1040, height: 860)
 
         WindowGroup(id: "room-placement") {
-            RoomPlacementView().placementLinkReceiver().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model)
+            RoomPlacementView().placementLinkReceiver().environment(model).controlSize(.large).navigationInputShield(model: model)
         }
         .windowResizability(.contentMinSize)
         .defaultSize(width: 900, height: 760)
 
         WindowGroup(id: "presets", for: UUID.self) { identity in
-            PresetEditorView(instanceID: identity.wrappedValue).placementLinkReceiver().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model)
+            PresetEditorView(instanceID: identity.wrappedValue).placementLinkReceiver().environment(model).controlSize(.large).navigationInputShield(model: model)
                 .frame(minWidth: 680, minHeight: 500)
         }
         .windowResizability(.contentMinSize)
         .defaultSize(width: 1320, height: 1000)
 
-        WindowGroup(id: "diagnostics") {
-            DebugPanel().placementLinkReceiver().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model)
-        }
-        .windowResizability(.contentMinSize)
+
 
         ImmersiveSpace(id: "VenueSpace") {
             VenueSpaceView()
-                .placementLinkReceiver().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model)
+                .placementLinkReceiver().environment(model).controlSize(.large).navigationInputShield(model: model)
                 .onChange(of: model.navigationBlackoutActive) { _, active in
                     if active {
                         immersionBeforeNavigation = venueImmersion
@@ -62,7 +59,7 @@ struct VenueVolumeApp: App {
         // Restore their selected style after the fade completes.
         .immersionStyle(selection: $venueImmersion, in: .progressive(0...1, initialAmount: 1), .full)
 
-        ImmersiveSpace(id: "RoomScan") { RoomScanView().placementLinkReceiver().environment(model).auditTextSize().controlSize(.large).navigationInputShield(model: model) }
+        ImmersiveSpace(id: "RoomScan") { RoomScanView().placementLinkReceiver().environment(model).controlSize(.large).navigationInputShield(model: model) }
             .immersionStyle(selection: .constant(.mixed), in: .mixed)
     }
 }

@@ -43,10 +43,7 @@ struct FixtureLabel: View {
         .frame(width: selected ? 420 : 280)
         .glassBackgroundEffect(in: RoundedRectangle(cornerRadius: 24))
         .animation(reduceMotion ? nil : .smooth(duration: 0.2), value: selected)
-        .dropDestination(for: String.self) { tokens, _ in
-            guard let token = tokens.first, let id = DMXPreset.id(from: token) else { return false }
-            return model.applyPreset(id, to: fixture.id)
-        }
+
     }
 }
 

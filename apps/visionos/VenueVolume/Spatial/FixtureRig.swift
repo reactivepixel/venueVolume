@@ -23,8 +23,6 @@ import VenueVolumeCore
     private var lastLight: LightState?
     private var appliedAngles: [String: Float] = [:]
     private var lastPlacing: Bool?
-    private(set) var lightComponentWrites = 0
-    private(set) var jointTransformWrites = 0
     private let duration: Double = 0.6
     private let selection: ModelEntity
 
@@ -113,7 +111,6 @@ import VenueVolumeCore
                     if emitter.components.has(SpotLightComponent.self) {
                         emitter.components.remove(SpotLightComponent.self)
                         emitter.components.remove(SpotLightComponent.Shadow.self)
-                        lightComponentWrites += 1
                     }
                     continue
                 }
@@ -124,7 +121,6 @@ import VenueVolumeCore
                 light.innerAngleInDegrees = look.outerAngle * 0.7
                 light.outerAngleInDegrees = look.outerAngle
                 emitter.components.set(light)
-                lightComponentWrites += 1
                 if !emitter.components.has(SpotLightComponent.Shadow.self) {
                     var shadow = SpotLightComponent.Shadow()
                     shadow.zFar = .automatic // Matches attenuationRadius (12m); no shadow beyond the beam.
@@ -166,24 +162,11 @@ import VenueVolumeCore
             if appliedAngles[id] != angle {
                 joint.orientation = simd_quatf(angle: angle * .pi/180, axis: Self.vector(definition.axis))
                 appliedAngles[id] = angle
-                jointTransformWrites += 1
             }
         }
     }
 
     private static func vector(_ values: [Float]) -> SIMD3<Float> { [values[0],values[1],values[2]] }
-    #if DEBUG
-    func checkEmitterPose(channels: [Int]) throws {
-        guard let emitter = lights.first else { return }
-        let expected = FixtureAiming.localRay(channels: channels, asset: descriptor)
-        let transform = emitter.transformMatrix(relativeTo: entity)
-        let origin = SIMD3<Float>(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
-        let forward = -SIMD3<Float>(transform.columns.2.x, transform.columns.2.y, transform.columns.2.z)
-        guard simd_distance(origin, expected.origin) < 0.0002, simd_distance(forward, expected.direction) < 0.0002 else {
-            throw EnvironmentError.invalid("\(descriptor.id): RealityKit emitter pose differs from targeting geometry")
-        }
-    }
-    #endif
     private static func disableSelfShadows(_ entity: Entity) {
         entity.components.set(DynamicLightShadowComponent(castsShadow: false))
         for child in entity.children { disableSelfShadows(child) }

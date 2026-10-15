@@ -12,7 +12,7 @@ export function scriptSegments(entries) {
 }
 export function makeSnapshot(data, venue) {
   const presets = data.presets.map((p) =>
-    p.name === "Midnight blue"
+    p.name === "All · Blue focus"
       ? { ...p, intensity: data.venueOverrides?.[venue] ?? data.intensity }
       : p,
   );
@@ -30,7 +30,7 @@ export function makeSnapshot(data, venue) {
       roles.map((role, j) => ({
         role,
         preset:
-          j === 0 ? entry.preset : j === 1 ? "Soft front key" : "Violet bloom",
+          j === 0 ? entry.preset : j === 1 ? "All · White work light" : "All · Blue focus",
       })),
   }));
   const houseEntryId = data.venueProgramming?.[venue]?.houseEntryId ??
@@ -58,19 +58,32 @@ export function createRun(snapshot) {
   };
 }
 export function assignmentPalettes(snapshot, entry, fixture) {
-  const assignments = entry?.assignments ?? [];
-  const group = assignments.find(a => !a.fixtureId && a.role === fixture.role);
-  const individual = assignments.find(a => a.fixtureId === fixture.id);
-  const names = [group, individual].flatMap(a => a?.paletteNames ?? (a?.preset ? [a.preset] : []));
-  return names.map(name => snapshot.presets.find(p => p.name === name)).filter(Boolean);
+  if (!entry) return [];
+  const script = (snapshot.script ?? []).map((cue, index) => ({...cue, cueNumber:cue.cueNumber ?? index + 1}));
+  const number = entry.cueNumber ?? script.find(cue => cue.entryId === entry.entryId)?.cueNumber;
+  const previous = script.filter(cue => cue.cueNumber < number).sort((a, b) => a.cueNumber - b.cueNumber);
+  // A cue changes only the attributes it owns; earlier values track forward.
+  return [...previous, entry].flatMap(cue => {
+    const assignments = cue.assignments ?? [];
+    const group = assignments.find(a => !a.fixtureId && a.role === fixture.role);
+    const individual = assignments.find(a => a.fixtureId === fixture.id);
+    return [group, individual].flatMap(assignment => {
+      const names = assignment?.paletteNames ?? (assignment?.preset ? [assignment.preset] : []);
+      return [...names.map(name => snapshot.presets.find(p => p.name === name)).filter(Boolean), ...(assignment?.paletteSnapshots ?? [])];
+    });
+  });
 }
 export function paletteOutput(palette, seconds = 0, index = 0, count = 1, library = []) {
   const sampled = samplePhaser(palette, seconds, index, count, library);
   // Palette position values are degrees; programmer and rig controls use percentages.
   sampled.pan = Math.max(0, Math.min(100, 50 + sampled.pan / 270 * 100));
   sampled.tilt = Math.max(0, Math.min(100, 50 + sampled.tilt / 120 * 100));
-  const attributes = palette.attributes ?? ["intensity", "color"];
+  const attributes = attributesOf(palette);
   return Object.fromEntries(Object.entries(sampled).filter(([key]) => attributes.includes(key)));
+}
+export function paletteDistribution(snapshot, entry, fixture, palette) {
+  const targets = snapshot.fixtures.filter(f => assignmentPalettes(snapshot, entry, f).some(p => p.name === palette.name && attributesOf(p).some(a => attributesOf(palette).includes(a))));
+  return [Math.max(0, targets.findIndex(f => f.id === fixture.id)), targets.length];
 }
 export function cueValues(snapshot, entry) {
   return Object.fromEntries(snapshot.fixtures.map(f => [f.id, Object.assign({ intensity: 0, color: "#dfe9f2", pan: 50, tilt: 50 }, ...assignmentPalettes(snapshot, entry, f).map(p => paletteOutput(p, 0, 0, 1, snapshot.presets)))]));
@@ -84,8 +97,7 @@ export function outputValue(run, fixture, seconds = 0) {
     // Static cue values stay latched through hot edits. Later static ownership
     // still suppresses earlier phasers for overlapping attributes.
     if (!palette.phaser) { for (const key of attributesOf(palette)) delete animated[key]; continue; }
-    const targets = run.snapshot.fixtures.filter(f => assignmentPalettes(run.snapshot, entry, f).some(p => p.name === palette.name));
-    Object.assign(animated, paletteOutput(palette, seconds, Math.max(0, targets.findIndex(f => f.id === fixture.id)), targets.length, run.snapshot.presets));
+    Object.assign(animated, paletteOutput(palette, seconds, ...paletteDistribution(run.snapshot, entry, fixture, palette), run.snapshot.presets));
   }
   const value = { ...base, ...animated, ...run.programmer[fixture.id] };
   const effective = run.blackout || !run.armed ? 0 : Math.round(value.intensity * run.master / 100 * (run.groupMasters[fixture.role] ?? 100) / 100);

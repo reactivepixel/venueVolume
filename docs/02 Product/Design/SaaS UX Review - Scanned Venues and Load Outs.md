@@ -59,7 +59,7 @@ This review covers the whole SaaS surface, including the earlier 35-screen study
 | Equipment inventory; equipment detail | Physical unit inventory with stable ID, model, role and ownership; reference-aware removal. Profile binding and bulk serial/quantity entry remain follow-up work. |
 | Fixture library; fixture profile | Clearly identified design previews. Production must pin real profile revisions/modes and propagate footprint changes through dependent patches. |
 | Venues; create venue; venue overview | Shared available scans plus intake inbox; movie upload; import without show/template; per-venue Load Out list. |
-| Venue drawing | Placement schematic with numeric X/Y/Z/yaw controls, linked scan, no invented room boundaries. Actual splat rendering and calibration remain missing. |
+| Venue drawing | Placement schematic with numeric X/Y/Z/yaw controls, linked scan, no invented room boundaries. Actual room model rendering and calibration remain missing. |
 | Patch; overrides | Patch is per Load Out; Tour base inventory changes are reviewed here. Legacy programming overrides remain a preview, not a second room configuration. |
 | Palettes and phasers; palette editor | Load Out context required; sample library preview retained. Production needs real fixture/group binding, partial-parameter intent and compatibility checks. |
 | Cues; cue editor | Keep cue definition separate from script occurrence; current sample content is labeled. Implement real creation, editing and missing-target handling before release. |

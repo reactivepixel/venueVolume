@@ -47,11 +47,6 @@ struct PhaserProgrammerView: View {
                 }
             }
         }
-        .task {
-            #if DEBUG
-            await runRenderSmoke()
-            #endif
-        }
         .onChange(of: model.presetDraft.id) { _, _ in selectedStep = 0 }
         .onChange(of: phaser?.steps.count) { _, count in selectedStep = min(selectedStep, max(0, (count ?? 1) - 1)) }
         .confirmationDialog("Replace the phaser steps?", isPresented: $replacingPattern, titleVisibility: .visible) {
@@ -61,48 +56,6 @@ struct PhaserProgrammerView: View {
             Button("Cancel", role: .cancel) { pendingPattern = nil }
         } message: { Text("The pattern replaces step sources and distribution. Your tempo and cycle length are kept.") }
     }
-    #if DEBUG
-    /// Render the real SwiftUI controls after each mode/step change, not just
-    /// the underlying model. Model-only tests missed an out-of-range label read.
-    private func runRenderSmoke() async {
-        guard model.isDemoMode, ProcessInfo.processInfo.arguments.contains("--phaser-render-smoke") else { return }
-        do {
-            for _ in 0..<200 where !model.canPlace || model.fixtures.isEmpty {
-                try await Task.sleep(for: .milliseconds(100))
-            }
-            try await Task.sleep(for: .milliseconds(500))
-            guard let fixture = model.fixtures.first,
-                  let source = model.presets.first(where: { $0.pool == .all && $0.phaser == nil }) else {
-                throw EnvironmentError.invalid("Missing phaser render fixture")
-            }
-            for selected in [false, true] {
-                if selected { model.select(fixture.id,extendSelection: false) } else { model.deselect() }
-                try await Task.sleep(for: .milliseconds(150))
-                model.choosePreset(source)
-                for pool in [PaletteCategory.all, .intensity, .color, .position, .beam] {
-                    model.setPhaserMode(false); model.presetDraft.setPool(pool)
-                    try await Task.sleep(for: .milliseconds(150))
-                    FileHandle.standardOutput.write(Data("PHASER_RENDER_CASE selected=\(selected) pool=\(pool.rawValue)\n".utf8))
-                    model.setPhaserMode(true)
-                    try await Task.sleep(for: .milliseconds(250))
-                    guard model.presetDraft.phaser != nil else { throw EnvironmentError.invalid("Dynamic mode was lost") }
-                    model.presetDraft.phaser?.resizeSteps(to: 32); selectedStep = 31
-                    try await Task.sleep(for: .milliseconds(150))
-                    model.presetDraft.phaser?.resizeSteps(to: 2)
-                    try await Task.sleep(for: .milliseconds(150))
-                    model.setPhaserMode(false)
-                    try await Task.sleep(for: .milliseconds(150))
-                }
-            }
-            model.presetDraft.setPool(.all); model.setPhaserMode(true)
-            try await Task.sleep(for: .milliseconds(300))
-            FileHandle.standardOutput.write(Data("PHASER_RENDER_SMOKE_PASS emptySelection=true selectedFixture=true allPools=true repeatedModes=true stepResize=true\n".utf8))
-        } catch is CancellationError {
-            // Window restoration can replace an old editor; its successor runs
-            // the check after the normal single-window handoff.
-        } catch { FileHandle.standardOutput.write(Data("PHASER_RENDER_SMOKE_FAIL \(error)\n".utf8)) }
-    }
-    #endif
 
     private func modeButton(_ title: String, enabled: Bool) -> some View {
         Button { model.setPhaserMode(enabled); selectedStep = 0 } label: {
@@ -234,7 +187,7 @@ struct PhaserProgrammerView: View {
     private func use(_ step: PhaserStep) { editStep { $0 = step }; remember() }
     private func tap() { if let bpm = tapTempo.tap(at: ProcessInfo.processInfo.systemUptime) { model.presetDraft.phaser?.beatsPerMinute = bpm } }
     private func remember() { if let step = phaser?.steps[safe: selectedStep] { model.rememberPhaserStep(step) } }
-    private func number(_ label: String, value: Double, range: ClosedRange<Double>, set: @escaping (Double) -> Void) -> some View {
+    private func number(_ label: String, value: Double, range: ClosedRange<Double>, set: @escaping @MainActor @Sendable (Double) -> Void) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack { Text(label); Spacer(); TextField(label, value: Binding(get: { value }, set: { if $0.isFinite { set(min(range.upperBound, max(range.lowerBound, $0))) } }), format: .number.precision(.fractionLength(0...2))).multilineTextAlignment(.trailing).frame(width: 90) }
             Slider(value: Binding(get: { value }, set: set), in: range).accessibilityLabel(label)

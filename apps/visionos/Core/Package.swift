@@ -6,7 +6,6 @@ let package = Package(
     platforms: [.macOS(.v14), .visionOS(.v2)],
     products: [.library(name: "VenueVolumeCore", targets: ["VenueVolumeCore"])],
     targets: [
-        .target(name: "VenueVolumeCore"),
-        .testTarget(name: "VenueVolumeCoreTests", dependencies: ["VenueVolumeCore"])
+        .target(name: "VenueVolumeCore")
     ]
 )

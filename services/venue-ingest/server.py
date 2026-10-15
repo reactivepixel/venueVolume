@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Single-host venue intake: durable movie uploads and one Movie2Splat worker."""
+"""Single-host venue intake: durable movie uploads and one roomScan worker."""
 
 import argparse
 import fcntl
@@ -18,11 +18,12 @@ import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlsplit, unquote
 import uuid
+import roomscan
 
 ROOT = Path(__file__).resolve().parents[2]
 MAX_UPLOAD_BYTES = 10 * 1024**3
 EXTENSIONS = {".mov", ".mp4", ".m4v"}
-STAGES = {"init", "extract", "colmap", "train", "export", "complete"}
+STAGES = {"init", "extracting", "references_ready", "review_required", "building", "rendering", "validating", "exporting", "complete"}
 
 
 class Problem(Exception):
@@ -44,25 +45,6 @@ def text_field(data, key, required=False, limit=160):
     return value
 
 
-def valid_ply(path):
-    """Use the launcher's Gaussian PLY contract, including after crash recovery."""
-    try:
-        with path.open("rb") as stream:
-            header = stream.read(65536)
-        end = header.find(b"end_header\n")
-        if end < 0:
-            return False
-        header = header[:end + 11]
-        count = re.search(rb"\nelement vertex (\d+)\n", header)
-        properties = set(re.findall(rb"\nproperty float (\S+)", header))
-        required = {b"x", b"y", b"z", b"f_dc_0", b"f_dc_1", b"f_dc_2", b"opacity",
-                    b"scale_0", b"scale_1", b"scale_2", b"rot_0", b"rot_1", b"rot_2", b"rot_3"}
-        required.update(f"f_rest_{i}".encode() for i in range(45))
-        return (header.startswith(b"ply\nformat binary_little_endian 1.0\n") and count is not None
-                and int(count[1]) > 0 and required <= properties
-                and path.stat().st_size >= end + 11 + int(count[1]) * len(properties) * 4)
-    except OSError:
-        return False
 
 
 class Store:
@@ -143,17 +125,13 @@ class Store:
 
     def public(self, record):
         result = {key: value for key, value in record.items() if key != "intake"}
-        if record["status"] == "processing":
-            try:
-                progress = json.loads((self.folder(record["id"]) / "source.gsplat/status.json").read_text())
-                if progress.get("stage") in STAGES:
-                    result["stage"] = progress["stage"]
-                for field in ("frames", "registered"):
-                    if type(progress.get(field)) is int:
-                        result[field] = progress[field]
-            except (OSError, ValueError):
-                pass
-        result["assetUrl"] = f"/api/venues/{record['id']}/splat" if record["status"] == "ready" else None
+        progress = roomscan.progress(self.folder(record["id"]))
+        if record["status"] == "processing" and progress.get("state") in STAGES:
+            result["stage"] = progress["state"]
+        for key, kind in (("assetUrl", "model"), ("manifestUrl", "manifest"), ("blendUrl", "blend"),
+                          ("draftUrl", "draft"), ("referencesUrl", "references")):
+            available = kind in {"draft", "references"} or record["status"] == "ready"
+            result[key] = f"/api/venues/{record['id']}/{kind}" if available and roomscan.artifact(self.folder(record["id"]), kind) else None
         result["logUrl"] = f"/api/venues/{record['id']}/log" if record["attempts"] else None
         return result
 
@@ -161,16 +139,16 @@ class Store:
 class Worker:
     def __init__(self, store, launcher=None):
         self.store = store
-        self.launcher = Path(launcher or ROOT / "apps/mov2splat/scripts/host.sh").resolve()
+        self.launcher = Path(launcher or roomscan.PIPELINE).resolve()
         self.stopping = threading.Event()
         self.wake = threading.Event()
-        self.thread = threading.Thread(target=self.run, name="movie2splat-worker", daemon=True)
+        self.thread = threading.Thread(target=self.run, name="roomscan-worker", daemon=True)
 
     def start(self):
         self.thread.start()
 
     def close(self):
-        # Graceful shutdown waits for the active GPU job, preserving its result.
+        # Graceful shutdown waits for the active roomScan job, preserving its result.
         self.stopping.set()
         self.wake.set()
         if self.thread.is_alive():
@@ -178,27 +156,31 @@ class Worker:
 
     def run(self):
         # The child inherits this lock. A restarted service waits for an orphaned
-        # launcher before recovering records or starting another GPU job.
-        with (self.store.directory / ".processor.lock").open("a") as gpu_lock:
+        # launcher before recovering records or starting another roomScan job.
+        with (self.store.directory / ".processor.lock").open("a") as processor_lock:
             while not self.stopping.is_set():
                 try:
-                    fcntl.flock(gpu_lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                    fcntl.flock(processor_lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
                     break
                 except BlockingIOError:
                     self.stopping.wait(1)
             if self.stopping.is_set():
                 return
             for record in self.store.list():
+                if record["status"] == "ready" and not roomscan.ready(self.store.folder(record["id"])):
+                    self.store.update(record["id"], dict(status="failed", stage=None,
+                        error="This venue needs a roomScan model. Retry processing its saved movie, then review the room geometry."))
                 if record["status"] == "processing":
-                    ready = valid_ply(self.store.source(record).with_suffix(".ply"))
-                    self.store.update(record["id"], dict(status="ready" if ready else "failed",
+                    ready = roomscan.ready(self.store.folder(record["id"]))
+                    review = roomscan.progress(self.store.folder(record["id"])).get("state") == "review_required"
+                    self.store.update(record["id"], dict(status="ready" if ready else "review_required" if review else "failed",
                         stage="complete" if ready else record["stage"],
-                        error=None if ready else "Processing was interrupted. Retry to resume the saved movie."))
+                        error=None if ready or review else "Processing was interrupted. Retry to resume the saved movie."))
             while not self.stopping.is_set():
                 queued = [record for record in reversed(self.store.list()) if record["status"] == "queued"]
                 if queued:
                     try:
-                        self.process(queued[0], gpu_lock.fileno())
+                        self.process(queued[0], processor_lock.fileno())
                     except Exception as error:
                         # A failed job must not take the queue down with it.
                         self.store.update(queued[0]["id"], dict(status="failed", error=f"Processing failed: {error}"))
@@ -212,18 +194,22 @@ class Worker:
         source = self.store.source(record)
         self.store.update(identifier, dict(status="processing", stage="init", error=None,
             attempts=record["attempts"] + 1), allowed={"queued"})
-        # Do not show progress from an earlier failed attempt while Docker starts.
-        (folder / "source.gsplat/status.json").unlink(missing_ok=True)
         with (folder / "processor.log").open("ab", buffering=0) as log:
             log.write(f"\n--- Attempt {record['attempts'] + 1} at {timestamp()} ---\n".encode())
-            result = subprocess.run([str(self.launcher), "--resume", str(source)],
+            reviewed = folder / "reviewed-room.json"
+            command = [str(self.launcher), "run", str(source), "--out", str(folder / "roomScan")]
+            if reviewed.exists():
+                command += ["--spec", str(reviewed)]
+            result = subprocess.run(command,
                 cwd=ROOT, stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT,
                 pass_fds=(lock_fd,))
-        if result.returncode == 0 and valid_ply(source.with_suffix(".ply")):
+        if result.returncode == 0 and roomscan.ready(folder):
             self.store.update(identifier, dict(status="ready", stage="complete", error=None))
+        elif result.returncode == 3 and roomscan.progress(folder).get("state") == "review_required":
+            self.store.update(identifier, dict(status="review_required", stage="review_required", error=None))
         else:
             self.store.update(identifier, dict(status="failed", error=
-                f"Movie2Splat did not produce a valid splat (exit {result.returncode}). Review the processing log, then retry."))
+                f"roomScan could not finish (exit {result.returncode}). Review the processing log, then retry."))
 
 
 class Server(ThreadingHTTPServer):
@@ -262,11 +248,11 @@ class Handler(BaseHTTPRequestHandler):
             raise Problem(413, "Request exceeds the size limit.")
         return size
 
-    def json_body(self):
+    def json_body(self, maximum=16384):
         if self.headers.get_content_type() != "application/json":
             raise Problem(415, "Send application/json.")
         try:
-            data = json.loads(self.rfile.read(self.length(16384)))
+            data = json.loads(self.rfile.read(self.length(maximum)))
         except (ValueError, UnicodeError):
             raise Problem(400, "Invalid JSON.")
         if not isinstance(data, dict):
@@ -302,7 +288,7 @@ class Handler(BaseHTTPRequestHandler):
                     return self.reply(200, dict(venues=[store.public(r) for r in store.list()], maxUploadBytes=store.max_bytes))
                 if self.command == "POST":
                     return self.reply(201, store.public(store.create(self.json_body())))
-            match = re.fullmatch(r"/api/venues/([0-9a-f-]{36})(?:/(movie|retry|setup|splat|log))?", path)
+            match = re.fullmatch(r"/api/venues/([0-9a-f-]{36})(?:/(movie|retry|setup|model|manifest|blend|draft|references|review|log))?", path)
             if match:
                 identifier, action = match.groups()
                 record = store.get(identifier)
@@ -320,11 +306,26 @@ class Handler(BaseHTTPRequestHandler):
                     changes = {key: text_field(data, key, required=key == "name") for key in ("name", "city", "show", "template")}
                     record = store.update(identifier, dict(**changes, setupStatus="configured"), allowed={"ready"})
                     return self.reply(200, store.public(record))
-                if self.command == "GET" and action in {"splat", "log"}:
-                    if action == "splat" and record["status"] != "ready":
-                        raise Problem(409, "The splat is not ready yet.")
-                    file = store.source(record).with_suffix(".ply") if action == "splat" else store.folder(identifier) / "processor.log"
-                    return self.send_file(file, download=f"venue-{identifier}.{'ply' if action == 'splat' else 'log'}")
+                if self.command == "POST" and action == "review":
+                    specification = self.json_body(1024 * 1024)
+                    with store.lock:
+                        record = store.get(identifier)
+                        if record["status"] not in {"review_required", "failed"}:
+                            raise Problem(409, "Wait for the room references before submitting a review.")
+                        try:
+                            roomscan.save_review(store.folder(identifier), specification, record["sha256"])
+                        except (ValueError, TypeError, KeyError, AttributeError) as error:
+                            raise Problem(400, str(error))
+                        record = store.update(identifier, dict(status="queued", stage=None, error=None))
+                    self.server.worker.wake.set()
+                    return self.reply(202, store.public(record))
+                if self.command == "GET" and action in {"model", "manifest", "blend", "draft", "references", "log"}:
+                    if action in {"model", "manifest", "blend"} and record["status"] != "ready":
+                        raise Problem(409, "The room model is not ready yet.")
+                    file = store.folder(identifier) / "processor.log" if action == "log" else roomscan.artifact(store.folder(identifier), action)
+                    if not file:
+                        raise Problem(404, "This roomScan artifact is not available yet.")
+                    return self.send_file(file, download=file.name)
             if path.startswith("/api/") or self.command != "GET":
                 raise Problem(404, "Endpoint not found.")
             relative = unquote(path).lstrip("/")
@@ -371,7 +372,7 @@ class Handler(BaseHTTPRequestHandler):
                 output.flush()
                 os.fsync(output.fileno())
             # ISO BMFF / QuickTime atom signature; decoding and reconstruction
-            # validation remain inside the isolated Movie2Splat container.
+            # validation are performed by the local roomScan pipeline.
             if len(prefix) < 12 or prefix[4:8] not in {b"ftyp", b"moov", b"mdat", b"wide", b"free", b"skip"}:
                 raise Problem(415, "This file is not a recognizable MOV, MP4, or M4V movie.")
             partial.replace(store.source(record))
@@ -431,7 +432,7 @@ def main():
             server.serve_forever()
         finally:
             server.server_close()
-            print("Finishing any active Movie2Splat job before shutdown…", flush=True)
+            print("Finishing any active roomScan job before shutdown…", flush=True)
             worker.close()
             store.db.close()
 

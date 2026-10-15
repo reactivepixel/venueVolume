@@ -1,6 +1,6 @@
 # mappedRoom lighting comparison
 
-`mappedRoom` is a separately identified classroom, with independent saved setups. Six small photo-derived base-color textures use the existing opaque mesh. The original classroom package and The Fortress are unchanged. [Assets, four cutaways and desktop results](../../room2blender/mappedRoom/README.md).
+`mappedRoom` is a separately identified classroom, with independent saved setups. Six small photo-derived base-color textures use the existing opaque mesh. The original classroom package and The Fortress are unchanged. [Assets, four cutaways and desktop results](../../roomScan/mappedRoom/README.md).
 
 ## Rendering policy
 

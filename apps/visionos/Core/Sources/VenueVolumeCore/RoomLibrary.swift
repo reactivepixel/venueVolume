@@ -123,7 +123,7 @@ public struct RoomLibraryStore: Sendable {
 }
 
 extension EnvironmentManifest {
-    /// For a measured scan or a meter-scale USDZ that lacks the richer room2blender contract.
+    /// For a measured scan or a meter-scale USDZ that lacks the richer roomScan contract.
     public static func simple(id: String, title: String, min: [Float], max: [Float], spawn: [Float], yaw: Float,
                               file: String, checksum: String, bytes: Int, scanned: Bool) -> Self {
         let center: [Float] = [(min[0]+max[0])/2, 0, (min[2]+max[2])/2]

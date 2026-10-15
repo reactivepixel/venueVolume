@@ -103,7 +103,6 @@ struct ToolboxView: View {
                     Button("Settings", systemImage: "gearshape") { settingsPresented = true }
                     Button("Touring shows…", systemImage: "shippingbox") { model.touringPanelPresented = true }
                     Button("New venue…", systemImage: "plus") { model.requestNewVenue(); openWindow(id: model.isImmersed ? "room-placement" : "launch") }
-                    Button("Diagnostics & sync") { openWindow(id: "diagnostics") }
                     Button(model.tour == nil ? "Clear all scene fixtures…" : "Return all fixtures to inventory…", role: .destructive) { confirmClearScene = true }
                         .disabled(model.fixtures.isEmpty || model.libraryBusy)
                     Button("Leave venue") {

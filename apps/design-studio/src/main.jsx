@@ -46,7 +46,7 @@ import {
   X,
   Zap,
 } from "lucide-react";
-import { screens, fixtureRows, presetRows, cueRows } from "./catalog";
+import { screens, fixtureRows, cueRows } from "./catalog";
 import { patchErrors, resolveValue } from "./model";
 import {
   Badge,
@@ -64,10 +64,10 @@ import {
   Table,
 } from "./components";
 import "./styles.css";
-import CuePaletteAssignments from "./CuePaletteAssignments";
 import PaletteWorkbench from "./PaletteWorkbench";
 import {starterMacros} from "./programming-macros";
-import { renamePaletteReferences, applyPaletteToCue } from "./palettes-phasers";
+import { renamePaletteReferences } from "./palettes-phasers";
+import {cueLabel, ensureCue, storeCueDraft} from "./programming/cues";
 import { baselinePalettes } from "./palettes-phasers";
 import LiveConsole from "./LiveConsole";
 import Workspace from "./Workspace";
@@ -77,12 +77,13 @@ import { createRun, makeSnapshot } from "./live-model";
 import { StandaloneMovieUpload } from "./VenueMovies";
 
 const initial = {
-  paletteLibraryVersion: 2,
+  paletteLibraryVersion: 3,
+  currentCue: 1,
   showName: "Afterglow · Fall tour",
   shows: ["Afterglow · Fall tour", "Common ground", "The midnight sessions"],
   venues: ["The Glasshouse", "Mercury Hall", "Northside Theater"],
   templates: ["Touring rig", "Intimate room", "Festival stage"],
-  presets: [...presetRows, ...baselinePalettes],
+  presets: baselinePalettes,
   fixtures: fixtureRows,
   script: cueRows.map((c, i) => ({ ...c, entryId: `entry-${i}` })),
   intensity: 75,
@@ -94,7 +95,7 @@ function load() {
   try {
     const stored = JSON.parse(localStorage.getItem("vv-design-v1") || "{}");
     const presets = stored.presets ?? initial.presets;
-    return { ...initial, ...stored, paletteLibraryVersion: 2, presets: stored.paletteLibraryVersion === 2 ? presets : [...presets, ...baselinePalettes.filter(p => !presets.some(existing => existing.name === p.name))] };
+    return { ...initial, ...stored, paletteLibraryVersion: 3, presets: stored.paletteLibraryVersion === 3 ? presets : [...presets, ...baselinePalettes.filter(p => !presets.some(existing => existing.name === p.name))] };
   } catch {
     return initial;
   }
@@ -102,12 +103,13 @@ function load() {
 const urlParams = () => new URLSearchParams(location.search);
 function App({ embeddedRoute, onNavigate, context }) {
   const [storedData, setData] = useSharedState(
-      context ? `vv-programming-preview:${context.id}` : "vv-design-v1",
+      context ? `vv-programming:${context.id}` : "vv-design-v1",
       context
         ? {
             ...initial,
             showName: context.name,
             venues: [context.venue],
+            script: [],
             venueOverrides: {},
           }
         : load(),
@@ -129,7 +131,7 @@ function App({ embeddedRoute, onNavigate, context }) {
     [connected, setConnected] = useSharedState("vv-demo-connected", true),
     [dirty, setDirty] = useState(false);
   const existingPalettes = storedData.presets ?? initial.presets;
-  const seededData = { ...storedData, presets: storedData.paletteLibraryVersion === 2 ? existingPalettes : [...existingPalettes, ...baselinePalettes.filter(p => !existingPalettes.some(existing => existing.name === p.name))] };
+  const seededData = { ...storedData, presets: storedData.paletteLibraryVersion === 3 ? existingPalettes : [...existingPalettes, ...baselinePalettes.filter(p => !existingPalettes.some(existing => existing.name === p.name))] };
   const data = context ? { ...seededData, fixtures: context.fixtures } : seededData;
   const screen = screens.find((s) => s.id === route) || screens[4];
   const [liveRun, setLiveRun] = useSharedState(
@@ -162,7 +164,8 @@ function App({ embeddedRoute, onNavigate, context }) {
   function update(values) {
     return setData((d) => {
       const presets = d.presets ?? initial.presets;
-      return { ...d, presets: d.paletteLibraryVersion === 2 ? presets : [...presets, ...baselinePalettes.filter(p => !presets.some(existing => existing.name === p.name))], paletteLibraryVersion: 2, ...values };
+      const current = {...d, presets:d.paletteLibraryVersion === 3 ? presets : [...presets, ...baselinePalettes.filter(p => !presets.some(existing => existing.name === p.name))], paletteLibraryVersion:3};
+      return {...current, ...(typeof values === 'function' ? values(current) : values)};
     });
   }
   function notify(message) {
@@ -260,17 +263,17 @@ function App({ embeddedRoute, onNavigate, context }) {
     <Table
       headers={["Cue", "State", "Palette", "Fade", "Scope", ""]}
       rows={items.map((c, i) => [
-        <span className="mono">{c.id}</span>,
+        <span className="mono">{cueLabel(c.cueNumber ?? data.script.indexOf(c) + 1)}</span>,
         <span className="with-dot">
           <i style={{ background: c.color }} />
           {c.name}
         </span>,
-        c.preset,
-        `${c.fade}.0 s`,
+        c.preset || `${c.assignments?.filter(a => a.fixtureId).length ?? 0} fixture assignments`,
+        `${c.fade ?? 0} s`,
         <Badge tone={i === 2 ? "amber" : "neutral"}>
           {i === 2 ? "Venue override" : "Show default"}
         </Badge>,
-        editLink("Edit", "cue-editor"),
+        <Button onClick={async () => { await update({currentCue:c.cueNumber ?? data.script.indexOf(c) + 1}); go("cue-editor"); }}>Edit cue</Button>,
       ])}
     />
   );
@@ -405,19 +408,24 @@ function App({ embeddedRoute, onNavigate, context }) {
         );
       case "presets":
       case "preset-editor":
+      case "cue-editor":
         return <>
-          {header("Palettes & phasers", "Select fixtures · build attribute values · store and apply")}
+          {header("Palettes & phasers", "Select fixtures, recall a palette, then shape the current cue.")}
           <PaletteWorkbench palettes={data.presets} fixtures={data.fixtures} script={makeSnapshot(data, venue).script}
             macros={data.macros ?? starterMacros}
-            onSaveMacro={async macro => { const macros = data.macros ?? starterMacros; await update({macros:macros.some(m=>m.id===macro.id) ? macros.map(m=>m.id===macro.id?macro:m) : [...macros,macro]}); setDirty(true); }}
-            onApplyMacro={async script => { await update({script}); setDirty(true); }}
+            onSaveMacro={async macro => { await update(current => {const macros=current.macros ?? starterMacros;return {macros:macros.some(m=>m.id===macro.id) ? macros.map(m=>m.id===macro.id?macro:m) : [...macros,macro]};}); setDirty(true); }}
+            onApplyMacro={async transform => {
+              const state = await update(current => ({script:transform(makeSnapshot({...current, fixtures:data.fixtures}, venue).script)}));
+              setDirty(true); return state;
+            }}
             onSave={async (palette, originalName) => {
-              await update(renamePaletteReferences({...data, macros:data.macros ?? starterMacros}, palette, originalName));
+              await update(current => renamePaletteReferences({...current, macros:current.macros ?? starterMacros}, palette, originalName));
               setDirty(true);
             }}
-            onApply={async (palette, ids, entryId) => {
-              await update({script: applyPaletteToCue(makeSnapshot(data, venue).script, entryId, ids, palette, data.fixtures, data.presets)});
-              setDirty(true);
+            currentCue={data.currentCue ?? 1}
+            onCurrentCue={number => update({currentCue:number})}
+            onStoreCue={async (palette, ids, number) => {
+              return update(current => ({script:storeCueDraft(makeSnapshot({...current, fixtures:data.fixtures}, venue).script, number, ids, palette, data.fixtures, current.presets ?? data.presets)}));
             }}/>
         </>;
       case "cues":
@@ -435,78 +443,16 @@ function App({ embeddedRoute, onNavigate, context }) {
                 onChange={setQuery}
                 placeholder="Find a cue…"
               />
-              <Badge>6 show states</Badge>
+              <Badge>{data.script.length} stored cues</Badge>
             </div>
-            {cueTable(matching(cueRows))}
+            {cueTable(matching(data.script))}
             <Panel title="A cue is reusable">
               <p className="panel-copy">
-                Use the same cue more than once in a script. Venue adaptations
-                change its resolved assignments without duplicating the whole
-                show.
+                Cues run from 01–255. Each cue stores the attributes you change;
+                previous dimmer, color, position and beam values track forward.
+                Open a cue to edit its fixture selection and phasers.
               </p>
             </Panel>
-          </>
-        );
-      case "cue-editor":
-        return (
-          <>
-            {header(
-              "Q02 · Into the blue",
-              "A complete moment in the show · Used in Main performance",
-              <>
-                <Button onClick={() => go("rehearsal")}>
-                  <Play size={15} />
-                  Preview
-                </Button>
-                <Button primary onClick={save}>
-                  Save cue
-                </Button>
-              </>,
-            )}
-            {scopeBar}
-            <div className="two-col">
-              <CuePaletteAssignments data={data} venue={venue} onChange={script => { update({script}); setDirty(true); }}/>
-              <Panel title="Transition & behavior">
-                <div className="form-fields">
-                  <Field label="Fade in (seconds)">
-                    <input
-                      type="number"
-                      min="0"
-                      defaultValue="4"
-                      onChange={() => setDirty(true)}
-                    />
-                  </Field>
-                  <Field label="Fade out (seconds)">
-                    <input
-                      type="number"
-                      min="0"
-                      defaultValue="3"
-                      onChange={() => setDirty(true)}
-                    />
-                  </Field>
-                  <Field label="Curve">
-                    <select>
-                      <option>Linear</option>
-                      <option>Ease in / out</option>
-                    </select>
-                  </Field>
-                  <Field label="Entry condition">
-                    <select>
-                      <option>Operator GO</option>
-                      <option>Script timed follow</option>
-                    </select>
-                  </Field>
-                  <Field label="Operator note">
-                    <textarea
-                      rows={3}
-                      defaultValue="Start on the first sustained synth note."
-                      onChange={() => setDirty(true)}
-                    />
-                  </Field>
-                </div>
-              </Panel>
-            </div>
-            <Stage look="#7386ee" />
           </>
         );
       case "scripts":
@@ -534,7 +480,7 @@ function App({ embeddedRoute, onNavigate, context }) {
                   }
                 >
                   <div className="script-preview">
-                    {cueRows.slice(0, i === 0 ? 6 : 3).map((c, j) => (
+                    {data.script.slice(0, i === 0 ? 6 : 3).map((c, j) => (
                       <div key={c.id}>
                         <span>{String(j + 1).padStart(2, "0")}</span>
                         <i style={{ background: c.color }} />
@@ -863,6 +809,19 @@ function App({ embeddedRoute, onNavigate, context }) {
           </div>
         </>
       );
+    if (kind === "cue") {
+      const available = Array.from({length:255}, (_, i) => i + 1).filter(number => !data.script.some((entry, index) => (entry.cueNumber ?? index + 1) === number));
+      return <form onSubmit={async event => {
+        event.preventDefault();
+        const fields = new FormData(event.currentTarget), number = +fields.get('number');
+        await update(current => ({currentCue:number, script:ensureCue(current.script, number).map(entry => entry.cueNumber === number ? {...entry, name:fields.get('name').trim() || `Cue ${cueLabel(number)}`} : entry)}));
+        setModal(null); go('cue-editor');
+      }}>
+        <Field label="Cue number"><select name="number">{available.map(number => <option key={number} value={number}>{cueLabel(number)}</option>)}</select></Field>
+        <Field label="Cue name"><input name="name" placeholder="e.g. House open" maxLength={120}/></Field>
+        <div className="form-footer"><Button onClick={() => setModal(null)}>Cancel</Button><Button primary type="submit" disabled={!available.length}>Create cue</Button></div>
+      </form>;
+    }
     if (kind === "script-entry")
       return (
         <form

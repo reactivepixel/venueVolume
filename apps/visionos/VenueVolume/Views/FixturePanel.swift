@@ -34,36 +34,9 @@ struct FixturePanel: View {
             Button {
                 model.presetEditor.request(presetID: fixture.presetID)
                 model.record(.presets)
-                model.controlsTab = 0
             } label: { Label(fixture.presetID == nil ? "Choose or create palette" : "Edit assigned palette", systemImage: "slider.horizontal.3") }
-            Text("Drag a palette using its handle in the wrist menu, or choose a fixture from the palette’s Apply menu.")
+            Text("Select fixtures in the Toolbox, then recall or edit a palette for the current cue.")
                 .font(.caption).foregroundStyle(.secondary)
         }.font(.callout)
-    }
-}
-
-struct FixtureDropTarget: View {
-    @Environment(VenueModel.self) private var model
-    let fixture: Fixture
-    @State private var targeted = false
-
-    var body: some View {
-        RoundedRectangle(cornerRadius: 18)
-            .fill(Color.cyan.opacity(targeted ? 0.22 : 0.001))
-            .overlay {
-                if model.draggingPresetID != nil || targeted {
-                    RoundedRectangle(cornerRadius: 18).stroke(.cyan, lineWidth: 2)
-                    Text(targeted ? "Release to apply" : "Drop palette")
-                        .font(.headline).padding(12).glassBackgroundEffect()
-                }
-            }
-            .frame(width: 300, height: 300)
-            .contentShape(Rectangle())
-            .onTapGesture { withAnimation { model.select(fixture.id) } }
-            .accessibilityLabel("\(fixture.name), palette drop target")
-            .dropDestination(for: String.self) { tokens, _ in
-                guard let token = tokens.first, let id = DMXPreset.id(from: token) else { return false }
-                return model.applyPreset(id, to: fixture.id)
-            } isTargeted: { targeted = $0 }
     }
 }
